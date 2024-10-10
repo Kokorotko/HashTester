@@ -1,7 +1,0 @@
-Funkční hashovací algoritmus pro šifrování v textu s výstupem do label/souboru
-Funkční hashovací algoritmus pro šifrování .txt souboru přes ReadLine()
-Základní UI
-Funkční postupné hashování
-Light/Dark Mode
-Funkční Settings Script
-Sůl

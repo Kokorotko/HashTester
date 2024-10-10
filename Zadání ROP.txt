@@ -1,1 +1,13 @@
 Teoreticky zpracujte problematiku hashování. S pomoci nejménì dvou hashovacích algoritmù vytvoøte aplikaci na demonstraci procesu hashování. Vstupem bude textový ruènì zadaný textový øetìzec a soubor. Naprogramujte samotné hashovací funkce s možností volby stupnì zabezpeèení a délky výstupního hodnoty.  Navrhnìte zpùsob testovaní dané hashovací funkce a zpùsob demonstrace zmìny výstupní hodnoty na zmìnì vstupní hodnoty a tyto funkènosti naprogramujte. Aplikaci realizujte v prostøedí VS, jazyk C#, sdílení a ukládání pøes GitHub.
+
+**Programy a Technologie
+C#
+Visual Studio 2022
+Visual Code
+Git, GitHub, GitHub Desktop
+Web Freelo.io (Kanban -- Agilní)
+Word (dokumentace)
+Photoshop
+
+
+

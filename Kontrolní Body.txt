@@ -1,0 +1,28 @@
+KB01:
+Základní struktura dokumentu
+Začátek Unit Testů
+Funkční hashovací algoritmus pro šifrování v textu s výstupem do label/souboru
+Funkční hashovací algoritmus pro šifrování .txt souboru přes řádky
+Základní UI
+Light/Dark Mode
+Základ Settings Script
+KB02:
+Unit Test
+File Management
+Dokumentace teoretická část + práce na praktické
+Funkční Settings
+Funkční postupné hashování
+Funkce soli a vysvětlení soli v info
+John The Ripper password Tester
+Password JailBreak
+KB03:
+Vyjímky
+CZ/EN možnost
+Informace o různých Hashech (info)
+Dokumentace Praktická část
+Zlepšení UI
+KB04:
+.zip file
+BugTesting a BugFixing
+Dodělávky na dokumentaci
+Návod na použití programu
