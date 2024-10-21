@@ -16,10 +16,10 @@ namespace HashTester
         {
             InitializeComponent();
         }
-
+        Hasher hasher = new Hasher();
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(hasher.Hash(textHashSimple.Text, Hasher.HashingAlgorithm.MD5));
         }
     }
 }

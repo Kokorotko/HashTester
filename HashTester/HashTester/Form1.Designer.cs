@@ -30,6 +30,7 @@
         {
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.textHashSimple = new System.Windows.Forms.TextBox();
+            this.languageButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonHashSimpleText
@@ -48,12 +49,23 @@
             this.textHashSimple.Name = "textHashSimple";
             this.textHashSimple.Size = new System.Drawing.Size(775, 20);
             this.textHashSimple.TabIndex = 1;
+            this.textHashSimple.Text = "Hello This is Test";
+            // 
+            // languageButton
+            // 
+            this.languageButton.Location = new System.Drawing.Point(713, 12);
+            this.languageButton.Name = "languageButton";
+            this.languageButton.Size = new System.Drawing.Size(75, 23);
+            this.languageButton.TabIndex = 2;
+            this.languageButton.Text = "CZ/EN";
+            this.languageButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.languageButton);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
             this.Name = "Form1";
@@ -67,6 +79,7 @@
 
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.TextBox textHashSimple;
+        private System.Windows.Forms.Button languageButton;
     }
 }
 
