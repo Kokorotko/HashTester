@@ -9,5 +9,13 @@ Web Freelo.io (Kanban -- Agilní)
 Word (dokumentace)
 Photoshop
 
+HASHES
+MD5
+SHA-1
+SHA256
+SHA512
+RIPEMD-160
+PBKDF2
+
 
 

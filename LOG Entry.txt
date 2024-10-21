@@ -7,3 +7,6 @@ Set up Githubu
 Kontrolní body
 Freelo Final Set Up
 Písemná práce (Abstrakt, Poděkování a Klíčová slova, Úvod)
+**2024-10-21
+Hasher Script základní hashe (MD5 a SHA)
+Teoretická dokumentace (Použité programy)
