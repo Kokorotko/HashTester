@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Microsoft.SqlServer.Server;
+using System.IO.Hashing;
 
 namespace HashTester
 {
-    internal class Hasher
+    public class Hasher
     {
+        public Hasher() { } //Kvůli UnitTest
         public enum HashingAlgorithm
         {
             MD5,
             SHA1,
             SHA256,
-            SHA512
+            SHA512,
+            RIPEMD160,
+            CRC32
         }
         /// <summary>
         /// Takes a string and an algorithm and creates a hash
@@ -31,6 +35,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -52,6 +58,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -70,6 +78,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -87,6 +97,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -106,6 +118,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -125,6 +139,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -145,6 +161,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -164,6 +182,8 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
@@ -183,69 +203,63 @@ namespace HashTester
                 case HashingAlgorithm.SHA1: return HashSHA1(text);
                 case HashingAlgorithm.SHA256: return HashSHA256(text);
                 case HashingAlgorithm.SHA512: return HashSHA512(text);
+                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
+                case HashingAlgorithm.CRC32: return HashCRC32(text);
                 default: return "error";
             }
         }
 
         string HashMD5(string text)
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(text);
             using (MD5 md5 = MD5.Create())
             {
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-                StringBuilder hashString = new StringBuilder();
-                foreach (byte b in hashBytes)
-                {
-                    hashString.Append(b.ToString("x2")); //x2 means 2 hexadecimals (A5)
-                }
-                return hashString.ToString();
+                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant(); //returns as AÄ-BB-CC we need aabbcc
             }
         }
 
         string HashSHA1(string text)
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(text);
             using (SHA1 sha1 = SHA1.Create())
             {
-                byte[] hashBytes = sha1.ComputeHash(inputBytes);
-                StringBuilder hashString = new StringBuilder();
-                foreach (byte b in hashBytes)
-                {
-                    hashString.Append(b.ToString("x2"));
-                }
-                return hashString.ToString();
+                byte[] hashBytes = sha1.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
             }
         }
 
         string HashSHA256(string text)
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(text);
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] hashBytes = sha256.ComputeHash(inputBytes);
-                StringBuilder hashString = new StringBuilder();
-                foreach (byte b in hashBytes)
-                {
-                    hashString.Append(b.ToString("x2"));
-                }
-                return hashString.ToString();
+                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
             }
         }
 
         string HashSHA512(string text)
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(text);
             using (SHA512 sha512 = SHA512.Create())
             {
-                byte[] hashBytes = sha512.ComputeHash(inputBytes);
-                StringBuilder hashString = new StringBuilder();
-                foreach (byte b in hashBytes)
-                {
-                    hashString.Append(b.ToString("x2"));
-                }
-                return hashString.ToString();
+                byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
             }
         }
+
+        string HashRIPEMD160(string text)
+        {
+            using (RIPEMD160 ripemd160 = RIPEMD160.Create())
+            {
+                byte[] hashBytes = ripemd160.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+            }
+        }
+
+        public string HashCRC32(string text) //z System.IO.Hashing
+        {
+            byte[] hashBytes = Crc32.Hash(Encoding.UTF8.GetBytes(text));
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+        }
+
 
         string GenerateSalt(int length)
         {

@@ -8,5 +8,8 @@ Kontrolní body
 Freelo Final Set Up
 Písemná práce (Abstrakt, Poděkování a Klíčová slova, Úvod)
 **2024-10-21
-Hasher Script základní hashe (MD5 a SHA)
+Hasher Script základní hashe (MD5 a SHA1, SHA256, SHA512)
 Teoretická dokumentace (Použité programy)
+**2024-10-22
+Hasher Script všechny hashe (RIPEMD-160, MACTripleDES)
+Unit Test kontrola hashování
