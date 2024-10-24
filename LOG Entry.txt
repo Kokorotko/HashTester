@@ -13,3 +13,8 @@ Teoretická dokumentace (Použité programy)
 **2024-10-22
 Hasher Script všechny hashe (RIPEMD-160, MACTripleDES)
 Unit Test kontrola hashování
+**2024-10-24
+Smazání knihovny přes NuGet
+Změna Kontrolních bodů
+Fixnutí hashů
+Praktická i teoretická práce dokumentace

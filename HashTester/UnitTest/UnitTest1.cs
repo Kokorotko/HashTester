@@ -28,7 +28,7 @@ namespace UnitTest
         public void HashMD5Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.MD5);
-            Assert.AreEqual("93c723e7edcfd4815fe84fa6d3b613f6", test);
+            Assert.AreEqual("1372b54a635a22b8749033e0a2e01ae7", test);
         }
         [TestMethod]
         public void HashMD5Test04()
@@ -53,7 +53,7 @@ namespace UnitTest
         public void HashSHA1Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.SHA1);
-            Assert.AreEqual("3573c721be9fbf46c7fff7c9fc730d78be64fc8c", test);
+            Assert.AreEqual("582e6baf984f0b14595ebb180cffabc6e45b47df", test);
         }
         [TestMethod]
         public void HashSHA1Test04()
@@ -78,7 +78,7 @@ namespace UnitTest
         public void HashSHA256Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.SHA256);
-            Assert.AreEqual("e48bff42b9fe87584d1abb2e48ad145ee2c3a1113ea59204478ca7b7eaa60348", test);
+            Assert.AreEqual("195ad82f323760decb56a92b2533a5fca07b2ac6bf6c83018d72afd2052400e2", test);
         }
         [TestMethod]
         public void HashSHA256Test04()
@@ -103,7 +103,7 @@ namespace UnitTest
         public void HashSHA512Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.SHA512);
-            Assert.AreEqual("2f7c561bc19ccccaeb03113c93d31efbcd84439da96b42a56a268f705300cacda0d9b0aeb3637e141ac3f4c5801835213d312c78181e2288a2943e4f62cf5244", test);
+            Assert.AreEqual("699497961016314bd26fca4607705d622a32498dde38335323f99924149c4d49fdcefeb43b247f2c0ea6fec511d8884313c5c27f6aa8492ff1f1d504001c5561", test);
         }
         [TestMethod]
         public void HashSHA512Test04()
@@ -128,7 +128,7 @@ namespace UnitTest
         public void HashRIPEMD160Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.RIPEMD160);
-            Assert.AreEqual("773be0449360d036b47425289b4d84c331d9ee5b", test);
+            Assert.AreEqual("4cd0bc043535e28edcc7a170e4e262429f957878", test);
         }
         [TestMethod]
         public void HashRIPEMD160Test04()
@@ -154,7 +154,7 @@ namespace UnitTest
         public void HashCRC32Test03()
         {
             string test = hasher.Hash(text03, Hasher.HashingAlgorithm.CRC32);
-            Assert.AreEqual("5f45ce13", test);
+            Assert.AreEqual("8a35e652", test);
         }
         [TestMethod]
         public void HashCRC32Test04()

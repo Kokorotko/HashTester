@@ -254,10 +254,40 @@ namespace HashTester
             }
         }
 
-        public string HashCRC32(string text) //z System.IO.Hashing
+        public string HashCRC32(string text)
         {
-            byte[] hashBytes = Crc32.Hash(Encoding.UTF8.GetBytes(text));
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+            uint[] crc32Table = new uint[256]; //Velikost (CRC32 == 32 bytů)
+            const uint polynomial = 0xedb88320; //Standardní CRC32 věc, která říká jak CRC32 funguje
+
+            for (uint i = 0; i < 256; i++)
+            {
+                uint crc = i;
+                for (uint j = 8; j > 0; j--)
+                {
+                    if ((crc & 1) == 1) // & ==> bit AND
+                    {
+                        crc = (crc >> 1) ^ polynomial; //^ ==> bit XOR
+                    }
+                    else
+                    {
+                        crc >>= 1;
+                    }
+                }
+                crc32Table[i] = crc;
+            }
+
+            //Samotná kalkulace CRC32
+            uint crcValue = 0xffffffff;
+            byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(text);
+
+            foreach (byte b in inputBytes)
+            {
+                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number (16x1)
+                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> bit shift to the right
+            }
+
+            crcValue = ~crcValue; //~ ==> bit NOT
+            return crcValue.ToString("x8"); //Converts to lowercase hexadecimal string
         }
 
 
@@ -265,14 +295,14 @@ namespace HashTester
         {
             byte[] salt = new byte[length];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
-            return Convert.ToBase64String(salt);
+            return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
         }
 
         string GeneratePepper(int length)
         {
             byte[] salt = new byte[length];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
-            return Convert.ToBase64String(salt);
+            return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
         }
     }
 }

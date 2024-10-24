@@ -3,8 +3,7 @@ Základní struktura dokumentu
 Začátek Unit Testů
 Funkční hashovací algoritmus pro šifrování v textu s výstupem do label/souboru
 Funkční hashovací algoritmus pro šifrování .txt souboru přes řádky
-Základní UI
-Light/Dark Mode
+CRC algorithmus vlastní naprogramování bez knihovny
 Základ Settings Script
 KB02:
 Unit Test
@@ -21,6 +20,7 @@ CZ/EN možnost
 Informace o různých Hashech (info)
 Dokumentace Praktická část
 Zlepšení UI
+Light/DarkMode
 KB04:
 .zip file
 BugTesting a BugFixing
