@@ -18,3 +18,8 @@ Smazání knihovny přes NuGet
 Změna Kontrolních bodů
 Fixnutí hashů
 Praktická i teoretická práce dokumentace
+**2024-10-31
+Gradual Hash metoda v Hasher
+Unit Testy na Gradual Hash
+Freelo úprava
+CRC32 pro stejné výsledky (source: https://stackoverflow.com/questions/59183626/crc32-is-the-same-for-different-inputs) + Složka SameHashingResults

@@ -8,5 +8,6 @@ namespace HashTester
 {
     internal class SettingsManager
     {
+
     }
 }

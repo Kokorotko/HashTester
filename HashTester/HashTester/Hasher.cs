@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Microsoft.SqlServer.Server;
 using System.IO.Hashing;
+using System.Reflection.Emit;
+using System.Windows.Forms.VisualStyles;
 
 namespace HashTester
 {
     public class Hasher
     {
-        public Hasher() { } //Kvůli UnitTest
+        public Hasher() { }
         public enum HashingAlgorithm
         {
             MD5,
@@ -21,13 +23,247 @@ namespace HashTester
             RIPEMD160,
             CRC32
         }
+        #region Gradual Hashing
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashing(string text, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Manually add Salt</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSalt(string text, string salt, bool appendLeft, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            if (appendLeft) text = salt + text;
+            else text = text + salt;
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Salt
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Returns string with randomly generated salt</param>
+        /// <param name="appendLeft"></param>
+        /// <param name="saltLenght">Used for generating salt</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSalt(string text, out string salt, bool appendLeft, int saltLenght, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            salt = GenerateSalt(saltLenght);
+            if (appendLeft) text = salt + text;
+            else text = text + salt;
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="pepper">Manually add Pepper</param>
+        /// <param name="appendLeft"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingPepper(string text, string pepper, bool appendLeft, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            if (appendLeft) text = pepper + text;
+            else text = text + pepper;
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="pepper">Returns randomly generated pepper</param>
+        /// <param name="pepperAppendLeft"></param>
+        /// <param name="pepperLenght"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingPepper(string text,out string pepper, bool pepperAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            //Generate
+            pepper = GeneratePepper(pepperLenght);
+            //PepperAppend
+            if (pepperAppendLeft) text = pepper + text;
+            else text = text + pepper;
+            //Hashing
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired Algorithm, Salt and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Returns randomly generated salt</param>
+        /// <param name="saltAppendLeft"></param>
+        /// <param name="saltLenght"></param>
+        /// <param name="pepper">Returns randomly generated pepper</param>
+        /// <param name="pepperAppendLeft"></param>
+        /// <param name="pepperLenght"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSaltPepper(string text, out string salt, bool saltAppendLeft, int saltLenght, out string pepper, bool pepperAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
+        {            
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            //generating
+            salt = GenerateSalt(saltLenght);
+            pepper = GeneratePepper(pepperLenght);
+            //SaltAppend
+            if (saltAppendLeft) text = salt + text;
+            else text = text + salt;
+            //PepperAppend
+            if (pepperAppendLeft) text = pepper + text;
+            else text = text + pepper;
+            //Hashing
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired Algorithm, Salt and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Returns randomly generated salt</param>
+        /// <param name="saltAppendLeft"></param>
+        /// <param name="saltLenght"></param>
+        /// <param name="pepper">Manually add Pepper</param>
+        /// <param name="pepperAppendLeft"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSaltPepper(string text, out string salt, bool saltAppendLeft, int saltLenght, string pepper, bool pepperAppendLeft, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            //generating
+            salt = GenerateSalt(saltLenght);
+            //SaltAppend
+            if (saltAppendLeft) text = salt + text;
+            else text = text + salt;
+            //PepperAppend
+            if (pepperAppendLeft) text = pepper + text;
+            else text = text + pepper;
+            //Hashing
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired Algorithm, Salt and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Uses Manually added salt</param>
+        /// <param name="saltAppendLeft"></param>
+        /// <param name="pepper">Returns randomly generated pepper</param>
+        /// <param name="pepperAppendLeft"></param>
+        /// <param name="pepperLenght"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSaltPepper(string text, string salt, bool saltAppendLeft, out string pepper, bool pepperAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            //generating
+            pepper = GeneratePepper(pepperLenght);
+            //SaltAppend
+            if (saltAppendLeft) text = salt + text;
+            else text = text + salt;
+            //PepperAppend
+            if (pepperAppendLeft) text = pepper + text;
+            else text = text + pepper;
+            //Hashing
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        /// <summary>
+        /// Returns Arrray of Strings that are gradually hashed with the desired Algorithm, Salt and Pepper
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="salt">Uses manually added salt</param>
+        /// <param name="saltAppendLeft"></param>
+        /// <param name="pepper">Uses manually added pepper</param>
+        /// <param name="pepperAppendLeft"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static string[] GradualHashingSaltPepper(string text, string salt, bool saltAppendLeft, string pepper, bool pepperAppendLeft, HashingAlgorithm algorithm)
+        {
+            string[] gradualHashing = new string[text.Length];
+            string textCurrentlyHashing = "";
+            //SaltAppend
+            if (saltAppendLeft) text = salt + text;
+            else text = text + salt;
+            //PepperAppend
+            if (pepperAppendLeft) text = pepper + text;
+            else text = text + pepper;
+            //Hashing
+            for (int i = 0; i < text.Length; i++)
+            {
+                textCurrentlyHashing += text[i].ToString();
+                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
+            }
+            return gradualHashing;
+        }
+        #endregion
+        #region Base Hashing
+        /////////////////////////////////////******BASE HASHING******/////////////////////////////////////
         /// <summary>
         /// Takes a string and an algorithm and creates a hash
         /// </summary>
         /// <param name="text"></param>
         /// <param name="algorithm"></param>
         /// <returns></returns>
-        public string Hash(string text, HashingAlgorithm algorithm)
+        public static string Hash(string text, HashingAlgorithm algorithm)
         {
             switch (algorithm)
             {
@@ -47,7 +283,7 @@ namespace HashTester
         /// <param name="salt">puts out the randomly generated salt</param>
         /// <param name="appendLeft">True appends left, false appends right</param>
         /// <returns></returns>
-        public string HashSalt(string text, out string salt, bool appendLeft, int saltLenght , HashingAlgorithm algorithm)
+        public static string HashSalt(string text, out string salt, bool appendLeft, int saltLenght, HashingAlgorithm algorithm)
         {
             salt = GenerateSalt(saltLenght);
             if (appendLeft) text = salt + text;
@@ -68,7 +304,7 @@ namespace HashTester
         /// </summary>
         /// <param name="appendLeft">True appends left, false appends right</param>
         /// <returns></returns>
-        public string HashSalt(string text, string salt, bool appendLeft, HashingAlgorithm algorithm)
+        public static string HashSalt(string text, string salt, bool appendLeft, HashingAlgorithm algorithm)
         {
             if (appendLeft) text = salt + text;
             else text = text + salt;
@@ -208,17 +444,18 @@ namespace HashTester
                 default: return "error";
             }
         }
-
-        string HashMD5(string text)
+        #endregion
+        #region Hashing Algorithm
+        static string HashMD5(string text)
         {
             using (MD5 md5 = MD5.Create())
             {
                 byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant(); //returns as AÄ-BB-CC we need aabbcc
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant(); //returns as AA-BB-CC we need aabbcc
             }
         }
 
-        string HashSHA1(string text)
+        static string HashSHA1(string text)
         {
             using (SHA1 sha1 = SHA1.Create())
             {
@@ -227,7 +464,7 @@ namespace HashTester
             }
         }
 
-        string HashSHA256(string text)
+        static string HashSHA256(string text)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -236,7 +473,7 @@ namespace HashTester
             }
         }
 
-        string HashSHA512(string text)
+        static string HashSHA512(string text)
         {
             using (SHA512 sha512 = SHA512.Create())
             {
@@ -245,7 +482,7 @@ namespace HashTester
             }
         }
 
-        string HashRIPEMD160(string text)
+        static string HashRIPEMD160(string text)
         {
             using (RIPEMD160 ripemd160 = RIPEMD160.Create())
             {
@@ -254,7 +491,7 @@ namespace HashTester
             }
         }
 
-        public string HashCRC32(string text)
+        static string HashCRC32(string text)
         {
             uint[] crc32Table = new uint[256]; //Velikost (CRC32 == 32 bytů)
             const uint polynomial = 0xedb88320; //Standardní CRC32 věc, která říká jak CRC32 funguje
@@ -291,18 +528,19 @@ namespace HashTester
         }
 
 
-        string GenerateSalt(int length)
+        static string GenerateSalt(int length)
         {
             byte[] salt = new byte[length];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
             return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
         }
 
-        string GeneratePepper(int length)
+        static string GeneratePepper(int length)
         {
             byte[] salt = new byte[length];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
             return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
         }
+        #endregion
     }
 }

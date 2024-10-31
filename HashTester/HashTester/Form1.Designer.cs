@@ -31,6 +31,8 @@
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.textHashSimple = new System.Windows.Forms.TextBox();
             this.languageButton = new System.Windows.Forms.Button();
+            this.buttonHashGradualHashing = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // buttonHashSimpleText
@@ -60,11 +62,31 @@
             this.languageButton.Text = "CZ/EN";
             this.languageButton.UseVisualStyleBackColor = true;
             // 
+            // buttonHashGradualHashing
+            // 
+            this.buttonHashGradualHashing.Location = new System.Drawing.Point(94, 12);
+            this.buttonHashGradualHashing.Name = "buttonHashGradualHashing";
+            this.buttonHashGradualHashing.Size = new System.Drawing.Size(102, 23);
+            this.buttonHashGradualHashing.TabIndex = 3;
+            this.buttonHashGradualHashing.Text = "Gradual Hashing";
+            this.buttonHashGradualHashing.UseVisualStyleBackColor = true;
+            this.buttonHashGradualHashing.Click += new System.EventHandler(this.buttonHashGradualHashing_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(13, 70);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(547, 368);
+            this.listBox1.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.buttonHashGradualHashing);
             this.Controls.Add(this.languageButton);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
@@ -80,6 +102,8 @@
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.TextBox textHashSimple;
         private System.Windows.Forms.Button languageButton;
+        private System.Windows.Forms.Button buttonHashGradualHashing;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

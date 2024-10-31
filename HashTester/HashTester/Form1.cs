@@ -16,10 +16,18 @@ namespace HashTester
         {
             InitializeComponent();
         }
-        Hasher hasher = new Hasher();
+
+
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(hasher.Hash(textHashSimple.Text, Hasher.HashingAlgorithm.MD5));
+            MessageBox.Show(Hasher.Hash(textHashSimple.Text, Hasher.HashingAlgorithm.MD5));
+        }
+
+        private void buttonHashGradualHashing_Click(object sender, EventArgs e)
+        {
+            string[] pole = Hasher.GradualHashing(textHashSimple.Text, Hasher.HashingAlgorithm.MD5);
+            listBox1.Items.Clear();
+            foreach (string p in pole) listBox1.Items.Add(p);
         }
     }
 }

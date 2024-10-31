@@ -1,0 +1,2 @@
+//HEX -- what input it should process (if you want to change this make this only on the second line; can also use //STRING)
+aaaa030000080045000034000040004006b7ec0a81c64c0a81dd8f0050ff6834801ca4f980101073b8000000118afabc000002a62e12d8acd
