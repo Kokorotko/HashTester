@@ -324,7 +324,7 @@ namespace HashTester
         /// Creates a hash based algorithm with pre-determined pepper (always append right)
         /// </summary>
         /// <returns></returns>
-        public string HashPepper(string text, string pepper, HashingAlgorithm algorithm)
+        public static string HashPepper(string text, string pepper, HashingAlgorithm algorithm)
         {
             text += pepper;
             switch (algorithm)
@@ -344,7 +344,7 @@ namespace HashTester
         /// </summary>
         /// <param name="pepperLenght"></param>
         /// <returns></returns>
-        public string HashPepper(string text, int pepperLenght, HashingAlgorithm algorithm)
+        public static string HashPepper(string text, int pepperLenght, HashingAlgorithm algorithm)
         {
             string pepper = GeneratePepper(pepperLenght);
             text += pepper;
@@ -364,7 +364,7 @@ namespace HashTester
         /// Creates a hash based algorithm with pre-determined salt and  pepper
         /// </summary>
         /// <returns></returns>
-        public string HashSaltPepper(string text, string salt, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
+        public static string HashSaltPepper(string text, string salt, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
         {
             if (saltAppendLeft) text = salt + text;
             else text = text + salt;
@@ -384,7 +384,7 @@ namespace HashTester
         /// Creates a hash based algorithm with generated salt and pepper
         /// </summary>
         /// <returns></returns>
-        public string HashSaltPepper(string text, out string salt , int saltLenght, bool saltAppendLeft,  out string pepper, int pepperLenght, HashingAlgorithm algorithm)
+        public static string HashSaltPepper(string text, out string salt , int saltLenght, bool saltAppendLeft,  out string pepper, int pepperLenght, HashingAlgorithm algorithm)
         {
             salt = GenerateSalt(saltLenght);
             pepper = GeneratePepper(pepperLenght);
@@ -406,7 +406,7 @@ namespace HashTester
         /// Creates a hash based algorithm with generated salt and pre-determined pepper
         /// </summary>
         /// <returns></returns>
-        public string HashSaltPepper(string text, out string salt, int saltLenght, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
+        public static string HashSaltPepper(string text, out string salt, int saltLenght, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
         {
             salt = GenerateSalt(saltLenght);
             if (saltAppendLeft) text = salt + text;
@@ -427,7 +427,7 @@ namespace HashTester
         /// Creates a hash based algorithm with pre-determined salt and generated pepper
         /// </summary>
         /// <returns></returns>
-        public string HashSaltPepper(string text, string salt, bool saltAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
+        public static string HashSaltPepper(string text, string salt, bool saltAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
         {
             string pepper = GeneratePepper(pepperLenght);
             if (saltAppendLeft) text = salt + text;
