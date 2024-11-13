@@ -8,6 +8,7 @@ using Microsoft.SqlServer.Server;
 using System.IO.Hashing;
 using System.Reflection.Emit;
 using System.Windows.Forms.VisualStyles;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HashTester
 {
@@ -529,17 +530,16 @@ namespace HashTester
 
 
         static string GenerateSalt(int length)
-        {
-            byte[] salt = new byte[length];
+        {            
+            byte[] salt = new byte[length];  //1 byte is converted to 2 hexadecimal char
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
-            return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
+            return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0,length); //Returns only half of the string
         }
-
         static string GeneratePepper(int length)
         {
-            byte[] salt = new byte[length];
+            byte[] salt = new byte[length]; //1 byte is converted to 2 hexadecimal char
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
-            return BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant();
+            return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
         }
         #endregion
     }

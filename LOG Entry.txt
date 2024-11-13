@@ -23,3 +23,12 @@ Gradual Hash metoda v Hasher
 Unit Testy na Gradual Hash
 Freelo úprava
 CRC32 pro stejné výsledky (source: https://stackoverflow.com/questions/59183626/crc32-is-the-same-for-different-inputs) + Složka SameHashingResults
+**2024-11-07
+Dodělání GradualHash Unit Test
+**2024-11-13
+Formulář Hashování s algorithmy
+GradualHashing fix
+Hashování pomocí .txt
+Output Settings (Listbox/MessageBox/TXTFile)
+Settings Formulář, Settings skript, Confirmation Formulář
+

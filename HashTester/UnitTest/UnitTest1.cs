@@ -4,7 +4,7 @@ using static HashTester.Hasher;
 namespace UnitTest
 {
     [TestClass]
-    public class BasicHashTest
+    public class Hashing
     {
         string text01 = "HashTester12345";
         string text02 = "1234567890";
@@ -164,25 +164,106 @@ namespace UnitTest
         }
     }
     [TestClass]
-    public class GradualHashingTest
+    public class GradualHashing
     {
         string text = "Testus";
+
         [TestMethod]
         public void GradualHashMD5()
         {
             string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.MD5);
             string[] correctHash =
             {
-                "b9ece18c950afbfa6b0fdbfa4ff731d3",
-                "2408730ad248ad4e4aa36fb14f5e0631",
-                "78ac12266411beaf4149f5cfb6e33afd",
-                "0cbc6611f5540bd0809a388dc95a615b",
-                "4e73c38e86323e3f00a309e6bcdcea46",
-                "021034f85e1577648504c45f70486e2c"
-            };
+            "b9ece18c950afbfa6b0fdbfa4ff731d3",
+            "2408730ad248ad4e4aa36fb14f5e0631",
+            "78ac12266411beaf4149f5cfb6e33afd",
+            "0cbc6611f5540bd0809a388dc95a615b",
+            "4e73c38e86323e3f00a309e6bcdcea46",
+            "021034f85e1577648504c45f70486e2c"
+        };
+            CollectionAssert.AreEqual(correctHash, pole);
+        }
+        [TestMethod]
+        public void GradualHashSHA1()
+        {
+            string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.SHA1);
+            string[] correctHash =
+            {
+            "c2c53d66948214258a26ca9ca845d7ac0c17f8e7",
+            "1b1be06f5bfb451c3199aeb9e8e337905dd0cecb",
+            "c82524e086d9a253cce031af2342715692b79aac",
+            "640ab2bae07bedc4c163f679a746f7ab7fb5d1fa",
+            "2d3d360a82c6464020c5cd02b2352b74c8b6df6f",
+            "9d4b621d6602beb27e1fb82dbeb841dd7897661d"
+        };
+            CollectionAssert.AreEqual(correctHash, pole);
+        }
+
+        [TestMethod]
+        public void GradualHashSHA256()
+        {
+            string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.SHA256);
+            string[] correctHash =
+            {
+            "e632b7095b0bf32c260fa4c539e9fd7b852d0de454e9be26f24d0d6f91d069d3",
+            "7566ad8da86a586045385d1bdc1f1f26df9257280bf47a5c2975ee926dee3e6e",
+            "47e8f094e1aca27195e6de64d47e8aa2b4f9c234d95da517084e0926fdaa8ba1",
+            "532eaabd9574880dbf76b9b8cc00832c20a6ec113d682299550d7a6e0f345e25",
+            "e835808c8a4b7b3e5c1fa276b121c382f74755a7c0dae908867209ef67fbce8b",
+            "ca21ae9392cb39a8eddd8d76a33735e779a909aada3b66ccfa71fa8a22052f38"
+        };
+            CollectionAssert.AreEqual(correctHash, pole);
+        }
+
+        [TestMethod]
+        public void GradualHashSHA512()
+        {
+            string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.SHA512);
+            string[] correctHash =
+            {
+            "b2396a002fe7aec008808687d7cbacb340b7f7a090008382f3c95870f6fb10415f61f5737c102d4bfec58fe525407ea2001e761dab1da8a501d9523921f0ec21",
+            "cc12409c9f6cb05f7b8b959fcf5454ba457fccbf9fc83b278850a524b4962ee1ff81810f7ddb86fd16601c22548e3809dc440afd2701702268fcb91907fcff53",
+            "71a0ec8b3318b49a9f5a12205a9cdedc9ac6b01a447c8b21c824aa33da564f1864a65476f03d1de71d12ea294555c810f9f9da8326c4ad13f151aa3ba7a33fd5",
+            "c6ee9e33cf5c6715a1d148fd73f7318884b41adcb916021e2bc0e800a5c5dd97f5142178f6ae88c8fdd98e1afb0ce4c8d2c54b5f37b30b7da1997bb33b0b8a31",
+            "726a250d106f6636303b67ee16fc2852bc28fb7c61cdc8b8c8da349a263fd2384cdb6e72e08cf62aa573b6a205483806180b57c3430b90bb8819738994e9306c",
+            "6db16199111b65d307e5af1575a0e97dfecde1705a056dc92feb6e0b29444241996556d48359e7c59a369158462d4d0b151545667f701d365c45914cd8029f3c"
+        };
+            CollectionAssert.AreEqual(correctHash, pole);
+        }
+
+        [TestMethod]
+        public void GradualHashRIPEND160()
+        {
+            string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.RIPEMD160);
+            string[] correctHash =
+            {
+            "9de1976650ec90e603d2892e43015af720d91fe4",
+            "77503acf53f822816d66efcf47be6a05027b495f",
+            "dcbc4a87d4df24b0b640a91ffa15b83888ffe492",
+            "76c82682cd7af7e812e513fa0e7914ab40b842e0",
+            "a3b588877caf94021b02759a35b0684b30235221",
+            "1460cbcc6d2447d17044b8d003d0b669fe999365"
+        };
+            CollectionAssert.AreEqual(correctHash, pole);
+        }
+
+        [TestMethod]
+        public void GradualHashCRC32()
+        {
+            string[] pole = Hasher.GradualHashing(text, Hasher.HashingAlgorithm.CRC32);
+            string[] correctHash =
+            {
+            "be047a60",
+            "a2d61f78",
+            "4572e01a",
+            "784dd132",
+            "3ac2766f",
+            "c63971b4"
+        };
             CollectionAssert.AreEqual(correctHash, pole);
         }
     }
+
     [TestClass]
     public class BasicHashingSaltAndPepper
     {
@@ -253,7 +334,7 @@ namespace UnitTest
         public void SHA1LeftSalt()
         {
             string temp = Hasher.HashSalt(text01, salt, true, HashingAlgorithm.SHA1);
-            Assert.AreEqual(temp, "1320671a3957e6d9a937b76d0d69b24f7059bf88");
+            Assert.AreEqual(temp, "a1ccf36317c6cf2d98bc03832ee35499e3dc62fe");
         }
 
         [TestMethod]
@@ -311,7 +392,7 @@ namespace UnitTest
         public void SHA256LeftSalt()
         {
             string temp = Hasher.HashSalt(text01, salt, true, HashingAlgorithm.SHA256);
-            Assert.AreEqual(temp, "03fcc07935a29fcdd9b8068c6b3435f4bce5ddf875cc3209878e1b8b65d95c22");
+            Assert.AreEqual(temp, "ad853ef97f34098a94f3f1ab59c6301c334ccc7b0c1ebfc2f6c5eb6bff60078d");
         }
 
         [TestMethod]
@@ -537,6 +618,27 @@ namespace UnitTest
             }
             Assert.IsTrue(foundMatch);
         }
+
+    }
+    [TestClass]
+    public class Settings
+    {
+
+    }
+    [TestClass]
+    public class txtOutput
+    {
+
+    }
+    [TestClass]
+    public class txtInput
+    {
+
+    }
+
+    [TestClass]
+    public class SameHashesComparison
+    {
 
     }
 }
