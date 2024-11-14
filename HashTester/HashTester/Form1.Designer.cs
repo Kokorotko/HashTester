@@ -30,7 +30,6 @@
         {
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.textHashSimple = new System.Windows.Forms.TextBox();
-            this.languageButton = new System.Windows.Forms.Button();
             this.buttonFormGradual = new System.Windows.Forms.Button();
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.TXTInput = new System.Windows.Forms.Button();
@@ -40,10 +39,10 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.OutputOption = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.settingsForm = new System.Windows.Forms.Button();
@@ -68,15 +67,6 @@
             this.textHashSimple.Size = new System.Drawing.Size(775, 59);
             this.textHashSimple.TabIndex = 1;
             this.textHashSimple.Text = "Hello This is Test";
-            // 
-            // languageButton
-            // 
-            this.languageButton.Location = new System.Drawing.Point(713, 12);
-            this.languageButton.Name = "languageButton";
-            this.languageButton.Size = new System.Drawing.Size(75, 23);
-            this.languageButton.TabIndex = 2;
-            this.languageButton.Text = "CZ/EN";
-            this.languageButton.UseVisualStyleBackColor = true;
             // 
             // buttonFormGradual
             // 
@@ -166,24 +156,15 @@
             this.OutputOption.TabStop = false;
             this.OutputOption.Text = "Output";
             // 
-            // label1
+            // checkBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 85);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "----------------------------";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 102);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(148, 17);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Output with Original String";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(6, 148);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(135, 17);
+            this.checkBox3.TabIndex = 12;
+            this.checkBox3.Text = "Output with Hash Algo.";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
@@ -195,15 +176,24 @@
             this.checkBox2.Text = "Number Hashes";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBox1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 148);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(135, 17);
-            this.checkBox3.TabIndex = 12;
-            this.checkBox3.Text = "Output with Hash Algo.";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 102);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(148, 17);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "Output with Original String";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "----------------------------";
             // 
             // listBox1
             // 
@@ -225,7 +215,7 @@
             // 
             // settingsForm
             // 
-            this.settingsForm.Location = new System.Drawing.Point(632, 12);
+            this.settingsForm.Location = new System.Drawing.Point(711, 12);
             this.settingsForm.Name = "settingsForm";
             this.settingsForm.Size = new System.Drawing.Size(75, 23);
             this.settingsForm.TabIndex = 12;
@@ -245,7 +235,6 @@
             this.Controls.Add(this.TXTInput);
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.buttonFormGradual);
-            this.Controls.Add(this.languageButton);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
             this.Name = "Form1";
@@ -262,7 +251,6 @@
 
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.TextBox textHashSimple;
-        private System.Windows.Forms.Button languageButton;
         private System.Windows.Forms.Button buttonFormGradual;
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Button TXTInput;
