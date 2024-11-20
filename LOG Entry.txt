@@ -31,4 +31,11 @@ GradualHashing fix
 Hashování pomocí .txt
 Output Settings (Listbox/MessageBox/TXTFile)
 Settings Formulář, Settings skript, Confirmation Formulář
+**2024-11-20
+Main Formulář UI Update (ToolStripMenu)
+Working Save/Load System (uloží při každé změně v MainForm ale jinde pouze přes dialog)
+**2024-11-21
+Dokumentace k Settings a UI
+UnitTesty pro Settings
+
 

@@ -19,7 +19,7 @@ namespace HashTester
         Settings settings = new Settings();
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            settings.SaveSettings(this);
+            settings.SaveSettings();
             DialogResult = DialogResult.OK;
         }
 
@@ -29,24 +29,25 @@ namespace HashTester
             if (reset.ShowDialog() == DialogResult.Yes) //Reset
             {
                 settings.ResetSettings();
-                settings.SaveSettings(this);
-                DialogResult= DialogResult.OK;
+                settings.SaveSettings();
+                DialogResult = DialogResult.OK;
             }
+            else MessageBox.Show("Reset Aborted");
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            settings.LoadSettings(); //unsaved changes
             DialogResult = DialogResult.Cancel;
         }
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            settings.LoadSettings();
             //VisualMode
-            int visualMode = settings.GetVisualMode();
-            if (visualMode == 0) radioButtonVisualMode0.Checked = true;
-            else if (visualMode == 1) radioButtonVisualMode1.Checked = true;
-            else radioButtonVisualMode2.Checked = true;
+            if (settings.VisualMode == Settings.VisualModeEnum.System) radioButtonVisualMode0.Checked = true;
+            else if (settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode1.Checked = true;
+            else if (settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode2.Checked = true;
+            else throw new ArgumentOutOfRangeException();
             //
         }
     }

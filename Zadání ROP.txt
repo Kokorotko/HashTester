@@ -2,20 +2,20 @@ Teoreticky zpracujte problematiku hashování. S pomoci nejménì dvou hashovacích a
 
 **Programy a Technologie
 C#
-Visual Studio 2022
-Visual Code
+Visual Studio 2022 (.NET framework)
+Visual Code (úprava kodu a .txt souborù)
 Git, GitHub, GitHub Desktop
 Web Freelo.io (Kanban -- Agilní)
 Word (dokumentace)
-Photoshop
+ChatGPT
 
-HASHES
+HASHES:
 MD5
 SHA-1
 SHA256
 SHA512
-RIPEMD-160
-PBKDF2
+RipeMD-160
+CRC32
 
 
 

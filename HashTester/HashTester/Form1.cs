@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HashTester.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HashTester.Hasher;
+using static HashTester.Settings;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace HashTester
@@ -18,16 +20,9 @@ namespace HashTester
         public Form1()
         {
             InitializeComponent();
-        }       
-
-        enum Output
-        {
-            MessageBox,
-            Listbox,
-            TXTFile
         }
-        Output outputOption;
-        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
+        Settings settings = new Settings();        
+        Hasher.HashingAlgorithm algorithm;
 
         #region MainButtons
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
@@ -35,33 +30,43 @@ namespace HashTester
             for (int i = 0; i < textHashSimple.Lines.Count(); i++)
             {
                 string text = textHashSimple.Lines[i];
-                CheckForOutputOption();
                 string hash = Hasher.Hash(text, algorithm);
                 string outputString = OutputString(text, hash, i + 1);
                 //Output
-                switch (outputOption)
+                switch (settings.OutputType)
                 {
-                    case Output.MessageBox: MessageBox.Show(outputString); break;
-                    case Output.Listbox: listBox1.Items.Add(outputString); break;
-                    case Output.TXTFile:
+                   case OutputTypeEnum.MessageBox:
+                        {
+                            MessageBox.Show(outputString);
+                            break;
+                        }
+                    case OutputTypeEnum.Listbox:
+                        {
+                            listBox1.Items.Add(outputString);
+                            break;
+                        }
+                    case OutputTypeEnum.TXTFile:
                         {
                             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                             {
-                                using (StreamWriter writer = new StreamWriter(saveFileDialog1.FileName)) { writer.WriteLine(outputString); }
+                                using (StreamWriter writer = new StreamWriter(saveFileDialog1.FileName))
+                                {
+                                    writer.WriteLine(outputString);
+                                }
                             }
                             break;
                         }
                 }
+
             }
         }
         private void TXTInput_Click(object sender, EventArgs e)
                 {
                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        CheckForOutputOption();
                         using (StreamReader reader = new StreamReader(openFileDialog1.FileName))
                         {
-                            if (outputOption == Output.TXTFile)
+                            if (settings.OutputType == OutputTypeEnum.TXTFile)
                             {
                                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                                 {
@@ -88,14 +93,14 @@ namespace HashTester
                                     string hash = Hasher.Hash(text, algorithm);
                                     indexOfHash++;
                                     string outputString = OutputString(text, hash, indexOfHash);
-                                    if (outputOption == Output.MessageBox) MessageBox.Show(outputString);
+                                    if (settings.OutputType == OutputTypeEnum.MessageBox) MessageBox.Show(outputString);
                                     else listBox1.Items.Add(outputString);
                                 }
                             }
                         }
                     }
                 }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //clearListbox
         {
             listBox1.Items.Clear();
         }
@@ -103,33 +108,21 @@ namespace HashTester
         
         #region Forms
 
-        private void buttonFormGradual_Click(object sender, EventArgs e)
-        {
-            FormGradual formGradual = new FormGradual();
-            formGradual.Show();
-        }
-
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
         #endregion
-        private void CheckForOutputOption()
-        {
-            if (radioButton1.Checked) outputOption = Output.MessageBox;
-            else if (radioButton2.Checked) outputOption = Output.Listbox;
-            else outputOption = Output.TXTFile;
-        }
 
         private string OutputString(string originalString, string hash, int indexOfHash)
         {
             string outputString = hash;
-            if (checkBox1.Checked)
+            if (settings.OutputStyleIncludeOriginalString)
             {
                 outputString = originalString + ": " + outputString;
             }
-            if (checkBox3.Checked)
+            if (settings.OutputStyleIncludeHashAlgorithm)
             {
                 switch (algorithm)
                 {
@@ -141,7 +134,7 @@ namespace HashTester
                     case HashingAlgorithm.CRC32: outputString = "(CRC32) " + outputString; break;
                 }
             }
-            if (checkBox2.Checked)
+            if (settings.OutputStyleIncludeNumberOfHash)
             {
                 outputString = indexOfHash.ToString() + ". " + outputString;
             }
@@ -149,13 +142,109 @@ namespace HashTester
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            hashSelector.SelectedIndex = 0;
+            settings.LoadSettings(); //load All Settings
+            UIToolStripMenuLoad(); //Load Strip Menu Checked UI
         }
 
-        private void settingsForm_Click(object sender, EventArgs e)
+        #region MenuStrip
+
+        private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormGradual formGradual = new FormGradual();
+            formGradual.Show();
+        }
+
+        #region SaltAndPepper
+        private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.IncludeSalt = !settings.IncludeSalt;
+            includeSaltToolStripMenuItem.Checked = settings.IncludeSalt;
+            settings.SaveSettings();
+        }
+
+        private void includePepperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.IncludePepper = !settings.IncludePepper;
+            includePepperToolStripMenuItem.Checked = settings.IncludePepper;
+            settings.SaveSettings();
+        }
+        #endregion
+
+        #region Settings
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSettings formSettings = new FormSettings();
             formSettings.ShowDialog();
+        }
+
+        #region Settings-OutputType
+        private void messageBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputType = OutputTypeEnum.MessageBox;
+            messageBoxToolStripMenuItem.Checked = true;
+            listBoxToolStripMenuItem.Checked = false;
+            txtFileToolStripMenuItem.Checked = false;
+            settings.SaveSettings();
+        }
+
+        private void listBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputType = OutputTypeEnum.Listbox;
+            messageBoxToolStripMenuItem.Checked = false;
+            listBoxToolStripMenuItem.Checked = true;
+            txtFileToolStripMenuItem.Checked = false;
+            settings.SaveSettings();
+        }
+
+        private void txtFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputType = OutputTypeEnum.TXTFile;
+            messageBoxToolStripMenuItem.Checked = false;
+            listBoxToolStripMenuItem.Checked = false;
+            txtFileToolStripMenuItem.Checked = true;
+            settings.SaveSettings();
+        }
+        #endregion
+
+        #region Settings-OutputStyle
+        private void includeOriginalStringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputStyleIncludeOriginalString = !settings.OutputStyleIncludeOriginalString; //negace
+            includeOriginalStringToolStripMenuItem.Checked = settings.OutputStyleIncludeOriginalString; //update UI
+            settings.SaveSettings();
+        }
+
+        private void includeNumberOfHashToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputStyleIncludeNumberOfHash = !settings.OutputStyleIncludeNumberOfHash; //negace
+            includeNumberOfHashToolStripMenuItem.Checked = settings.OutputStyleIncludeNumberOfHash; //update UI
+            settings.SaveSettings();
+        }
+        private void includeHashingAlgorithmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.OutputStyleIncludeHashAlgorithm = !settings.OutputStyleIncludeHashAlgorithm; //negace
+            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeHashAlgorithm; //update UI
+            settings.SaveSettings();
+        }
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        private void UIToolStripMenuLoad()
+        {
+            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeOriginalString;
+            includeNumberOfHashToolStripMenuItem.Checked = settings.OutputStyleIncludeNumberOfHash;
+            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeHashAlgorithm;
+            includeSaltToolStripMenuItem.Checked = settings.IncludeSalt;
+            includePepperToolStripMenuItem.Checked = settings.IncludePepper;
+            switch (settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
+            }
         }
     }
 }
