@@ -162,14 +162,14 @@
             // includeSaltToolStripMenuItem
             // 
             this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.includeSaltToolStripMenuItem.Text = "Include salt";
             this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click);
             // 
             // includePepperToolStripMenuItem
             // 
             this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.includePepperToolStripMenuItem.Text = "Include pepper";
             this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click);
             // 
@@ -297,7 +297,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ý";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

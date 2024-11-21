@@ -66,7 +66,7 @@ namespace HashTester
                 {
                     //VisualStyle
                     writer.WriteLine("//I have included comments on what value is allowed, if it is not, default value will be set instead. I tried to make this as idiot proof as possible :)");
-                    writer.WriteLine("Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input");
+                    writer.WriteLine("//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input");
                     writer.WriteLine("//VisualMode from 0 to 2");
                     switch (VisualMode)
                     {
