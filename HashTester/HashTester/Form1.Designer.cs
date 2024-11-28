@@ -211,7 +211,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -222,27 +222,27 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputToolStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
             // 
             this.messageBoxToolStripMenuItem.Name = "messageBoxToolStripMenuItem";
-            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.messageBoxToolStripMenuItem.Text = "MessageBox";
             this.messageBoxToolStripMenuItem.Click += new System.EventHandler(this.messageBoxToolStripMenuItem_Click);
             // 
             // listBoxToolStripMenuItem
             // 
             this.listBoxToolStripMenuItem.Name = "listBoxToolStripMenuItem";
-            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.listBoxToolStripMenuItem.Text = "ListBox";
             this.listBoxToolStripMenuItem.Click += new System.EventHandler(this.listBoxToolStripMenuItem_Click);
             // 
             // txtFileToolStripMenuItem
             // 
             this.txtFileToolStripMenuItem.Name = "txtFileToolStripMenuItem";
-            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.txtFileToolStripMenuItem.Text = "TxtFile";
             this.txtFileToolStripMenuItem.Click += new System.EventHandler(this.txtFileToolStripMenuItem_Click);
             // 
@@ -253,7 +253,7 @@
             this.includeNumberOfHashToolStripMenuItem,
             this.includeHashingAlgorithmToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -297,7 +297,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "ý";
+            this.Text = "HashTester";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

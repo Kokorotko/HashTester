@@ -9,6 +9,8 @@ using System.IO.Hashing;
 using System.Reflection.Emit;
 using System.Windows.Forms.VisualStyles;
 using static System.Net.Mime.MediaTypeNames;
+using System.IO;
+using System.Windows.Forms;
 
 namespace HashTester
 {
@@ -540,6 +542,35 @@ namespace HashTester
             byte[] salt = new byte[length]; //1 byte is converted to 2 hexadecimal char
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
             return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
+        }
+        #endregion
+        #region SaltSave
+        private void SaveSalt(string hashID, string salt, string pepper)
+        {
+            string path = "..\\..\\HashData\\" + hashID + ".txt"; 
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine("hashID:" + hashID);
+                if (salt != "") writer.WriteLine("salt=" + salt);
+                if (pepper != "") writer.WriteLine("pepper=" + pepper);
+            }
+        }
+
+        private void LoadSalt(string hashID, out string salt, out string pepper)
+        {
+            salt = null;
+            pepper = null;
+            string path = "..\\..\\HashData\\" + hashID + ".txt";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    string[] splitLine = line.Split('=');
+                    if (splitLine[0] == "salt") salt = splitLine[1];
+                    if (splitLine[0] == "pepper") pepper = splitLine[1];
+                }
+            }
         }
         #endregion
     }

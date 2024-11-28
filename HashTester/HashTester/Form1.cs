@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using static HashTester.Hasher;
 using static HashTester.Settings;
@@ -27,11 +28,43 @@ namespace HashTester
         #region MainButtons
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < textHashSimple.Lines.Count(); i++)
+            for (int i = 0; i < textHashSimple.Lines.Count(); i++) //all hashes in textfield
             {
+                //main hashing
                 string text = textHashSimple.Lines[i];
-                string hash = Hasher.Hash(text, algorithm);
-                string outputString = OutputString(text, hash, i + 1);
+                //Salt and Pepper Logic
+                string hash = "";
+                string outputString = "";
+                SaltAndPepperQuestion saltAndPepperQuestion;
+                if (settings.IncludeSalt && settings.IncludePepper)
+                {
+                    saltAndPepperQuestion = new SaltAndPepperQuestion(true, true);
+                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else if (settings.IncludeSalt && !settings.IncludePepper)
+                {
+                    saltAndPepperQuestion = new SaltAndPepperQuestion(true, false);
+                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else if (!settings.IncludeSalt && settings.IncludePepper)
+                {
+                    saltAndPepperQuestion = new SaltAndPepperQuestion(false, true);
+                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else
+                {
+                    hash = Hasher.Hash(text, algorithm);
+                    outputString = OutputString(text, hash, i + 1);
+                }
                 //Output
                 switch (settings.OutputType)
                 {

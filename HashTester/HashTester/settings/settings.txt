@@ -9,5 +9,5 @@ outputStyle_IncludeOriginalString=1
 outputStyle_IncludeHash=1
 outputStyle_IncludeNumber=1
 //Salt and Pepper bool
-includeSalt=0
-includePepper=0
+includeSalt=1
+includePepper=1
