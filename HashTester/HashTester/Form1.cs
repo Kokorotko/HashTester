@@ -24,75 +24,86 @@ namespace HashTester
         }
         Settings settings = new Settings();        
         Hasher.HashingAlgorithm algorithm;
-
+        Hasher hasher = new Hasher();
         #region MainButtons
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < textHashSimple.Lines.Count(); i++) //all hashes in textfield
+            for (int i = 0; i < textHashSimple.Lines.Length; i++)
             {
-                //main hashing
                 string text = textHashSimple.Lines[i];
-                //Salt and Pepper Logic
-                string hash = "";
-                string outputString = "";
-                SaltAndPepperQuestion saltAndPepperQuestion;
-                if (settings.IncludeSalt && settings.IncludePepper)
-                {
-                    saltAndPepperQuestion = new SaltAndPepperQuestion(true, true);
-                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
-                    {
+                string hash = string.Empty;
+                bool isSaltUsed = false, isPepperUsed = false;
 
-                    }
-                }
-                else if (settings.IncludeSalt && !settings.IncludePepper)
+                if (settings.useSalt || settings.usePepper)
                 {
-                    saltAndPepperQuestion = new SaltAndPepperQuestion(true, false);
-                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    using (SaltAndPepperQuestion saltAndPepperQuestion = new SaltAndPepperQuestion(settings.useSalt, settings.usePepper))
                     {
+                        if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                        {
+                            saltAndPepperQuestion.GetSaltPepperInformation(
+                                out bool generateSalt,
+                                out int saltLength,
+                                out string ownSalt,
+                                out bool generatePepper,
+                                out int pepperLength,
+                                out string ownPepper,
+                                out string hashID);
 
-                    }
-                }
-                else if (!settings.IncludeSalt && settings.IncludePepper)
-                {
-                    saltAndPepperQuestion = new SaltAndPepperQuestion(false, true);
-                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
-                    {
+                            if (generateSalt || generatePepper)
+                            {
+                                string generatedSalt = generateSalt ? hasher.GenerateSalt(saltLength) : ownSalt;
+                                string generatedPepper = generatePepper ? hasher.GeneratePepper(pepperLength) : ownPepper;
 
+                                if (generateSalt)
+                                {
+                                    hasher.SaveSalt(hashID, generatedSalt);
+                                }
+
+                                hash = hasher.HashSaltPepper(text, generatedSalt, generateSalt, generatedPepper, algorithm);
+                                isSaltUsed = generateSalt;
+                                isPepperUsed = generatePepper;
+                            }
+                            else
+                            {
+                                hash = hasher.HashSaltPepper(text, ownSalt, settings.useSalt, ownPepper, algorithm);
+                                isSaltUsed = settings.useSalt;
+                                isPepperUsed = settings.usePepper;
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    hash = Hasher.Hash(text, algorithm);
-                    outputString = OutputString(text, hash, i + 1);
+                    hash = hasher.Hash(text, algorithm);
                 }
-                //Output
-                switch (settings.OutputType)
-                {
-                   case OutputTypeEnum.MessageBox:
-                        {
-                            MessageBox.Show(outputString);
-                            break;
-                        }
-                    case OutputTypeEnum.Listbox:
-                        {
-                            listBox1.Items.Add(outputString);
-                            break;
-                        }
-                    case OutputTypeEnum.TXTFile:
-                        {
-                            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                            {
-                                using (StreamWriter writer = new StreamWriter(saveFileDialog1.FileName))
-                                {
-                                    writer.WriteLine(outputString);
-                                }
-                            }
-                            break;
-                        }
-                }
-
+                string outputString = OutputStyleString(text, hash, i + 1, isSaltUsed, isPepperUsed);
+                OutputTypeShow(outputString);
             }
         }
+
+
+        /// <summary>
+        /// Handles output based on user settings.
+        /// </summary>
+        private void OutputTypeShow(string outputString)
+        {
+            switch (settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox:
+                    MessageBox.Show(outputString);
+                    break;
+                case OutputTypeEnum.Listbox:
+                    listBox1.Items.Add(outputString);
+                    break;
+                case OutputTypeEnum.TXTFile:
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(saveFileDialog1.FileName, outputString);
+                    }
+                    break;
+            }
+        }
+
         private void TXTInput_Click(object sender, EventArgs e)
                 {
                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -109,9 +120,9 @@ namespace HashTester
                                         while (!reader.EndOfStream)
                                         {
                                             string text = reader.ReadLine();
-                                            string hash = Hasher.Hash(text, algorithm);
+                                            string hash = hasher.Hash(text, algorithm);
                                             indexOfHash++;
-                                            string outputString = OutputString(text, hash, indexOfHash);
+                                            string outputString = OutputStyleString(text, hash, indexOfHash, false, false);
                                             writer.WriteLine(outputString);
                                         }
                                     }
@@ -123,9 +134,9 @@ namespace HashTester
                                 while (!reader.EndOfStream)
                                 {
                                     string text = reader.ReadLine();
-                                    string hash = Hasher.Hash(text, algorithm);
+                                    string hash = hasher.Hash(text, algorithm);
                                     indexOfHash++;
-                                    string outputString = OutputString(text, hash, indexOfHash);
+                                    string outputString = OutputStyleString(text, hash, indexOfHash, false, false);
                                     if (settings.OutputType == OutputTypeEnum.MessageBox) MessageBox.Show(outputString);
                                     else listBox1.Items.Add(outputString);
                                 }
@@ -148,7 +159,7 @@ namespace HashTester
 
         #endregion
 
-        private string OutputString(string originalString, string hash, int indexOfHash)
+        private string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed)
         {
             string outputString = hash;
             if (settings.OutputStyleIncludeOriginalString)
@@ -171,6 +182,11 @@ namespace HashTester
             {
                 outputString = indexOfHash.ToString() + ". " + outputString;
             }
+            if (settings.OutputStyleIncludeSaltPepper)
+            {
+                if (isSaltUsed) outputString += " (salt: " + hasher.CurrentSalt + ")";
+                if (isPepperUsed) outputString += " (pepper: " + hasher.CurrentPepper + ")";
+            }
             return outputString;
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -181,6 +197,22 @@ namespace HashTester
 
         #region MenuStrip
 
+        private void UIToolStripMenuLoad()
+        {
+            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeOriginalString;
+            includeNumberOfHashToolStripMenuItem.Checked = settings.OutputStyleIncludeNumberOfHash;
+            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeHashAlgorithm;
+            includeSaltToolStripMenuItem.Checked = settings.useSalt;
+            includePepperToolStripMenuItem.Checked = settings.usePepper;
+            includeSaltAndPepperToolStripMenuItem.Checked = settings.OutputStyleIncludeSaltPepper;
+            switch (settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
+            }
+        }
+
         private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormGradual formGradual = new FormGradual();
@@ -190,15 +222,15 @@ namespace HashTester
         #region SaltAndPepper
         private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            settings.IncludeSalt = !settings.IncludeSalt;
-            includeSaltToolStripMenuItem.Checked = settings.IncludeSalt;
+            settings.useSalt = !settings.useSalt;
+            includeSaltToolStripMenuItem.Checked = settings.useSalt;
             settings.SaveSettings();
         }
 
         private void includePepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            settings.IncludePepper = !settings.IncludePepper;
-            includePepperToolStripMenuItem.Checked = settings.IncludePepper;
+            settings.usePepper = !settings.usePepper;
+            includePepperToolStripMenuItem.Checked = settings.usePepper;
             settings.SaveSettings();
         }
         #endregion
@@ -258,26 +290,20 @@ namespace HashTester
             settings.OutputStyleIncludeHashAlgorithm = !settings.OutputStyleIncludeHashAlgorithm; //negace
             includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeHashAlgorithm; //update UI
             settings.SaveSettings();
-        }
-        #endregion
+        }       
 
-        #endregion
-
-        #endregion
-
-        private void UIToolStripMenuLoad()
+        private void includeSaltAndPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeOriginalString;
-            includeNumberOfHashToolStripMenuItem.Checked = settings.OutputStyleIncludeNumberOfHash;
-            includeHashingAlgorithmToolStripMenuItem.Checked = settings.OutputStyleIncludeHashAlgorithm;
-            includeSaltToolStripMenuItem.Checked = settings.IncludeSalt;
-            includePepperToolStripMenuItem.Checked = settings.IncludePepper;
-            switch (settings.OutputType)
-            {
-                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
-            }
+            settings.OutputStyleIncludeSaltPepper = !settings.OutputStyleIncludeSaltPepper;
+            includeSaltAndPepperToolStripMenuItem.Checked = settings.OutputStyleIncludeSaltPepper;
+            settings.SaveSettings();
         }
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
     }
 }

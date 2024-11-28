@@ -56,6 +56,7 @@
             this.includeNumberOfHashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeHashingAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeSaltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,15 +163,15 @@
             // includeSaltToolStripMenuItem
             // 
             this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.includeSaltToolStripMenuItem.Text = "Include salt";
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includeSaltToolStripMenuItem.Text = "Use Salt";
             this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click);
             // 
             // includePepperToolStripMenuItem
             // 
             this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.includePepperToolStripMenuItem.Text = "Include pepper";
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includePepperToolStripMenuItem.Text = "Use Pepper";
             this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click);
             // 
             // gradualHashingToolStripMenuItem1
@@ -211,7 +212,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -222,7 +223,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputToolStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -251,9 +252,10 @@
             this.outputStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.includeOriginalStringToolStripMenuItem,
             this.includeNumberOfHashToolStripMenuItem,
-            this.includeHashingAlgorithmToolStripMenuItem});
+            this.includeHashingAlgorithmToolStripMenuItem,
+            this.includeSaltAndPepperToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -282,6 +284,13 @@
             this.languagesToolStripMenuItem.Name = "languagesToolStripMenuItem";
             this.languagesToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.languagesToolStripMenuItem.Text = "Languages";
+            // 
+            // includeSaltAndPepperToolStripMenuItem
+            // 
+            this.includeSaltAndPepperToolStripMenuItem.Name = "includeSaltAndPepperToolStripMenuItem";
+            this.includeSaltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.includeSaltAndPepperToolStripMenuItem.Text = "Include salt and pepper";
+            this.includeSaltAndPepperToolStripMenuItem.Click += new System.EventHandler(this.includeSaltAndPepperToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -336,6 +345,7 @@
         private System.Windows.Forms.ToolStripMenuItem hashCollisionDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem passwordJailbreakToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
     }
 }
 

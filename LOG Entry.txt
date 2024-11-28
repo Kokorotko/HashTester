@@ -37,5 +37,10 @@ Working Save/Load System (uloží při každé změně v MainForm ale jinde pouz
 **2024-11-21
 Dokumentace k Settings a UI
 UnitTesty pro Settings
+**2024-11-28
+Hasher (a metody) is no longer static
+Added menu for confirming rewriting saved salt in .txt
+Added salt and pepper to Hasher to make it easier to work with them
+Added Include Salt and Pepper Output style
 
 

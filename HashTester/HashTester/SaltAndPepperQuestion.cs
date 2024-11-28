@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -42,12 +43,43 @@ namespace HashTester
                 textBoxHashID.Focus();
             }            
         }
+
+        public void GetSaltPepperInformation(out bool generateSalt,  out int lenghtSalt, out string ownSalt, out bool generatePepper, out int lenghtPepper, out string ownPepper, out string hashID)
+        {
+            //salt
+            generateSalt = radioButtonPepperGen.Checked;
+            if (generateSalt)
+            {
+                lenghtSalt = int.Parse(textBoxSaltLenght.Text);
+                ownSalt = "";
+            }
+            else
+            {
+                lenghtSalt = 0;
+                ownSalt = textBoxSalt.Text;
+            }
+            //pepper
+            generatePepper = radioButtonPepperGen.Checked;
+            if (generatePepper)
+            {
+                lenghtPepper = int.Parse(textBoxSaltLenght.Text);
+                ownPepper = "";
+            }
+            else
+            {
+                lenghtPepper = 0;
+                ownPepper = textBoxSalt.Text;
+            }
+            //hashID
+            hashID = textBoxHashID.Text;
+        }
+
         #region HashID
         /// <summary>
         /// Trying to find a name for a hash that isnt already used
         /// </summary>
         /// <returns></returns>
-        private string SetHashID()
+private string SetHashID()
         {
             string name = "automaticallyGeneratedHash";
             int index = 1;
@@ -70,7 +102,13 @@ namespace HashTester
             string path = "..\\..\\HashData\\" + hashID + ".txt";
             if (File.Exists(path))
             {
-                //Check if (form.ShowDialog() == DialogResult.Ok)
+                SaltAndPepperOverrideFile form = new SaltAndPepperOverrideFile();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    File.Delete(path);
+                    return true;
+                }
+                return false;
             }
             else return true;
         }

@@ -17,6 +17,7 @@ namespace HashTester
         //private
         #region Private
         private bool outputStyleIncludeOriginalString;
+        private bool outputStyleIncludeSaltPepper;
         private bool outputStyleIncludeNumberOfHash;
         private bool outputStyleIncludeHashAlgorithm;
         private VisualModeEnum visualMode = VisualModeEnum.System;
@@ -28,10 +29,11 @@ namespace HashTester
         public bool OutputStyleIncludeOriginalString { get; set; }
         public bool OutputStyleIncludeNumberOfHash { get; set; }
         public bool OutputStyleIncludeHashAlgorithm { get; set; }
+        public bool OutputStyleIncludeSaltPepper { get; set; }
         public VisualModeEnum VisualMode { get; set; } = VisualModeEnum.System;
         public OutputTypeEnum OutputType { get; set; } = OutputTypeEnum.MessageBox;
-        public bool IncludeSalt { get; set; }
-        public bool IncludePepper { get; set; }
+        public bool useSalt { get; set; }
+        public bool usePepper { get; set; }
         #endregion
         #region Enum
         public enum VisualModeEnum
@@ -53,9 +55,9 @@ namespace HashTester
             OutputType = OutputTypeEnum.MessageBox;
             OutputStyleIncludeHashAlgorithm = false;
             OutputStyleIncludeOriginalString = false;
-            OutputStyleIncludeOriginalString = false;
-            IncludeSalt = false;
-            IncludePepper = false;
+            OutputStyleIncludeSaltPepper = false;
+            useSalt = false;
+            usePepper = false;
         }
         public void SaveSettings()
         {
@@ -90,12 +92,14 @@ namespace HashTester
                     else writer.WriteLine("outputStyle_IncludeHash=0");
                     if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
                     else writer.WriteLine("outputStyle_IncludeNumber=0");
+                    if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
+                    else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
                     //Salt And Pepper
                     writer.WriteLine("//Salt and Pepper bool");
-                    if (IncludeSalt) writer.WriteLine("includeSalt=1");
-                    else writer.WriteLine("includeSalt=0");
-                    if (IncludePepper) writer.WriteLine("includePepper=1");
-                    else writer.WriteLine("includePepper=0");
+                    if (useSalt) writer.WriteLine("useSalt=1");
+                    else writer.WriteLine("useSalt=0");
+                    if (usePepper) writer.WriteLine("usePepper=1");
+                    else writer.WriteLine("usePepper=0");
                     //
                 }
             }
@@ -156,18 +160,25 @@ namespace HashTester
                                             else OutputStyleIncludeNumberOfHash = false;
                                             break;
                                         }
-                                    case "includeSalt":
+                                    case "outputStyle_IncludeSaltPepper":
                                         {
                                             int temp = int.Parse(data[1]);
-                                            if (temp == 1) IncludeSalt = true;
-                                            else IncludeSalt = false;
+                                            if (temp == 1) OutputStyleIncludeSaltPepper = true;
+                                            else OutputStyleIncludeSaltPepper = false;
                                             break;
                                         }
-                                    case "includePepper":
+                                    case "useSalt":
                                         {
                                             int temp = int.Parse(data[1]);
-                                            if (temp == 1) IncludePepper = true;
-                                            else IncludePepper = false;
+                                            if (temp == 1) useSalt = true;
+                                            else useSalt = false;
+                                            break;
+                                        }
+                                    case "usePepper":
+                                        {
+                                            int temp = int.Parse(data[1]);
+                                            if (temp == 1) usePepper = true;
+                                            else usePepper = false;
                                             break;
                                         }
                                     default: { break; }

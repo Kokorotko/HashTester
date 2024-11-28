@@ -16,10 +16,12 @@ namespace HashTester
         {
             InitializeComponent();
         }
+        Hasher hasher = new Hasher();
         Hasher.HashingAlgorithm algorithm = new Hasher.HashingAlgorithm();
+        
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
-            string[] pole = Hasher.GradualHashing(textBoxHash.Text, algorithm);
+            string[] pole = hasher.GradualHashing(textBoxHash.Text, algorithm);
             listBox1.Items.Clear();
             for (int i = 0; i < pole.Count(); i++) listBox1.Items.Add((i + 1) + "." + " " + pole[i]);
         }
