@@ -32,6 +32,7 @@
             this.buttonHashGradualHashing = new System.Windows.Forms.Button();
             this.textBoxHash = new System.Windows.Forms.TextBox();
             this.hashSelector = new System.Windows.Forms.ComboBox();
+            this.buttonClearListBox = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -39,7 +40,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 70);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(547, 368);
+            this.listBox1.Size = new System.Drawing.Size(547, 342);
             this.listBox1.TabIndex = 6;
             // 
             // buttonHashGradualHashing
@@ -77,11 +78,22 @@
             this.hashSelector.TabIndex = 8;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
+            // buttonClearListBox
+            // 
+            this.buttonClearListBox.Location = new System.Drawing.Point(12, 418);
+            this.buttonClearListBox.Name = "buttonClearListBox";
+            this.buttonClearListBox.Size = new System.Drawing.Size(547, 23);
+            this.buttonClearListBox.TabIndex = 9;
+            this.buttonClearListBox.Text = "Clear Listbox";
+            this.buttonClearListBox.UseVisualStyleBackColor = true;
+            this.buttonClearListBox.Click += new System.EventHandler(this.buttonClearListBox_Click);
+            // 
             // FormGradual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.textBoxHash);
             this.Controls.Add(this.listBox1);
@@ -100,5 +112,6 @@
         private System.Windows.Forms.Button buttonHashGradualHashing;
         private System.Windows.Forms.TextBox textBoxHash;
         private System.Windows.Forms.ComboBox hashSelector;
+        private System.Windows.Forms.Button buttonClearListBox;
     }
 }

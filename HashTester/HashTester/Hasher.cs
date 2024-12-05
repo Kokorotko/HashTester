@@ -49,45 +49,6 @@ namespace HashTester
             return gradualHashing;
         }
         /// <summary>
-        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="CurrentSalt">Manually add Salt</param>
-        /// <param name="algorithm"></param>
-        /// <returns></returns>
-        public string[] GradualHashingSalt(string text, HashingAlgorithm algorithm)
-        {
-            string[] gradualHashing = new string[text.Length];
-            string textCurrentlyHashing = "";
-           text = CurrentSalt + text;
-            for (int i = 0; i < text.Length; i++)
-            {
-                textCurrentlyHashing += text[i].ToString();
-                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
-            }
-            return gradualHashing;
-        }
-        /// <summary>
-        /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="pepper">Manually add Pepper</param>
-        /// <param name="appendLeft"></param>
-        /// <param name="algorithm"></param>
-        /// <returns></returns>
-        public string[] GradualHashingPepper(string text, HashingAlgorithm algorithm)
-        {
-            string[] gradualHashing = new string[text.Length];
-            string textCurrentlyHashing = "";
-            text = CurrentPepper + text;
-            for (int i = 0; i < text.Length; i++)
-            {
-                textCurrentlyHashing += text[i].ToString();
-                gradualHashing[i] = Hash(textCurrentlyHashing, algorithm);
-            }
-            return gradualHashing;
-        }
-        /// <summary>
         /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper
         /// </summary>
         /// <param name="text"></param>
@@ -96,11 +57,21 @@ namespace HashTester
         /// <param name="pepperLenght"></param>
         /// <param name="algorithm"></param>
         /// <returns></returns>
-        public string[] GradualHashingSaltPepper(string text, HashingAlgorithm algorithm)
+        public string[] GradualHashingSaltPepper(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {            
             string[] gradualHashing = new string[text.Length];
             string textCurrentlyHashing = "";
-            text = CurrentSalt + text + CurrentPepper;
+            //SaltPepper Logic
+            if (useSalt)
+            {
+                if (String.IsNullOrEmpty(salt)) text = salt + text;
+                else MessageBox.Show("ERROR: GradualHashingSaltPepper - Salt not inicialized");
+            }
+            if (usePepper)
+            {
+                if (String.IsNullOrEmpty(pepper)) text += pepper;
+                else MessageBox.Show("ERROR: GradualHashingSaltPepper - Pepper not inicialized");
+            }
             //Hashing
             for (int i = 0; i < text.Length; i++)
             {
@@ -109,12 +80,7 @@ namespace HashTester
             }
             return gradualHashing;
         }
-        /// <summary>
-        /// Returns Arrray of Strings that are gradually hashed with the desired Algorithm, Salt and Pepper
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="algorithm"></param>
-        /// <returns></returns>
+
         #endregion
         #region Base Hashing
         /////////////////////////////////////******BASE HASHING******/////////////////////////////////////
@@ -137,163 +103,22 @@ namespace HashTester
                 default: return "error";
             }
         }
-
         /// <summary>
-        /// Creates a hash based on the algorithm with randomly generated salt
+        /// Creates a hash based algorithm with salt and pepper
         /// </summary>
-        /// <param name="salt">puts out the randomly generated salt</param>
-        /// <param name="appendLeft">True appends left, false appends right</param>
         /// <returns></returns>
-        public string HashSalt(string text, out string salt, bool appendLeft, int saltLenght, HashingAlgorithm algorithm)
+        public string HashSaltPepper(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {
-            salt = GenerateSalt(saltLenght);
-            if (appendLeft) text = salt + text;
-            else text = text + salt;
-            switch (algorithm)
+            if (useSalt)
             {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
+                if (String.IsNullOrEmpty(salt)) text = salt + text;
+                else MessageBox.Show("ERROR: HashSaltPepper - Salt not inicialized");
             }
-        }
-        /// <summary>
-        /// Creates a hash based algorithm with pre-determined salt
-        /// </summary>
-        /// <param name="appendLeft">True appends left, false appends right</param>
-        /// <returns></returns>
-        public string HashSalt(string text, string salt, bool appendLeft, HashingAlgorithm algorithm)
-        {
-            if (appendLeft) text = salt + text;
-            else text = text + salt;
-            switch (algorithm)
+            if (usePepper)
             {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
+                if (String.IsNullOrEmpty(pepper)) text += pepper;
+                else MessageBox.Show("ERROR: HashSaltPepper - Pepper not inicialized");
             }
-        }
-
-        /// <summary>
-        /// Creates a hash based algorithm with pre-determined pepper (always append right)
-        /// </summary>
-        /// <returns></returns>
-        public string HashPepper(string text, string pepper, HashingAlgorithm algorithm)
-        {
-            text += pepper;
-            switch (algorithm)
-            {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
-            }
-        }
-
-        /// <summary>
-        /// /// Creates a hash based algorithm with generated pepper (always append right)
-        /// </summary>
-        /// <param name="pepperLenght"></param>
-        /// <returns></returns>
-        public string HashPepper(string text, int pepperLenght, HashingAlgorithm algorithm)
-        {
-            string pepper = GeneratePepper(pepperLenght);
-            text += pepper;
-            switch (algorithm)
-            {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
-            }
-        }
-
-        /// <summary>
-        /// Creates a hash based algorithm with pre-determined salt and  pepper
-        /// </summary>
-        /// <returns></returns>
-        public string HashSaltPepper(string text, string salt, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
-        {
-            if (saltAppendLeft) text = salt + text;
-            else text = text + salt;
-            text += pepper;
-            switch (algorithm)
-            {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
-            }
-        }
-        /// <summary>
-        /// Creates a hash based algorithm with generated salt and pepper
-        /// </summary>
-        /// <returns></returns>
-        public string HashSaltPepper(string text, out string salt , int saltLenght, bool saltAppendLeft,  out string pepper, int pepperLenght, HashingAlgorithm algorithm)
-        {
-            salt = GenerateSalt(saltLenght);
-            pepper = GeneratePepper(pepperLenght);
-            if (saltAppendLeft) text = salt + text;
-            else text = text + salt;
-            text += pepper;
-            switch (algorithm)
-            {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
-            }
-        }
-        /// <summary>
-        /// Creates a hash based algorithm with generated salt and pre-determined pepper
-        /// </summary>
-        /// <returns></returns>
-        public string HashSaltPepper(string text, out string salt, int saltLenght, bool saltAppendLeft, string pepper, HashingAlgorithm algorithm)
-        {
-            salt = GenerateSalt(saltLenght);
-            if (saltAppendLeft) text = salt + text;
-            else text = text + salt;
-            text += pepper;
-            switch (algorithm)
-            {
-                case HashingAlgorithm.MD5: return HashMD5(text);
-                case HashingAlgorithm.SHA1: return HashSHA1(text);
-                case HashingAlgorithm.SHA256: return HashSHA256(text);
-                case HashingAlgorithm.SHA512: return HashSHA512(text);
-                case HashingAlgorithm.RIPEMD160: return HashRIPEMD160(text);
-                case HashingAlgorithm.CRC32: return HashCRC32(text);
-                default: return "error";
-            }
-        }
-        /// <summary>
-        /// Creates a hash based algorithm with pre-determined salt and generated pepper
-        /// </summary>
-        /// <returns></returns>
-        public string HashSaltPepper(string text, string salt, bool saltAppendLeft, int pepperLenght, HashingAlgorithm algorithm)
-        {
-            string pepper = GeneratePepper(pepperLenght);
-            if (saltAppendLeft) text = salt + text;
-            else text = text + salt;
-            text += pepper;
             switch (algorithm)
             {
                 case HashingAlgorithm.MD5: return HashMD5(text);

@@ -1,16 +1,15 @@
 KB01:
-Základní struktura dokumentu
-Začátek Unit Testů
-Funkční hashovací algoritmus pro šifrování v textu s výstupem do label/souboru
-Funkční hashovací algoritmus pro šifrování .txt souboru přes řádky
-CRC algorithmus vlastní naprogramování bez knihovny
-Základ Settings Script
+Základní struktura dokumentu - DONE
+Začátek Unit Testů - DONE
+Funkční hashovací algoritmus pro šifrování v textu s výstupem do label/souboru - DONE
+Funkční hashovací algoritmus pro šifrování .txt souboru přes řádky - DONE
+CRC algorithmus vlastní naprogramování bez knihovny - DONE
+Základ Settings Script - DONE
 KB02:
 Unit Test
-File Management
 Dokumentace teoretická část + práce na praktické
-Funkční Settings
-Funkční postupné hashování
+Funkční Settings - DONE
+Funkční postupné hashování -
 Funkce soli a vysvětlení soli v info
 John The Ripper password Tester
 Password JailBreak

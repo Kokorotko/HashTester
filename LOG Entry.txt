@@ -42,5 +42,9 @@ Hasher (a metody) is no longer static
 Added menu for confirming rewriting saved salt in .txt
 Added salt and pepper to Hasher to make it easier to work with them
 Added Include Salt and Pepper Output style
+**2024-12-05
+TXTInput update code and add Salt/Pepper Logic
+Salt and Pepper as Method
+Gradual Hashing Salt and Pepper
 
 

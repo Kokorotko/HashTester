@@ -11,4 +11,4 @@ outputStyle_IncludeNumber=1
 outputStyle_IncludeSaltPepper=1
 //Salt and Pepper bool
 useSalt=1
-usePepper=0
+usePepper=1
