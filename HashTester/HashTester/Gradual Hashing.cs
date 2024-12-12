@@ -19,22 +19,25 @@ namespace HashTester
         }
         Hasher hasher = new Hasher();
         Form1 mainForm = new Form1();
-        Hasher.HashingAlgorithm algorithm = new Hasher.HashingAlgorithm();
+        OutputHandler outputHandler = new OutputHandler();
+        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
         
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
-            string[] hashPole = textBoxHash.Lines[];
-            //blude
-            string hash = "";
-            if (!mainForm.IsUsingSaltAndPepper(text, out bool isSaltUsed, out bool isPepperUsed, out hash, out string hashIDforTesting))
+            string[] hashPole = new string[textBoxHash.Text.Length];
+            for (int i = 0; i < hashPole.Length; i++)
             {
-                hashPole = hasher.GradualHashing(textBoxHash.Text, algorithm);
+                string hash = "";
+                if (!mainForm.IsUsingSaltAndPepper(hashPole[i], out bool isSaltUsed, out bool isPepperUsed, out hash, out string hashIDforTesting))
+                {
+                    hashPole = hasher.GradualHashing(textBoxHash.Text, algorithm);
+                }
+                for (int j = 0; j < hashPole.Count(); j++)
+                {
+                    hashPole[i] = outputHandler.OutputStyleString(hashPole[i], hash, j + 1, isSaltUsed, isPepperUsed);                    
+                }
             }
-            for (int i = 0; i < hashPole.Count(); i++)
-            {
-                string outputString = mainForm.OutputStyleString(text, hash, i + 1, isSaltUsed, isPepperUsed);
-                mainForm.OutputTypeShow(outputString, listBox1);
-            }
+            outputHandler.OutputTypeShow(hashPole, listBox1);
         }
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)

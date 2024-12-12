@@ -88,6 +88,7 @@
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
     </Compile>
     <Compile Include="hasher.cs" />
+    <Compile Include="OutputHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaltAndPepperOverrideFile.cs">

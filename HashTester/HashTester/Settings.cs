@@ -25,16 +25,50 @@ namespace HashTester
         private bool includeSalt;
         private bool includePepper;
         #endregion
+
         #region Get&Set
-        public bool OutputStyleIncludeOriginalString { get; set; }
-        public bool OutputStyleIncludeNumberOfHash { get; set; }
-        public bool OutputStyleIncludeHashAlgorithm { get; set; }
-        public bool OutputStyleIncludeSaltPepper { get; set; }
-        public VisualModeEnum VisualMode { get; set; } = VisualModeEnum.System;
-        public OutputTypeEnum OutputType { get; set; } = OutputTypeEnum.MessageBox;
-        public bool useSalt { get; set; }
-        public bool usePepper { get; set; }
+        public bool OutputStyleIncludeOriginalString
+        {
+            get { return outputStyleIncludeOriginalString; }
+            set { outputStyleIncludeOriginalString = value; }
+        }
+        public bool OutputStyleIncludeNumberOfHash
+        {
+            get { return outputStyleIncludeNumberOfHash; }
+            set { outputStyleIncludeNumberOfHash = value; }
+        }
+        public bool OutputStyleIncludeHashAlgorithm
+        {
+            get { return outputStyleIncludeHashAlgorithm; }
+            set { outputStyleIncludeHashAlgorithm = value; }
+        }
+        public bool OutputStyleIncludeSaltPepper
+        {
+            get { return outputStyleIncludeSaltPepper; }
+            set { outputStyleIncludeSaltPepper = value; }
+        }
+        public VisualModeEnum VisualMode
+        {
+            get { return visualMode; }
+            set { visualMode = value; }
+        }
+        public OutputTypeEnum OutputType
+        {
+            get { return outputType; }
+            set { outputType = value; }
+        }
+        public bool UseSalt
+        {
+            get { return includeSalt; }
+            set { includeSalt = value; }
+        }
+        public bool UsePepper
+        {
+            get { return includePepper; }
+            set { includePepper = value; }
+        }
         #endregion
+
         #region Enum
         public enum VisualModeEnum
         {
@@ -56,8 +90,8 @@ namespace HashTester
             OutputStyleIncludeHashAlgorithm = false;
             OutputStyleIncludeOriginalString = false;
             OutputStyleIncludeSaltPepper = false;
-            useSalt = false;
-            usePepper = false;
+            UseSalt = false;
+            UsePepper = false;
         }
         public void SaveSettings()
         {
@@ -96,9 +130,9 @@ namespace HashTester
                     else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
                     //Salt And Pepper
                     writer.WriteLine("//Salt and Pepper bool");
-                    if (useSalt) writer.WriteLine("useSalt=1");
+                    if (UseSalt) writer.WriteLine("useSalt=1");
                     else writer.WriteLine("useSalt=0");
-                    if (usePepper) writer.WriteLine("usePepper=1");
+                    if (UsePepper) writer.WriteLine("usePepper=1");
                     else writer.WriteLine("usePepper=0");
                     //
                 }
@@ -117,7 +151,8 @@ namespace HashTester
                         while (!reader.EndOfStream)
                         {
                             string line = reader.ReadLine();
-                            string[] data = line.Split('='); //visualMode=2
+                            char[] splitChar = { '=' };
+                            string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
                             if (data[0].Substring(0, 2) != "//") //Comments in Settings
                             {
                                 switch (data[0])
@@ -170,15 +205,15 @@ namespace HashTester
                                     case "useSalt":
                                         {
                                             int temp = int.Parse(data[1]);
-                                            if (temp == 1) useSalt = true;
-                                            else useSalt = false;
+                                            if (temp == 1) UseSalt = true;
+                                            else UseSalt = false;
                                             break;
                                         }
                                     case "usePepper":
                                         {
                                             int temp = int.Parse(data[1]);
-                                            if (temp == 1) usePepper = true;
-                                            else usePepper = false;
+                                            if (temp == 1) UsePepper = true;
+                                            else UsePepper = false;
                                             break;
                                         }
                                     default: { break; }
@@ -191,5 +226,17 @@ namespace HashTester
         }
         #region FormMain
         #endregion
+        public override string ToString()
+        {
+            return "OutputStyleIncludeOriginalString: " + OutputStyleIncludeOriginalString + "\n" +
+                   "OutputStyleIncludeSaltPepper: " + OutputStyleIncludeSaltPepper + "\n" +
+                   "OutputStyleIncludeNumberOfHash: " + OutputStyleIncludeNumberOfHash + "\n" +
+                   "OutputStyleIncludeHashAlgorithm: " + OutputStyleIncludeHashAlgorithm + "\n" +
+                   "VisualMode: " + VisualMode.ToString() + "\n" +
+                   "OutputType: " + OutputType.ToString() + "\n" +
+                   "UseSalt: " + UseSalt + "\n" +
+                   "UsePepper: " + UsePepper;
+        }
+
     }
 }

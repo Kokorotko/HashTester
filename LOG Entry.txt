@@ -45,6 +45,11 @@ Added Include Salt and Pepper Output style
 **2024-12-05
 TXTInput update code and add Salt/Pepper Logic
 Salt and Pepper as Method
-Gradual Hashing Salt and Pepper
-
+Gradual Hashing Salt and Pepper work
+**2024-12-12
+Gradual Hashing Salt and Pepper Done
+TextFile output salt and Pepper
+BUG FIX: Outputs gradual hashes as single hashes
+Created OutputHandler.cs for handling all the outputs
+Output Style and Option is fucked
 

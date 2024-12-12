@@ -18,8 +18,16 @@ namespace HashTester
     {
         private string currentSalt;
         private string currentPepper;
-        public string CurrentSalt { get; set; }
-        public string CurrentPepper { get; set; }
+        public string CurrentSalt 
+        { 
+            get { return currentSalt; }
+            set { currentSalt = value; }
+        }
+        public string CurrentPepper
+        {
+            get { return currentPepper; }
+            set { currentPepper = value; }
+        }
         public Hasher() { }
         public enum HashingAlgorithm
         {

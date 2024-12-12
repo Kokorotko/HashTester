@@ -3,12 +3,12 @@
 //VisualMode from 0 to 2
 visualMode=0
 //OutputType from 0 to 2
-outputType=0
+outputType=1
 //All OutputStyles are bool
-outputStyle_IncludeOriginalString=1
+outputStyle_IncludeOriginalString=0
 outputStyle_IncludeHash=1
-outputStyle_IncludeNumber=1
+outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=1
 //Salt and Pepper bool
-useSalt=1
-usePepper=1
+useSalt=0
+usePepper=0
