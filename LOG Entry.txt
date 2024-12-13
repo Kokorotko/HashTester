@@ -52,4 +52,8 @@ TextFile output salt and Pepper
 BUG FIX: Outputs gradual hashes as single hashes
 Created OutputHandler.cs for handling all the outputs
 Output Style and Option is fucked
+**2024-12-13
+BUG FIX: OutputStyle and OutputSettings fix (Settings is now Static)
+BUG FIX: Gradual Hashing showing 1 less hash
+BUG FIX: Salt and Pepper output problem
 

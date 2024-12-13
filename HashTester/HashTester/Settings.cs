@@ -12,57 +12,57 @@ using static HashTester.Settings;
 
 namespace HashTester
 {
-    internal class Settings
+    public static class Settings
     {
         //private
         #region Private
-        private bool outputStyleIncludeOriginalString;
-        private bool outputStyleIncludeSaltPepper;
-        private bool outputStyleIncludeNumberOfHash;
-        private bool outputStyleIncludeHashAlgorithm;
-        private VisualModeEnum visualMode = VisualModeEnum.System;
-        private OutputTypeEnum outputType = OutputTypeEnum.MessageBox;
-        private bool includeSalt;
-        private bool includePepper;
+        private static bool outputStyleIncludeOriginalString;
+        private static bool outputStyleIncludeSaltPepper;
+        private static bool outputStyleIncludeNumberOfHash;
+        private static bool outputStyleIncludeHashAlgorithm;
+        private static VisualModeEnum visualMode = VisualModeEnum.System;
+        private static OutputTypeEnum outputType = OutputTypeEnum.MessageBox;
+        private static bool includeSalt;
+        private static bool includePepper;
         #endregion
 
         #region Get&Set
-        public bool OutputStyleIncludeOriginalString
+        public static bool OutputStyleIncludeOriginalString
         {
             get { return outputStyleIncludeOriginalString; }
             set { outputStyleIncludeOriginalString = value; }
         }
-        public bool OutputStyleIncludeNumberOfHash
+        public static bool OutputStyleIncludeNumberOfHash
         {
             get { return outputStyleIncludeNumberOfHash; }
             set { outputStyleIncludeNumberOfHash = value; }
         }
-        public bool OutputStyleIncludeHashAlgorithm
+        public static bool OutputStyleIncludeHashAlgorithm
         {
             get { return outputStyleIncludeHashAlgorithm; }
             set { outputStyleIncludeHashAlgorithm = value; }
         }
-        public bool OutputStyleIncludeSaltPepper
+        public static bool OutputStyleIncludeSaltPepper
         {
             get { return outputStyleIncludeSaltPepper; }
             set { outputStyleIncludeSaltPepper = value; }
         }
-        public VisualModeEnum VisualMode
+        public static VisualModeEnum VisualMode
         {
             get { return visualMode; }
             set { visualMode = value; }
         }
-        public OutputTypeEnum OutputType
+        public static OutputTypeEnum OutputType
         {
             get { return outputType; }
             set { outputType = value; }
         }
-        public bool UseSalt
+        public static bool UseSalt
         {
             get { return includeSalt; }
             set { includeSalt = value; }
         }
-        public bool UsePepper
+        public static bool UsePepper
         {
             get { return includePepper; }
             set { includePepper = value; }
@@ -83,7 +83,7 @@ namespace HashTester
             TXTFile
         }
         #endregion       
-        public void ResetSettings()
+        public static void ResetSettings()
         {
             VisualMode = VisualModeEnum.System;
             OutputType = OutputTypeEnum.MessageBox;
@@ -93,7 +93,7 @@ namespace HashTester
             UseSalt = false;
             UsePepper = false;
         }
-        public void SaveSettings()
+        public static void SaveSettings()
         {
             //Create File
             using (FileStream fileSettings = new FileStream("..\\..\\settings\\temp.txt", FileMode.Create, FileAccess.Write))
@@ -140,7 +140,7 @@ namespace HashTester
             File.Delete("..\\..\\settings\\settings.txt");
             File.Move("..\\..\\settings\\temp.txt", "..\\..\\settings\\settings.txt");
         }
-        public void LoadSettings()
+        public static void LoadSettings()
         {
             if (File.Exists("..\\..\\settings\\settings.txt"))
             {
@@ -159,60 +159,52 @@ namespace HashTester
                                 {
                                     case "visualMode":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 0) VisualMode = VisualModeEnum.System;
-                                            else if (temp == 1) VisualMode = VisualModeEnum.Light;
+                                            if (data[1] == "0") VisualMode = VisualModeEnum.System;
+                                            else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
                                             else VisualMode = VisualModeEnum.Dark;
                                             break;
                                         }
                                     case "outputType":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 0) OutputType = OutputTypeEnum.MessageBox;
-                                            else if (temp == 1) OutputType = OutputTypeEnum.Listbox;
-                                            else if (temp == 2) OutputType = OutputTypeEnum.TXTFile;
+                                            if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
+                                            else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
+                                            else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
                                             else OutputType = OutputTypeEnum.MessageBox; //if failed
                                             break;
                                         }
                                     case "outputStyle_IncludeOriginalString":
-                                    {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) OutputStyleIncludeOriginalString = true;
+                                    {                                            
+                                            if (data[1] == "1") OutputStyleIncludeOriginalString = true;
                                             else OutputStyleIncludeOriginalString = false;
                                             break;
                                     }
                                     case "outputStyle_IncludeHash":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) OutputStyleIncludeHashAlgorithm = true;
+                                            if (data[1] == "1") OutputStyleIncludeHashAlgorithm = true;
                                             else OutputStyleIncludeHashAlgorithm = false;
                                             break;
                                         }
                                     case "outputStyle_IncludeNumber":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) OutputStyleIncludeNumberOfHash = true;
+                                            if (data[1] == "1") OutputStyleIncludeNumberOfHash = true;
                                             else OutputStyleIncludeNumberOfHash = false;
                                             break;
                                         }
                                     case "outputStyle_IncludeSaltPepper":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) OutputStyleIncludeSaltPepper = true;
+                                            if (data[1] == "1") OutputStyleIncludeSaltPepper = true;
                                             else OutputStyleIncludeSaltPepper = false;
                                             break;
                                         }
                                     case "useSalt":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) UseSalt = true;
+                                            if (data[1] == "1") UseSalt = true;
                                             else UseSalt = false;
                                             break;
                                         }
                                     case "usePepper":
                                         {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp == 1) UsePepper = true;
+                                            if (data[1] == "1") UsePepper = true;
                                             else UsePepper = false;
                                             break;
                                         }
@@ -224,9 +216,7 @@ namespace HashTester
                 }
             }
         }
-        #region FormMain
-        #endregion
-        public override string ToString()
+        public static string TemporaryOutput()
         {
             return "OutputStyleIncludeOriginalString: " + OutputStyleIncludeOriginalString + "\n" +
                    "OutputStyleIncludeSaltPepper: " + OutputStyleIncludeSaltPepper + "\n" +

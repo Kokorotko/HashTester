@@ -14,18 +14,24 @@ namespace HashTester
 {
     public class OutputHandler
     {
-        Settings settings = new Settings();
-        Hasher.HashingAlgorithm algorithm = HashingAlgorithm.MD5;
+        Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        public string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed)
+        public OutputHandler(Hasher.HashingAlgorithm algorithm)
         {
+            this.algorithm = algorithm;
+        }
+        public string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
+        {
+            Console.WriteLine("**OutputStyleString**");
             string outputString = hash;
-            if (settings.OutputStyleIncludeOriginalString)
+            if (Settings.OutputStyleIncludeOriginalString)
             {
+                Console.WriteLine("OutputStyleIncludeOriginalString");
                 outputString = originalString + ": " + outputString;
             }
-            if (settings.OutputStyleIncludeHashAlgorithm)
+            if (Settings.OutputStyleIncludeHashAlgorithm)
             {
+                Console.WriteLine("OutputStyleIncludeHashAlgorithm");
                 switch (algorithm)
                 {
                     case HashingAlgorithm.MD5: outputString = "(MD5) " + outputString; break;
@@ -36,16 +42,29 @@ namespace HashTester
                     case HashingAlgorithm.CRC32: outputString = "(CRC32) " + outputString; break;
                 }
             }
-            if (settings.OutputStyleIncludeNumberOfHash)
+            if (Settings.OutputStyleIncludeNumberOfHash)
             {
+                Console.WriteLine("OutputStyleIncludeNumberOfHash");
                 outputString = indexOfHash.ToString() + ". " + outputString;
             }
-            if (settings.OutputStyleIncludeSaltPepper)
+            if (Settings.OutputStyleIncludeSaltPepper)
             {
-                if (isSaltUsed) outputString += " (salt: " + hasher.CurrentSalt + ")";
-                if (isPepperUsed) outputString += " (pepper: " + hasher.CurrentPepper + ")";
+                Console.WriteLine("OutputStyleIncludeSaltPepper");
+                if (isSaltUsed) outputString += " (salt: " + salt + ")";
+                if (isPepperUsed) outputString += " (pepper: " + pepper + ")";
             }
             return outputString;
+        }
+
+        public string[] OutputStyleString(string originalString, string[] hash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
+        {
+            string[] output = new string[hash.Length];   
+            for (int i = 0; i < hash.Length; i++)
+            {
+                string partOfTheOriginalString = originalString.Substring(0, i + 1);
+                output[i] = OutputStyleString(partOfTheOriginalString, hash[i], i + 1, isSaltUsed, isPepperUsed, salt, pepper);
+            }
+            return output;
         }
 
         /// <summary>
@@ -53,7 +72,7 @@ namespace HashTester
         /// </summary>
         public void OutputTypeShow(string outputString, ListBox listBox)
         {
-            switch (settings.OutputType)
+            switch (Settings.OutputType)
             {
                 case OutputTypeEnum.MessageBox:
                     MessageBox.Show(outputString);
@@ -73,11 +92,37 @@ namespace HashTester
         /// <summary>
         /// Handles output based on user settings for multiple string.
         /// </summary>
-        public void OutputTypeShow(string[] outputString, ListBox listBox)
+        public void OutputTypeShow(string[] arrayOutputString, ListBox listBox)
         {
-            string completeOutput = "";
-            foreach (string singleOutputString in outputString) completeOutput += singleOutputString + "\n";
-            OutputTypeShow(completeOutput, listBox);
+            switch (Settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox:
+                    MessageBox.Show(ArrayStringToOne(arrayOutputString));
+                    break;
+                case OutputTypeEnum.Listbox:
+                    foreach (string s in arrayOutputString)
+                    {
+                        if (s != "") listBox.Items.Add(s);
+                    }                    
+                    break;
+                case OutputTypeEnum.TXTFile:
+                    SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
+                    if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(saveFileDialogCustom.FileName, ArrayStringToOne(arrayOutputString));
+                    }
+                    break;
+            }
+        }
+
+        private string ArrayStringToOne(string[] array)
+        {
+            string outputString = "";
+            foreach (string s in array)
+            {
+                outputString += s + Environment.NewLine;
+            }
+            return outputString;
         }
     }
 }

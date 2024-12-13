@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,25 +20,26 @@ namespace HashTester
         }
         Hasher hasher = new Hasher();
         Form1 mainForm = new Form1();
-        OutputHandler outputHandler = new OutputHandler();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
         
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
-            string[] hashPole = new string[textBoxHash.Text.Length];
-            for (int i = 0; i < hashPole.Length; i++)
-            {
-                string hash = "";
-                if (!mainForm.IsUsingSaltAndPepper(hashPole[i], out bool isSaltUsed, out bool isPepperUsed, out hash, out string hashIDforTesting))
+            string originalString = textBoxHash.Text;
+            OutputHandler outputHandler = new OutputHandler(algorithm);
+            string[] hash = null;
+            for (int i = 0; i < originalString.Length; i++)
+            {                
+                if (!mainForm.IsUsingSaltAndPepper(originalString, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashIDforTesting))
                 {
-                    hashPole = hasher.GradualHashing(textBoxHash.Text, algorithm);
+                    hash = hasher.GradualHashing(textBoxHash.Text, algorithm);
                 }
-                for (int j = 0; j < hashPole.Count(); j++)
+                else //salt/Pepper IS used
                 {
-                    hashPole[i] = outputHandler.OutputStyleString(hashPole[i], hash, j + 1, isSaltUsed, isPepperUsed);                    
+                    hash = hasher.GradualHashingSaltPepper(textBoxHash.Text, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
                 }
+                hash = outputHandler.OutputStyleString(originalString, hash, isSaltUsed, isPepperUsed, salt, pepper);
             }
-            outputHandler.OutputTypeShow(hashPole, listBox1);
+            outputHandler.OutputTypeShow(hash, listBox1);
         }
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)

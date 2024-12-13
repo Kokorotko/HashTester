@@ -16,10 +16,9 @@ namespace HashTester
         {
             InitializeComponent();
         }
-        Settings settings = new Settings();
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            settings.SaveSettings();
+            Settings.SaveSettings();
             DialogResult = DialogResult.OK;
         }
 
@@ -28,8 +27,8 @@ namespace HashTester
             FormResetSettingsConfirmation reset = new FormResetSettingsConfirmation();
             if (reset.ShowDialog() == DialogResult.Yes) //Reset
             {
-                settings.ResetSettings();
-                settings.SaveSettings();
+                Settings.ResetSettings();
+                Settings.SaveSettings();
                 DialogResult = DialogResult.OK;
             }
             else MessageBox.Show("Reset Aborted");
@@ -37,16 +36,16 @@ namespace HashTester
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            settings.LoadSettings(); //unsaved changes
+            Settings.LoadSettings(); //unsaved changes
             DialogResult = DialogResult.Cancel;
         }
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
             //VisualMode
-            if (settings.VisualMode == Settings.VisualModeEnum.System) radioButtonVisualMode0.Checked = true;
-            else if (settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode1.Checked = true;
-            else if (settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode2.Checked = true;
+            if (Settings.VisualMode == Settings.VisualModeEnum.System) radioButtonVisualMode0.Checked = true;
+            else if (Settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode1.Checked = true;
+            else if (Settings.VisualMode == Settings.VisualModeEnum.Light) radioButtonVisualMode2.Checked = true;
             else throw new ArgumentOutOfRangeException();
             //
         }

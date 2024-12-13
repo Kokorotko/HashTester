@@ -11,6 +11,7 @@ using System.Windows.Forms.VisualStyles;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Windows.Forms;
+using System.Security.Policy;
 
 namespace HashTester
 {
@@ -119,13 +120,13 @@ namespace HashTester
         {
             if (useSalt)
             {
-                if (String.IsNullOrEmpty(salt)) text = salt + text;
-                else MessageBox.Show("ERROR: HashSaltPepper - Salt not inicialized");
+                if (!String.IsNullOrEmpty(salt)) text = salt + text;
+                else Console.WriteLine("ERROR: HashSaltPepper - Salt not inicialized");
             }
             if (usePepper)
             {
-                if (String.IsNullOrEmpty(pepper)) text += pepper;
-                else MessageBox.Show("ERROR: HashSaltPepper - Pepper not inicialized");
+                if (!String.IsNullOrEmpty(pepper)) text += pepper;
+                else Console.WriteLine("ERROR: HashSaltPepper - Pepper not inicialized");
             }
             switch (algorithm)
             {
@@ -235,7 +236,7 @@ namespace HashTester
             return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
         }
         #endregion
-        #region SaltSave
+        #region SaltAndPepperLogic
         public void SaveSalt(string hashID, string salt)
         {
             string path = "..\\..\\HashData\\" + hashID + ".txt"; 
@@ -259,6 +260,62 @@ namespace HashTester
                     if (splitLine[0] == "salt") salt = splitLine[1];
                 }
             }
+        }
+
+        public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper)
+        {
+            salt = "";
+            pepper = "";
+            isSaltUsed = false;
+            isPepperUsed = false;
+            if (Settings.UseSalt || Settings.UsePepper)
+            {
+                using (SaltAndPepperQuestion saltAndPepperQuestion = new SaltAndPepperQuestion())
+                {
+                    // Show dialog and handle result
+                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    {
+                        saltAndPepperQuestion.GetSaltPepperInformation(
+                            out bool generateSalt,
+                            out int saltLength,
+                            out string ownSalt,
+                            out bool generatePepper,
+                            out int pepperLength,
+                            out string ownPepper,
+                            out string hashID
+                        );
+                        //Salt
+                        if (generateSalt)
+                        {
+                            salt = GenerateSalt(saltLength);
+                            isSaltUsed = true;
+                            Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);
+                            SaveSalt(hashID, salt);
+                        }
+                        else if (!string.IsNullOrEmpty(ownSalt))
+                        {
+                            salt = ownSalt;
+                            isSaltUsed = true;
+                        }
+
+                        //Pepper
+                        if (generatePepper)
+                        {
+                            pepper = GeneratePepper(pepperLength);
+                            isPepperUsed = true;
+                            Console.WriteLine("IsUsingSaltAndPepper PEPPER: " + pepper);
+                        }
+                        else if (!string.IsNullOrEmpty(ownPepper))
+                        {
+                            pepper = ownPepper;
+                            isPepperUsed = true;
+                        }
+                        return isSaltUsed || isPepperUsed;
+                    }
+                    return false; //Dialog Canceled
+                }
+            }
+            return false;
         }
         #endregion
     }

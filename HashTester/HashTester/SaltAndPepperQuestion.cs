@@ -14,13 +14,12 @@ namespace HashTester
 {
     public partial class SaltAndPepperQuestion : Form
     {
-        public SaltAndPepperQuestion(bool salt, bool pepper)
+        public SaltAndPepperQuestion()
         {
             InitializeComponent();
-            if (!salt) groupBoxSalt.Enabled = false;
-            if (!pepper) groupBoxPepper.Enabled = false;
+            if (!Settings.UseSalt) groupBoxSalt.Enabled = false;
+            if (!Settings.UsePepper) groupBoxPepper.Enabled = false;
         }
-        Settings settings = new Settings();
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
             textBoxSalt.Enabled = false;
@@ -46,32 +45,46 @@ namespace HashTester
 
         public void GetSaltPepperInformation(out bool generateSalt,  out int lenghtSalt, out string ownSalt, out bool generatePepper, out int lenghtPepper, out string ownPepper, out string hashID)
         {
+            generateSalt = false;
+            lenghtSalt = 0;
+            ownSalt = "";
+            generatePepper = false;
+            lenghtPepper = 0;
+            ownPepper = "";
             //salt
-            generateSalt = radioButtonPepperGen.Checked;
-            if (generateSalt)
+            if (Settings.UseSalt)
             {
-                lenghtSalt = int.Parse(textBoxSaltLenght.Text);
-                ownSalt = "";
+                generateSalt = radioButtonSaltGen.Checked;
+                if (generateSalt)
+                {
+                    lenghtSalt = int.Parse(textBoxSaltLenght.Text);
+                    ownSalt = null;
+                }
+                else
+                {
+                    lenghtSalt = 0;
+                    ownSalt = textBoxSalt.Text;
+                    Console.WriteLine("SaltAndPepperQuestion Form SALT: " + ownSalt);
+                }
             }
-            else
+            if (Settings.UsePepper)
             {
-                lenghtSalt = 0;
-                ownSalt = textBoxSalt.Text;
-            }
-            //pepper
-            generatePepper = radioButtonPepperGen.Checked;
-            if (generatePepper)
-            {
-                lenghtPepper = int.Parse(textBoxSaltLenght.Text);
-                ownPepper = "";
-            }
-            else
-            {
-                lenghtPepper = 0;
-                ownPepper = textBoxSalt.Text;
+                //pepper
+                generatePepper = radioButtonPepperGen.Checked;
+                if (generatePepper)
+                {
+                    lenghtPepper = int.Parse(textBoxPepperLenght.Text);
+                    ownPepper = null;
+                }
+                else
+                {
+                    lenghtPepper = 0;
+                    ownPepper = textBoxPepper.Text;
+                    Console.WriteLine("SaltAndPepperQuestion Form Pepper: " + ownPepper);
+                }
             }
             //hashID
-            hashID = textBoxHashID.Text;
+            hashID = textBoxHashID.Text;            
         }
 
         #region HashID

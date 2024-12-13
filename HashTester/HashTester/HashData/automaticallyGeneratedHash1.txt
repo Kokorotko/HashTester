@@ -1,2 +1,0 @@
-hashID:automaticallyGeneratedHash1
-salt=7e1563
