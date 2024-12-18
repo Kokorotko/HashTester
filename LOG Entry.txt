@@ -56,4 +56,8 @@ Output Style and Option is fucked
 BUG FIX: OutputStyle and OutputSettings fix (Settings is now Static)
 BUG FIX: Gradual Hashing showing 1 less hash
 BUG FIX: Salt and Pepper output problem
+**2024-12-18
+Better Handling of all hashing in all forms (ProcessingHash)
+Multiple Hashing Form
+**2024-12-19
 

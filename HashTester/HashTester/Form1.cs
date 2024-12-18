@@ -25,45 +25,121 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        #region MainAlgorithms
+        #region BUTTON HANDLING
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < textHashSimple.Lines.Length; i++)
+            ProcessingHash(textHashSimple.Lines, algorithm, listBox1);
+        }
+        private void TXTInput_Click(object sender, EventArgs e)
+        {
+            ProcessingHashTXTInput(algorithm, listBox1);
+        }
+        private void buttonClearListBox_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            UpdateMenuStripSettings();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            hashSelector.SelectedIndex = 0;
+            Settings.LoadSettings();
+            UIToolStripMenuLoad();
+        }
+        #endregion
+
+        #region ProcessingHash
+        //Singular Algorithms
+        public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm algorithm, ListBox listbox)
+        {
+            bool usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper);
+
+            for (int i = 0; i < originalText.Length; i++)
             {
-                string text = textHashSimple.Lines[i];
                 string hash = string.Empty;
-                if (hasher.IsUsingSaltAndPepper(text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper))
+
+                if (usingSaltAndPepper)
                 {
-                    Console.WriteLine("SimpleButtonClick - Salt: " + salt);
-                    Console.WriteLine("SimpleButtonClick - Pepper: " + pepper);
-                    hash = hasher.HashSaltPepper(text, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
+                    Console.WriteLine("ProcessHashing - Salt: " + salt);
+                    Console.WriteLine("ProcessHashing - Pepper: " + pepper);
+                    hash = hasher.HashSaltPepper(originalText[i], isSaltUsed, isPepperUsed, salt, pepper, algorithm);
                 }
-                else hash = hasher.Hash(text, algorithm);
+                else
+                {
+                    hash = hasher.Hash(originalText[i], algorithm);
+                }
+
                 OutputHandler outputHandler = new OutputHandler(algorithm);
-                string outputString = outputHandler.OutputStyleString(text, hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);
-                outputHandler.OutputTypeShow(outputString, listBox1);
+                string outputString = outputHandler.OutputStyleString(originalText[i], hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);
+                outputHandler.OutputTypeShow(outputString, listbox);
             }
         }
-
-        private void TXTInput_Click(object sender, EventArgs e) //NOT DONE
+        public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, ListBox listbox)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (StreamReader reader = new StreamReader(openFileDialog1.FileName))
+                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
                 {
-                    int indexOfHash = 0;
+                    List<string> lines = new List<string>();
                     while (!reader.EndOfStream)
                     {
-                        string text = reader.ReadLine();
-                        string hash = hasher.Hash(text, algorithm);
-                        indexOfHash++;
-                        OutputHandler outputHandler = new OutputHandler(algorithm);
-                        string outputString = outputHandler.OutputStyleString(text, hash, indexOfHash, false, false, null, null);
-                        outputHandler.OutputTypeShow(outputString, listBox1);
+                        lines.Add(reader.ReadLine());
                     }
+                    ProcessingHash(lines.ToArray(), algorithm, listbox);
                 }
             }
-            else MessageBox.Show("Input přerušen");
+            else
+            {
+                MessageBox.Show("Input přerušen");
+            }
+        }
+        //Multiple Algorithms
+        public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
+        {
+            bool usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper);
+            List<string> outputString = new List<string>();
+            OutputHandler outputHandler;
+            for (int i = 0; i < originalText.Length; i++)
+            {
+                foreach (Hasher.HashingAlgorithm currentlyUsedAlgorithm in algorithm)
+                {
+                    string hash;
+                    if (usingSaltAndPepper)
+                    {
+                        Console.WriteLine("ProcessHashing - Salt: " + salt);
+                        Console.WriteLine("ProcessHashing - Pepper: " + pepper);
+                        hash = hasher.HashSaltPepper(originalText[i], isSaltUsed, isPepperUsed, salt, pepper, currentlyUsedAlgorithm);
+                    }
+                    else
+                    {
+                        hash = hasher.Hash(originalText[i], currentlyUsedAlgorithm);
+                    }
+                    outputHandler = new OutputHandler(currentlyUsedAlgorithm);
+                    outputString.Add(outputHandler.OutputStyleString(originalText[i], hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper));
+                }
+            }
+            outputHandler = new OutputHandler();
+            outputHandler.OutputTypeShow(outputString.ToArray(), listbox);
+        }
+        public void ProcessingHashTXTInput(Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                {
+                    List<string> text = new List<string>();
+                    while (!reader.EndOfStream)
+                    {
+                        text.Add(reader.ReadLine());
+                    }
+                    ProcessingHash(text.ToArray(), algorithm, listbox);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Input přerušen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -72,19 +148,6 @@ namespace HashTester
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }
-
-        private void buttonClearListBox_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-            UpdateMenuStripSettings();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            hashSelector.SelectedIndex = 0;
-            Settings.LoadSettings();
-            UIToolStripMenuLoad();
         }
         private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -98,6 +161,11 @@ namespace HashTester
             Settings.UsePepper = !Settings.UsePepper;
             includePepperToolStripMenuItem.Checked = Settings.UsePepper;
             Settings.SaveSettings();
+        }
+        private void multipleHashingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MultipleHashing multipleHashing = new MultipleHashing();
+            multipleHashing.Show();
         }
 
         private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -286,6 +354,6 @@ namespace HashTester
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Settings.TemporaryOutput());
-        }
+        }        
     }
 }

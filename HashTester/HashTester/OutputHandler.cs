@@ -20,6 +20,7 @@ namespace HashTester
         {
             this.algorithm = algorithm;
         }
+        public OutputHandler() { }
         public string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
         {
             Console.WriteLine("**OutputStyleString**");

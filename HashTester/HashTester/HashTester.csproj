@@ -88,6 +88,12 @@
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
     </Compile>
     <Compile Include="hasher.cs" />
+    <Compile Include="MultipleHashing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultipleHashing.Designer.cs">
+      <DependentUpon>MultipleHashing.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutputHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gradual Hashing.resx">
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultipleHashing.resx">
+      <DependentUpon>MultipleHashing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

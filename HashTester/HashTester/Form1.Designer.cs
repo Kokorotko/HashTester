@@ -42,6 +42,7 @@
             this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileChecksumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashCollisionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordJailbreakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,8 +114,10 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(13, 159);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox1.Size = new System.Drawing.Size(600, 251);
             this.listBox1.TabIndex = 10;
             // 
@@ -145,6 +148,7 @@
             this.hashingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gradualHashingToolStripMenuItem,
             this.gradualHashingToolStripMenuItem1,
+            this.multipleHashingToolStripMenuItem,
             this.fileChecksumToolStripMenuItem,
             this.hashCollisionDetectionToolStripMenuItem,
             this.passwordJailbreakToolStripMenuItem});
@@ -181,6 +185,13 @@
             this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
+            // 
+            // multipleHashingToolStripMenuItem
+            // 
+            this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
+            this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
@@ -359,6 +370,7 @@
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem multipleHashingToolStripMenuItem;
     }
 }
 

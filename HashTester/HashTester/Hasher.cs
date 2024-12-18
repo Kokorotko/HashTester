@@ -262,7 +262,7 @@ namespace HashTester
             }
         }
 
-        public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper)
+        public bool IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper)
         {
             salt = "";
             pepper = "";
