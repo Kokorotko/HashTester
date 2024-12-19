@@ -59,6 +59,7 @@
             this.includeSaltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,6 +150,7 @@
             this.gradualHashingToolStripMenuItem,
             this.gradualHashingToolStripMenuItem1,
             this.multipleHashingToolStripMenuItem,
+            this.findingCollisionsToolStripMenuItem,
             this.fileChecksumToolStripMenuItem,
             this.hashCollisionDetectionToolStripMenuItem,
             this.passwordJailbreakToolStripMenuItem});
@@ -314,6 +316,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // findingCollisionsToolStripMenuItem
+            // 
+            this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
+            this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,6 +380,7 @@
         private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem multipleHashingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findingCollisionsToolStripMenuItem;
     }
 }
 

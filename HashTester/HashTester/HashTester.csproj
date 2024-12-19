@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollisionChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollisionChecker.Designer.cs">
+      <DependentUpon>CollisionChecker.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -88,6 +94,12 @@
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
     </Compile>
     <Compile Include="hasher.cs" />
+    <Compile Include="HashingCollisionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HashingCollisionForm.Designer.cs">
+      <DependentUpon>HashingCollisionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultipleHashing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,9 @@
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="CollisionChecker.resx">
+      <DependentUpon>CollisionChecker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gradual Hashing.resx">
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HashingCollisionForm.resx">
+      <DependentUpon>HashingCollisionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultipleHashing.resx">
       <DependentUpon>MultipleHashing.cs</DependentUpon>

@@ -354,6 +354,12 @@ namespace HashTester
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Settings.TemporaryOutput());
-        }        
+        }
+
+        private void findingCollisionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
+            hashingCollisionForm.Show();
+        }
     }
 }
