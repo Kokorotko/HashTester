@@ -43,11 +43,12 @@
             this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileChecksumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hashCollisionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordJailbreakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,11 @@
             this.includeSaltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basePathToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,7 +157,6 @@
             this.multipleHashingToolStripMenuItem,
             this.findingCollisionsToolStripMenuItem,
             this.fileChecksumToolStripMenuItem,
-            this.hashCollisionDetectionToolStripMenuItem,
             this.passwordJailbreakToolStripMenuItem});
             this.hashingToolStripMenuItem.Name = "hashingToolStripMenuItem";
             this.hashingToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -195,17 +199,18 @@
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
+            // findingCollisionsToolStripMenuItem
+            // 
+            this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
+            this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
+            // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
             this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
-            // 
-            // hashCollisionDetectionToolStripMenuItem
-            // 
-            this.hashCollisionDetectionToolStripMenuItem.Name = "hashCollisionDetectionToolStripMenuItem";
-            this.hashCollisionDetectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.hashCollisionDetectionToolStripMenuItem.Text = "Hash Collision Detection";
             // 
             // passwordJailbreakToolStripMenuItem
             // 
@@ -225,10 +230,23 @@
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.visualModeToolStripMenuItem,
+            this.basePathToFolderToolStripMenuItem,
+            this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // visualModeToolStripMenuItem
+            // 
+            this.visualModeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemToolStripMenuItem,
+            this.lightToolStripMenuItem,
+            this.darkToolStripMenuItem});
+            this.visualModeToolStripMenuItem.Name = "visualModeToolStripMenuItem";
+            this.visualModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualModeToolStripMenuItem.Text = "VisualMode";
             // 
             // outputToolStripMenuItem
             // 
@@ -237,7 +255,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputToolStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -269,7 +287,7 @@
             this.includeHashingAlgorithmToolStripMenuItem,
             this.includeSaltAndPepperToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -316,12 +334,42 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // findingCollisionsToolStripMenuItem
+            // systemToolStripMenuItem
             // 
-            this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
-            this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
+            this.systemToolStripMenuItem.Checked = true;
+            this.systemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.systemToolStripMenuItem.Text = "System";
+            this.systemToolStripMenuItem.Click += new System.EventHandler(this.systemToolStripMenuItem_Click);
+            // 
+            // lightToolStripMenuItem
+            // 
+            this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lightToolStripMenuItem.Text = "Light";
+            this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
+            // 
+            // darkToolStripMenuItem
+            // 
+            this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.darkToolStripMenuItem.Text = "Dark";
+            this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
+            // 
+            // basePathToFolderToolStripMenuItem
+            // 
+            this.basePathToFolderToolStripMenuItem.Name = "basePathToFolderToolStripMenuItem";
+            this.basePathToFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.basePathToFolderToolStripMenuItem.Text = "Base path to Folder";
+            this.basePathToFolderToolStripMenuItem.Click += new System.EventHandler(this.basePathToFolderToolStripMenuItem_Click);
+            // 
+            // resetAllSettingsToolStripMenuItem
+            // 
+            this.resetAllSettingsToolStripMenuItem.Name = "resetAllSettingsToolStripMenuItem";
+            this.resetAllSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllSettingsToolStripMenuItem.Text = "Reset All Settings";
+            this.resetAllSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetAllSettingsToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -374,13 +422,18 @@
         private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gradualHashingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fileChecksumToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hashCollisionDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem passwordJailbreakToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem multipleHashingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findingCollisionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem darkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem basePathToFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetAllSettingsToolStripMenuItem;
     }
 }
 

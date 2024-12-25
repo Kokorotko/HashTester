@@ -1,14 +1,17 @@
-//I have included comments on what value is allowed, if it is not, default value will be set instead. I tried to make this as idiot proof as possible :)
+//Warning! If theres nothing after the = it will set the setting into default
 //Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input
+//I have included comments on what value is allowed.
 //VisualMode from 0 to 2
-visualMode=0
+visualMode=1
 //OutputType from 0 to 2
 outputType=1
 //All OutputStyles are bool
-outputStyle_IncludeOriginalString=1
-outputStyle_IncludeHash=1
-outputStyle_IncludeNumber=1
-outputStyle_IncludeSaltPepper=1
+outputStyle_IncludeOriginalString=0
+outputStyle_IncludeHash=0
+outputStyle_IncludeNumber=0
+outputStyle_IncludeSaltPepper=0
 //Salt and Pepper bool
 useSalt=0
 usePepper=0
+//Other - Path
+basePathToFiles=C:\Users\prdak\Desktop

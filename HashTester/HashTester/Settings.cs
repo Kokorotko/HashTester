@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,7 @@ namespace HashTester
         private static OutputTypeEnum outputType = OutputTypeEnum.MessageBox;
         private static bool includeSalt;
         private static bool includePepper;
+        private static string basePathToFiles;
         #endregion
 
         #region Get&Set
@@ -67,6 +69,15 @@ namespace HashTester
             get { return includePepper; }
             set { includePepper = value; }
         }
+        public static string BasePathToFiles
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(basePathToFiles)) return basePathToFiles;
+                else return Environment.CurrentDirectory; //Better Safe than Sure (or something like that)
+            }
+            set { basePathToFiles = value; }
+        }
         #endregion
 
         #region Enum
@@ -92,6 +103,7 @@ namespace HashTester
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;
             UsePepper = false;
+            basePathToFiles = "";
         }
         public static void SaveSettings()
         {
@@ -100,9 +112,10 @@ namespace HashTester
             {
                 using (StreamWriter writer = new StreamWriter(fileSettings))
                 {
-                    //VisualStyle
-                    writer.WriteLine("//I have included comments on what value is allowed, if it is not, default value will be set instead. I tried to make this as idiot proof as possible :)");
+                    //VisualStyle                    
+                    writer.WriteLine("//Warning! If theres nothing after the = it will set the setting into default");
                     writer.WriteLine("//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input");
+                    writer.WriteLine("//I have included comments on what value is allowed.");
                     writer.WriteLine("//VisualMode from 0 to 2");
                     switch (VisualMode)
                     {
@@ -134,7 +147,9 @@ namespace HashTester
                     else writer.WriteLine("useSalt=0");
                     if (UsePepper) writer.WriteLine("usePepper=1");
                     else writer.WriteLine("usePepper=0");
-                    //
+                    //Other
+                    writer.WriteLine("//Other - Path");
+                    writer.WriteLine("basePathToFiles=" + BasePathToFiles);
                 }
             }
             File.Delete("..\\..\\settings\\settings.txt");
@@ -159,57 +174,123 @@ namespace HashTester
                                 {
                                     case "visualMode":
                                         {
-                                            if (data[1] == "0") VisualMode = VisualModeEnum.System;
-                                            else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
-                                            else VisualMode = VisualModeEnum.Dark;
+                                            try
+                                            {
+                                                if (data[1] == "0") VisualMode = VisualModeEnum.System;
+                                                else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
+                                                else VisualMode = VisualModeEnum.Dark;
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                VisualMode = VisualModeEnum.System;
+                                            }
                                             break;
                                         }
                                     case "outputType":
                                         {
-                                            if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
-                                            else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
-                                            else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
-                                            else OutputType = OutputTypeEnum.MessageBox; //if failed
+                                            try
+                                            {
+                                                if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
+                                                else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
+                                                else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
+                                                else OutputType = OutputTypeEnum.MessageBox;
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                OutputType = OutputTypeEnum.MessageBox;
+                                            }
                                             break;
                                         }
                                     case "outputStyle_IncludeOriginalString":
-                                    {                                            
-                                            if (data[1] == "1") OutputStyleIncludeOriginalString = true;
-                                            else OutputStyleIncludeOriginalString = false;
+                                        {
+                                            try
+                                            {
+                                                OutputStyleIncludeOriginalString = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                OutputStyleIncludeOriginalString = false;
+                                            }
                                             break;
-                                    }
+                                        }
                                     case "outputStyle_IncludeHash":
                                         {
-                                            if (data[1] == "1") OutputStyleIncludeHashAlgorithm = true;
-                                            else OutputStyleIncludeHashAlgorithm = false;
+                                            try
+                                            {
+                                                OutputStyleIncludeHashAlgorithm = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                OutputStyleIncludeHashAlgorithm = false;
+                                            }
                                             break;
                                         }
                                     case "outputStyle_IncludeNumber":
                                         {
-                                            if (data[1] == "1") OutputStyleIncludeNumberOfHash = true;
-                                            else OutputStyleIncludeNumberOfHash = false;
+                                            try
+                                            {
+                                                OutputStyleIncludeNumberOfHash = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                OutputStyleIncludeNumberOfHash = false;
+                                            }
                                             break;
                                         }
                                     case "outputStyle_IncludeSaltPepper":
                                         {
-                                            if (data[1] == "1") OutputStyleIncludeSaltPepper = true;
-                                            else OutputStyleIncludeSaltPepper = false;
+                                            try
+                                            {
+                                                OutputStyleIncludeSaltPepper = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                OutputStyleIncludeSaltPepper = false;
+                                            }
                                             break;
                                         }
                                     case "useSalt":
                                         {
-                                            if (data[1] == "1") UseSalt = true;
-                                            else UseSalt = false;
+                                            try
+                                            {
+                                                UseSalt = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                UseSalt = false;
+                                            }
                                             break;
                                         }
                                     case "usePepper":
                                         {
-                                            if (data[1] == "1") UsePepper = true;
-                                            else UsePepper = false;
+                                            try
+                                            {
+                                                UsePepper = (data[1] == "1");
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                UsePepper = false;
+                                            }
                                             break;
                                         }
-                                    default: { break; }
+                                    case "basePathToFiles":
+                                        {
+                                            try
+                                            {
+                                                basePathToFiles = data[1];
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                basePathToFiles = "";
+                                            }
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
                                 }
+
                             }
                         }
                     }
@@ -225,7 +306,8 @@ namespace HashTester
                    "VisualMode: " + VisualMode.ToString() + "\n" +
                    "OutputType: " + OutputType.ToString() + "\n" +
                    "UseSalt: " + UseSalt + "\n" +
-                   "UsePepper: " + UsePepper;
+                   "UsePepper: " + UsePepper + "\n" +
+                   "BasePathToFiles: " + basePathToFiles;
         }
 
     }

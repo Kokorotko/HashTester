@@ -60,4 +60,8 @@ BUG FIX: Salt and Pepper output problem
 Better Handling of all hashing in all forms (ProcessingHash)
 Multiple Hashing Form
 **2024-12-19
-
+HashCollisionGenerator
+**2024-12-25
+VisualMode moved to Toolstrip Menu
+Settings new basePathToFiles
+ToolStrip menu code in Form1 rearranged

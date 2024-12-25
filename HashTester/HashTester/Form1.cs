@@ -25,7 +25,8 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        #region BUTTON HANDLING
+
+        #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
             ProcessingHash(textHashSimple.Lines, algorithm, listBox1);
@@ -39,13 +40,252 @@ namespace HashTester
             listBox1.Items.Clear();
             UpdateMenuStripSettings();
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hashSelector.SelectedIndex = 0;
-            Settings.LoadSettings();
-            UIToolStripMenuLoad();
+            algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
         #endregion
+
+        #region StripMenu
+        private void UIToolStripMenuLoad()
+        {
+            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
+            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
+            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
+            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
+            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
+            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+            switch (Settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
+                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
+            }
+        }
+        private void UpdateMenuStripSettings()
+        {
+            // Output Style Settings
+            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
+            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
+            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
+            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+
+            // Output Type Settings
+            switch (Settings.OutputType)
+            {
+                case OutputTypeEnum.MessageBox:
+                    messageBoxToolStripMenuItem.Checked = true;
+                    listBoxToolStripMenuItem.Checked = false;
+                    txtFileToolStripMenuItem.Checked = false;
+                    break;
+                case OutputTypeEnum.Listbox:
+                    messageBoxToolStripMenuItem.Checked = false;
+                    listBoxToolStripMenuItem.Checked = true;
+                    txtFileToolStripMenuItem.Checked = false;
+                    break;
+                case OutputTypeEnum.TXTFile:
+                    messageBoxToolStripMenuItem.Checked = false;
+                    listBoxToolStripMenuItem.Checked = false;
+                    txtFileToolStripMenuItem.Checked = true;
+                    break;
+            }
+
+            // Salt and Pepper settings
+            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
+            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
+        }
+
+        #region Hashing        
+
+        #region SaltAndPepper
+        private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.UseSalt = !Settings.UseSalt;
+            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
+            Settings.SaveSettings();
+        }
+
+        private void includePepperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.UsePepper = !Settings.UsePepper;
+            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
+            Settings.SaveSettings();
+        }    
+
+        #endregion
+
+        #region Gradual Hashing
+
+        private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormGradual formGradual = new FormGradual();
+            formGradual.Show();
+        }
+
+        #endregion
+
+        #region MultipleHashing
+        private void multipleHashingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MultipleHashing multipleHashing = new MultipleHashing();
+            multipleHashing.Show();
+        }
+        #endregion
+
+        #region FindingCollisions
+        private void findingCollisionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
+            hashingCollisionForm.Show();
+        }
+        #endregion
+
+        #region FileChecksum
+
+        #endregion
+
+        #region Password JailBreak
+
+        #endregion
+
+        #endregion
+
+        #region Options
+
+        #region Option-Settings
+
+        #region Settings-VisualMode
+        private void systemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!systemToolStripMenuItem.Checked)
+            {
+                systemToolStripMenuItem.Checked = true;
+                lightToolStripMenuItem.Checked = false;
+                darkToolStripMenuItem.Checked = false;
+                Settings.VisualMode = VisualModeEnum.System;
+                Settings.SaveSettings();
+            }
+        }
+
+        private void lightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!lightToolStripMenuItem.Checked)
+            {
+                systemToolStripMenuItem.Checked = false;
+                lightToolStripMenuItem.Checked = true;
+                darkToolStripMenuItem.Checked = false;
+                Settings.VisualMode = VisualModeEnum.Light;
+                Settings.SaveSettings();
+            }
+        }
+
+        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!darkToolStripMenuItem.Checked)
+            {
+                systemToolStripMenuItem.Checked = false;
+                lightToolStripMenuItem.Checked = false;
+                darkToolStripMenuItem.Checked = true;
+                Settings.VisualMode = VisualModeEnum.Dark;
+                Settings.SaveSettings();
+            }
+        }
+        #endregion
+
+        #region BasePathToFolder
+        private void basePathToFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                folderBrowserDialog.Description = "Select a folder";
+                folderBrowserDialog.ShowNewFolderButton = true;
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Settings.BasePathToFiles = folderBrowserDialog.SelectedPath;
+                    SaveSettings();
+                }
+            }
+        }
+
+        #endregion
+
+        #region ResetAllSettings
+        private void resetAllSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfirmationForm confirm = new ConfirmationForm("Are you sure you want to reset all settings?");
+            if (confirm.ShowDialog() == DialogResult.OK)
+            {
+                Settings.ResetSettings();
+                Settings.SaveSettings();
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Option-OutputType
+        private void messageBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputType = OutputTypeEnum.MessageBox;
+            messageBoxToolStripMenuItem.Checked = true;
+            listBoxToolStripMenuItem.Checked = false;
+            txtFileToolStripMenuItem.Checked = false;
+            Settings.SaveSettings();
+        }
+
+        private void listBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputType = OutputTypeEnum.Listbox;
+            messageBoxToolStripMenuItem.Checked = false;
+            listBoxToolStripMenuItem.Checked = true;
+            txtFileToolStripMenuItem.Checked = false;
+            Settings.SaveSettings();
+        }
+
+        private void txtFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputType = OutputTypeEnum.TXTFile;
+            messageBoxToolStripMenuItem.Checked = false;
+            listBoxToolStripMenuItem.Checked = false;
+            txtFileToolStripMenuItem.Checked = true;
+            Settings.SaveSettings();
+        }
+        #endregion
+
+        #region Option-OutputStyle
+        private void includeOriginalStringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputStyleIncludeOriginalString = !Settings.OutputStyleIncludeOriginalString;
+            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
+            Settings.SaveSettings();
+        }
+
+        private void includeNumberOfHashToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputStyleIncludeNumberOfHash = !Settings.OutputStyleIncludeNumberOfHash;
+            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
+            Settings.SaveSettings();
+        }
+        private void includeHashingAlgorithmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputStyleIncludeHashAlgorithm = !Settings.OutputStyleIncludeHashAlgorithm;
+            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
+            Settings.SaveSettings();
+        }
+
+        private void includeSaltAndPepperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.OutputStyleIncludeSaltPepper = !Settings.OutputStyleIncludeSaltPepper;
+            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+            Settings.SaveSettings();
+        }
+
+        #endregion
+
+        #endregion
+
+        #endregion 
 
         #region ProcessingHash
         //Singular Algorithms
@@ -76,6 +316,7 @@ namespace HashTester
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, ListBox listbox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (StreamReader reader = new StreamReader(openFileDialog.FileName))
@@ -124,6 +365,7 @@ namespace HashTester
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (StreamReader reader = new StreamReader(openFileDialog.FileName))
@@ -143,55 +385,7 @@ namespace HashTester
         }
         #endregion
 
-        #region Controls
-
-        private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }
-        private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.UseSalt = !Settings.UseSalt;
-            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
-            Settings.SaveSettings();
-        }
-
-        private void includePepperToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.UsePepper = !Settings.UsePepper;
-            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
-            Settings.SaveSettings();
-        }
-        private void multipleHashingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MultipleHashing multipleHashing = new MultipleHashing();
-            multipleHashing.Show();
-        }
-
-        private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            FormGradual formGradual = new FormGradual();
-            formGradual.Show();
-        }
-        private void UIToolStripMenuLoad()
-        {
-            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
-            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
-            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
-            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
-            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
-            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
-            switch (Settings.OutputType)
-            {
-                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
-            }
-        }
-
-        #endregion        
-
-        #region SaltAndPepper
+        #region SaltAndPepperLogic
         public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashIDforTesting)
         {
             hashIDforTesting = "";
@@ -245,121 +439,19 @@ namespace HashTester
                 return true;
             }
             else return false;
-        }        
-
-        #endregion
-
-        #region Settings
-
-        private void UpdateMenuStripSettings()
-        {
-            // Output Style Settings
-            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
-            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
-            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
-            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
-
-            // Output Type Settings
-            switch (Settings.OutputType)
-            {
-                case OutputTypeEnum.MessageBox:
-                    messageBoxToolStripMenuItem.Checked = true;
-                    listBoxToolStripMenuItem.Checked = false;
-                    txtFileToolStripMenuItem.Checked = false;
-                    break;
-                case OutputTypeEnum.Listbox:
-                    messageBoxToolStripMenuItem.Checked = false;
-                    listBoxToolStripMenuItem.Checked = true;
-                    txtFileToolStripMenuItem.Checked = false;
-                    break;
-                case OutputTypeEnum.TXTFile:
-                    messageBoxToolStripMenuItem.Checked = false;
-                    listBoxToolStripMenuItem.Checked = false;
-                    txtFileToolStripMenuItem.Checked = true;
-                    break;
-            }
-
-            // Salt and Pepper settings
-            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
-            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormSettings formSettings = new FormSettings();
-            formSettings.ShowDialog();
-        }
-
-        #region Settings-OutputType
-        private void messageBoxToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputType = OutputTypeEnum.MessageBox;
-            messageBoxToolStripMenuItem.Checked = true;
-            listBoxToolStripMenuItem.Checked = false;
-            txtFileToolStripMenuItem.Checked = false;
-            Settings.SaveSettings();
-        }
-
-        private void listBoxToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputType = OutputTypeEnum.Listbox;
-            messageBoxToolStripMenuItem.Checked = false;
-            listBoxToolStripMenuItem.Checked = true;
-            txtFileToolStripMenuItem.Checked = false;
-            Settings.SaveSettings();
-        }
-
-        private void txtFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputType = OutputTypeEnum.TXTFile;
-            messageBoxToolStripMenuItem.Checked = false;
-            listBoxToolStripMenuItem.Checked = false;
-            txtFileToolStripMenuItem.Checked = true;
-            Settings.SaveSettings();
         }
         #endregion
 
-        #region Settings-OutputStyle
-        private void includeOriginalStringToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputStyleIncludeOriginalString = !Settings.OutputStyleIncludeOriginalString;
-            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
-            Settings.SaveSettings();
-        }
-
-        private void includeNumberOfHashToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputStyleIncludeNumberOfHash = !Settings.OutputStyleIncludeNumberOfHash;
-            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
-            Settings.SaveSettings();
-        }
-        private void includeHashingAlgorithmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputStyleIncludeHashAlgorithm = !Settings.OutputStyleIncludeHashAlgorithm;
-            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
-            Settings.SaveSettings();
-        }
-
-        private void includeSaltAndPepperToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.OutputStyleIncludeSaltPepper = !Settings.OutputStyleIncludeSaltPepper;
-            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
-            Settings.SaveSettings();
-        }
-
-        #endregion
-
-        #endregion
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Temporary for Testing Settings
         {
             MessageBox.Show(Settings.TemporaryOutput());
         }
 
-        private void findingCollisionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
-            hashingCollisionForm.Show();
+            hashSelector.SelectedIndex = 0;
+            Settings.LoadSettings();
+            UIToolStripMenuLoad();
         }
     }
 }

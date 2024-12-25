@@ -68,24 +68,18 @@
     <Compile Include="CollisionChecker.Designer.cs">
       <DependentUpon>CollisionChecker.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmationForm.Designer.cs">
+      <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormResetSettingsConfirmation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormResetSettingsConfirmation.Designer.cs">
-      <DependentUpon>FormResetSettingsConfirmation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSettings.Designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Gradual Hashing.cs">
       <SubType>Form</SubType>
@@ -125,14 +119,11 @@
     <EmbeddedResource Include="CollisionChecker.resx">
       <DependentUpon>CollisionChecker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmationForm.resx">
+      <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormResetSettingsConfirmation.resx">
-      <DependentUpon>FormResetSettingsConfirmation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gradual Hashing.resx">
       <DependentUpon>Gradual Hashing.cs</DependentUpon>
