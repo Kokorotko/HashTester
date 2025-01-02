@@ -1,0 +1,4 @@
+RockYou has 10mil. passwords (original has like 14 mil but Github didnt like that)
+RockYouShort has 1mil.
+RockYouVeryShort 5k
+If you want to add more or something different you can
