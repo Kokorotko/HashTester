@@ -41,6 +41,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +87,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 121);
             this.listBox1.Name = "listBox1";
@@ -176,17 +183,82 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(298, 39);
+            this.label3.Location = new System.Drawing.Point(298, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "Number of attempts: ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(299, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Hashes per sec:";
+            // 
+            // checkBoxListBoxLog
+            // 
+            this.checkBoxListBoxLog.AutoSize = true;
+            this.checkBoxListBoxLog.Location = new System.Drawing.Point(301, 98);
+            this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
+            this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxListBoxLog.TabIndex = 23;
+            this.checkBoxListBoxLog.Text = "Show log in listBox";
+            this.checkBoxListBoxLog.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(298, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Average speed: ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(299, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(122, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Chance to find collision: ";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(421, 98);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(137, 17);
+            this.checkBox1.TabIndex = 26;
+            this.checkBox1.Text = "Use HEX to display text";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPerformanceMode
+            // 
+            this.checkBoxPerformanceMode.AutoSize = true;
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(564, 98);
+            this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(174, 17);
+            this.checkBoxPerformanceMode.TabIndex = 27;
+            this.checkBoxPerformanceMode.Text = "PerformanceMode (disables UI)";
+            this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBoxPerformanceMode);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.checkBoxListBoxLog);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown2);
@@ -224,5 +296,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBoxListBoxLog;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
     }
 }

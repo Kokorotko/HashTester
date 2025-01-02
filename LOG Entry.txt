@@ -65,3 +65,11 @@ HashCollisionGenerator
 VisualMode moved to Toolstrip Menu
 Settings new basePathToFiles
 ToolStrip menu code in Form1 rearranged
+**2025-01-02
+Hashing Collision Generator:
+    UI Update Problems Fixed
+    Log to Listbox
+    Threading Problem Fixed
+    Using HEX and UTF-8
+    Performance Mode
+    Memory List Dump Optimization
