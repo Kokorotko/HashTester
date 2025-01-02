@@ -47,6 +47,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
+            this.buttonCheckCollision = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -78,12 +79,13 @@
             // 
             // buttonTakeCollisionFromTXT
             // 
-            this.buttonTakeCollisionFromTXT.Location = new System.Drawing.Point(139, 12);
+            this.buttonTakeCollisionFromTXT.Location = new System.Drawing.Point(248, 11);
             this.buttonTakeCollisionFromTXT.Name = "buttonTakeCollisionFromTXT";
-            this.buttonTakeCollisionFromTXT.Size = new System.Drawing.Size(153, 23);
+            this.buttonTakeCollisionFromTXT.Size = new System.Drawing.Size(147, 23);
             this.buttonTakeCollisionFromTXT.TabIndex = 11;
-            this.buttonTakeCollisionFromTXT.Text = "Take a collision from txt file";
+            this.buttonTakeCollisionFromTXT.Text = "Check a collision from TXT";
             this.buttonTakeCollisionFromTXT.UseVisualStyleBackColor = true;
+            this.buttonTakeCollisionFromTXT.Click += new System.EventHandler(this.buttonTakeCollisionFromTXT_Click);
             // 
             // listBox1
             // 
@@ -138,7 +140,7 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(298, 17);
+            this.labelTimer.Location = new System.Drawing.Point(418, 16);
             this.labelTimer.Name = "labelTimer";
             this.labelTimer.Size = new System.Drawing.Size(39, 13);
             this.labelTimer.TabIndex = 17;
@@ -183,7 +185,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(298, 30);
+            this.label3.Location = new System.Drawing.Point(418, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 21;
@@ -192,7 +194,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(299, 44);
+            this.label4.Location = new System.Drawing.Point(419, 43);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 22;
@@ -211,7 +213,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(298, 57);
+            this.label5.Location = new System.Drawing.Point(418, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 24;
@@ -220,7 +222,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(299, 70);
+            this.label6.Location = new System.Drawing.Point(419, 69);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 13);
             this.label6.TabIndex = 25;
@@ -248,11 +250,22 @@
             this.checkBoxPerformanceMode.Text = "PerformanceMode (disables UI)";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
+            // buttonCheckCollision
+            // 
+            this.buttonCheckCollision.Location = new System.Drawing.Point(139, 12);
+            this.buttonCheckCollision.Name = "buttonCheckCollision";
+            this.buttonCheckCollision.Size = new System.Drawing.Size(103, 23);
+            this.buttonCheckCollision.TabIndex = 28;
+            this.buttonCheckCollision.Text = "Check a collision";
+            this.buttonCheckCollision.UseVisualStyleBackColor = true;
+            this.buttonCheckCollision.Click += new System.EventHandler(this.buttonCheckCollision_Click);
+            // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label6);
@@ -302,5 +315,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
+        private System.Windows.Forms.Button buttonCheckCollision;
     }
 }

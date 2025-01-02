@@ -9,7 +9,7 @@ KB02:
 Unit Test
 Dokumentace teoretická část + práce na praktické
 Funkční Settings - DONE
-Funkční postupné hashování -
+Funkční postupné hashování - DONE
 Funkce soli a vysvětlení soli v info
 John The Ripper password Tester
 Password JailBreak

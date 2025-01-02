@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckCollisionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckCollisionForm.Designer.cs">
+      <DependentUpon>CheckCollisionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CollisionChecker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="CheckCollisionForm.resx">
+      <DependentUpon>CheckCollisionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CollisionChecker.resx">
       <DependentUpon>CollisionChecker.cs</DependentUpon>
     </EmbeddedResource>

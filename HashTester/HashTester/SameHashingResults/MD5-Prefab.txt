@@ -1,0 +1,13 @@
+//Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm
+//!The program will only check the first format and texts!
+//<STRING> Supports UTF-8 format (example #±JÁõâ«ú)
+//<HEX> Supports 8D-B7 or 8DB7 doesnt matter if lowercase or uppercase
+//<BIN> Supports 0111 0001 with or without spaces between
+//There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160
+//
+Algorithm=MD5
+<STRING>
+TEXTCOLLBYfGiJUETHQ4hAcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+//Source: https://x.com/realhashbreaker/status/1770161965006008570?mx=2
+//There is difference in E/A
