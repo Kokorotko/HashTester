@@ -49,6 +49,11 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basePathToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,11 +65,6 @@
             this.includeSaltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.basePathToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,7 +168,7 @@
             this.includeSaltToolStripMenuItem,
             this.includePepperToolStripMenuItem});
             this.gradualHashingToolStripMenuItem.Name = "gradualHashingToolStripMenuItem";
-            this.gradualHashingToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.gradualHashingToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.gradualHashingToolStripMenuItem.Text = "Salt and Pepper";
             // 
             // includeSaltToolStripMenuItem
@@ -188,35 +188,36 @@
             // gradualHashingToolStripMenuItem1
             // 
             this.gradualHashingToolStripMenuItem1.Name = "gradualHashingToolStripMenuItem1";
-            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
+            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
             // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
-            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // findingCollisionsToolStripMenuItem
             // 
             this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             // 
             // passwordJailbreakToolStripMenuItem
             // 
             this.passwordJailbreakToolStripMenuItem.Name = "passwordJailbreakToolStripMenuItem";
-            this.passwordJailbreakToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.passwordJailbreakToolStripMenuItem.Text = "Password Jailbreak";
+            this.passwordJailbreakToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.passwordJailbreakToolStripMenuItem.Text = "Password Brute Force";
+            this.passwordJailbreakToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -235,7 +236,7 @@
             this.basePathToFolderToolStripMenuItem,
             this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // visualModeToolStripMenuItem
@@ -245,8 +246,45 @@
             this.lightToolStripMenuItem,
             this.darkToolStripMenuItem});
             this.visualModeToolStripMenuItem.Name = "visualModeToolStripMenuItem";
-            this.visualModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualModeToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.visualModeToolStripMenuItem.Text = "VisualMode";
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.Checked = true;
+            this.systemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.systemToolStripMenuItem.Text = "System";
+            this.systemToolStripMenuItem.Click += new System.EventHandler(this.systemToolStripMenuItem_Click);
+            // 
+            // lightToolStripMenuItem
+            // 
+            this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.lightToolStripMenuItem.Text = "Light";
+            this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
+            // 
+            // darkToolStripMenuItem
+            // 
+            this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.darkToolStripMenuItem.Text = "Dark";
+            this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
+            // 
+            // basePathToFolderToolStripMenuItem
+            // 
+            this.basePathToFolderToolStripMenuItem.Name = "basePathToFolderToolStripMenuItem";
+            this.basePathToFolderToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.basePathToFolderToolStripMenuItem.Text = "Base path to Folder";
+            this.basePathToFolderToolStripMenuItem.Click += new System.EventHandler(this.basePathToFolderToolStripMenuItem_Click);
+            // 
+            // resetAllSettingsToolStripMenuItem
+            // 
+            this.resetAllSettingsToolStripMenuItem.Name = "resetAllSettingsToolStripMenuItem";
+            this.resetAllSettingsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.resetAllSettingsToolStripMenuItem.Text = "Reset All Settings";
+            this.resetAllSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetAllSettingsToolStripMenuItem_Click);
             // 
             // outputToolStripMenuItem
             // 
@@ -255,7 +293,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputToolStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -287,7 +325,7 @@
             this.includeHashingAlgorithmToolStripMenuItem,
             this.includeSaltAndPepperToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -333,43 +371,6 @@
             this.button1.Text = "temp";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // systemToolStripMenuItem
-            // 
-            this.systemToolStripMenuItem.Checked = true;
-            this.systemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.systemToolStripMenuItem.Text = "System";
-            this.systemToolStripMenuItem.Click += new System.EventHandler(this.systemToolStripMenuItem_Click);
-            // 
-            // lightToolStripMenuItem
-            // 
-            this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.lightToolStripMenuItem.Text = "Light";
-            this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
-            // 
-            // darkToolStripMenuItem
-            // 
-            this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.darkToolStripMenuItem.Text = "Dark";
-            this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
-            // 
-            // basePathToFolderToolStripMenuItem
-            // 
-            this.basePathToFolderToolStripMenuItem.Name = "basePathToFolderToolStripMenuItem";
-            this.basePathToFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.basePathToFolderToolStripMenuItem.Text = "Base path to Folder";
-            this.basePathToFolderToolStripMenuItem.Click += new System.EventHandler(this.basePathToFolderToolStripMenuItem_Click);
-            // 
-            // resetAllSettingsToolStripMenuItem
-            // 
-            this.resetAllSettingsToolStripMenuItem.Name = "resetAllSettingsToolStripMenuItem";
-            this.resetAllSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.resetAllSettingsToolStripMenuItem.Text = "Reset All Settings";
-            this.resetAllSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetAllSettingsToolStripMenuItem_Click);
             // 
             // Form1
             // 

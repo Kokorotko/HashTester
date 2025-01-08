@@ -26,6 +26,7 @@ namespace HashTester
         private static bool includeSalt;
         private static bool includePepper;
         private static string basePathToFiles;
+        private static string passwordPathToFiles;
         #endregion
 
         #region Get&Set
@@ -78,6 +79,23 @@ namespace HashTester
             }
             set { basePathToFiles = value; }
         }
+        public static string PasswordPathToFiles
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(passwordPathToFiles))
+                {
+                    return passwordPathToFiles;
+                }
+                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists")); //Base directory
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(passwordPathToFiles)) passwordPathToFiles = value;
+                else passwordPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists")); //base directory
+            }
+        }
+
         #endregion
 
         #region Enum
@@ -150,6 +168,7 @@ namespace HashTester
                     //Other
                     writer.WriteLine("//Other - Path");
                     writer.WriteLine("basePathToFiles=" + BasePathToFiles);
+                    writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
                 }
             }
             File.Delete("..\\..\\settings\\settings.txt");
@@ -277,11 +296,23 @@ namespace HashTester
                                         {
                                             try
                                             {
-                                                basePathToFiles = data[1];
+                                                BasePathToFiles = data[1];
                                             }
                                             catch (IndexOutOfRangeException)
                                             {
-                                                basePathToFiles = "";
+                                                BasePathToFiles = "";
+                                            }
+                                            break;
+                                        }
+                                    case "passwordPathToFiles":
+                                        {
+                                            try
+                                            {
+                                                PasswordPathToFiles = data[1];
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                PasswordPathToFiles = "";
                                             }
                                             break;
                                         }

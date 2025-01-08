@@ -74,9 +74,15 @@ Hashing Collision Generator:
     TXT Output
     Performance Mode
     Memory List Dump Optimization
--------------
+-----------------------------------
     Check Collision from User Input
     Check Collision from TXT Input
     Update TXT Output
     Found MD5 Collision
     General Fixes
+**2025-01-28
+Password BruteForce:
+	Finding Password With rockyou.txt algorithm
+	How Long to Crack Password Calculator
+	Finished UI
+	Pre-Hash Generator

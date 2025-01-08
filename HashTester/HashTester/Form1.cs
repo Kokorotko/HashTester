@@ -453,5 +453,11 @@ namespace HashTester
             Settings.LoadSettings();
             UIToolStripMenuLoad();
         }
+
+        private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PasswordForm passwordForm = new PasswordForm();
+            passwordForm.Show();
+        }
     }
 }
