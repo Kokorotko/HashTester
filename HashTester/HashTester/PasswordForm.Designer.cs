@@ -67,7 +67,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.hashSelector = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxBruteForceInput = new System.Windows.Forms.TextBox();
             this.labelSpeed = new System.Windows.Forms.Label();
             this.labelHashes = new System.Windows.Forms.Label();
             this.labelAttempts = new System.Windows.Forms.Label();
@@ -302,7 +302,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.numericUpDown1);
             this.groupBox3.Controls.Add(this.hashSelector);
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.textBoxBruteForceInput);
             this.groupBox3.Location = new System.Drawing.Point(372, 13);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(416, 252);
@@ -374,6 +374,7 @@
             this.buttonBruteForceAttack.TabIndex = 11;
             this.buttonBruteForceAttack.Text = "Brute Force Attack";
             this.buttonBruteForceAttack.UseVisualStyleBackColor = true;
+            this.buttonBruteForceAttack.Click += new System.EventHandler(this.buttonBruteForceAttack_Click);
             // 
             // checkBox4
             // 
@@ -536,12 +537,12 @@
             this.hashSelector.TabIndex = 5;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
-            // textBox2
+            // textBoxBruteForceInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(7, 20);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(396, 20);
-            this.textBox2.TabIndex = 0;
+            this.textBoxBruteForceInput.Location = new System.Drawing.Point(7, 20);
+            this.textBoxBruteForceInput.Name = "textBoxBruteForceInput";
+            this.textBoxBruteForceInput.Size = new System.Drawing.Size(396, 20);
+            this.textBoxBruteForceInput.TabIndex = 0;
             // 
             // labelSpeed
             // 
@@ -657,7 +658,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxCrackLenght;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxBruteForceInput;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Label label3;

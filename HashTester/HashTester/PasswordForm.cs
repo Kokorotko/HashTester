@@ -12,6 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics;
 using System.Security.Policy;
+using System.Runtime.CompilerServices;
 
 namespace HashTester
 {
@@ -284,6 +285,83 @@ namespace HashTester
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
+        }
+
+        private void buttonBruteForceAttack_Click(object sender, EventArgs e)
+        {
+            bool foundHash = false;
+            string originalText = "";
+            string hashedText = textBoxBruteForceInput.Text;
+            if (radioButton5.Checked) hashedText = hasher.Hash(textBoxBruteForceInput.Text, algorithm);
+            if (checkBox1.Checked) foundHash = DictionaryAttack(hashedText, out originalText);
+            //SetUp
+            if (!foundHash)
+            {
+                decimal maxAttempts = numericUpDown1.Value;
+                bool useMaxAttempts = true;
+                if (maxAttempts == 0) useMaxAttempts = false;
+                int passwordLenght = (int)numericUpDown2.Value;
+                bool useStopTimer = true;
+                decimal stopTimer = numericUpDownStopTimer.Value;
+                if (stopTimer == 0) useStopTimer = false;
+                bool showLog = checkBoxListBoxLog.Checked;
+                bool performanceMode = checkBoxPerformanceMode.Checked;
+                bool[] useCharactersOption = { false, false, false, false }; //0 == lowercase, 1 == uppercase, 2 == digits, 3 == specialChars
+                if (checkBox6.Checked) useCharactersOption[0] = true;
+                if (checkBox5.Checked) useCharactersOption[1] = true;
+                if (checkBox4.Checked) useCharactersOption[2] = true;
+                if (checkBox3.Checked) useCharactersOption[3] = true;
+                //FINISH THIS SHIT
+            }
+            else MessageBox.Show("Found hash via Dictionary attack\nOriginal password: " + originalText);
+        }
+
+        private bool DictionaryAttack(string hashedText, out string originalText)
+        {
+            bool foundMatch = false;
+            originalText = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                {
+                    string[] algorithmText = reader.ReadLine().Split('=');
+                    Hasher.HashingAlgorithm algorithm;
+                    switch (algorithmText[1])
+                    {
+                        case "MD5":
+                            algorithm = Hasher.HashingAlgorithm.MD5;
+                            break;
+                        case "SHA1":
+                            algorithm = Hasher.HashingAlgorithm.SHA1;
+                            break;
+                        case "SHA256":
+                            algorithm = Hasher.HashingAlgorithm.SHA256;
+                            break;
+                        case "SHA512":
+                            algorithm = Hasher.HashingAlgorithm.SHA512;
+                            break;
+                        case "RIPEMD160":
+                            algorithm = Hasher.HashingAlgorithm.RIPEMD160;
+                            break;
+                        default:
+                            algorithm = Hasher.HashingAlgorithm.CRC32;
+                            break;
+                    }
+                    while (!reader.EndOfStream && !foundMatch)
+                    {
+                        string[] data = reader.ReadLine().Split('=');
+                        if (data[1] == hashedText)
+                        {
+                            foundMatch = true;
+                            originalText = data[0];
+                        }
+                    }
+                    return foundMatch;
+                }                
+            }
+            else return false;
         }
     }
 }

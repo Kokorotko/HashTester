@@ -80,9 +80,12 @@ Hashing Collision Generator:
     Update TXT Output
     Found MD5 Collision
     General Fixes
-**2025-01-28
+**2025-01-08
 Password BruteForce:
 	Finding Password With rockyou.txt algorithm
 	How Long to Crack Password Calculator
 	Finished UI
 	Pre-Hash Generator
+**2025-01-09
+Password BruteForce:
+	BruteForce attack via Dictionary Attack
