@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Text;
@@ -8,6 +10,8 @@ using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
@@ -24,14 +28,17 @@ namespace HashTester
 
         Hasher hasher = new Hasher();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32;
-        Thread collisionThread;
         volatile bool stopHashing = false; // Volatile for thread safety
+        volatile bool foundCollision = false;
+        volatile bool attemptsRanOut = false;
+        volatile string textCollision01 = "";
+        volatile string textCollision02 = "";
         long maxAttempts = 0;
         long attempts = 0;
-        int timeToCalculate = 0;
         long numberOfAttempsInLastUpdate = 0; //The time is 16ms
+        Stopwatch stopwatch = new Stopwatch();
         private Timer timeToFindCollision;
-        double totalHashCombinations;
+        private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>(); //list with thread safety features
 
         #region Form
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -52,24 +59,12 @@ namespace HashTester
         #endregion
 
         #region CollisionGenerator3000
-        private void buttonGenerateCollision_Click(object sender, EventArgs e)
+        private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
+            timeToFindCollision = new Timer();
             TurnOffUI();
-            stopHashing = false;
             maxAttempts = (long)numericUpDown1.Value;
             int rngTextLenght = (int)numericUpDown2.Value;
-            if (!checkBoxPerformanceMode.Checked)
-            {
-                totalHashCombinations = Math.Pow(2, rngTextLenght * 8); //one char is 8 bits (UTF-8)
-                //Timer
-                timeToCalculate = 0;
-                timeToFindCollision = new Timer();
-                timeToFindCollision.Interval = 16; //updates every 16 ms for 60+fps update
-                timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
-                timeToFindCollision.Start();
-            }
-            else checkBoxListBoxLog.Checked = false;
-
             switch (hashSelector.SelectedIndex)
             {
                 case 0: algorithm = Hasher.HashingAlgorithm.CRC32; break;
@@ -78,151 +73,117 @@ namespace HashTester
                 case 3: algorithm = Hasher.HashingAlgorithm.SHA1; break;
                 default: algorithm = Hasher.HashingAlgorithm.CRC32; break;
             }
-            collisionThread = new Thread(() => CollisionThread(algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBox1.Checked, checkBoxPerformanceMode.Checked));
-            collisionThread.Start();
-        }
-
-        private void CollisionThread(Hasher.HashingAlgorithm algorithm, long maxAttempts, int length, bool saveLogToListBox, bool useHexForOutput, bool performanceMode)
-        {
-            bool foundCollision = false, attemptsRanOut = false;
-            string textCollision01 = "", textCollision02 = "";
-            attempts = 0;
-            bool useAttempts = false;
-            if (maxAttempts > 0) useAttempts = true;
-            foundCollision = GenerateCollision(algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, performanceMode, out textCollision01, out textCollision02, out attemptsRanOut);
-            if (timeToFindCollision != null) timeToFindCollision.Stop();
+            List<Task> allTasks = new List<Task>();
+            if (checkBoxPerformanceMode.Checked)
+            {
+                int maxThreads = Environment.ProcessorCount;
+                for (int i = 0; i < maxThreads - 1; i++) //multiThread
+                {
+                    allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBox1.Checked)));
+                }
+            }
+            else //single Thread
+            {
+                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBox1.Checked)));
+            }
+            await Task.WhenAll(allTasks);
+            TurnOnUI();
             if (foundCollision) //MessageBoxOutput
             {
-                string message = "Collision found!";
-                if (performanceMode)
-                {
-                    message += "\nCollision 1: " + (useHexForOutput ? ConvertStringToHex(textCollision01) : textCollision01) +
-                                      "\nCollision 2: " + (useHexForOutput ? ConvertStringToHex(textCollision02) : textCollision02);
-                }
-                else
-                {
-                    message += "\nCollision 1: " + (useHexForOutput ? ConvertStringToHex(textCollision01) : textCollision01) +
-                                       "\nCollision 2: " + (useHexForOutput ? ConvertStringToHex(textCollision02) : textCollision02) +
+                string message = "Collision found!\n" +
+                                        "\nCollision 1: " + (checkBox1.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
+                                       "\nCollision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02) +
+                                       "\nCollision hash: " + hasher.Hash(textCollision01, algorithm) +
                                        "\nAttempts: " + attempts +
                                        "\nTime to find: " + labelTimer.Text.Split(' ')[1]; // Only the number
-                }
-
-                Invoke((Action)(() => CollisionFoundMessageBox(message, textCollision01, textCollision02)));
+                CollisionFoundMessageBox(message, textCollision01, textCollision02);
             }
             else if (stopHashing)
             {
-                Invoke((Action)(() => MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+                MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (attemptsRanOut)
             {
-                Invoke((Action)(() => MessageBox.Show("Could not find a collision under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+                MessageBox.Show("Could not find a collision under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                Invoke((Action)(() => MessageBox.Show("Could not find collision.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)));
-            }
-
-            Invoke((Action)TurnOnUI);
+                MessageBox.Show("Could not find collision.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
         }
 
-        private bool GenerateCollision(Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttempts, bool saveLogToListbox, bool useHexForOutput, bool performanceMode, out string collision1, out string collision2, out bool attemptsRanOut)
+        private void CollisionThread(int threadNumber, Hasher.HashingAlgorithm algorithm, long maxAttempts, int length, bool saveLogToListBox, bool useHexForOutput)
         {
-            collision1 = "";
-            collision2 = "";
-            attemptsRanOut = false;
-            bool foundCollision = false;
-            var random = new Random(); //Random needs to be here or it will create collisions indefinetly; PC stuff
-            var collisionList = new List<string>();
-            var collisionListOriginalText = new List<string>();
-            var log = new List<string>();
-            Stopwatch stopwatchUpdateUI = new Stopwatch();
-            if (!performanceMode) stopwatchUpdateUI.Start();
-            while (!foundCollision && !stopHashing && !attemptsRanOut)
+            attempts = 0;
+            bool useAttempts = false;
+            if (maxAttempts > 0) useAttempts = true;
+            if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, out string collision01, out string collision02))
             {
-                if (!performanceMode)
+                textCollision01 = collision01;
+                textCollision02 = collision02;
+                foundCollision = true;
+            }
+            else stopHashing = true;
+        }
+
+        private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLogToListBox, bool useHexForOutput, out string collision1, out string collision2)
+        {
+            try
+            {
+                collision1 = "";
+                collision2 = "";
+                List<string> hashedList = new List<string>();
+                List<string> textList = new List<string>();
+                Random random = new Random((int)(DateTime.Now.Ticks ^ threadNumber));
+
+                while (!foundCollision && !stopHashing && !attemptsRanOut)
                 {
-                    Interlocked.Increment(ref attempts); //Updates attempts +1
-                    if (stopwatchUpdateUI.ElapsedMilliseconds > 16) //updates UI 62.5 times per sec (62.5fps)
+                    Interlocked.Increment(ref attempts);
+                    string randomText = GenerateRandomString(random, length);
+                    string hashedValue = hasher.Hash(randomText, algorithm);
+
+                    if (saveLogToListBox)
                     {
-                        stopwatchUpdateUI.Restart();
-                        Invoke((Action)UpdateAttemptsLabel);
-                        if (saveLogToListbox)
-                        {
-                            listBox1.Invoke(new Action(() =>
-                            {
-                                foreach (string item in log) { listBox1.Items.Add(item); }  //save all list to listbox                      
-                                listBox1.TopIndex = listBox1.Items.Count - 1; // Scroll to the bottom
-                                log.Clear();
-                            }));
-                        }
+                        string displayText = useHexForOutput ? ConvertStringToHex(randomText) : randomText;
+                        logQueue.Enqueue($"Hashing: {displayText} | Hash: {hashedValue}");
                     }
-                }
 
-                //Generate Random String
-                string randomText = GenerateRandomString(random, length);
-                string hashedValue = hasher.Hash(randomText, algorithm);
-
-                //Log update                
-                if (saveLogToListbox) //Disabled in performance mode
-                {
-                    string randomTextForUser;
-                    if (useHexForOutput) randomTextForUser = ConvertStringToHex(randomText);
-                    else randomTextForUser = randomText;
-                    log.Add("Hashing: " + randomTextForUser + " | Hashing with (" + algorithm.ToString() + "): " + hashedValue);
-                }
-
-                // Check for collision
-                if (collisionList.Contains(hashedValue))
-                {
-                    int collisionIndex = collisionList.IndexOf(hashedValue);
-                    collision1 = collisionListOriginalText[collisionIndex];
-                    collision2 = randomText;
-                    if (collision1 != collision2)
+                    if (hashedList.Contains(hashedValue))
                     {
-                        foundCollision = true;
-                        if (useHexForOutput)
+                        int collisionIndex = hashedList.IndexOf(hashedValue);
+                        collision1 = textList[collisionIndex];
+                        collision2 = randomText;
+
+                        if (collision1 != collision2)
                         {
-                            log.Add("Found collision: " + ConvertStringToHex(collision1) + " and " + ConvertStringToHex(collision2));
+                            foundCollision = true;
+                            logQueue.Enqueue($"Collision Found: {collision1} and {collision2}");
+                            return true;
                         }
-                        else log.Add("Found collision: " + collision1 + " and " + collision2);
-                        //Memory Dump
-                        collisionList.Clear();
-                        collisionListOriginalText.Clear();
                     }
                     else
                     {
-                        if (useHexForOutput)
-                        {
-                            log.Add("Found duplicate: " + ConvertStringToHex(collision1) + " " + ConvertStringToHex(collision2));
-                        }
-                        else log.Add("Found duplicate: " + collision1 + " " + collision2);
-                        collisionList.RemoveAt(collisionIndex); //Removes the duplicate
-                        collisionListOriginalText.RemoveAt(collisionIndex);
+                        hashedList.Add(hashedValue);
+                        textList.Add(randomText);
+                    }
+
+                    if (maxAttempts > 0 && Interlocked.Read(ref attempts) >= maxAttempts)
+                    {
+                        attemptsRanOut = true;
+                        return false;
                     }
                 }
-                else
-                {
-                    collisionList.Add(hashedValue);
-                    collisionListOriginalText.Add(randomText);
-                }
-
-                if (useAttempts && attempts >= maxAttempts)
-                {
-                    //Memory Dump
-                    collisionList.Clear();
-                    collisionListOriginalText.Clear();
-                    attemptsRanOut = true;
-                }
-                if (stopHashing)
-                {
-                    //Memory Dump
-                    collisionList.Clear();
-                    collisionListOriginalText.Clear();
-                }
             }
-            stopwatchUpdateUI.Stop();
-            return foundCollision;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                collision1 = "";
+                collision2 = "";
+                return false;
+            }
+            return false;
         }
+
 
         private string GenerateRandomString(Random random, int length)
         {
@@ -233,28 +194,48 @@ namespace HashTester
             }
             return new string(result);
         }
-        private void UpdateAttemptsLabel()
-        {
-            label3.Text = "Number of attempts: " + attempts;
-        }
 
         private void UpdateTimerLabel()
         {
             //Update Timer
-            timeToCalculate += 16;
-            int seconds = timeToCalculate / 1000;
-            int milliseconds = timeToCalculate % 1000;
+            int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
+            int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
             labelTimer.Text = "Timer: " + seconds + "." + milliseconds + " s";
-            int triesBetween = (int)attempts - (int)numberOfAttempsInLastUpdate;
+            int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
             numberOfAttempsInLastUpdate = attempts;
+            //Attempts
+            label3.Text = "Number of attempts: " + attempts;
             //Update Speed
             double speed = triesBetween / 0.016; //16 ms
             label4.Text = "Hashes per sec: " + speed;
             //Update Average Speed
-            double averageSpeed = attempts / (timeToCalculate / 1000.0); //Average speed per second
+            double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
             label5.Text = "Average speed: " + Math.Floor(averageSpeed);
-            //Chance To Find Collision
-            label6.Text = "Chance to find collision: " + CalculateChanceOfFindingCollision(speed) * 100 * 62.5 + "% per sec "; //Just estimated value
+            //update Log listbox
+            ProcessLogQueueAsync();
+        }
+
+        private async void ProcessLogQueueAsync() //background process
+        {
+            await Task.Run(() =>
+            {
+                List<string> logBatch = new List<string>();
+
+                while (logQueue.TryDequeue(out string logItem))
+                {
+                    logBatch.Add(logItem);
+                }
+
+                // Invoke the UI thread to update the ListBox in batches
+                if (logBatch.Count > 0)
+                {
+                    Invoke((Action)(() =>
+                    {
+                        listBox1.Items.AddRange(logBatch.ToArray());
+                        listBox1.TopIndex = listBox1.Items.Count - 1;
+                    }));
+                }
+            });
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
@@ -262,7 +243,7 @@ namespace HashTester
             ConfirmationForm confirmation = new ConfirmationForm("Would you like to save collision to a txt file?");
             if (confirmation.ShowDialog() == DialogResult.OK)
             {
-                string path = Path.GetFullPath(@"..\..\SameHashingResults");
+                string path = Path.GetFullPath(Settings.CollisionPathToFiles);
                 string path2 = "";
                 bool foundName = false;
                 int number = 1;
@@ -279,13 +260,6 @@ namespace HashTester
                 //Writing Results
                 using (StreamWriter writer = new StreamWriter(path + path2))
                 {
-                    writer.WriteLine("//Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm");
-                    writer.WriteLine("//!The program will only check the first format and texts!");
-                    writer.WriteLine("//<STRING> Supports UTF-8 format (example al85WTh)");
-                    writer.WriteLine("//<HEX> Supports 8D-B7 or 8DB7 doesnt matter if lowercase or uppercase");
-                    writer.WriteLine("//<BIN> Supports 0111 0001 with or without spaces between");
-                    writer.WriteLine("//There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160");
-                    writer.WriteLine("//");
                     writer.WriteLine("Algorithm=" + algorithm.ToString());
                     writer.WriteLine("<STRING>");
                     writer.WriteLine(collisionText01);
@@ -293,22 +267,17 @@ namespace HashTester
                     writer.WriteLine("<HEX>");
                     writer.WriteLine(ConvertStringToHex(collisionText01));
                     writer.WriteLine(ConvertStringToHex(collisionText02));
+                    writer.WriteLine("<HASH>");
+                    writer.WriteLine("hash1: " + hasher.Hash(collisionText01, algorithm));
+                    writer.WriteLine("hash2: " + hasher.Hash(collisionText02, algorithm));
                 }
             }
             MessageBox.Show(message, "Collision Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private double CalculateChanceOfFindingCollision(double speedPerFrame)
-        {
-            // Use the approximation for the birthday paradox
-            double probabilityNoCollision = Math.Exp(-((double)attempts * (attempts - 1)) / (2.0 * totalHashCombinations));
-            double probabilityCollision = 1.0 - probabilityNoCollision;
-            return probabilityCollision * speedPerFrame;
-        }  //returns a probability per one frame
-
         #endregion
 
-        #region CollisionDetection3000
+        #region CollisionDetectionFromAFile3000
 
         #region TXTFile
         public enum CollisionDetectionFormat
@@ -432,6 +401,13 @@ namespace HashTester
 
         private void TurnOffUI()
         {
+            //Timer for UI update
+            timeToFindCollision.Interval = 16; //updates every 16 ms for 60+fps update
+            timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
+            timeToFindCollision.Start();
+            //Stopwatch
+            stopwatch.Restart();
+            stopwatch.Start();
             buttonReturn.Enabled = false;
             buttonClearListBox.Enabled = false;
             buttonGenerateCollision.Enabled = false;
@@ -447,6 +423,12 @@ namespace HashTester
 
         private void TurnOnUI()
         {
+            //timer
+            timeToFindCollision.Stop();
+            timeToFindCollision.Dispose();
+            //stopwatch
+            stopwatch.Stop();
+            //UI
             buttonReturn.Enabled = true;
             buttonClearListBox.Enabled = true;
             buttonGenerateCollision.Enabled = true;
@@ -459,6 +441,7 @@ namespace HashTester
             checkBoxPerformanceMode.Enabled = true;
             buttonCheckCollision.Enabled = true;
         }
+
         #region Converters
         private string ConvertStringToHex(string input)
         {
@@ -500,5 +483,23 @@ namespace HashTester
             return bytes.ToString();
         }
         #endregion
+
+        private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
+        {
+            string path = Settings.CollisionPathToFiles;
+            Console.Write(path + "_collisionInfo.txt");
+            if (!File.Exists(path + "_collisionInfo.txt"))
+            {
+                string s = "//Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm\r\n" +
+                               "//!The program will only check the first format and texts!\r\n" +
+                               "//<STRING> Supports UTF-8 format (example al85WTh)\r\n" +
+                               "//<HEX> Supports 8D-B7 or 8DB7 doesnt matter if lowercase or uppercase\r\n" +
+                               "//<BIN> Supports 0111 0001 with or without spaces between\r\n" +
+                               "//There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160\r\n" +
+                               "//In <HASH> you can find both hashes for text 1 and 2. This is just for user and can be changed freely (why would you do that tho).";
+                File.WriteAllText(path + "_collisionInfo.txt", s);
+                Console.WriteLine("Generated _collisionInfo.txt into the " + path);
+            }
+        }
     }
 }

@@ -67,25 +67,29 @@ Settings new basePathToFiles
 ToolStrip menu code in Form1 rearranged
 **2025-01-02
 Hashing Collision Generator:
-    UI Update Problems Fixed
-    Log to Listbox
-    Threading Problem Fixed
-    Using HEX and UTF-8
-    TXT Output
-    Performance Mode
-    Memory List Dump Optimization
+        UI Update Problems Fixed
+        Log to Listbox
+        Threading Problem Fixed
+        Using HEX and UTF-8
+        TXT Output
+        Performance Mode
+        Memory List Dump Optimization
 -----------------------------------
-    Check Collision from User Input
-    Check Collision from TXT Input
-    Update TXT Output
-    Found MD5 Collision
-    General Fixes
+        Check Collision from User Input
+        Check Collision from TXT Input
+        Update TXT Output
+        Found MD5 Collision
+        General Fixes
 **2025-01-08
 Password BruteForce:
 	Finding Password With rockyou.txt algorithm
 	How Long to Crack Password Calculator
 	Finished UI
 	Pre-Hash Generator
-**2025-01-09
-Password BruteForce:
-	BruteForce attack via Dictionary Attack
+**2025-01-11
+Hashing Collision Generator:
+	Removed the % chance of finding the hash
+	Changed timer and UI to be in a seperate thread (timer is counting 1/2 of the real time)
+	Separated the info and the saved collisions (added Settings.CollisionPathToFiles)
+	Update the performance mode to use 100% of the CPU (pain)
+	Added saving the hash with the text (+messageBox) in the collision save

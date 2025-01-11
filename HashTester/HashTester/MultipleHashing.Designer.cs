@@ -172,9 +172,9 @@
             this.checkBoxShowAlgorithm.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxShowAlgorithm.Location = new System.Drawing.Point(12, 246);
             this.checkBoxShowAlgorithm.Name = "checkBoxShowAlgorithm";
-            this.checkBoxShowAlgorithm.Size = new System.Drawing.Size(99, 17);
+            this.checkBoxShowAlgorithm.Size = new System.Drawing.Size(103, 17);
             this.checkBoxShowAlgorithm.TabIndex = 22;
-            this.checkBoxShowAlgorithm.Text = "Show Algorithm";
+            this.checkBoxShowAlgorithm.Text = "Show Algorithm*";
             this.checkBoxShowAlgorithm.UseVisualStyleBackColor = true;
             // 
             // label1

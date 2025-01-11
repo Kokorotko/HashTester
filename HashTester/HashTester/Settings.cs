@@ -27,6 +27,7 @@ namespace HashTester
         private static bool includePepper;
         private static string basePathToFiles;
         private static string passwordPathToFiles;
+        private static string collisionPathToFiles;
         #endregion
 
         #region Get&Set
@@ -74,7 +75,7 @@ namespace HashTester
         {
             get
             {
-                if (!String.IsNullOrEmpty(basePathToFiles)) return basePathToFiles;
+                if (!String.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles)) return basePathToFiles;
                 else return Environment.CurrentDirectory; //Better Safe than Sure (or something like that)
             }
             set { basePathToFiles = value; }
@@ -83,16 +84,32 @@ namespace HashTester
         {
             get
             {
-                if (!String.IsNullOrEmpty(passwordPathToFiles))
+                if (!String.IsNullOrEmpty(passwordPathToFiles) && Directory.Exists(passwordPathToFiles))
                 {
                     return passwordPathToFiles;
                 }
-                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists")); //Base directory
+                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists\\")); //Base directory
             }
             set
             {
-                if (!String.IsNullOrEmpty(passwordPathToFiles)) passwordPathToFiles = value;
-                else passwordPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists")); //base directory
+                if (!String.IsNullOrEmpty(passwordPathToFiles) && Directory.Exists(passwordPathToFiles)) passwordPathToFiles = value;
+                else passwordPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists\\")); //base directory
+            }
+        }
+        public static string CollisionPathToFiles
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(collisionPathToFiles) && Directory.Exists(collisionPathToFiles))
+                {
+                    return collisionPathToFiles;
+                }
+                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\SameHashingResults\\")); //Base directory
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(collisionPathToFiles) && Directory.Exists(collisionPathToFiles)) collisionPathToFiles = value;
+                else collisionPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\SameHashingResults\\")); //base directory
             }
         }
 
@@ -121,7 +138,9 @@ namespace HashTester
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;
             UsePepper = false;
-            basePathToFiles = "";
+            BasePathToFiles = "";
+            PasswordPathToFiles = "";
+            CollisionPathToFiles = "";
         }
         public static void SaveSettings()
         {
@@ -169,6 +188,7 @@ namespace HashTester
                     writer.WriteLine("//Other - Path");
                     writer.WriteLine("basePathToFiles=" + BasePathToFiles);
                     writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
+                    writer.WriteLine("collisionPathToFiles=" + CollisionPathToFiles);
                 }
             }
             File.Delete("..\\..\\settings\\settings.txt");
@@ -313,6 +333,18 @@ namespace HashTester
                                             catch (IndexOutOfRangeException)
                                             {
                                                 PasswordPathToFiles = "";
+                                            }
+                                            break;
+                                        }
+                                    case "collisionPathToFiles":
+                                        {
+                                            try
+                                            {
+                                                CollisionPathToFiles = data[1];
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                CollisionPathToFiles = "";
                                             }
                                             break;
                                         }

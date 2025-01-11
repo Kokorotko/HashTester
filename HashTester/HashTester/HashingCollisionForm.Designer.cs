@@ -44,7 +44,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.buttonCheckCollision = new System.Windows.Forms.Button();
@@ -219,15 +218,6 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Average speed: ";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(419, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(122, 13);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "Chance to find collision: ";
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -245,9 +235,9 @@
             this.checkBoxPerformanceMode.AutoSize = true;
             this.checkBoxPerformanceMode.Location = new System.Drawing.Point(564, 98);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
-            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(174, 17);
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(181, 17);
             this.checkBoxPerformanceMode.TabIndex = 27;
-            this.checkBoxPerformanceMode.Text = "PerformanceMode (disables UI)";
+            this.checkBoxPerformanceMode.Text = "PerformanceMode (disables Log)";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // buttonCheckCollision
@@ -268,7 +258,6 @@
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBoxListBoxLog);
             this.Controls.Add(this.label4);
@@ -287,6 +276,7 @@
             this.Controls.Add(this.hashSelector);
             this.Name = "HashingCollisionForm";
             this.Text = "HashingCollisionForm";
+            this.Load += new System.EventHandler(this.HashingCollisionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
@@ -312,7 +302,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBoxListBoxLog;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.Button buttonCheckCollision;
