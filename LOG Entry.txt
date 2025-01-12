@@ -93,3 +93,10 @@ Hashing Collision Generator:
 	Separated the info and the saved collisions (added Settings.CollisionPathToFiles)
 	Update the performance mode to use 100% of the CPU (pain)
 	Added saving the hash with the text (+messageBox) in the collision save
+**2025-01-12
+Password Form:
+	Brute force attack working
+	Dictionary attack support hashed/unhashed txt files and check if they are all hashed
+	Log added
+	Seperated Dictionary Attack and Password BruteForce Attack
+Hashing Collision Generator: Small update for better code debugging

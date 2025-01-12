@@ -47,9 +47,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxHexOutput = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.buttonBruteForceAttack = new System.Windows.Forms.Button();
@@ -58,7 +58,6 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -69,12 +68,14 @@
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.textBoxBruteForceInput = new System.Windows.Forms.TextBox();
             this.labelSpeed = new System.Windows.Forms.Label();
-            this.labelHashes = new System.Windows.Forms.Label();
+            this.labelCurrentSpeed = new System.Windows.Forms.Label();
             this.labelAttempts = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
+            this.listBoxLog = new System.Windows.Forms.ListBox();
+            this.buttonDictionaryAttack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -282,9 +283,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonDictionaryAttack);
+            this.groupBox3.Controls.Add(this.checkBoxHexOutput);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.numericUpDownStopTimer);
-            this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBoxPerformanceMode);
             this.groupBox3.Controls.Add(this.checkBox3);
             this.groupBox3.Controls.Add(this.buttonBruteForceAttack);
@@ -293,7 +295,6 @@
             this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Controls.Add(this.checkBoxListBoxLog);
             this.groupBox3.Controls.Add(this.checkBox6);
-            this.groupBox3.Controls.Add(this.checkBox1);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.radioButton6);
             this.groupBox3.Controls.Add(this.numericUpDown2);
@@ -308,7 +309,19 @@
             this.groupBox3.Size = new System.Drawing.Size(416, 252);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "BruteForce Attack";
+            this.groupBox3.Text = "JailBreak Attacks";
+            // 
+            // checkBoxHexOutput
+            // 
+            this.checkBoxHexOutput.AutoSize = true;
+            this.checkBoxHexOutput.Checked = true;
+            this.checkBoxHexOutput.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHexOutput.Location = new System.Drawing.Point(5, 150);
+            this.checkBoxHexOutput.Name = "checkBoxHexOutput";
+            this.checkBoxHexOutput.Size = new System.Drawing.Size(147, 17);
+            this.checkBoxHexOutput.TabIndex = 37;
+            this.checkBoxHexOutput.Text = "Display password as HEX";
+            this.checkBoxHexOutput.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -331,18 +344,6 @@
             this.numericUpDownStopTimer.Size = new System.Drawing.Size(224, 20);
             this.numericUpDownStopTimer.TabIndex = 35;
             this.numericUpDownStopTimer.ThousandsSeparator = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(5, 150);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(137, 17);
-            this.checkBox2.TabIndex = 33;
-            this.checkBox2.Text = "Use HEX to display text";
-            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBoxPerformanceMode
             // 
@@ -368,9 +369,9 @@
             // 
             // buttonBruteForceAttack
             // 
-            this.buttonBruteForceAttack.Location = new System.Drawing.Point(7, 219);
+            this.buttonBruteForceAttack.Location = new System.Drawing.Point(5, 219);
             this.buttonBruteForceAttack.Name = "buttonBruteForceAttack";
-            this.buttonBruteForceAttack.Size = new System.Drawing.Size(121, 23);
+            this.buttonBruteForceAttack.Size = new System.Drawing.Size(130, 23);
             this.buttonBruteForceAttack.TabIndex = 11;
             this.buttonBruteForceAttack.Text = "Brute Force Attack";
             this.buttonBruteForceAttack.UseVisualStyleBackColor = true;
@@ -390,9 +391,9 @@
             // 
             // buttonPreHash
             // 
-            this.buttonPreHash.Location = new System.Drawing.Point(286, 219);
+            this.buttonPreHash.Location = new System.Drawing.Point(280, 219);
             this.buttonPreHash.Name = "buttonPreHash";
-            this.buttonPreHash.Size = new System.Drawing.Size(121, 23);
+            this.buttonPreHash.Size = new System.Drawing.Size(130, 23);
             this.buttonPreHash.TabIndex = 10;
             this.buttonPreHash.Text = "Generate a Pre-hash";
             this.buttonPreHash.UseVisualStyleBackColor = true;
@@ -413,7 +414,7 @@
             // checkBoxListBoxLog
             // 
             this.checkBoxListBoxLog.AutoSize = true;
-            this.checkBoxListBoxLog.Location = new System.Drawing.Point(6, 129);
+            this.checkBoxListBoxLog.Location = new System.Drawing.Point(5, 129);
             this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
             this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
             this.checkBoxListBoxLog.TabIndex = 32;
@@ -431,16 +432,6 @@
             this.checkBox6.TabIndex = 9;
             this.checkBox6.Text = "Malá písmena (26)";
             this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 196);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(191, 17);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Use pre-hashed (Dictionary Attack)";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -543,6 +534,7 @@
             this.textBoxBruteForceInput.Name = "textBoxBruteForceInput";
             this.textBoxBruteForceInput.Size = new System.Drawing.Size(396, 20);
             this.textBoxBruteForceInput.TabIndex = 0;
+            this.textBoxBruteForceInput.Text = "budakkecik";
             // 
             // labelSpeed
             // 
@@ -553,14 +545,14 @@
             this.labelSpeed.TabIndex = 28;
             this.labelSpeed.Text = "Average speed /s: ";
             // 
-            // labelHashes
+            // labelCurrentSpeed
             // 
-            this.labelHashes.AutoSize = true;
-            this.labelHashes.Location = new System.Drawing.Point(16, 295);
-            this.labelHashes.Name = "labelHashes";
-            this.labelHashes.Size = new System.Drawing.Size(59, 13);
-            this.labelHashes.TabIndex = 27;
-            this.labelHashes.Text = "Hashes /s:";
+            this.labelCurrentSpeed.AutoSize = true;
+            this.labelCurrentSpeed.Location = new System.Drawing.Point(16, 295);
+            this.labelCurrentSpeed.Name = "labelCurrentSpeed";
+            this.labelCurrentSpeed.Size = new System.Drawing.Size(92, 13);
+            this.labelCurrentSpeed.TabIndex = 27;
+            this.labelCurrentSpeed.Text = "Current speed /s: ";
             // 
             // labelAttempts
             // 
@@ -605,16 +597,35 @@
             this.label10.TabIndex = 37;
             this.label10.Text = "Progress Bar";
             // 
+            // listBoxLog
+            // 
+            this.listBoxLog.FormattingEnabled = true;
+            this.listBoxLog.Location = new System.Drawing.Point(19, 384);
+            this.listBoxLog.Name = "listBoxLog";
+            this.listBoxLog.Size = new System.Drawing.Size(120, 95);
+            this.listBoxLog.TabIndex = 38;
+            // 
+            // buttonDictionaryAttack
+            // 
+            this.buttonDictionaryAttack.Location = new System.Drawing.Point(144, 219);
+            this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
+            this.buttonDictionaryAttack.Size = new System.Drawing.Size(130, 23);
+            this.buttonDictionaryAttack.TabIndex = 38;
+            this.buttonDictionaryAttack.Text = "Dictionary Attack";
+            this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
+            this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonDictionaryAttack_Click);
+            // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 385);
+            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.labelSpeed);
-            this.Controls.Add(this.labelHashes);
+            this.Controls.Add(this.labelCurrentSpeed);
             this.Controls.Add(this.labelAttempts);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.groupBox3);
@@ -663,10 +674,8 @@
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox hashSelector;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button buttonBruteForceAttack;
         private System.Windows.Forms.Button buttonPreHash;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
@@ -680,11 +689,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown numericUpDownStopTimer;
         private System.Windows.Forms.Label labelSpeed;
-        private System.Windows.Forms.Label labelHashes;
+        private System.Windows.Forms.Label labelCurrentSpeed;
         private System.Windows.Forms.Label labelAttempts;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox checkBoxHexOutput;
+        private System.Windows.Forms.ListBox listBoxLog;
+        private System.Windows.Forms.Button buttonDictionaryAttack;
     }
 }

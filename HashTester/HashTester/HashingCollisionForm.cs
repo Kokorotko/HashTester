@@ -39,7 +39,6 @@ namespace HashTester
         Stopwatch stopwatch = new Stopwatch();
         private Timer timeToFindCollision;
         private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>(); //list with thread safety features
-
         #region Form
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
@@ -61,7 +60,6 @@ namespace HashTester
         #region CollisionGenerator3000
         private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
-            timeToFindCollision = new Timer();
             TurnOffUI();
             maxAttempts = (long)numericUpDown1.Value;
             int rngTextLenght = (int)numericUpDown2.Value;
@@ -100,7 +98,7 @@ namespace HashTester
             }
             else if (stopHashing)
             {
-                MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (attemptsRanOut)
             {
