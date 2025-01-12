@@ -99,4 +99,9 @@ Password Form:
 	Dictionary attack support hashed/unhashed txt files and check if they are all hashed
 	Log added
 	Seperated Dictionary Attack and Password BruteForce Attack
+-----------------------------------
+	Dictionary attack working
+	Dictionary attack Log set up
+	Dictionary attack can be cancelled
 Hashing Collision Generator: Small update for better code debugging
+Log entry for Password checker

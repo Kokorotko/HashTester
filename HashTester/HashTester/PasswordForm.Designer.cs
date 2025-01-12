@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonDictionaryAttack = new System.Windows.Forms.Button();
             this.checkBoxHexOutput = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
@@ -75,7 +76,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.listBoxLog = new System.Windows.Forms.ListBox();
-            this.buttonDictionaryAttack = new System.Windows.Forms.Button();
+            this.checkBoxShowLogPassword = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,7 +100,7 @@
             this.textBox1.Location = new System.Drawing.Point(6, 49);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(199, 72);
+            this.textBox1.Size = new System.Drawing.Size(199, 49);
             this.textBox1.TabIndex = 1;
             // 
             // radioButton1
@@ -158,6 +159,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxShowLogPassword);
             this.groupBox1.Controls.Add(this.buttonCheckPassword);
             this.groupBox1.Controls.Add(this.buttonChangePath);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -310,6 +312,16 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "JailBreak Attacks";
+            // 
+            // buttonDictionaryAttack
+            // 
+            this.buttonDictionaryAttack.Location = new System.Drawing.Point(144, 219);
+            this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
+            this.buttonDictionaryAttack.Size = new System.Drawing.Size(130, 23);
+            this.buttonDictionaryAttack.TabIndex = 38;
+            this.buttonDictionaryAttack.Text = "Dictionary Attack";
+            this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
+            this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonDictionaryAttack_Click);
             // 
             // checkBoxHexOutput
             // 
@@ -580,6 +592,7 @@
             this.buttonCancel.TabIndex = 35;
             this.buttonCancel.Text = "Abort The Process";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // progressBar1
             // 
@@ -602,18 +615,18 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(19, 384);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(120, 95);
+            this.listBoxLog.Size = new System.Drawing.Size(760, 121);
             this.listBoxLog.TabIndex = 38;
             // 
-            // buttonDictionaryAttack
+            // checkBoxShowLogPassword
             // 
-            this.buttonDictionaryAttack.Location = new System.Drawing.Point(144, 219);
-            this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
-            this.buttonDictionaryAttack.Size = new System.Drawing.Size(130, 23);
-            this.buttonDictionaryAttack.TabIndex = 38;
-            this.buttonDictionaryAttack.Text = "Dictionary Attack";
-            this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
-            this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonDictionaryAttack_Click);
+            this.checkBoxShowLogPassword.AutoSize = true;
+            this.checkBoxShowLogPassword.Location = new System.Drawing.Point(5, 104);
+            this.checkBoxShowLogPassword.Name = "checkBoxShowLogPassword";
+            this.checkBoxShowLogPassword.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogPassword.TabIndex = 39;
+            this.checkBoxShowLogPassword.Text = "Show log in listBox";
+            this.checkBoxShowLogPassword.UseVisualStyleBackColor = true;
             // 
             // PasswordForm
             // 
@@ -698,5 +711,6 @@
         private System.Windows.Forms.CheckBox checkBoxHexOutput;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonDictionaryAttack;
+        private System.Windows.Forms.CheckBox checkBoxShowLogPassword;
     }
 }
