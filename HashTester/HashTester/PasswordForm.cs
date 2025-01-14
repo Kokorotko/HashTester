@@ -18,6 +18,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using Timer = System.Windows.Forms.Timer;
 using System.Diagnostics.Eventing.Reader;
+using System.Collections;
 
 namespace HashTester
 {
@@ -36,7 +37,6 @@ namespace HashTester
         private long attempts = 0;
         private long numberOfAttempsInLastUpdate = 0; //The time is 16ms
         private Timer updateUITimer;
-        private ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>(); //list with thread safety features
         private volatile bool stopJailBreak = false;
         private volatile int progressBar = 0;
         bool useStopTimer = true;
@@ -56,6 +56,11 @@ namespace HashTester
             else if (radioButton2.Enabled) radioButton2.Checked = true;
             else if (radioButton3.Enabled) radioButton3.Checked = true;
             else radioButton4.Checked = true;
+        }
+
+        private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
         private void DisableRockYouRadioButtons()
@@ -154,7 +159,6 @@ namespace HashTester
             MessageBox.Show(messageBoxAnswer);
             ActivateUI();
         }
-        #endregion
 
         private void PasswordFinder(string fullPathToTXT, string[] passwords, bool useLog, ref bool[] foundMatch, ref int[] lineFoundMatch)
         {
@@ -199,6 +203,7 @@ namespace HashTester
             }
         }
 
+        #endregion
 
         #region How Long To Crack
 
@@ -282,7 +287,7 @@ namespace HashTester
                         using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                         {
                             stopwatch.Start();
-                            writer.WriteLine("algorithm=" + algorithm.ToString());
+                            writer.WriteLine("algorithm==" + algorithm.ToString());
                             //Stats
                             int numberOfHashed = 0;
                             int numberOfHashedInLastUpdate = 0;
@@ -303,7 +308,7 @@ namespace HashTester
                                 //txt
                                 string line = reader.ReadLine();
                                 string hash = hasher.Hash(line, algorithm);
-                                writer.WriteLine(line + "=" + hash);
+                                writer.WriteLine(line + "==" + hash);
                             }
                         }
                     }
@@ -327,12 +332,8 @@ namespace HashTester
         }
         #endregion
 
-        private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }
-
         #region Password Dictionary Attack
+
         volatile int lineProcessing = 1;
         bool stopDictionaryAttack = false;
         int progressBarValueDictionararyAttack = 0;
@@ -341,6 +342,7 @@ namespace HashTester
         {
             ResetAllValues();
             TurnOffUI();
+            bool useLog = checkBoxListBoxLog.Checked;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
             if (numericUpDownStopTimer.Value == 0) useStopTimer = false;
@@ -355,56 +357,65 @@ namespace HashTester
                 string stringFoundPassword = "";
                 string inputHash = textBoxBruteForceInput.Text;
                 if (radioButton5.Checked) inputHash = hasher.Hash(textBoxBruteForceInput.Text, algorithm);
-                await Task.Run(() => { foundHash = DictionaryAttack(inputHash, out stringFoundPassword, algorithm, openFileDialog); }); //actuall attack                
+                await Task.Run(() => { foundHash = DictionaryAttack(inputHash, algorithm, openFileDialog, useLog,  out stringFoundPassword); }); //actuall attack                
                 stopwatch.Stop();
                 StopTimer(false, false);
+                if (useLog) listBoxLog.Items.Add("-----------------------------------------------");
                 if (foundHash)
                 {
-                    PasswordFoundMessageBox("Found hash via Dictionary attack" +
+                    string s = "Found hash via Dictionary attack" +
                                                               "\nOriginal password: " + stringFoundPassword +
                                                               "\nOriginal password hash: " + hasher.Hash(textBoxBruteForceInput.Text, algorithm) +
                                                               "\nFound password hash: " + hasher.Hash(stringFoundPassword, algorithm) +
                                                               "\nFound password in UTF-8: " + stringFoundPassword +
-                                                              "\nFound password in HEX: " + ConvertStringToHex(true, stringFoundPassword)
-                                                              , inputHash, stringFoundPassword);
+                                                              "\nFound password in HEX: " + ConvertStringToHex(true, stringFoundPassword);
+                    if (useLog)
+                    {                        
+                        listBoxLog.Items.Add("Found hash via Dictionary attack");
+                        listBoxLog.Items.Add("Original password: " + stringFoundPassword);
+                        listBoxLog.Items.Add("Found password hash: " + hasher.Hash(stringFoundPassword, algorithm));
+                        listBoxLog.Items.Add("Found password in UTF-8: " + stringFoundPassword);
+                        listBoxLog.Items.Add("Found password in HEX: " + ConvertStringToHex(true, stringFoundPassword));
+                    }
+                    PasswordFoundMessageBox(s , inputHash, stringFoundPassword);
                 }
                 else if (userAbortProcess)
                 {
-                    MessageBox.Show("The user has aborted the process");
-
+                    MessageBox.Show("The user has aborted the process.");
+                    if (useLog) listBoxLog.Items.Add("The user has aborted the process.");
                 }
                 else if (ranOutOfTime)
                 {
                     MessageBox.Show("The program could not find the password in time limit.");
-
+                    if (useLog) listBoxLog.Items.Add("The program could not find the password in time limit.");
                 }
                 else if (ranOutOfAttemps)
                 {
                     MessageBox.Show("The program could not find the password in attempts limit.");
+                    if (useLog) listBoxLog.Items.Add("The program could not find the password in attempts limit.");                    
+                    ranOutOfAttemps = false;
                 }
                 else
                 {
-                    if (checkBoxListBoxLog.Checked) logQueue.Enqueue("Could not find password in the File.");
                     MessageBox.Show("Could not find password in the File.");
+                    if (useLog) listBoxLog.Items.Add("Could not find password in the File.");
                 }
             }
-            else
-            {
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Could not find desired file. Cancelling dictionary attack...");
-            }
+            else if (useLog) listBoxLog.Items.Add("Could not find desired file. Cancelling dictionary attack...");
             TurnOnUI();
         }
-        private bool DictionaryAttack(string inputHash, out string originalText, Hasher.HashingAlgorithm desiredAlgorithm, OpenFileDialog openFileDialog)
+        private bool DictionaryAttack(string userInputHash, Hasher.HashingAlgorithm desiredAlgorithm, OpenFileDialog openFileDialog, bool useLog, out string originalTextOutput)
         {
             bool foundMatch = false;
-            originalText = "";
-
+            originalTextOutput = "";
+            bool inputFileIsInPlainText = false;
             int totalLinesInFile = File.ReadLines(openFileDialog.FileName).Count(); // Counts the lines in the file
-            progressBar1.Invoke((Action)(() => progressBar1.Value = 0));
 
             using (StreamReader reader = new StreamReader(openFileDialog.FileName))
             {
                 string line = reader.ReadLine();
+                bool rehashNeeded = false;
+                Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32;
                 if (line != null && line.Contains("=")) // File is already pre-hashed
                 {
                     if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("File is already pre-hashed.");
@@ -414,8 +425,6 @@ namespace HashTester
                         if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Found invalid file format. Cancelling dictionary attack.");
                         return false;
                     }
-
-                    Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32;
                     switch (algorithmText[1])
                     {
                         case "MD5":
@@ -435,85 +444,53 @@ namespace HashTester
                             break;
                         default:
                             break;
+                    }                    
+                }
+                else inputFileIsInPlainText = true;
+                if (useLog) //Log
+                {
+                    if (!inputFileIsInPlainText)
+                    {
+                        Invoke(new Action(() => listBoxLog.Items.Add("File is hashed in " + algorithm.ToString() + " algorithm")));
+                        if (rehashNeeded) Invoke(new Action(() => listBoxLog.Items.Add("File is not hashed with desired hashing algorithm. Re-hashing.")));
+                    }
+                    else Invoke(new Action(() => listBoxLog.Items.Add("File is not pre-hashed.")));
+                }
+                while (!reader.EndOfStream && !foundMatch && !userAbortProcess)
+                {
+                    string fullLine = reader.ReadLine();
+                    Interlocked.Increment(ref lineProcessing); // Thread-safe increment
+                    string hashedLine = "";
+                    string originalText = "";
+                    if (fullLine != null && fullLine.Contains("==")) //check for hashed or not
+                    {
+                        string[] data = fullLine.Split('=');
+                        if (data.Length > 2)
+                        {
+                            originalText = data[0];
+                            if (rehashNeeded) hashedLine = hasher.Hash(data[0], desiredAlgorithm); //File is pre-hashed with wrong algorithm
+                            else hashedLine = data[1]; //File is pre-hashed
+                        }
+                        else  //error                       
+                        {
+                            if (useLog) Invoke(new Action(() => listBoxLog.Items.Add("Could not process line " + lineProcessing)));
+                            hashedLine = "";
+                        }
+                    }
+                    else //File is not pre-hashed
+                    {
+                        originalText = fullLine;
+                        hashedLine = hasher.Hash(fullLine, desiredAlgorithm);
                     }
 
-                    if (algorithm == desiredAlgorithm) //DesiredAlgorithm is same as the File
+                    if (hashedLine == userInputHash)
                     {
-                        if (checkBoxListBoxLog.Checked)
-                        {
-                            logQueue.Enqueue("File is hashed in " + algorithm.ToString() + "algorithm");
-                            logQueue.Enqueue("Chosen file is hashed with desired algorithm...");
-                        }
-                        while (!reader.EndOfStream && !foundMatch && !userAbortProcess)
-                        {
-                            string lineData = reader.ReadLine();
-                            Interlocked.Increment(ref lineProcessing); //linesProcessing++ threadSafe method
-                            if (lineData != null && lineData.Contains("="))
-                            {
-                                string[] data = lineData.Split('=');
-                                if (checkBoxListBoxLog.Checked) logQueue.Enqueue("Comparing text '" + data[0] + "' (hash " + data[1] + ") with '" + inputHash + "' (" + algorithm.ToString() + ")");
-                                if (data.Length >= 2 && data[1] == inputHash)
-                                {
-                                    foundMatch = true;
-                                    originalText = data[0];
-                                    return true;
-                                }
-                            }
-                            // Update progress bar
-                            progressBarValueDictionararyAttack = (int)(((double)lineProcessing / totalLinesInFile) * 100);
-                        }
+                        foundMatch = true;
+                        originalTextOutput = originalText;
+                        return true;
                     }
-                    else // File and desired algorithm are not the same
-                    {
-                        if (checkBoxListBoxLog.Checked)
-                        {
-                            logQueue.Enqueue("File is hashed in " + algorithm.ToString() + "algorithm");
-                            logQueue.Enqueue("File is not hashed with desired hashing algorithm. Re-hashing.");
-                        }
-                        while (!reader.EndOfStream && !foundMatch && !userAbortProcess)
-                        {
-                            string lineData = reader.ReadLine();
-                            Interlocked.Increment(ref lineProcessing); //linesProcessing++ threadSafe method
-                            if (lineData != null && lineData.Contains("="))
-                            {
-                                string[] dataFull = lineData.Split('=');
-                                if (dataFull.Length >= 2)
-                                {
-                                    string hashedData = hasher.Hash(dataFull[0], desiredAlgorithm); // Hash unhashed text
-                                    if (checkBoxListBoxLog.Checked) logQueue.Enqueue("Hashing text '" + dataFull[0] + "' into " + hashedData + "' using " + algorithm.ToString());
-                                    if (hashedData == inputHash)
-                                    {
-                                        foundMatch = true;
-                                        originalText = dataFull[0];
-                                        return true;
-                                    }
-                                }
-                            }
-                            // Update progress bar
-                            progressBarValueDictionararyAttack = (int)(((double)lineProcessing / totalLinesInFile) * 100);
-                        }
-                    }
-                }
-                else // File is not pre-hashed
-                {
-                    if (checkBoxListBoxLog.Checked) logQueue.Enqueue("File is not pre-hashed. Starting hashing...");
-                    while (!reader.EndOfStream && !foundMatch && !userAbortProcess)
-                    {
-                        Interlocked.Increment(ref lineProcessing); //linesProcessing++ threadSafe method
-                        string data = reader.ReadLine();
-                        if (data != null)
-                        {
-                            string hashedData = hasher.Hash(data, desiredAlgorithm);
-                            if (checkBoxListBoxLog.Checked) logQueue.Enqueue("Hashing text '" + data + "' into " + hashedData + "' using " + algorithm.ToString());
-                            if (hashedData == inputHash)
-                            {
-                                foundMatch = true;
-                                originalText = data;
-                                return true;
-                            }
-                        }
-                        progressBar = (int)(((double)lineProcessing / totalLinesInFile) * 100);
-                    }
+                    // Update progress bar
+                    progressBarValueDictionararyAttack = (int)(((double)lineProcessing / totalLinesInFile) * 100);
                 }
             }
             return false;
@@ -535,8 +512,6 @@ namespace HashTester
             //Update Speed
             double speed = triesBetween / 0.016; //16 ms
             labelCurrentSpeed.Text = "Current speed /s:  " + speed;
-            //update Log listbox
-            ProcessLogQueueAsync();
             //Attempts
             labelAttempts.Text = "Number of lines proccessed: " + lineProcessing;
             //Update Average Speed
@@ -551,22 +526,27 @@ namespace HashTester
         private async void buttonBruteForceAttack_Click(object sender, EventArgs e)
         {
             ResetAllValues();
-            string inputHash = textBoxBruteForceInput.Text;
+            string userInputHash = textBoxBruteForceInput.Text;
             bool foundHash = false;
             string stringFoundPassword = "";
             string hashedText = textBoxBruteForceInput.Text;
-            if (radioButton5.Checked) hashedText = hasher.Hash(textBoxBruteForceInput.Text, algorithm);
+            int passwordLenght = 0;
+            if (radioButton5.Checked)
+            {
+                passwordLenght = textBoxBruteForceInput.Text.Length;
+                hashedText = hasher.Hash(textBoxBruteForceInput.Text, algorithm);
+            }
+            else passwordLenght = (int)numericUpDown2.Value;
             TurnOffUI();
             stopwatch.Reset();
             stopwatch.Start();
 
             //SetUp
             progressBar1.Value = 0;
-            decimal maxAttempts = numericUpDown1.Value;
+            int maxAttempts = (int)numericUpDown1.Value;
             bool hexOutput = checkBoxHexOutput.Checked;
             bool useMaxAttempts = true;
             if (maxAttempts == 0) useMaxAttempts = false;
-            int passwordLenght = (int)numericUpDown2.Value;
             if (numericUpDownStopTimer.Value == 0) useStopTimer = false;
             bool saveLog = checkBoxListBoxLog.Checked;
             bool performanceMode = checkBoxPerformanceMode.Checked;
@@ -583,23 +563,24 @@ namespace HashTester
                 {
                     allTasks.Add(Task.Run(() => PasswordJailbreakMultipleThreads()));
                 }
+                await Task.WhenAll(allTasks); //waits until all tasks are finish
             }
             else //single Thread
             {
-                allTasks.Add(Task.Run(() => foundHash = PasswordJailbreakOneThread(algorithm, inputHash, usableChars, useMaxAttempts, maxAttempts, passwordLenght, saveLog, hexOutput, allPossibleCombinations, out stringFoundPassword, out ranOutOfAttemps)));
+                allTasks.Add(Task.Run(() => foundHash = PasswordJailbreakOneThread(algorithm, userInputHash, usableChars, useMaxAttempts, maxAttempts, passwordLenght, saveLog, hexOutput, out stringFoundPassword, out ranOutOfAttemps)));
+                await Task.WhenAny(allTasks); //waits until atleast one task is finish
             }
-            await Task.WhenAll(allTasks); //waits until all tasks are done
             if (foundHash)
             {
                 string message = "Password found!\n" +
-                                            "\nOriginal hash: " + inputHash +
+                                            "\nOriginal hash: " + userInputHash +
                                             "\nFound password hash: " + hasher.Hash(stringFoundPassword, algorithm) +
                                             "\nFound password in UTF-8: " + stringFoundPassword +
                                             "\nfound password in HEX: " + ConvertStringToHex(true, stringFoundPassword) +
                                             "\nAttempts: " + attempts +
                                             "\nTime to find: " + labelTimer.Text.Split(' ')[1] + // Only the number
                                             "\nAverage speed: " + labelSpeed.Text;  //Speed
-                PasswordFoundMessageBox(message, inputHash, stringFoundPassword);
+                PasswordFoundMessageBox(message, userInputHash, stringFoundPassword);
             }
             else if (ranOutOfAttemps)
             {
@@ -615,23 +596,40 @@ namespace HashTester
             }
             else MessageBox.Show("Could not find the original password.");
         }
-        private bool PasswordJailbreakOneThread(Hasher.HashingAlgorithm algorithm, string hashInput, char[] usableChars, bool useMaxAttemps, decimal maxAttempts, int passwordLenght, bool saveLog, bool hexOutput, double allPossibleCombinations, out string foundPassword, out bool ranOutOfAttemps)
+        private bool PasswordJailbreakOneThread(Hasher.HashingAlgorithm algorithm, string userHashInput, char[] usableChars, bool useMaxAttemps, int maxAttempts, int userPasswordLenght, bool saveLog, bool hexOutput, out string foundPassword, out bool ranOutOfAttemps)
         {
             foundPassword = "";
             ranOutOfAttemps = false;
             Hasher hasher = new Hasher();
-            for (double i = 0; i < allPossibleCombinations && !stopJailBreak; i++)
+            int currentLenght = 0;
+            bool checkedAllPossibleCombinations = false;
+            bool variablePasswordLenght = userPasswordLenght == 0;
+            double allPossibleCombinationsForCurrentLenght = 0;
+            if (!variablePasswordLenght) //We do know the password lenght
             {
-                string tryText = GenerateTextForBruteForce(i, usableChars, passwordLenght);
+                allPossibleCombinationsForCurrentLenght = Math.Pow(usableChars.Length, userPasswordLenght);
+            }            
+            double index = 0;
+            while(!checkedAllPossibleCombinations && !stopJailBreak) //While because Im manipulating with index
+            {
+                if (index >= allPossibleCombinationsForCurrentLenght && variablePasswordLenght) //We dont know the actuall password lenght, so we start from the beginning and go up
+                {
+                    index = 0;
+                    currentLenght++;
+                    if (currentLenght > 15) checkedAllPossibleCombinations = true;
+                    allPossibleCombinationsForCurrentLenght = Math.Pow(usableChars.Length, currentLenght);
+                }
+                else if (index >= allPossibleCombinationsForCurrentLenght) checkedAllPossibleCombinations = true;
+                string tryText = GenerateTextForBruteForce(index, usableChars, userPasswordLenght);
                 string hashedText = hasher.Hash(tryText, algorithm);
                 if (!saveLog) //Log output
                 {
-                    logQueue.Enqueue("Trying text: " + ConvertStringToHex(hexOutput, tryText) + " with hash " + hashedText);
+                    listBoxLog.Items.Add("Trying text: " + ConvertStringToHex(hexOutput, tryText) + " with hash " + hashedText);
                 }
-                if (hashedText == hashInput) //found the password
+                if (hashedText == userHashInput) //found the password
                 {
                     foundPassword = tryText;
-                    if (!saveLog) logQueue.Enqueue("Found password of: " + hashInput + "\nThe password is: " + ConvertStringToHex(hexOutput, foundPassword));
+                    if (!saveLog) listBoxLog.Items.Add("Found password for: " + userHashInput + "\nThe password is: " + ConvertStringToHex(hexOutput, foundPassword));
                     progressBar = 100;
                     return true;
                 }
@@ -644,12 +642,18 @@ namespace HashTester
                         if (attempts > maxAttempts)
                         {
                             ranOutOfAttemps = true;
-                            if (!saveLog) logQueue.Enqueue("Ran out of attemps.");
+                            if (!saveLog) listBoxLog.Items.Add("Ran out of attemps.");
                             return false;
                         }
                     }
-                    else progressBar = (int)((i / allPossibleCombinations) * 100);
+                    else progressBar = (int)((index / allPossibleCombinationsForCurrentLenght) * 100);
                 }
+                index++;
+            }
+            if (checkedAllPossibleCombinations && saveLog)
+            {
+                if (variablePasswordLenght) listBoxLog.Items.Add("Checked every possible combination from 0  to 15 password lenght. Couldnt find anything");
+                else listBoxLog.Items.Add("Checked every possible combination with password lenght of " + userPasswordLenght + ". Couldnt find anything");
             }
             return false;
         }
@@ -760,6 +764,7 @@ namespace HashTester
             {
                 control.Enabled = true;
             }
+            progressBar1.Value = 0;
         }
         private void SetUpTimer(bool updateTheBruteForceAttack, bool isPerformanceModeOn)
         {
@@ -823,28 +828,7 @@ namespace HashTester
                 }
             }
             MessageBox.Show(message, "Collision Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private async void ProcessLogQueueAsync() //background process
-        {
-            await Task.Run(() =>
-            {
-                List<string> logBatch = new List<string>();
-
-                while (logQueue.TryDequeue(out string logItem))
-                {
-                    logBatch.Add(logItem);
-                }
-                if (logBatch.Count > 0)
-                {
-                    Invoke((Action)(() =>
-                    {
-                        listBoxLog.Items.AddRange(logBatch.ToArray());
-                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                    }));
-                }
-            });
-        }
+        }      
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -874,9 +858,6 @@ namespace HashTester
             // Reset timers
             if (timeToUpdateTheUI.Enabled)
                 timeToUpdateTheUI.Stop();
-
-            // Reset the log queue
-            logQueue = new ConcurrentQueue<string>();
 
             // Reset maxAttempts to any desired value
             maxAttempts = 0;

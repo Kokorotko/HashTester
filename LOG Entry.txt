@@ -105,3 +105,8 @@ Password Form:
 	Dictionary attack can be cancelled
 Hashing Collision Generator: Small update for better code debugging
 Log entry for Password checker
+*2025-01-14
+Password Form:
+	Password Form Single thread working
+	BUG: Dictionary attack log fix
+	
