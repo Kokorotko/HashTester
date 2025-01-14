@@ -36,6 +36,7 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.buttonChangePath = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxShowLogPassword = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonCrackCalculate = new System.Windows.Forms.Button();
             this.checkBoxCrack04 = new System.Windows.Forms.CheckBox();
@@ -76,7 +77,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.listBoxLog = new System.Windows.Forms.ListBox();
-            this.checkBoxShowLogPassword = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -102,6 +102,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(199, 49);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "budakkecik";
             // 
             // radioButton1
             // 
@@ -173,6 +174,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Password Leak Test";
+            // 
+            // checkBoxShowLogPassword
+            // 
+            this.checkBoxShowLogPassword.AutoSize = true;
+            this.checkBoxShowLogPassword.Location = new System.Drawing.Point(5, 104);
+            this.checkBoxShowLogPassword.Name = "checkBoxShowLogPassword";
+            this.checkBoxShowLogPassword.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogPassword.TabIndex = 39;
+            this.checkBoxShowLogPassword.Text = "Show log in listBox";
+            this.checkBoxShowLogPassword.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -426,6 +437,8 @@
             // checkBoxListBoxLog
             // 
             this.checkBoxListBoxLog.AutoSize = true;
+            this.checkBoxListBoxLog.Checked = true;
+            this.checkBoxListBoxLog.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxListBoxLog.Location = new System.Drawing.Point(5, 129);
             this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
             this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
@@ -617,16 +630,6 @@
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(760, 121);
             this.listBoxLog.TabIndex = 38;
-            // 
-            // checkBoxShowLogPassword
-            // 
-            this.checkBoxShowLogPassword.AutoSize = true;
-            this.checkBoxShowLogPassword.Location = new System.Drawing.Point(5, 104);
-            this.checkBoxShowLogPassword.Name = "checkBoxShowLogPassword";
-            this.checkBoxShowLogPassword.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogPassword.TabIndex = 39;
-            this.checkBoxShowLogPassword.Text = "Show log in listBox";
-            this.checkBoxShowLogPassword.UseVisualStyleBackColor = true;
             // 
             // PasswordForm
             // 

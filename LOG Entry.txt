@@ -108,5 +108,10 @@ Log entry for Password checker
 *2025-01-14
 Password Form:
 	Password Form Single thread working
-	BUG: Dictionary attack log fix
-	
+	BUG: Dictionary attack log fix (Removed ConcurrentQueue)
+	Dictionary attack fully working
+	Brute force Attack working
+	Dictionary attack MultiThreading
+*2025-01-15
+Password Form:
+	Brute force attack MultiThreading
