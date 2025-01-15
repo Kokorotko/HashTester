@@ -12,6 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Windows.Forms;
 using System.Security.Policy;
+using System.Diagnostics.Eventing.Reader;
 
 namespace HashTester
 {
@@ -91,6 +92,7 @@ namespace HashTester
         }
 
         #endregion
+
         #region Base Hashing
         /////////////////////////////////////******BASE HASHING******/////////////////////////////////////
         /// <summary>
@@ -139,7 +141,41 @@ namespace HashTester
                 default: return "error";
             }
         }
+
+        public bool CheckPepper(string hashedText, int length, HashingAlgorithm algorithm, out string pepper)
+        {
+            pepper = "";
+            bool foundMatch = false;
+            string usableChars = string.Concat(Enumerable.Range(32, 224 + 1) //utf-8 except the first 32
+                             .Select(i => char.ConvertFromUtf32(i)));
+
+
+            // Total number of combinations of the pepper
+            int totalCombinations = (int)Math.Pow(usableChars.Length, length);
+
+            for (int i = 0; i < totalCombinations && !foundMatch; i++)
+            {
+                string pepperTest = "";
+                int tempIndex = i;
+
+                for (int j = 0; j < length; j++) //build the next pepper
+                {                   
+                    pepperTest = usableChars[tempIndex % usableChars.Length] + pepperTest;
+                    tempIndex /= usableChars.Length;
+                }
+
+                string temp = Hash(hashedText + pepperTest, algorithm);
+                if (temp == hashedText)
+                {
+                    pepper = pepperTest;
+                    foundMatch = true;
+                }
+            }
+            return foundMatch;
+        }
+
         #endregion
+
         #region Hashing Algorithm
         string HashMD5(string text)
         {
@@ -236,6 +272,7 @@ namespace HashTester
             return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
         }
         #endregion
+
         #region SaltAndPepperLogic
         public void SaveSalt(string hashID, string salt)
         {

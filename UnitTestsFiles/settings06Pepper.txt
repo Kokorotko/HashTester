@@ -2,9 +2,9 @@
 //Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input
 //I have included comments on what value is allowed.
 //VisualMode from 0 to 2
-visualMode=0
+visualMode=1
 //OutputType from 0 to 2
-outputType=0
+outputType=1
 //All OutputStyles are bool
 outputStyle_IncludeOriginalString=0
 outputStyle_IncludeHash=0
@@ -12,8 +12,8 @@ outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=0
 //Salt and Pepper bool
 useSalt=0
-usePepper=0
+usePepper=1
 //Other - Path
-basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug
+basePathToFiles=C:\Users\prdak\Desktop
 passwordPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\Wordlists\
 collisionPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\SameHashingResults\

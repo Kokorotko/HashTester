@@ -49,7 +49,7 @@ namespace HashTester
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
-        {
+        {            
             hashSelector.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();
@@ -1158,6 +1158,16 @@ namespace HashTester
             stopwatch.Reset();
             if (timeToUpdateTheUI.Enabled) timeToUpdateTheUI.Stop();
             maxAttempts = 0;
+        }
+
+        private void buttonLogClear_Click(object sender, EventArgs e)
+        {
+            listBoxLog.Items.Clear();
+        }
+
+        private void buttonLogSave_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

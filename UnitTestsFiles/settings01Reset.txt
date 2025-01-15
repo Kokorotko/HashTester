@@ -14,6 +14,6 @@ outputStyle_IncludeSaltPepper=0
 useSalt=0
 usePepper=0
 //Other - Path
-basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug
+basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\
 passwordPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\Wordlists\
 collisionPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\SameHashingResults\

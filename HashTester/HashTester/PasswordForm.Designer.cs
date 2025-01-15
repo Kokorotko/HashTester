@@ -77,6 +77,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.listBoxLog = new System.Windows.Forms.ListBox();
+            this.buttonLogClear = new System.Windows.Forms.Button();
+            this.buttonLogSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -628,14 +630,36 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(19, 384);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(760, 121);
+            this.listBoxLog.Size = new System.Drawing.Size(760, 95);
             this.listBoxLog.TabIndex = 38;
+            // 
+            // buttonLogClear
+            // 
+            this.buttonLogClear.Location = new System.Drawing.Point(19, 486);
+            this.buttonLogClear.Name = "buttonLogClear";
+            this.buttonLogClear.Size = new System.Drawing.Size(382, 23);
+            this.buttonLogClear.TabIndex = 39;
+            this.buttonLogClear.Text = "Clear Log";
+            this.buttonLogClear.UseVisualStyleBackColor = true;
+            this.buttonLogClear.Click += new System.EventHandler(this.buttonLogClear_Click);
+            // 
+            // buttonLogSave
+            // 
+            this.buttonLogSave.Location = new System.Drawing.Point(407, 485);
+            this.buttonLogSave.Name = "buttonLogSave";
+            this.buttonLogSave.Size = new System.Drawing.Size(372, 23);
+            this.buttonLogSave.TabIndex = 40;
+            this.buttonLogSave.Text = "Save Log";
+            this.buttonLogSave.UseVisualStyleBackColor = true;
+            this.buttonLogSave.Click += new System.EventHandler(this.buttonLogSave_Click);
             // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.buttonLogSave);
+            this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.progressBar1);
@@ -715,5 +739,7 @@
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonDictionaryAttack;
         private System.Windows.Forms.CheckBox checkBoxShowLogPassword;
+        private System.Windows.Forms.Button buttonLogClear;
+        private System.Windows.Forms.Button buttonLogSave;
     }
 }
