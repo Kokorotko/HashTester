@@ -114,4 +114,4 @@ Password Form:
 	Dictionary attack MultiThreading
 *2025-01-15
 Password Form:
-	Brute force attack MultiThreading
+	Brute force attack MultiThreading working (Different hashing algorithms use more/less CPU)

@@ -37,7 +37,7 @@ namespace HashTester
         long attempts = 0;
         long numberOfAttempsInLastUpdate = 0; //The time is 16ms
         Stopwatch stopwatch = new Stopwatch();
-        private Timer timeToFindCollision;
+        private Timer timeToFindCollision = new Timer();
         private ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>(); //list with thread safety features
         #region Form
         private void buttonClearListBox_Click(object sender, EventArgs e)
