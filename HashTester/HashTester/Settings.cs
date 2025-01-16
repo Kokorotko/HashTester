@@ -141,6 +141,7 @@ namespace HashTester
             BasePathToFiles = "";
             PasswordPathToFiles = "";
             CollisionPathToFiles = "";
+            SaveSettings();
         }
         public static void SaveSettings()
         {

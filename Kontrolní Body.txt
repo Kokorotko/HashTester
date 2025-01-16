@@ -7,12 +7,12 @@ CRC algorithmus vlastní naprogramování bez knihovny - DONE
 Základ Settings Script - DONE
 KB02:
 Unit Test
-Dokumentace teoretická část + práce na praktické
+Dokumentace teoretická část + práce na praktické - DONE
 Funkční Settings - DONE
 Funkční postupné hashování - DONE
 Funkce soli a vysvětlení soli v info
 John The Ripper password Tester - DONE
-Password JailBreak
+Password JailBreak - DONE
 KB03:
 Vyjímky
 CZ/EN možnost

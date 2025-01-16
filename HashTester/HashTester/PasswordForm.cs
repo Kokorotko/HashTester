@@ -49,7 +49,7 @@ namespace HashTester
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
-        {            
+        {
             hashSelector.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();

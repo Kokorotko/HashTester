@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HashTester;
 using static HashTester.Hasher;
+using static HashTester.Settings;
 using System.IO;
 using System;
 using System.Runtime;
@@ -284,21 +285,21 @@ namespace UnitTest
         public void SaltTestMD5()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.MD5);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "b9f2d25febd39790a6a6b3163c672ec6");
         }
 
         [TestMethod]
         public void PepperTestMD5()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.MD5);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "d4a38bab94c4341032fd5109452635dc");
         }
 
         [TestMethod]
         public void SaltPepperTestMD5()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.MD5);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "ffd60eb4265b259bd41cf1ecf9168d65");
         }
 
         [TestMethod]
@@ -315,21 +316,21 @@ namespace UnitTest
         public void SaltTestSHA1()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.SHA1);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "a1ccf36317c6cf2d98bc03832ee35499e3dc62fe");
         }
 
         [TestMethod]
         public void PepperTestSHA1()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA1);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "e9cdf0941adf6a4c11b29fec31b63210e2d79b29");
         }
 
         [TestMethod]
         public void SaltPepperTestSHA1()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.SHA1);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "610966b737670c4957cefa62884cbda5d06b6e94");
         }
 
         [TestMethod]
@@ -346,21 +347,21 @@ namespace UnitTest
         public void SaltTestSHA256()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.SHA256);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "ad853ef97f34098a94f3f1ab59c6301c334ccc7b0c1ebfc2f6c5eb6bff60078d");
         }
 
         [TestMethod]
         public void PepperTestSHA256()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA256);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "b9e79e9e860692da02b7a6e3cc0fd30f8d0bdbe185c0dbc5cdcd78e8514e176b");
         }
 
         [TestMethod]
         public void SaltPepperTestSHA256()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.SHA256);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "0967200e8d4e27894d2bf53d318a3efe2efada1de1c13dc910ef9558592e3858");
         }
 
         [TestMethod]
@@ -377,21 +378,21 @@ namespace UnitTest
         public void SaltTestSHA512()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.SHA512);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "75a8914a2a4aeabea4cf8e1fef4d255f63708c96f118543cd0ef54db056d7b4f1ea9df4d0365119866c8ab8a85fcd45155b8108fb9c48e90074dbc8f5d19dd3a");
         }
 
         [TestMethod]
         public void PepperTestSHA512()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA512);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "3c3bf36c33157d048629df3483be44853d14514989db0c6d0b8eb38a73f927833b01a55d48a40806f2c7c628bf88347cc2c99b778154c29b318973793b4088a8");
         }
 
         [TestMethod]
         public void SaltPepperTestSHA512()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.SHA512);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "56af63202c76821d777a1aa088444098e8ff87f18cc36efdda5803cc7331ac0ed1c3d7daaf4c5465620f625d3f5a31c263c07b9c6bc15c9e48c8bea83558ac59");
         }
 
         [TestMethod]
@@ -408,21 +409,21 @@ namespace UnitTest
         public void SaltTestRIPEMD160()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.RIPEMD160);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "7cef35065a9df17b8222781a616052cf6199c1b9");
         }
 
         [TestMethod]
         public void PepperTestRIPEMD160()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.RIPEMD160);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "4e4aa21551256fddc151d31719cec0bade0f5b9c");
         }
 
         [TestMethod]
         public void SaltPepperTestRIPEMD160()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.RIPEMD160);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "001bc637637344af6f63ca9ecf2cfe0fdbff8ba4");
         }
 
         [TestMethod]
@@ -439,21 +440,21 @@ namespace UnitTest
         public void SaltTestCRC32()
         {
             string temp = hasher.HashSaltPepper(text01, true, false, salt, "", HashingAlgorithm.CRC32);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "1a85bcb6");
         }
 
         [TestMethod]
         public void PepperTestCRC32()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.CRC32);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "3f75d493");
         }
 
         [TestMethod]
         public void SaltPepperTestCRC32()
         {
             string temp = hasher.HashSaltPepper(text01, true, true, salt, pepper, HashingAlgorithm.CRC32);
-            Assert.AreEqual(temp, "xxxxxxxxxxxxxxxx");
+            Assert.AreEqual(temp, "22f50b88");
         }
 
         [TestMethod]
@@ -476,7 +477,8 @@ namespace UnitTest
 
         [TestMethod]
         public void SettingsReset()
-        {
+        {            
+            File.Delete(wayToSettings);
             Settings.ResetSettings();
             Assert.AreEqual(File.ReadAllText(Path.Combine(wayToTestFiles, "settings01Reset.txt")), File.ReadAllText(wayToSettings));
         }
@@ -597,9 +599,46 @@ namespace UnitTest
     }
 
     [TestClass]
-    public class txtOutput
+    public class txtOutputAndStyles
     {
+        string text = "Test123";
+        string salt = "12345";
+        string pepper = "MA";
         Hasher hasher = new Hasher();
+        Form1 form = new Form1();
+        string wayToGeneratedFile = Path.GetFullPath("..\\..\\..\\..\\...\\..\\UnitTestsFiles\\hash01.txt");
+        string wayToTestFiles = Path.GetFullPath("..\\..\\..\\..\\...\\..\\UnitTestsFiles\\saveAllTestsHere\\");
+        [TestMethod]
+        public void HashMD5Simple()
+        {
+            Settings.ResetSettings();
+            Settings.OutputType = OutputTypeEnum.TXTFile;
+            //form.ProcessingHash(text, HashingAlgorithm.MD5, null);
+            Assert.AreEqual(File.ReadAllText(wayToTestFiles), File.ReadAllText(wayToGeneratedFile));
+            File.Delete(wayToGeneratedFile);
+        }
+
+        [TestMethod]
+        public void HashSaltMD5Simple()
+        {
+            Settings.ResetSettings();
+            Settings.OutputType = OutputTypeEnum.TXTFile;
+            Settings.UseSalt = true;
+            //form.ProcessingHash(text, HashingAlgorithm.MD5, null);
+            Assert.AreEqual(File.ReadAllText(wayToTestFiles), File.ReadAllText(wayToGeneratedFile));
+            File.Delete(wayToGeneratedFile);
+        }
+
+        [TestMethod]
+        public void HashPepperMD5()
+        {
+            Settings.ResetSettings();
+            Settings.OutputType = OutputTypeEnum.TXTFile;
+            Settings.UsePepper = true;
+            //form.ProcessingHash(text, HashingAlgorithm.MD5, null);
+            Assert.AreEqual(File.ReadAllText(wayToTestFiles), File.ReadAllText(wayToGeneratedFile));
+            File.Delete(wayToGeneratedFile);
+        }
     }
     [TestClass]
     public class txtInput
