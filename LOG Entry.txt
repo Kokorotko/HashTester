@@ -121,3 +121,5 @@ Unit Test work
 Chaning ConcurrentQueue<string> To normal List and limiting the shit outputted in the log
 Password How Long To Crack code update
 Rename logs checkBoxes in PasswordForm to make sense
+-----------------------------------
+Work on written thesis (Basics of Hashing, MD and SHA family)
