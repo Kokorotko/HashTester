@@ -28,6 +28,7 @@ namespace HashTester
         private static string basePathToFiles;
         private static string passwordPathToFiles;
         private static string collisionPathToFiles;
+        private static string logSavePathToFiles;
         #endregion
 
         #region Get&Set
@@ -113,6 +114,23 @@ namespace HashTester
             }
         }
 
+        public static string LogSavePathToFiles
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(logSavePathToFiles) && Directory.Exists(logSavePathToFiles))
+                {
+                    return logSavePathToFiles;
+                }
+                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Logs\\")); //Base directory
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(logSavePathToFiles) && Directory.Exists(logSavePathToFiles)) logSavePathToFiles = value;
+                else logSavePathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Logs\\")); //base directory
+            }
+        }
+
         #endregion
 
         #region Enum
@@ -141,12 +159,13 @@ namespace HashTester
             BasePathToFiles = "";
             PasswordPathToFiles = "";
             CollisionPathToFiles = "";
+            LogSavePathToFiles = "";
             SaveSettings();
         }
         public static void SaveSettings()
         {
             //Create File
-            using (FileStream fileSettings = new FileStream("..\\..\\settings\\temp.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream fileSettings = new FileStream("..\\..\\Settings\\temp.txt", FileMode.Create, FileAccess.Write))
             {
                 using (StreamWriter writer = new StreamWriter(fileSettings))
                 {
@@ -346,6 +365,18 @@ namespace HashTester
                                             catch (IndexOutOfRangeException)
                                             {
                                                 CollisionPathToFiles = "";
+                                            }
+                                            break;
+                                        }
+                                    case "logSavePathToFiles":
+                                        {
+                                            try
+                                            {
+                                                LogSavePathToFiles = data[1];
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                LogSavePathToFiles = "";
                                             }
                                             break;
                                         }

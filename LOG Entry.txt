@@ -117,3 +117,7 @@ Password Form:
 	Brute force attack MultiThreading working (Different hashing algorithms use more/less CPU)
 **2025-01-16
 Unit Test work
+**2025-01-19
+Chaning ConcurrentQueue<string> To normal List and limiting the shit outputted in the log
+Password How Long To Crack code update
+Rename logs checkBoxes in PasswordForm to make sense

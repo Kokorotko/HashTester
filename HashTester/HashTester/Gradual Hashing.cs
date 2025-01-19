@@ -39,7 +39,7 @@ namespace HashTester
                 }
                 hash = outputHandler.OutputStyleString(originalString, hash, isSaltUsed, isPepperUsed, salt, pepper);
             }
-            outputHandler.OutputTypeShow(hash, listBox1);
+            outputHandler.OutputTypeShow(hash, listBoxLog);
         }
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,7 +54,12 @@ namespace HashTester
 
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            listBoxLog.Items.Clear();
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
         }
     }
 }

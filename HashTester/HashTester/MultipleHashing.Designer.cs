@@ -31,7 +31,7 @@
             this.TXTInput = new System.Windows.Forms.Button();
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.buttonClearListBox = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLog = new System.Windows.Forms.ListBox();
             this.textHashSimple = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.buttonSaveLog = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TXTInput
@@ -70,21 +71,21 @@
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(208, 415);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(579, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(315, 23);
             this.buttonClearListBox.TabIndex = 14;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
             this.buttonClearListBox.Click += new System.EventHandler(this.buttonClearListBox_Click);
             // 
-            // listBox1
+            // listBoxLog
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Location = new System.Drawing.Point(208, 77);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(579, 329);
-            this.listBox1.TabIndex = 13;
+            this.listBoxLog.FormattingEnabled = true;
+            this.listBoxLog.HorizontalScrollbar = true;
+            this.listBoxLog.Location = new System.Drawing.Point(208, 77);
+            this.listBoxLog.Name = "listBoxLog";
+            this.listBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxLog.Size = new System.Drawing.Size(579, 329);
+            this.listBoxLog.TabIndex = 13;
             // 
             // textHashSimple
             // 
@@ -190,11 +191,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonSaveLog
+            // 
+            this.buttonSaveLog.Location = new System.Drawing.Point(529, 415);
+            this.buttonSaveLog.Name = "buttonSaveLog";
+            this.buttonSaveLog.Size = new System.Drawing.Size(257, 23);
+            this.buttonSaveLog.TabIndex = 24;
+            this.buttonSaveLog.Text = "Save log";
+            this.buttonSaveLog.UseVisualStyleBackColor = true;
+            this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
+            // 
             // MultipleHashing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxShowAlgorithm);
             this.Controls.Add(this.button1);
@@ -205,7 +217,7 @@
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonClearListBox);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.TXTInput);
             this.Controls.Add(this.buttonHashSimpleText);
@@ -220,7 +232,7 @@
         private System.Windows.Forms.Button TXTInput;
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.Button buttonClearListBox;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.TextBox textHashSimple;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -233,5 +245,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button buttonSaveLog;
     }
 }

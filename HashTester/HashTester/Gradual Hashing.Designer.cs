@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonHashGradualHashing = new System.Windows.Forms.Button();
             this.textBoxHash = new System.Windows.Forms.TextBox();
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.buttonClearListBox = new System.Windows.Forms.Button();
+            this.buttonSaveLog = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBoxLog
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 70);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(547, 342);
-            this.listBox1.TabIndex = 6;
+            this.listBoxLog.FormattingEnabled = true;
+            this.listBoxLog.Location = new System.Drawing.Point(12, 68);
+            this.listBoxLog.Name = "listBoxLog";
+            this.listBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxLog.Size = new System.Drawing.Size(547, 342);
+            this.listBoxLog.TabIndex = 6;
             // 
             // buttonHashGradualHashing
             // 
@@ -83,21 +84,32 @@
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(12, 418);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(547, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(269, 23);
             this.buttonClearListBox.TabIndex = 9;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
             this.buttonClearListBox.Click += new System.EventHandler(this.buttonClearListBox_Click);
+            // 
+            // buttonSaveLog
+            // 
+            this.buttonSaveLog.Location = new System.Drawing.Point(290, 418);
+            this.buttonSaveLog.Name = "buttonSaveLog";
+            this.buttonSaveLog.Size = new System.Drawing.Size(269, 23);
+            this.buttonSaveLog.TabIndex = 10;
+            this.buttonSaveLog.Text = "Save log";
+            this.buttonSaveLog.UseVisualStyleBackColor = true;
+            this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
             // 
             // FormGradual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.textBoxHash);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.buttonHashGradualHashing);
             this.Name = "FormGradual";
             this.Text = "Gradual_Hashing";
@@ -109,10 +121,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonHashGradualHashing;
         private System.Windows.Forms.TextBox textBoxHash;
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Button buttonClearListBox;
+        private System.Windows.Forms.Button buttonSaveLog;
     }
 }

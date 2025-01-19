@@ -43,7 +43,7 @@ namespace HashTester
                 if (checkBox4.Checked) algorithm.Add(HashingAlgorithm.SHA512);
                 if (checkBox5.Checked) algorithm.Add(HashingAlgorithm.RIPEMD160);
                 if (checkBox6.Checked) algorithm.Add(HashingAlgorithm.CRC32);                
-                mainForm.ProcessingHash(textHashSimple.Lines, algorithm.ToArray(), listBox1); //processes all the stuff
+                mainForm.ProcessingHash(textHashSimple.Lines, algorithm.ToArray(), listBoxLog); //processes all the stuff
 
                 Settings.OutputStyleIncludeHashAlgorithm = previousIncludeHashAlgorithm; //Returns the settings to their original state
             }
@@ -72,7 +72,7 @@ namespace HashTester
                 if (checkBox4.Checked) algorithms.Add(HashingAlgorithm.SHA512);
                 if (checkBox5.Checked) algorithms.Add(HashingAlgorithm.RIPEMD160);
                 if (checkBox6.Checked) algorithms.Add(HashingAlgorithm.CRC32);               
-                mainForm.ProcessingHashTXTInput(algorithms.ToArray(), listBox1); // Processes all the stuff
+                mainForm.ProcessingHashTXTInput(algorithms.ToArray(), listBoxLog); // Processes all the stuff
 
                 Settings.OutputStyleIncludeHashAlgorithm = previousIncludeHashAlgorithm; // Returns the settings to their original state
             }
@@ -85,7 +85,12 @@ namespace HashTester
 
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            listBoxLog.Items.Clear();
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
         }
     }
 }

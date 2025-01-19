@@ -21,6 +21,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Collections;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using System.Net.Sockets;
 
 namespace HashTester
 {
@@ -45,7 +46,6 @@ namespace HashTester
         ulong numberOfAllPossibleCombinations = 0;
         bool useStopTimer = true;
         private volatile bool ranOutOfTime = false;
-        bool useLog = false;
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
@@ -107,20 +107,28 @@ namespace HashTester
                 Settings.PasswordPathToFiles = dialog.SelectedPath;
             }
         }
+        private void buttonLogClear_Click(object sender, EventArgs e)
+        {
+            listBoxLog.Items.Clear();
+        }
+        private void buttonLogSave_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
+        }
         #endregion
 
         #region Password Leak Test
         private void UpdateUIPassword(int lineNumber, long stopwatchTime, int progress) //doesnt contain log
         {
             labelTimer.Text = "Timer: " + stopwatchTime / 1000 + "." + stopwatchTime % 1000;
-            labelSpeed.Text = "Average speed /s: " + lineNumber / (double)(stopwatchTime / 1000);
+            double averageSpeed = (double)lineNumber / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
+            if (!double.IsInfinity(averageSpeed)) labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed);
+            else labelSpeed.Text = "Average speed /s: Yes";
             labelAttempts.Text = "Currently working on line: " + lineNumber;
             progressBar1.Value = progress;
         }
-
         private async void buttonCheckPassword_Click(object sender, EventArgs e)
         {
-            useLog = checkBoxShowLogPassword.Checked;
             ResetAllValues();
             DisableUI();
             string messageBoxAnswer = "";
@@ -134,31 +142,58 @@ namespace HashTester
                 lineFoundMatch[i] = 0;
             }
             //Decider of what txt to use
-            if (radioButton1.Checked) fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
-            else if (radioButton2.Checked) fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
-            else if (radioButton3.Checked) fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+            if (radioButton1.Checked)
+            {
+                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
+            }
+            else if (radioButton2.Checked)
+            {
+                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
+            }
+            else if (radioButton3.Checked)
+            {
+                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+            }
             else
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
                     openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
-                    if (openFileDialog.ShowDialog() == DialogResult.OK) fullPathToTXT = openFileDialog.FileName; //Own txt
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        fullPathToTXT = openFileDialog.FileName; //Own txt
+                    }
+                    else
+                    {
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("No path selected, selecting rockYouVeryShort.");
+                        MessageBox.Show("No path selected, selecting rockYouVeryShort.");
+                        fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+                    }
                 }
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Path to wordlist: " + fullPathToTXT);
             }
             stopwatch.Start();
-            await Task.Run(() => { PasswordFinder(fullPathToTXT, passwords, useLog, ref foundMatch, ref lineFoundMatch); });
+            await Task.Run(() => { PasswordFinder(fullPathToTXT, passwords, checkBoxShowLogCrack.Checked, ref foundMatch, ref lineFoundMatch); });
             progressBar1.Value = 100;
             stopwatch.Stop();
             stopwatch.Reset();
             if (userAbortProcess)
             {
-                if (useLog) listBoxLog.Items.Add("The User has aborted the process.");
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("The User has aborted the process.");
                 MessageBox.Show("The User has aborted the process.");
             }
             for (int i = 0; i < passwords.Count(); i++)
             {
-                if (foundMatch[i]) messageBoxAnswer += "Password '" + passwords[i] + "' has been found in wordlist at line " + lineFoundMatch[i] + ". I recommend using a different password." + Environment.NewLine;
-                else messageBoxAnswer += "Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine;
+                if (foundMatch[i])
+                {
+                    messageBoxAnswer += "Password '" + passwords[i] + "' has been found in wordlist at line " + lineFoundMatch[i] + ". I recommend using a different password." + Environment.NewLine;
+                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has been found in wordlist at line " + lineFoundMatch[i] + ". I recommend using a different password.");
+                }
+                else
+                {
+                    messageBoxAnswer += "Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine;
+                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine);
+                }
             }
             MessageBox.Show(messageBoxAnswer);
             ActivateUI();
@@ -211,28 +246,27 @@ namespace HashTester
 
         #region How Long To Crack
 
-        Double Kalkulacka(int delkaHesla, double pocetZnaku, double zaSekundu, out float rychlost)
+        Double Kalkulacka(int delkaHesla, long pocetZnaku, double zaSekundu, out double rychlost)
         {
             Double pocet = (Double)Math.Pow(pocetZnaku, delkaHesla);
-            rychlost = (float)(pocet / zaSekundu);
+            rychlost = pocet / zaSekundu;
             return pocet;
         }
 
-        string Vypis(float rychlost)
+        string Vypis(double numberSeconds)
         {
-            if (rychlost == 0) //Pro jistotku
-                return "Prolomit toto heslo bude trvat déle než 100 let :)";
-
-            double pocetSekund = (double)rychlost;
-            double pocetLet = pocetSekund / 31556926; //roky
-            double pocetMesicu = (pocetSekund % 31556926) / (2629749); //mesice
-            double pocetDni = (pocetSekund % 2629749) / (86400); //dny
-            double pocetHodin = (pocetSekund % 86400) / (3600); //hodiny
-            double pocetMinut = (pocetSekund % 3600) / (60); //minuty
-            double pocetSekundZbyva = pocetSekund % 60; //sekundy
-            string s = (int)pocetLet + " let, " + (int)pocetMesicu + " mesiců, " +
-                           (int)pocetDni + " dní, " + (int)pocetHodin + " hodin, " +
-                           (int)pocetMinut + " minut, " + (int)pocetSekundZbyva + " sekund";
+            double numberYears = numberSeconds / 31556926; //years
+            double numberMonths = (numberSeconds % 31556926) / (2629749); //months
+            double numberDays = (numberSeconds % 2629749) / (86400); //days
+            double numberHours = (numberSeconds % 86400) / (3600); //hours
+            double numberMinutes = (numberSeconds % 3600) / (60); //minutes
+            double numberSecondsLeft = numberSeconds % 60; //seconds
+            string s = Math.Floor(numberYears).ToString("N0") + " years, " +
+           Math.Floor(numberMonths) + " months, " +
+           Math.Floor(numberDays) + " days, " +
+           Math.Floor(numberHours) + " hours, " +
+           Math.Floor(numberMinutes) + " minutes, " +
+           Math.Floor(numberSecondsLeft) + " seconds";
             return s;
         }
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
@@ -246,23 +280,40 @@ namespace HashTester
 
             int passwordLenght;
             if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
-            if (passwordLenght > 20)
+            if (passwordLenght > 50)
             {
-                passwordLenght = 20;
-                MessageBox.Show("Maximální délka hesla je 20");
+                passwordLenght = 50;
+                MessageBox.Show("Maximální délka hesla je 50.");
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Maximum lenght of the password set to 50.");
             }
             double speed = double.Parse(textBoxCrackSpeed.Text);
             if (speed > 2800000000)
             {
                 speed = 2800000000;
                 MessageBox.Show("Maximální rychlost za sekundu je 2.8 miliardy");
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Maximum speed /s set to 2.8 billions.");
             }
 
-            float rychlost;
-            Double pocet = Kalkulacka(passwordLenght, pocetZnaku, speed, out rychlost);
+            Double pocet = Kalkulacka(passwordLenght, pocetZnaku, speed, out double rychlost);
             //Output
-            if (rychlost / 100 >= 31556926) MessageBox.Show("Prolomit toto heslo bude trvat déle než 100 let :)\nPocet kombinací: " + pocet.ToString("N0")); //Pokud by trvalo dele jak 100 let                
-            else MessageBox.Show(Vypis(rychlost) + "\nPocet kombinaci: " + pocet.ToString("N0")); //N0 == Formátuje číslo s oddělovači tisíců a bez desetinných míst.
+            if ((long)rychlost / 100 >= 315569260000) //31556926 == seconds in a year * 100 000 000
+            {
+                if (checkBoxShowLogCrack.Checked)
+                {
+                    listBoxLog.Items.Add("Prolomit toto heslo bude trvat přes 1 miliardu let.");
+                    listBoxLog.Items.Add("Pocet kombinací: " + pocet.ToString("N0"));
+                }
+                MessageBox.Show("Prolomit toto heslo bude trvat přes 1 miliardu let :)\nPocet kombinací: " + pocet.ToString("N0")); //if it takes more than 1 bilion years
+            }
+            else
+            {
+                if (checkBoxShowLogCrack.Checked)
+                {
+                    listBoxLog.Items.Add(Vypis(rychlost));
+                    listBoxLog.Items.Add("Pocet kombinaci: " + pocet.ToString("N0"));
+                }
+                MessageBox.Show(Vypis(rychlost) + "\nPocet kombinaci: " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
+            }
         }
         #endregion
 
@@ -316,11 +367,13 @@ namespace HashTester
                             }
                         }
                     }
+                    if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Pre-hash of the file: " + openFileDialog.FileName + " with " + userAlgorithm.ToString() + " done.");
                 }
             }
             else
             {
-                MessageBox.Show("Input přerušen");
+                MessageBox.Show("Pre-hash abandoned.");
+                if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Pre-hash abandoned.");
             }
             stopwatch.Stop();
             stopwatch.Restart();
@@ -346,8 +399,7 @@ namespace HashTester
         private async void buttonDictionaryAttack_Click(object sender, EventArgs e)
         {
             ResetAllValues();
-            TurnOffUI();
-            bool useLog = checkBoxListBoxLog.Checked;
+            TurnOffUI();        
             bool performanceMode = checkBoxPerformanceMode.Checked;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
@@ -374,7 +426,7 @@ namespace HashTester
                     if (radioButton5.Checked)
                     {
                         userInputHash = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
-                        if (useLog) listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userInputHash + ".");
+                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userInputHash + ".");
                     }
                     if (performanceMode)
                     {
@@ -408,7 +460,7 @@ namespace HashTester
                                     true, //isMultiThreaded
                                     totalLinesInFile,
                                     lineStart, //at what line to start
-                                    useLog,
+                                    checkBoxShowLogDictionary.Checked,
                                     inputFileIsInPlainText,
                                     reHashNeeded,
                                     out string threadFoundPassword,
@@ -443,7 +495,7 @@ namespace HashTester
                                 false, //isMultiThreaded: nope 
                                 0,  //totalLinesInFile: only for multithreading
                                 0, //lineStart - we start at the start bruh
-                                useLog,
+                                checkBoxShowLogDictionary.Checked,
                                 inputFileIsInPlainText,
                                 reHashNeeded,
                                 out stringFoundPassword,
@@ -453,7 +505,7 @@ namespace HashTester
 
                     stopwatch.Stop();
                     StopTimer(false, false);
-                    if (useLog) listBoxLog.Items.Add("-----------------------------------------------");
+                    if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("-----------------------------------------------");
                     if (foundHash)
                     {
                         string s = "Found hash via Dictionary attack" +
@@ -463,7 +515,7 @@ namespace HashTester
                                         "\nFound password hash: " + hasher.Hash(stringFoundPassword, userAlgorithm) +
                                         "\nFound password in UTF-8: " + stringFoundPassword +
                                         "\nFound password in HEX: " + ConvertToHexBasedOnUser(true, stringFoundPassword);
-                        if (useLog)
+                        if (checkBoxShowLogDictionary.Checked)
                         {
                             listBoxLog.Items.Add("Found hash via Dictionary attack");
                             listBoxLog.Items.Add("Original password: " + stringFoundPassword);
@@ -477,29 +529,29 @@ namespace HashTester
                     else if (userAbortProcess)
                     {
                         MessageBox.Show("The user has aborted the process.");
-                        if (useLog) listBoxLog.Items.Add("The user has aborted the process.");
+                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The user has aborted the process.");
                     }
                     else if (ranOutOfTime)
                     {
                         MessageBox.Show("The program could not find the password in time limit.");
-                        if (useLog) listBoxLog.Items.Add("The program could not find the password in time limit.");
+                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The program could not find the password in time limit.");
                         ranOutOfTime = false;
                     }
                     else if (ranOutOfAttemps)
                     {
                         MessageBox.Show("The program could not find the password in attempts limit.");
-                        if (useLog) listBoxLog.Items.Add("The program could not find the password in attempts limit.");
+                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The program could not find the password in attempts limit.");
                         ranOutOfAttemps = false;
                     }
                     else
                     {
                         MessageBox.Show("Could not find password in the File.");
-                        if (useLog) listBoxLog.Items.Add("Could not find password in the File.");
+                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Could not find password in the File.");
                     }
                 }
-                else if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Found invalid file format. Cancelling dictionary attack.");
+                else if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Found invalid file format. Cancelling dictionary attack.");
             }
-            else if (useLog) listBoxLog.Items.Add("Could not find desired file. Cancelling dictionary attack...");
+            else if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Could not find desired file. Cancelling dictionary attack...");
             TurnOnUI();
         }
         private bool DictionaryAttack(
@@ -625,7 +677,7 @@ namespace HashTester
             fileAlgorithm = Hasher.HashingAlgorithm.CRC32;
             if (line != null && line.Contains("=")) // File is already pre-hashed
             {
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("File is already pre-hashed.");
+                if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("File is already pre-hashed.");
                 string[] algorithmText = line.Split('=');
                 if (algorithmText.Length < 2)
                 {
@@ -654,7 +706,7 @@ namespace HashTester
                 }
             }
             else inputFileIsInPlainText = true;
-            if (useLog) //Log
+            if (checkBoxShowLogDictionary.Checked) //Log
             {
                 if (!inputFileIsInPlainText)
                 {
@@ -724,12 +776,11 @@ namespace HashTester
             string stringFoundPassword = "";
             string userInputHash = textBoxBruteForceInput.Text;
             int userPasswordLenght = 0;
-            bool useLog = checkBoxListBoxLog.Checked;
             if (radioButton5.Checked)
             {
                 userPasswordLenght = textBoxBruteForceInput.Text.Length;
                 userInputHash = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
-                if (useLog)
+                if (checkBoxShowLogBrute.Checked)
                 {
                     listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userInputHash + ".");
                 }
@@ -767,7 +818,7 @@ namespace HashTester
             {
                 numberOfAllPossibleCombinations = Pow((ulong)usableChars.Length, userPasswordLenght);
             }
-            if (useLog) listBoxLog.Items.Add("Number Of All Possible Combinations: " + numberOfAllPossibleCombinations);
+            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Number Of All Possible Combinations: " + numberOfAllPossibleCombinations);
             SetUpTimer(true, performanceMode);
             if (performanceMode)
             {
@@ -776,7 +827,7 @@ namespace HashTester
                 for (ushort i = 0; i < maxThreads; i++) //multiThread
                 {
                     ushort threadID = i;
-                    allTasks.Add(Task.Run(() => BruteForceAttackMultiThread(userAlgorithm, threadID, maxThreads, userInputHash, usableChars, useMaxAttempts, maxAttempts, userPasswordLenght, variablePasswordLength, useLog, hexOutput, token, out stringFoundPassword, out ranOutOfAttemps)));
+                    allTasks.Add(Task.Run(() => BruteForceAttackMultiThread(userAlgorithm, threadID, maxThreads, userInputHash, usableChars, useMaxAttempts, maxAttempts, userPasswordLenght, variablePasswordLength, checkBoxShowLogBrute.Checked, hexOutput, token, out stringFoundPassword, out ranOutOfAttemps)));
                 }
                 await Task.WhenAll(allTasks); //waits until all tasks are finish
             }
@@ -794,7 +845,7 @@ namespace HashTester
                     maxAttempts,
                     userPasswordLenght,
                     variablePasswordLength,
-                    useLog,
+                    checkBoxShowLogBrute.Checked,
                     hexOutput,
                     CancellationToken.None, //there is no need for CancellationToken
                     out stringFoundPassword,
@@ -819,7 +870,7 @@ namespace HashTester
                   "\n" + labelTimer.Text + // Timer
                   "\n" + labelSpeed.Text;  //Speed
 
-                if (useLog)
+                if (checkBoxShowLogBrute.Checked)
                 {
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add("Password found!");
@@ -1158,16 +1209,6 @@ namespace HashTester
             stopwatch.Reset();
             if (timeToUpdateTheUI.Enabled) timeToUpdateTheUI.Stop();
             maxAttempts = 0;
-        }
-
-        private void buttonLogClear_Click(object sender, EventArgs e)
-        {
-            listBoxLog.Items.Clear();
-        }
-
-        private void buttonLogSave_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.buttonCheckCollision = new System.Windows.Forms.Button();
+            this.buttonSaveLog = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -92,14 +93,14 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 121);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 290);
+            this.listBox1.Size = new System.Drawing.Size(776, 134);
             this.listBox1.TabIndex = 12;
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(12, 417);
+            this.buttonClearListBox.Location = new System.Drawing.Point(12, 261);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(776, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(393, 23);
             this.buttonClearListBox.TabIndex = 13;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -250,11 +251,21 @@
             this.buttonCheckCollision.UseVisualStyleBackColor = true;
             this.buttonCheckCollision.Click += new System.EventHandler(this.buttonCheckCollision_Click);
             // 
+            // buttonSaveLog
+            // 
+            this.buttonSaveLog.Location = new System.Drawing.Point(411, 261);
+            this.buttonSaveLog.Name = "buttonSaveLog";
+            this.buttonSaveLog.Size = new System.Drawing.Size(377, 23);
+            this.buttonSaveLog.TabIndex = 29;
+            this.buttonSaveLog.Text = "Save Log";
+            this.buttonSaveLog.UseVisualStyleBackColor = true;
+            // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBox1);
@@ -305,5 +316,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.Button buttonCheckCollision;
+        private System.Windows.Forms.Button buttonSaveLog;
     }
 }

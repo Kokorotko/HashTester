@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
@@ -38,7 +39,6 @@ namespace HashTester
         long numberOfAttempsInLastUpdate = 0; //The time is 16ms
         Stopwatch stopwatch = new Stopwatch();
         private Timer timeToFindCollision = new Timer();
-        private ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>(); //list with thread safety features
         #region Form
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
@@ -74,7 +74,9 @@ namespace HashTester
             List<Task> allTasks = new List<Task>();
             if (checkBoxPerformanceMode.Checked)
             {
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Starting the process in performance mode.");
                 int maxThreads = Environment.ProcessorCount;
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Number of Threads assigned: " + maxAttempts);
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
                 {
                     allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBox1.Checked)));
@@ -82,31 +84,44 @@ namespace HashTester
             }
             else //single Thread
             {
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Starting the process in normal mode.");
                 allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBox1.Checked)));
             }
             await Task.WhenAll(allTasks);
             TurnOnUI();
             if (foundCollision) //MessageBoxOutput
             {
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBox1.Items.Add("Collision found!");
+                    listBox1.Items.Add("Collision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
+                    listBox1.Items.Add("Collision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
+                    listBox1.Items.Add("Collision hash: " + hasher.Hash(textCollision01, algorithm));
+                    listBox1.Items.Add("Attempts: " + attempts);
+                    listBox1.Items.Add("Time to find: " + labelTimer.Text.Split(' ')[1]);
+                }
                 string message = "Collision found!\n" +
                                         "\nCollision 1: " + (checkBox1.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
                                        "\nCollision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02) +
                                        "\nCollision hash: " + hasher.Hash(textCollision01, algorithm) +
                                        "\nAttempts: " + attempts +
-                                       "\nTime to find: " + labelTimer.Text.Split(' ')[1]; // Only the number
+                                       "\nTime to find: " + labelTimer.Text.Split(' ')[1]; // Only the number                
                 CollisionFoundMessageBox(message, textCollision01, textCollision02);
             }
             else if (stopHashing)
             {
                 MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("The process has been abandoned.");
             }
             else if (attemptsRanOut)
             {
                 MessageBox.Show("Could not find a collision under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Could not find a collision under the given attempts.");
             }
             else
             {
                 MessageBox.Show("Could not find collision.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Could not find collision.");
             } 
         }
 
@@ -124,7 +139,7 @@ namespace HashTester
             else stopHashing = true;
         }
 
-        private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLogToListBox, bool useHexForOutput, out string collision1, out string collision2)
+        private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLog, bool useHexForOutput, out string collision1, out string collision2)
         {
             try
             {
@@ -140,12 +155,6 @@ namespace HashTester
                     string randomText = GenerateRandomString(random, length);
                     string hashedValue = hasher.Hash(randomText, algorithm);
 
-                    if (saveLogToListBox)
-                    {
-                        string displayText = useHexForOutput ? ConvertStringToHex(randomText) : randomText;
-                        logQueue.Enqueue($"Hashing: {displayText} | Hash: {hashedValue}");
-                    }
-
                     if (hashedList.Contains(hashedValue))
                     {
                         int collisionIndex = hashedList.IndexOf(hashedValue);
@@ -155,7 +164,12 @@ namespace HashTester
                         if (collision1 != collision2)
                         {
                             foundCollision = true;
-                            logQueue.Enqueue($"Collision Found: {collision1} and {collision2}");
+                            if (saveLog)
+                            {
+                                string s = "Found Collision, " + collision1 + " and " + collision2;
+                                if (useHexForOutput) s = "Found Collision, " + ConvertStringToHex(collision1) + " and " + ConvertStringToHex(collision2);
+                                Invoke((Action)(() => listBox1.Items.Add(s)));
+                            }
                             return true;
                         }
                     }
@@ -209,31 +223,8 @@ namespace HashTester
             //Update Average Speed
             double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
             label5.Text = "Average speed: " + Math.Floor(averageSpeed);
-            //update Log listbox
-            ProcessLogQueueAsync();
-        }
-
-        private async void ProcessLogQueueAsync() //background process
-        {
-            await Task.Run(() =>
-            {
-                List<string> logBatch = new List<string>();
-
-                while (logQueue.TryDequeue(out string logItem))
-                {
-                    logBatch.Add(logItem);
-                }
-
-                // Invoke the UI thread to update the ListBox in batches
-                if (logBatch.Count > 0)
-                {
-                    Invoke((Action)(() =>
-                    {
-                        listBox1.Items.AddRange(logBatch.ToArray());
-                        listBox1.TopIndex = listBox1.Items.Count - 1;
-                    }));
-                }
-            });
+            //listbox
+            listBox1.TopIndex = listBox1.Items.Count - 1; // Scroll to the most recent item
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)

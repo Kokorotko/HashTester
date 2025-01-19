@@ -58,7 +58,6 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.buttonPreHash = new System.Windows.Forms.Button();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
@@ -79,6 +78,10 @@
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.buttonLogSave = new System.Windows.Forms.Button();
+            this.checkBoxShowLogCrack = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLogPreHash = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -180,6 +183,8 @@
             // checkBoxShowLogPassword
             // 
             this.checkBoxShowLogPassword.AutoSize = true;
+            this.checkBoxShowLogPassword.Checked = true;
+            this.checkBoxShowLogPassword.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxShowLogPassword.Location = new System.Drawing.Point(5, 104);
             this.checkBoxShowLogPassword.Name = "checkBoxShowLogPassword";
             this.checkBoxShowLogPassword.Size = new System.Drawing.Size(114, 17);
@@ -189,6 +194,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBoxShowLogCrack);
             this.groupBox2.Controls.Add(this.buttonCrackCalculate);
             this.groupBox2.Controls.Add(this.checkBoxCrack04);
             this.groupBox2.Controls.Add(this.checkBoxCrack03);
@@ -220,7 +226,7 @@
             this.checkBoxCrack04.AutoSize = true;
             this.checkBoxCrack04.Checked = true;
             this.checkBoxCrack04.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCrack04.Location = new System.Drawing.Point(6, 196);
+            this.checkBoxCrack04.Location = new System.Drawing.Point(6, 171);
             this.checkBoxCrack04.Name = "checkBoxCrack04";
             this.checkBoxCrack04.Size = new System.Drawing.Size(123, 17);
             this.checkBoxCrack04.TabIndex = 7;
@@ -232,7 +238,7 @@
             this.checkBoxCrack03.AutoSize = true;
             this.checkBoxCrack03.Checked = true;
             this.checkBoxCrack03.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCrack03.Location = new System.Drawing.Point(6, 173);
+            this.checkBoxCrack03.Location = new System.Drawing.Point(6, 148);
             this.checkBoxCrack03.Name = "checkBoxCrack03";
             this.checkBoxCrack03.Size = new System.Drawing.Size(79, 17);
             this.checkBoxCrack03.TabIndex = 6;
@@ -244,7 +250,7 @@
             this.checkBoxCrack02.AutoSize = true;
             this.checkBoxCrack02.Checked = true;
             this.checkBoxCrack02.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCrack02.Location = new System.Drawing.Point(6, 150);
+            this.checkBoxCrack02.Location = new System.Drawing.Point(6, 125);
             this.checkBoxCrack02.Name = "checkBoxCrack02";
             this.checkBoxCrack02.Size = new System.Drawing.Size(118, 17);
             this.checkBoxCrack02.TabIndex = 5;
@@ -256,7 +262,7 @@
             this.checkBoxCrack01.AutoSize = true;
             this.checkBoxCrack01.Checked = true;
             this.checkBoxCrack01.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCrack01.Location = new System.Drawing.Point(6, 127);
+            this.checkBoxCrack01.Location = new System.Drawing.Point(6, 102);
             this.checkBoxCrack01.Name = "checkBoxCrack01";
             this.checkBoxCrack01.Size = new System.Drawing.Size(114, 17);
             this.checkBoxCrack01.TabIndex = 4;
@@ -266,7 +272,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 84);
+            this.label2.Location = new System.Drawing.Point(6, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 13);
             this.label2.TabIndex = 3;
@@ -274,7 +280,7 @@
             // 
             // textBoxCrackSpeed
             // 
-            this.textBoxCrackSpeed.Location = new System.Drawing.Point(6, 100);
+            this.textBoxCrackSpeed.Location = new System.Drawing.Point(6, 75);
             this.textBoxCrackSpeed.Name = "textBoxCrackSpeed";
             this.textBoxCrackSpeed.Size = new System.Drawing.Size(100, 20);
             this.textBoxCrackSpeed.TabIndex = 2;
@@ -298,6 +304,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBoxShowLogPreHash);
+            this.groupBox3.Controls.Add(this.checkBoxShowLogBrute);
+            this.groupBox3.Controls.Add(this.checkBoxShowLogDictionary);
             this.groupBox3.Controls.Add(this.buttonDictionaryAttack);
             this.groupBox3.Controls.Add(this.checkBoxHexOutput);
             this.groupBox3.Controls.Add(this.label9);
@@ -308,7 +317,6 @@
             this.groupBox3.Controls.Add(this.checkBox4);
             this.groupBox3.Controls.Add(this.buttonPreHash);
             this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBoxListBoxLog);
             this.groupBox3.Controls.Add(this.checkBox6);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.radioButton6);
@@ -366,7 +374,7 @@
             0,
             0});
             this.numericUpDownStopTimer.Name = "numericUpDownStopTimer";
-            this.numericUpDownStopTimer.Size = new System.Drawing.Size(224, 20);
+            this.numericUpDownStopTimer.Size = new System.Drawing.Size(96, 20);
             this.numericUpDownStopTimer.TabIndex = 35;
             this.numericUpDownStopTimer.ThousandsSeparator = true;
             // 
@@ -385,7 +393,7 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(289, 198);
+            this.checkBox3.Location = new System.Drawing.Point(289, 172);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(123, 17);
             this.checkBox3.TabIndex = 12;
@@ -407,7 +415,7 @@
             this.checkBox4.AutoSize = true;
             this.checkBox4.Checked = true;
             this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(289, 175);
+            this.checkBox4.Location = new System.Drawing.Point(289, 149);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(79, 17);
             this.checkBox4.TabIndex = 11;
@@ -429,31 +437,19 @@
             this.checkBox5.AutoSize = true;
             this.checkBox5.Checked = true;
             this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(289, 152);
+            this.checkBox5.Location = new System.Drawing.Point(289, 126);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(118, 17);
             this.checkBox5.TabIndex = 10;
             this.checkBox5.Text = "Velká písmena (26)";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // checkBoxListBoxLog
-            // 
-            this.checkBoxListBoxLog.AutoSize = true;
-            this.checkBoxListBoxLog.Checked = true;
-            this.checkBoxListBoxLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxListBoxLog.Location = new System.Drawing.Point(5, 129);
-            this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
-            this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxListBoxLog.TabIndex = 32;
-            this.checkBoxListBoxLog.Text = "Show log in listBox";
-            this.checkBoxListBoxLog.UseVisualStyleBackColor = true;
-            // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.Checked = true;
             this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(289, 129);
+            this.checkBox6.Location = new System.Drawing.Point(289, 103);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(114, 17);
             this.checkBox6.TabIndex = 9;
@@ -653,6 +649,54 @@
             this.buttonLogSave.UseVisualStyleBackColor = true;
             this.buttonLogSave.Click += new System.EventHandler(this.buttonLogSave_Click);
             // 
+            // checkBoxShowLogCrack
+            // 
+            this.checkBoxShowLogCrack.AutoSize = true;
+            this.checkBoxShowLogCrack.Checked = true;
+            this.checkBoxShowLogCrack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogCrack.Location = new System.Drawing.Point(6, 194);
+            this.checkBoxShowLogCrack.Name = "checkBoxShowLogCrack";
+            this.checkBoxShowLogCrack.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogCrack.TabIndex = 39;
+            this.checkBoxShowLogCrack.Text = "Show log in listBox";
+            this.checkBoxShowLogCrack.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowLogDictionary
+            // 
+            this.checkBoxShowLogDictionary.AutoSize = true;
+            this.checkBoxShowLogDictionary.Checked = true;
+            this.checkBoxShowLogDictionary.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(144, 196);
+            this.checkBoxShowLogDictionary.Name = "checkBoxShowLogDictionary";
+            this.checkBoxShowLogDictionary.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogDictionary.TabIndex = 39;
+            this.checkBoxShowLogDictionary.Text = "Show log in listBox";
+            this.checkBoxShowLogDictionary.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowLogBrute
+            // 
+            this.checkBoxShowLogBrute.AutoSize = true;
+            this.checkBoxShowLogBrute.Checked = true;
+            this.checkBoxShowLogBrute.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogBrute.Location = new System.Drawing.Point(5, 194);
+            this.checkBoxShowLogBrute.Name = "checkBoxShowLogBrute";
+            this.checkBoxShowLogBrute.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogBrute.TabIndex = 40;
+            this.checkBoxShowLogBrute.Text = "Show log in listBox";
+            this.checkBoxShowLogBrute.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowLogPreHash
+            // 
+            this.checkBoxShowLogPreHash.AutoSize = true;
+            this.checkBoxShowLogPreHash.Checked = true;
+            this.checkBoxShowLogPreHash.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogPreHash.Location = new System.Drawing.Point(289, 194);
+            this.checkBoxShowLogPreHash.Name = "checkBoxShowLogPreHash";
+            this.checkBoxShowLogPreHash.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogPreHash.TabIndex = 41;
+            this.checkBoxShowLogPreHash.Text = "Show log in listBox";
+            this.checkBoxShowLogPreHash.UseVisualStyleBackColor = true;
+            // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -720,7 +764,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBoxListBoxLog;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
@@ -741,5 +784,9 @@
         private System.Windows.Forms.CheckBox checkBoxShowLogPassword;
         private System.Windows.Forms.Button buttonLogClear;
         private System.Windows.Forms.Button buttonLogSave;
+        private System.Windows.Forms.CheckBox checkBoxShowLogCrack;
+        private System.Windows.Forms.CheckBox checkBoxShowLogPreHash;
+        private System.Windows.Forms.CheckBox checkBoxShowLogBrute;
+        private System.Windows.Forms.CheckBox checkBoxShowLogDictionary;
     }
 }

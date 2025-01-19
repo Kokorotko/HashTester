@@ -29,15 +29,15 @@ namespace HashTester
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            ProcessingHash(textHashSimple.Lines, algorithm, listBox1);
+            ProcessingHash(textHashSimple.Lines, algorithm, listBoxLog);
         }
         private void TXTInput_Click(object sender, EventArgs e)
         {
-            ProcessingHashTXTInput(algorithm, listBox1);
+            ProcessingHashTXTInput(algorithm, listBoxLog);
         }
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            listBoxLog.Items.Clear();
             UpdateMenuStripSettings();
         }
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,19 +192,25 @@ namespace HashTester
         }
         #endregion
 
-        #region BasePathToFolder
-        private void basePathToFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        #region PathToFolder
+        private void baseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-            {
-                folderBrowserDialog.Description = "Select a folder";
-                folderBrowserDialog.ShowNewFolderButton = true;
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Settings.BasePathToFiles = folderBrowserDialog.SelectedPath;
-                    SaveSettings();
-                }
-            }
+            FormManagement.ChangeDirectory(FormManagement.FolderType.Base);
+        }
+
+        private void collisionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.ChangeDirectory(FormManagement.FolderType.Collision);
+        }
+
+        private void passwordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.ChangeDirectory(FormManagement.FolderType.Password);
+        }
+
+        private void logSaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.ChangeDirectory(FormManagement.FolderType.Log);
         }
 
         #endregion
@@ -458,6 +464,11 @@ namespace HashTester
         {
             PasswordForm passwordForm = new PasswordForm();
             passwordForm.Show();
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
         }
     }
 }
