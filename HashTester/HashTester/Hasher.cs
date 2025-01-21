@@ -225,9 +225,9 @@ namespace HashTester
         string HashCRC32(string text)
         {
             uint[] crc32Table = new uint[256]; //Velikost (CRC32 == 32 bytů)
-            const uint polynomial = 0xedb88320; //Standardní CRC32 věc, která říká jak CRC32 funguje
+            const uint polynomial = 0xedb88320; //Polynom G (G jako Generátorový)
 
-            for (uint i = 0; i < 256; i++)
+            for (uint i = 0; i < 256; i++) //předpočítání CRC tabulky 
             {
                 uint crc = i;
                 for (uint j = 8; j > 0; j--)
@@ -250,12 +250,12 @@ namespace HashTester
 
             foreach (byte b in inputBytes)
             {
-                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number (16x1)
-                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> bit shift to the right
+                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number
+                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> posun bitů - každý byte vstupních dat projde přes CRC 
             }
 
-            crcValue = ~crcValue; //~ ==> bit NOT
-            return crcValue.ToString("x8"); //Converts to lowercase hexadecimal string
+            crcValue = ~crcValue; //~ ==> bit NOT (negace bitů)
+            return crcValue.ToString("x8"); //konvertuje na hexadecimální číslo používající malá písmenka
         }
 
 
