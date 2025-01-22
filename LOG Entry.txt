@@ -122,8 +122,5 @@ Chaning ConcurrentQueue<string> To normal List and limiting the shit outputted i
 Password How Long To Crack code update
 Rename logs checkBoxes in PasswordForm to make sense
 -----------------------------------
-Work on written thesis (Basics of Hashing, MD and SHA family)
-**2025-01-20
-Work on written thesis (RipeMD160, CRC32)
-**2025-01-21
-Work on written thesis (Výpočet CRC32, Sůl a Pepř)
+**2025-01-19,20,21,22
+Work on written thesis
