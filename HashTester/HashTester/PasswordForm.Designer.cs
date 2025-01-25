@@ -38,6 +38,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxShowLogPassword = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBoxShowLogCrack = new System.Windows.Forms.CheckBox();
             this.buttonCrackCalculate = new System.Windows.Forms.Button();
             this.checkBoxCrack04 = new System.Windows.Forms.CheckBox();
             this.checkBoxCrack03 = new System.Windows.Forms.CheckBox();
@@ -48,6 +49,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxShowLogPreHash = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
             this.buttonDictionaryAttack = new System.Windows.Forms.Button();
             this.checkBoxHexOutput = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -78,10 +82,6 @@
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.buttonLogSave = new System.Windows.Forms.Button();
-            this.checkBoxShowLogCrack = new System.Windows.Forms.CheckBox();
-            this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
-            this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
-            this.checkBoxShowLogPreHash = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,7 +96,7 @@
             this.buttonCheckPassword.Name = "buttonCheckPassword";
             this.buttonCheckPassword.Size = new System.Drawing.Size(199, 23);
             this.buttonCheckPassword.TabIndex = 0;
-            this.buttonCheckPassword.Text = "Check password";
+            this.buttonCheckPassword.Text = "Dictionary attack";
             this.buttonCheckPassword.UseVisualStyleBackColor = true;
             this.buttonCheckPassword.Click += new System.EventHandler(this.buttonCheckPassword_Click);
             // 
@@ -178,7 +178,7 @@
             this.groupBox1.Size = new System.Drawing.Size(216, 253);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Password Leak Test";
+            this.groupBox1.Text = "Dictionary Attack";
             // 
             // checkBoxShowLogPassword
             // 
@@ -209,7 +209,19 @@
             this.groupBox2.Size = new System.Drawing.Size(131, 252);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "How long to crack";
+            this.groupBox2.Text = "Time to crack calculator";
+            // 
+            // checkBoxShowLogCrack
+            // 
+            this.checkBoxShowLogCrack.AutoSize = true;
+            this.checkBoxShowLogCrack.Checked = true;
+            this.checkBoxShowLogCrack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogCrack.Location = new System.Drawing.Point(6, 194);
+            this.checkBoxShowLogCrack.Name = "checkBoxShowLogCrack";
+            this.checkBoxShowLogCrack.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogCrack.TabIndex = 39;
+            this.checkBoxShowLogCrack.Text = "Show log in listBox";
+            this.checkBoxShowLogCrack.UseVisualStyleBackColor = true;
             // 
             // buttonCrackCalculate
             // 
@@ -332,15 +344,51 @@
             this.groupBox3.Size = new System.Drawing.Size(416, 252);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "JailBreak Attacks";
+            this.groupBox3.Text = "Brute force attack";
+            // 
+            // checkBoxShowLogPreHash
+            // 
+            this.checkBoxShowLogPreHash.AutoSize = true;
+            this.checkBoxShowLogPreHash.Checked = true;
+            this.checkBoxShowLogPreHash.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogPreHash.Location = new System.Drawing.Point(289, 194);
+            this.checkBoxShowLogPreHash.Name = "checkBoxShowLogPreHash";
+            this.checkBoxShowLogPreHash.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogPreHash.TabIndex = 41;
+            this.checkBoxShowLogPreHash.Text = "Show log in listBox";
+            this.checkBoxShowLogPreHash.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowLogBrute
+            // 
+            this.checkBoxShowLogBrute.AutoSize = true;
+            this.checkBoxShowLogBrute.Checked = true;
+            this.checkBoxShowLogBrute.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogBrute.Location = new System.Drawing.Point(5, 194);
+            this.checkBoxShowLogBrute.Name = "checkBoxShowLogBrute";
+            this.checkBoxShowLogBrute.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogBrute.TabIndex = 40;
+            this.checkBoxShowLogBrute.Text = "Show log in listBox";
+            this.checkBoxShowLogBrute.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowLogDictionary
+            // 
+            this.checkBoxShowLogDictionary.AutoSize = true;
+            this.checkBoxShowLogDictionary.Checked = true;
+            this.checkBoxShowLogDictionary.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(144, 196);
+            this.checkBoxShowLogDictionary.Name = "checkBoxShowLogDictionary";
+            this.checkBoxShowLogDictionary.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLogDictionary.TabIndex = 39;
+            this.checkBoxShowLogDictionary.Text = "Show log in listBox";
+            this.checkBoxShowLogDictionary.UseVisualStyleBackColor = true;
             // 
             // buttonDictionaryAttack
             // 
             this.buttonDictionaryAttack.Location = new System.Drawing.Point(144, 219);
             this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
-            this.buttonDictionaryAttack.Size = new System.Drawing.Size(130, 23);
+            this.buttonDictionaryAttack.Size = new System.Drawing.Size(114, 23);
             this.buttonDictionaryAttack.TabIndex = 38;
-            this.buttonDictionaryAttack.Text = "Dictionary Attack";
+            this.buttonDictionaryAttack.Text = "Rainbow Table Attack";
             this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
             this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonDictionaryAttack_Click);
             // 
@@ -424,11 +472,11 @@
             // 
             // buttonPreHash
             // 
-            this.buttonPreHash.Location = new System.Drawing.Point(280, 219);
+            this.buttonPreHash.Location = new System.Drawing.Point(264, 219);
             this.buttonPreHash.Name = "buttonPreHash";
-            this.buttonPreHash.Size = new System.Drawing.Size(130, 23);
+            this.buttonPreHash.Size = new System.Drawing.Size(146, 23);
             this.buttonPreHash.TabIndex = 10;
-            this.buttonPreHash.Text = "Generate a Pre-hash";
+            this.buttonPreHash.Text = "Generate Rainbow Table";
             this.buttonPreHash.UseVisualStyleBackColor = true;
             this.buttonPreHash.Click += new System.EventHandler(this.buttonPreHash_Click);
             // 
@@ -648,54 +696,6 @@
             this.buttonLogSave.Text = "Save Log";
             this.buttonLogSave.UseVisualStyleBackColor = true;
             this.buttonLogSave.Click += new System.EventHandler(this.buttonLogSave_Click);
-            // 
-            // checkBoxShowLogCrack
-            // 
-            this.checkBoxShowLogCrack.AutoSize = true;
-            this.checkBoxShowLogCrack.Checked = true;
-            this.checkBoxShowLogCrack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogCrack.Location = new System.Drawing.Point(6, 194);
-            this.checkBoxShowLogCrack.Name = "checkBoxShowLogCrack";
-            this.checkBoxShowLogCrack.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogCrack.TabIndex = 39;
-            this.checkBoxShowLogCrack.Text = "Show log in listBox";
-            this.checkBoxShowLogCrack.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxShowLogDictionary
-            // 
-            this.checkBoxShowLogDictionary.AutoSize = true;
-            this.checkBoxShowLogDictionary.Checked = true;
-            this.checkBoxShowLogDictionary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(144, 196);
-            this.checkBoxShowLogDictionary.Name = "checkBoxShowLogDictionary";
-            this.checkBoxShowLogDictionary.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogDictionary.TabIndex = 39;
-            this.checkBoxShowLogDictionary.Text = "Show log in listBox";
-            this.checkBoxShowLogDictionary.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxShowLogBrute
-            // 
-            this.checkBoxShowLogBrute.AutoSize = true;
-            this.checkBoxShowLogBrute.Checked = true;
-            this.checkBoxShowLogBrute.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogBrute.Location = new System.Drawing.Point(5, 194);
-            this.checkBoxShowLogBrute.Name = "checkBoxShowLogBrute";
-            this.checkBoxShowLogBrute.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogBrute.TabIndex = 40;
-            this.checkBoxShowLogBrute.Text = "Show log in listBox";
-            this.checkBoxShowLogBrute.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxShowLogPreHash
-            // 
-            this.checkBoxShowLogPreHash.AutoSize = true;
-            this.checkBoxShowLogPreHash.Checked = true;
-            this.checkBoxShowLogPreHash.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogPreHash.Location = new System.Drawing.Point(289, 194);
-            this.checkBoxShowLogPreHash.Name = "checkBoxShowLogPreHash";
-            this.checkBoxShowLogPreHash.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogPreHash.TabIndex = 41;
-            this.checkBoxShowLogPreHash.Text = "Show log in listBox";
-            this.checkBoxShowLogPreHash.UseVisualStyleBackColor = true;
             // 
             // PasswordForm
             // 
