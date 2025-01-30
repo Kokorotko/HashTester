@@ -448,11 +448,6 @@ namespace HashTester
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e) //Temporary for Testing Settings
-        {
-            MessageBox.Show(Settings.TemporaryOutput());
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             hashSelector.SelectedIndex = 0;

@@ -29,6 +29,7 @@ namespace HashTester
         private static string passwordPathToFiles;
         private static string collisionPathToFiles;
         private static string logSavePathToFiles;
+        private static string settingsPathToFiles;
         #endregion
 
         #region Get&Set
@@ -77,9 +78,29 @@ namespace HashTester
             get
             {
                 if (!String.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles)) return basePathToFiles;
-                else return Environment.CurrentDirectory; //Better Safe than Sure (or something like that)
+                else return Path.GetDirectoryName(Application.ExecutablePath);
             }
-            set { basePathToFiles = value; }
+            set
+            {
+                if (!String.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles)) basePathToFiles = value;
+                else basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath); //Base Application Path
+            }
+        }
+        public static string SettingsPathToFiles
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(settingsPathToFiles) && Directory.Exists(settingsPathToFiles))
+                {
+                    return settingsPathToFiles;
+                }
+                else return Path.GetFullPath(Path.Combine(BasePathToFiles, "Settings")); //Base directory
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(settingsPathToFiles) && Directory.Exists(settingsPathToFiles)) settingsPathToFiles = value;
+                else settingsPathToFiles = Path.GetFullPath(Path.Combine(BasePathToFiles, "Settings")); //base directory
+            }
         }
         public static string PasswordPathToFiles
         {
@@ -89,12 +110,12 @@ namespace HashTester
                 {
                     return passwordPathToFiles;
                 }
-                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists\\")); //Base directory
+                else return Path.GetFullPath(Path.Combine(BasePathToFiles, "Wordlists")); //Base directory
             }
             set
             {
                 if (!String.IsNullOrEmpty(passwordPathToFiles) && Directory.Exists(passwordPathToFiles)) passwordPathToFiles = value;
-                else passwordPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Wordlists\\")); //base directory
+                else passwordPathToFiles = Path.GetFullPath(Path.Combine(BasePathToFiles, "Wordlists")); //base directory
             }
         }
         public static string CollisionPathToFiles
@@ -105,12 +126,12 @@ namespace HashTester
                 {
                     return collisionPathToFiles;
                 }
-                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\SameHashingResults\\")); //Base directory
+                else return Path.GetFullPath(Path.Combine(BasePathToFiles, "SameHashingResults")); //Base directory
             }
             set
             {
                 if (!String.IsNullOrEmpty(collisionPathToFiles) && Directory.Exists(collisionPathToFiles)) collisionPathToFiles = value;
-                else collisionPathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\SameHashingResults\\")); //base directory
+                else collisionPathToFiles = Path.GetFullPath(Path.Combine(BasePathToFiles, "SameHashingResults")); //base directory
             }
         }
 
@@ -122,12 +143,12 @@ namespace HashTester
                 {
                     return logSavePathToFiles;
                 }
-                else return Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Logs\\")); //Base directory
+                else return Path.GetFullPath(Path.Combine(BasePathToFiles, "Logs")); //Base directory
             }
             set
             {
                 if (!String.IsNullOrEmpty(logSavePathToFiles) && Directory.Exists(logSavePathToFiles)) logSavePathToFiles = value;
-                else logSavePathToFiles = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Logs\\")); //base directory
+                else logSavePathToFiles = Path.GetFullPath(Path.Combine(BasePathToFiles, "Logs")); //base directory
             }
         }
 
@@ -156,16 +177,22 @@ namespace HashTester
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;
             UsePepper = false;
-            BasePathToFiles = "";
-            PasswordPathToFiles = "";
-            CollisionPathToFiles = "";
-            LogSavePathToFiles = "";
+            BasePathToFiles = null;
+            PasswordPathToFiles = null;
+            CollisionPathToFiles = null;
+            LogSavePathToFiles = null;
             SaveSettings();
         }
         public static void SaveSettings()
         {
             //Create File
-            using (FileStream fileSettings = new FileStream("..\\..\\Settings\\temp.txt", FileMode.Create, FileAccess.Write))
+            string settingsPathToFileTemp = Path.Combine(SettingsPathToFiles, "temp.txt");
+            Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
+            string settingsPathToFileSettings = Path.Combine(SettingsPathToFiles, "settings.txt");
+            Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
+            string settingsDirectory = Path.GetDirectoryName(SettingsPathToFiles);
+            if (!Directory.Exists(settingsDirectory)) Directory.CreateDirectory(settingsDirectory);
+            using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
             {
                 using (StreamWriter writer = new StreamWriter(fileSettings))
                 {
@@ -207,18 +234,25 @@ namespace HashTester
                     //Other
                     writer.WriteLine("//Other - Path");
                     writer.WriteLine("basePathToFiles=" + BasePathToFiles);
+                    writer.WriteLine("settingsPathToFiles=" + SettingsPathToFiles);
                     writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
                     writer.WriteLine("collisionPathToFiles=" + CollisionPathToFiles);
+                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);
                 }
             }
-            File.Delete("..\\..\\settings\\settings.txt");
-            File.Move("..\\..\\settings\\temp.txt", "..\\..\\settings\\settings.txt");
+            if (!File.Exists(settingsPathToFileSettings))
+            {
+                File.Delete(settingsPathToFileSettings);
+            }
+            File.Delete(settingsPathToFileSettings);
+            File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
         }
         public static void LoadSettings()
         {
-            if (File.Exists("..\\..\\settings\\settings.txt"))
+            string settingsPathToFileSettings = Path.Combine(SettingsPathToFiles, "settings.txt");
+            if (File.Exists(settingsPathToFileSettings))
             {
-                using (FileStream fileSettings = new FileStream("..\\..\\settings\\settings.txt", FileMode.Open, FileAccess.Read))
+                using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
                 {
                     using (StreamReader reader = new StreamReader(fileSettings))
                     {
@@ -380,30 +414,38 @@ namespace HashTester
                                             }
                                             break;
                                         }
+                                    case "settingsPathToFiles":
+                                        {
+                                            try
+                                            {
+                                                SettingsPathToFiles = data[1];
+                                            }
+                                            catch (IndexOutOfRangeException)
+                                            {
+                                                SettingsPathToFiles = "";
+                                            }
+                                            break;
+                                        }
                                     default:
                                         {
                                             break;
                                         }
                                 }
-
                             }
                         }
                     }
                 }
             }
-        }
-        public static string TemporaryOutput()
-        {
-            return "OutputStyleIncludeOriginalString: " + OutputStyleIncludeOriginalString + "\n" +
-                   "OutputStyleIncludeSaltPepper: " + OutputStyleIncludeSaltPepper + "\n" +
-                   "OutputStyleIncludeNumberOfHash: " + OutputStyleIncludeNumberOfHash + "\n" +
-                   "OutputStyleIncludeHashAlgorithm: " + OutputStyleIncludeHashAlgorithm + "\n" +
-                   "VisualMode: " + VisualMode.ToString() + "\n" +
-                   "OutputType: " + OutputType.ToString() + "\n" +
-                   "UseSalt: " + UseSalt + "\n" +
-                   "UsePepper: " + UsePepper + "\n" +
-                   "BasePathToFiles: " + basePathToFiles;
+            else
+            {
+                Settings.ResetSettings();
+                Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
+            }
         }
 
-    }
+        public static string ApplicationPathForUnitTests()
+        {
+            return Application.ExecutablePath;
+        }
+    }    
 }
