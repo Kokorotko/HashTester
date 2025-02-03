@@ -11,11 +11,11 @@ outputStyle_IncludeHash=0
 outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=0
 //Salt and Pepper bool
-useSalt=0
+useSalt=1
 usePepper=0
 //Other - Path
-basePathToFiles=G:\Ročníková Práce\HashTester\HashTester\bin\Debug
-settingsPathToFiles=G:\Ročníková Práce\HashTester\HashTester\bin\Debug\Settings
-passwordPathToFiles=G:\Ročníková Práce\HashTester\HashTester\bin\Debug\Wordlists
-collisionPathToFiles=G:\Ročníková Práce\HashTester\HashTester\bin\Debug\SameHashingResults
-logSavePathToFiles=G:\Ročníková Práce\HashTester\HashTester\bin\Debug\Logs
+basePathToFiles=G:\Ročníková Práce\HashTester\HashTester
+settingsPathToFiles=G:\Ročníková Práce\HashTester\HashTester\Settings
+passwordPathToFiles=G:\Ročníková Práce\HashTester\HashTester\Wordlists
+collisionPathToFiles=G:\Ročníková Práce\HashTester\HashTester\SameHashingResults
+logSavePathToFiles=G:\Ročníková Práce\HashTester\HashTester\Logs

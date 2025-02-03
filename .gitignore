@@ -17,7 +17,7 @@
 mono_crash.*
 
 # Ignore all Debug folders
-#[Dd]ebug/
+[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -27,12 +27,14 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-#[Bb]in/
+[Bb]in/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
 
-# Negate ignoring for bin/Debug folder (allow it for testing purposes)
+# Exception: Allow bin/Debug/ and bin/Release/
+!HashTester/bin/Debug/
+!HashTester/bin/Release/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
