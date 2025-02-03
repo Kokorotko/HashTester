@@ -127,5 +127,10 @@ Work on written thesis
 **2025-01-28
 Version 0.7 HashTester Out
 **2025-01-30
-Unit Testy
+Unit Tests
 Settings File Update
+**2025-02-03
+GitIgnore Update
+Unit Tests (TXT INPUT)
+TXT Input added methods for Unit Testing in Main Form
+Some Unit Tests Shenanigans

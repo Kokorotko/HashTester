@@ -77,13 +77,30 @@ namespace HashTester
         {
             get
             {
-                if (!String.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles)) return basePathToFiles;
-                else return Path.GetDirectoryName(Application.ExecutablePath);
+                if (!string.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles))
+                {
+                    return basePathToFiles;
+                }
+                else
+                {
+                    string defaultPath = Path.GetDirectoryName(Application.UserAppDataPath);
+                    if (Directory.Exists(defaultPath)) Directory.CreateDirectory(defaultPath);
+                    return defaultPath;
+                }
             }
             set
             {
-                if (!String.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles)) basePathToFiles = value;
-                else basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath); //Base Application Path
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Directory.CreateDirectory(value);
+                    basePathToFiles = value;
+                }
+                else
+                {
+                    string defaultPath = Path.GetDirectoryName(Application.UserAppDataPath);
+                    if (Directory.Exists(defaultPath)) Directory.CreateDirectory(defaultPath);
+                    basePathToFiles = defaultPath;
+                }
             }
         }
         public static string SettingsPathToFiles
@@ -190,8 +207,12 @@ namespace HashTester
             Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
             string settingsPathToFileSettings = Path.Combine(SettingsPathToFiles, "settings.txt");
             Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
-            string settingsDirectory = Path.GetDirectoryName(SettingsPathToFiles);
-            if (!Directory.Exists(settingsDirectory)) Directory.CreateDirectory(settingsDirectory);
+            //Create Directory if it doesnt exist
+            string settingsDirectory = Path.GetDirectoryName(settingsPathToFileTemp);
+            if (!Directory.Exists(settingsDirectory))
+            {
+                Directory.CreateDirectory(settingsDirectory);
+            }
             using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
             {
                 using (StreamWriter writer = new StreamWriter(fileSettings))
@@ -240,6 +261,7 @@ namespace HashTester
                     writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);
                 }
             }
+
             if (!File.Exists(settingsPathToFileSettings))
             {
                 File.Delete(settingsPathToFileSettings);
@@ -441,11 +463,6 @@ namespace HashTester
                 Settings.ResetSettings();
                 Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
             }
-        }
-
-        public static string ApplicationPathForUnitTests()
-        {
-            return Application.ExecutablePath;
         }
     }    
 }

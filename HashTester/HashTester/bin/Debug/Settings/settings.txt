@@ -4,18 +4,18 @@
 //VisualMode from 0 to 2
 visualMode=0
 //OutputType from 0 to 2
-outputType=0
+outputType=1
 //All OutputStyles are bool
 outputStyle_IncludeOriginalString=0
 outputStyle_IncludeHash=0
 outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=0
 //Salt and Pepper bool
-useSalt=1
+useSalt=0
 usePepper=0
 //Other - Path
-basePathToFiles=G:\Ročníková Práce\HashTester\HashTester
-settingsPathToFiles=G:\Ročníková Práce\HashTester\HashTester\Settings
-passwordPathToFiles=G:\Ročníková Práce\HashTester\HashTester\Wordlists
-collisionPathToFiles=G:\Ročníková Práce\HashTester\HashTester\SameHashingResults
-logSavePathToFiles=G:\Ročníková Práce\HashTester\HashTester\Logs
+basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug
+settingsPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Settings
+passwordPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Wordlists
+collisionPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\SameHashingResults
+logSavePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Logs

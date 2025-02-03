@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -29,11 +30,24 @@ namespace HashTester
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            ProcessingHash(textHashSimple.Lines, algorithm, listBoxLog);
+            bool askForSaltPepper = false;
+            if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+            ProcessingHash(textHashSimple.Lines, algorithm, askForSaltPepper);
         }
-        private void TXTInput_Click(object sender, EventArgs e)
+        public void TXTInput_Click(object sender, EventArgs e)
         {
-            ProcessingHashTXTInput(algorithm, listBoxLog);
+            bool askForSaltPepper = false;
+            if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ProcessingHashTXTInput(algorithm, openFileDialog.FileName ,askForSaltPepper);
+            }
+            else
+            {
+                MessageBox.Show("Input přerušen");
+            }
         }
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
@@ -43,11 +57,12 @@ namespace HashTester
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }
-        #endregion
+        }       
 
-        #region StripMenu
-        private void UIToolStripMenuLoad()
+#endregion
+
+#region StripMenu
+private void UIToolStripMenuLoad()
         {
             includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
             includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
@@ -295,14 +310,17 @@ namespace HashTester
 
         #region ProcessingHash
         //Singular Algorithms
-        public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm algorithm, ListBox listbox)
+        public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm algorithm, bool askForSaltPepper)
         {
-            bool usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper);
-
+            bool usingSaltAndPepper = false;
+            bool isSaltUsed = false;
+            bool isPepperUsed = false;
+            string salt = "";
+            string pepper = "";
+            if (askForSaltPepper) usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out isSaltUsed, out isPepperUsed, out salt, out pepper);
             for (int i = 0; i < originalText.Length; i++)
             {
                 string hash = string.Empty;
-
                 if (usingSaltAndPepper)
                 {
                     Console.WriteLine("ProcessHashing - Salt: " + salt);
@@ -313,33 +331,23 @@ namespace HashTester
                 {
                     hash = hasher.Hash(originalText[i], algorithm);
                 }
-
                 OutputHandler outputHandler = new OutputHandler(algorithm);
                 string outputString = outputHandler.OutputStyleString(originalText[i], hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);
-                outputHandler.OutputTypeShow(outputString, listbox);
+                outputHandler.OutputTypeShow(outputString, listBoxLog);
             }
         }
-        public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, ListBox listbox)
+        public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, string fileNamePath, bool askForSaltPepper)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            using (StreamReader reader = new StreamReader(fileNamePath))
             {
-                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                List<string> lines = new List<string>();
+                while (!reader.EndOfStream)
                 {
-                    List<string> lines = new List<string>();
-                    while (!reader.EndOfStream)
-                    {
-                        lines.Add(reader.ReadLine());
-                    }
-                    ProcessingHash(lines.ToArray(), algorithm, listbox);
+                    lines.Add(reader.ReadLine());
                 }
+                ProcessingHash(lines.ToArray(), algorithm, askForSaltPepper);
             }
-            else
-            {
-                MessageBox.Show("Input přerušen");
-            }
-        }
+         }
         //Multiple Algorithms
         public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
         {
@@ -465,5 +473,32 @@ namespace HashTester
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
+
+        #region Unit-Tests
+        public void TXTInput_Click_Test(string path, Hasher.HashingAlgorithm tempAlgorithm)
+        {
+            bool askForSaltPepper = false;
+            if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+            if (File.Exists(path))
+            {
+                ProcessingHashTXTInput(tempAlgorithm, path, askForSaltPepper);
+            }
+            else
+            {
+                listBoxLog.Items.Add("File Doesnt Exist.");
+            }
+        }
+
+        public List<string> GetListBoxUnitTest()
+        {
+            List<string> temp = new List<string>();
+            foreach (string item in listBoxLog.Items)
+            {
+                temp.Add(item.ToString().Trim());
+            }
+            return temp;
+        }
+
+        #endregion
     }
 }

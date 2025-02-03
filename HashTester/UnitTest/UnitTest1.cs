@@ -6,6 +6,10 @@ using System.IO;
 using System;
 using System.Runtime;
 using static System.Net.Mime.MediaTypeNames;
+using System.Security.Policy;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UnitTest
 {
@@ -470,14 +474,14 @@ namespace UnitTest
     }
 
     [TestClass]
-
     public class SettingsTest
     {
         Hasher hasher = new Hasher();
 
         [TestMethod]
-        public void SettingsReset()
+        public void SettingsResetTest()
         {
+            Form1 form = new Form1();
             Settings.ResetSettings();
             bool isAllReseted = true;
             if (Settings.VisualMode != Settings.VisualModeEnum.System) isAllReseted = false;
@@ -487,11 +491,11 @@ namespace UnitTest
             if (Settings.OutputStyleIncludeSaltPepper != false) isAllReseted = false;
             if (Settings.UseSalt != false) isAllReseted = false;
             if (Settings.UsePepper != false) isAllReseted = false;
-            if (Settings.BasePathToFiles != Settings.ApplicationPathForUnitTests()) isAllReseted = false;
-            if (Settings.PasswordPathToFiles != Path.GetFullPath(Path.Combine(Settings.ApplicationPathForUnitTests(), "Wordlists"))) isAllReseted = false;
-            if (Settings.SettingsPathToFiles != Path.GetFullPath(Path.Combine(Settings.ApplicationPathForUnitTests(), "Settings"))) isAllReseted = false;
-            if (Settings.CollisionPathToFiles != Path.GetFullPath(Path.Combine(Settings.ApplicationPathForUnitTests(), "SameHashingResults"))) isAllReseted = false;
-            if (Settings.LogSavePathToFiles != Path.GetFullPath(Path.Combine(Settings.ApplicationPathForUnitTests(), "Logs"))) isAllReseted = false;
+            if (Settings.BasePathToFiles != System.Windows.Forms.Application.UserAppDataPath) isAllReseted = false;
+            if (Settings.PasswordPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Wordlists"))) isAllReseted = false;
+            if (Settings.SettingsPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Settings"))) isAllReseted = false;
+            if (Settings.CollisionPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "SameHashingResults"))) isAllReseted = false;
+            if (Settings.LogSavePathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Logs"))) isAllReseted = false;
             Assert.IsTrue(isAllReseted);
         }
 
@@ -660,7 +664,8 @@ namespace UnitTest
         public void BasePathToFilesTest01()
         {
             Settings.ResetSettings();
-            string customPath = Path.GetFullPath(Path.Combine(Settings.ApplicationPathForUnitTests(), "UnitTests"));
+            Form form = new Form();
+            string customPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "UnitTests"));
             Settings.BasePathToFiles = customPath;
             Assert.AreEqual(Settings.BasePathToFiles, customPath);
         }
@@ -670,7 +675,7 @@ namespace UnitTest
         {
             Settings.ResetSettings();
             Settings.BasePathToFiles = null;
-            Assert.AreEqual(Settings.BasePathToFiles, Path.GetFullPath(Settings.ApplicationPathForUnitTests()));
+            Assert.AreEqual(Settings.BasePathToFiles, Path.GetFullPath(System.Windows.Forms.Application.UserAppDataPath));
         }
         #endregion
 
@@ -679,7 +684,7 @@ namespace UnitTest
         public void PasswordPathToFilesTest01()
         {
             Settings.ResetSettings();
-            string customPath = Path.Combine(Settings.ApplicationPathForUnitTests(), "UnitTests");
+            string customPath = Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "UnitTests");
             Settings.PasswordPathToFiles = customPath;
             Assert.AreEqual(Settings.PasswordPathToFiles, customPath);
         }
@@ -689,7 +694,7 @@ namespace UnitTest
         {
             Settings.ResetSettings();
             Settings.PasswordPathToFiles = null;
-            Assert.AreEqual(Settings.PasswordPathToFiles, Path.GetFullPath(Path.Combine(Settings.BasePathToFiles, "Wordlists")));
+            Assert.AreEqual(Settings.PasswordPathToFiles, Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Wordlists")));
         }
         #endregion
 
@@ -796,9 +801,182 @@ namespace UnitTest
     [TestClass]
     public class txtInput
     {
-        Hasher hasher = new Hasher();
-    }
+        private Form1 form;
+        private string fullPath;
 
+        [TestInitialize]
+        public void Setup()
+        {
+            Settings.ResetSettings();
+            Settings.OutputType = OutputTypeEnum.Listbox;
+            form = new Form1();
+            fullPath = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\HashTester\\bin\\Debug\\_TESTING\\TXTInput\\01_input.txt");
+            Console.WriteLine("Path: " + fullPath);
+        }
+
+        [TestMethod]
+        public void InputTestFail()
+        {
+            form.TXTInput_Click_Test("C:amogus.txt", HashingAlgorithm.MD5);
+            List<string> returned = form.GetListBoxUnitTest();
+            List<string> expected = new List<string>
+            {
+                "File Doesnt Exist."
+            };
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void MD5InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.MD5);
+            List<string> expected = new List<string>
+            {
+                "61a96ffcb251bb9bf0abf8fec19d0ea8",
+                "9e935f6943a7ff4b456dac79487d9e8c",
+                "7b2ec54d2f3bdf0ea1de5827894de4e7"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            //Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void SHA1InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.SHA1);
+            List<string> expected = new List<string>
+            {
+                "7d4e42ef9d04a046b5679f952cb0b6b5c498c73c",
+                "0bb3061a9a87536d6d31ceff40af2f6c50de0d8e",
+                "9b4bb9ce544802637dc0764684b7bb01d21640b4"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            // Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void SHA256InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.SHA256);
+            List<string> expected = new List<string>
+            {
+                "e4ba216b53e675d3ce45a8584de79ecc013718ef83ebd53f29d47d97af594386",
+                "cb495bc06484ef6a305262f738aea3339e0d6524fdb4cb3b28bdbb5d9c9254dd",
+                "7875cd84f693965cf44afbf7cb51cb63c17e77e94e5fc81e1b0beedc004e256b"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            // Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void SHA512InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.SHA512);
+            List<string> expected = new List<string>
+            {
+                "182a4696f17c7c06eecf83ff7f406c7488ea04b3b90c60b0e79a48668a3d8b9bfc7d92b276dd43c1dcce72fbd0da30772a1968db06b5fb53d218b0115b8449b6",
+                "df0e085bfa13974d6b5db9e15a4c13c705a6c9cf5d777ec363fb0b2ea93e7e5c69ffdcc795c7fb239de9b3638c93c410e613f35b343ae8471cd8a297701a39d3",
+                "197fb1e6ea813aac741b56f962f3b60d7c157431a4eca1be2dd382e99a5894955d2d4a5118908d17717ecad096c65e49ff41b4e32750e975b878ad4f76036aa3"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            // Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void RIPEMD160InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.RIPEMD160);
+            List<string> expected = new List<string>
+            {
+                "19ed5a38eeb28d5a2b005a4f822301d355a55530",
+                "80df3ac036545c2c7802e29e12cb8b10f78d005c",
+                "624f482685ba3e1fe96eeb72bea6bf14bf6b647c"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            // Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+        [TestMethod]
+        public void CRC32InputTest_ListBox()
+        {
+            form.TXTInput_Click_Test(fullPath, HashingAlgorithm.CRC32);
+            List<string> expected = new List<string>
+            {
+                "0d1e4a73",
+                "4addd17b",
+                "d3d480c1"
+            };
+            List<string> returned = form.GetListBoxUnitTest();
+            // Console Output
+            Console.WriteLine("Expected: ");
+            foreach (string item in expected)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Returned: ");
+            foreach (string item in returned)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.IsTrue(expected.SequenceEqual(returned));
+        }
+
+    }
     [TestClass]
     public class SameHashesComparison
     {
