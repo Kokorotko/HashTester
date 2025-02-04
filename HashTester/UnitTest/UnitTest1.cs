@@ -312,7 +312,7 @@ namespace UnitTest
         public void PepperCheckMD5()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.MD5);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.MD5, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.MD5);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -343,7 +343,7 @@ namespace UnitTest
         public void PepperCheckSHA1()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA1);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.SHA1, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.SHA1);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -374,7 +374,7 @@ namespace UnitTest
         public void PepperCheckSHA256()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA256);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.SHA256, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01,temp, pepper.Length, HashingAlgorithm.SHA256);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -405,7 +405,7 @@ namespace UnitTest
         public void PepperCheckSHA512()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA512);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.SHA512, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.SHA512);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -436,7 +436,7 @@ namespace UnitTest
         public void PepperCheckRIPEMD160()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.RIPEMD160);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.RIPEMD160, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.RIPEMD160);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -467,7 +467,7 @@ namespace UnitTest
         public void PepperCheckCRC32()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.CRC32);
-            hasher.CheckPepper(temp, pepper.Length, HashingAlgorithm.CRC32, out string outputPepper);
+            string outputPepper = hasher.CheckPepper(text01 ,temp, pepper.Length, HashingAlgorithm.CRC32);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -484,20 +484,71 @@ namespace UnitTest
             Form1 form = new Form1();
             Settings.ResetSettings();
             bool isAllReseted = true;
-            if (Settings.VisualMode != Settings.VisualModeEnum.System) isAllReseted = false;
-            if (Settings.OutputType != Settings.OutputTypeEnum.MessageBox) isAllReseted = false;
-            if (Settings.OutputStyleIncludeHashAlgorithm != false) isAllReseted = false;
-            if (Settings.OutputStyleIncludeOriginalString != false) isAllReseted = false;
-            if (Settings.OutputStyleIncludeSaltPepper != false) isAllReseted = false;
-            if (Settings.UseSalt != false) isAllReseted = false;
-            if (Settings.UsePepper != false) isAllReseted = false;
-            if (Settings.BasePathToFiles != System.Windows.Forms.Application.UserAppDataPath) isAllReseted = false;
-            if (Settings.PasswordPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Wordlists"))) isAllReseted = false;
-            if (Settings.SettingsPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Settings"))) isAllReseted = false;
-            if (Settings.CollisionPathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "SameHashingResults"))) isAllReseted = false;
-            if (Settings.LogSavePathToFiles != Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Logs"))) isAllReseted = false;
+
+            if (Settings.VisualMode != Settings.VisualModeEnum.System)
+            {
+                Console.WriteLine("VisualMode is " + Settings.VisualMode + ", expected System.");
+                isAllReseted = false;
+            }
+            if (Settings.OutputType != Settings.OutputTypeEnum.MessageBox)
+            {
+                Console.WriteLine("OutputType is " + Settings.OutputType + ", expected MessageBox.");
+                isAllReseted = false;
+            }
+            if (Settings.OutputStyleIncludeHashAlgorithm != false)
+            {
+                Console.WriteLine("OutputStyleIncludeHashAlgorithm is " + Settings.OutputStyleIncludeHashAlgorithm + ", expected false.");
+                isAllReseted = false;
+            }
+            if (Settings.OutputStyleIncludeOriginalString != false)
+            {
+                Console.WriteLine("OutputStyleIncludeOriginalString is " + Settings.OutputStyleIncludeOriginalString + ", expected false.");
+                isAllReseted = false;
+            }
+            if (Settings.OutputStyleIncludeSaltPepper != false)
+            {
+                Console.WriteLine("OutputStyleIncludeSaltPepper is " + Settings.OutputStyleIncludeSaltPepper + ", expected false.");
+                isAllReseted = false;
+            }
+            if (Settings.UseSalt != false)
+            {
+                Console.WriteLine("UseSalt is " + Settings.UseSalt + ", expected false.");
+                isAllReseted = false;
+            }
+            if (Settings.UsePepper != false)
+            {
+                Console.WriteLine("UsePepper is " + Settings.UsePepper + ", expected false.");
+                isAllReseted = false;
+            }
+            if (Settings.BasePathToFiles != Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath))
+            {
+                Console.WriteLine("BasePathToFiles is " + Settings.BasePathToFiles + ", expected " + Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath) + ".");
+                isAllReseted = false;
+            }
+            if (Settings.PasswordPathToFiles != Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Wordlists"))
+            {
+                Console.WriteLine("PasswordPathToFiles is " + Settings.PasswordPathToFiles + ", expected " + Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Wordlists") + ".");
+                isAllReseted = false;
+            }
+            if (Settings.SettingsPathToFiles != Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Settings"))
+            {
+                Console.WriteLine("SettingsPathToFiles is " + Settings.SettingsPathToFiles + ", expected " + Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Settings") + ".");
+                isAllReseted = false;
+            }
+            if (Settings.CollisionPathToFiles != Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "SameHashingResults"))
+            {
+                Console.WriteLine("CollisionPathToFiles is " + Settings.CollisionPathToFiles + ", expected " + Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "SameHashingResults") + ".");
+                isAllReseted = false;
+            }
+            if (Settings.LogSavePathToFiles != Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Logs"))
+            {
+                Console.WriteLine("LogSavePathToFiles is " + Settings.LogSavePathToFiles + ", expected " + Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Logs") + ".");
+                isAllReseted = false;
+            }
+
             Assert.IsTrue(isAllReseted);
         }
+
 
         #region VisualMode
         [TestMethod]
@@ -675,7 +726,7 @@ namespace UnitTest
         {
             Settings.ResetSettings();
             Settings.BasePathToFiles = null;
-            Assert.AreEqual(Settings.BasePathToFiles, Path.GetFullPath(System.Windows.Forms.Application.UserAppDataPath));
+            Assert.AreEqual(Settings.BasePathToFiles, Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath));
         }
         #endregion
 
@@ -686,6 +737,8 @@ namespace UnitTest
             Settings.ResetSettings();
             string customPath = Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "UnitTests");
             Settings.PasswordPathToFiles = customPath;
+            Console.WriteLine("customPath: " + customPath);
+            Console.WriteLine("PasswordPathToFiles: " + Settings.PasswordPathToFiles);
             Assert.AreEqual(Settings.PasswordPathToFiles, customPath);
         }
 
@@ -694,7 +747,9 @@ namespace UnitTest
         {
             Settings.ResetSettings();
             Settings.PasswordPathToFiles = null;
-            Assert.AreEqual(Settings.PasswordPathToFiles, Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.UserAppDataPath, "Wordlists")));
+            Console.WriteLine("customPath: " + Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Wordlists"));
+            Console.WriteLine("PasswordPathToFiles: " + Settings.PasswordPathToFiles);
+            Assert.AreEqual(Settings.PasswordPathToFiles, Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.UserAppDataPath), "Wordlists"));
         }
         #endregion
 
@@ -703,7 +758,7 @@ namespace UnitTest
         public void CollisionPathToFilesTest01()
         {
             Settings.ResetSettings();
-            string customPath = "C:\\CustomCollisionPath";
+            string customPath = Path.Combine("System.Windows.Forms.Application.UserAppDataPath", "TESTCollisionPath");
             Settings.CollisionPathToFiles = customPath;
             Assert.AreEqual(Settings.CollisionPathToFiles, customPath);
         }
@@ -722,7 +777,7 @@ namespace UnitTest
         public void LogSavePathToFilesTest01()
         {
             Settings.ResetSettings();
-            string customPath = "C:\\CustomLogPath";
+            string customPath = Path.Combine("System.Windows.Forms.Application.UserAppDataPath", "TESTLogSave");
             Settings.LogSavePathToFiles = customPath;
             Assert.AreEqual(Settings.LogSavePathToFiles, customPath);
         }
@@ -741,7 +796,7 @@ namespace UnitTest
         public void SettingsPathToFilesTest01()
         {
             Settings.ResetSettings();
-            string customPath = "C:\\CustomSettingsPath";
+            string customPath = Path.Combine("System.Windows.Forms.Application.UserAppDataPath", "TESTSettingsPath");
             Settings.SettingsPathToFiles = customPath;
             Assert.AreEqual(Settings.SettingsPathToFiles, customPath);
         }
@@ -751,7 +806,7 @@ namespace UnitTest
         {
             Settings.ResetSettings();
             Settings.SettingsPathToFiles = null;
-            Assert.AreEqual(Settings.SettingsPathToFiles, Path.GetFullPath(Path.Combine(Settings.BasePathToFiles, "Settings")));
+            Assert.AreEqual(Settings.SettingsPathToFiles, Path.Combine(Settings.BasePathToFiles, "Settings"));
         }
         #endregion
     }
@@ -798,6 +853,7 @@ namespace UnitTest
             File.Delete(wayToGeneratedFile);
         }
     }
+
     [TestClass]
     public class txtInput
     {
@@ -977,6 +1033,7 @@ namespace UnitTest
         }
 
     }
+
     [TestClass]
     public class SameHashesComparison
     {

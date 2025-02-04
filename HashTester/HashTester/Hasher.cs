@@ -142,36 +142,28 @@ namespace HashTester
             }
         }
 
-        public bool CheckPepper(string hashedText, int length, HashingAlgorithm algorithm, out string pepper)
+        public string CheckPepper(string originalText, string hashedText, int length, HashingAlgorithm algorithm)
         {
-            pepper = "";
-            bool foundMatch = false;
+            hashedText = hashedText.ToLower();
             string usableChars = string.Concat(Enumerable.Range(32, 224 + 1) //utf-8 except the first 32
                              .Select(i => char.ConvertFromUtf32(i)));
-
-
-            // Total number of combinations of the pepper
             int totalCombinations = (int)Math.Pow(usableChars.Length, length);
-
-            for (int i = 0; i < totalCombinations && !foundMatch; i++)
-            {
+            for (int i = 0; i < totalCombinations; i++) //Finding Pepper
+            { 
                 string pepperTest = "";
                 int tempIndex = i;
-
                 for (int j = 0; j < length; j++) //build the next pepper
                 {                   
                     pepperTest = usableChars[tempIndex % usableChars.Length] + pepperTest;
                     tempIndex /= usableChars.Length;
                 }
-
-                string temp = Hash(hashedText + pepperTest, algorithm);
+                string temp = Hash(originalText + pepperTest, algorithm);
                 if (temp == hashedText)
                 {
-                    pepper = pepperTest;
-                    foundMatch = true;
+                    return pepperTest; //found match
                 }
             }
-            return foundMatch;
+            return "";
         }
 
         #endregion
