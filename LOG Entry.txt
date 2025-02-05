@@ -135,4 +135,8 @@ Unit Tests (TXT INPUT)
 TXT Input added methods for Unit Testing in Main Form
 Some Unit Tests Shenanigans
 **2025-02-04
-Fixing Old Unit Tests
+Unit Test Fixing
+**2025-02-05
+Unit Test on Rainbow Table Generator
+Rainbow Table Generator MultiThread
+Rainbow Table Generator Better UI Management

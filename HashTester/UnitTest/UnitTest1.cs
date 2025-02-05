@@ -374,7 +374,7 @@ namespace UnitTest
         public void PepperCheckSHA256()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.SHA256);
-            string outputPepper = hasher.CheckPepper(text01,temp, pepper.Length, HashingAlgorithm.SHA256);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.SHA256);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -467,7 +467,7 @@ namespace UnitTest
         public void PepperCheckCRC32()
         {
             string temp = hasher.HashSaltPepper(text01, false, true, "", pepper, HashingAlgorithm.CRC32);
-            string outputPepper = hasher.CheckPepper(text01 ,temp, pepper.Length, HashingAlgorithm.CRC32);
+            string outputPepper = hasher.CheckPepper(text01, temp, pepper.Length, HashingAlgorithm.CRC32);
             Assert.AreEqual(pepper, outputPepper);
         }
         #endregion
@@ -1038,6 +1038,303 @@ namespace UnitTest
     public class SameHashesComparison
     {
         Hasher hasher = new Hasher();
+    }
+
+    [TestClass]
+    public class GenerateRainbowTable
+    {
+        List<string> deleteAfter = new List<string>();
+        string pathToInputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort.txt");
+
+        [TestMethod]
+        public void GenerateRainbowTableTestMD5()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();       
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-MD5.txt");
+            deleteAfter.Add(pathToOutputFile);
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabMD5.txt");
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.MD5, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestMD5()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-MD5.txt");
+            deleteAfter.Add(pathToOutputFile);
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabMD5.txt");
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.MD5, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableTestSHA1()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA1.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA1.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA1, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableTestSHA256()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA256.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA256.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA256, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableTestSHA512()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA512.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA512.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA512, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableTestRIPEMD160()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-RIPEMD-160.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabRIPEMD-160.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.RIPEMD160, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+
+        [TestMethod]
+        public void GenerateRainbowTableTestCRC32()
+        {
+            Settings.ResetSettings();
+            Console.WriteLine("pathToInputFile: " + pathToInputFile);
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-CRC32.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabCRC32.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTable(pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.CRC32, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Console.WriteLine("Generating RainbowTable Failed");
+                Assert.Fail();               
+            }            
+        }
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestSHA1()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA1.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA1.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA1, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestSHA256()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA256.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA256.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA256, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestSHA512()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-SHA512.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabSHA512.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.SHA512, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestRIPEMD160()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-RIPEMD-160.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabRIPEMD-160.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.RIPEMD160, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+        [TestMethod]
+        public void GenerateRainbowTableMultiThreadTestCRC32()
+        {
+            Settings.ResetSettings();
+            PasswordForm form = new PasswordForm();
+            string pathToOutputFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-CRC32.txt");
+            string pathToTestFile = Path.Combine(Settings.PasswordPathToFiles, "_TESTING\\RainbowTables\\rockyouShort-PrefabCRC32.txt");
+            deleteAfter.Add(pathToOutputFile);
+            if (form.GenerateRainbowTableMultiThread(Environment.ProcessorCount / 2, pathToInputFile, pathToOutputFile, Hasher.HashingAlgorithm.CRC32, out string s))
+            {
+                Console.WriteLine("Input File: " + pathToInputFile);
+                Console.WriteLine("Output File: " + pathToOutputFile);
+                Console.WriteLine("Test File: " + pathToTestFile);
+                Assert.IsTrue(AreFilesEqual(pathToTestFile, pathToOutputFile));
+            }
+            else
+            {
+                Assert.Fail();
+                Console.WriteLine("Generating RainbowTable Failed");
+            }
+        }
+        [TestCleanup]
+        public void CleanUp()
+        {            
+            foreach(string file in deleteAfter) File.Delete(file);
+        }
+
+        public bool AreFilesEqual(string file1, string file2)
+        {
+            const int bufferSize = 4096; // 4 KB buffer size, adjust as needed
+
+            using (var stream1 = new FileStream(file1, FileMode.Open, FileAccess.Read))
+            using (var stream2 = new FileStream(file2, FileMode.Open, FileAccess.Read))
+            {
+                byte[] buffer1 = new byte[bufferSize];
+                byte[] buffer2 = new byte[bufferSize];
+
+                int bytesRead1, bytesRead2;
+                while ((bytesRead1 = stream1.Read(buffer1, 0, buffer1.Length)) > 0 &&
+                       (bytesRead2 = stream2.Read(buffer2, 0, buffer2.Length)) > 0)
+                {
+                    if (bytesRead1 != bytesRead2)
+                        return false;
+
+                    if (!buffer1.Take(bytesRead1).SequenceEqual(buffer2.Take(bytesRead2)))
+                        return false;
+                }
+                return stream1.Position == stream2.Position; // Ensure both files are the same length
+            }
+        }
+
     }
 }
 

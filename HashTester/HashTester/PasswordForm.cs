@@ -1,27 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics;
-using System.Security.Policy;
-using System.Runtime.CompilerServices;
-using System.Collections.Concurrent;
-using System.Net.Http.Headers;
 using System.Threading;
 using Timer = System.Windows.Forms.Timer;
-using System.Diagnostics.Eventing.Reader;
-using System.Collections;
-using static System.Windows.Forms.AxHost;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-using System.Net.Sockets;
 
 namespace HashTester
 {
@@ -37,15 +23,16 @@ namespace HashTester
         private volatile bool userAbortProcess = false;
         private volatile bool ranOutOfAttemps = false;
         Stopwatch stopwatch = new Stopwatch();
+        Timer updateUITimerRainbowTable = new Timer();
         //Password Dictionary Attack and Bruteforce Attack
         Timer timeToUpdateTheUI = new Timer();
         private static ulong maxAttempts = 0;
         private static long attempts = 0;
         private long numberOfAttempsInLastUpdate = 0; //The time is 16ms
-        private Timer updateUITimer;
         ulong numberOfAllPossibleCombinations = 0;
         bool useStopTimer = true;
         private volatile bool ranOutOfTime = false;
+        private long rainbowTableLinesProcessed = 0;
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
@@ -61,6 +48,10 @@ namespace HashTester
             else if (radioButton2.Enabled) radioButton2.Checked = true;
             else if (radioButton3.Enabled) radioButton3.Checked = true;
             else radioButton4.Checked = true;
+            //RainbowTable Timer
+            updateUITimerRainbowTable.Interval = 16; //for 62.5 fps updates            
+            updateUITimerRainbowTable.Tick += new EventHandler(UpdateUIRainbowTable); 
+            updateUITimerRainbowTable.Enabled = true;
         }
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,6 +76,7 @@ namespace HashTester
         private void ActivateUI()
         {
             foreach (Control control in this.Controls) control.Enabled = true;
+            progressBar1.Value = 0;
         }
 
         private bool FindIfTXTIsPresent(string name)
@@ -317,15 +309,125 @@ namespace HashTester
         }
         #endregion
 
-        #region Pre Hash
+        #region Rainbow Table
+        Stopwatch rainbowTableStopwatch = new Stopwatch();
+        private static long rainbowTableAllLines = 0;
+        public bool GenerateRainbowTable(string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm, out string logOutput)
+        {
+            logOutput = "";
+            if (!File.Exists(fileInputPath)) { return false; }
+            using (StreamReader reader = new StreamReader(fileInputPath))
+            {
+                rainbowTableAllLines = File.ReadLines(fileInputPath).LongCount();
+                using (StreamWriter writer = new StreamWriter(fileOutputPath))
+                {
+                    writer.WriteLine("algorithm==" + hashingAlgorithm.ToString());
+                    //Stats
+                    while (!reader.EndOfStream)
+                    {
+                        Interlocked.Increment(ref rainbowTableLinesProcessed);
+                        //txt
+                        string line = reader.ReadLine();
+                        string hash = hasher.Hash(line, hashingAlgorithm);
+                        writer.WriteLine(line + "==" + hash);
+                    }
+                }
+            }
+            logOutput = "Raindow Table of the file: " + fileInputPath + " with " + hashingAlgorithm.ToString() + " hashing algorithm is done.";
+            return true;
+        }
+
+        public bool GenerateRainbowTableMultiThread(int numberOfThreadsUsed, string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm, out string logOutput)
+        {
+            logOutput = "";    
+            if (!File.Exists(fileInputPath)) { return false; }
+            rainbowTableAllLines = File.ReadLines(fileInputPath).LongCount();
+            string[] tempFilesInput = new string[numberOfThreadsUsed];
+            string[] tempFilesOutput = new string[numberOfThreadsUsed];
+            long numberOfCurrentLines = 0;
+            //Split the file
+            using (StreamReader readerInput = new StreamReader(fileInputPath))
+            {
+                for (int i = 0; i < numberOfThreadsUsed; i++)
+                {
+                    tempFilesInput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "InputSplit-" + i + ".txt");
+                    tempFilesOutput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "Temp-" + i + ".txt");
+                    long numberOfLinesForThread = rainbowTableAllLines / numberOfThreadsUsed;
+                    using (StreamWriter writer = new StreamWriter(tempFilesInput[i]))
+                    {
+                        if (i != numberOfThreadsUsed - 1)
+                        {
+                            for (int j = 0; j < numberOfLinesForThread; j++)
+                            {
+                                writer.WriteLine(readerInput.ReadLine());
+                            }
+                        }
+                        else
+                        {
+                            while (!readerInput.EndOfStream)
+                            {
+                                writer.WriteLine(readerInput.ReadLine());
+                            }
+                        }
+                    }
+                    numberOfCurrentLines += numberOfLinesForThread;
+                }
+            }
+            //Process the file
+            Parallel.ForEach(tempFilesInput, (inputFile, state, index) =>
+            {
+                Console.WriteLine($"Thread {index} started running");
+                GenerateRainbowTableMultiThreadForSingleThread(inputFile, tempFilesOutput[index], hashingAlgorithm);
+            });
+            //Combine the splits
+            using (StreamWriter writer = new StreamWriter(fileOutputPath))
+            {
+                writer.WriteLine("algorithm==" + hashingAlgorithm.ToString());
+                foreach (string fileOutput in tempFilesOutput)
+                {
+                    using (StreamReader reader = new StreamReader(fileOutput))
+                    {
+                        while (!reader.EndOfStream) writer.WriteLine(reader.ReadLine());
+                    }
+                    File.Delete(fileOutput);
+                }
+            }
+            foreach (string tempFile in tempFilesInput)
+            {
+                File.Delete(tempFile);
+            }
+            logOutput = "Rainbow Table of the file: " + fileInputPath + " with " + hashingAlgorithm.ToString() + " hashing algorithm is done.";
+            return true;
+        }
+
+        private void GenerateRainbowTableMultiThreadForSingleThread(string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
+        {
+            using (StreamReader reader = new StreamReader(fileInputPath))
+            {
+                using (StreamWriter writer = new StreamWriter(fileOutputPath))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        string hash = hasher.Hash(line, hashingAlgorithm);
+                        writer.WriteLine(line + "==" + hash);
+                        Interlocked.Increment(ref rainbowTableLinesProcessed);
+                    }
+                }
+            }
+            File.Delete(fileInputPath);
+        }
+        
         Hasher.HashingAlgorithm userAlgorithm = new Hasher.HashingAlgorithm();
         Hasher hasher = new Hasher();
         private void buttonPreHash_Click(object sender, EventArgs e)
         {
             ResetAllValues();
+            DisableUI();            
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
-
+            updateUITimerRainbowTable.Start();
+            rainbowTableStopwatch.Start();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -335,57 +437,73 @@ namespace HashTester
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    DisableUI();
-                    using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                    //MultiThread
+                    if (checkBoxPerformanceMode.Checked)
                     {
-                        int linesInTXT = (int)File.ReadLines(openFileDialog.FileName).LongCount();
-                        using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
+                        if (GenerateRainbowTableMultiThread(Environment.ProcessorCount - 1, openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm, out string logOutput))
                         {
-                            stopwatch.Start();
-                            writer.WriteLine("algorithm==" + userAlgorithm.ToString());
-                            //Stats
-                            int numberOfHashed = 0;
-                            int numberOfHashedInLastUpdate = 0;
-                            long stopwatchTime = stopwatch.ElapsedMilliseconds;
-                            while (!reader.EndOfStream)
-                            {
-                                //UI                             
-                                if (stopwatch.ElapsedMilliseconds - stopwatchTime > 16) //update UI every 60+ fps
-                                {
-                                    stopwatchTime = stopwatch.ElapsedMilliseconds;
-                                    double speed = (numberOfHashed - numberOfHashedInLastUpdate) / 0.016;
-                                    int progress = numberOfHashed / linesInTXT;
-                                    UpdateUIPreHash(numberOfHashed, stopwatchTime, speed, progress);
-                                    numberOfHashedInLastUpdate = numberOfHashed;
-                                }
-                                numberOfHashed++;
-
-                                //txt
-                                string line = reader.ReadLine();
-                                string hash = hasher.Hash(line, userAlgorithm);
-                                writer.WriteLine(line + "==" + hash);
-                            }
+                            rainbowTableStopwatch.Reset();
+                            updateUITimerRainbowTable.Enabled = false;
+                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(logOutput);
+                            MessageBox.Show("Rainbow Table has been generated succesfully.");
+                        }
+                        else
+                        {
+                            rainbowTableStopwatch.Reset();
+                            updateUITimerRainbowTable.Enabled = false;
+                            string s = "Program could not generate the rainbow table. Abbandoning process.";
+                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(logOutput);
+                            MessageBox.Show(s);
                         }
                     }
-                    if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Pre-hash of the file: " + openFileDialog.FileName + " with " + userAlgorithm.ToString() + " done.");
+                    //Single Thread
+                    else
+                    {
+                        if (GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm, out string logOutput))
+                        {
+                            rainbowTableStopwatch.Reset();
+                            updateUITimerRainbowTable.Enabled = false;
+                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(logOutput);
+                            MessageBox.Show("Rainbow Table has been generated succesfully.");
+                        }
+                        else
+                        {
+                            rainbowTableStopwatch.Reset();    
+                            updateUITimerRainbowTable.Enabled = false;
+                            string s = "Program could not generate the rainbow table. Abbandoning process.";
+                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(logOutput);
+                            MessageBox.Show(s);
+                        }
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Pre-hash abandoned.");
-                if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Pre-hash abandoned.");
-            }
-            stopwatch.Stop();
-            stopwatch.Restart();
+                rainbowTableStopwatch.Reset();
+                updateUITimerRainbowTable.Enabled = false;
+                MessageBox.Show("Rainbow Table Generator abandoned.");
+                if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Rainbow Table Generator abandoned.");
+            }            
             ActivateUI();
-        }
-
-        private void UpdateUIPreHash(int lineNumber, long stopwatchTime, double speed, int progress)
+        }        
+        private void UpdateUIRainbowTable(object sender, EventArgs e)
         {
-            labelTimer.Text = "Timer: " + stopwatchTime / 1000 + "." + stopwatchTime % 1000;
-            labelSpeed.Text = "Average speed /s: " + lineNumber / (double)(stopwatchTime / 1000);
-            labelCurrentSpeed.Text = "Hashes /s: " + speed.ToString();
-            progressBar1.Value = progress;
+            long tempRainbowTableLinesProcessed = Interlocked.Read(ref rainbowTableLinesProcessed);
+            if (rainbowTableStopwatch.ElapsedMilliseconds > 0 && tempRainbowTableLinesProcessed > 0 && rainbowTableAllLines > 0)
+            {
+                Console.WriteLine("Updated UI on Rainbow Tables");                
+                double speed = (tempRainbowTableLinesProcessed - numberOfAttempsInLastUpdate) / 0.016;
+                int progress = (int)((double)tempRainbowTableLinesProcessed / rainbowTableAllLines * 100);
+                numberOfAttempsInLastUpdate = tempRainbowTableLinesProcessed;
+                labelTimer.Text = "Timer: " + rainbowTableStopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTableStopwatch.ElapsedMilliseconds % 1000;
+                labelSpeed.Text = "Average speed /s: " + tempRainbowTableLinesProcessed / (double)(rainbowTableStopwatch.ElapsedMilliseconds / 1000);
+                labelCurrentSpeed.Text = "Hashes /s: " + speed.ToString();
+                progressBar1.Value = Math.Min(100, progress);
+                //Refresh - The Labels didnt update for some reason
+                labelTimer.Refresh();
+                labelSpeed.Refresh();
+                labelCurrentSpeed.Refresh();
+            }
         }
         #endregion
 
@@ -1199,7 +1317,7 @@ namespace HashTester
             userAbortProcess = false;
             stopDictionaryAttack = false;
             ranOutOfTime = false;
-
+            rainbowTableAllLines = 0;
             progressBar1.Value = 0;
             progressBarValueDictionararyAttack = 0;
             numberOfLinesInLastUpdate = 0;
