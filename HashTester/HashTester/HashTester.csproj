@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RainbowTable.cs" />
     <Compile Include="SaltAndPepperOverrideFile.cs">
       <SubType>Form</SubType>
     </Compile>

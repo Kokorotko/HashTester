@@ -34,10 +34,10 @@ bld/
 HashTester/UnitTest/
 HashTester/UnitTest/bin/
 HashTester/UnitTest/bin/Debug/
+_TESTING/
 
 #Custom Ignore some Files
 HashTester/HashTester/bin/Debug/WordLists/rockyou.txt
-HashTester/HashTester/bin/Debug/Settings/
 !HashTester/UnitTest/UnitTest1.cs
 HashTester/HashTester/bin/Debug/HashTester.exe
 
@@ -406,3 +406,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+HashTester/HashTester/bin/Debug/Settings/settings.txt
+HashTester/HashTester/bin/Debug/Settings/settings.txt
+HashTester/HashTester/bin/Debug/Settings/settings.txt

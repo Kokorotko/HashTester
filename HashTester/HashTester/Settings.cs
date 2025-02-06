@@ -83,12 +83,12 @@ namespace HashTester
                 }
                 else
                 {
-                    string defaultPath = Path.GetDirectoryName(Application.UserAppDataPath);
-                    if (!Directory.Exists(defaultPath))
+                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
+                    if (!Directory.Exists(basePathToFiles))
                     {
-                        Directory.CreateDirectory(defaultPath);
+                        Directory.CreateDirectory(basePathToFiles);
                     }
-                    return defaultPath;
+                    return basePathToFiles;
                 }
             }
             set
@@ -103,15 +103,15 @@ namespace HashTester
                 }
                 else
                 {
-                    string defaultPath = Path.GetDirectoryName(Application.UserAppDataPath);
-                    if (!Directory.Exists(defaultPath))
+                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
+                    if (!Directory.Exists(basePathToFiles))
                     {
-                        Directory.CreateDirectory(defaultPath);
+                        Directory.CreateDirectory(basePathToFiles);
                     }
-                    basePathToFiles = defaultPath;
                 }
             }
         }
+
         public static string SettingsPathToFiles
         {
             get
