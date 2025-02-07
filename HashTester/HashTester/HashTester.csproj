@@ -80,6 +80,7 @@
     <Compile Include="ConfirmationForm.Designer.cs">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RainbowTableAttack.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

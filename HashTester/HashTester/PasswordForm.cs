@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
 using Timer = System.Windows.Forms.Timer;
+using System.Runtime.Remoting.Channels;
 
 namespace HashTester
 {
@@ -19,7 +20,7 @@ namespace HashTester
         }
 
         bool taskCurrentlyWorking = false;
-        int whatTaskIsWorking = -1;
+        int whatTaskIsWorking = -1; //1 == RainbowTableGenerator; 2== RainbowTableAttack
         Hasher.HashingAlgorithm userAlgorithm = new Hasher.HashingAlgorithm();
         Hasher hasher = new Hasher();
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -399,360 +400,159 @@ namespace HashTester
 
         #endregion
 
-        #region Password Dictionary Attack
+        #region Rainbow Table Attack      
+        RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
 
-        private readonly object lockObject = new object();
-        volatile int linesProcessed = 1;
-        int progressBarValueDictionararyAttack = 0;
-        int numberOfLinesInLastUpdate = 0;
-        private async void buttonDictionaryAttack_Click(object sender, EventArgs e)
+        private void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
-            ResetAllValues();
-            TurnOffUI();        
-            bool performanceMode = checkBoxPerformanceMode.Checked;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
-            if (numericUpDownStopTimer.Value == 0) useStopTimer = false;
-            else useStopTimer = true;
+            Timer timeToUpdateUI = new Timer();
+            timeToUpdateUI.Interval = 16; //16ms == 60+fps
+            timeToUpdateUI.Tick += (s, args) => UpdateTheUIDictionaryAttack();
+            TurnOffUI();
+            taskCurrentlyWorking = true;
+            whatTaskIsWorking = 2;
+
+            string originalInput = textBoxBruteForceInput.Text;
+            if (radioButton5.Checked)
+                originalInput = hasher.Hash(originalInput, userAlgorithm);
+
+            rainbowTableAttack.PerformanceMode = checkBoxPerformanceMode.Checked;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Settings.PasswordPathToFiles
+            };
+
+            rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Set up
-                string firstLine = "";
-                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                timeToUpdateUI.Start();
+                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm))
                 {
-                    firstLine = reader.ReadLine();
-                }
-                GetFileAlgorithm(firstLine, out bool inputFileIsInPlainText, out bool reHashNeeded, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm);
-                if (continueTheAttack)
-                {
-                    stopwatch.Reset();
-                    stopwatch.Start();
-                    SetUpTimer(false, false);
-                    bool foundHash = false;
-                    string stringFoundPassword = "";
-                    string userInputHash = textBoxBruteForceInput.Text;
-                    long foundPasswordAtLine = -1;
-                    if (radioButton5.Checked)
-                    {
-                        userInputHash = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
-                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userInputHash + ".");
-                    }
-                    if (performanceMode)
-                    {
-                        // SetUp
-                        int maxThreads = Environment.ProcessorCount;
-                        string[] allLines = File.ReadAllLines(openFileDialog.FileName);
-                        int totalLinesInFile = allLines.Length;
-                        int linesPerThread = totalLinesInFile / maxThreads;
-                        List<Task> allTasks = new List<Task>();
-                        for (int i = 0; i < maxThreads; i++)
-                        {
-                            int lineStart = i * linesPerThread;
-                            int linesForThisThread;
-                            if (i == maxThreads - 1)
-                            {
-                                linesForThisThread = totalLinesInFile - lineStart;
-                            }
-                            else
-                            {
-                                linesForThisThread = linesPerThread;
-                            }
-                            string[] linesForOneThread = allLines.Skip(lineStart).Take(linesForThisThread).ToArray();
-                            allTasks.Add(Task.Run(() =>
-                            {
-                                bool threadFoundHash = DictionaryAttack(
-                                    userInputHash,
-                                    fileAlgorithm,
-                                    userAlgorithm,
-                                    null,  //fileName - useless since we dont work with StreamReader
-                                    linesForOneThread,
-                                    true, //isMultiThreaded
-                                    totalLinesInFile,
-                                    lineStart, //at what line to start
-                                    checkBoxShowLogDictionary.Checked,
-                                    inputFileIsInPlainText,
-                                    reHashNeeded,
-                                    out string threadFoundPassword,
-                                    out long threadFoundPasswordAtLine);
+                    if (checkBoxShowLogDictionary.Checked)
+                        listBoxLog.Items.Add("-----------------------------------------------");
 
-                                // Handle results
-                                if (threadFoundHash)
-                                {
-                                    lock (lockObject) // Ensure thread safety for shared variables
-                                    {
-                                        foundHash = true;
-                                        stringFoundPassword = threadFoundPassword;
-                                        foundPasswordAtLine = threadFoundPasswordAtLine;
-                                        userAbortProcess = true; // Stop other threads (yes I dont want to use another bool shut up)
-                                    }
-                                }
-                            }));
-                        }
-
-                        await Task.WhenAll(allTasks); // Waits until all tasks finish
-                    } // Multi-threading
-                    else // Single-thread
+                    if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
                     {
-                        await Task.Run(() =>
-                        {
-                            foundHash = DictionaryAttack(
-                                userInputHash,
-                                fileAlgorithm,
-                                userAlgorithm,
-                                openFileDialog.FileName,  //using StreamReader
-                                null,  //lines - using StreamReader is more memory efficient
-                                false, //isMultiThreaded: nope 
-                                0,  //totalLinesInFile: only for multithreading
-                                0, //lineStart - we start at the start bruh
-                                checkBoxShowLogDictionary.Checked,
-                                inputFileIsInPlainText,
-                                reHashNeeded,
-                                out stringFoundPassword,
-                                out foundPasswordAtLine);
-                        });
-                    }
+                        string foundPassword = rainbowTableAttack.FoundPassword;
+                        string foundPasswordHash = hasher.Hash(foundPassword, userAlgorithm);
+                        long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
 
-                    stopwatch.Stop();
-                    StopTimer(false, false);
-                    if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("-----------------------------------------------");
-                    if (foundHash)
-                    {
-                        string s = "Found hash via Dictionary attack" +
-                                        "\nOriginal password: " + stringFoundPassword +
-                                        "\nOriginal password hash: " + hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm) +
-                                        "\nFound password at line: " + (foundPasswordAtLine + 1) +
-                                        "\nFound password hash: " + hasher.Hash(stringFoundPassword, userAlgorithm) +
-                                        "\nFound password in UTF-8: " + stringFoundPassword +
-                                        "\nFound password in HEX: " + ConvertToHexBasedOnUser(true, stringFoundPassword);
+                        string message = $"Found hash via Dictionary attack\n" +
+                                            $"Original password: {foundPassword}\n" +
+                                            $"Original password hash: {originalInput}\n" +
+                                            $"Found password at line: {foundAtLine}\n" +
+                                            $"Found password hash: {foundPasswordHash}\n" +
+                                            $"Found password in UTF-8: {foundPassword}\n" +
+                                            $"Found password in HEX: {ConvertToHexBasedOnUser(true, foundPassword)}";
+
                         if (checkBoxShowLogDictionary.Checked)
                         {
                             listBoxLog.Items.Add("Found hash via Dictionary attack");
-                            listBoxLog.Items.Add("Original password: " + stringFoundPassword);
-                            listBoxLog.Items.Add("Found password hash: " + hasher.Hash(stringFoundPassword, userAlgorithm));
-                            listBoxLog.Items.Add("\nFound password at line: " + (foundPasswordAtLine + 1));
-                            listBoxLog.Items.Add("Found password in UTF-8: " + stringFoundPassword);
-                            listBoxLog.Items.Add("Found password in HEX: " + ConvertToHexBasedOnUser(true, stringFoundPassword));
+                            listBoxLog.Items.Add($"Original password: {foundPassword}");
+                            listBoxLog.Items.Add($"Found password hash: {originalInput}");
+                            listBoxLog.Items.Add($"Found password at line: {foundAtLine}");
+                            listBoxLog.Items.Add($"Found password in UTF-8: {foundPassword}");
+                            listBoxLog.Items.Add($"Found password in HEX: {ConvertToHexBasedOnUser(true, foundPassword)}");
                         }
-                        PasswordFoundMessageBox(s, userInputHash, stringFoundPassword);
+                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+                        PasswordFoundMessageBox(message, originalInput, foundPassword);
                     }
-                    else if (userAbortProcess)
+                    else if (rainbowTableAttack.CancelTokenActive())
                     {
                         MessageBox.Show("The user has aborted the process.");
-                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The user has aborted the process.");
+                        if (checkBoxShowLogDictionary.Checked)
+                            listBoxLog.Items.Add("The user has aborted the process.");
+                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else if (ranOutOfTime)
                     {
-                        MessageBox.Show("The program could not find the password in time limit.");
-                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The program could not find the password in time limit.");
+                        MessageBox.Show("The program could not find the password within the time limit.");
+                        if (checkBoxShowLogDictionary.Checked)
+                            listBoxLog.Items.Add("The program could not find the password within the time limit.");
                         ranOutOfTime = false;
+                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else if (ranOutOfAttemps)
                     {
-                        MessageBox.Show("The program could not find the password in attempts limit.");
-                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("The program could not find the password in attempts limit.");
+                        MessageBox.Show("The program could not find the password within the attempt limit.");
+                        if (checkBoxShowLogDictionary.Checked)
+                            listBoxLog.Items.Add("The program could not find the password within the attempt limit.");
                         ranOutOfAttemps = false;
+                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else
                     {
-                        MessageBox.Show("Could not find password in the File.");
-                        if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Could not find password in the File.");
+                        MessageBox.Show("Could not find password in the file.");
+                        if (checkBoxShowLogDictionary.Checked)
+                            listBoxLog.Items.Add("Could not find password in the file.");
+                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
-                }
-                else if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Found invalid file format. Cancelling dictionary attack.");
-            }
-            else if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("Could not find desired file. Cancelling dictionary attack...");
-            TurnOnUI();
-        }
-        private bool DictionaryAttack(
-            string userInputHash,
-            Hasher.HashingAlgorithm fileAlgorithm,
-            Hasher.HashingAlgorithm desiredAlgorithm,
-            string fileName, // For single-threaded
-            string[] lines,  // For multi-threaded
-            bool isMultiThreaded,
-            long totalLinesInFile, // For multi-threaded
-            long lineStart, // For multi-threaded
-            bool useLog,
-            bool inputFileIsInPlainText,
-            bool reHashNeeded,
-            out string originalTextOutput,
-            out long foundPasswordAtLine)
-        {
-            originalTextOutput = "";
-            foundPasswordAtLine = -1;
-            bool foundMatch = false;
-
-            if (!isMultiThreaded)
-            {
-                totalLinesInFile = File.ReadLines(fileName).Count(); // Count total lines
-                using (StreamReader reader = new StreamReader(fileName))
-                {
-                    long linesProcessed = 0;
-                    while (!reader.EndOfStream && !foundMatch && !userAbortProcess)
-                    {
-                        string fullLine = reader.ReadLine();
-                        foundMatch = ProcessLine(
-                            fullLine,
-                            userInputHash,
-                            desiredAlgorithm,
-                            inputFileIsInPlainText,
-                            reHashNeeded,
-                            ref originalTextOutput,
-                            ref linesProcessed,
-                            totalLinesInFile,
-                            useLog);
-                    }
-                }
-            } // Single-threaded
-            else
-            {
-                for (int i = 0; i < lines.Length && !foundMatch && !userAbortProcess; i++)
-                {
-                    long linesProcessed = Interlocked.Increment(ref lineStart); // Thread-safe increment
-                    foundMatch = ProcessLine(
-                        lines[i],
-                        userInputHash,
-                        desiredAlgorithm,
-                        inputFileIsInPlainText,
-                        reHashNeeded,
-                        ref originalTextOutput,
-                        ref linesProcessed,
-                        totalLinesInFile,
-                        useLog);
-                }
-            }  // Multi-threaded
-            return foundMatch;
-        }
-
-        private bool ProcessLine(
-        string line,
-        string userInputHash,
-        Hasher.HashingAlgorithm desiredAlgorithm,
-        bool inputFileIsInPlainText,
-        bool reHashNeeded,
-        ref string originalTextOutput,
-        ref long linesProcessed,
-        long totalLinesInFile,
-        bool useLog)
-        {
-            if (line == null) return false;
-
-            string hashedLine = "";
-            string originalText = "";
-
-            if (inputFileIsInPlainText)
-            {
-                originalText = line;
-                hashedLine = hasher.Hash(line, desiredAlgorithm);
-            }
-            else
-            {
-                string[] data = line.Split('=');
-                if (data.Length > 1)
-                {
-                    originalText = data[0];
-                    hashedLine = reHashNeeded
-                        ? hasher.Hash(data[0], desiredAlgorithm)
-                        : data[1];
                 }
                 else
                 {
-                    if (useLog)
-                    {
-                        long temp = linesProcessed;
-                        Invoke(new Action(() => listBoxLog.Items.Add("Could not process line " + temp)));
-                    }
-                    return false;
+                    MessageBox.Show("Could not run the dictionary attack.");
+                    if (checkBoxShowLogDictionary.Checked)
+                        listBoxLog.Items.Add("Could not run the dictionary attack.");
+                    if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                 }
             }
-
-            // Compare hashes
-            if (hashedLine == userInputHash)
+            else
             {
-                originalTextOutput = originalText;
-                return true;
+                if (checkBoxShowLogDictionary.Checked)
+                    listBoxLog.Items.Add("Invalid file format or file not found. Cancelling dictionary attack.");
+                if (timeToUpdateUI != null) timeToUpdateUI.Stop();
             }
-            // Update progress
-            progressBarValueDictionararyAttack = (int)(((double)linesProcessed / totalLinesInFile) * 100);
-            return false;
+            if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+            TurnOnUI();
+            taskCurrentlyWorking = false;
+            whatTaskIsWorking = -1;
         }
 
+        // Tracking the last update count for UI updates
+        long RainbowAttacknumberOfLinesInLastUpdate = 0;
 
-        private void GetFileAlgorithm(string line, out bool inputFileIsInPlainText, out bool rehashNeeded, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm)
+        private void UpdateTheUIDictionaryAttack()
         {
-            inputFileIsInPlainText = false;
-            rehashNeeded = false;
-            continueTheAttack = true;
-            fileAlgorithm = Hasher.HashingAlgorithm.CRC32;
-            if (line != null && line.Contains("=")) // File is already pre-hashed
-            {
-                if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add("File is already pre-hashed.");
-                string[] algorithmText = line.Split('=');
-                if (algorithmText.Length < 2)
-                {
-                    continueTheAttack = false;
-                    return;
-                }
-                switch (algorithmText[1])
-                {
-                    case "MD5":
-                        userAlgorithm = Hasher.HashingAlgorithm.MD5;
-                        break;
-                    case "SHA1":
-                        userAlgorithm = Hasher.HashingAlgorithm.SHA1;
-                        break;
-                    case "SHA256":
-                        userAlgorithm = Hasher.HashingAlgorithm.SHA256;
-                        break;
-                    case "SHA512":
-                        userAlgorithm = Hasher.HashingAlgorithm.SHA512;
-                        break;
-                    case "RIPEMD160":
-                        userAlgorithm = Hasher.HashingAlgorithm.RIPEMD160;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else inputFileIsInPlainText = true;
-            if (checkBoxShowLogDictionary.Checked) //Log
-            {
-                if (!inputFileIsInPlainText)
-                {
-                    Invoke(new Action(() => listBoxLog.Items.Add("File is hashed in " + userAlgorithm.ToString() + " algorithm")));
-                    if (rehashNeeded) Invoke(new Action(() => listBoxLog.Items.Add("File is not hashed with desired hashing algorithm. Re-hashing.")));
-                }
-                else Invoke(new Action(() => listBoxLog.Items.Add("File is not pre-hashed.")));
-            }
-        }
-
-        private void UpdateTheUIDictionaryAttack(bool usingPerformanceMode)
-        {
-            //Update Timer
             int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
             int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
-            labelTimer.Text = "Timer: " + seconds + "." + milliseconds + " s";
-            if (useStopTimer && stopwatch.ElapsedMilliseconds > numericUpDownStopTimer.Value)
+
+            long currentLinesProcessed = rainbowTableAttack.LinesProcessed;
+            int triesBetween = (int)(currentLinesProcessed - RainbowAttacknumberOfLinesInLastUpdate);
+            RainbowAttacknumberOfLinesInLastUpdate = currentLinesProcessed;
+
+            // Speed Calculation
+            double speed = triesBetween / 0.016; // Every 16ms
+            labelCurrentSpeed.Text = $"Current speed /s: {speed:F2}";
+
+            // Attempts Display
+            labelAttempts.Text = $"Number of lines processed: {currentLinesProcessed}";
+
+            // Average Speed Calculation
+            double averageSpeed = (stopwatch.ElapsedMilliseconds > 0)
+                ? currentLinesProcessed / (stopwatch.ElapsedMilliseconds / 1000.0)
+                : 0;
+            labelSpeed.Text = $"Average speed /s: {Math.Floor(averageSpeed)}";
+
+            // Progress Bar Update
+            int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
+            progressBar1.Value = Math.Max(0, Math.Min(progress, 100));  // Ensure value is between 0-100
+
+            // Logging
+            if (rainbowTableAttack.LogOutput != null)
             {
-                stopDictionaryAttack = true;
-                ranOutOfTime = true;
+                foreach (string logEntry in rainbowTableAttack.LogOutput)
+                    listBoxLog.Items.Add(logEntry);
+
+                rainbowTableAttack.LogReset(); // Clear logs after adding them
             }
-            int triesBetween = linesProcessed - numberOfLinesInLastUpdate;
-            numberOfLinesInLastUpdate = linesProcessed;
-            //Update Speed
-            double speed = triesBetween / 0.016; //16 ms
-            labelCurrentSpeed.Text = "Current speed /s:  " + speed;
-            //Attempts
-            labelAttempts.Text = "Number of lines proccessed: " + linesProcessed;
-            //Update Average Speed
-            double averageSpeed = linesProcessed / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
-            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed);
-            //update progressbar
-            progressBar1.Value = progressBarValueDictionararyAttack;
         }
+
         #endregion
 
         #region Password BruteForce Attack
+
         private bool foundPasswordBool = false;
         private static ulong Pow(ulong number, int exponent) //yes I had to do this
         {
@@ -1137,8 +937,6 @@ namespace HashTester
             timeToUpdateTheUI.Dispose();
             timeToUpdateTheUI.Interval = 16; //16ms == 60+fps
             if (updateTheBruteForceAttack) timeToUpdateTheUI.Tick += (s, args) => UpdateTheUIBruteForceAttack(isPerformanceModeOn);
-            else timeToUpdateTheUI.Tick += (s, args) => UpdateTheUIDictionaryAttack(isPerformanceModeOn);
-            timeToUpdateTheUI.Start();
         }
         private string ConvertToHexBasedOnUser(bool hexOutput, string text)
         {
@@ -1159,9 +957,7 @@ namespace HashTester
         }
         private void StopTimer(bool updateTheBruteForceAttack, bool isPerformanceModeOn)
         {
-            if (timeToUpdateTheUI != null) timeToUpdateTheUI.Stop();
             if (updateTheBruteForceAttack) UpdateTheUIBruteForceAttack(isPerformanceModeOn); //Last update to have the most updated data
-            else UpdateTheUIDictionaryAttack(isPerformanceModeOn);
         }
         public void PasswordFoundMessageBox(string message, string inputHash, string password)
         {
@@ -1197,26 +993,28 @@ namespace HashTester
         }
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            userAbortProcess = true;
+            if (taskCurrentlyWorking)
+            {
+                switch(whatTaskIsWorking)
+                {
+                    case 1: rainbowTable.Abort(); break;
+                    case 2: rainbowTableAttack.Abort(); break;
+                }
+            }
         }
 
         private void ResetAllValues()
         {
             //bool
-            userAbortProcess = false;
             ranOutOfAttemps = false;
-            userAbortProcess = false;
-            stopDictionaryAttack = false;
             ranOutOfTime = false;
             progressBar1.Value = 0;
-            progressBarValueDictionararyAttack = 0;
-            numberOfLinesInLastUpdate = 0;
-            linesProcessed = 1;
+            RainbowAttacknumberOfLinesInLastUpdate = 0;
             attempts = 0;
             numberOfAttempsInLastUpdate = 0;
             stopwatch.Reset();
             if (timeToUpdateTheUI.Enabled) timeToUpdateTheUI.Stop();
             maxAttempts = 0;
-        }
+        }        
     }
 }

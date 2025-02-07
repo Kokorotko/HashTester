@@ -47,7 +47,7 @@ namespace HashTester
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         Hasher hasher = new Hasher();
         Stopwatch stopwatch;
-        public void CancelGenerating()
+        public void Abort()
         {
             cancellationTokenSource.Cancel();
         }
@@ -64,7 +64,6 @@ namespace HashTester
                 using (StreamWriter writer = new StreamWriter(fileOutputPath))
                 {
                     writer.WriteLine("algorithm==" + hashingAlgorithm.ToString());
-
                     while (!reader.EndOfStream)
                     {
                         if (cancellationTokenSource.Token.IsCancellationRequested) return false; // Stop if canceled
@@ -72,7 +71,7 @@ namespace HashTester
                         LinesProcessed++;
                         string line = reader.ReadLine();
                         string hash = hasher.Hash(line, hashingAlgorithm);
-                        writer.WriteLine(line + "==" + hash);
+                        writer.WriteLine(line + "=" + hash);
                     }
                 }
             }
@@ -178,7 +177,7 @@ namespace HashTester
 
                         string line = reader.ReadLine();
                         string hash = hasher.Hash(line, hashingAlgorithm);
-                        writer.WriteLine(line + "==" + hash);
+                        writer.WriteLine(line + "=" + hash);
                         LinesProcessed++;
                     }
                 }

@@ -139,4 +139,7 @@ Unit Test Fixing
 **2025-02-05
 Unit Test on Rainbow Table Generator
 Rainbow Table Generator MultiThread
-Rainbow Table Generator Better UI Management
+Rainbow Table Generator Better UI Management *doesnt currently work*
+**2025-02-06
+Rainbow Table Attack seperate class *works questionably*
+Rainbow Table Generator Better UI Management *doesnt currently work*

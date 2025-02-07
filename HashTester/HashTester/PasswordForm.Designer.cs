@@ -52,7 +52,7 @@
             this.checkBoxShowLogPreHash = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
-            this.buttonDictionaryAttack = new System.Windows.Forms.Button();
+            this.buttonRainbowTableAttack = new System.Windows.Forms.Button();
             this.checkBoxHexOutput = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
@@ -319,7 +319,7 @@
             this.groupBox3.Controls.Add(this.checkBoxShowLogPreHash);
             this.groupBox3.Controls.Add(this.checkBoxShowLogBrute);
             this.groupBox3.Controls.Add(this.checkBoxShowLogDictionary);
-            this.groupBox3.Controls.Add(this.buttonDictionaryAttack);
+            this.groupBox3.Controls.Add(this.buttonRainbowTableAttack);
             this.groupBox3.Controls.Add(this.checkBoxHexOutput);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.numericUpDownStopTimer);
@@ -382,15 +382,15 @@
             this.checkBoxShowLogDictionary.Text = "Show log in listBox";
             this.checkBoxShowLogDictionary.UseVisualStyleBackColor = true;
             // 
-            // buttonDictionaryAttack
+            // buttonRainbowTableAttack
             // 
-            this.buttonDictionaryAttack.Location = new System.Drawing.Point(144, 219);
-            this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
-            this.buttonDictionaryAttack.Size = new System.Drawing.Size(114, 23);
-            this.buttonDictionaryAttack.TabIndex = 38;
-            this.buttonDictionaryAttack.Text = "Rainbow Table Attack";
-            this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
-            this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonDictionaryAttack_Click);
+            this.buttonRainbowTableAttack.Location = new System.Drawing.Point(144, 219);
+            this.buttonRainbowTableAttack.Name = "buttonRainbowTableAttack";
+            this.buttonRainbowTableAttack.Size = new System.Drawing.Size(114, 23);
+            this.buttonRainbowTableAttack.TabIndex = 38;
+            this.buttonRainbowTableAttack.Text = "Rainbow Table Attack";
+            this.buttonRainbowTableAttack.UseVisualStyleBackColor = true;
+            this.buttonRainbowTableAttack.Click += new System.EventHandler(this.buttonRainbowTableAttack_Click);
             // 
             // checkBoxHexOutput
             // 
@@ -780,7 +780,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox checkBoxHexOutput;
         private System.Windows.Forms.ListBox listBoxLog;
-        private System.Windows.Forms.Button buttonDictionaryAttack;
+        private System.Windows.Forms.Button buttonRainbowTableAttack;
         private System.Windows.Forms.CheckBox checkBoxShowLogPassword;
         private System.Windows.Forms.Button buttonLogClear;
         private System.Windows.Forms.Button buttonLogSave;
