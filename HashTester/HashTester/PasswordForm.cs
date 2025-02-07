@@ -26,8 +26,8 @@ namespace HashTester
         int whatTaskIsWorking = -1; //1 == RainbowTableGenerator; 2== RainbowTableAttack; 3 == PasswordLeakTest
         Hasher.HashingAlgorithm userAlgorithm = new Hasher.HashingAlgorithm();
         Hasher hasher = new Hasher();
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        CancellationToken token;
+        private CancellationTokenSource cancellationTokenSource;
+        private CancellationToken token;
         private readonly int maximumLenghtForBruteForce = 15;
         private volatile bool userAbortProcess = false;
         private volatile bool ranOutOfAttemps = false;
@@ -112,40 +112,52 @@ namespace HashTester
         }
         #endregion
 
-        #region Password Leak Test
-        PasswordLeak passwordLeak = new PasswordLeak();
-        private void UpdateUIPassword()
+        #region Password Leak Test - Done
+        PasswordCheck passwordCheck = new PasswordCheck();
+        long passwordCheckLinesProcessedLastUpdate = 0;
+        private void UpdateUIPassword(object sender, EventArgs e)
         {
-            labelTimer.Text = "Timer: " + passwordLeak.Stopwatch / 1000 + "." + passwordLeak.StopwatchTime % 1000;
-            double averageSpeed = passwordLeak.LineNumber / (passwordLeak.Stopwatch / 0.016); //Average speed per second
-            if (!double.IsInfinity(averageSpeed)) labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed);
-            else labelSpeed.Text = "Average speed /s: Yes";
-            labelAttempts.Text = "Currently working on line: " + passwordLeak.LineNumber;
-            progressBar1.Value = passwordLeak.Progress;            
-            foreach (string temp in passwordLeak.LogOutput) logOutput.Add(temp);
+            if (passwordCheck.Stopwatch.ElapsedMilliseconds > 0)
+            {
+                int passwordLinesProcessedBetweenUpdates = (int)(passwordCheck.CurrentLine - passwordCheckLinesProcessedLastUpdate);
+                passwordCheckLinesProcessedLastUpdate = passwordCheck.CurrentLine;
+                labelTimer.Text = "Timer: " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
+                double currentSpeed = passwordLinesProcessedBetweenUpdates / 0.016;
+                labelCurrentSpeed.Text = "Current speed /s: " + currentSpeed.ToString("#,0");
+                double averageSpeed = passwordCheck.CurrentLine / (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0); //in seconds
+                if (!double.IsInfinity(averageSpeed)) labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
+                else labelSpeed.Text = "Average speed /s: Yes";
+                labelAttempts.Text = "Currently working on line: " + passwordCheck.CurrentLine.ToString("#,0");
+                progressBar1.Value = passwordCheck.Progress;
+                foreach (string temp in passwordCheck.LogOutput)
+                {
+                    listBoxLog.Items.Add(temp);
+                }
+                passwordCheck.LogOutput.Clear();
+            }
         }
-        private void buttonCheckPassword_Click(object sender, EventArgs e)
+        private async void buttonCheckPassword_Click(object sender, EventArgs e)
         {
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken token;
+            string pathToFile = "";
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 3;
             ResetAllValues();
             DisableUI();
             string messageBoxAnswer = "";
+            bool continueToChecker = true;
             string[] passwords = textBox1.Lines;           
             //Decider of what txt to use
             if (radioButton1.Checked)
             {
-                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
+                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
             }
             else if (radioButton2.Checked)
             {
-                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
+                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
             }
             else if (radioButton3.Checked)
             {
-                fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
             }
             else
             {
@@ -153,174 +165,55 @@ namespace HashTester
                 {
                     openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        fullPathToTXT = openFileDialog.FileName; //Own txt
+                    {                        
+                        pathToFile = openFileDialog.FileName; //Own txt
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Path to wordlist: " + pathToFile);
                     }
                     else
                     {
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("No path selected, selecting rockYouVeryShort.");
-                        MessageBox.Show("No path selected, selecting rockYouVeryShort.");
-                        fullPathToTXT = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("No path selected, cancelling process.");
+                        continueToChecker = false;
                     }
                 }
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Path to wordlist: " + fullPathToTXT);
             }
-            Timer timer = new Timer();
-            timer.Interval = 16;
-            timer.Event = UpdateUIPassword;
-            timer.Start();
-
-            Task task = Task.Run(() => { PasswordFinder(fullPathToTXT, passwords, token); });
-            Task.WaitAll(task);
-            timer.Stop();
-            UpdateUIPassword();
-            progressBar1.Value = 100;
-            if (token.IsCancellationRequested)
+            if (continueToChecker)
             {
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("The User has aborted the process.");
-                MessageBox.Show("The User has aborted the process.");
-            }
-            for (int i = 0; i < passwords.Count(); i++)
-            {
-                if (foundMatch[i])
+                Timer timer = new Timer();
+                timer.Interval = 16;
+                timer.Tick += UpdateUIPassword;
+                timer.Start();
+                await Task.Run(() => { passwordCheck.PasswordFinder(pathToFile, passwords); });
+                timer.Stop();
+                timer.Dispose();
+                UpdateUIPassword(sender, e);
+                progressBar1.Value = 100;
+                if (passwordCheck.Token)
                 {
-                    messageBoxAnswer += "Password '" + passwords[i] + "' has been found in wordlist at line " + lineFoundMatch[i] + ". I recommend using a different password." + Environment.NewLine;
-                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has been found in wordlist at line " + lineFoundMatch[i] + ". I recommend using a different password.");
+                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("The User has aborted the process.");
+                    MessageBox.Show("The User has aborted the process.");
                 }
-                else
+                //Console.WriteLine("passwordCheck.FoundMatch[i]: " + passwordCheck.FoundMatch.Count);
+                //Console.WriteLine("passwords count " + passwords.Count)
+                for (int i = 0; i < passwords.Count(); i++)
                 {
-                    messageBoxAnswer += "Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine;
-                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine);
+                    if (passwordCheck.FoundMatch[i])
+                    {
+                        messageBoxAnswer += "Password '" + passwords[i] + "' has been found in wordlist at line " + passwordCheck.LineFoundMatch[i] + ". I recommend using a different password." + Environment.NewLine;
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has been found in wordlist at line " + passwordCheck.LineFoundMatch[i] + ". I recommend using a different password.");
+                    }
+                    else
+                    {
+                        messageBoxAnswer += "Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine;
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine);
+                    }
                 }
+                MessageBox.Show(messageBoxAnswer);
             }
-            MessageBox.Show(messageBoxAnswer);
             taskCurrentlyWorking = false;
             whatTaskIsWorking = -1;
             ActivateUI();
-        }
-
-        public void PasswordFinder(string fullPathToTXT, string[] passwords, ref bool[] foundMatch, ref int[] lineFoundMatch, CancellationToken token)
-        {
-            ResetValue();
-            using (StreamReader reader = new StreamReader(fullPathToTXT))
-            {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-                LinesInTXT = CountNumberOfLinesInFile(fullPathToTXT);
-                while (!reader.EndOfStream && !token.IsCancellationRequested)
-                {
-                    CurrentLine++;
-                    string line = reader.ReadLine();
-                    for (int i = 0; i < passwords.Count(); i++)
-                    {
-                        if (!FoundMatch[i])
-                        {
-                            if (passwords[i] == line)
-                            {
-                                lineFoundMatch[i] = CurrentLine;
-                                foundMatch[i] = true;
-                                LogOutput = "Found '" + passwords[i] + "' on line: " + CurrentLine;
-                            }
-                        }
-                    }
-                }
-                stopwatch.Stop();
-            }
-        }
-        //Password Finder Get and Set
-        private List<string> logOutput = new List<string>();
-        private List<bool> foundMatch = new List<bool>(); 
-        private List<int> lineFoundMatch = new List<int>();
-        private long LinesInTXT = 0;
-        private int progress = 0;
-
-        public List<bool> FoundMatch
-        {
-            get
-            {
-                return foundMatch;
-            }
-            private set
-            {
-                foundMatch.Add(value);
-            }
-        }
-
-        public List<int> LineFoundMatch
-        {
-            get
-            {
-                return lineFoundMatch;
-            }
-            private set
-            {
-                lineFoundMatch.Add(value);
-            }
-        }
-
-
-        public List<string> LogOutput
-        {
-            get
-            {
-                return logOutput;
-            }
-            private set
-            {
-                logOutput.Add(value);
-            }
-        }
-
-        public long Stopwatch
-        {
-            get
-            {
-                return stopwatch.ElapsedMilliseconds;
-            }
-        }
-
-        public long LinesInTXT
-        {
-            get { return LinesInTXT; }
-            private set { linesInTXT = value; }
-        }
-
-        public int Progress
-        {
-            get
-            {
-                int temp = CurrentLine / LinesInTXT * 100;
-                if (temp > 100) return 100;
-                else if (temp < 0) return 0;
-                else return progress;
-            }
-        }
-
-        private void ResetValue()
-        {
-            logOutput.Clear();
-            foundMatch.Clear();
-            lineFoundMatch.Clear();
-            stopwatch.Reset();
-            LinesInTXT = 0;
-            CurrentLine = 0;
-            Progress = 0;
-        }
-        
-
-        public long CountNumberOfLinesInFile(string filePath) //Use In Every Fucking Possible Instance
-        {
-            long numberOfLines = 0;
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                while (!reader.EndOfStream)
-                {
-                    numberOfLines++;
-                    reader.ReadLine();
-                }                
-            }
-            return numberOfLines;
-        }
+        }                      
+           
 
         #endregion
 
@@ -1087,6 +980,7 @@ namespace HashTester
                 {
                     case 1: rainbowTable.Abort(); break;
                     case 2: rainbowTableAttack.Abort(); break;
+                    case 3: passwordCheck.Abort(); break;
                 }
             }
         }

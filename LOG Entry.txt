@@ -143,3 +143,6 @@ Rainbow Table Generator Better UI Management *doesnt currently work*
 **2025-02-06
 Rainbow Table Attack seperate class *works questionably*
 Rainbow Table Generator Better UI Management *doesnt currently work*
+**2025-02-07
+RainbowTableAttack class fix
+Password Check new Class (Finding passwords in a .txt file)
