@@ -35,12 +35,11 @@ namespace HashTester
             private set { Interlocked.Increment(ref linesProcessed); }
         }
 
-        public long StopwatchTimer
+        public Stopwatch Stopwatch
         {
             get
             {
-                if (stopwatch != null) return stopwatch.ElapsedMilliseconds;
-                else return 0;
+                return stopwatch;
             }
         }
 

@@ -57,12 +57,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSpecialChars = new System.Windows.Forms.CheckBox();
             this.buttonBruteForceAttack = new System.Windows.Forms.Button();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBoxDigits = new System.Windows.Forms.CheckBox();
             this.buttonPreHash = new System.Windows.Forms.Button();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBoxUpperCase = new System.Windows.Forms.CheckBox();
+            this.checkBoxLowerCase = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -82,6 +82,7 @@
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.buttonLogSave = new System.Windows.Forms.Button();
+            this.checkBoxBruteForceUnknownLenght = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -316,6 +317,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBoxBruteForceUnknownLenght);
             this.groupBox3.Controls.Add(this.checkBoxShowLogPreHash);
             this.groupBox3.Controls.Add(this.checkBoxShowLogBrute);
             this.groupBox3.Controls.Add(this.checkBoxShowLogDictionary);
@@ -324,12 +326,12 @@
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.numericUpDownStopTimer);
             this.groupBox3.Controls.Add(this.checkBoxPerformanceMode);
-            this.groupBox3.Controls.Add(this.checkBox3);
+            this.groupBox3.Controls.Add(this.checkBoxSpecialChars);
             this.groupBox3.Controls.Add(this.buttonBruteForceAttack);
-            this.groupBox3.Controls.Add(this.checkBox4);
+            this.groupBox3.Controls.Add(this.checkBoxDigits);
             this.groupBox3.Controls.Add(this.buttonPreHash);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBox6);
+            this.groupBox3.Controls.Add(this.checkBoxUpperCase);
+            this.groupBox3.Controls.Add(this.checkBoxLowerCase);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.radioButton6);
             this.groupBox3.Controls.Add(this.numericUpDown2);
@@ -436,17 +438,17 @@
             this.checkBoxPerformanceMode.Text = "PerformanceMode";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBoxSpecialChars
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(289, 172);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(123, 17);
-            this.checkBox3.TabIndex = 12;
-            this.checkBox3.Text = "Speciální znaky (33)";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBoxSpecialChars.AutoSize = true;
+            this.checkBoxSpecialChars.Checked = true;
+            this.checkBoxSpecialChars.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxSpecialChars.Location = new System.Drawing.Point(289, 172);
+            this.checkBoxSpecialChars.Name = "checkBoxSpecialChars";
+            this.checkBoxSpecialChars.Size = new System.Drawing.Size(123, 17);
+            this.checkBoxSpecialChars.TabIndex = 12;
+            this.checkBoxSpecialChars.Text = "Speciální znaky (33)";
+            this.checkBoxSpecialChars.UseVisualStyleBackColor = true;
             // 
             // buttonBruteForceAttack
             // 
@@ -458,17 +460,17 @@
             this.buttonBruteForceAttack.UseVisualStyleBackColor = true;
             this.buttonBruteForceAttack.Click += new System.EventHandler(this.buttonBruteForceAttack_Click);
             // 
-            // checkBox4
+            // checkBoxDigits
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(289, 149);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(79, 17);
-            this.checkBox4.TabIndex = 11;
-            this.checkBox4.Text = "Číslice (10)";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBoxDigits.AutoSize = true;
+            this.checkBoxDigits.Checked = true;
+            this.checkBoxDigits.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDigits.Location = new System.Drawing.Point(289, 149);
+            this.checkBoxDigits.Name = "checkBoxDigits";
+            this.checkBoxDigits.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxDigits.TabIndex = 11;
+            this.checkBoxDigits.Text = "Číslice (10)";
+            this.checkBoxDigits.UseVisualStyleBackColor = true;
             // 
             // buttonPreHash
             // 
@@ -480,29 +482,29 @@
             this.buttonPreHash.UseVisualStyleBackColor = true;
             this.buttonPreHash.Click += new System.EventHandler(this.buttonPreHash_Click);
             // 
-            // checkBox5
+            // checkBoxUpperCase
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Checked = true;
-            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(289, 126);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(118, 17);
-            this.checkBox5.TabIndex = 10;
-            this.checkBox5.Text = "Velká písmena (26)";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBoxUpperCase.AutoSize = true;
+            this.checkBoxUpperCase.Checked = true;
+            this.checkBoxUpperCase.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxUpperCase.Location = new System.Drawing.Point(289, 126);
+            this.checkBoxUpperCase.Name = "checkBoxUpperCase";
+            this.checkBoxUpperCase.Size = new System.Drawing.Size(118, 17);
+            this.checkBoxUpperCase.TabIndex = 10;
+            this.checkBoxUpperCase.Text = "Velká písmena (26)";
+            this.checkBoxUpperCase.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // checkBoxLowerCase
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Checked = true;
-            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(289, 103);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(114, 17);
-            this.checkBox6.TabIndex = 9;
-            this.checkBox6.Text = "Malá písmena (26)";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBoxLowerCase.AutoSize = true;
+            this.checkBoxLowerCase.Checked = true;
+            this.checkBoxLowerCase.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxLowerCase.Location = new System.Drawing.Point(289, 103);
+            this.checkBoxLowerCase.Name = "checkBoxLowerCase";
+            this.checkBoxLowerCase.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxLowerCase.TabIndex = 9;
+            this.checkBoxLowerCase.Text = "Malá písmena (26)";
+            this.checkBoxLowerCase.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -522,6 +524,7 @@
             this.radioButton6.TabIndex = 8;
             this.radioButton6.Text = "Hashed";
             this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.EnabledChanged += new System.EventHandler(this.radioButton6_EnabledChanged);
             // 
             // numericUpDown2
             // 
@@ -551,6 +554,7 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Regular";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // label5
             // 
@@ -606,6 +610,7 @@
             this.textBoxBruteForceInput.Size = new System.Drawing.Size(396, 20);
             this.textBoxBruteForceInput.TabIndex = 0;
             this.textBoxBruteForceInput.Text = "budakkecik";
+            this.textBoxBruteForceInput.TextChanged += new System.EventHandler(this.textBoxBruteForceInput_TextChanged);
             // 
             // labelSpeed
             // 
@@ -697,6 +702,16 @@
             this.buttonLogSave.UseVisualStyleBackColor = true;
             this.buttonLogSave.Click += new System.EventHandler(this.buttonLogSave_Click);
             // 
+            // checkBoxBruteForceUnknownLenght
+            // 
+            this.checkBoxBruteForceUnknownLenght.AutoSize = true;
+            this.checkBoxBruteForceUnknownLenght.Location = new System.Drawing.Point(134, 59);
+            this.checkBoxBruteForceUnknownLenght.Name = "checkBoxBruteForceUnknownLenght";
+            this.checkBoxBruteForceUnknownLenght.Size = new System.Drawing.Size(108, 17);
+            this.checkBoxBruteForceUnknownLenght.TabIndex = 42;
+            this.checkBoxBruteForceUnknownLenght.Text = "Unknown Lenght";
+            this.checkBoxBruteForceUnknownLenght.UseVisualStyleBackColor = true;
+            // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,10 +776,10 @@
         private System.Windows.Forms.Button buttonBruteForceAttack;
         private System.Windows.Forms.Button buttonPreHash;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBoxSpecialChars;
+        private System.Windows.Forms.CheckBox checkBoxDigits;
+        private System.Windows.Forms.CheckBox checkBoxUpperCase;
+        private System.Windows.Forms.CheckBox checkBoxLowerCase;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label5;
@@ -788,5 +803,6 @@
         private System.Windows.Forms.CheckBox checkBoxShowLogPreHash;
         private System.Windows.Forms.CheckBox checkBoxShowLogBrute;
         private System.Windows.Forms.CheckBox checkBoxShowLogDictionary;
+        private System.Windows.Forms.CheckBox checkBoxBruteForceUnknownLenght;
     }
 }

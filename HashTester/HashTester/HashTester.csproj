@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BruteForceAttack.cs" />
     <Compile Include="CheckCollisionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +82,7 @@
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordCheck.cs" />
+    <Compile Include="PasswordStrenghtCalculator.cs" />
     <Compile Include="RainbowTableAttack.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -12,6 +12,7 @@ using System.Runtime.Remoting.Channels;
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
 using System.Reflection;
+using System.Timers;
 
 namespace HashTester
 {
@@ -26,20 +27,7 @@ namespace HashTester
         int whatTaskIsWorking = -1; //1 == RainbowTableGenerator; 2== RainbowTableAttack; 3 == PasswordLeakTest
         Hasher.HashingAlgorithm userAlgorithm = new Hasher.HashingAlgorithm();
         Hasher hasher = new Hasher();
-        private CancellationTokenSource cancellationTokenSource;
-        private CancellationToken token;
-        private readonly int maximumLenghtForBruteForce = 15;
-        private volatile bool userAbortProcess = false;
-        private volatile bool ranOutOfAttemps = false;
-        Stopwatch stopwatch = new Stopwatch();
         //Password Dictionary Attack and Bruteforce Attack
-        Timer timeToUpdateTheUI = new Timer();
-        private static ulong maxAttempts = 0;
-        private static long attempts = 0;
-        private long numberOfAttempsInLastUpdate = 0; //The time is 16ms
-        ulong numberOfAllPossibleCombinations = 0;
-        bool useStopTimer = true;
-        private volatile bool ranOutOfTime = false;
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
@@ -112,7 +100,7 @@ namespace HashTester
         }
         #endregion
 
-        #region Password Leak Test - Done
+        #region Password Dictionary Attack - Done
         PasswordCheck passwordCheck = new PasswordCheck();
         long passwordCheckLinesProcessedLastUpdate = 0;
         private void UpdateUIPassword(object sender, EventArgs e)
@@ -141,7 +129,6 @@ namespace HashTester
             string pathToFile = "";
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 3;
-            ResetAllValues();
             DisableUI();
             string messageBoxAnswer = "";
             bool continueToChecker = true;
@@ -212,19 +199,12 @@ namespace HashTester
             taskCurrentlyWorking = false;
             whatTaskIsWorking = -1;
             ActivateUI();
-        }                      
-           
+        }                                 
 
         #endregion
 
-        #region How Long To Crack
-
-        Double Kalkulacka(int delkaHesla, long pocetZnaku, double zaSekundu, out double rychlost)
-        {
-            Double pocet = (Double)Math.Pow(pocetZnaku, delkaHesla);
-            rychlost = pocet / zaSekundu;
-            return pocet;
-        }
+        #region Password Strenght Calculator - Done
+        PasswordStrenghtCalculator passwordStrenghtCalculator = new PasswordStrenghtCalculator();        
 
         string Vypis(double numberSeconds)
         {
@@ -244,12 +224,11 @@ namespace HashTester
         }
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
-            ResetAllValues();
-            int pocetZnaku = 0;
-            if (checkBoxCrack01.Checked) pocetZnaku += 26;
-            if (checkBoxCrack02.Checked) pocetZnaku += 26;
-            if (checkBoxCrack03.Checked) pocetZnaku += 10;
-            if (checkBoxCrack04.Checked) pocetZnaku += 33;
+            int numberOfChars = 0;
+            if (checkBoxCrack01.Checked) numberOfChars += 26;
+            if (checkBoxCrack02.Checked) numberOfChars += 26;
+            if (checkBoxCrack03.Checked) numberOfChars += 10;
+            if (checkBoxCrack04.Checked) numberOfChars += 33;
 
             int passwordLenght;
             if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
@@ -260,14 +239,8 @@ namespace HashTester
                 if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Maximum lenght of the password set to 50.");
             }
             double speed = double.Parse(textBoxCrackSpeed.Text);
-            if (speed > 2800000000)
-            {
-                speed = 2800000000;
-                MessageBox.Show("Maximální rychlost za sekundu je 2.8 miliardy");
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Maximum speed /s set to 2.8 billions.");
-            }
 
-            Double pocet = Kalkulacka(passwordLenght, pocetZnaku, speed, out double rychlost);
+            double pocet = passwordStrenghtCalculator.Calculator(passwordLenght, numberOfChars, speed, out double rychlost);
             //Output
             if ((long)rychlost / 100 >= 315569260000) //31556926 == seconds in a year * 100 000 000
             {
@@ -282,10 +255,10 @@ namespace HashTester
             {
                 if (checkBoxShowLogCrack.Checked)
                 {
-                    listBoxLog.Items.Add(Vypis(rychlost));
+                    listBoxLog.Items.Add(passwordStrenghtCalculator.Output(rychlost));
                     listBoxLog.Items.Add("Pocet kombinaci: " + pocet.ToString("N0"));
                 }
-                MessageBox.Show(Vypis(rychlost) + "\nPocet kombinaci: " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
+                MessageBox.Show(passwordStrenghtCalculator.Output(rychlost) + "\nPocet kombinaci: " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
             }
         }
         #endregion
@@ -318,7 +291,7 @@ namespace HashTester
                     updateUITimer.Start();                    
                     if (checkBoxPerformanceMode.Checked)
                     {
-                        if (rainbowTable.GenerateRainbowTableMultiThread(Environment.ProcessorCount - 1, openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
+                        if (rainbowTable.GenerateRainbowTableMultiThread((int)Math.Max(1, Environment.ProcessorCount / 1.5), openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
                         {
                             updateUITimer.Stop();
                             if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
@@ -360,16 +333,18 @@ namespace HashTester
             ActivateUI(); 
             taskCurrentlyWorking = false;
             whatTaskIsWorking = -1;
-        }        
+        }
+
+        private long numberOfAttemptsInLastUpdateRainbowTable = 0;
         private void UpdateUIRainbowTable(object sender, EventArgs e)
         {
-            if (rainbowTable.StopwatchTimer > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
+            if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
             {       
-                double speed = (rainbowTable.LinesProcessed - numberOfAttempsInLastUpdate) / 0.016;
+                double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / 0.016;
                 int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
-                numberOfAttempsInLastUpdate = rainbowTable.LinesProcessed;
-                labelTimer.Text = "Timer: " + rainbowTable.StopwatchTimer / 1000 + "." + rainbowTable.StopwatchTimer % 1000;
-                labelSpeed.Text = "Average speed /s: " + rainbowTable.LinesProcessed / (double)(rainbowTable.StopwatchTimer / 1000);
+                numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
+                labelTimer.Text = "Timer: " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
+                labelSpeed.Text = "Average speed /s: " + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
                 labelCurrentSpeed.Text = "Hashes /s: " + speed.ToString();
                 progressBar1.Value = Math.Min(100, progress);
                 //Refresh - The Labels didnt update for some reason
@@ -381,14 +356,14 @@ namespace HashTester
 
         #endregion
 
-        #region Rainbow Table Attack      
+        #region Rainbow Table Attack  - Done    
         RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
 
         private void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
             Timer timeToUpdateUI = new Timer();
             timeToUpdateUI.Interval = 16; //16ms == 60+fps
-            timeToUpdateUI.Tick += (s, args) => UpdateTheUIDictionaryAttack();
+            timeToUpdateUI.Tick += (s, args) => UpdateTheUIRainbowTableAttack();
             TurnOffUI();
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 2;
@@ -409,7 +384,7 @@ namespace HashTester
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 timeToUpdateUI.Start();
-                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm))
+                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDown1.Value))
                 {
                     if (checkBoxShowLogDictionary.Checked)
                         listBoxLog.Items.Add("-----------------------------------------------");
@@ -426,7 +401,7 @@ namespace HashTester
                                             $"Found password at line: {foundAtLine}\n" +
                                             $"Found password hash: {foundPasswordHash}\n" +
                                             $"Found password in UTF-8: {foundPassword}\n" +
-                                            $"Found password in HEX: {ConvertToHexBasedOnUser(true, foundPassword)}";
+                                            $"Found password in HEX: {ConvertToHexBasedOnUser(foundPassword)}";
 
                         if (checkBoxShowLogDictionary.Checked)
                         {
@@ -435,7 +410,7 @@ namespace HashTester
                             listBoxLog.Items.Add($"Found password hash: {originalInput}");
                             listBoxLog.Items.Add($"Found password at line: {foundAtLine}");
                             listBoxLog.Items.Add($"Found password in UTF-8: {foundPassword}");
-                            listBoxLog.Items.Add($"Found password in HEX: {ConvertToHexBasedOnUser(true, foundPassword)}");
+                            listBoxLog.Items.Add($"Found password in HEX: {ConvertToHexBasedOnUser(foundPassword)}");
                         }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                         PasswordFoundMessageBox(message, originalInput, foundPassword);
@@ -447,27 +422,31 @@ namespace HashTester
                             listBoxLog.Items.Add("The user has aborted the process.");
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
-                    else if (ranOutOfTime)
+                    else if (rainbowTableAttack.RanOutOfTime)
                     {
                         MessageBox.Show("The program could not find the password within the time limit.");
                         if (checkBoxShowLogDictionary.Checked)
+                        {
                             listBoxLog.Items.Add("The program could not find the password within the time limit.");
-                        ranOutOfTime = false;
+                        }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
-                    else if (ranOutOfAttemps)
+                    else if (rainbowTableAttack.RanOutOfAttempts)
                     {
                         MessageBox.Show("The program could not find the password within the attempt limit.");
                         if (checkBoxShowLogDictionary.Checked)
+                        {
                             listBoxLog.Items.Add("The program could not find the password within the attempt limit.");
-                        ranOutOfAttemps = false;
+                        }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else
                     {
                         MessageBox.Show("Could not find password in the file.");
                         if (checkBoxShowLogDictionary.Checked)
+                        {
                             listBoxLog.Items.Add("Could not find password in the file.");
+                        }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                 }
@@ -494,10 +473,10 @@ namespace HashTester
         // Tracking the last update count for UI updates
         long RainbowAttacknumberOfLinesInLastUpdate = 0;
 
-        private void UpdateTheUIDictionaryAttack()
+        private void UpdateTheUIRainbowTableAttack()
         {
-            int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
-            int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
+            int seconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000);
+            int milliseconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds % 1000);
 
             long currentLinesProcessed = rainbowTableAttack.LinesProcessed;
             int triesBetween = (int)(currentLinesProcessed - RainbowAttacknumberOfLinesInLastUpdate);
@@ -505,16 +484,16 @@ namespace HashTester
 
             // Speed Calculation
             double speed = triesBetween / 0.016; // Every 16ms
-            labelCurrentSpeed.Text = $"Current speed /s: {speed:F2}";
+            labelCurrentSpeed.Text = "Current speed /s: " + speed.ToString("#,0");
 
             // Attempts Display
-            labelAttempts.Text = $"Number of lines processed: {currentLinesProcessed}";
+            labelAttempts.Text = "Number of lines processed: " + currentLinesProcessed.ToString("#,0");
 
             // Average Speed Calculation
-            double averageSpeed = (stopwatch.ElapsedMilliseconds > 0)
-                ? currentLinesProcessed / (stopwatch.ElapsedMilliseconds / 1000.0)
+            double averageSpeed = (rainbowTableAttack.Stopwatch.ElapsedMilliseconds > 0)
+                ? currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0)
                 : 0;
-            labelSpeed.Text = $"Average speed /s: {Math.Floor(averageSpeed)}";
+            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
 
             // Progress Bar Update
             int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
@@ -532,131 +511,84 @@ namespace HashTester
 
         #endregion
 
-        #region Password BruteForce Attack
+        #region Password BruteForce Attack - Done
 
-        private bool foundPasswordBool = false;
-        private static ulong Pow(ulong number, int exponent) //yes I had to do this
-        {
-            ulong result = 1;
-            for (int i = 0; i < exponent; i++)
-            {
-                result *= number;
-            }
-            return result;
-        }
-
-        private void BruteForceAttackMultiThread(Hasher.HashingAlgorithm algorithm, ushort threadID, ushort numberOfThreadsUsed, string userHashInput, char[] usableChars, bool useMaxAttemps, ulong maxAttempts, int userPasswordLenght, bool variablePasswordLenght, bool useLog, bool hexOutput, CancellationToken token, out string stringFoundPassword, out bool ranOutOfAttemps)
-        {
-            stringFoundPassword = "";
-            ranOutOfAttemps = false;
-            Console.WriteLine("Thread " + threadID + " has started working.");
-            if (PasswordBruteForce(userAlgorithm, true, threadID, numberOfThreadsUsed, userHashInput, usableChars, useMaxAttemps, maxAttempts, userPasswordLenght, variablePasswordLenght, useLog, hexOutput, token, out stringFoundPassword, out ranOutOfAttemps))
-            {
-                foundPasswordBool = true;
-                cancellationTokenSource.Cancel();
-            }
-            else Console.WriteLine("Thread " + threadID + " is finished.");           
-        }
-
+        BruteForceAttack bruteForce = new BruteForceAttack();
         private async void buttonBruteForceAttack_Click(object sender, EventArgs e)
         {
-            token = cancellationTokenSource.Token;
-            ResetAllValues();
+            taskCurrentlyWorking = true;
+            whatTaskIsWorking = 4;
             TurnOffUI();
-            string stringFoundPassword = "";
-            string userInputHash = textBoxBruteForceInput.Text;
+            string userHashInput = textBoxBruteForceInput.Text;
             int userPasswordLenght = 0;
             if (radioButton5.Checked)
             {
                 userPasswordLenght = textBoxBruteForceInput.Text.Length;
-                userInputHash = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
+                userHashInput = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
                 if (checkBoxShowLogBrute.Checked)
                 {
-                    listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userInputHash + ".");
+                    listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userHashInput + ".");
                 }
             }
             else
             {
                 userPasswordLenght = (int)numericUpDown2.Value;
             }
-            stopwatch.Reset();
-            stopwatch.Start();
+            if (checkBoxBruteForceUnknownLenght.Checked) userPasswordLenght = 0;
 
             //SetUp            
-            numberOfAllPossibleCombinations = 0;
-            maxAttempts = (ulong)numericUpDown1.Value;
-            bool hexOutput = checkBoxHexOutput.Checked;
-            bool useMaxAttempts = true;
-            if (maxAttempts == 0) useMaxAttempts = false;
-            if (numericUpDownStopTimer.Value == 0) useStopTimer = false;
-            bool performanceMode = checkBoxPerformanceMode.Checked;
-            bool variablePasswordLength = userPasswordLenght == 0; //if passwordLenght is 0
-            bool ranOutOfAttemps = false;
-            char[] usableChars = GenerateAllUsableChars();
+            bool[] checkBoxUsableCharsForAttack = { false, false, false, false };
+            //AllUsableChars Based on Input
+            bruteForce.SelectAllUsableChars(
+                 checkBoxLowerCase.Checked,
+                 checkBoxUpperCase.Checked,
+                 checkBoxDigits.Checked,
+                 checkBoxSpecialChars.Checked
+             );
+
+
+            //timer
+            Timer timer = new Timer();
+            timer.Interval = 16; //60+fps update
+            timer.Tick += UpdateTheUIBruteForceAttack;            
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
-
-            //all possible combinations
-            if (variablePasswordLength) // Variable password length
+            Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
+            long temp = bruteForce.CalculateAllPossibleCombinations(checkBoxBruteForceUnknownLenght.Checked, (int)numericUpDown2.Value);
+            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Number Of All Possible Combinations: " + temp);
+            if (checkBoxPerformanceMode.Checked)
             {
-                for (int length = 1; length <= maximumLenghtForBruteForce; length++) //maximumLenghtForBruteForce can be change at the start of the script
-                {
-                    numberOfAllPossibleCombinations += Pow((ulong)usableChars.Length, length);
-                }
-            }
-            else // Known password length
-            {
-                numberOfAllPossibleCombinations = Pow((ulong)usableChars.Length, userPasswordLenght);
-            }
-            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Number Of All Possible Combinations: " + numberOfAllPossibleCombinations);
-            SetUpTimer(true, performanceMode);
-            if (performanceMode)
-            {
-                //For cancelling all tasks if password is found                
-                ushort maxThreads = (ushort)(Environment.ProcessorCount);
-                for (ushort i = 0; i < maxThreads; i++) //multiThread
-                {
-                    ushort threadID = i;
-                    allTasks.Add(Task.Run(() => BruteForceAttackMultiThread(userAlgorithm, threadID, maxThreads, userInputHash, usableChars, useMaxAttempts, maxAttempts, userPasswordLenght, variablePasswordLength, checkBoxShowLogBrute.Checked, hexOutput, token, out stringFoundPassword, out ranOutOfAttemps)));
-                }
-                await Task.WhenAll(allTasks); //waits until all tasks are finish
+                timer.Start();
+                Console.WriteLine("Performance Mode On");
+                bruteForce.BruteForceAttackMultiThread(userAlgorithm, userHashInput, (ulong)numericUpDown1.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
             }
             else //single Thread
             {
-                await Task.Run(() => foundPasswordBool = PasswordBruteForce
+                Console.WriteLine("Performance Mode Off");
+                timer.Start();
+                await Task.Run(() => bruteForce.PasswordBruteForce
                 (
-                    userAlgorithm,
+                    userAlgorithm, //algorithm
                     false, //useMultiThreading
                     0, //ThreadID
                     1, //numberOfThreadsUsed
-                    userInputHash,
-                    usableChars,
-                    useMaxAttempts,
-                    maxAttempts,
+                    userHashInput,
+                    (ulong)numericUpDown1.Value, 
                     userPasswordLenght,
-                    variablePasswordLength,
-                    checkBoxShowLogBrute.Checked,
-                    hexOutput,
-                    CancellationToken.None, //there is no need for CancellationToken
-                    out stringFoundPassword,
-                    out ranOutOfAttemps
-                 ));
+                     (long)numericUpDownStopTimer.Value));
             }
-            //UI Turn Off
-            StopTimer(true, performanceMode);
-            stopwatch.Stop();
-            UpdateTheUIBruteForceAttack(performanceMode);
-            TurnOnUI();
+            timer.Stop();
+            timer.Dispose();
+            UpdateTheUIBruteForceAttack(sender, e); //last update                                                    
             //Output
-            if (foundPasswordBool)
+            if (bruteForce.FoundPasswordBool)
             {
-                foundPasswordBool = false; //reset
                 string message = "Password found!\n" +
-                  "\nOriginal hash: " + userInputHash +
-                  "\nFound password hash: " + hasher.Hash(stringFoundPassword, userAlgorithm) +
-                  "\nFound password in UTF-8: " + stringFoundPassword +
-                  "\nFound password in HEX: " + ConvertToHexBasedOnUser(true, stringFoundPassword) +
-                  "\nAttempts: " + attempts +
+                  "\nOriginal hash: " + userHashInput +
+                  "\nFound password hash: " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm) +
+                  "\nFound password in UTF-8: " + bruteForce.FoundPassword +
+                  "\nFound password in HEX: " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) +
+                  "\nAttempts: " + bruteForce.Attempts +
                   "\n" + labelTimer.Text + // Timer
                   "\n" + labelSpeed.Text;  //Speed
 
@@ -664,235 +596,62 @@ namespace HashTester
                 {
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add("Password found!");
-                    listBoxLog.Items.Add("Original hash: " + userInputHash);
-                    listBoxLog.Items.Add("Found password hash: " + hasher.Hash(stringFoundPassword, userAlgorithm));
-                    listBoxLog.Items.Add("Found password in UTF-8: " + stringFoundPassword);
-                    listBoxLog.Items.Add("Found password in HEX: " + ConvertToHexBasedOnUser(true, stringFoundPassword));
-                    listBoxLog.Items.Add("Attempts: " + attempts);
+                    listBoxLog.Items.Add("Original hash: " + userHashInput);
+                    listBoxLog.Items.Add("Found password hash: " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm));
+                    listBoxLog.Items.Add("Found password in UTF-8: " + bruteForce.FoundPassword);
+                    listBoxLog.Items.Add("Found password in HEX: " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
+                    listBoxLog.Items.Add("Attempts: " + bruteForce.Attempts);
                     listBoxLog.Items.Add("Time to find: " + labelTimer.Text.Split(' ')[1]);
                     listBoxLog.Items.Add("Average speed: " + labelSpeed.Text);
                 }
-                PasswordFoundMessageBox(message, userInputHash, stringFoundPassword);
+                PasswordFoundMessageBox(message, userHashInput, bruteForce.FoundPassword);
             }
-            else if (ranOutOfAttemps)
+            else if (bruteForce.RanOutOfAttemps)
             {
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find a password under the given attempts.");
                 MessageBox.Show("Could not find a password under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ranOutOfTime = false;
             }
-            else if (ranOutOfTime)
+            else if (bruteForce.RanOutOfTime)
             {
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find a password under the given time limit.");
                 MessageBox.Show("Could not find a password under the given time limit.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ranOutOfTime = false;
             }
-            else if (userAbortProcess)
+            else if (bruteForce.UserAborted)
             {
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("The process has been abandoned.");
                 MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                userAbortProcess = false;
             }
-            else MessageBox.Show("Could not find the original password.");
+            else
+            {
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find the original password.");
+                MessageBox.Show("Could not find the original password.");
+            }
+            taskCurrentlyWorking = true;
+            whatTaskIsWorking = -1;
+            TurnOnUI();
         }
-        private bool PasswordBruteForce(
-                     Hasher.HashingAlgorithm algorithm,
-                     bool useMultiThreading,
-                     ushort threadID,
-                     ushort numberOfThreadsUsed,
-                     string userHashInput,
-                     char[] usableChars,
-                     bool useMaxAttemps,
-                     ulong maxAttempts,
-                     int userPasswordLenght,
-                     bool variablePasswordLenght,
-                     bool useLog,
-                     bool hexOutput,
-                     CancellationToken token,
-                     out string foundPassword,
-                     out bool ranOutOfAttemps)
-        {
-            ulong index = 0;
-            foundPassword = "";
-            ranOutOfAttemps = false;
-            Hasher hasher = new Hasher();
-            int currentLength = userPasswordLenght == 0 ? 1 : userPasswordLenght; // Start with length 1 if variable
-            bool checkedAllPossibleCombinations = false;
-            ulong allPossibleCombinationsForCurrentLength = 0;
-            ulong allPossibleCombinationsForOneThread = 0;
-            if (variablePasswordLenght) // Variable password length
-            {
-                ulong totalCombinations = 0;
-                for (int length = 1; length <= maximumLenghtForBruteForce; length++)
-                {
-                    totalCombinations += Pow((ulong)usableChars.Length, length);
-                }
-                if (useMultiThreading)
-                {
-                    allPossibleCombinationsForOneThread = totalCombinations / numberOfThreadsUsed;
-                    index = allPossibleCombinationsForOneThread * threadID;
-
-                    // Adjust current length to match starting index
-                    ulong temp = Pow((ulong)usableChars.Length, currentLength);
-                    while (index >= temp)
-                    {
-                        index -= temp;
-                        currentLength++;
-                        temp = Pow((ulong)usableChars.Length, currentLength);
-                    }
-                }
-                else
-                {
-                    allPossibleCombinationsForOneThread = totalCombinations; // Single thread, all combinations
-                }
-            }
-            else // Known password length
-            {
-                allPossibleCombinationsForCurrentLength = Pow((ulong)usableChars.Length, userPasswordLenght); //10 usable chars, 5 password lenght ==> 100 000
-                if (useMultiThreading)
-                {
-                    allPossibleCombinationsForOneThread = allPossibleCombinationsForCurrentLength / (ushort)(numberOfThreadsUsed);
-                    index = allPossibleCombinationsForOneThread * threadID;
-                    //Console.WriteLine("allPossibleCombinationsForCurrentLength: " + allPossibleCombinationsForCurrentLength + "(" + threadID + ")"); //0 - 91 666
-                    //Console.WriteLine("allPossibleCombinationsForOneThread: " + allPossibleCombinationsForOneThread); //8333
-                    //Console.WriteLine("index: " + index + "(" + threadID + ")");
-                }
-            }
-
-            // Brute-force
-            while (!checkedAllPossibleCombinations && !userAbortProcess)
-            {
-                //Console.WriteLine("Index: " + index);
-                //Console.WriteLine("allPossibleCombinationsForOneThread: " + allPossibleCombinationsForOneThread);
-                //Console.WriteLine("allPossibleCombinationsForCurrentLength: " + allPossibleCombinationsForCurrentLength);
-                if (token.IsCancellationRequested) // Check for cancellation
-                {
-                    return false;
-                }
-                if (variablePasswordLenght && index > allPossibleCombinationsForCurrentLength)
-                {
-                    currentLength++;
-                    if (currentLength > maximumLenghtForBruteForce)
-                    {
-                        checkedAllPossibleCombinations = true;
-                    }
-                    else
-                    {
-                        allPossibleCombinationsForCurrentLength = Pow((ulong)usableChars.Length, currentLength);
-                        index = 0; // Reset index for new length
-                    }
-                }
-                else if (!variablePasswordLenght && index > allPossibleCombinationsForCurrentLength) //91 666 > 100 000
-                {
-                    checkedAllPossibleCombinations = true;
-                }
-
-                // Generate password attempt
-                string tryText = GenerateTextForBruteForce(index, usableChars, currentLength);
-                //Console.WriteLine(tryText);
-                string hashedText = hasher.Hash(tryText, algorithm);
-                if (hashedText == userHashInput)
-                {
-                    foundPassword = tryText;
-                    if (!useLog)
-                    {
-                        Invoke(new Action(() =>
-                            listBoxLog.Items.Add($"Found password for: {userHashInput}\nThe password is: {ConvertToHexBasedOnUser(hexOutput, tryText)}")));
-                    }
-                    return true;
-                }
-
-                if (useMaxAttemps && (ulong)attempts >= maxAttempts)
-                {
-                    ranOutOfAttemps = true;
-                    return false;
-                }
-                // Increment attempts safely
-                Interlocked.Increment(ref attempts);
-                index++;                
-            }
-            return false;
-        }
-
-        private string GenerateTextForBruteForce(ulong index, char[] allPossibleChars, int length)
-        {
-            uint baseSize = (uint)allPossibleChars.Length;
-            char[] result = new char[length];
-            for (int i = 0; i < length; i++) //fill every space
-            {
-                result[i] = allPossibleChars[0];
-            }
-            int position = length - 1; //Start from the back
-            while (index > 0 && position >= 0) //Calculate the next output
-            {
-                result[position] = allPossibleChars[index % baseSize];
-                index /= baseSize;
-                position--;
-            }
-            return new string(result);
-        }
-        private void UpdateTheUIBruteForceAttack(bool usingPerformanceMode) //Runs every 16ms
+        private long numberOfAttemptsInLastUpdateBruteForce = 0;
+        private void UpdateTheUIBruteForceAttack(object sender, EventArgs e) //Runs every 16ms
         {
             //Update Timer
-            int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
-            int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
+            Console.WriteLine("UpdateTheUIBruteForceAttack");
+            int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
+            int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
             labelTimer.Text = "Timer: " + seconds + "." + milliseconds + " s";
-            if (useStopTimer && stopwatch.ElapsedMilliseconds > numericUpDownStopTimer.Value)
-            {
-                userAbortProcess = true;
-                ranOutOfTime = true;
-            }
-            int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
-            numberOfAttempsInLastUpdate = attempts;
+            int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
+            numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
             //Update Speed
             double speed = triesBetween / 0.016; //16 ms
-            labelCurrentSpeed.Text = "Current speed /s:  " + speed;
+            labelCurrentSpeed.Text = "Current speed /s:  " + speed.ToString("#,0");
             //Attempts
-            labelAttempts.Text = "Number of attempts: " + attempts;
+            labelAttempts.Text = "Number of attempts: " + bruteForce.Attempts.ToString("#,0");
             //Update Average Speed
-            double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
-            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed);
+            double averageSpeed = 0;
+            if (bruteForce.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
+            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
             //update progressbar
-            int tempProgress = (int)(((double)Interlocked.Read(ref attempts) / numberOfAllPossibleCombinations) * 100);
-            if (tempProgress <= 100 )progressBar1.Value = tempProgress;
-        }
-        private char[] GenerateAllUsableChars()
-        {
-            int pocetZnaku = 0;
-            if (checkBox6.Checked) pocetZnaku += 26; //lowerCase
-            if (checkBox5.Checked) pocetZnaku += 26; //upperCase
-            if (checkBox4.Checked) pocetZnaku += 10; //digits
-            if (checkBox3.Checked) pocetZnaku += 33; //SpecialChars
-            int index = 0;
-            char[] allUsableChars = new char[pocetZnaku];
-            if (checkBox6.Checked)
-            {
-                for (char c = 'a'; c <= 'z'; c++)
-                {
-                    allUsableChars[index++] = c;
-                }
-            }
-            if (checkBox5.Checked)
-            {
-                for (char c = 'A'; c <= 'Z'; c++)
-                {
-                    allUsableChars[index++] = c;
-                }
-            }
-            if (checkBox4.Checked)
-            {
-                for (char c = '0'; c <= '9'; c++)
-                {
-                    allUsableChars[index++] = c;
-                }
-            }
-            if (checkBox3.Checked)
-            {
-                // Add special characters
-                string specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-                foreach (char c in specialChars)
-                {
-                    allUsableChars[index++] = c;
-                }
-            }
-            return allUsableChars;
-        }
+            progressBar1.Value = bruteForce.Progress;
+        }       
         #endregion
 
         private void TurnOffUI()
@@ -913,15 +672,9 @@ namespace HashTester
             }
             progressBar1.Value = 0;
         }
-        private void SetUpTimer(bool updateTheBruteForceAttack, bool isPerformanceModeOn)
+        private string ConvertToHexBasedOnUser(string text)
         {
-            timeToUpdateTheUI.Dispose();
-            timeToUpdateTheUI.Interval = 16; //16ms == 60+fps
-            if (updateTheBruteForceAttack) timeToUpdateTheUI.Tick += (s, args) => UpdateTheUIBruteForceAttack(isPerformanceModeOn);
-        }
-        private string ConvertToHexBasedOnUser(bool hexOutput, string text)
-        {
-            if (hexOutput)
+            if (checkBoxHexOutput.Checked)
             {
                 var hexBuilder = new StringBuilder();
                 for (int i = 0; i < text.Length; i++)
@@ -935,10 +688,6 @@ namespace HashTester
                 return hexBuilder.ToString();
             }
             else { return text; }
-        }
-        private void StopTimer(bool updateTheBruteForceAttack, bool isPerformanceModeOn)
-        {
-            if (updateTheBruteForceAttack) UpdateTheUIBruteForceAttack(isPerformanceModeOn); //Last update to have the most updated data
         }
         public void PasswordFoundMessageBox(string message, string inputHash, string password)
         {
@@ -967,7 +716,7 @@ namespace HashTester
                     writer.WriteLine("Input hash: " + inputHash);
                     writer.WriteLine("Found hash: " + hasher.Hash(password, userAlgorithm));
                     writer.WriteLine("Password UTF-8: " + password);
-                    writer.WriteLine("Password HEX:  " + ConvertToHexBasedOnUser(true, password));
+                    writer.WriteLine("Password HEX:  " + ConvertToHexBasedOnUser(password));
                 }
             }
             MessageBox.Show(message, "Collision Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -981,22 +730,41 @@ namespace HashTester
                     case 1: rainbowTable.Abort(); break;
                     case 2: rainbowTableAttack.Abort(); break;
                     case 3: passwordCheck.Abort(); break;
+                    case 4: bruteForce.Abort(); break;
+                    default: MessageBox.Show("Error, could not stop the process.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); break;
                 }
             }
         }
 
-        private void ResetAllValues()
+        private void textBoxBruteForceInput_TextChanged(object sender, EventArgs e)
         {
-            //bool
-            ranOutOfAttemps = false;
-            ranOutOfTime = false;
-            progressBar1.Value = 0;
-            RainbowAttacknumberOfLinesInLastUpdate = 0;
-            attempts = 0;
-            numberOfAttempsInLastUpdate = 0;
-            stopwatch.Reset();
-            if (timeToUpdateTheUI.Enabled) timeToUpdateTheUI.Stop();
-            maxAttempts = 0;
-        }        
+            if (radioButton5.Checked)
+            {
+                numericUpDown2.Value = textBoxBruteForceInput.Text.Length;
+                checkBoxBruteForceUnknownLenght.Checked = false;
+            }
+            else if (radioButton6.Checked)
+            {
+                checkBoxBruteForceUnknownLenght.Checked = true;
+            }
+        }
+
+        private void radioButton6_EnabledChanged(object sender, EventArgs e)
+        {
+            if (radioButton6.Checked)
+            {
+                checkBoxBruteForceUnknownLenght.Checked = true;
+                numericUpDown2.Value = 0;
+            }
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked)
+            {
+                checkBoxBruteForceUnknownLenght.Checked = false;
+                numericUpDown2.Value = textBoxBruteForceInput.Text.Length;
+            }
+        }
     }
 }
