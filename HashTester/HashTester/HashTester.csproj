@@ -41,6 +41,7 @@
     <Reference Include="System.IO.Hashing, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Hashing.8.0.0\lib\net462\System.IO.Hashing.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -134,6 +135,12 @@
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="ThreadsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThreadsForm.Designer.cs">
+      <DependentUpon>ThreadsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIUpdateFrequency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaltAndPepperQuestion.resx">
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThreadsForm.resx">
+      <DependentUpon>ThreadsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIUpdateFrequency.resx">
       <DependentUpon>UIUpdateFrequency.cs</DependentUpon>

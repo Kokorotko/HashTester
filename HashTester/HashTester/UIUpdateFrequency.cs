@@ -9,10 +9,20 @@ namespace HashTester
         {
             InitializeComponent();
         }
+        //private
         bool radioButtonSet = false;
         int miliseconds;
         int fps;
 
+        //Set and Get
+        public int Miliseconds
+        {
+            get 
+            {
+                if (miliseconds > 7 && miliseconds < 1001) return miliseconds;
+                else return 34;
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             fps = 30;
@@ -27,37 +37,11 @@ namespace HashTester
             textBox2.Text = miliseconds.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e) // Save
-        {
-            if (int.TryParse(textBox1.Text, out fps) && int.TryParse(textBox2.Text, out miliseconds))
-            {
-                if (miliseconds >= 8 && miliseconds <= 1000) 
-                {
-                    Settings.UpdateUIms = miliseconds;
-                    Settings.SaveSettings();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Please enter valid values (8-1000 ms).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid values. Please enter whole numbers only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void selectedRadioButtonChanged(object sender, EventArgs e)
         {            
             if (radioButton1.Checked) { DeselectAllRadioButtons(radioButton1); fps = 12; miliseconds = 83; radioButtonSet = true; }
             else if (radioButton2.Checked) { DeselectAllRadioButtons(radioButton2); fps = 24; miliseconds = 41; radioButtonSet = true; }
-            else if (radioButton3.Checked) { DeselectAllRadioButtons(radioButton3); fps = 30; miliseconds = 33; radioButtonSet = true; }
+            else if (radioButton3.Checked) { DeselectAllRadioButtons(radioButton3); fps = 30; miliseconds = 32; radioButtonSet = true; }
             else if (radioButton4.Checked) { DeselectAllRadioButtons(radioButton4); fps = 60; miliseconds = 16; radioButtonSet = true; }
             else if (radioButton5.Checked) { DeselectAllRadioButtons(radioButton5); fps = 125; miliseconds = 8; radioButtonSet = true; }
             else if (radioButton10.Checked) { DeselectAllRadioButtons(radioButton10); fps = 1; miliseconds = 1000; radioButtonSet = true; }
@@ -128,6 +112,25 @@ namespace HashTester
                 {
                     (control as RadioButton).Checked = false;
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox1.Text, out fps) && int.TryParse(textBox2.Text, out miliseconds))
+            {
+                if (miliseconds >= 8 && miliseconds <= 1000)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter valid values (8-1000 ms).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid values. Please enter whole numbers only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

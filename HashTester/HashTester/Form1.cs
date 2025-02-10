@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using static HashTester.Hasher;
 using static HashTester.Settings;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HashTester
 {
@@ -506,7 +507,11 @@ namespace HashTester
         private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
-            uIUpdateFrequency.ShowDialog();
+            if (uIUpdateFrequency.ShowDialog() == DialogResult.OK)
+            {
+                Settings.UpdateUIms = uIUpdateFrequency.Miliseconds;
+                Settings.SaveSettings();
+            }
         }
 
         private void AddLanguagesToMenu()
@@ -566,6 +571,16 @@ namespace HashTester
 
             }
 
+        }
+
+        private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadsForm threadsForm = new ThreadsForm();
+            if (threadsForm.ShowDialog() == DialogResult.OK)
+            {
+                Settings.ThreadsUsagePercentage = threadsForm.Percentage;
+                Settings.SaveSettings();
+            }
         }
     }
 }

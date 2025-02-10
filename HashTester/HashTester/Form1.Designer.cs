@@ -57,6 +57,8 @@
             this.collisionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UIUpdateFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.threadsAndCPUSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,11 +69,9 @@
             this.includeNumberOfHashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeHashingAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeSaltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
-            this.UIUpdateFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.threadsAndCPUSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -263,21 +263,21 @@
             this.systemToolStripMenuItem.Checked = true;
             this.systemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.systemToolStripMenuItem.Text = "System";
             this.systemToolStripMenuItem.Click += new System.EventHandler(this.systemToolStripMenuItem_Click);
             // 
             // lightToolStripMenuItem
             // 
             this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.lightToolStripMenuItem.Text = "Light";
             this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
             // 
             // darkToolStripMenuItem
             // 
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -295,30 +295,44 @@
             // baseToolStripMenuItem
             // 
             this.baseToolStripMenuItem.Name = "baseToolStripMenuItem";
-            this.baseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.baseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.baseToolStripMenuItem.Text = "Base";
             this.baseToolStripMenuItem.Click += new System.EventHandler(this.baseToolStripMenuItem_Click);
             // 
             // collisionToolStripMenuItem
             // 
             this.collisionToolStripMenuItem.Name = "collisionToolStripMenuItem";
-            this.collisionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.collisionToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.collisionToolStripMenuItem.Text = "Collision";
             this.collisionToolStripMenuItem.Click += new System.EventHandler(this.collisionToolStripMenuItem_Click);
             // 
             // passwordToolStripMenuItem
             // 
             this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.passwordToolStripMenuItem.Text = "Password";
             this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
             // 
             // logSaveToolStripMenuItem
             // 
             this.logSaveToolStripMenuItem.Name = "logSaveToolStripMenuItem";
-            this.logSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logSaveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.logSaveToolStripMenuItem.Text = "Log save";
             this.logSaveToolStripMenuItem.Click += new System.EventHandler(this.logSaveToolStripMenuItem_Click);
+            // 
+            // UIUpdateFrequencyToolStripMenuItem
+            // 
+            this.UIUpdateFrequencyToolStripMenuItem.Name = "UIUpdateFrequencyToolStripMenuItem";
+            this.UIUpdateFrequencyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.UIUpdateFrequencyToolStripMenuItem.Text = "UI Update Frequency";
+            this.UIUpdateFrequencyToolStripMenuItem.Click += new System.EventHandler(this.UIUpdateFrequencyToolStripMenuItem_Click);
+            // 
+            // threadsAndCPUSettingsToolStripMenuItem
+            // 
+            this.threadsAndCPUSettingsToolStripMenuItem.Name = "threadsAndCPUSettingsToolStripMenuItem";
+            this.threadsAndCPUSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.threadsAndCPUSettingsToolStripMenuItem.Text = "Threads and CPU settings";
+            this.threadsAndCPUSettingsToolStripMenuItem.Click += new System.EventHandler(this.threadsAndCPUSettingsToolStripMenuItem_Click);
             // 
             // resetAllSettingsToolStripMenuItem
             // 
@@ -340,21 +354,21 @@
             // messageBoxToolStripMenuItem
             // 
             this.messageBoxToolStripMenuItem.Name = "messageBoxToolStripMenuItem";
-            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.messageBoxToolStripMenuItem.Text = "MessageBox";
             this.messageBoxToolStripMenuItem.Click += new System.EventHandler(this.messageBoxToolStripMenuItem_Click);
             // 
             // listBoxToolStripMenuItem
             // 
             this.listBoxToolStripMenuItem.Name = "listBoxToolStripMenuItem";
-            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.listBoxToolStripMenuItem.Text = "ListBox";
             this.listBoxToolStripMenuItem.Click += new System.EventHandler(this.listBoxToolStripMenuItem_Click);
             // 
             // txtFileToolStripMenuItem
             // 
             this.txtFileToolStripMenuItem.Name = "txtFileToolStripMenuItem";
-            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.txtFileToolStripMenuItem.Text = "TxtFile";
             this.txtFileToolStripMenuItem.Click += new System.EventHandler(this.txtFileToolStripMenuItem_Click);
             // 
@@ -398,6 +412,12 @@
             this.includeSaltAndPepperToolStripMenuItem.Text = "Include salt and pepper";
             this.includeSaltAndPepperToolStripMenuItem.Click += new System.EventHandler(this.includeSaltAndPepperToolStripMenuItem_Click);
             // 
+            // includeAllToolStripMenuItem
+            // 
+            this.includeAllToolStripMenuItem.Name = "includeAllToolStripMenuItem";
+            this.includeAllToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.includeAllToolStripMenuItem.Text = "Include all";
+            // 
             // languagesToolStripMenuItem
             // 
             this.languagesToolStripMenuItem.Name = "languagesToolStripMenuItem";
@@ -413,25 +433,6 @@
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
             this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
-            // 
-            // UIUpdateFrequencyToolStripMenuItem
-            // 
-            this.UIUpdateFrequencyToolStripMenuItem.Name = "UIUpdateFrequencyToolStripMenuItem";
-            this.UIUpdateFrequencyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.UIUpdateFrequencyToolStripMenuItem.Text = "UI Update Frequency";
-            this.UIUpdateFrequencyToolStripMenuItem.Click += new System.EventHandler(this.UIUpdateFrequencyToolStripMenuItem_Click);
-            // 
-            // threadsAndCPUSettingsToolStripMenuItem
-            // 
-            this.threadsAndCPUSettingsToolStripMenuItem.Name = "threadsAndCPUSettingsToolStripMenuItem";
-            this.threadsAndCPUSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.threadsAndCPUSettingsToolStripMenuItem.Text = "Threads and CPU settings";
-            // 
-            // includeAllToolStripMenuItem
-            // 
-            this.includeAllToolStripMenuItem.Name = "includeAllToolStripMenuItem";
-            this.includeAllToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.includeAllToolStripMenuItem.Text = "Include all";
             // 
             // Form1
             // 
