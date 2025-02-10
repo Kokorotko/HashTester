@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static HashTester.Hasher;
 using static HashTester.Settings;
 using static System.Net.Mime.MediaTypeNames;
@@ -61,8 +62,8 @@ namespace HashTester
 
 #endregion
 
-#region StripMenu
-private void UIToolStripMenuLoad()
+        #region StripMenu
+        private void UIToolStripMenuLoad()
         {
             includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
             includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
@@ -461,6 +462,7 @@ private void UIToolStripMenuLoad()
             hashSelector.SelectedIndex = 0;
             Settings.LoadSettings();
             UIToolStripMenuLoad();
+            AddLanguagesToMenu();
         }
 
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
@@ -500,5 +502,70 @@ private void UIToolStripMenuLoad()
         }
 
         #endregion
+
+        private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
+            uIUpdateFrequency.ShowDialog();
+        }
+
+        private void AddLanguagesToMenu()
+        {
+            string[] array = Languages.AllLanguages();
+            if (array != null && array.Length != 0)
+            {
+                bool firstItem = true;
+                string dictionaryNameLoad = "";
+                string[] possibleNames = new string[4];
+                possibleNames[0] = Settings.SelectedLanguage;              // Original
+                possibleNames[1] = Settings.SelectedLanguage.ToLower();    // all lower
+                possibleNames[2] = Settings.SelectedLanguage.ToUpper();    // ALL UPPER
+                possibleNames[3] = char.ToUpper(Settings.SelectedLanguage[0]) + Settings.SelectedLanguage.Substring(1).ToLower(); // First letter Upper
+
+                foreach (string item in array)
+                {
+                    ToolStripMenuItem newItem = new ToolStripMenuItem(item);
+                    newItem.Name = item;
+                    if (possibleNames.Contains(newItem.Name)) //saved Language - priority
+                    {
+                        dictionaryNameLoad = newItem.Name;
+                        firstItem = false; 
+                    }
+                    else if (firstItem) 
+                    {
+                        dictionaryNameLoad = newItem.Name;
+                        firstItem = false;
+                    }
+
+                    newItem.Click += (sender, e) =>
+                    {
+                        Languages.LoadDictionary(newItem.Name);
+                        foreach (ToolStripItem menuItem in languagesToolStripMenuItem.DropDownItems) //uncheck all
+                        {
+                            if (menuItem is ToolStripMenuItem toolStripMenuItem)
+                            {
+                                toolStripMenuItem.Checked = false;
+                            }
+                        }
+                        newItem.Checked = true;
+                        Settings.SelectedLanguage = newItem.Name;
+                        Settings.SaveSettings();
+                    };
+
+                    languagesToolStripMenuItem.DropDownItems.Add(newItem);
+                }
+                Languages.LoadDictionary(dictionaryNameLoad);
+                foreach (ToolStripItem menuItem in languagesToolStripMenuItem.DropDownItems) //Put the right one to checked state
+                {
+                    if (menuItem is ToolStripMenuItem toolStripMenuItem && toolStripMenuItem.Name == dictionaryNameLoad)
+                    {
+                        toolStripMenuItem.Checked = true;
+                        break;
+                    }
+                }
+
+            }
+
+        }
     }
 }

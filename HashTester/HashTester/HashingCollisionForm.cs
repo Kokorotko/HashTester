@@ -196,7 +196,6 @@ namespace HashTester
             return false;
         }
 
-
         private string GenerateRandomString(Random random, int length)
         {
             char[] result = new char[length];
@@ -218,7 +217,7 @@ namespace HashTester
             //Attempts
             label3.Text = "Number of attempts: " + attempts;
             //Update Speed
-            double speed = triesBetween / 0.016; //16 ms
+            double speed = triesBetween / (Settings.UpdateUIms / 1000);
             label4.Text = "Hashes per sec: " + speed;
             //Update Average Speed
             double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
@@ -391,7 +390,7 @@ namespace HashTester
         private void TurnOffUI()
         {
             //Timer for UI update
-            timeToFindCollision.Interval = 16; //updates every 16 ms for 60+fps update
+            timeToFindCollision.Interval = Settings.UpdateUIms;
             timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
             timeToFindCollision.Start();
             //Stopwatch

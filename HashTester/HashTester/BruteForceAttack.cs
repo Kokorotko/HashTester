@@ -311,7 +311,7 @@ namespace HashTester
 
                 // Generate a password and check it
                 string tryText = GenerateTextForBruteForce(index, usableChars, currentLength);
-                Console.WriteLine($"Thread {threadID} | Index: {index} | Length: {currentLength} | TryText: {tryText}");
+                //Console.WriteLine($"Thread {threadID} | Index: {index} | Length: {currentLength} | TryText: {tryText}"); - Debug
 
                 string hashedText = hasher.Hash(tryText, algorithm);
                 if (hashedText == userHashInput)
@@ -333,8 +333,6 @@ namespace HashTester
             }
             return false;
         }
-
-
 
         public void BruteForceAttackMultiThread(
         Hasher.HashingAlgorithm algorithm,

@@ -61,6 +61,7 @@ namespace HashTester
         private void DisableUI()
         {
             foreach (Control control in this.Controls) if (!(control is Label)) control.Enabled = false; //no need to disable labels
+            listBoxLog.Enabled = true;
             buttonCancel.Enabled = true;
         }
 
@@ -87,7 +88,7 @@ namespace HashTester
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.PasswordPathToFiles = dialog.SelectedPath;
-                Settings.PasswordPathToFiles = dialog.SelectedPath;
+                Settings.SaveSettings();
             }
         }
         private void buttonLogClear_Click(object sender, EventArgs e)
@@ -110,7 +111,7 @@ namespace HashTester
                 int passwordLinesProcessedBetweenUpdates = (int)(passwordCheck.CurrentLine - passwordCheckLinesProcessedLastUpdate);
                 passwordCheckLinesProcessedLastUpdate = passwordCheck.CurrentLine;
                 labelTimer.Text = "Timer: " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
-                double currentSpeed = passwordLinesProcessedBetweenUpdates / 0.016;
+                double currentSpeed = passwordLinesProcessedBetweenUpdates / (Settings.UpdateUIms / 1000);
                 labelCurrentSpeed.Text = "Current speed /s: " + currentSpeed.ToString("#,0");
                 double averageSpeed = passwordCheck.CurrentLine / (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0); //in seconds
                 if (!double.IsInfinity(averageSpeed)) labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
@@ -166,7 +167,7 @@ namespace HashTester
             if (continueToChecker)
             {
                 Timer timer = new Timer();
-                timer.Interval = 16;
+                timer.Interval = Settings.UpdateUIms;
                 timer.Tick += UpdateUIPassword;
                 timer.Start();
                 await Task.Run(() => { passwordCheck.PasswordFinder(pathToFile, passwords); });
@@ -205,23 +206,6 @@ namespace HashTester
 
         #region Password Strenght Calculator - Done
         PasswordStrenghtCalculator passwordStrenghtCalculator = new PasswordStrenghtCalculator();        
-
-        string Vypis(double numberSeconds)
-        {
-            double numberYears = numberSeconds / 31556926; //years
-            double numberMonths = (numberSeconds % 31556926) / (2629749); //months
-            double numberDays = (numberSeconds % 2629749) / (86400); //days
-            double numberHours = (numberSeconds % 86400) / (3600); //hours
-            double numberMinutes = (numberSeconds % 3600) / (60); //minutes
-            double numberSecondsLeft = numberSeconds % 60; //seconds
-            string s = Math.Floor(numberYears).ToString("N0") + " years, " +
-           Math.Floor(numberMonths) + " months, " +
-           Math.Floor(numberDays) + " days, " +
-           Math.Floor(numberHours) + " hours, " +
-           Math.Floor(numberMinutes) + " minutes, " +
-           Math.Floor(numberSecondsLeft) + " seconds";
-            return s;
-        }
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
             int numberOfChars = 0;
@@ -275,7 +259,7 @@ namespace HashTester
             openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
             //Timer
             Timer updateUITimer = new Timer();
-            updateUITimer.Interval = 16; //for 62.5 fps updates            
+            updateUITimer.Interval = Settings.UpdateUIms;
             updateUITimer.Tick += UpdateUIRainbowTable;
             updateUITimer.Enabled = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -340,7 +324,7 @@ namespace HashTester
         {
             if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
             {       
-                double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / 0.016;
+                double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000);
                 int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
                 numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
                 labelTimer.Text = "Timer: " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
@@ -358,11 +342,10 @@ namespace HashTester
 
         #region Rainbow Table Attack  - Done    
         RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
-
         private void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
             Timer timeToUpdateUI = new Timer();
-            timeToUpdateUI.Interval = 16; //16ms == 60+fps
+            timeToUpdateUI.Interval = Settings.UpdateUIms;
             timeToUpdateUI.Tick += (s, args) => UpdateTheUIRainbowTableAttack();
             TurnOffUI();
             taskCurrentlyWorking = true;
@@ -483,7 +466,7 @@ namespace HashTester
             RainbowAttacknumberOfLinesInLastUpdate = currentLinesProcessed;
 
             // Speed Calculation
-            double speed = triesBetween / 0.016; // Every 16ms
+            double speed = triesBetween / (Settings.UpdateUIms / 1000);
             labelCurrentSpeed.Text = "Current speed /s: " + speed.ToString("#,0");
 
             // Attempts Display
@@ -549,7 +532,7 @@ namespace HashTester
 
             //timer
             Timer timer = new Timer();
-            timer.Interval = 16; //60+fps update
+            timer.Interval = Settings.UpdateUIms;
             timer.Tick += UpdateTheUIBruteForceAttack;            
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
@@ -631,7 +614,7 @@ namespace HashTester
             TurnOnUI();
         }
         private long numberOfAttemptsInLastUpdateBruteForce = 0;
-        private void UpdateTheUIBruteForceAttack(object sender, EventArgs e) //Runs every 16ms
+        private void UpdateTheUIBruteForceAttack(object sender, EventArgs e)
         {
             //Update Timer
             Console.WriteLine("UpdateTheUIBruteForceAttack");
@@ -641,7 +624,7 @@ namespace HashTester
             int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
             numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
             //Update Speed
-            double speed = triesBetween / 0.016; //16 ms
+            double speed = triesBetween / (Settings.UpdateUIms / 1000);
             labelCurrentSpeed.Text = "Current speed /s:  " + speed.ToString("#,0");
             //Attempts
             labelAttempts.Text = "Number of attempts: " + bruteForce.Attempts.ToString("#,0");

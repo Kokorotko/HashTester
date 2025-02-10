@@ -150,3 +150,8 @@ Password Check new class (Finding passwords in a .txt file)
 BruteForce Attack new class (may god have mercy)
 RainbowTableAttack RanOutOfTime and RanOutOfAttempts
 PasswordStrenghtCalculator new class
+UI Update Frequency option into the Settings
+**2025-02-10
+Languages.cs added
+Threads for multithreading form and settings
+OutputStyle Include All

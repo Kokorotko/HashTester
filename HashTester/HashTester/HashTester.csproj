@@ -81,6 +81,7 @@
     <Compile Include="ConfirmationForm.Designer.cs">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Languages.cs" />
     <Compile Include="PasswordCheck.cs" />
     <Compile Include="PasswordStrenghtCalculator.cs" />
     <Compile Include="RainbowTableAttack.cs" />
@@ -133,6 +134,12 @@
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="UIUpdateFrequency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIUpdateFrequency.Designer.cs">
+      <DependentUpon>UIUpdateFrequency.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CheckCollisionForm.resx">
       <DependentUpon>CheckCollisionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaltAndPepperQuestion.resx">
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIUpdateFrequency.resx">
+      <DependentUpon>UIUpdateFrequency.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

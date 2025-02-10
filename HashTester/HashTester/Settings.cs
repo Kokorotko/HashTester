@@ -25,11 +25,14 @@ namespace HashTester
         private static OutputTypeEnum outputType = OutputTypeEnum.MessageBox;
         private static bool includeSalt;
         private static bool includePepper;
+        private static int updateUIms;
+        private static int threadsUsagePercentage;
+        private static string selectedLanguage;
         private static string basePathToFiles;
         private static string passwordPathToFiles;
         private static string collisionPathToFiles;
         private static string logSavePathToFiles;
-        private static string settingsPathToFiles;
+        private static string settingsPathToFiles;        
         #endregion
 
         #region Get&Set
@@ -53,6 +56,20 @@ namespace HashTester
             get { return outputStyleIncludeSaltPepper; }
             set { outputStyleIncludeSaltPepper = value; }
         }
+
+        public static string SelectedLanguage
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(selectedLanguage)) return selectedLanguage;
+                else return "English";
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value)) selectedLanguage = value;
+                else selectedLanguage = "English";
+            }
+        }
         public static VisualModeEnum VisualMode
         {
             get { return visualMode; }
@@ -63,6 +80,18 @@ namespace HashTester
             get { return outputType; }
             set { outputType = value; }
         }
+
+        public static int ThreadsUsagePercentage
+        {
+            get { return threadsUsagePercentage; }
+            set
+            {
+                if (value <= 1) threadsUsagePercentage = 1;
+                else if (value > 100) threadsUsagePercentage = 100;
+                else threadsUsagePercentage = value;
+            }
+        }
+
         public static bool UseSalt
         {
             get { return includeSalt; }
@@ -72,6 +101,23 @@ namespace HashTester
         {
             get { return includePepper; }
             set { includePepper = value; }
+        }
+        public static int UpdateUIms     
+        {
+            get
+            {
+                if (updateUIms < 1 || updateUIms > 1000) return 32;
+                return updateUIms;
+            }
+            set
+            {
+                if (value > 7)
+                { 
+                    if (value > 1000) updateUIms = 1000;
+                    else updateUIms = value;
+                }
+                else updateUIms = 32; //around 30fps
+            }
         }
         public static string BasePathToFiles
         {
@@ -111,7 +157,6 @@ namespace HashTester
                 }
             }
         }
-
         public static string SettingsPathToFiles
         {
             get
@@ -319,7 +364,7 @@ namespace HashTester
                     //VisualStyle                    
                     writer.WriteLine("//Warning! If theres nothing after the = it will set the setting into default");
                     writer.WriteLine("//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input");
-                    writer.WriteLine("//I have included comments on what value is allowed.");
+                    writer.WriteLine("//I have included comments on what value is allowed. Otherwise a default value will be set");
                     writer.WriteLine("//VisualMode from 0 to 2");
                     switch (VisualMode)
                     {
@@ -327,6 +372,17 @@ namespace HashTester
                         case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
                         case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
                     }
+                    //UIupdate
+                    writer.WriteLine("//UpdateUI in Miliseconds");
+                    writer.WriteLine("//<<8 - 1000>> whole number");
+                    writer.WriteLine("UIupdateInMS=" + UpdateUIms);
+                    //Threads
+                    writer.WriteLine("//Number of threads max. used in percentage (%)");
+                    writer.WriteLine("//<<1 - 100>> whole number");
+                    writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
+                    //Languages
+                    writer.WriteLine("//Preferred language");
+                    writer.WriteLine("language=" + SelectedLanguage);
                     //OutputType
                     writer.WriteLine("//OutputType from 0 to 2");
                     switch (OutputType)
@@ -357,7 +413,7 @@ namespace HashTester
                     writer.WriteLine("settingsPathToFiles=" + SettingsPathToFiles);
                     writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
                     writer.WriteLine("collisionPathToFiles=" + CollisionPathToFiles);
-                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);
+                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);                    
                 }
             }
 
@@ -394,7 +450,7 @@ namespace HashTester
                                                 else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
                                                 else VisualMode = VisualModeEnum.Dark;
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 VisualMode = VisualModeEnum.System;
                                             }
@@ -409,7 +465,7 @@ namespace HashTester
                                                 else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
                                                 else OutputType = OutputTypeEnum.MessageBox;
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 OutputType = OutputTypeEnum.MessageBox;
                                             }
@@ -421,7 +477,7 @@ namespace HashTester
                                             {
                                                 OutputStyleIncludeOriginalString = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 OutputStyleIncludeOriginalString = false;
                                             }
@@ -433,7 +489,7 @@ namespace HashTester
                                             {
                                                 OutputStyleIncludeHashAlgorithm = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 OutputStyleIncludeHashAlgorithm = false;
                                             }
@@ -445,7 +501,7 @@ namespace HashTester
                                             {
                                                 OutputStyleIncludeNumberOfHash = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 OutputStyleIncludeNumberOfHash = false;
                                             }
@@ -457,7 +513,7 @@ namespace HashTester
                                             {
                                                 OutputStyleIncludeSaltPepper = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 OutputStyleIncludeSaltPepper = false;
                                             }
@@ -469,7 +525,7 @@ namespace HashTester
                                             {
                                                 UseSalt = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 UseSalt = false;
                                             }
@@ -481,7 +537,7 @@ namespace HashTester
                                             {
                                                 UsePepper = (data[1] == "1");
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 UsePepper = false;
                                             }
@@ -493,7 +549,7 @@ namespace HashTester
                                             {
                                                 BasePathToFiles = data[1];
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 BasePathToFiles = "";
                                             }
@@ -505,7 +561,7 @@ namespace HashTester
                                             {
                                                 PasswordPathToFiles = data[1];
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 PasswordPathToFiles = "";
                                             }
@@ -517,7 +573,7 @@ namespace HashTester
                                             {
                                                 CollisionPathToFiles = data[1];
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 CollisionPathToFiles = "";
                                             }
@@ -529,7 +585,7 @@ namespace HashTester
                                             {
                                                 LogSavePathToFiles = data[1];
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 LogSavePathToFiles = "";
                                             }
@@ -541,9 +597,45 @@ namespace HashTester
                                             {
                                                 SettingsPathToFiles = data[1];
                                             }
-                                            catch (IndexOutOfRangeException)
+                                            catch (Exception)
                                             {
                                                 SettingsPathToFiles = "";
+                                            }
+                                            break;
+                                        }
+                                    case "UIupdateInMS":
+                                        {
+                                            try
+                                            {
+                                                UpdateUIms = int.Parse(data[1]);
+                                            }
+                                            catch (Exception)
+                                            {
+                                                UpdateUIms = 0;
+                                            }
+                                            break;
+                                        }
+                                    case "threadsUsagePercentage":
+                                        {
+                                            try
+                                            {
+                                                ThreadsUsagePercentage = int.Parse(data[1]);
+                                            }
+                                            catch (Exception)
+                                            {
+                                                ThreadsUsagePercentage = 50;
+                                            }
+                                            break;
+                                        }
+                                    case "language":
+                                        {
+                                            try
+                                            {
+                                                SelectedLanguage = data[1];
+                                            }
+                                            catch (Exception)
+                                            {
+                                                SelectedLanguage = "";
                                             }
                                             break;
                                         }
