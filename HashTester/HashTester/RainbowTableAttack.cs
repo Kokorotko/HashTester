@@ -252,10 +252,10 @@ namespace HashTester
             }
             if (!continueTheAttack) return false;
 
-            if (PerformanceMode)
+            if (PerformanceMode && FormManagement.UseMultiThread())
             {
                 Console.WriteLine("Performance Mode On");
-                int numberOfThreadsUsed = (int)Math.Max(1, Environment.ProcessorCount / 1.5);
+                int numberOfThreadsUsed = FormManagement.NumberOfThreadsToUse();
                 //totalLinesInFile = We get this from splitting the file
                 long linesPerThread = totalLinesInFile / numberOfThreadsUsed;
                 List<Task> allTasks = new List<Task>();

@@ -72,6 +72,7 @@
             this.includeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
+            this.buttonClipboard = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,7 +131,6 @@
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.Location = new System.Drawing.Point(13, 159);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxLog.Size = new System.Drawing.Size(600, 251);
             this.listBoxLog.TabIndex = 10;
             // 
@@ -138,7 +138,7 @@
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(13, 415);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(309, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(159, 23);
             this.buttonClearListBox.TabIndex = 11;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@
             this.threadsAndCPUSettingsToolStripMenuItem,
             this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // visualModeToolStripMenuItem
@@ -348,7 +348,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputToolStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -381,7 +381,7 @@
             this.includeSaltAndPepperToolStripMenuItem,
             this.includeAllToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -417,6 +417,7 @@
             this.includeAllToolStripMenuItem.Name = "includeAllToolStripMenuItem";
             this.includeAllToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.includeAllToolStripMenuItem.Text = "Include all";
+            this.includeAllToolStripMenuItem.Click += new System.EventHandler(this.includeAllToolStripMenuItem_Click);
             // 
             // languagesToolStripMenuItem
             // 
@@ -426,19 +427,30 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(328, 416);
+            this.buttonSaveLog.Location = new System.Drawing.Point(178, 416);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(285, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(214, 23);
             this.buttonSaveLog.TabIndex = 15;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
             this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
+            // 
+            // buttonClipboard
+            // 
+            this.buttonClipboard.Location = new System.Drawing.Point(398, 416);
+            this.buttonClipboard.Name = "buttonClipboard";
+            this.buttonClipboard.Size = new System.Drawing.Size(215, 23);
+            this.buttonClipboard.TabIndex = 16;
+            this.buttonClipboard.Text = "Clipboard";
+            this.buttonClipboard.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
@@ -504,6 +516,7 @@
         private System.Windows.Forms.ToolStripMenuItem UIUpdateFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem threadsAndCPUSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeAllToolStripMenuItem;
+        private System.Windows.Forms.Button buttonClipboard;
     }
 }
 

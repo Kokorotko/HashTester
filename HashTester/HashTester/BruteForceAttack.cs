@@ -227,8 +227,8 @@ namespace HashTester
         public bool PasswordBruteForce(
         Hasher.HashingAlgorithm algorithm,
         bool useMultiThreading,
-        ushort threadID,
-        ushort numberOfThreadsUsed,
+        int threadID,
+        int numberOfThreadsUsed,
         string userHashInput,
         ulong maxAttempts,
         int userPasswordLenght,
@@ -342,17 +342,11 @@ namespace HashTester
         long timeToStopTimer)
         {
             Console.WriteLine("BruteForceAttackMultiThread started.");
-
-            // Number of threads to use (max threads based on CPU count)
-            ushort maxThreads = (ushort)Math.Max(1, Environment.ProcessorCount / 1.5);
-
-            // List to hold all the tasks
+            int maxThreads = FormManagement.NumberOfThreadsToUse();
             List<Task> allTasks = new List<Task>();
-
-            // Run tasks for each thread
-            for (ushort i = 0; i < maxThreads; i++)
+            for (int i = 0; i < maxThreads; i++)
             {
-                ushort threadID = i; // Unique ID for each thread
+                int threadID = i; // Unique ID for each thread
                 allTasks.Add(Task.Run(() =>
                 {
                     Console.WriteLine($"Thread {threadID} has started working.");

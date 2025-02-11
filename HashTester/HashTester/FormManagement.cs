@@ -73,5 +73,18 @@ namespace HashTester
                 }
             }
         }
+
+        public static int NumberOfThreadsToUse()
+        {
+            int percentage = Settings.ThreadsUsagePercentage;
+            if (percentage == 0) return 1; //Single Thread
+            return (int)Math.Round((double)(percentage * Environment.ProcessorCount));
+        }
+        public static bool UseMultiThread()
+        {
+            int percentage = Settings.ThreadsUsagePercentage;
+            if (percentage == 0) return false;
+            else return true;
+        }
     }
 }

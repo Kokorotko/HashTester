@@ -49,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxBruteForceUnknownLenght = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogPreHash = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
@@ -82,7 +83,7 @@
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.buttonLogSave = new System.Windows.Forms.Button();
-            this.checkBoxBruteForceUnknownLenght = new System.Windows.Forms.CheckBox();
+            this.buttonClipboard = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -347,6 +348,16 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Brute force attack";
+            // 
+            // checkBoxBruteForceUnknownLenght
+            // 
+            this.checkBoxBruteForceUnknownLenght.AutoSize = true;
+            this.checkBoxBruteForceUnknownLenght.Location = new System.Drawing.Point(6, 128);
+            this.checkBoxBruteForceUnknownLenght.Name = "checkBoxBruteForceUnknownLenght";
+            this.checkBoxBruteForceUnknownLenght.Size = new System.Drawing.Size(108, 17);
+            this.checkBoxBruteForceUnknownLenght.TabIndex = 42;
+            this.checkBoxBruteForceUnknownLenght.Text = "Unknown Lenght";
+            this.checkBoxBruteForceUnknownLenght.UseVisualStyleBackColor = true;
             // 
             // checkBoxShowLogPreHash
             // 
@@ -686,7 +697,7 @@
             // 
             this.buttonLogClear.Location = new System.Drawing.Point(19, 486);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(382, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(233, 23);
             this.buttonLogClear.TabIndex = 39;
             this.buttonLogClear.Text = "Clear Log";
             this.buttonLogClear.UseVisualStyleBackColor = true;
@@ -694,29 +705,30 @@
             // 
             // buttonLogSave
             // 
-            this.buttonLogSave.Location = new System.Drawing.Point(407, 485);
+            this.buttonLogSave.Location = new System.Drawing.Point(258, 486);
             this.buttonLogSave.Name = "buttonLogSave";
-            this.buttonLogSave.Size = new System.Drawing.Size(372, 23);
+            this.buttonLogSave.Size = new System.Drawing.Size(200, 23);
             this.buttonLogSave.TabIndex = 40;
             this.buttonLogSave.Text = "Save Log";
             this.buttonLogSave.UseVisualStyleBackColor = true;
             this.buttonLogSave.Click += new System.EventHandler(this.buttonLogSave_Click);
             // 
-            // checkBoxBruteForceUnknownLenght
+            // buttonClipboard
             // 
-            this.checkBoxBruteForceUnknownLenght.AutoSize = true;
-            this.checkBoxBruteForceUnknownLenght.Location = new System.Drawing.Point(134, 59);
-            this.checkBoxBruteForceUnknownLenght.Name = "checkBoxBruteForceUnknownLenght";
-            this.checkBoxBruteForceUnknownLenght.Size = new System.Drawing.Size(108, 17);
-            this.checkBoxBruteForceUnknownLenght.TabIndex = 42;
-            this.checkBoxBruteForceUnknownLenght.Text = "Unknown Lenght";
-            this.checkBoxBruteForceUnknownLenght.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Location = new System.Drawing.Point(465, 486);
+            this.buttonClipboard.Name = "buttonClipboard";
+            this.buttonClipboard.Size = new System.Drawing.Size(310, 23);
+            this.buttonClipboard.TabIndex = 41;
+            this.buttonClipboard.Text = "Clipboard";
+            this.buttonClipboard.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonLogSave);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.listBoxLog);
@@ -804,5 +816,6 @@
         private System.Windows.Forms.CheckBox checkBoxShowLogBrute;
         private System.Windows.Forms.CheckBox checkBoxShowLogDictionary;
         private System.Windows.Forms.CheckBox checkBoxBruteForceUnknownLenght;
+        private System.Windows.Forms.Button buttonClipboard;
     }
 }

@@ -29,7 +29,7 @@ namespace HashTester
 
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked || checkBox2.Checked || checkBox3.Checked || checkBox4.Checked || checkBox5.Checked || checkBox6.Checked)
+            if (checkBoxMD5.Checked || checkBoxSHA1.Checked || checkBoxSHA256.Checked || checkBoxSHA512.Checked || checkBoxRipeMD160.Checked || checkBoxCRC32.Checked)
             {
                 bool previousIncludeHashAlgorithm = Settings.OutputStyleIncludeHashAlgorithm; // Gets the actuall Settings
                 //overrides the settings with current selection
@@ -37,12 +37,12 @@ namespace HashTester
                 else Settings.OutputStyleIncludeHashAlgorithm = false;
                 //checks all selected algorithms
                 List<HashingAlgorithm> algorithm = new List<HashingAlgorithm>();
-                if (checkBox1.Checked) algorithm.Add(HashingAlgorithm.MD5);
-                if (checkBox2.Checked) algorithm.Add(HashingAlgorithm.SHA1);
-                if (checkBox3.Checked) algorithm.Add(HashingAlgorithm.SHA256);
-                if (checkBox4.Checked) algorithm.Add(HashingAlgorithm.SHA512);
-                if (checkBox5.Checked) algorithm.Add(HashingAlgorithm.RIPEMD160);
-                if (checkBox6.Checked) algorithm.Add(HashingAlgorithm.CRC32);                
+                if (checkBoxMD5.Checked) algorithm.Add(HashingAlgorithm.MD5);
+                if (checkBoxSHA1.Checked) algorithm.Add(HashingAlgorithm.SHA1);
+                if (checkBoxSHA256.Checked) algorithm.Add(HashingAlgorithm.SHA256);
+                if (checkBoxSHA512.Checked) algorithm.Add(HashingAlgorithm.SHA512);
+                if (checkBoxRipeMD160.Checked) algorithm.Add(HashingAlgorithm.RIPEMD160);
+                if (checkBoxCRC32.Checked) algorithm.Add(HashingAlgorithm.CRC32);                
                 mainForm.ProcessingHash(textHashSimple.Lines, algorithm.ToArray(), listBoxLog); //processes all the stuff
 
                 Settings.OutputStyleIncludeHashAlgorithm = previousIncludeHashAlgorithm; //Returns the settings to their original state
@@ -56,7 +56,7 @@ namespace HashTester
         private void TXTInput_Click(object sender, EventArgs e)
         {
             // Check if at least one checkbox is selected
-            if (checkBox1.Checked || checkBox2.Checked || checkBox3.Checked || checkBox4.Checked || checkBox5.Checked || checkBox6.Checked)
+            if (checkBoxMD5.Checked || checkBoxSHA1.Checked || checkBoxSHA256.Checked || checkBoxSHA512.Checked || checkBoxRipeMD160.Checked || checkBoxCRC32.Checked)
             {
                 bool previousIncludeHashAlgorithm = Settings.OutputStyleIncludeHashAlgorithm; // Gets the actuall Settings
                 //overrides the settings with current selection
@@ -66,12 +66,12 @@ namespace HashTester
                 List<HashingAlgorithm> algorithms = new List<HashingAlgorithm>();
 
                 // Add selected algorithms to the list
-                if (checkBox1.Checked) algorithms.Add(HashingAlgorithm.MD5);
-                if (checkBox2.Checked) algorithms.Add(HashingAlgorithm.SHA1);
-                if (checkBox3.Checked) algorithms.Add(HashingAlgorithm.SHA256);
-                if (checkBox4.Checked) algorithms.Add(HashingAlgorithm.SHA512);
-                if (checkBox5.Checked) algorithms.Add(HashingAlgorithm.RIPEMD160);
-                if (checkBox6.Checked) algorithms.Add(HashingAlgorithm.CRC32);               
+                if (checkBoxMD5.Checked) algorithms.Add(HashingAlgorithm.MD5);
+                if (checkBoxSHA1.Checked) algorithms.Add(HashingAlgorithm.SHA1);
+                if (checkBoxSHA256.Checked) algorithms.Add(HashingAlgorithm.SHA256);
+                if (checkBoxSHA512.Checked) algorithms.Add(HashingAlgorithm.SHA512);
+                if (checkBoxRipeMD160.Checked) algorithms.Add(HashingAlgorithm.RIPEMD160);
+                if (checkBoxCRC32.Checked) algorithms.Add(HashingAlgorithm.CRC32);               
                 mainForm.ProcessingHashTXTInput(algorithms.ToArray(), listBoxLog); // Processes all the stuff
 
                 Settings.OutputStyleIncludeHashAlgorithm = previousIncludeHashAlgorithm; // Returns the settings to their original state
@@ -91,6 +91,12 @@ namespace HashTester
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

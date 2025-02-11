@@ -33,18 +33,19 @@
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.textHashSimple = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBoxMD5 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA256 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA512 = new System.Windows.Forms.CheckBox();
+            this.checkBoxRipeMD160 = new System.Windows.Forms.CheckBox();
+            this.checkBoxCRC32 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBoxShowAlgorithm = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.buttonSaveLog = new System.Windows.Forms.Button();
+            this.buttonClipboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TXTInput
@@ -71,7 +72,7 @@
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(208, 415);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(315, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(223, 23);
             this.buttonClearListBox.TabIndex = 14;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -83,7 +84,6 @@
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.Location = new System.Drawing.Point(208, 77);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxLog.Size = new System.Drawing.Size(579, 329);
             this.listBoxLog.TabIndex = 13;
             // 
@@ -94,67 +94,67 @@
             this.textHashSimple.Name = "textHashSimple";
             this.textHashSimple.Size = new System.Drawing.Size(775, 59);
             this.textHashSimple.TabIndex = 12;
-            this.textHashSimple.Text = "test\r\ntest";
+            this.textHashSimple.Text = "test\r\ntest2";
             // 
-            // checkBox1
+            // checkBoxMD5
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 108);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(49, 17);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "MD5";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxMD5.AutoSize = true;
+            this.checkBoxMD5.Location = new System.Drawing.Point(12, 108);
+            this.checkBoxMD5.Name = "checkBoxMD5";
+            this.checkBoxMD5.Size = new System.Drawing.Size(49, 17);
+            this.checkBoxMD5.TabIndex = 15;
+            this.checkBoxMD5.Text = "MD5";
+            this.checkBoxMD5.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // checkBoxSHA1
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(11, 131);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(54, 17);
-            this.checkBox2.TabIndex = 16;
-            this.checkBox2.Text = "SHA1";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxSHA1.AutoSize = true;
+            this.checkBoxSHA1.Location = new System.Drawing.Point(11, 131);
+            this.checkBoxSHA1.Name = "checkBoxSHA1";
+            this.checkBoxSHA1.Size = new System.Drawing.Size(54, 17);
+            this.checkBoxSHA1.TabIndex = 16;
+            this.checkBoxSHA1.Text = "SHA1";
+            this.checkBoxSHA1.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBoxSHA256
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(11, 154);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(66, 17);
-            this.checkBox3.TabIndex = 17;
-            this.checkBox3.Text = "SHA256";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBoxSHA256.AutoSize = true;
+            this.checkBoxSHA256.Location = new System.Drawing.Point(11, 154);
+            this.checkBoxSHA256.Name = "checkBoxSHA256";
+            this.checkBoxSHA256.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxSHA256.TabIndex = 17;
+            this.checkBoxSHA256.Text = "SHA256";
+            this.checkBoxSHA256.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // checkBoxSHA512
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(11, 177);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(66, 17);
-            this.checkBox4.TabIndex = 18;
-            this.checkBox4.Text = "SHA512";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBoxSHA512.AutoSize = true;
+            this.checkBoxSHA512.Location = new System.Drawing.Point(11, 177);
+            this.checkBoxSHA512.Name = "checkBoxSHA512";
+            this.checkBoxSHA512.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxSHA512.TabIndex = 18;
+            this.checkBoxSHA512.Text = "SHA512";
+            this.checkBoxSHA512.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // checkBoxRipeMD160
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(11, 200);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(86, 17);
-            this.checkBox5.TabIndex = 19;
-            this.checkBox5.Text = "RipeMD-160";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBoxRipeMD160.AutoSize = true;
+            this.checkBoxRipeMD160.Location = new System.Drawing.Point(11, 200);
+            this.checkBoxRipeMD160.Name = "checkBoxRipeMD160";
+            this.checkBoxRipeMD160.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxRipeMD160.TabIndex = 19;
+            this.checkBoxRipeMD160.Text = "RipeMD-160";
+            this.checkBoxRipeMD160.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // checkBoxCRC32
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(11, 223);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(60, 17);
-            this.checkBox6.TabIndex = 20;
-            this.checkBox6.Text = "CRC32";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBoxCRC32.AutoSize = true;
+            this.checkBoxCRC32.Location = new System.Drawing.Point(11, 223);
+            this.checkBoxCRC32.Name = "checkBoxCRC32";
+            this.checkBoxCRC32.Size = new System.Drawing.Size(60, 17);
+            this.checkBoxCRC32.TabIndex = 20;
+            this.checkBoxCRC32.Text = "CRC32";
+            this.checkBoxCRC32.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -193,29 +193,40 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(529, 415);
+            this.buttonSaveLog.Location = new System.Drawing.Point(437, 415);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(257, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(186, 23);
             this.buttonSaveLog.TabIndex = 24;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
             this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
+            // 
+            // buttonClipboard
+            // 
+            this.buttonClipboard.Location = new System.Drawing.Point(629, 415);
+            this.buttonClipboard.Name = "buttonClipboard";
+            this.buttonClipboard.Size = new System.Drawing.Size(157, 23);
+            this.buttonClipboard.TabIndex = 25;
+            this.buttonClipboard.Text = "Clipboard";
+            this.buttonClipboard.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
             // MultipleHashing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxShowAlgorithm);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxCRC32);
+            this.Controls.Add(this.checkBoxRipeMD160);
+            this.Controls.Add(this.checkBoxSHA512);
+            this.Controls.Add(this.checkBoxSHA256);
+            this.Controls.Add(this.checkBoxSHA1);
+            this.Controls.Add(this.checkBoxMD5);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.textHashSimple);
@@ -234,17 +245,18 @@
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.TextBox textHashSimple;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBoxMD5;
+        private System.Windows.Forms.CheckBox checkBoxSHA1;
+        private System.Windows.Forms.CheckBox checkBoxSHA256;
+        private System.Windows.Forms.CheckBox checkBoxSHA512;
+        private System.Windows.Forms.CheckBox checkBoxRipeMD160;
+        private System.Windows.Forms.CheckBox checkBoxCRC32;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBoxShowAlgorithm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button buttonSaveLog;
+        private System.Windows.Forms.Button buttonClipboard;
     }
 }

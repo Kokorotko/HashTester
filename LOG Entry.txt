@@ -154,4 +154,7 @@ UI Update Frequency option into the Settings
 **2025-02-10
 Languages.cs added
 Threads for multithreading form and settings
+**2025-02-11
 OutputStyle Include All
+Clipboard for listbox logs
+All Forms spawn in the middle

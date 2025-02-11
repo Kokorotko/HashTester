@@ -34,6 +34,7 @@
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.buttonSaveLog = new System.Windows.Forms.Button();
+            this.buttonClipboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxLog
@@ -41,7 +42,6 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(12, 68);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxLog.Size = new System.Drawing.Size(547, 342);
             this.listBoxLog.TabIndex = 6;
             // 
@@ -84,7 +84,7 @@
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(12, 418);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(269, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(160, 23);
             this.buttonClearListBox.TabIndex = 9;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -92,19 +92,30 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(290, 418);
+            this.buttonSaveLog.Location = new System.Drawing.Point(178, 418);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(269, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(232, 23);
             this.buttonSaveLog.TabIndex = 10;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
             this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
+            // 
+            // buttonClipboard
+            // 
+            this.buttonClipboard.Location = new System.Drawing.Point(417, 417);
+            this.buttonClipboard.Name = "buttonClipboard";
+            this.buttonClipboard.Size = new System.Drawing.Size(142, 23);
+            this.buttonClipboard.TabIndex = 11;
+            this.buttonClipboard.Text = "Clipboard";
+            this.buttonClipboard.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
             // FormGradual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.hashSelector);
@@ -127,5 +138,6 @@
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.Button buttonSaveLog;
+        private System.Windows.Forms.Button buttonClipboard;
     }
 }

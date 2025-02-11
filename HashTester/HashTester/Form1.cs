@@ -59,25 +59,12 @@ namespace HashTester
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }       
+        }
 
-#endregion
-
-        #region StripMenu
+        #endregion
         private void UIToolStripMenuLoad()
         {
-            includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
-            includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
-            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
-            includeSaltToolStripMenuItem.Checked = Settings.UseSalt;
-            includePepperToolStripMenuItem.Checked = Settings.UsePepper;
-            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
-            switch (Settings.OutputType)
-            {
-                case OutputTypeEnum.MessageBox: messageBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.Listbox: listBoxToolStripMenuItem.Checked = true; break;
-                case OutputTypeEnum.TXTFile: txtFileToolStripMenuItem.Checked = true; break;
-            }
+            UpdateMenuStripSettings();
         }
         private void UpdateMenuStripSettings()
         {
@@ -86,6 +73,7 @@ namespace HashTester
             includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
             includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
             includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+            UpdateIncludeAllOutputStyle();
 
             // Output Type Settings
             switch (Settings.OutputType)
@@ -112,6 +100,15 @@ namespace HashTester
             includePepperToolStripMenuItem.Checked = Settings.UsePepper;
         }
 
+        private void UpdateIncludeAllOutputStyle()
+        {
+            if (Settings.OutputStyleIncludeOriginalString &&
+                Settings.OutputStyleIncludeNumberOfHash &&
+                Settings.OutputStyleIncludeHashAlgorithm &&
+                Settings.OutputStyleIncludeSaltPepper) includeAllToolStripMenuItem.Checked = true;
+            else includeAllToolStripMenuItem.Checked = false;
+        }
+
         #region Hashing        
 
         #region SaltAndPepper
@@ -136,6 +133,7 @@ namespace HashTester
         private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormGradual formGradual = new FormGradual();
+            formGradual.StartPosition = FormStartPosition.CenterScreen;
             formGradual.Show();
         }
 
@@ -145,6 +143,7 @@ namespace HashTester
         private void multipleHashingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MultipleHashing multipleHashing = new MultipleHashing();
+            multipleHashing.StartPosition = FormStartPosition.CenterScreen;
             multipleHashing.Show();
         }
         #endregion
@@ -153,17 +152,12 @@ namespace HashTester
         private void findingCollisionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
+            hashingCollisionForm.StartPosition = FormStartPosition.CenterScreen;
             hashingCollisionForm.Show();
         }
         #endregion
 
         #region FileChecksum
-
-        #endregion
-
-        #region Password JailBreak
-
-        #endregion
 
         #endregion
 
@@ -236,10 +230,12 @@ namespace HashTester
         private void resetAllSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfirmationForm confirm = new ConfirmationForm("Are you sure you want to reset all settings?");
+            confirm.StartPosition = FormStartPosition.CenterScreen;
             if (confirm.ShowDialog() == DialogResult.OK)
             {
                 Settings.ResetSettings();
                 Settings.SaveSettings();
+                UpdateMenuStripSettings();
             }
         }
 
@@ -282,6 +278,7 @@ namespace HashTester
             Settings.OutputStyleIncludeOriginalString = !Settings.OutputStyleIncludeOriginalString;
             includeOriginalStringToolStripMenuItem.Checked = Settings.OutputStyleIncludeOriginalString;
             Settings.SaveSettings();
+            UpdateIncludeAllOutputStyle();
         }
 
         private void includeNumberOfHashToolStripMenuItem_Click(object sender, EventArgs e)
@@ -289,19 +286,44 @@ namespace HashTester
             Settings.OutputStyleIncludeNumberOfHash = !Settings.OutputStyleIncludeNumberOfHash;
             includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
             Settings.SaveSettings();
+            UpdateIncludeAllOutputStyle();
         }
         private void includeHashingAlgorithmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.OutputStyleIncludeHashAlgorithm = !Settings.OutputStyleIncludeHashAlgorithm;
-            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
+            includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;            
             Settings.SaveSettings();
+            UpdateIncludeAllOutputStyle();
         }
 
         private void includeSaltAndPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.OutputStyleIncludeSaltPepper = !Settings.OutputStyleIncludeSaltPepper;
-            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+            includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;            
             Settings.SaveSettings();
+            UpdateIncludeAllOutputStyle();
+        }
+
+        private void includeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (includeAllToolStripMenuItem.Checked)
+            {
+                Settings.OutputStyleIncludeNumberOfHash = false;
+                Settings.OutputStyleIncludeSaltPepper = false;
+                Settings.OutputStyleIncludeHashAlgorithm = false;
+                Settings.OutputStyleIncludeOriginalString = false;
+                includeAllToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                Settings.OutputStyleIncludeNumberOfHash = true;
+                Settings.OutputStyleIncludeSaltPepper = true;
+                Settings.OutputStyleIncludeHashAlgorithm = true;
+                Settings.OutputStyleIncludeOriginalString = true;
+                includeAllToolStripMenuItem.Checked = true;
+            }
+            Settings.SaveSettings();
+            UpdateMenuStripSettings();
         }
 
         #endregion
@@ -413,6 +435,7 @@ namespace HashTester
             {
                 using (SaltAndPepperQuestion saltAndPepperQuestion = new SaltAndPepperQuestion())
                 {
+                    saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
                     if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
                     {
                         saltAndPepperQuestion.GetSaltPepperInformation
@@ -469,6 +492,7 @@ namespace HashTester
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PasswordForm passwordForm = new PasswordForm();
+            passwordForm.StartPosition = FormStartPosition.CenterScreen;
             passwordForm.Show();
         }
 
@@ -507,6 +531,7 @@ namespace HashTester
         private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
+            uIUpdateFrequency.StartPosition = FormStartPosition.CenterScreen;
             if (uIUpdateFrequency.ShowDialog() == DialogResult.OK)
             {
                 Settings.UpdateUIms = uIUpdateFrequency.Miliseconds;
@@ -576,11 +601,18 @@ namespace HashTester
         private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ThreadsForm threadsForm = new ThreadsForm();
+            threadsForm.StartPosition = FormStartPosition.CenterScreen;
             if (threadsForm.ShowDialog() == DialogResult.OK)
             {
                 Settings.ThreadsUsagePercentage = threadsForm.Percentage;
                 Settings.SaveSettings();
             }
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

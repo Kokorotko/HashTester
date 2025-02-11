@@ -19,7 +19,6 @@ using Timer = System.Windows.Forms.Timer;
 namespace HashTester
 {
     public delegate void UpdateAttemptsLabelDelegate(long attempts);
-
     public partial class HashingCollisionForm : Form
     {
         public HashingCollisionForm()
@@ -42,7 +41,7 @@ namespace HashTester
         #region Form
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            listBoxLog.Items.Clear();
         }
 
         private void buttonReturn_Click(object sender, EventArgs e)
@@ -72,20 +71,20 @@ namespace HashTester
                 default: algorithm = Hasher.HashingAlgorithm.CRC32; break;
             }
             List<Task> allTasks = new List<Task>();
-            if (checkBoxPerformanceMode.Checked)
+            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Starting the process in performance mode.");
-                int maxThreads = Environment.ProcessorCount;
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Number of Threads assigned: " + maxAttempts);
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Starting the process in performance mode.");
+                int maxThreads = FormManagement.NumberOfThreadsToUse();
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Number of Threads assigned: " + maxAttempts);
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
                 {
-                    allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBox1.Checked)));
+                    allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
                 }
             }
             else //single Thread
             {
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Starting the process in normal mode.");
-                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBox1.Checked)));
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Starting the process in normal mode.");
+                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
             }
             await Task.WhenAll(allTasks);
             TurnOnUI();
@@ -93,16 +92,16 @@ namespace HashTester
             {
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBox1.Items.Add("Collision found!");
-                    listBox1.Items.Add("Collision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
-                    listBox1.Items.Add("Collision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
-                    listBox1.Items.Add("Collision hash: " + hasher.Hash(textCollision01, algorithm));
-                    listBox1.Items.Add("Attempts: " + attempts);
-                    listBox1.Items.Add("Time to find: " + labelTimer.Text.Split(' ')[1]);
+                    listBoxLog.Items.Add("Collision found!");
+                    listBoxLog.Items.Add("Collision 2: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
+                    listBoxLog.Items.Add("Collision 2: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
+                    listBoxLog.Items.Add("Collision hash: " + hasher.Hash(textCollision01, algorithm));
+                    listBoxLog.Items.Add("Attempts: " + attempts);
+                    listBoxLog.Items.Add("Time to find: " + labelTimer.Text.Split(' ')[1]);
                 }
                 string message = "Collision found!\n" +
-                                        "\nCollision 1: " + (checkBox1.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
-                                       "\nCollision 2: " + (checkBox1.Checked ? ConvertStringToHex(textCollision02) : textCollision02) +
+                                        "\nCollision 1: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
+                                       "\nCollision 2: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision02) : textCollision02) +
                                        "\nCollision hash: " + hasher.Hash(textCollision01, algorithm) +
                                        "\nAttempts: " + attempts +
                                        "\nTime to find: " + labelTimer.Text.Split(' ')[1]; // Only the number                
@@ -111,17 +110,17 @@ namespace HashTester
             else if (stopHashing)
             {
                 MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("The process has been abandoned.");
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("The process has been abandoned.");
             }
             else if (attemptsRanOut)
             {
                 MessageBox.Show("Could not find a collision under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Could not find a collision under the given attempts.");
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Could not find a collision under the given attempts.");
             }
             else
             {
                 MessageBox.Show("Could not find collision.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked) listBox1.Items.Add("Could not find collision.");
+                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add("Could not find collision.");
             } 
         }
 
@@ -168,7 +167,7 @@ namespace HashTester
                             {
                                 string s = "Found Collision, " + collision1 + " and " + collision2;
                                 if (useHexForOutput) s = "Found Collision, " + ConvertStringToHex(collision1) + " and " + ConvertStringToHex(collision2);
-                                Invoke((Action)(() => listBox1.Items.Add(s)));
+                                Invoke((Action)(() => listBoxLog.Items.Add(s)));
                             }
                             return true;
                         }
@@ -223,7 +222,7 @@ namespace HashTester
             double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
             label5.Text = "Average speed: " + Math.Floor(averageSpeed);
             //listbox
-            listBox1.TopIndex = listBox1.Items.Count - 1; // Scroll to the most recent item
+            listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
@@ -404,7 +403,7 @@ namespace HashTester
             numericUpDown2.Enabled = false;
             hashSelector.Enabled = false;
             checkBoxListBoxLog.Enabled = false;
-            checkBox1.Enabled = false;
+            checkBoxUseHex.Enabled = false;
             checkBoxPerformanceMode.Enabled = false;
             buttonCheckCollision.Enabled = false;
         }
@@ -425,7 +424,7 @@ namespace HashTester
             numericUpDown2.Enabled = true;
             hashSelector.Enabled = true;
             checkBoxListBoxLog.Enabled = true;
-            checkBox1.Enabled = true;
+            checkBoxUseHex.Enabled = true;
             checkBoxPerformanceMode.Enabled = true;
             buttonCheckCollision.Enabled = true;
         }
@@ -488,6 +487,12 @@ namespace HashTester
                 File.WriteAllText(path + "_collisionInfo.txt", s);
                 Console.WriteLine("Generated _collisionInfo.txt into the " + path);
             }
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

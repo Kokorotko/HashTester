@@ -31,23 +31,24 @@
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.buttonGenerateCollision = new System.Windows.Forms.Button();
             this.buttonTakeCollisionFromTXT = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAbort = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxUseHex = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.buttonCheckCollision = new System.Windows.Forms.Button();
             this.buttonSaveLog = new System.Windows.Forms.Button();
+            this.buttonClipboard = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -87,20 +88,20 @@
             this.buttonTakeCollisionFromTXT.UseVisualStyleBackColor = true;
             this.buttonTakeCollisionFromTXT.Click += new System.EventHandler(this.buttonTakeCollisionFromTXT_Click);
             // 
-            // listBox1
+            // listBoxLog
             // 
-            this.listBox1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 121);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 134);
-            this.listBox1.TabIndex = 12;
+            this.listBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listBoxLog.FormattingEnabled = true;
+            this.listBoxLog.Location = new System.Drawing.Point(12, 134);
+            this.listBoxLog.Name = "listBoxLog";
+            this.listBoxLog.Size = new System.Drawing.Size(393, 121);
+            this.listBoxLog.TabIndex = 12;
             // 
             // buttonClearListBox
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(12, 261);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(393, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(109, 23);
             this.buttonClearListBox.TabIndex = 13;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -108,9 +109,9 @@
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(635, 12);
+            this.buttonReturn.Location = new System.Drawing.Point(411, 261);
             this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(153, 23);
+            this.buttonReturn.Size = new System.Drawing.Size(143, 23);
             this.buttonReturn.TabIndex = 14;
             this.buttonReturn.Text = "Go Back";
             this.buttonReturn.UseVisualStyleBackColor = true;
@@ -140,21 +141,21 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(418, 16);
+            this.labelTimer.Location = new System.Drawing.Point(281, 56);
             this.labelTimer.Name = "labelTimer";
             this.labelTimer.Size = new System.Drawing.Size(39, 13);
             this.labelTimer.TabIndex = 17;
             this.labelTimer.Text = "Timer: ";
             // 
-            // button1
+            // buttonAbort
             // 
-            this.button1.Location = new System.Drawing.Point(635, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Cancel The Process";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAbort.Location = new System.Drawing.Point(401, 11);
+            this.buttonAbort.Name = "buttonAbort";
+            this.buttonAbort.Size = new System.Drawing.Size(153, 23);
+            this.buttonAbort.TabIndex = 18;
+            this.buttonAbort.Text = "Cancel The Process";
+            this.buttonAbort.UseVisualStyleBackColor = true;
+            this.buttonAbort.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -185,7 +186,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(418, 29);
+            this.label3.Location = new System.Drawing.Point(281, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 21;
@@ -194,7 +195,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(419, 43);
+            this.label4.Location = new System.Drawing.Point(282, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 22;
@@ -203,7 +204,9 @@
             // checkBoxListBoxLog
             // 
             this.checkBoxListBoxLog.AutoSize = true;
-            this.checkBoxListBoxLog.Location = new System.Drawing.Point(301, 98);
+            this.checkBoxListBoxLog.Checked = true;
+            this.checkBoxListBoxLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxListBoxLog.Location = new System.Drawing.Point(411, 134);
             this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
             this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
             this.checkBoxListBoxLog.TabIndex = 23;
@@ -213,32 +216,32 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(418, 56);
+            this.label5.Location = new System.Drawing.Point(281, 96);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 24;
             this.label5.Text = "Average speed: ";
             // 
-            // checkBox1
+            // checkBoxUseHex
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(421, 98);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(137, 17);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "Use HEX to display text";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxUseHex.AutoSize = true;
+            this.checkBoxUseHex.Checked = true;
+            this.checkBoxUseHex.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxUseHex.Location = new System.Drawing.Point(411, 157);
+            this.checkBoxUseHex.Name = "checkBoxUseHex";
+            this.checkBoxUseHex.Size = new System.Drawing.Size(137, 17);
+            this.checkBoxUseHex.TabIndex = 26;
+            this.checkBoxUseHex.Text = "Use HEX to display text";
+            this.checkBoxUseHex.UseVisualStyleBackColor = true;
             // 
             // checkBoxPerformanceMode
             // 
             this.checkBoxPerformanceMode.AutoSize = true;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(564, 98);
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(411, 180);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
-            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(181, 17);
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
             this.checkBoxPerformanceMode.TabIndex = 27;
-            this.checkBoxPerformanceMode.Text = "PerformanceMode (disables Log)";
+            this.checkBoxPerformanceMode.Text = "PerformanceMode";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // buttonCheckCollision
@@ -253,35 +256,46 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(411, 261);
+            this.buttonSaveLog.Location = new System.Drawing.Point(127, 260);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(377, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(132, 23);
             this.buttonSaveLog.TabIndex = 29;
             this.buttonSaveLog.Text = "Save Log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
+            // 
+            // buttonClipboard
+            // 
+            this.buttonClipboard.Location = new System.Drawing.Point(266, 260);
+            this.buttonClipboard.Name = "buttonClipboard";
+            this.buttonClipboard.Size = new System.Drawing.Size(129, 23);
+            this.buttonClipboard.TabIndex = 30;
+            this.buttonClipboard.Text = "Clipboard";
+            this.buttonClipboard.UseVisualStyleBackColor = true;
+            this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(559, 295);
+            this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxUseHex);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBoxListBoxLog);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAbort);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonClearListBox);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.buttonTakeCollisionFromTXT);
             this.Controls.Add(this.buttonGenerateCollision);
             this.Controls.Add(this.hashSelector);
@@ -300,22 +314,23 @@
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Button buttonGenerateCollision;
         private System.Windows.Forms.Button buttonTakeCollisionFromTXT;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.Button buttonReturn;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTimer;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAbort;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBoxListBoxLog;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxUseHex;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.Button buttonCheckCollision;
         private System.Windows.Forms.Button buttonSaveLog;
+        private System.Windows.Forms.Button buttonClipboard;
     }
 }

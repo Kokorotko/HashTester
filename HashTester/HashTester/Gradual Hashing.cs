@@ -61,5 +61,11 @@ namespace HashTester
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

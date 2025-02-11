@@ -334,6 +334,7 @@ namespace HashTester
             VisualMode = VisualModeEnum.System;
             OutputType = OutputTypeEnum.MessageBox;
             OutputStyleIncludeHashAlgorithm = false;
+            OutputStyleIncludeNumberOfHash = false;
             OutputStyleIncludeOriginalString = false;
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;

@@ -250,7 +250,7 @@ namespace HashTester
         #region Rainbow Table - Done
 
         RainbowTable rainbowTable = new RainbowTable();
-        private void buttonPreHash_Click(object sender, EventArgs e)
+        private void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
         {
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 1;
@@ -273,9 +273,11 @@ namespace HashTester
                 {
                     //MultiThread
                     updateUITimer.Start();                    
-                    if (checkBoxPerformanceMode.Checked)
+                    if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
                     {
-                        if (rainbowTable.GenerateRainbowTableMultiThread((int)Math.Max(1, Environment.ProcessorCount / 1.5), openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
+                        int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
+                        if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Number of threads used: "  + numberOfThreadsToUse);
+                        if (rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
                         {
                             updateUITimer.Stop();
                             if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
@@ -539,7 +541,7 @@ namespace HashTester
             Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
             long temp = bruteForce.CalculateAllPossibleCombinations(checkBoxBruteForceUnknownLenght.Checked, (int)numericUpDown2.Value);
             if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Number Of All Possible Combinations: " + temp);
-            if (checkBoxPerformanceMode.Checked)
+            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
                 timer.Start();
                 Console.WriteLine("Performance Mode On");
@@ -748,6 +750,12 @@ namespace HashTester
                 checkBoxBruteForceUnknownLenght.Checked = false;
                 numericUpDown2.Value = textBoxBruteForceInput.Text.Length;
             }
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
