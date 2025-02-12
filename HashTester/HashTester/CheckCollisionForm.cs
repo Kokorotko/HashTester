@@ -44,6 +44,7 @@ namespace HashTester
         private void CheckCollisionForm_Load(object sender, EventArgs e)
         {
             hashSelector.SelectedIndex = 0;
+            FormManagement.SetUpFormTheme(this);
         }
     }
 }

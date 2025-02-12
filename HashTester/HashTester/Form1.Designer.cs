@@ -44,8 +44,6 @@
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileChecksumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.passwordJailbreakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,12 +71,14 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.passwordJailbreakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonChecksum = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonHashSimpleText
             // 
-            this.buttonHashSimpleText.Location = new System.Drawing.Point(16, 64);
+            this.buttonHashSimpleText.Location = new System.Drawing.Point(16, 67);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
             this.buttonHashSimpleText.Size = new System.Drawing.Size(75, 23);
             this.buttonHashSimpleText.TabIndex = 0;
@@ -91,7 +91,7 @@
             this.textHashSimple.Location = new System.Drawing.Point(13, 94);
             this.textHashSimple.Multiline = true;
             this.textHashSimple.Name = "textHashSimple";
-            this.textHashSimple.Size = new System.Drawing.Size(775, 59);
+            this.textHashSimple.Size = new System.Drawing.Size(389, 59);
             this.textHashSimple.TabIndex = 1;
             this.textHashSimple.Text = "Hello This is Test";
             // 
@@ -131,14 +131,14 @@
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.Location = new System.Drawing.Point(13, 159);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(600, 251);
+            this.listBoxLog.Size = new System.Drawing.Size(389, 251);
             this.listBoxLog.TabIndex = 10;
             // 
             // buttonClearListBox
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(13, 415);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(159, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(99, 23);
             this.buttonClearListBox.TabIndex = 11;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.languagesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(420, 24);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -163,7 +163,6 @@
             this.gradualHashingToolStripMenuItem1,
             this.multipleHashingToolStripMenuItem,
             this.findingCollisionsToolStripMenuItem,
-            this.fileChecksumToolStripMenuItem,
             this.passwordJailbreakToolStripMenuItem});
             this.hashingToolStripMenuItem.Name = "hashingToolStripMenuItem";
             this.hashingToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -181,14 +180,14 @@
             // includeSaltToolStripMenuItem
             // 
             this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.includeSaltToolStripMenuItem.Text = "Use Salt";
             this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click);
             // 
             // includePepperToolStripMenuItem
             // 
             this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.includePepperToolStripMenuItem.Text = "Use Pepper";
             this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click);
             // 
@@ -212,19 +211,6 @@
             this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
-            // 
-            // fileChecksumToolStripMenuItem
-            // 
-            this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.fileChecksumToolStripMenuItem.Text = "File Checksum";
-            // 
-            // passwordJailbreakToolStripMenuItem
-            // 
-            this.passwordJailbreakToolStripMenuItem.Name = "passwordJailbreakToolStripMenuItem";
-            this.passwordJailbreakToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.passwordJailbreakToolStripMenuItem.Text = "Password Brute Force";
-            this.passwordJailbreakToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -427,9 +413,9 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(178, 416);
+            this.buttonSaveLog.Location = new System.Drawing.Point(118, 416);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(214, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(114, 23);
             this.buttonSaveLog.TabIndex = 15;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -437,19 +423,38 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(398, 416);
+            this.buttonClipboard.Location = new System.Drawing.Point(238, 416);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(215, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(164, 23);
             this.buttonClipboard.TabIndex = 16;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
+            // passwordJailbreakToolStripMenuItem
+            // 
+            this.passwordJailbreakToolStripMenuItem.Name = "passwordJailbreakToolStripMenuItem";
+            this.passwordJailbreakToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.passwordJailbreakToolStripMenuItem.Text = "Password Brute Force";
+            this.passwordJailbreakToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
+            // 
+            // buttonChecksum
+            // 
+            this.buttonChecksum.Location = new System.Drawing.Point(305, 65);
+            this.buttonChecksum.Name = "buttonChecksum";
+            this.buttonChecksum.Size = new System.Drawing.Size(97, 23);
+            this.buttonChecksum.TabIndex = 17;
+            this.buttonChecksum.Text = "File checksum";
+            this.buttonChecksum.UseVisualStyleBackColor = true;
+            this.buttonChecksum.Click += new System.EventHandler(this.buttonChecksum_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(420, 450);
+            this.Controls.Add(this.buttonChecksum);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
@@ -496,8 +501,6 @@
         private System.Windows.Forms.ToolStripMenuItem includeSaltToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gradualHashingToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem fileChecksumToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem passwordJailbreakToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem multipleHashingToolStripMenuItem;
@@ -517,6 +520,8 @@
         private System.Windows.Forms.ToolStripMenuItem threadsAndCPUSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeAllToolStripMenuItem;
         private System.Windows.Forms.Button buttonClipboard;
+        private System.Windows.Forms.ToolStripMenuItem passwordJailbreakToolStripMenuItem;
+        private System.Windows.Forms.Button buttonChecksum;
     }
 }
 

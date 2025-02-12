@@ -73,6 +73,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CollisionChecker";
             this.Text = "CollisionChecker";
+            this.Load += new System.EventHandler(this.CollisionChecker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

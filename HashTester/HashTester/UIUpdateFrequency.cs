@@ -31,6 +31,7 @@ namespace HashTester
 
         private void UIUpdateFrequency_Load(object sender, EventArgs e)
         {
+            FormManagement.SetUpFormTheme(this);
             miliseconds = Settings.UpdateUIms;
             fps = (int)Math.Ceiling(1000.0 / miliseconds);
             textBox1.Text = fps.ToString();

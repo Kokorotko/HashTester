@@ -21,5 +21,10 @@ namespace HashTester
         {
 
         }
+
+        private void SaltAndPepperOverrideFile_Load(object sender, EventArgs e)
+        {
+            FormManagement.SetUpFormTheme(this);
+        }
     }
 }

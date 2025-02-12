@@ -68,6 +68,16 @@ namespace HashTester
             return output;
         }
 
+        public void OutputTypeShowChecksum(string[] checksums, Hasher.HashingAlgorithm[] algorithm, ListBox listBox)
+        {
+            string[] output = new string[checksums.Length];
+            for (int i = 0; i < checksums.Length; i++)
+            {
+                output[i] = algorithm[i].ToString() + ": " + checksums[i];
+            }
+            OutputTypeShow(output, listBox);
+        }
+
         /// <summary>
         /// Handles output based on user settings.
         /// </summary>

@@ -2,7 +2,7 @@
 //Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input
 //I have included comments on what value is allowed. Otherwise a default value will be set
 //VisualMode from 0 to 2
-visualMode=0
+visualMode=2
 //UpdateUI in Miliseconds
 //<<8 - 1000>> whole number
 UIupdateInMS=1000
@@ -12,7 +12,7 @@ threadsUsagePercentage=1
 //Preferred language
 language=Čeština
 //OutputType from 0 to 2
-outputType=1
+outputType=0
 //All OutputStyles are bool
 outputStyle_IncludeOriginalString=0
 outputStyle_IncludeHash=0

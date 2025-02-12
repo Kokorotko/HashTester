@@ -104,6 +104,7 @@ namespace HashTester
 
         private void ThreadsForm_Load(object sender, EventArgs e)
         {
+            FormManagement.SetUpFormTheme(this);
             // Get CPU Information using WMI
             try
             {

@@ -82,6 +82,7 @@
     <Compile Include="ConfirmationForm.Designer.cs">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomColorTable.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="PasswordCheck.cs" />
     <Compile Include="PasswordStrenghtCalculator.cs" />

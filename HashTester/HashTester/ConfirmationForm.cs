@@ -37,6 +37,7 @@ namespace HashTester
             label1.Location = new Point((this.ClientSize.Width - label1.Width) / 2, padding);
             button1.Location = new Point(this.ClientSize.Width / 4 - buttonWidth / 2, this.ClientSize.Height - buttonHeight - padding);
             button2.Location = new Point(3 * this.ClientSize.Width / 4 - buttonWidth / 2, this.ClientSize.Height - buttonHeight - padding);
+            FormManagement.SetUpFormTheme(this);
         }
     }
 }

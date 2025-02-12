@@ -22,6 +22,7 @@ namespace HashTester
         }
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
+            FormManagement.SetUpFormTheme(this);
             textBoxSalt.Enabled = false;
             textBoxPepper.Enabled = false;
             textBoxHashID.Text = SetHashID();

@@ -49,6 +49,7 @@ namespace HashTester
 
         private void FormGradual_Load(object sender, EventArgs e)
         {
+            FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
         }
 
@@ -64,8 +65,15 @@ namespace HashTester
 
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
-            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -32,6 +32,7 @@ namespace HashTester
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
         {
+            FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();
@@ -643,7 +644,14 @@ namespace HashTester
         {
             foreach (Control control in this.Controls)
             {
-                if (!(control is Label)) control.Enabled = false;
+                if (control is Button) control.Enabled = false;
+                else if (control is GroupBox box)
+                {
+                    foreach (Control child in box.Controls)
+                    {
+                        if (child is Button) child.Enabled = false;
+                    }
+                }
             }
             progressBar1.Value = 0;
             progressBar1.Enabled = true;
@@ -654,6 +662,13 @@ namespace HashTester
             foreach (Control control in this.Controls)
             {
                 control.Enabled = true;
+                if (control is GroupBox box)
+                {
+                    foreach(Control child in box.Controls)
+                    {
+                        child.Enabled = true;
+                    }
+                }
             }
             progressBar1.Value = 0;
         }
@@ -754,8 +769,15 @@ namespace HashTester
 
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
-            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

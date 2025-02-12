@@ -74,6 +74,7 @@
             this.Controls.Add(this.label1);
             this.Name = "SaltAndPepperOverrideFile";
             this.Text = "SaltAndPepperOverrideFile";
+            this.Load += new System.EventHandler(this.SaltAndPepperOverrideFile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

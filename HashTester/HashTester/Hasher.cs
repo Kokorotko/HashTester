@@ -265,6 +265,83 @@ namespace HashTester
         }
         #endregion
 
+        #region
+        public static string FileChecksum(string filename, HashingAlgorithm algorithm)
+        {
+            switch (algorithm)
+            {
+                case HashingAlgorithm.MD5:
+                    {
+                        using (MD5 md5 = MD5.Create())
+                        using (FileStream stream = File.OpenRead(filename))
+                        {
+                            byte[] hash = md5.ComputeHash(stream);
+                            return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                        }
+                    }
+                case HashingAlgorithm.SHA1:
+                    {
+                        {
+                            using (SHA1 sha1 = SHA1.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                byte[] hash = sha1.ComputeHash(stream);
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    }
+                case HashingAlgorithm.SHA256:
+                    {
+                        {
+                            using (SHA256 sha256 = SHA256.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                byte[] hash = sha256.ComputeHash(stream);
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    }
+                case HashingAlgorithm.SHA512:
+                    {
+                        {
+                            using (SHA512 sha512 = SHA512.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                byte[] hash = sha512.ComputeHash(stream);
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    }
+                case HashingAlgorithm.RIPEMD160:
+                    {
+                        {
+                            using (RIPEMD160 ripemd160 = RIPEMD160.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                byte[] hash = ripemd160.ComputeHash(stream);
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    }
+                case HashingAlgorithm.CRC32:
+                    using (FileStream stream = File.OpenRead(filename))
+                    {
+                        uint crc = 0xFFFFFFFF;
+                        int currentByte;
+                        while ((currentByte = stream.ReadByte()) != -1)
+                        {
+                            crc ^= (uint)currentByte;
+                            for (int i = 0; i < 8; i++)
+                                crc = (crc >> 1) ^ (0xEDB88320 & (uint)-(crc & 1));
+                        }
+                        crc = ~crc;
+                        return crc.ToString("x8"); //lowercase Hex string
+                    }
+                default: return "error";
+            }
+        }
+        #endregion
+
         #region SaltAndPepperLogic
         public void SaveSalt(string hashID, string salt)
         {

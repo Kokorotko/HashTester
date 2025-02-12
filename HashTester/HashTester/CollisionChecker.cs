@@ -16,5 +16,10 @@ namespace HashTester
         {
             InitializeComponent();
         }
+
+        private void CollisionChecker_Load(object sender, EventArgs e)
+        {
+            FormManagement.SetUpFormTheme(this);
+        }
     }
 }

@@ -234,6 +234,7 @@
             this.Controls.Add(this.buttonHashSimpleText);
             this.Name = "MultipleHashing";
             this.Text = "MultipleHashing";
+            this.Load += new System.EventHandler(this.MultipleHashing_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

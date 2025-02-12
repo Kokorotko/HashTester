@@ -175,6 +175,7 @@ namespace HashTester
                 darkToolStripMenuItem.Checked = false;
                 Settings.VisualMode = VisualModeEnum.System;
                 Settings.SaveSettings();
+                FormManagement.SetUpFormTheme(this);
             }
         }
 
@@ -187,6 +188,7 @@ namespace HashTester
                 darkToolStripMenuItem.Checked = false;
                 Settings.VisualMode = VisualModeEnum.Light;
                 Settings.SaveSettings();
+                FormManagement.SetUpFormTheme(this);
             }
         }
 
@@ -199,6 +201,7 @@ namespace HashTester
                 darkToolStripMenuItem.Checked = true;
                 Settings.VisualMode = VisualModeEnum.Dark;
                 Settings.SaveSettings();
+                FormManagement.SetUpFormTheme(this);
             }
         }
         #endregion
@@ -487,6 +490,7 @@ namespace HashTester
             Settings.LoadSettings();
             UIToolStripMenuLoad();
             AddLanguagesToMenu();
+            FormManagement.SetUpFormTheme(this);
         }
 
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
@@ -611,8 +615,33 @@ namespace HashTester
 
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
-            if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-            else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonChecksum_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {                               
+                    Hasher.HashingAlgorithm[] algorithm = (Hasher.HashingAlgorithm[])Enum.GetValues(typeof(Hasher.HashingAlgorithm)); // Store enum values here
+                    string[] hashes = new string[algorithm.Length];
+                    for (int i = 0; i < algorithm.Length; i++)
+                    {
+                        hashes[i] = Hasher.FileChecksum(dialog.FileName, algorithm[i]);
+                    }
+                    OutputHandler outputHandler = new OutputHandler();                    
+                    outputHandler.OutputTypeShowChecksum(hashes, algorithm, listBoxLog);
+                }
+            }
         }
     }
 }
