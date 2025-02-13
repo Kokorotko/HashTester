@@ -162,3 +162,6 @@ All Forms spawn in the middle
 VisualMode Registry Light/Dark mode
 Light/Dark mode
 File checksum start
+**2025-02-13
+PathToFiles fix
+English Languages for main Form part 0/69

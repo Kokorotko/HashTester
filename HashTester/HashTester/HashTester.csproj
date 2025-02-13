@@ -76,12 +76,6 @@
     <Compile Include="CollisionChecker.Designer.cs">
       <DependentUpon>CollisionChecker.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfirmationForm.Designer.cs">
-      <DependentUpon>ConfirmationForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomColorTable.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="PasswordCheck.cs" />
@@ -153,9 +147,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CollisionChecker.resx">
       <DependentUpon>CollisionChecker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmationForm.resx">
-      <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -226,9 +226,8 @@ namespace HashTester
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
-        {
-            ConfirmationForm confirmation = new ConfirmationForm("Would you like to save collision to a txt file?");
-            if (confirmation.ShowDialog() == DialogResult.OK)
+        {           
+            if (MessageBox.Show("Would you like to save collision to a txt file?", Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 string path = Path.GetFullPath(Settings.CollisionPathToFiles);
                 string path2 = "";

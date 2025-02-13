@@ -1,2 +1,41 @@
-0==test
-1==amogus
+//**Main Form <<0-100>>
+//ToolStrip Menu <<0-30>>
+0==Hashing
+1==Salt and Pepper
+2==Multiple Hashing
+3==Finding Collisions
+4==Password Brute Force
+5==Use Salt
+6==Use Pepper
+7==Options
+8==Settings
+9==Output Type
+10==Output Style
+11==VisualMode
+12==Path to Folders
+13==UI Update Frequency
+14==Threads and CPU settings
+15==Reset all settings
+16==System theme
+17==Light theme
+18==Dark theme
+19==Base
+20==Collisions
+21==Password
+22==Log save
+23==Languages
+//Form UI <<31-40>>
+31==Hash text
+32==File input
+33==File checksum
+34==Clear Listbox
+35==Save log
+36==Clipboard
+//Messages <<41-50>>
+41==Input přerušen
+42==Please select an item from the log listbox before copying.
+43==Failed to copy to clipboard.
+44==Clipboard Error
+45==Are you sure you want to reset all settings?
+46==Confirmation
+47==File doesnt exists.

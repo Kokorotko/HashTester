@@ -31,19 +31,20 @@
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.textHashSimple = new System.Windows.Forms.TextBox();
             this.hashSelector = new System.Windows.Forms.ComboBox();
-            this.TXTInput = new System.Windows.Forms.Button();
+            this.buttonFileInput = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gradualHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordBruteForceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,7 @@
             this.UIUpdateFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.threadsAndCPUSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputTypeStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
-            this.passwordJailbreakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonChecksum = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -111,15 +111,15 @@
             this.hashSelector.TabIndex = 4;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
-            // TXTInput
+            // buttonFileInput
             // 
-            this.TXTInput.Location = new System.Drawing.Point(97, 65);
-            this.TXTInput.Name = "TXTInput";
-            this.TXTInput.Size = new System.Drawing.Size(75, 23);
-            this.TXTInput.TabIndex = 5;
-            this.TXTInput.Text = "TXTInput";
-            this.TXTInput.UseVisualStyleBackColor = true;
-            this.TXTInput.Click += new System.EventHandler(this.TXTInput_Click);
+            this.buttonFileInput.Location = new System.Drawing.Point(97, 65);
+            this.buttonFileInput.Name = "buttonFileInput";
+            this.buttonFileInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonFileInput.TabIndex = 5;
+            this.buttonFileInput.Text = "TXTInput";
+            this.buttonFileInput.UseVisualStyleBackColor = true;
+            this.buttonFileInput.Click += new System.EventHandler(this.TXTInput_Click);
             // 
             // openFileDialog1
             // 
@@ -159,23 +159,23 @@
             // hashingToolStripMenuItem
             // 
             this.hashingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gradualHashingToolStripMenuItem,
+            this.saltAndPepperToolStripMenuItem,
             this.gradualHashingToolStripMenuItem1,
             this.multipleHashingToolStripMenuItem,
             this.findingCollisionsToolStripMenuItem,
-            this.passwordJailbreakToolStripMenuItem});
+            this.passwordBruteForceToolStripMenuItem});
             this.hashingToolStripMenuItem.Name = "hashingToolStripMenuItem";
             this.hashingToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.hashingToolStripMenuItem.Text = "Hashing";
             // 
-            // gradualHashingToolStripMenuItem
+            // saltAndPepperToolStripMenuItem
             // 
-            this.gradualHashingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saltAndPepperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.includeSaltToolStripMenuItem,
             this.includePepperToolStripMenuItem});
-            this.gradualHashingToolStripMenuItem.Name = "gradualHashingToolStripMenuItem";
-            this.gradualHashingToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.gradualHashingToolStripMenuItem.Text = "Salt and Pepper";
+            this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
+            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
             // 
             // includeSaltToolStripMenuItem
             // 
@@ -212,11 +212,18 @@
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
+            // passwordBruteForceToolStripMenuItem
+            // 
+            this.passwordBruteForceToolStripMenuItem.Name = "passwordBruteForceToolStripMenuItem";
+            this.passwordBruteForceToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.passwordBruteForceToolStripMenuItem.Text = "Password Brute Force";
+            this.passwordBruteForceToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.outputToolStripMenuItem,
+            this.outputTypeStripMenuItem,
             this.outputStyleToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -231,7 +238,7 @@
             this.threadsAndCPUSettingsToolStripMenuItem,
             this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // visualModeToolStripMenuItem
@@ -249,21 +256,21 @@
             this.systemToolStripMenuItem.Checked = true;
             this.systemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.systemToolStripMenuItem.Text = "System";
             this.systemToolStripMenuItem.Click += new System.EventHandler(this.systemToolStripMenuItem_Click);
             // 
             // lightToolStripMenuItem
             // 
             this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lightToolStripMenuItem.Text = "Light";
             this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
             // 
             // darkToolStripMenuItem
             // 
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -281,28 +288,28 @@
             // baseToolStripMenuItem
             // 
             this.baseToolStripMenuItem.Name = "baseToolStripMenuItem";
-            this.baseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.baseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.baseToolStripMenuItem.Text = "Base";
             this.baseToolStripMenuItem.Click += new System.EventHandler(this.baseToolStripMenuItem_Click);
             // 
             // collisionToolStripMenuItem
             // 
             this.collisionToolStripMenuItem.Name = "collisionToolStripMenuItem";
-            this.collisionToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.collisionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.collisionToolStripMenuItem.Text = "Collision";
             this.collisionToolStripMenuItem.Click += new System.EventHandler(this.collisionToolStripMenuItem_Click);
             // 
             // passwordToolStripMenuItem
             // 
             this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.passwordToolStripMenuItem.Text = "Password";
             this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
             // 
             // logSaveToolStripMenuItem
             // 
             this.logSaveToolStripMenuItem.Name = "logSaveToolStripMenuItem";
-            this.logSaveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.logSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logSaveToolStripMenuItem.Text = "Log save";
             this.logSaveToolStripMenuItem.Click += new System.EventHandler(this.logSaveToolStripMenuItem_Click);
             // 
@@ -327,34 +334,34 @@
             this.resetAllSettingsToolStripMenuItem.Text = "Reset All Settings";
             this.resetAllSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetAllSettingsToolStripMenuItem_Click);
             // 
-            // outputToolStripMenuItem
+            // outputTypeStripMenuItem
             // 
-            this.outputToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.outputTypeStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.messageBoxToolStripMenuItem,
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
-            this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.outputToolStripMenuItem.Text = "Output Type";
+            this.outputTypeStripMenuItem.Name = "outputTypeStripMenuItem";
+            this.outputTypeStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputTypeStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
             // 
             this.messageBoxToolStripMenuItem.Name = "messageBoxToolStripMenuItem";
-            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.messageBoxToolStripMenuItem.Text = "MessageBox";
             this.messageBoxToolStripMenuItem.Click += new System.EventHandler(this.messageBoxToolStripMenuItem_Click);
             // 
             // listBoxToolStripMenuItem
             // 
             this.listBoxToolStripMenuItem.Name = "listBoxToolStripMenuItem";
-            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listBoxToolStripMenuItem.Text = "ListBox";
             this.listBoxToolStripMenuItem.Click += new System.EventHandler(this.listBoxToolStripMenuItem_Click);
             // 
             // txtFileToolStripMenuItem
             // 
             this.txtFileToolStripMenuItem.Name = "txtFileToolStripMenuItem";
-            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.txtFileToolStripMenuItem.Text = "TxtFile";
             this.txtFileToolStripMenuItem.Click += new System.EventHandler(this.txtFileToolStripMenuItem_Click);
             // 
@@ -367,7 +374,7 @@
             this.includeSaltAndPepperToolStripMenuItem,
             this.includeAllToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -431,13 +438,6 @@
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
-            // passwordJailbreakToolStripMenuItem
-            // 
-            this.passwordJailbreakToolStripMenuItem.Name = "passwordJailbreakToolStripMenuItem";
-            this.passwordJailbreakToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.passwordJailbreakToolStripMenuItem.Text = "Password Brute Force";
-            this.passwordJailbreakToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
-            // 
             // buttonChecksum
             // 
             this.buttonChecksum.Location = new System.Drawing.Point(305, 65);
@@ -459,7 +459,7 @@
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.TXTInput);
+            this.Controls.Add(this.buttonFileInput);
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
@@ -480,17 +480,17 @@
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.TextBox textHashSimple;
         private System.Windows.Forms.ComboBox hashSelector;
-        private System.Windows.Forms.Button TXTInput;
+        private System.Windows.Forms.Button buttonFileInput;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem hashingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gradualHashingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saltAndPepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem outputTypeStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem messageBoxToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listBoxToolStripMenuItem;
@@ -520,7 +520,7 @@
         private System.Windows.Forms.ToolStripMenuItem threadsAndCPUSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeAllToolStripMenuItem;
         private System.Windows.Forms.Button buttonClipboard;
-        private System.Windows.Forms.ToolStripMenuItem passwordJailbreakToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordBruteForceToolStripMenuItem;
         private System.Windows.Forms.Button buttonChecksum;
     }
 }

@@ -48,7 +48,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show("Input přerušen");
+                MessageBox.Show(Languages.Translate(41), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -231,10 +231,8 @@ namespace HashTester
 
         #region ResetAllSettings
         private void resetAllSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfirmationForm confirm = new ConfirmationForm("Are you sure you want to reset all settings?");
-            confirm.StartPosition = FormStartPosition.CenterScreen;
-            if (confirm.ShowDialog() == DialogResult.OK)
+        {            
+            if (MessageBox.Show(Languages.Translate(45), Languages.Translate(46),MessageBoxButtons.OKCancel, MessageBoxIcon.Question ) == DialogResult.OK)
             {
                 Settings.ResetSettings();
                 Settings.SaveSettings();
@@ -421,7 +419,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show("Input přerušen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(41), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -491,6 +489,40 @@ namespace HashTester
             UIToolStripMenuLoad();
             AddLanguagesToMenu();
             FormManagement.SetUpFormTheme(this);
+            #region Language Load            
+            //Toolstrip menu
+            hashingToolStripMenuItem.Text = Languages.Translate(0);
+            saltAndPepperToolStripMenuItem.Text = Languages.Translate(1);
+            multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
+            findingCollisionsToolStripMenuItem.Text = Languages.Translate(3);
+            passwordBruteForceToolStripMenuItem.Text = Languages.Translate(4);
+            includeSaltToolStripMenuItem.Text = Languages.Translate(5);
+            includePepperToolStripMenuItem.Text = Languages.Translate(6);
+            optionsToolStripMenuItem.Text = Languages.Translate(7);
+            settingsToolStripMenuItem.Text = Languages.Translate(8);
+            outputTypeStripMenuItem.Text = Languages.Translate(9);
+            outputStyleToolStripMenuItem.Text = Languages.Translate(10);
+            visualModeToolStripMenuItem.Text = Languages.Translate(11);
+            basePathToFolderToolStripMenuItem.Text = Languages.Translate(12);
+            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(13);
+            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(14);
+            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(15);
+            systemToolStripMenuItem.Text = Languages.Translate(16);
+            lightToolStripMenuItem.Text = Languages.Translate(17);
+            darkToolStripMenuItem.Text = Languages.Translate(18);
+            baseToolStripMenuItem.Text = Languages.Translate(19);
+            collisionToolStripMenuItem.Text = Languages.Translate(20);
+            passwordToolStripMenuItem.Text = Languages.Translate(21);
+            logSaveToolStripMenuItem.Text = Languages.Translate(22);
+            languagesToolStripMenuItem.Text = Languages.Translate(23);
+            //Form
+            buttonHashSimpleText.Text = Languages.Translate(31);
+            buttonFileInput.Text = Languages.Translate(32);
+            buttonChecksum.Text = Languages.Translate(33);
+            buttonClearListBox.Text = Languages.Translate(34);
+            buttonSaveLog.Text = Languages.Translate(35);
+            buttonClipboard.Text = Languages.Translate(36);
+            #endregion
         }
 
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
@@ -516,7 +548,7 @@ namespace HashTester
             }
             else
             {
-                listBoxLog.Items.Add("File Doesnt Exist.");
+                listBoxLog.Items.Add(Languages.Translate(47));
             }
         }
 
@@ -618,11 +650,11 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(42), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

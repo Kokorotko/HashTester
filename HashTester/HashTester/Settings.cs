@@ -123,196 +123,125 @@ namespace HashTester
         {
             get
             {
-                if (!string.IsNullOrEmpty(basePathToFiles) && Directory.Exists(basePathToFiles))
-                {
-                    return basePathToFiles;
-                }
-                else
+                if (string.IsNullOrEmpty(basePathToFiles) || !Directory.Exists(basePathToFiles))
                 {
                     basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
-                    if (!Directory.Exists(basePathToFiles))
-                    {
-                        Directory.CreateDirectory(basePathToFiles);
-                    }
-                    return basePathToFiles;
                 }
+                return basePathToFiles;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
-                    if (!Directory.Exists(value))
-                    {
-                        Directory.CreateDirectory(value);
-                    }
-                    basePathToFiles = value;
+                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
                 }
                 else
                 {
-                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
-                    if (!Directory.Exists(basePathToFiles))
-                    {
-                        Directory.CreateDirectory(basePathToFiles);
-                    }
+                    basePathToFiles = value;
                 }
             }
         }
+
         public static string SettingsPathToFiles
         {
             get
             {
-                if (!string.IsNullOrEmpty(settingsPathToFiles) && Directory.Exists(settingsPathToFiles))
+                if (string.IsNullOrEmpty(settingsPathToFiles) || !Directory.Exists(settingsPathToFiles))
                 {
-                    return settingsPathToFiles;
+                    settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
+                    Directory.CreateDirectory(settingsPathToFiles);
                 }
-                else
-                {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Settings"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    return path;
-                }
+                return settingsPathToFiles;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
-                    if (!Directory.Exists(value))
-                    {
-                        Directory.CreateDirectory(value);
-                    }
-                    settingsPathToFiles = value;
+                    settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
+                    Directory.CreateDirectory(settingsPathToFiles);
                 }
                 else
                 {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Settings"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    settingsPathToFiles = path;
+                    settingsPathToFiles = value;
                 }
             }
         }
+
         public static string PasswordPathToFiles
         {
             get
             {
-                if (!string.IsNullOrEmpty(passwordPathToFiles) && Directory.Exists(passwordPathToFiles))
+                if (string.IsNullOrEmpty(passwordPathToFiles) || !Directory.Exists(passwordPathToFiles))
                 {
-                    return passwordPathToFiles;
+                    passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
+                    Directory.CreateDirectory(passwordPathToFiles);
                 }
-                else
-                {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Wordlists"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    return path;
-                }
+                return passwordPathToFiles;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
-                    if (!Directory.Exists(value))
-                    {
-                        Directory.CreateDirectory(value);
-                    }
-                    passwordPathToFiles = value;
+                    passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
+                    Directory.CreateDirectory(passwordPathToFiles);
                 }
                 else
                 {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Wordlists"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    passwordPathToFiles = path;
+                    passwordPathToFiles = value;
                 }
             }
         }
+
         public static string CollisionPathToFiles
         {
             get
             {
-                if (!string.IsNullOrEmpty(collisionPathToFiles) && Directory.Exists(collisionPathToFiles))
+                if (string.IsNullOrEmpty(collisionPathToFiles) || !Directory.Exists(collisionPathToFiles))
                 {
-                    return collisionPathToFiles;
+                    collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
+                    Directory.CreateDirectory(collisionPathToFiles);
                 }
-                else
-                {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "SameHashingResults"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    return path;
-                }
+                return collisionPathToFiles;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
-                    if (!Directory.Exists(value))
-                    {
-                        Directory.CreateDirectory(value);
-                    }
-                    collisionPathToFiles = value;
+                    collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
+                    Directory.CreateDirectory(collisionPathToFiles);
                 }
                 else
                 {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "SameHashingResults"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    collisionPathToFiles = path;
+                    collisionPathToFiles = value;
                 }
             }
         }
+
         public static string LogSavePathToFiles
         {
             get
             {
-                if (!string.IsNullOrEmpty(logSavePathToFiles) && Directory.Exists(logSavePathToFiles))
+                if (string.IsNullOrEmpty(logSavePathToFiles) || !Directory.Exists(logSavePathToFiles))
                 {
-                    return logSavePathToFiles;
+                    logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
+                    Directory.CreateDirectory(logSavePathToFiles);
                 }
-                else
-                {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Logs"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    return path;
-                }
+                return logSavePathToFiles;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
-                    if (!Directory.Exists(value))
-                    {
-                        Directory.CreateDirectory(value);
-                    }
-                    logSavePathToFiles = value;
+                    logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
+                    Directory.CreateDirectory(logSavePathToFiles);
                 }
                 else
                 {
-                    string path = Path.GetFullPath(Path.Combine(BasePathToFiles, "Logs"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    logSavePathToFiles = path;
+                    logSavePathToFiles = value;
                 }
             }
         }
+
         #endregion
 
         #region Enum
