@@ -6,7 +6,7 @@ Funkční hashovací algoritmus pro šifrování .txt souboru přes řádky - DO
 CRC algorithmus vlastní naprogramování bez knihovny - DONE
 Základ Settings Script - DONE
 KB02:
-Unit Test
+Unit Test - Abandoned
 Dokumentace teoretická část + práce na praktické - DONE
 Funkční Settings - DONE
 Funkční postupné hashování - DONE
@@ -15,11 +15,11 @@ John The Ripper password Tester - DONE
 Password JailBreak - DONE
 KB03:
 Vyjímky
-CZ/EN možnost
+CZ/EN možnost - Done
 Informace o různých Hashech (info)
 Dokumentace Praktická část
-Zlepšení UI
-Light/DarkMode
+Zlepšení UI - Done
+Light/DarkMode - Done
 KB04:
 .zip file
 BugTesting a BugFixing

@@ -32,7 +32,7 @@ namespace HashTester
         private static string passwordPathToFiles;
         private static string collisionPathToFiles;
         private static string logSavePathToFiles;
-        private static string settingsPathToFiles;        
+        private static string settingsPathToFiles;
         #endregion
 
         #region Get&Set
@@ -102,7 +102,7 @@ namespace HashTester
             get { return includePepper; }
             set { includePepper = value; }
         }
-        public static int UpdateUIms     
+        public static int UpdateUIms
         {
             get
             {
@@ -112,7 +112,7 @@ namespace HashTester
             set
             {
                 if (value > 7)
-                { 
+                {
                     if (value > 1000) updateUIms = 1000;
                     else updateUIms = value;
                 }
@@ -149,7 +149,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(settingsPathToFiles) || !Directory.Exists(settingsPathToFiles))
                 {
                     settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
-                    Directory.CreateDirectory(settingsPathToFiles);
                 }
                 return settingsPathToFiles;
             }
@@ -158,7 +157,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
                     settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
-                    Directory.CreateDirectory(settingsPathToFiles);
                 }
                 else
                 {
@@ -174,7 +172,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(passwordPathToFiles) || !Directory.Exists(passwordPathToFiles))
                 {
                     passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
-                    Directory.CreateDirectory(passwordPathToFiles);
                 }
                 return passwordPathToFiles;
             }
@@ -183,7 +180,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
                     passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
-                    Directory.CreateDirectory(passwordPathToFiles);
                 }
                 else
                 {
@@ -199,7 +195,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(collisionPathToFiles) || !Directory.Exists(collisionPathToFiles))
                 {
                     collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
-                    Directory.CreateDirectory(collisionPathToFiles);
                 }
                 return collisionPathToFiles;
             }
@@ -208,7 +203,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
                     collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
-                    Directory.CreateDirectory(collisionPathToFiles);
                 }
                 else
                 {
@@ -224,7 +218,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(logSavePathToFiles) || !Directory.Exists(logSavePathToFiles))
                 {
                     logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
-                    Directory.CreateDirectory(logSavePathToFiles);
                 }
                 return logSavePathToFiles;
             }
@@ -233,7 +226,6 @@ namespace HashTester
                 if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
                 {
                     logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
-                    Directory.CreateDirectory(logSavePathToFiles);
                 }
                 else
                 {
@@ -274,6 +266,7 @@ namespace HashTester
             LogSavePathToFiles = null;
             SaveSettings();
         }
+        
         public static void SaveSettings()
         {
             //Create File
@@ -285,7 +278,7 @@ namespace HashTester
             string settingsDirectory = Path.GetDirectoryName(settingsPathToFileTemp);
             if (!Directory.Exists(settingsDirectory))
             {
-                Directory.CreateDirectory(settingsDirectory);
+                throw new Exception("Directory doesnt exist");
             }
             using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
             {
@@ -578,5 +571,5 @@ namespace HashTester
                 Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
             }
         }
-    }    
+    }
 }

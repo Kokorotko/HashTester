@@ -169,3 +169,4 @@ English Languages for main Form part 0/69
 Deleted CollisionChecker and changed it to MessageBox
 Deleted SaltAndPepperOverride and changed it to MessageBox
 English Language done
+File checksum form
