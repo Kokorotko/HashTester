@@ -116,7 +116,7 @@ namespace HashTester
                             {                                
                                 lineFoundMatch[i] = CurrentLine;
                                 foundMatch[i] = true;
-                                logOutput.Add("Found '" + passwords[i] + "' on line: " + CurrentLine);
+                                logOutput.Add(Languages.Translate(573) + " '" + passwords[i] + "' " + Languages.Translate(574) + ": " + CurrentLine);
                                 if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
                                 {
                                     return;

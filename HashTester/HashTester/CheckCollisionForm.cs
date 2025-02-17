@@ -30,8 +30,8 @@ namespace HashTester
         {
             text01 = textBox1.Text;
             text02 = textBox2.Text;
-            if (radioButton1.Checked) format = HashingCollisionForm.CollisionDetectionFormat.STRING;
-            else if (radioButton2.Checked) format = HashingCollisionForm.CollisionDetectionFormat.HEX;
+            if (radioButtonString.Checked) format = HashingCollisionForm.CollisionDetectionFormat.STRING;
+            else if (radioButtonHex.Checked) format = HashingCollisionForm.CollisionDetectionFormat.HEX;
             else format = HashingCollisionForm.CollisionDetectionFormat.BIN;
             DialogResult = DialogResult.OK;
         }
@@ -45,6 +45,15 @@ namespace HashTester
         {
             hashSelector.SelectedIndex = 0;
             FormManagement.SetUpFormTheme(this);
+            #region Languages
+            groupBox1.Text = Languages.Translate(201);
+            radioButtonString.Text = Languages.Translate(202);
+            radioButtonHex.Text = Languages.Translate(203);
+            radioButtonBinary.Text = Languages.Translate(204);
+            labelText.Text = Languages.Translate(205) + "1";
+            labelText2.Text = Languages.Translate(205) + "2";
+            buttonCheck.Text = Languages.Translate(206);
+            #endregion
         }
     }
 }

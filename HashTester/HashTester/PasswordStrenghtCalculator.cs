@@ -24,13 +24,13 @@ namespace HashTester
             double numberHours = (numberSeconds % 86400) / (3600); //hours
             double numberMinutes = (numberSeconds % 3600) / (60); //minutes
             double numberSecondsLeft = numberSeconds % 60; //seconds
-            string s = Math.Floor(numberYears).ToString("N0") + " years, " +
-           Math.Floor(numberMonths) + " months, " +
-           Math.Floor(numberDays) + " days, " +
-           Math.Floor(numberHours) + " hours, " +
-           Math.Floor(numberMinutes) + " minutes, " +
-           Math.Floor(numberSecondsLeft) + " seconds";
-            return s;
+            string s = Math.Floor(numberYears).ToString("N0") + " " + Languages.Translate(575) + ", " +
+           Math.Floor(numberMonths) + " " + Languages.Translate(576) + ", " +
+           Math.Floor(numberDays) + " " + Languages.Translate(577) + ", " +
+           Math.Floor(numberHours) + " " + Languages.Translate(578) + ", " +
+           Math.Floor(numberMinutes) + " " + Languages.Translate(579) + ", " +
+           Math.Floor(numberSecondsLeft) + " " + Languages.Translate(580);
+           return s;
         }
     }
 }

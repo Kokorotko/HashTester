@@ -75,7 +75,7 @@ namespace HashTester
                 }
             }
 
-            LogOutput = "Rainbow Table of the file: " + fileInputPath + " with " + hashingAlgorithm.ToString() + " hashing algorithm is done.";
+            LogOutput = Languages.Translate(581) + ": " + fileInputPath + " " + Languages.Translate(582) + " " + hashingAlgorithm.ToString() + Languages.Translate(583);
             stopwatch.Stop();
             return true;
         }
@@ -159,7 +159,7 @@ namespace HashTester
                 File.Delete(tempFile);
             }
 
-            LogOutput = "Rainbow Table of the file: " + fileInputPath + " with " + hashingAlgorithm.ToString() + " hashing algorithm is done.";
+            LogOutput = Languages.Translate(581) + ": " + fileInputPath + " " + Languages.Translate(582) + " " + hashingAlgorithm.ToString() + Languages.Translate(583);
             stopwatch.Stop();
             return true;
         }

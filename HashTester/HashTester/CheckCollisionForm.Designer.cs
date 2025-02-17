@@ -28,57 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonString = new System.Windows.Forms.RadioButton();
+            this.radioButtonHex = new System.Windows.Forms.RadioButton();
+            this.radioButtonBinary = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelText = new System.Windows.Forms.Label();
+            this.labelText2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCheck = new System.Windows.Forms.Button();
             this.hashSelector = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelAlgorithm = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // radioButtonString
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(66, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "STRING";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonString.AutoSize = true;
+            this.radioButtonString.Checked = true;
+            this.radioButtonString.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonString.Name = "radioButtonString";
+            this.radioButtonString.Size = new System.Drawing.Size(66, 17);
+            this.radioButtonString.TabIndex = 0;
+            this.radioButtonString.TabStop = true;
+            this.radioButtonString.Text = "STRING";
+            this.radioButtonString.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonHex
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(47, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "HEX";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonHex.AutoSize = true;
+            this.radioButtonHex.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonHex.Name = "radioButtonHex";
+            this.radioButtonHex.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonHex.TabIndex = 1;
+            this.radioButtonHex.Text = "HEX";
+            this.radioButtonHex.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButtonBinary
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 65);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(65, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.Text = "BINARY";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButtonBinary.AutoSize = true;
+            this.radioButtonBinary.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonBinary.Name = "radioButtonBinary";
+            this.radioButtonBinary.Size = new System.Drawing.Size(65, 17);
+            this.radioButtonBinary.TabIndex = 2;
+            this.radioButtonBinary.Text = "BINARY";
+            this.radioButtonBinary.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButtonString);
+            this.groupBox1.Controls.Add(this.radioButtonBinary);
+            this.groupBox1.Controls.Add(this.radioButtonHex);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(96, 100);
@@ -93,23 +93,23 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
             // 
-            // label1
+            // labelText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(114, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Text01";
+            this.labelText.AutoSize = true;
+            this.labelText.Location = new System.Drawing.Point(114, 14);
+            this.labelText.Name = "labelText";
+            this.labelText.Size = new System.Drawing.Size(40, 13);
+            this.labelText.TabIndex = 5;
+            this.labelText.Text = "Text01";
             // 
-            // label2
+            // labelText2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(114, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Text02";
+            this.labelText2.AutoSize = true;
+            this.labelText2.Location = new System.Drawing.Point(114, 65);
+            this.labelText2.Name = "labelText2";
+            this.labelText2.Size = new System.Drawing.Size(40, 13);
+            this.labelText2.TabIndex = 7;
+            this.labelText2.Text = "Text02";
             // 
             // textBox2
             // 
@@ -118,15 +118,15 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
             // 
-            // button1
+            // buttonCheck
             // 
-            this.button1.Location = new System.Drawing.Point(12, 118);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(327, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Check";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonCheck.Location = new System.Drawing.Point(12, 118);
+            this.buttonCheck.Name = "buttonCheck";
+            this.buttonCheck.Size = new System.Drawing.Size(327, 23);
+            this.buttonCheck.TabIndex = 8;
+            this.buttonCheck.Text = "Check";
+            this.buttonCheck.UseVisualStyleBackColor = true;
+            this.buttonCheck.Click += new System.EventHandler(this.button1_Click);
             // 
             // hashSelector
             // 
@@ -144,26 +144,26 @@
             this.hashSelector.TabIndex = 9;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
-            // label3
+            // labelAlgorithm
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(219, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Algorithm";
+            this.labelAlgorithm.AutoSize = true;
+            this.labelAlgorithm.Location = new System.Drawing.Point(219, 14);
+            this.labelAlgorithm.Name = "labelAlgorithm";
+            this.labelAlgorithm.Size = new System.Drawing.Size(50, 13);
+            this.labelAlgorithm.TabIndex = 10;
+            this.labelAlgorithm.Text = "Algorithm";
             // 
             // CheckCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 152);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.hashSelector);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonCheck);
+            this.Controls.Add(this.labelText2);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelText);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
             this.Name = "CheckCollisionForm";
@@ -178,16 +178,16 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButtonString;
+        private System.Windows.Forms.RadioButton radioButtonHex;
+        private System.Windows.Forms.RadioButton radioButtonBinary;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelText;
+        private System.Windows.Forms.Label labelText2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.ComboBox hashSelector;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelAlgorithm;
     }
 }

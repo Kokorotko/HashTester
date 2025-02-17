@@ -49,7 +49,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show("Please choose at least one algorithm!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(223), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -78,7 +78,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show("Please choose at least one algorithm!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(223), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -98,17 +98,27 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(10023), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
+            #region Languages
+            labelInfo.Text = "*" + Languages.Translate(221);
+            checkBoxShowAlgorithm.Text = Languages.Translate(222) + "*";
+            buttonClipboard.Text = Languages.Translate(10002);
+            buttonClearListBox.Text = Languages.Translate(10000);
+            buttonSaveLog.Text = Languages.Translate(10001);
+            buttonHashSimpleText.Text = Languages.Translate(31);
+            buttonTXTInput.Text = Languages.Translate(32);
+            buttonGoBack.Text = Languages.Translate(10005);
+            #endregion
         }
     }
 }

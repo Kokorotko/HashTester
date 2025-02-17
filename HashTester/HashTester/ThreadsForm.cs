@@ -9,7 +9,7 @@ namespace HashTester
     {
         private int numberOfThreadsInCPU = Environment.ProcessorCount;
         private int percentage = 0;
-        private bool updating = false; // Prevents infinite loops in text change events
+        private bool updating = false;// Prevents infinite loops in text change events
 
         public ThreadsForm()
         {
@@ -17,7 +17,7 @@ namespace HashTester
         }
         public int Percentage
         {
-            get => (percentage >= 0 && percentage <= 100) ? percentage : 50;
+            get => (percentage >= 0 && percentage <= 100) ? percentage : 50; //Range from 0 to 100, if outside, it is set to default (50%)
         }
 
         public void RadioButtonPressed(object sender, EventArgs e)
@@ -39,11 +39,11 @@ namespace HashTester
             {
                 textBoxThread.Text = "8";
             }
-            else if (radioButtonThread5.Checked)
+            else if (radioButtonThreadMax.Checked)
             {
                 textBoxThread.Text = numberOfThreadsInCPU.ToString();
             }
-            else if (radioButtonPercent1.Checked)
+            else if (radioButtonPercentHunred.Checked)
             {
                 textBoxPercent.Text = "100";
             }
@@ -105,30 +105,50 @@ namespace HashTester
         private void ThreadsForm_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
+
+            #region Languages
+            labelHowMany.Text = Languages.Translate(421);
+            labelThreads.Text = Languages.Translate(422);
+            labelPercentages.Text = Languages.Translate(423);
+            labelMaxThreads.Text = Languages.Translate(424);
+            labelFrom0to100.Text = Languages.Translate(425);
+            radioButtonThread1.Text = Languages.Translate(426);
+            radioButtonThread2.Text = Languages.Translate(427);
+            radioButtonThread3.Text = Languages.Translate(428);
+            radioButtonThread4.Text = Languages.Translate(429);
+            radioButtonThreadMax.Text = Languages.Translate(430);
+            labelZeroPercent.Text = Languages.Translate(431);
+            labelPreference.Text = "*" + Languages.Translate(432);
+            labelCalculations.Text = "*" + Languages.Translate(433);
+            buttonSave.Text = Languages.Translate(434);
+            buttonDefault.Text = Languages.Translate(435);
+            buttonCancel.Text = Languages.Translate(436);
+            groupBox1.Text = Languages.Translate(437);
+            #endregion
             // Get CPU Information using WMI
             try
             {
                 ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
                 foreach (ManagementObject obj in searcher.Get())
                 {
-                    labelCPUName.Text = "Name: " + (obj["Name"] ?? "Unknown");
-                    labelCPUManufacturer.Text = "Manufacturer: " + (obj["Manufacturer"] ?? "Unknown");
-                    labelCPUDescription.Text = "Description: " + (obj["Description"] ?? "Unknown");
-                    labelCPUCores.Text = "Number of Cores: " + (obj["NumberOfCores"] ?? "Unknown");
-                    labelCPUThread.Text = "Logical Processors (Threads): " + (obj["NumberOfLogicalProcessors"] ?? "Unknown");
-                    labelCPUMaxSpeed.Text = "Max Clock Speed: " + (obj["MaxClockSpeed"] ?? "Unknown") + " MHz";
+                    labelCPUName.Text = Languages.Translate(438) + ": " + (obj["Name"] ?? Languages.Translate(444));
+                    labelCPUManufacturer.Text = Languages.Translate(439) + ": " + (obj["Manufacturer"] ?? Languages.Translate(444));
+                    labelCPUDescription.Text = Languages.Translate(443) + ": " + (obj["Description"] ?? Languages.Translate(444));
+                    labelCPUCores.Text = Languages.Translate(440) +": " + (obj["NumberOfCores"] ?? Languages.Translate(444));
+                    labelCPUThread.Text = Languages.Translate(441) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(444));
+                    labelCPUMaxSpeed.Text = Languages.Translate(442) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(444)) + " " + Languages.Translate(445);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error fetching CPU details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(446) + ": " + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             percentage = Settings.ThreadsUsagePercentage;
-            if (percentage == 100) radioButtonPercent1.Checked = true;
+            if (percentage == 100) radioButtonPercentHunred.Checked = true;
             else if (percentage == 75) radioButtonPercent2.Checked = true;
             else if (percentage == 50) radioButtonPercent3.Checked = true;
             else if (percentage == 25) radioButtonPercent4.Checked = true;
-            else if (percentage == 0) radioButtonPercent5.Checked = true;
+            else if (percentage == 0) radioButtonPercentZero.Checked = true;
             else if (percentage * numberOfThreadsInCPU == 1) radioButtonThread1.Checked = true;
             else if (percentage * numberOfThreadsInCPU == 2) radioButtonThread2.Checked = true;
             else if (percentage * numberOfThreadsInCPU == 4) radioButtonThread3.Checked = true;
@@ -149,7 +169,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show("Please set the percentage value from 0% to 100%", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(447), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

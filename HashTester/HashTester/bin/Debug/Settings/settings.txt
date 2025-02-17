@@ -1,27 +1,27 @@
-//Warning! If theres nothing after the = it will set the setting into default
-//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input
-//I have included comments on what value is allowed. Otherwise a default value will be set
-//VisualMode from 0 to 2
+//Warning! If theres nothing after the = it will set the setting into default  
+//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input  
+//I have included comments on what value is allowed. Otherwise a default value will be set  
+//VisualMode from 0 to 2  
 visualMode=2
-//UpdateUI in Miliseconds
-//<<8 - 1000>> whole number
+//UpdateUI in Miliseconds  
+//<<8 - 1000>> whole number  
 UIupdateInMS=1000
-//Number of threads max. used in percentage (%)
-//<<1 - 100>> whole number
+//Number of threads max. used in percentage (%)  
+//<<1 - 100>> whole number  
 threadsUsagePercentage=1
-//Preferred language
+//Preferred language  
 language=English
-//OutputType from 0 to 2
+//OutputType from 0 to 2  
 outputType=0
-//All OutputStyles are bool
+//All OutputStyles are bool  
 outputStyle_IncludeOriginalString=0
 outputStyle_IncludeHash=0
 outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=0
-//Salt and Pepper bool
+//Salt and Pepper bool  
 useSalt=0
 usePepper=0
-//Other - Path
+//Other - Path  
 basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug
 settingsPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Settings
 passwordPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Wordlists

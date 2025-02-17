@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
-using Microsoft.SqlServer.Server;
-using System.IO.Hashing;
-using System.Reflection.Emit;
-using System.Windows.Forms.VisualStyles;
-using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Windows.Forms;
-using System.Security.Policy;
-using System.Diagnostics.Eventing.Reader;
 
 namespace HashTester
 {
@@ -75,12 +66,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (String.IsNullOrEmpty(salt)) text = salt + text;
-                else MessageBox.Show("ERROR: GradualHashingSaltPepper - Salt not inicialized");
+                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (String.IsNullOrEmpty(pepper)) text += pepper;
-                else MessageBox.Show("ERROR: GradualHashingSaltPepper - Pepper not inicialized");
+                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //Hashing
             for (int i = 0; i < text.Length; i++)
@@ -123,12 +114,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (!String.IsNullOrEmpty(salt)) text = salt + text;
-                else Console.WriteLine("ERROR: HashSaltPepper - Salt not inicialized");
+                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (!String.IsNullOrEmpty(pepper)) text += pepper;
-                else Console.WriteLine("ERROR: HashSaltPepper - Pepper not inicialized");
+                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {

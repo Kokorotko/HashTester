@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TXTInput = new System.Windows.Forms.Button();
+            this.buttonTXTInput = new System.Windows.Forms.Button();
             this.buttonHashSimpleText = new System.Windows.Forms.Button();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
@@ -39,24 +39,24 @@
             this.checkBoxSHA512 = new System.Windows.Forms.CheckBox();
             this.checkBoxRipeMD160 = new System.Windows.Forms.CheckBox();
             this.checkBoxCRC32 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonGoBack = new System.Windows.Forms.Button();
             this.checkBoxShowAlgorithm = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // TXTInput
+            // buttonTXTInput
             // 
-            this.TXTInput.Location = new System.Drawing.Point(92, 78);
-            this.TXTInput.Name = "TXTInput";
-            this.TXTInput.Size = new System.Drawing.Size(75, 23);
-            this.TXTInput.TabIndex = 7;
-            this.TXTInput.Text = "TXTInput";
-            this.TXTInput.UseVisualStyleBackColor = true;
-            this.TXTInput.Click += new System.EventHandler(this.TXTInput_Click);
+            this.buttonTXTInput.Location = new System.Drawing.Point(92, 78);
+            this.buttonTXTInput.Name = "buttonTXTInput";
+            this.buttonTXTInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonTXTInput.TabIndex = 7;
+            this.buttonTXTInput.Text = "TXTInput";
+            this.buttonTXTInput.UseVisualStyleBackColor = true;
+            this.buttonTXTInput.Click += new System.EventHandler(this.TXTInput_Click);
             // 
             // buttonHashSimpleText
             // 
@@ -156,15 +156,15 @@
             this.checkBoxCRC32.Text = "CRC32";
             this.checkBoxCRC32.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonGoBack
             // 
-            this.button1.Location = new System.Drawing.Point(11, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Go Back";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonGoBack.Location = new System.Drawing.Point(11, 415);
+            this.buttonGoBack.Name = "buttonGoBack";
+            this.buttonGoBack.Size = new System.Drawing.Size(75, 23);
+            this.buttonGoBack.TabIndex = 21;
+            this.buttonGoBack.Text = "Go Back";
+            this.buttonGoBack.UseVisualStyleBackColor = true;
+            this.buttonGoBack.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkBoxShowAlgorithm
             // 
@@ -178,14 +178,15 @@
             this.checkBoxShowAlgorithm.Text = "Show Algorithm*";
             this.checkBoxShowAlgorithm.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // labelInfo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 266);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 39);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "*will overwrite the \r\n\"Include hashing algorithm\" \r\nin the output style settings";
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(9, 266);
+            this.labelInfo.MaximumSize = new System.Drawing.Size(200, 0);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(179, 26);
+            this.labelInfo.TabIndex = 23;
+            this.labelInfo.Text = "*will overwrite the \"Include hashing algorithm\" in the output style settings";
             // 
             // openFileDialog1
             // 
@@ -218,9 +219,9 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.checkBoxShowAlgorithm);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonGoBack);
             this.Controls.Add(this.checkBoxCRC32);
             this.Controls.Add(this.checkBoxRipeMD160);
             this.Controls.Add(this.checkBoxSHA512);
@@ -230,7 +231,7 @@
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.textHashSimple);
-            this.Controls.Add(this.TXTInput);
+            this.Controls.Add(this.buttonTXTInput);
             this.Controls.Add(this.buttonHashSimpleText);
             this.Name = "MultipleHashing";
             this.Text = "MultipleHashing";
@@ -241,7 +242,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button TXTInput;
+        private System.Windows.Forms.Button buttonTXTInput;
         private System.Windows.Forms.Button buttonHashSimpleText;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.ListBox listBoxLog;
@@ -252,9 +253,9 @@
         private System.Windows.Forms.CheckBox checkBoxSHA512;
         private System.Windows.Forms.CheckBox checkBoxRipeMD160;
         private System.Windows.Forms.CheckBox checkBoxCRC32;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonGoBack;
         private System.Windows.Forms.CheckBox checkBoxShowAlgorithm;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button buttonSaveLog;

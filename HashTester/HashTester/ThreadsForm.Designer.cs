@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label7 = new System.Windows.Forms.Label();
-            this.radioButtonPercent5 = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelPercentages = new System.Windows.Forms.Label();
+            this.radioButtonPercentZero = new System.Windows.Forms.RadioButton();
+            this.labelThreads = new System.Windows.Forms.Label();
             this.textBoxPercent = new System.Windows.Forms.TextBox();
             this.radioButtonPercent4 = new System.Windows.Forms.RadioButton();
             this.radioButtonThread4 = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelFrom0to100 = new System.Windows.Forms.Label();
+            this.labelPreference = new System.Windows.Forms.Label();
             this.radioButtonPercent3 = new System.Windows.Forms.RadioButton();
             this.radioButtonThread3 = new System.Windows.Forms.RadioButton();
-            this.radioButtonPercent1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonPercentHunred = new System.Windows.Forms.RadioButton();
             this.radioButtonPercent2 = new System.Windows.Forms.RadioButton();
             this.radioButtonThread2 = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCalculations = new System.Windows.Forms.Label();
             this.radioButtonThread1 = new System.Windows.Forms.RadioButton();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonDefault = new System.Windows.Forms.Button();
             this.textBoxThread = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.radioButtonThread5 = new System.Windows.Forms.RadioButton();
+            this.labelMaxThreads = new System.Windows.Forms.Label();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.labelHowMany = new System.Windows.Forms.Label();
+            this.labelZeroPercent = new System.Windows.Forms.Label();
+            this.radioButtonThreadMax = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelCPUDescription = new System.Windows.Forms.Label();
             this.labelCPUMaxSpeed = new System.Windows.Forms.Label();
@@ -61,35 +61,35 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label7
+            // labelPercentages
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(208, 34);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(138, 13);
-            this.label7.TabIndex = 42;
-            this.label7.Text = "Percentage of threads used";
+            this.labelPercentages.AutoSize = true;
+            this.labelPercentages.Location = new System.Drawing.Point(208, 34);
+            this.labelPercentages.Name = "labelPercentages";
+            this.labelPercentages.Size = new System.Drawing.Size(138, 13);
+            this.labelPercentages.TabIndex = 42;
+            this.labelPercentages.Text = "Percentage of threads used";
             // 
-            // radioButtonPercent5
+            // radioButtonPercentZero
             // 
-            this.radioButtonPercent5.AutoSize = true;
-            this.radioButtonPercent5.Location = new System.Drawing.Point(209, 181);
-            this.radioButtonPercent5.Name = "radioButtonPercent5";
-            this.radioButtonPercent5.Size = new System.Drawing.Size(39, 17);
-            this.radioButtonPercent5.TabIndex = 41;
-            this.radioButtonPercent5.TabStop = true;
-            this.radioButtonPercent5.Text = "0%";
-            this.radioButtonPercent5.UseVisualStyleBackColor = true;
-            this.radioButtonPercent5.Click += new System.EventHandler(this.RadioButtonPressed);
+            this.radioButtonPercentZero.AutoSize = true;
+            this.radioButtonPercentZero.Location = new System.Drawing.Point(209, 181);
+            this.radioButtonPercentZero.Name = "radioButtonPercentZero";
+            this.radioButtonPercentZero.Size = new System.Drawing.Size(39, 17);
+            this.radioButtonPercentZero.TabIndex = 41;
+            this.radioButtonPercentZero.TabStop = true;
+            this.radioButtonPercentZero.Text = "0%";
+            this.radioButtonPercentZero.UseVisualStyleBackColor = true;
+            this.radioButtonPercentZero.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
-            // label4
+            // labelThreads
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 13);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "Number of threads";
+            this.labelThreads.AutoSize = true;
+            this.labelThreads.Location = new System.Drawing.Point(15, 34);
+            this.labelThreads.Name = "labelThreads";
+            this.labelThreads.Size = new System.Drawing.Size(94, 13);
+            this.labelThreads.TabIndex = 37;
+            this.labelThreads.Text = "Number of threads";
             // 
             // textBoxPercent
             // 
@@ -122,23 +122,23 @@
             this.radioButtonThread4.UseVisualStyleBackColor = true;
             this.radioButtonThread4.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
-            // label6
+            // labelFrom0to100
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(208, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 13);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "From 0% to 100%";
+            this.labelFrom0to100.AutoSize = true;
+            this.labelFrom0to100.Location = new System.Drawing.Point(208, 73);
+            this.labelFrom0to100.Name = "labelFrom0to100";
+            this.labelFrom0to100.Size = new System.Drawing.Size(88, 13);
+            this.labelFrom0to100.TabIndex = 29;
+            this.labelFrom0to100.Text = "From 0% to 100%";
             // 
-            // label3
+            // labelPreference
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 215);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(260, 13);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "*Know that percentages are prefered by the computer";
+            this.labelPreference.AutoSize = true;
+            this.labelPreference.Location = new System.Drawing.Point(12, 215);
+            this.labelPreference.Name = "labelPreference";
+            this.labelPreference.Size = new System.Drawing.Size(260, 13);
+            this.labelPreference.TabIndex = 33;
+            this.labelPreference.Text = "*Know that percentages are prefered by the computer";
             // 
             // radioButtonPercent3
             // 
@@ -162,17 +162,17 @@
             this.radioButtonThread3.UseVisualStyleBackColor = true;
             this.radioButtonThread3.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
-            // radioButtonPercent1
+            // radioButtonPercentHunred
             // 
-            this.radioButtonPercent1.AutoSize = true;
-            this.radioButtonPercent1.Location = new System.Drawing.Point(209, 89);
-            this.radioButtonPercent1.Name = "radioButtonPercent1";
-            this.radioButtonPercent1.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonPercent1.TabIndex = 36;
-            this.radioButtonPercent1.TabStop = true;
-            this.radioButtonPercent1.Text = "100%";
-            this.radioButtonPercent1.UseVisualStyleBackColor = true;
-            this.radioButtonPercent1.Click += new System.EventHandler(this.RadioButtonPressed);
+            this.radioButtonPercentHunred.AutoSize = true;
+            this.radioButtonPercentHunred.Location = new System.Drawing.Point(209, 89);
+            this.radioButtonPercentHunred.Name = "radioButtonPercentHunred";
+            this.radioButtonPercentHunred.Size = new System.Drawing.Size(51, 17);
+            this.radioButtonPercentHunred.TabIndex = 36;
+            this.radioButtonPercentHunred.TabStop = true;
+            this.radioButtonPercentHunred.Text = "100%";
+            this.radioButtonPercentHunred.UseVisualStyleBackColor = true;
+            this.radioButtonPercentHunred.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
             // radioButtonPercent2
             // 
@@ -197,14 +197,14 @@
             this.radioButtonThread2.UseVisualStyleBackColor = true;
             this.radioButtonThread2.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
-            // label2
+            // labelCalculations
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 229);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(236, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "*Lower thread count can slow down calculations";
+            this.labelCalculations.AutoSize = true;
+            this.labelCalculations.Location = new System.Drawing.Point(12, 229);
+            this.labelCalculations.Name = "labelCalculations";
+            this.labelCalculations.Size = new System.Drawing.Size(236, 13);
+            this.labelCalculations.TabIndex = 27;
+            this.labelCalculations.Text = "*Lower thread count can slow down calculations";
             // 
             // radioButtonThread1
             // 
@@ -217,14 +217,14 @@
             this.radioButtonThread1.UseVisualStyleBackColor = true;
             this.radioButtonThread1.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
-            // button3
+            // buttonDefault
             // 
-            this.button3.Location = new System.Drawing.Point(150, 245);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(129, 23);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Default";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonDefault.Location = new System.Drawing.Point(150, 245);
+            this.buttonDefault.Name = "buttonDefault";
+            this.buttonDefault.Size = new System.Drawing.Size(129, 23);
+            this.buttonDefault.TabIndex = 26;
+            this.buttonDefault.Text = "Default";
+            this.buttonDefault.UseVisualStyleBackColor = true;
             // 
             // textBoxThread
             // 
@@ -234,63 +234,63 @@
             this.textBoxThread.TabIndex = 22;
             this.textBoxThread.TextChanged += new System.EventHandler(this.textBoxThread_TextChanged);
             // 
-            // label5
+            // labelMaxThreads
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 13);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "From 1 to max. number of threads";
+            this.labelMaxThreads.AutoSize = true;
+            this.labelMaxThreads.Location = new System.Drawing.Point(15, 73);
+            this.labelMaxThreads.Name = "labelMaxThreads";
+            this.labelMaxThreads.Size = new System.Drawing.Size(164, 13);
+            this.labelMaxThreads.TabIndex = 28;
+            this.labelMaxThreads.Text = "From 1 to max. number of threads";
             // 
-            // button2
+            // buttonCancel
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(285, 245);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(124, 23);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(285, 245);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(124, 23);
+            this.buttonCancel.TabIndex = 25;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonSave
             // 
-            this.button1.Location = new System.Drawing.Point(15, 245);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSave.Location = new System.Drawing.Point(15, 245);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(129, 23);
+            this.buttonSave.TabIndex = 24;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // labelHowMany
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "How many threads do you want to use in the program?";
+            this.labelHowMany.AutoSize = true;
+            this.labelHowMany.Location = new System.Drawing.Point(12, 9);
+            this.labelHowMany.Name = "labelHowMany";
+            this.labelHowMany.Size = new System.Drawing.Size(264, 13);
+            this.labelHowMany.TabIndex = 21;
+            this.labelHowMany.Text = "How many threads do you want to use in the program?";
             // 
-            // label8
+            // labelZeroPercent
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 202);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(250, 13);
-            this.label8.TabIndex = 43;
-            this.label8.Text = "*0% means only one thread may be used at all times";
+            this.labelZeroPercent.AutoSize = true;
+            this.labelZeroPercent.Location = new System.Drawing.Point(12, 202);
+            this.labelZeroPercent.Name = "labelZeroPercent";
+            this.labelZeroPercent.Size = new System.Drawing.Size(250, 13);
+            this.labelZeroPercent.TabIndex = 43;
+            this.labelZeroPercent.Text = "*0% means only one thread may be used at all times";
             // 
-            // radioButtonThread5
+            // radioButtonThreadMax
             // 
-            this.radioButtonThread5.AutoSize = true;
-            this.radioButtonThread5.Location = new System.Drawing.Point(18, 182);
-            this.radioButtonThread5.Name = "radioButtonThread5";
-            this.radioButtonThread5.Size = new System.Drawing.Size(157, 17);
-            this.radioButtonThread5.TabIndex = 44;
-            this.radioButtonThread5.Text = "Maximum number of threads";
-            this.radioButtonThread5.UseVisualStyleBackColor = true;
-            this.radioButtonThread5.Click += new System.EventHandler(this.RadioButtonPressed);
+            this.radioButtonThreadMax.AutoSize = true;
+            this.radioButtonThreadMax.Location = new System.Drawing.Point(18, 182);
+            this.radioButtonThreadMax.Name = "radioButtonThreadMax";
+            this.radioButtonThreadMax.Size = new System.Drawing.Size(157, 17);
+            this.radioButtonThreadMax.TabIndex = 44;
+            this.radioButtonThreadMax.Text = "Maximum number of threads";
+            this.radioButtonThreadMax.UseVisualStyleBackColor = true;
+            this.radioButtonThreadMax.Click += new System.EventHandler(this.RadioButtonPressed);
             // 
             // groupBox1
             // 
@@ -367,29 +367,29 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 407);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.radioButtonThread5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.radioButtonPercent5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.radioButtonThreadMax);
+            this.Controls.Add(this.labelZeroPercent);
+            this.Controls.Add(this.labelPercentages);
+            this.Controls.Add(this.radioButtonPercentZero);
+            this.Controls.Add(this.labelThreads);
             this.Controls.Add(this.textBoxPercent);
             this.Controls.Add(this.radioButtonPercent4);
             this.Controls.Add(this.radioButtonThread4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelFrom0to100);
+            this.Controls.Add(this.labelPreference);
             this.Controls.Add(this.radioButtonPercent3);
             this.Controls.Add(this.radioButtonThread3);
-            this.Controls.Add(this.radioButtonPercent1);
+            this.Controls.Add(this.radioButtonPercentHunred);
             this.Controls.Add(this.radioButtonPercent2);
             this.Controls.Add(this.radioButtonThread2);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelCalculations);
             this.Controls.Add(this.radioButtonThread1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonDefault);
             this.Controls.Add(this.textBoxThread);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelMaxThreads);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.labelHowMany);
             this.Name = "ThreadsForm";
             this.Text = "ThreadsForm";
             this.Load += new System.EventHandler(this.ThreadsForm_Load);
@@ -402,29 +402,29 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RadioButton radioButtonPercent5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelPercentages;
+        private System.Windows.Forms.RadioButton radioButtonPercentZero;
+        private System.Windows.Forms.Label labelThreads;
         private System.Windows.Forms.TextBox textBoxPercent;
         private System.Windows.Forms.RadioButton radioButtonPercent4;
         private System.Windows.Forms.RadioButton radioButtonThread4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelFrom0to100;
+        private System.Windows.Forms.Label labelPreference;
         private System.Windows.Forms.RadioButton radioButtonPercent3;
         private System.Windows.Forms.RadioButton radioButtonThread3;
-        private System.Windows.Forms.RadioButton radioButtonPercent1;
+        private System.Windows.Forms.RadioButton radioButtonPercentHunred;
         private System.Windows.Forms.RadioButton radioButtonPercent2;
         private System.Windows.Forms.RadioButton radioButtonThread2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCalculations;
         private System.Windows.Forms.RadioButton radioButtonThread1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonDefault;
         private System.Windows.Forms.TextBox textBoxThread;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton radioButtonThread5;
+        private System.Windows.Forms.Label labelMaxThreads;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label labelHowMany;
+        private System.Windows.Forms.Label labelZeroPercent;
+        private System.Windows.Forms.RadioButton radioButtonThreadMax;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelCPUName;
         private System.Windows.Forms.Label labelCPUManufacturer;

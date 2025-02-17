@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -23,6 +15,20 @@ namespace HashTester
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
+            #region Languages
+            groupBoxSalt.Text = Languages.Translate(402);
+            groupBoxPepper.Text = Languages.Translate(403);
+            radioButtonSaltGen.Text = Languages.Translate(404); //hehe funny web number
+            radioButtonPepperGen.Text = Languages.Translate(405);
+            labelLenghtSalt.Text = Languages.Translate(406);
+            labelLenghtPepper.Text = Languages.Translate(407);
+            radioButtonSaltOwn.Text = Languages.Translate(408);
+            radioButtonPepperOwn.Text = Languages.Translate(409);
+            labelOwnSalt.Text = Languages.Translate(410);
+            labelOwnPepper.Text = Languages.Translate(411);
+            labelID.Text = Languages.Translate(412);
+            buttonGenerate.Text = Languages.Translate(413);
+            #endregion
             textBoxSalt.Enabled = false;
             textBoxPepper.Enabled = false;
             textBoxHashID.Text = SetHashID();
@@ -39,7 +45,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show("Prosim zadejte platne HashID");
+                MessageBox.Show(Languages.Translate(414));
                 textBoxHashID.Focus();
             }            
         }
@@ -65,7 +71,7 @@ namespace HashTester
                 {
                     lenghtSalt = 0;
                     ownSalt = textBoxSalt.Text;
-                    Console.WriteLine("SaltAndPepperQuestion Form SALT: " + ownSalt);
+                    //Console.WriteLine("SaltAndPepperQuestion Form SALT: " + ownSalt);
                 }
             }
             if (Settings.UsePepper)
@@ -81,7 +87,7 @@ namespace HashTester
                 {
                     lenghtPepper = 0;
                     ownPepper = textBoxPepper.Text;
-                    Console.WriteLine("SaltAndPepperQuestion Form Pepper: " + ownPepper);
+                    //Console.WriteLine("SaltAndPepperQuestion Form Pepper: " + ownPepper);
                 }
             }
             //hashID
@@ -115,9 +121,8 @@ private string SetHashID()
         {
             string path = "..\\..\\HashData\\" + hashID + ".txt";
             if (File.Exists(path))
-            {
-                SaltAndPepperOverrideFile form = new SaltAndPepperOverrideFile();
-                if (form.ShowDialog() == DialogResult.OK)
+            {                
+                if (MessageBox.Show(Languages.Translate(401), Languages.Translate(10025), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     File.Delete(path);
                     return true;

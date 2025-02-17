@@ -35,15 +35,15 @@
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelMaxAttempts = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
             this.buttonAbort = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelLenght = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelAttempts = new System.Windows.Forms.Label();
+            this.labelCurrentSpeed = new System.Windows.Forms.Label();
             this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelAverageSpeed = new System.Windows.Forms.Label();
             this.checkBoxUseHex = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.buttonCheckCollision = new System.Windows.Forms.Button();
@@ -129,14 +129,14 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 15;
             // 
-            // label1
+            // labelMaxAttempts
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Maximum Attempts";
+            this.labelMaxAttempts.AutoSize = true;
+            this.labelMaxAttempts.Location = new System.Drawing.Point(9, 65);
+            this.labelMaxAttempts.Name = "labelMaxAttempts";
+            this.labelMaxAttempts.Size = new System.Drawing.Size(95, 13);
+            this.labelMaxAttempts.TabIndex = 16;
+            this.labelMaxAttempts.Text = "Maximum Attempts";
             // 
             // labelTimer
             // 
@@ -157,14 +157,14 @@
             this.buttonAbort.UseVisualStyleBackColor = true;
             this.buttonAbort.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
+            // labelLenght
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(136, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 13);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Lenght of the random text";
+            this.labelLenght.AutoSize = true;
+            this.labelLenght.Location = new System.Drawing.Point(136, 65);
+            this.labelLenght.Name = "labelLenght";
+            this.labelLenght.Size = new System.Drawing.Size(128, 13);
+            this.labelLenght.TabIndex = 20;
+            this.labelLenght.Text = "Lenght of the random text";
             // 
             // numericUpDown2
             // 
@@ -183,23 +183,23 @@
             0,
             0});
             // 
-            // label3
+            // labelAttempts
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(281, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 13);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Number of attempts: ";
+            this.labelAttempts.AutoSize = true;
+            this.labelAttempts.Location = new System.Drawing.Point(281, 69);
+            this.labelAttempts.Name = "labelAttempts";
+            this.labelAttempts.Size = new System.Drawing.Size(105, 13);
+            this.labelAttempts.TabIndex = 21;
+            this.labelAttempts.Text = "Number of attempts: ";
             // 
-            // label4
+            // labelCurrentSpeed
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(282, 83);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Hashes per sec:";
+            this.labelCurrentSpeed.AutoSize = true;
+            this.labelCurrentSpeed.Location = new System.Drawing.Point(282, 83);
+            this.labelCurrentSpeed.Name = "labelCurrentSpeed";
+            this.labelCurrentSpeed.Size = new System.Drawing.Size(84, 13);
+            this.labelCurrentSpeed.TabIndex = 22;
+            this.labelCurrentSpeed.Text = "Hashes per sec:";
             // 
             // checkBoxListBoxLog
             // 
@@ -213,14 +213,14 @@
             this.checkBoxListBoxLog.Text = "Show log in listBox";
             this.checkBoxListBoxLog.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // labelAverageSpeed
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(281, 96);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Average speed: ";
+            this.labelAverageSpeed.AutoSize = true;
+            this.labelAverageSpeed.Location = new System.Drawing.Point(281, 96);
+            this.labelAverageSpeed.Name = "labelAverageSpeed";
+            this.labelAverageSpeed.Size = new System.Drawing.Size(85, 13);
+            this.labelAverageSpeed.TabIndex = 24;
+            this.labelAverageSpeed.Text = "Average speed: ";
             // 
             // checkBoxUseHex
             // 
@@ -283,15 +283,15 @@
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBoxUseHex);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelAverageSpeed);
             this.Controls.Add(this.checkBoxListBoxLog);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelCurrentSpeed);
+            this.Controls.Add(this.labelAttempts);
+            this.Controls.Add(this.labelLenght);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.buttonAbort);
             this.Controls.Add(this.labelTimer);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelMaxAttempts);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonClearListBox);
@@ -318,15 +318,15 @@
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.Button buttonReturn;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelMaxAttempts;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Button buttonAbort;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelLenght;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelAttempts;
+        private System.Windows.Forms.Label labelCurrentSpeed;
         private System.Windows.Forms.CheckBox checkBoxListBoxLog;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelAverageSpeed;
         private System.Windows.Forms.CheckBox checkBoxUseHex;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.Button buttonCheckCollision;

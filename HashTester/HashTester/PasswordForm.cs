@@ -33,29 +33,69 @@ namespace HashTester
         private void PasswordForm_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
-            hashSelector.SelectedIndex = 0;
+            hashSelectorRainbowTable.SelectedIndex = 0;
+            #region Languages
+            labelProgressBar.Text = Languages.Translate(241);
+            buttonCancel.Text = Languages.Translate(242);
+            labelStatAttempts.Text = Languages.Translate(243);
+            labelStatCurrentSpeed.Text = Languages.Translate(244);
+            labelStatSpeed.Text = Languages.Translate(245);
+            labelStatTimer.Text = Languages.Translate(10009);
+            groupBoxDictionary.Text = Languages.Translate(247);
+            groupBoxTimeToCrack.Text = Languages.Translate(248);
+            groupBoxRainbowTable.Text = Languages.Translate(249);
+            groupBoxBruteForce.Text = Languages.Translate(250);
+            //Dictionary Attack
+            radioButtonRockYouFull.Text = Languages.Translate(251);
+            radioButtonRockYouShort.Text = Languages.Translate(252);
+            radioButtonRockYouFullShortShort.Text = Languages.Translate(253);
+            radioButtonRockyouCustom.Text = Languages.Translate(254);
+            buttonDictionaryChangePath.Text = Languages.Translate(255);
+            //Time to crack calculator
+            labelCrackLenght.Text = Languages.Translate(256) + "/" + Languages.Translate(257);
+            labelCrackSpeed.Text = Languages.Translate(258);
+            checkBoxCrackLower.Text = Languages.Translate(259);
+            checkBoxCrackUpper.Text = Languages.Translate(260);
+            checkBoxCrackDigit.Text = Languages.Translate(261);
+            checkBoxCrackSpecial.Text = Languages.Translate(262);
+            buttonCrackCalculate.Text = Languages.Translate(263);
+            //RainbowTableAttack
+            radioButtonRegularRainbowTable.Text = Languages.Translate(264);
+            radioButtonHashedRainbowTable.Text = Languages.Translate(265);
+            buttonGenerateRainbowTable.Text = Languages.Translate(266);
+            buttonRainbowTableAttack.Text = Languages.Translate(267);
+            //BruteForceAttack
+            radioButtonRegularBruteForce.Text = Languages.Translate(264);
+            radioButtonBruteForceHashed.Text = Languages.Translate(265);
+            labelMaxAttempts.Text = Languages.Translate(268);
+            labelLenght.Text = Languages.Translate(269);
+            labelStopTimer.Text = Languages.Translate(270);
+            checkBoxUnknownLenghtBruteForce.Text = Languages.Translate(271);
+            checkBoxHexOutputBruteForce.Text = Languages.Translate(272);
+            #endregion
+            hashSelectorBruteForce.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();
-            if (FindIfTXTIsPresent("rockyou")) radioButton1.Enabled = true;
-            if (FindIfTXTIsPresent("rockyouShort")) radioButton2.Enabled = true;
-            if (FindIfTXTIsPresent("rockyouVeryShort")) radioButton3.Enabled = true;
+            if (FindIfTXTIsPresent("rockyou")) radioButtonRockYouFull.Enabled = true;
+            if (FindIfTXTIsPresent("rockyouShort")) radioButtonRockYouShort.Enabled = true;
+            if (FindIfTXTIsPresent("rockyouVeryShort")) radioButtonRockYouFullShortShort.Enabled = true;
             //checked
-            if (radioButton1.Enabled) radioButton1.Checked = true;
-            else if (radioButton2.Enabled) radioButton2.Checked = true;
-            else if (radioButton3.Enabled) radioButton3.Checked = true;
-            else radioButton4.Checked = true;
+            if (radioButtonRockYouFull.Enabled) radioButtonRockYouFull.Checked = true;
+            else if (radioButtonRockYouShort.Enabled) radioButtonRockYouShort.Checked = true;
+            else if (radioButtonRockYouFullShortShort.Enabled) radioButtonRockYouFullShortShort.Checked = true;
+            else radioButtonRockyouCustom.Checked = true;
         }
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            userAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
+            userAlgorithm = (Hasher.HashingAlgorithm)hashSelectorBruteForce.SelectedIndex;
         }
 
         private void DisableRockYouRadioButtons()
         {
-            radioButton1.Enabled = false;
-            radioButton2.Enabled = false;
-            radioButton3.Enabled = false;
+            radioButtonRockYouFull.Enabled = false;
+            radioButtonRockYouShort.Enabled = false;
+            radioButtonRockYouFullShortShort.Enabled = false;
             //radioButton04 (custom) is always available
         }
 
@@ -79,7 +119,7 @@ namespace HashTester
 
         private void GenerateInfoTXT()
         {
-            string s = "RockYou has 10mil. passwords (original has like 14 mil but Github didnt like that)\r\nRockYouShort has 1mil.\r\nRockYouVeryShort 5k\r\nIf you want to add more or something different you can";
+            string s =Languages.Translate(273) +": " + "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt \r\nRockYouShort 1mil.\r\nRockYouVeryShort 5k\r\n" + Languages.Translate(274);
             File.WriteAllText(Settings.PasswordPathToFiles + "\\_wordlistInfo.txt", s);
         }
 
@@ -111,13 +151,13 @@ namespace HashTester
             {
                 int passwordLinesProcessedBetweenUpdates = (int)(passwordCheck.CurrentLine - passwordCheckLinesProcessedLastUpdate);
                 passwordCheckLinesProcessedLastUpdate = passwordCheck.CurrentLine;
-                labelTimer.Text = "Timer: " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
+                labelStatTimer.Text = Languages.Translate(10009) + ": " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
                 double currentSpeed = passwordLinesProcessedBetweenUpdates / (Settings.UpdateUIms / 1000);
-                labelCurrentSpeed.Text = "Current speed /s: " + currentSpeed.ToString("#,0");
+                labelStatCurrentSpeed.Text = Languages.Translate(244) + " " + currentSpeed.ToString("#,0");
                 double averageSpeed = passwordCheck.CurrentLine / (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0); //in seconds
-                if (!double.IsInfinity(averageSpeed)) labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
-                else labelSpeed.Text = "Average speed /s: Yes";
-                labelAttempts.Text = "Currently working on line: " + passwordCheck.CurrentLine.ToString("#,0");
+                if (!double.IsInfinity(averageSpeed)) labelStatSpeed.Text = Languages.Translate(245) + " " + Math.Floor(averageSpeed).ToString("#,0");
+                else labelStatSpeed.Text = Languages.Translate(245) + ": " + Languages.Translate(275);
+                labelStatAttempts.Text = Languages.Translate(276) + " " + passwordCheck.CurrentLine.ToString("#,0");
                 progressBar1.Value = passwordCheck.Progress;
                 foreach (string temp in passwordCheck.LogOutput)
                 {
@@ -134,17 +174,17 @@ namespace HashTester
             DisableUI();
             string messageBoxAnswer = "";
             bool continueToChecker = true;
-            string[] passwords = textBox1.Lines;           
+            string[] passwords = textBoxDictionary.Lines;           
             //Decider of what txt to use
-            if (radioButton1.Checked)
+            if (radioButtonRockYouFull.Checked)
             {
                 pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
             }
-            else if (radioButton2.Checked)
+            else if (radioButtonRockYouShort.Checked)
             {
                 pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
             }
-            else if (radioButton3.Checked)
+            else if (radioButtonRockYouFullShortShort.Checked)
             {
                 pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
             }
@@ -156,11 +196,11 @@ namespace HashTester
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {                        
                         pathToFile = openFileDialog.FileName; //Own txt
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Path to wordlist: " + pathToFile);
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(277) + ": " + pathToFile);
                     }
                     else
                     {
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("No path selected, cancelling process.");
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(278));
                         continueToChecker = false;
                     }
                 }
@@ -178,8 +218,8 @@ namespace HashTester
                 progressBar1.Value = 100;
                 if (passwordCheck.Token)
                 {
-                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("The User has aborted the process.");
-                    MessageBox.Show("The User has aborted the process.");
+                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                    MessageBox.Show(Languages.Translate(279));
                 }
                 //Console.WriteLine("passwordCheck.FoundMatch[i]: " + passwordCheck.FoundMatch.Count);
                 //Console.WriteLine("passwords count " + passwords.Count)
@@ -187,13 +227,15 @@ namespace HashTester
                 {
                     if (passwordCheck.FoundMatch[i])
                     {
-                        messageBoxAnswer += "Password '" + passwords[i] + "' has been found in wordlist at line " + passwordCheck.LineFoundMatch[i] + ". I recommend using a different password." + Environment.NewLine;
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has been found in wordlist at line " + passwordCheck.LineFoundMatch[i] + ". I recommend using a different password.");
+                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + passwordCheck.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
+                        messageBoxAnswer += temp;
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
                     }
                     else
                     {
-                        messageBoxAnswer += "Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine;
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Password '" + passwords[i] + "' has not been found in wordlist. Good Job." + Environment.NewLine);
+                        string temp = Languages.Translate(280) + "' " + passwords[i] + "' " + Languages.Translate(283) + Environment.NewLine;
+                        messageBoxAnswer += temp;
+                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
                     }
                 }
                 MessageBox.Show(messageBoxAnswer);
@@ -205,23 +247,23 @@ namespace HashTester
 
         #endregion
 
-        #region Password Strenght Calculator - Done
+        #region Password Strenght Calculator
         PasswordStrenghtCalculator passwordStrenghtCalculator = new PasswordStrenghtCalculator();        
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
             int numberOfChars = 0;
-            if (checkBoxCrack01.Checked) numberOfChars += 26;
-            if (checkBoxCrack02.Checked) numberOfChars += 26;
-            if (checkBoxCrack03.Checked) numberOfChars += 10;
-            if (checkBoxCrack04.Checked) numberOfChars += 33;
+            if (checkBoxCrackLower.Checked) numberOfChars += 26;
+            if (checkBoxCrackUpper.Checked) numberOfChars += 26;
+            if (checkBoxCrackDigit.Checked) numberOfChars += 10;
+            if (checkBoxCrackSpecial.Checked) numberOfChars += 33;
 
             int passwordLenght;
             if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
             if (passwordLenght > 50)
             {
                 passwordLenght = 50;
-                MessageBox.Show("Maximální délka hesla je 50.");
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add("Maximum lenght of the password set to 50.");
+                MessageBox.Show(Languages.Translate(284));
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(285));
             }
             double speed = double.Parse(textBoxCrackSpeed.Text);
 
@@ -231,24 +273,24 @@ namespace HashTester
             {
                 if (checkBoxShowLogCrack.Checked)
                 {
-                    listBoxLog.Items.Add("Prolomit toto heslo bude trvat přes 1 miliardu let.");
-                    listBoxLog.Items.Add("Pocet kombinací: " + pocet.ToString("N0"));
+                    listBoxLog.Items.Add(Languages.Translate(286));
+                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + pocet.ToString("N0"));
                 }
-                MessageBox.Show("Prolomit toto heslo bude trvat přes 1 miliardu let :)\nPocet kombinací: " + pocet.ToString("N0")); //if it takes more than 1 bilion years
+                MessageBox.Show(Languages.Translate(286) + "\n" + Languages.Translate(287) + ": " + pocet.ToString("N0")); //if it takes more than 1 bilion years
             }
             else
             {
                 if (checkBoxShowLogCrack.Checked)
                 {
                     listBoxLog.Items.Add(passwordStrenghtCalculator.Output(rychlost));
-                    listBoxLog.Items.Add("Pocet kombinaci: " + pocet.ToString("N0"));
+                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + pocet.ToString("N0"));
                 }
-                MessageBox.Show(passwordStrenghtCalculator.Output(rychlost) + "\nPocet kombinaci: " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
+                MessageBox.Show(passwordStrenghtCalculator.Output(rychlost) + "\n" + Languages.Translate(287) + ": " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
             }
         }
         #endregion
 
-        #region Rainbow Table - Done
+        #region Rainbow Table
 
         RainbowTable rainbowTable = new RainbowTable();
         private void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
@@ -274,21 +316,21 @@ namespace HashTester
                 {
                     //MultiThread
                     updateUITimer.Start();                    
-                    if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
+                    if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
                     {
                         int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
-                        if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Number of threads used: "  + numberOfThreadsToUse);
+                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(10026) + ": "  + numberOfThreadsToUse);
                         if (rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
                         {
                             updateUITimer.Stop();
-                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
-                            MessageBox.Show("Rainbow Table has been generated succesfully.");
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            MessageBox.Show(Languages.Translate(288));
                         }
                         else
                         {
                             updateUITimer.Stop();
-                            string s = "Program could not generate the rainbow table. Abbandoning process.";
-                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            string s = Languages.Translate(289);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
                             MessageBox.Show(s);
                         }
                     }
@@ -298,14 +340,14 @@ namespace HashTester
                         if (rainbowTable.GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
                         {
                             updateUITimer.Stop();
-                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
-                            MessageBox.Show("Rainbow Table has been generated succesfully.");
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            MessageBox.Show(Languages.Translate(288));
                         }
                         else
                         {
                             updateUITimer.Stop();
-                            string s = "Program could not generate the rainbow table. Abbandoning process.";
-                            if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            string s =Languages.Translate(289);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
                             MessageBox.Show(s);
                         }
                     }
@@ -314,8 +356,8 @@ namespace HashTester
             else
             {
                 updateUITimer.Stop();
-                MessageBox.Show("Rainbow Table Generator abandoned.");
-                if (checkBoxShowLogPreHash.Checked) listBoxLog.Items.Add("Rainbow Table Generator abandoned.");
+                MessageBox.Show(Languages.Translate(290));
+                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(290));
             }            
             ActivateUI(); 
             taskCurrentlyWorking = false;
@@ -330,14 +372,14 @@ namespace HashTester
                 double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000);
                 int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
                 numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
-                labelTimer.Text = "Timer: " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
-                labelSpeed.Text = "Average speed /s: " + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
-                labelCurrentSpeed.Text = "Hashes /s: " + speed.ToString();
+                labelStatTimer.Text = Languages.Translate(10009) + ": " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
+                labelStatSpeed.Text = Languages.Translate(10012) + " /s" + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
+                labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString();
                 progressBar1.Value = Math.Min(100, progress);
                 //Refresh - The Labels didnt update for some reason
-                labelTimer.Refresh();
-                labelSpeed.Refresh();
-                labelCurrentSpeed.Refresh();
+                labelStatTimer.Refresh();
+                labelStatSpeed.Refresh();
+                labelStatCurrentSpeed.Refresh();
             }
         }
 
@@ -354,11 +396,11 @@ namespace HashTester
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 2;
 
-            string originalInput = textBoxBruteForceInput.Text;
-            if (radioButton5.Checked)
+            string originalInput = textBoxBruteForce.Text;
+            if (radioButtonRegularBruteForce.Checked)
                 originalInput = hasher.Hash(originalInput, userAlgorithm);
 
-            rainbowTableAttack.PerformanceMode = checkBoxPerformanceMode.Checked;
+            rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeBruteForce.Checked;
 
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -370,9 +412,9 @@ namespace HashTester
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 timeToUpdateUI.Start();
-                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDown1.Value))
+                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value))
                 {
-                    if (checkBoxShowLogDictionary.Checked)
+                    if (checkBoxShowLogRainbowTable.Checked)
                         listBoxLog.Items.Add("-----------------------------------------------");
 
                     if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
@@ -381,73 +423,74 @@ namespace HashTester
                         string foundPasswordHash = hasher.Hash(foundPassword, userAlgorithm);
                         long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
 
-                        string message = $"Found hash via Dictionary attack\n" +
-                                            $"Original password: {foundPassword}\n" +
-                                            $"Original password hash: {originalInput}\n" +
-                                            $"Found password at line: {foundAtLine}\n" +
-                                            $"Found password hash: {foundPasswordHash}\n" +
-                                            $"Found password in UTF-8: {foundPassword}\n" +
-                                            $"Found password in HEX: {ConvertToHexBasedOnUser(foundPassword)}";
+                        string message = Languages.Translate(291) + "\n" +
+                                Languages.Translate(292) + ": " + foundPassword + "\n" +
+                                Languages.Translate(293) + ": " + originalInput + "\n" +
+                                Languages.Translate(294) + ": " + foundAtLine + "\n" +
+                                Languages.Translate(295) + ": " + foundPasswordHash + "\n" +
+                                Languages.Translate(296) + ": " + foundPassword + "\n" +
+                                Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword);
 
-                        if (checkBoxShowLogDictionary.Checked)
+
+                        if (checkBoxShowLogRainbowTable.Checked)
                         {
-                            listBoxLog.Items.Add("Found hash via Dictionary attack");
-                            listBoxLog.Items.Add($"Original password: {foundPassword}");
-                            listBoxLog.Items.Add($"Found password hash: {originalInput}");
-                            listBoxLog.Items.Add($"Found password at line: {foundAtLine}");
-                            listBoxLog.Items.Add($"Found password in UTF-8: {foundPassword}");
-                            listBoxLog.Items.Add($"Found password in HEX: {ConvertToHexBasedOnUser(foundPassword)}");
+                            listBoxLog.Items.Add(Languages.Translate(291)); 
+                            listBoxLog.Items.Add(Languages.Translate(292) + ": " + foundPassword); 
+                            listBoxLog.Items.Add(Languages.Translate(295) + ": " + originalInput); 
+                            listBoxLog.Items.Add(Languages.Translate(294) + ": " + foundAtLine); 
+                            listBoxLog.Items.Add(Languages.Translate(296) + ": " + foundPassword);
+                            listBoxLog.Items.Add(Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword));
                         }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                         PasswordFoundMessageBox(message, originalInput, foundPassword);
                     }
                     else if (rainbowTableAttack.CancelTokenActive())
                     {
-                        MessageBox.Show("The user has aborted the process.");
-                        if (checkBoxShowLogDictionary.Checked)
-                            listBoxLog.Items.Add("The user has aborted the process.");
+                        MessageBox.Show(Languages.Translate(279));
+                        if (checkBoxShowLogRainbowTable.Checked)
+                            listBoxLog.Items.Add(Languages.Translate(279));
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else if (rainbowTableAttack.RanOutOfTime)
                     {
-                        MessageBox.Show("The program could not find the password within the time limit.");
-                        if (checkBoxShowLogDictionary.Checked)
+                        MessageBox.Show(Languages.Translate(298));
+                        if (checkBoxShowLogRainbowTable.Checked)
                         {
-                            listBoxLog.Items.Add("The program could not find the password within the time limit.");
+                            listBoxLog.Items.Add(Languages.Translate(298));
                         }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else if (rainbowTableAttack.RanOutOfAttempts)
                     {
-                        MessageBox.Show("The program could not find the password within the attempt limit.");
-                        if (checkBoxShowLogDictionary.Checked)
+                        MessageBox.Show(Languages.Translate(299));
+                        if (checkBoxShowLogRainbowTable.Checked)
                         {
-                            listBoxLog.Items.Add("The program could not find the password within the attempt limit.");
+                            listBoxLog.Items.Add(Languages.Translate(299));
                         }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                     else
                     {
-                        MessageBox.Show("Could not find password in the file.");
-                        if (checkBoxShowLogDictionary.Checked)
+                        MessageBox.Show(Languages.Translate(300));
+                        if (checkBoxShowLogRainbowTable.Checked)
                         {
-                            listBoxLog.Items.Add("Could not find password in the file.");
+                            listBoxLog.Items.Add(Languages.Translate(300));
                         }
                         if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Could not run the dictionary attack.");
-                    if (checkBoxShowLogDictionary.Checked)
-                        listBoxLog.Items.Add("Could not run the dictionary attack.");
+                    MessageBox.Show(Languages.Translate(301));
+                    if (checkBoxShowLogRainbowTable.Checked)
+                        listBoxLog.Items.Add(Languages.Translate(301));
                     if (timeToUpdateUI != null) timeToUpdateUI.Stop();
                 }
             }
             else
             {
-                if (checkBoxShowLogDictionary.Checked)
-                    listBoxLog.Items.Add("Invalid file format or file not found. Cancelling dictionary attack.");
+                if (checkBoxShowLogRainbowTable.Checked)
+                    listBoxLog.Items.Add(Languages.Translate(302));
                 if (timeToUpdateUI != null) timeToUpdateUI.Stop();
             }
             if (timeToUpdateUI != null) timeToUpdateUI.Stop();
@@ -470,16 +513,16 @@ namespace HashTester
 
             // Speed Calculation
             double speed = triesBetween / (Settings.UpdateUIms / 1000);
-            labelCurrentSpeed.Text = "Current speed /s: " + speed.ToString("#,0");
+            labelStatCurrentSpeed.Text = Languages.Translate(10001) + "/s: " + speed.ToString("#,0");
 
             // Attempts Display
-            labelAttempts.Text = "Number of lines processed: " + currentLinesProcessed.ToString("#,0");
+            labelStatAttempts.Text = Languages.Translate(303) + ": " + currentLinesProcessed.ToString("#,0");
 
             // Average Speed Calculation
             double averageSpeed = (rainbowTableAttack.Stopwatch.ElapsedMilliseconds > 0)
                 ? currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0)
                 : 0;
-            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
+            labelStatSpeed.Text = Languages.Translate(10012) + "/s: " + Math.Floor(averageSpeed).ToString("#,0");
 
             // Progress Bar Update
             int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
@@ -505,22 +548,22 @@ namespace HashTester
             taskCurrentlyWorking = true;
             whatTaskIsWorking = 4;
             TurnOffUI();
-            string userHashInput = textBoxBruteForceInput.Text;
+            string userHashInput = textBoxBruteForce.Text;
             int userPasswordLenght = 0;
-            if (radioButton5.Checked)
+            if (radioButtonRegularBruteForce.Checked)
             {
-                userPasswordLenght = textBoxBruteForceInput.Text.Length;
-                userHashInput = hasher.Hash(textBoxBruteForceInput.Text, userAlgorithm);
+                userPasswordLenght = textBoxBruteForce.Text.Length;
+                userHashInput = hasher.Hash(textBoxBruteForce.Text, userAlgorithm);
                 if (checkBoxShowLogBrute.Checked)
                 {
-                    listBoxLog.Items.Add("Hashing '" + textBoxBruteForceInput.Text + "' into " + userHashInput + ".");
+                    listBoxLog.Items.Add(Languages.Translate(0) + " '" + textBoxBruteForce.Text + "' " + Languages.Translate(10027) + " " + userHashInput + ".");
                 }
             }
             else
             {
-                userPasswordLenght = (int)numericUpDown2.Value;
+                userPasswordLenght = (int)numericUpDownLenght.Value;
             }
-            if (checkBoxBruteForceUnknownLenght.Checked) userPasswordLenght = 0;
+            if (checkBoxUnknownLenghtBruteForce.Checked) userPasswordLenght = 0;
 
             //SetUp            
             bool[] checkBoxUsableCharsForAttack = { false, false, false, false };
@@ -539,18 +582,18 @@ namespace HashTester
             timer.Tick += UpdateTheUIBruteForceAttack;            
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
-            Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
-            long temp = bruteForce.CalculateAllPossibleCombinations(checkBoxBruteForceUnknownLenght.Checked, (int)numericUpDown2.Value);
-            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Number Of All Possible Combinations: " + temp);
-            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
+            //Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
+            long temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
+            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp);
+            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
             {
                 timer.Start();
-                Console.WriteLine("Performance Mode On");
-                bruteForce.BruteForceAttackMultiThread(userAlgorithm, userHashInput, (ulong)numericUpDown1.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
+                Console.WriteLine(Languages.Translate(305));
+                bruteForce.BruteForceAttackMultiThread(userAlgorithm, userHashInput, (ulong)numericUpDownMaxAttempts.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
             }
             else //single Thread
             {
-                Console.WriteLine("Performance Mode Off");
+                Console.WriteLine(Languages.Translate(306));
                 timer.Start();
                 await Task.Run(() => bruteForce.PasswordBruteForce
                 (
@@ -559,7 +602,7 @@ namespace HashTester
                     0, //ThreadID
                     1, //numberOfThreadsUsed
                     userHashInput,
-                    (ulong)numericUpDown1.Value, 
+                    (ulong)numericUpDownMaxAttempts.Value, 
                     userPasswordLenght,
                      (long)numericUpDownStopTimer.Value));
             }
@@ -569,48 +612,48 @@ namespace HashTester
             //Output
             if (bruteForce.FoundPasswordBool)
             {
-                string message = "Password found!\n" +
-                  "\nOriginal hash: " + userHashInput +
-                  "\nFound password hash: " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm) +
-                  "\nFound password in UTF-8: " + bruteForce.FoundPassword +
-                  "\nFound password in HEX: " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) +
-                  "\nAttempts: " + bruteForce.Attempts +
-                  "\n" + labelTimer.Text + // Timer
-                  "\n" + labelSpeed.Text;  //Speed
+                string message = Languages.Translate(307) + "\n" + 
+                          "\n" + Languages.Translate(308) + ": " + userHashInput + 
+                          "\n" + Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm) +
+                          "\n" + Languages.Translate(310) + ": " + bruteForce.FoundPassword +
+                          "\n" + Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) + 
+                          "\n" + Languages.Translate(120) + ": " + bruteForce.Attempts +
+                          "\n" + Languages.Translate(10009) + ": " + labelStatTimer.Text +
+                          "\n" + Languages.Translate(10012) + ": " + labelStatSpeed.Text;
 
                 if (checkBoxShowLogBrute.Checked)
                 {
                     listBoxLog.Items.Add("----------------------------");
-                    listBoxLog.Items.Add("Password found!");
-                    listBoxLog.Items.Add("Original hash: " + userHashInput);
-                    listBoxLog.Items.Add("Found password hash: " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm));
-                    listBoxLog.Items.Add("Found password in UTF-8: " + bruteForce.FoundPassword);
-                    listBoxLog.Items.Add("Found password in HEX: " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
-                    listBoxLog.Items.Add("Attempts: " + bruteForce.Attempts);
-                    listBoxLog.Items.Add("Time to find: " + labelTimer.Text.Split(' ')[1]);
-                    listBoxLog.Items.Add("Average speed: " + labelSpeed.Text);
+                    listBoxLog.Items.Add(Languages.Translate(307));
+                    listBoxLog.Items.Add(Languages.Translate(308) + ": " + userHashInput);
+                    listBoxLog.Items.Add(Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm));
+                    listBoxLog.Items.Add(Languages.Translate(310) + ": " + bruteForce.FoundPassword);
+                    listBoxLog.Items.Add(Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
+                    listBoxLog.Items.Add(Languages.Translate(120) + ": " + bruteForce.Attempts);
+                    listBoxLog.Items.Add(Languages.Translate(10009) + ": " + labelStatTimer.Text.Split(' ')[1]);
+                    listBoxLog.Items.Add(Languages.Translate(10012) + ": " + labelStatSpeed.Text);
                 }
                 PasswordFoundMessageBox(message, userHashInput, bruteForce.FoundPassword);
             }
             else if (bruteForce.RanOutOfAttemps)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find a password under the given attempts.");
-                MessageBox.Show("Could not find a password under the given attempts.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(312));
+                MessageBox.Show(Languages.Translate(312), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (bruteForce.RanOutOfTime)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find a password under the given time limit.");
-                MessageBox.Show("Could not find a password under the given time limit.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(312));
+                MessageBox.Show(Languages.Translate(312), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (bruteForce.UserAborted)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("The process has been abandoned.");
-                MessageBox.Show("The process has been abandoned.", "Abandoned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(10017));
+                MessageBox.Show(Languages.Translate(10017), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add("Could not find the original password.");
-                MessageBox.Show("Could not find the original password.");
+                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(313));
+                MessageBox.Show(Languages.Translate(313));
             }
             taskCurrentlyWorking = true;
             whatTaskIsWorking = -1;
@@ -620,21 +663,21 @@ namespace HashTester
         private void UpdateTheUIBruteForceAttack(object sender, EventArgs e)
         {
             //Update Timer
-            Console.WriteLine("UpdateTheUIBruteForceAttack");
+            //Console.WriteLine("UpdateTheUIBruteForceAttack");
             int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
             int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
-            labelTimer.Text = "Timer: " + seconds + "." + milliseconds + " s";
+            labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
             int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
             numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
             //Update Speed
             double speed = triesBetween / (Settings.UpdateUIms / 1000);
-            labelCurrentSpeed.Text = "Current speed /s:  " + speed.ToString("#,0");
+            labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
             //Attempts
-            labelAttempts.Text = "Number of attempts: " + bruteForce.Attempts.ToString("#,0");
+            labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
             //Update Average Speed
             double averageSpeed = 0;
             if (bruteForce.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
-            labelSpeed.Text = "Average speed /s: " + Math.Floor(averageSpeed).ToString("#,0");
+            labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
             //update progressbar
             progressBar1.Value = bruteForce.Progress;
         }       
@@ -674,7 +717,7 @@ namespace HashTester
         }
         private string ConvertToHexBasedOnUser(string text)
         {
-            if (checkBoxHexOutput.Checked)
+            if (checkBoxHexOutputBruteForce.Checked)
             {
                 var hexBuilder = new StringBuilder();
                 for (int i = 0; i < text.Length; i++)
@@ -691,7 +734,7 @@ namespace HashTester
         }
         public void PasswordFoundMessageBox(string message, string inputHash, string password)
         {            
-            if (MessageBox.Show("Would you like to save found password to a txt file?", Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(Languages.Translate(314), Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 string path = Path.GetFullPath(Settings.PasswordPathToFiles);
                 string path2 = "";
@@ -718,7 +761,7 @@ namespace HashTester
                     writer.WriteLine("Password HEX:  " + ConvertToHexBasedOnUser(password));
                 }
             }
-            MessageBox.Show(message, "Collision Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message, Languages.Translate(117), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -730,39 +773,39 @@ namespace HashTester
                     case 2: rainbowTableAttack.Abort(); break;
                     case 3: passwordCheck.Abort(); break;
                     case 4: bruteForce.Abort(); break;
-                    default: MessageBox.Show("Error, could not stop the process.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); break;
+                    default: MessageBox.Show(Languages.Translate(315), Languages.Translate(20), MessageBoxButtons.OK, MessageBoxIcon.Error); break;
                 }
             }
         }
 
         private void textBoxBruteForceInput_TextChanged(object sender, EventArgs e)
         {
-            if (radioButton5.Checked)
+            if (radioButtonRegularBruteForce.Checked)
             {
-                numericUpDown2.Value = textBoxBruteForceInput.Text.Length;
-                checkBoxBruteForceUnknownLenght.Checked = false;
+                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
+                checkBoxUnknownLenghtBruteForce.Checked = false;
             }
-            else if (radioButton6.Checked)
+            else if (radioButtonBruteForceHashed.Checked)
             {
-                checkBoxBruteForceUnknownLenght.Checked = true;
+                checkBoxUnknownLenghtBruteForce.Checked = true;
             }
         }
 
         private void radioButton6_EnabledChanged(object sender, EventArgs e)
         {
-            if (radioButton6.Checked)
+            if (radioButtonBruteForceHashed.Checked)
             {
-                checkBoxBruteForceUnknownLenght.Checked = true;
-                numericUpDown2.Value = 0;
+                checkBoxUnknownLenghtBruteForce.Checked = true;
+                numericUpDownLenght.Value = 0;
             }
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton5.Checked)
+            if (radioButtonRegularBruteForce.Checked)
             {
-                checkBoxBruteForceUnknownLenght.Checked = false;
-                numericUpDown2.Value = textBoxBruteForceInput.Text.Length;
+                checkBoxUnknownLenghtBruteForce.Checked = false;
+                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
             }
         }
 
@@ -771,11 +814,11 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(10023), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

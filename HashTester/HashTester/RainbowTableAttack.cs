@@ -136,7 +136,7 @@ namespace HashTester
 
             if (!inputFileIsInPlainText)
             {
-                LogOutput.Add("File is already pre-hashed.");
+                LogOutput.Add(Languages.Translate(584));
                 string[] algorithmText = line.Split('=');
                 if (algorithmText.Length < 2)
                 {
@@ -148,13 +148,13 @@ namespace HashTester
             }
             else
             {
-                LogOutput.Add("File is not pre-hashed.");
+                LogOutput.Add(Languages.Translate(585));
             }
         }
 
         private bool SplitFile(string fileName, string userAlgorithm, CancellationToken token, out string[] tempFilesPath)
         {
-            Console.WriteLine("Splitting file into multiple parts...");
+            Console.WriteLine("Splitting file into multiple parts");
 
             // Count total lines in file
             long totalLinesInFile = File.ReadLines(fileName).LongCount();
@@ -165,8 +165,7 @@ namespace HashTester
             tempFilesPath = new string[numberOfThreadsUsed];
             for (int i = 0; i < numberOfThreadsUsed; i++)
             {
-                tempFilesPath[i] = Path.Combine(Directory.GetDirectoryRoot(fileName),
-                    $"rainbowTableTemp-{userAlgorithm}-{i}.txt");
+                tempFilesPath[i] = Path.Combine(Directory.GetDirectoryRoot(fileName), "rainbowTableTemp-" + userAlgorithm + "-" + i + ".txt");
             }
 
             using (StreamReader readerInput = new StreamReader(fileName))
@@ -306,8 +305,7 @@ namespace HashTester
         {
             FoundPassword = "";
             FoundPasswordAtLine = -1;
-            LogOutput.Add("File is hashed with " + fileAlgo + " but the user wants " + userAlgo + ". The algorithms needs to be the same. Cancelling attack...");
+            LogOutput.Add(Languages.Translate(586) + " " + fileAlgo + " " + Languages.Translate(587)+ " " + userAlgo + ". " + Languages.Translate(588));
         }        
-
     }
 }

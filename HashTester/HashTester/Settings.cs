@@ -291,60 +291,53 @@ namespace HashTester
             {
                 using (StreamWriter writer = new StreamWriter(fileSettings))
                 {
-                    //VisualStyle                    
-                    writer.WriteLine("//Warning! If theres nothing after the = it will set the setting into default");
-                    writer.WriteLine("//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input");
-                    writer.WriteLine("//I have included comments on what value is allowed. Otherwise a default value will be set");
-                    writer.WriteLine("//VisualMode from 0 to 2");
+                    writer.WriteLine("//" + Languages.Translate(589));
+                    writer.WriteLine("//" + Languages.Translate(590));
+                    writer.WriteLine("//" + Languages.Translate(591));
+                    writer.WriteLine("//" + Languages.Translate(592));
                     switch (VisualMode)
                     {
                         case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
                         case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
                         case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
                     }
-                    //UIupdate
-                    writer.WriteLine("//UpdateUI in Miliseconds");
-                    writer.WriteLine("//<<8 - 1000>> whole number");
+                    writer.WriteLine("//" + Languages.Translate(593));
+                    writer.WriteLine("//" + Languages.Translate(594));
                     writer.WriteLine("UIupdateInMS=" + UpdateUIms);
-                    //Threads
-                    writer.WriteLine("//Number of threads max. used in percentage (%)");
-                    writer.WriteLine("//<<1 - 100>> whole number");
+                    writer.WriteLine("//" + Languages.Translate(595));
+                    writer.WriteLine("//" + Languages.Translate(596));
                     writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
-                    //Languages
-                    writer.WriteLine("//Preferred language");
+                    writer.WriteLine("//" + Languages.Translate(597));
                     writer.WriteLine("language=" + SelectedLanguage);
-                    //OutputType
-                    writer.WriteLine("//OutputType from 0 to 2");
+                    writer.WriteLine("//" + Languages.Translate(598));
                     switch (OutputType)
                     {
                         case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
                         case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
                         case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
                     }
-                    //OutputStyle
-                    writer.WriteLine("//All OutputStyles are bool");
+                    writer.WriteLine("//" + Languages.Translate(599));
                     if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
                     else writer.WriteLine("outputStyle_IncludeOriginalString=0");
-                    if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");    
+                    if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
                     else writer.WriteLine("outputStyle_IncludeHash=0");
                     if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
                     else writer.WriteLine("outputStyle_IncludeNumber=0");
                     if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
                     else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
-                    //Salt And Pepper
-                    writer.WriteLine("//Salt and Pepper bool");
+                    writer.WriteLine("//" + Languages.Translate(600));
                     if (UseSalt) writer.WriteLine("useSalt=1");
                     else writer.WriteLine("useSalt=0");
                     if (UsePepper) writer.WriteLine("usePepper=1");
                     else writer.WriteLine("usePepper=0");
-                    //Other
-                    writer.WriteLine("//Other - Path");
+                    writer.WriteLine("//" + Languages.Translate(601));
                     writer.WriteLine("basePathToFiles=" + BasePathToFiles);
                     writer.WriteLine("settingsPathToFiles=" + SettingsPathToFiles);
                     writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
                     writer.WriteLine("collisionPathToFiles=" + CollisionPathToFiles);
-                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);                    
+                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);
                 }
+
             }
 
             if (!File.Exists(settingsPathToFileSettings))

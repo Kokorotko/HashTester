@@ -23,16 +23,16 @@ namespace HashTester
         public OutputHandler() { }
         public string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
         {
-            Console.WriteLine("**OutputStyleString**");
+            //Console.WriteLine("**OutputStyleString**");
             string outputString = hash;
             if (Settings.OutputStyleIncludeOriginalString)
             {
-                Console.WriteLine("OutputStyleIncludeOriginalString");
+                //Console.WriteLine("OutputStyleIncludeOriginalString");
                 outputString = originalString + ": " + outputString;
             }
             if (Settings.OutputStyleIncludeHashAlgorithm)
             {
-                Console.WriteLine("OutputStyleIncludeHashAlgorithm");
+                //Console.WriteLine("OutputStyleIncludeHashAlgorithm");
                 switch (algorithm)
                 {
                     case HashingAlgorithm.MD5: outputString = "(MD5) " + outputString; break;
@@ -45,14 +45,14 @@ namespace HashTester
             }
             if (Settings.OutputStyleIncludeNumberOfHash)
             {
-                Console.WriteLine("OutputStyleIncludeNumberOfHash");
+                //Console.WriteLine("OutputStyleIncludeNumberOfHash");
                 outputString = indexOfHash.ToString() + ". " + outputString;
             }
             if (Settings.OutputStyleIncludeSaltPepper)
             {
-                Console.WriteLine("OutputStyleIncludeSaltPepper");
-                if (isSaltUsed) outputString += " (salt: " + salt + ")";
-                if (isPepperUsed) outputString += " (pepper: " + pepper + ")";
+                //Console.WriteLine("OutputStyleIncludeSaltPepper");
+                if (isSaltUsed) outputString += " (" + Languages.Translate(402) + ": " + salt + ")";
+                if (isPepperUsed) outputString += " (" + Languages.Translate(403) + ": " + pepper + ")";
             }
             return outputString;
         }

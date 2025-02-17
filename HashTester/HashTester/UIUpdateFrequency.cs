@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -32,6 +33,18 @@ namespace HashTester
         private void UIUpdateFrequency_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
+            #region Languages
+            labelQuestion.Text = Languages.Translate(501);
+            labelFPS.Text = Languages.Translate(502);
+            labelTimeToUpdate.Text = Languages.Translate(503);
+            labelRangeFPS.Text = Languages.Translate(504);
+            labelRangeT.Text = Languages.Translate(505);
+            labelInfo.Text = Languages.Translate(506);
+            labelInfo2.Text = Languages.Translate(507);
+            buttonSave.Text = Languages.Translate(434);
+            buttonDefault.Text = Languages.Translate(435);
+            buttonCancel.Text = Languages.Translate(436);
+            #endregion
             miliseconds = Settings.UpdateUIms;
             fps = (int)Math.Ceiling(1000.0 / miliseconds);
             textBox1.Text = fps.ToString();
@@ -126,12 +139,12 @@ namespace HashTester
                 }
                 else
                 {
-                    MessageBox.Show("Please enter valid values (8-1000 ms).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(508) + "(8-1000ms).", Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Invalid values. Please enter whole numbers only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

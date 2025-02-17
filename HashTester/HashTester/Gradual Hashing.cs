@@ -51,6 +51,13 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
+
+            #region Language
+            buttonHashGradualHashing.Text = Languages.Translate(101);
+            buttonClearListBox.Text = Languages.Translate(34);
+            buttonSaveLog.Text = Languages.Translate(35);
+            buttonClipboard.Text = Languages.Translate(36);
+            #endregion
         }
 
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -68,11 +75,11 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show("Please select an item from the log listbox before copying.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(102), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show("Failed to copy to clipboard.", "Clipboard Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

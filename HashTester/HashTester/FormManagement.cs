@@ -33,25 +33,25 @@ namespace HashTester
             {
                 using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                 {
-                    writer.WriteLine("Log saved on: " + DateTime.Today + DateTime.Now);
-                    Console.WriteLine("Log saved on: " + DateTime.Today + DateTime.Now);
-                    writer.WriteLine("Log saved from: " + form.Name);
-                    Console.WriteLine("Log saved from: " + form.Name);
+                    writer.WriteLine(Languages.Translate(551)  + ": " + DateTime.Today + DateTime.Now);
+                    Console.WriteLine(Languages.Translate(551) + ": " + DateTime.Today + DateTime.Now);
+                    writer.WriteLine(Languages.Translate(552) +  ": " + form.Name);
+                    Console.WriteLine(Languages.Translate(552) + ": " + form.Name);
                     foreach (string item in listbox.Items)
                     {
                         writer.WriteLine(item);
                     }
                 }
-                MessageBox.Show("Log save succesfulled", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Languages.Translate(553), Languages.Translate(10028), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else MessageBox.Show("Log save abbandoned", "Abandonned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else MessageBox.Show(Languages.Translate(554), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void ChangeDirectory(FolderType folderType)
         {
             using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
             {
-                folderBrowserDialog.Description = "Select a folder";
+                folderBrowserDialog.Description = Languages.Translate(556);
                 folderBrowserDialog.ShowNewFolderButton = true;
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -71,7 +71,7 @@ namespace HashTester
                             break;
                     }
                     Settings.SaveSettings();
-                    MessageBox.Show("Path changed.");
+                    MessageBox.Show(Languages.Translate(557), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace HashTester
                     }
                 }
             }
-            Console.WriteLine("Couldnt find Registry for AppsUseLightTheme");
+            Console.WriteLine("Couldnt find Registry for AppsUseLightTheme.");
             Console.WriteLine("Settings theme as light");
             return true;
         }
