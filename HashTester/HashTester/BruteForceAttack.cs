@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HashTester
 {
-    internal class BruteForceAttack
+    public class BruteForceAttack
     {
         //private
         private Stopwatch stopwatch = new Stopwatch();

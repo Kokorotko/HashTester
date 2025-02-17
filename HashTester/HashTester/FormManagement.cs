@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HashTester
 {
-    static class FormManagement
+    public static class FormManagement
     {
 
         #region Enum

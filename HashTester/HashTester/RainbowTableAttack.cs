@@ -11,7 +11,7 @@ using static System.Windows.Forms.AxHost;
 
 namespace HashTester
 {
-    internal class RainbowTableAttack
+    public class RainbowTableAttack
     {
         //private
         private ConcurrentBag<string> logOutput = new ConcurrentBag<string>();

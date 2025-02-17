@@ -28,6 +28,8 @@
 10026==Number of threads used
 10027==into
 10028==Saved
+10029==Copy
+10030==Question
 //****FORMS****
 
 //**Main Form <<0-100>>
@@ -62,13 +64,24 @@
 31==Hash text
 32==Hash a file
 33==File checksum
+34==File location
+35==Select a file
+36==Checksum check
+37==Calculate all checksums
 
-//Messages <<41-50>>
+//Messages <<41-100>>
 41==Input přerušen
 42==Please select an item from the log listbox before copying.
 45==Are you sure you want to reset all settings?
 46==Confirmation
 47==File doesnt exists.
+48==Do you use SHA1 (Yes) or RipeMD-160 (No)
+49==Please input a hash for checksum.
+50==Checksums are correct. Hashes are the same.
+51==Checksums are NOT correct. Hashes are NOT the same.
+52==Correct
+53==Wrong
+54==Checksum
 
 //**Gradual Hashing <<101-110>>
 101==Gradual hashing

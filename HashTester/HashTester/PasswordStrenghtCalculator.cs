@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashTester
 {
-    internal class PasswordStrenghtCalculator
+    public class PasswordStrenghtCalculator
     {
 
         public double Calculator(int delkaHesla, long pocetZnaku, double zaSekundu, out double rychlost)

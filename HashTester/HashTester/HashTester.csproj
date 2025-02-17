@@ -71,6 +71,12 @@
       <DependentUpon>CheckCollisionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomColorTable.cs" />
+    <Compile Include="FileChecksum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileChecksum.Designer.cs">
+      <DependentUpon>FileChecksum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Languages.cs" />
     <Compile Include="PasswordCheck.cs" />
     <Compile Include="PasswordStrenghtCalculator.cs" />
@@ -132,6 +138,9 @@
     </Compile>
     <EmbeddedResource Include="CheckCollisionForm.resx">
       <DependentUpon>CheckCollisionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileChecksum.resx">
+      <DependentUpon>FileChecksum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

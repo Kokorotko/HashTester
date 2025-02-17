@@ -518,7 +518,6 @@ namespace HashTester
             //Form
             buttonHashSimpleText.Text = Languages.Translate(31);
             buttonFileInput.Text = Languages.Translate(32);
-            buttonChecksum.Text = Languages.Translate(33);
             buttonClearListBox.Text = Languages.Translate(34);
             buttonSaveLog.Text = Languages.Translate(35);
             buttonClipboard.Text = Languages.Translate(36);
@@ -658,22 +657,10 @@ namespace HashTester
             }
         }
 
-        private void buttonChecksum_Click(object sender, EventArgs e)
+        private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {                               
-                    Hasher.HashingAlgorithm[] algorithm = (Hasher.HashingAlgorithm[])Enum.GetValues(typeof(Hasher.HashingAlgorithm)); // Store enum values here
-                    string[] hashes = new string[algorithm.Length];
-                    for (int i = 0; i < algorithm.Length; i++)
-                    {
-                        hashes[i] = Hasher.FileChecksum(dialog.FileName, algorithm[i]);
-                    }
-                    OutputHandler outputHandler = new OutputHandler();                    
-                    outputHandler.OutputTypeShowChecksum(hashes, algorithm, listBoxLog);
-                }
-            }
+            FileChecksum fileChecksum = new FileChecksum();
+            fileChecksum.Show();
         }
     }
 }

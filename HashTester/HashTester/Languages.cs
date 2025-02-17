@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace HashTester
 {
-    internal static class Languages
+    public static class Languages
     {
         private static Dictionary<int, string> dictionary = null;
         private static string currentlyUsedLanguage = "english";

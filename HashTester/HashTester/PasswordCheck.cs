@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace HashTester
 {
-    internal class PasswordCheck
+    public class PasswordCheck
     {
         //private
         private List<string> logOutput = new List<string>();

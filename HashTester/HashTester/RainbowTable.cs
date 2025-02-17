@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HashTester
 {
-    internal class RainbowTable
+    public class RainbowTable
     {
         //private
         private string logOutput = "";
