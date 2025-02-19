@@ -57,6 +57,7 @@
             this.groupBoxSalt.Controls.Add(this.textBoxSaltLenght);
             this.groupBoxSalt.Controls.Add(this.radioButtonSaltOwn);
             this.groupBoxSalt.Controls.Add(this.radioButtonSaltGen);
+            this.groupBoxSalt.Enabled = false;
             this.groupBoxSalt.Location = new System.Drawing.Point(13, 13);
             this.groupBoxSalt.Name = "groupBoxSalt";
             this.groupBoxSalt.Size = new System.Drawing.Size(120, 150);
@@ -129,6 +130,7 @@
             this.groupBoxPepper.Controls.Add(this.textBoxPepperLenght);
             this.groupBoxPepper.Controls.Add(this.radioButtonPepperOwn);
             this.groupBoxPepper.Controls.Add(this.radioButtonPepperGen);
+            this.groupBoxPepper.Enabled = false;
             this.groupBoxPepper.Location = new System.Drawing.Point(139, 13);
             this.groupBoxPepper.Name = "groupBoxPepper";
             this.groupBoxPepper.Size = new System.Drawing.Size(117, 150);

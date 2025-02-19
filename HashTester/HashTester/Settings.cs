@@ -234,6 +234,25 @@ namespace HashTester
             }
         }
 
+        public static string PathToHashData
+        {
+            get
+            {
+                string path = Path.Combine(BasePathToFiles, "HashData/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+        public static string PathToPasswordTester
+        {
+            get
+            {
+                string path = Path.Combine(BasePathToFiles, "HashData/PasswordTester/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+
         #endregion
 
         #region Enum

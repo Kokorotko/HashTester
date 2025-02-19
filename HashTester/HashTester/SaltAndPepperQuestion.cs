@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HashTester
 {
@@ -9,8 +11,15 @@ namespace HashTester
         public SaltAndPepperQuestion()
         {
             InitializeComponent();
-            if (!Settings.UseSalt) groupBoxSalt.Enabled = false;
-            if (!Settings.UsePepper) groupBoxPepper.Enabled = false;
+            if (Settings.UseSalt) groupBoxSalt.Enabled = true;
+            if (Settings.UsePepper) groupBoxPepper.Enabled = true;
+        }
+
+        public SaltAndPepperQuestion(bool useSalt, bool usePepper)
+        {
+            InitializeComponent();
+            if (useSalt) groupBoxSalt.Enabled = true;
+            if (usePepper) groupBoxPepper.Enabled = true;
         }
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
@@ -59,7 +68,7 @@ namespace HashTester
             lenghtPepper = 0;
             ownPepper = "";
             //salt
-            if (Settings.UseSalt)
+            if (groupBoxSalt.Enabled)
             {
                 generateSalt = radioButtonSaltGen.Checked;
                 if (generateSalt)
@@ -74,7 +83,7 @@ namespace HashTester
                     //Console.WriteLine("SaltAndPepperQuestion Form SALT: " + ownSalt);
                 }
             }
-            if (Settings.UsePepper)
+            if (groupBoxPepper.Enabled)
             {
                 //pepper
                 generatePepper = radioButtonPepperGen.Checked;
@@ -93,33 +102,30 @@ namespace HashTester
             //hashID
             hashID = textBoxHashID.Text;            
         }
-
+   
         #region HashID
         /// <summary>
         /// Trying to find a name for a hash that isnt already used
         /// </summary>
         /// <returns></returns>
-private string SetHashID()
+        private string SetHashID()
         {
-            string name = "automaticallyGeneratedHash";
+            string name = "automaticallyGeneratedHashID";
             int index = 1;
             while (true)
             {
-                string path = "..\\..\\HashData\\" + name + index.ToString();
+                string path = Path.Combine(Settings.BasePathToFiles, "HashData", name + index + ".txt");
                 if (!File.Exists(path))
                 {
                     return name + index.ToString();
                 }
-                else
-                {
-                    index++;
-                }
+                index++;
             }
         }
 
         private bool CheckHashID(string hashID)
         {
-            string path = "..\\..\\HashData\\" + hashID + ".txt";
+            string path = Path.Combine(Settings.BasePathToFiles, "HashData",  hashID + ".txt");
             if (File.Exists(path))
             {                
                 if (MessageBox.Show(Languages.Translate(401), Languages.Translate(10025), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)

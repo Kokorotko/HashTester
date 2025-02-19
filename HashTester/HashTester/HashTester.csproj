@@ -117,6 +117,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RainbowTable.cs" />
+    <Compile Include="SaltAndPepper.cs" />
+    <Compile Include="SaltAndPepperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaltAndPepperForm.Designer.cs">
+      <DependentUpon>SaltAndPepperForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaltAndPepperQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +173,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SaltAndPepperForm.resx">
+      <DependentUpon>SaltAndPepperForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaltAndPepperQuestion.resx">
       <DependentUpon>SaltAndPepperQuestion.cs</DependentUpon>
     </EmbeddedResource>

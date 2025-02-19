@@ -1,0 +1,5 @@
+//name==hashID==algorithm==passwordHash
+amogus==amogus==MD5==840f009506e35e908c0ce2b3cdd8ab99
+amogus2==null==MD5==cae02015728bcf59e5ed239aaab7df14
+a==a==MD5==4124bc0a9335c27f086f24ba207a4912
+aa==aa==MD5==d90b8669088560e89406149fb1b28c5f

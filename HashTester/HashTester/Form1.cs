@@ -425,9 +425,9 @@ namespace HashTester
         #endregion
 
         #region SaltAndPepperLogic
-        public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashIDforTesting)
+        public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashID)
         {
-            hashIDforTesting = "";
+            hashID = "";
             salt = "";
             pepper = "";
             isSaltUsed = false;
@@ -447,9 +447,8 @@ namespace HashTester
                             out bool generatePepper,
                             out int pepperLength,
                             out string ownPepper,
-                            out string hashID
+                            out hashID
                             );
-                        hashIDforTesting = hashID;
                         if (generateSalt || generatePepper)
                         {
                             salt = generateSalt ? hasher.GenerateSalt(saltLength) : ownSalt;
@@ -457,7 +456,7 @@ namespace HashTester
 
                             if (generateSalt)
                             {
-                                hasher.SaveSalt(hashIDforTesting, salt);
+                                hasher.SaveSalt(hashID, salt, pepper.Length);
                             }
                             isSaltUsed = generateSalt;
                             isPepperUsed = generatePepper;
@@ -470,7 +469,7 @@ namespace HashTester
                             pepper = ownPepper;
                             if (ownSalt != "")
                             {
-                                hasher.SaveSalt(hashIDforTesting, ownSalt);
+                                hasher.SaveSalt(hashID, salt, pepper.Length);
                             }
                         }
                     }
@@ -661,6 +660,12 @@ namespace HashTester
         {
             FileChecksum fileChecksum = new FileChecksum();
             fileChecksum.Show();
+        }
+
+        private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaltAndPepperForm saltAndPepperForm = new SaltAndPepperForm();
+            saltAndPepperForm.Show();
         }
     }
 }

@@ -20,7 +20,7 @@ outputStyle_IncludeNumber=0
 outputStyle_IncludeSaltPepper=0
 //Salt and Pepper bool  
 useSalt=0
-usePepper=0
+usePepper=1
 //Other - Path  
 basePathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug
 settingsPathToFiles=C:\Práce\GitHub\ROP-HashTester\HashTester\HashTester\bin\Debug\Settings

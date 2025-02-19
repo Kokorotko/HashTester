@@ -1,2 +1,0 @@
-hashID:automaticallyGeneratedHash1
-salt=666c59

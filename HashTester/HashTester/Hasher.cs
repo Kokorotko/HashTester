@@ -4,6 +4,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace HashTester
 {
@@ -133,29 +134,46 @@ namespace HashTester
             }
         }
 
-        public string CheckPepper(string originalText, string hashedText, int length, HashingAlgorithm algorithm)
+        public bool CheckPepper(string originalText, string hashedText, int length, HashingAlgorithm algorithm, out string pepper)
         {
-            hashedText = hashedText.ToLower();
-            string usableChars = string.Concat(Enumerable.Range(32, 224 + 1) //utf-8 except the first 32
-                             .Select(i => char.ConvertFromUtf32(i)));
-            int totalCombinations = (int)Math.Pow(usableChars.Length, length);
-            for (int i = 0; i < totalCombinations; i++) //Finding Pepper
-            { 
-                string pepperTest = "";
-                int tempIndex = i;
-                for (int j = 0; j < length; j++) //build the next pepper
-                {                   
-                    pepperTest = usableChars[tempIndex % usableChars.Length] + pepperTest;
-                    tempIndex /= usableChars.Length;
-                }
-                string temp = Hash(originalText + pepperTest, algorithm);
-                if (temp == hashedText)
+            pepper = "";
+
+            if (length <= 0)
+            {
+                return false;
+            }
+            //Generate usable UTF-16            
+            List<char> usableChars = new List<char>();
+            for (int i = 0; i <= 0xFFFF; i++)
+            {
+                if (i < 0xD800 || i > 0xDFFF) // Exclude surrogate pairs
                 {
-                    return pepperTest; //found match
+                    usableChars.Add((char)i);
                 }
             }
-            return "";
+
+            long totalCombinations = (long)Math.Pow(usableChars.Count, length);
+            for (long i = 0; i < totalCombinations; i++) // Finding Pepper
+            {
+                StringBuilder pepperTestBuilder = new StringBuilder();
+                long tempIndex = i;
+
+                for (int j = 0; j < length; j++) // Build the next pepper
+                {
+                    pepperTestBuilder.Insert(0, usableChars[(int)(tempIndex % usableChars.Count)]);
+                    tempIndex /= usableChars.Count;
+                }
+
+                string pepperTest = pepperTestBuilder.ToString();
+                if (Hash(originalText + pepperTest, algorithm) == hashedText)
+                {
+                    pepper = pepperTest;
+                    return true; // Found match
+                }
+            }
+            return false;
         }
+
 
         #endregion
 
@@ -334,27 +352,30 @@ namespace HashTester
         #endregion
 
         #region SaltAndPepperLogic
-        public void SaveSalt(string hashID, string salt)
+        public void SaveSalt(string hashID, string salt, int pepperLength)
         {
-            string path = "..\\..\\HashData\\" + hashID + ".txt"; 
+            string path = Path.Combine(Settings.PathToHashData, hashID + ".txt");
+            Console.WriteLine("Path Save Salt: " + path);
             using (StreamWriter writer = new StreamWriter(path))
             {
-                writer.WriteLine("hashID:" + hashID);
-                if (salt != "") writer.WriteLine("salt=" + salt);
+                if (!String.IsNullOrEmpty(salt)) writer.WriteLine("salt==" + salt);
+                if (pepperLength > 0) writer.WriteLine("pepperLength==" + pepperLength);
             }
         }
 
-        public void LoadSalt(string hashID, out string salt)
+        public void LoadSalt(string hashID, out string salt, out int pepperLenght)
         {
             salt = null;
-            string path = "..\\..\\HashData\\" + hashID + ".txt";
+            pepperLenght = -1;
+            string path = Path.Combine(Settings.PathToHashData, hashID + ".txt");
             using (StreamReader reader = new StreamReader(path))
             {
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    string[] splitLine = line.Split('=');
+                    string[] splitLine = line.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries);
                     if (splitLine[0] == "salt") salt = splitLine[1];
+                    if (splitLine[0] == "pepperLength") pepperLenght = int.Parse(splitLine[1]);
                 }
             }
         }
@@ -386,8 +407,7 @@ namespace HashTester
                         {
                             salt = GenerateSalt(saltLength);
                             isSaltUsed = true;
-                            Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);
-                            SaveSalt(hashID, salt);
+                            //Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);                            
                         }
                         else if (!string.IsNullOrEmpty(ownSalt))
                         {
@@ -400,19 +420,75 @@ namespace HashTester
                         {
                             pepper = GeneratePepper(pepperLength);
                             isPepperUsed = true;
-                            Console.WriteLine("IsUsingSaltAndPepper PEPPER: " + pepper);
+                            //Console.WriteLine("IsUsingSaltAndPepper PEPPER: " + pepper);
                         }
                         else if (!string.IsNullOrEmpty(ownPepper))
                         {
                             pepper = ownPepper;
                             isPepperUsed = true;
                         }
-                        return isSaltUsed || isPepperUsed;
+                        if (isSaltUsed || isPepperUsed)
+                        {
+                            SaveSalt(hashID, salt, pepper.Length);
+                            return true;
+                        }
+                        else return false;
                     }
                     return false; //Dialog Canceled
                 }
             }
             return false;
+        }
+
+        public bool IsUsingSaltAndPepper(bool useSalt, bool usePepper, out string salt, out string pepper, out string hashID)
+        {
+            hashID = "";
+            salt = "";
+            pepper = "";
+            if (useSalt || usePepper)
+            {
+                using (SaltAndPepperQuestion saltAndPepperQuestion = new SaltAndPepperQuestion(useSalt, usePepper))
+                {
+                    // Show dialog and handle result
+                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    {
+                        saltAndPepperQuestion.GetSaltPepperInformation(
+                            out bool generateSalt,
+                            out int saltLength,
+                            out string ownSalt,
+                            out bool generatePepper,
+                            out int pepperLength,
+                            out string ownPepper,
+                            out hashID
+                        );
+                        //Salt
+                        if (generateSalt)
+                        {
+                            salt = GenerateSalt(saltLength);
+                            Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);                            
+                        }
+                        else if (!string.IsNullOrEmpty(ownSalt))
+                        {
+                            salt = ownSalt;
+                        }
+
+                        //Pepper
+                        if (generatePepper)
+                        {
+                            pepper = GeneratePepper(pepperLength);
+                            Console.WriteLine("IsUsingSaltAndPepper PEPPER: " + pepper);
+                        }
+                        else if (!string.IsNullOrEmpty(ownPepper))
+                        {
+                            pepper = ownPepper;
+                        }
+                        SaveSalt(hashID, salt, pepper.Length);
+                        return true; //Everything is fine
+                    }
+                    return false; //Dialog Canceled
+                }
+            }
+            return false; //Do not use Salt/Pepper
         }
         #endregion
     }
