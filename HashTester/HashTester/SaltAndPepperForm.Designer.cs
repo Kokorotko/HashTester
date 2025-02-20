@@ -34,7 +34,9 @@
             this.checkBoxUseSalt = new System.Windows.Forms.CheckBox();
             this.checkBoxUsePepper = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxTester = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveAll = new System.Windows.Forms.Button();
+            this.buttonShowRegistrered = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonRegister = new System.Windows.Forms.Button();
@@ -47,17 +49,15 @@
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.checkBoxUseLog = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.groupBoxShowInfo = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteAllHashID = new System.Windows.Forms.Button();
+            this.buttonShowAllID = new System.Windows.Forms.Button();
+            this.buttonInfoID = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxHashID = new System.Windows.Forms.TextBox();
-            this.buttonShowRegistrered = new System.Windows.Forms.Button();
             this.labelAlgorithm = new System.Windows.Forms.Label();
-            this.buttonShowAllID = new System.Windows.Forms.Button();
-            this.buttonRemoveAll = new System.Windows.Forms.Button();
-            this.buttonDeleteAllHashID = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxTester.SuspendLayout();
+            this.groupBoxShowInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // hashSelector
@@ -123,23 +123,43 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "*has priority over settings";
             // 
-            // groupBox1
+            // groupBoxTester
             // 
-            this.groupBox1.Controls.Add(this.buttonRemoveAll);
-            this.groupBox1.Controls.Add(this.buttonShowRegistrered);
-            this.groupBox1.Controls.Add(this.buttonRemove);
-            this.groupBox1.Controls.Add(this.buttonLogin);
-            this.groupBox1.Controls.Add(this.buttonRegister);
-            this.groupBox1.Controls.Add(this.labelPassword);
-            this.groupBox1.Controls.Add(this.textBoxPassword);
-            this.groupBox1.Controls.Add(this.textBoxName);
-            this.groupBox1.Controls.Add(this.labelName);
-            this.groupBox1.Location = new System.Drawing.Point(331, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 149);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Password Tester";
+            this.groupBoxTester.Controls.Add(this.buttonRemoveAll);
+            this.groupBoxTester.Controls.Add(this.buttonShowRegistrered);
+            this.groupBoxTester.Controls.Add(this.buttonRemove);
+            this.groupBoxTester.Controls.Add(this.buttonLogin);
+            this.groupBoxTester.Controls.Add(this.buttonRegister);
+            this.groupBoxTester.Controls.Add(this.labelPassword);
+            this.groupBoxTester.Controls.Add(this.textBoxPassword);
+            this.groupBoxTester.Controls.Add(this.textBoxName);
+            this.groupBoxTester.Controls.Add(this.labelName);
+            this.groupBoxTester.Location = new System.Drawing.Point(331, 12);
+            this.groupBoxTester.Name = "groupBoxTester";
+            this.groupBoxTester.Size = new System.Drawing.Size(286, 149);
+            this.groupBoxTester.TabIndex = 12;
+            this.groupBoxTester.TabStop = false;
+            this.groupBoxTester.Text = "Password Tester";
+            // 
+            // buttonRemoveAll
+            // 
+            this.buttonRemoveAll.Location = new System.Drawing.Point(189, 120);
+            this.buttonRemoveAll.Name = "buttonRemoveAll";
+            this.buttonRemoveAll.Size = new System.Drawing.Size(91, 23);
+            this.buttonRemoveAll.TabIndex = 25;
+            this.buttonRemoveAll.Text = "Remove All";
+            this.buttonRemoveAll.UseVisualStyleBackColor = true;
+            this.buttonRemoveAll.Click += new System.EventHandler(this.buttonRemoveAll_Click);
+            // 
+            // buttonShowRegistrered
+            // 
+            this.buttonShowRegistrered.Location = new System.Drawing.Point(10, 120);
+            this.buttonShowRegistrered.Name = "buttonShowRegistrered";
+            this.buttonShowRegistrered.Size = new System.Drawing.Size(176, 23);
+            this.buttonShowRegistrered.TabIndex = 24;
+            this.buttonShowRegistrered.Text = "Show all Registered Users";
+            this.buttonShowRegistrered.UseVisualStyleBackColor = true;
+            this.buttonShowRegistrered.Click += new System.EventHandler(this.buttonShowAllID_Click);
             // 
             // buttonRemove
             // 
@@ -252,29 +272,49 @@
             this.checkBoxUseLog.Text = "Save log to listbox";
             this.checkBoxUseLog.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // groupBoxShowInfo
             // 
-            this.groupBox2.Controls.Add(this.buttonDeleteAllHashID);
-            this.groupBox2.Controls.Add(this.buttonShowAllID);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBoxHashID);
-            this.groupBox2.Location = new System.Drawing.Point(332, 170);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(279, 146);
-            this.groupBox2.TabIndex = 22;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Show info";
+            this.groupBoxShowInfo.Controls.Add(this.buttonDeleteAllHashID);
+            this.groupBoxShowInfo.Controls.Add(this.buttonShowAllID);
+            this.groupBoxShowInfo.Controls.Add(this.buttonInfoID);
+            this.groupBoxShowInfo.Controls.Add(this.label2);
+            this.groupBoxShowInfo.Controls.Add(this.textBoxHashID);
+            this.groupBoxShowInfo.Location = new System.Drawing.Point(332, 170);
+            this.groupBoxShowInfo.Name = "groupBoxShowInfo";
+            this.groupBoxShowInfo.Size = new System.Drawing.Size(279, 146);
+            this.groupBoxShowInfo.TabIndex = 22;
+            this.groupBoxShowInfo.TabStop = false;
+            this.groupBoxShowInfo.Text = "Show info";
             // 
-            // button3
+            // buttonDeleteAllHashID
             // 
-            this.button3.Location = new System.Drawing.Point(3, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(270, 23);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "Info about the ID";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonDeleteAllHashID.Location = new System.Drawing.Point(3, 112);
+            this.buttonDeleteAllHashID.Name = "buttonDeleteAllHashID";
+            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(270, 23);
+            this.buttonDeleteAllHashID.TabIndex = 26;
+            this.buttonDeleteAllHashID.Text = "Delete all ID";
+            this.buttonDeleteAllHashID.UseVisualStyleBackColor = true;
+            this.buttonDeleteAllHashID.Click += new System.EventHandler(this.buttonDeleteAllHashID_Click);
+            // 
+            // buttonShowAllID
+            // 
+            this.buttonShowAllID.Location = new System.Drawing.Point(3, 83);
+            this.buttonShowAllID.Name = "buttonShowAllID";
+            this.buttonShowAllID.Size = new System.Drawing.Size(270, 23);
+            this.buttonShowAllID.TabIndex = 25;
+            this.buttonShowAllID.Text = "Show all ID";
+            this.buttonShowAllID.UseVisualStyleBackColor = true;
+            this.buttonShowAllID.Click += new System.EventHandler(this.buttonShowAllID_Click_1);
+            // 
+            // buttonInfoID
+            // 
+            this.buttonInfoID.Location = new System.Drawing.Point(3, 56);
+            this.buttonInfoID.Name = "buttonInfoID";
+            this.buttonInfoID.Size = new System.Drawing.Size(270, 23);
+            this.buttonInfoID.TabIndex = 23;
+            this.buttonInfoID.Text = "Info about the ID";
+            this.buttonInfoID.UseVisualStyleBackColor = true;
+            this.buttonInfoID.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 
@@ -292,16 +332,6 @@
             this.textBoxHashID.Size = new System.Drawing.Size(270, 20);
             this.textBoxHashID.TabIndex = 6;
             // 
-            // buttonShowRegistrered
-            // 
-            this.buttonShowRegistrered.Location = new System.Drawing.Point(10, 120);
-            this.buttonShowRegistrered.Name = "buttonShowRegistrered";
-            this.buttonShowRegistrered.Size = new System.Drawing.Size(176, 23);
-            this.buttonShowRegistrered.TabIndex = 24;
-            this.buttonShowRegistrered.Text = "Show all Registered Users";
-            this.buttonShowRegistrered.UseVisualStyleBackColor = true;
-            this.buttonShowRegistrered.Click += new System.EventHandler(this.buttonShowAllID_Click);
-            // 
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
@@ -311,49 +341,19 @@
             this.labelAlgorithm.TabIndex = 23;
             this.labelAlgorithm.Text = "Choose algorithm";
             // 
-            // buttonShowAllID
-            // 
-            this.buttonShowAllID.Location = new System.Drawing.Point(3, 83);
-            this.buttonShowAllID.Name = "buttonShowAllID";
-            this.buttonShowAllID.Size = new System.Drawing.Size(270, 23);
-            this.buttonShowAllID.TabIndex = 25;
-            this.buttonShowAllID.Text = "Show all ID";
-            this.buttonShowAllID.UseVisualStyleBackColor = true;
-            this.buttonShowAllID.Click += new System.EventHandler(this.buttonShowAllID_Click_1);
-            // 
-            // buttonRemoveAll
-            // 
-            this.buttonRemoveAll.Location = new System.Drawing.Point(189, 120);
-            this.buttonRemoveAll.Name = "buttonRemoveAll";
-            this.buttonRemoveAll.Size = new System.Drawing.Size(91, 23);
-            this.buttonRemoveAll.TabIndex = 25;
-            this.buttonRemoveAll.Text = "Remove All";
-            this.buttonRemoveAll.UseVisualStyleBackColor = true;
-            this.buttonRemoveAll.Click += new System.EventHandler(this.buttonRemoveAll_Click);
-            // 
-            // buttonDeleteAllHashID
-            // 
-            this.buttonDeleteAllHashID.Location = new System.Drawing.Point(3, 112);
-            this.buttonDeleteAllHashID.Name = "buttonDeleteAllHashID";
-            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(270, 23);
-            this.buttonDeleteAllHashID.TabIndex = 26;
-            this.buttonDeleteAllHashID.Text = "Delete all ID";
-            this.buttonDeleteAllHashID.UseVisualStyleBackColor = true;
-            this.buttonDeleteAllHashID.Click += new System.EventHandler(this.buttonDeleteAllHashID_Click);
-            // 
             // SaltAndPepperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 323);
             this.Controls.Add(this.labelAlgorithm);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBoxShowInfo);
             this.Controls.Add(this.checkBoxUseLog);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxTester);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxUsePepper);
             this.Controls.Add(this.checkBoxUseSalt);
@@ -363,10 +363,10 @@
             this.Name = "SaltAndPepperForm";
             this.Text = "SaltAndPepperForm";
             this.Load += new System.EventHandler(this.SaltAndPepperForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBoxTester.ResumeLayout(false);
+            this.groupBoxTester.PerformLayout();
+            this.groupBoxShowInfo.ResumeLayout(false);
+            this.groupBoxShowInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,7 +380,7 @@
         private System.Windows.Forms.CheckBox checkBoxUseSalt;
         private System.Windows.Forms.CheckBox checkBoxUsePepper;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxTester;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Button buttonRegister;
@@ -392,8 +392,8 @@
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.CheckBox checkBoxUseLog;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBoxShowInfo;
+        private System.Windows.Forms.Button buttonInfoID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxHashID;
         private System.Windows.Forms.Button buttonRemove;

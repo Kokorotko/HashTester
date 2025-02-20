@@ -95,6 +95,29 @@ namespace HashTester
         {
             hashSelector.SelectedIndex = 0;
             FormManagement.SetUpFormTheme(this);
+            #region Languages
+            buttonHashSimpleText.Text = Languages.Translate(31);
+            checkBoxUsePepper.Text = Languages.Translate(6);
+            checkBoxUseSalt.Text = Languages.Translate(5);
+            checkBoxUseLog.Text = Languages.Translate(246);
+            label1.Text = Languages.Translate(646);
+            labelAlgorithm.Text = Languages.Translate(10024);
+            buttonClearListBox.Text = Languages.Translate(10000);
+            buttonSaveLog.Text = Languages.Translate(10001);
+            buttonClipboard.Text = Languages.Translate(10002);
+            groupBoxTester.Text = Languages.Translate(647);
+            groupBoxShowInfo.Text = Languages.Translate(648);
+            labelName.Text = Languages.Translate(438);
+            labelPassword.Text = Languages.Translate(21);
+            buttonRegister.Text = Languages.Translate(10035);
+            buttonLogin.Text = Languages.Translate(649);
+            buttonRemove.Text = Languages.Translate(650);
+            buttonRemoveAll.Text = Languages.Translate(651);
+            buttonShowRegistrered.Text = Languages.Translate(652);
+            buttonInfoID.Text = Languages.Translate(653);
+            buttonShowAllID.Text = Languages.Translate(654);
+            buttonDeleteAllHashID.Text = Languages.Translate(655);
+            #endregion
         }
 
         private void button2_Click(object sender, EventArgs e)

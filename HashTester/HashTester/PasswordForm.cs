@@ -25,15 +25,15 @@ namespace HashTester
 
         bool taskCurrentlyWorking = false;
         int whatTaskIsWorking = -1; //1 == RainbowTableGenerator; 2== RainbowTableAttack; 3 == PasswordLeakTest
-        Hasher.HashingAlgorithm userAlgorithm = new Hasher.HashingAlgorithm();
+        Hasher.HashingAlgorithm bruteForceAlgorithm = Hasher.HashingAlgorithm.MD5;
+        Hasher.HashingAlgorithm rainbowTableAlgorithm = Hasher.HashingAlgorithm.MD5;
         Hasher hasher = new Hasher();
         //Password Dictionary Attack and Bruteforce Attack
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
         {
-            FormManagement.SetUpFormTheme(this);
-            hashSelectorRainbowTable.SelectedIndex = 0;
+            FormManagement.SetUpFormTheme(this);          
             #region Languages
             labelProgressBar.Text = Languages.Translate(241);
             buttonCancel.Text = Languages.Translate(242);
@@ -74,6 +74,7 @@ namespace HashTester
             checkBoxHexOutputBruteForce.Text = Languages.Translate(272);
             #endregion
             hashSelectorBruteForce.SelectedIndex = 0;
+            hashSelectorRainbowTable.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();
             if (FindIfTXTIsPresent("rockyou")) radioButtonRockYouFull.Enabled = true;
@@ -88,7 +89,7 @@ namespace HashTester
 
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            userAlgorithm = (Hasher.HashingAlgorithm)hashSelectorBruteForce.SelectedIndex;
+            bruteForceAlgorithm = (Hasher.HashingAlgorithm)hashSelectorBruteForce.SelectedIndex;
         }
 
         private void DisableRockYouRadioButtons()
@@ -309,18 +310,18 @@ namespace HashTester
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.InitialDirectory = Path.GetDirectoryName(openFileDialog.FileName);
-                saveFileDialog.FileName = Path.GetFileNameWithoutExtension(openFileDialog.FileName) + "-" + userAlgorithm.ToString() + ".txt";
+                saveFileDialog.FileName = Path.GetFileNameWithoutExtension(openFileDialog.FileName) + "-" + rainbowTableAlgorithm.ToString() + ".txt";
                 saveFileDialog.Filter = "Text files (*.txt)|*.txt"; // Only allow .txt files
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
+                {                    
+                    updateUITimer.Start();
                     //MultiThread
-                    updateUITimer.Start();                    
                     if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
                     {
                         int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
                         if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(10026) + ": "  + numberOfThreadsToUse);
-                        if (rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
+                        if (rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm))
                         {
                             updateUITimer.Stop();
                             if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
@@ -337,7 +338,7 @@ namespace HashTester
                     //Single Thread
                     else
                     {
-                        if (rainbowTable.GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, userAlgorithm))
+                        if (rainbowTable.GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm))
                         {
                             updateUITimer.Stop();
                             if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
@@ -367,19 +368,22 @@ namespace HashTester
         private long numberOfAttemptsInLastUpdateRainbowTable = 0;
         private void UpdateUIRainbowTable(object sender, EventArgs e)
         {
-            if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
-            {       
-                double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000);
-                int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
-                numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
-                labelStatTimer.Text = Languages.Translate(10009) + ": " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
-                labelStatSpeed.Text = Languages.Translate(10012) + " /s" + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
-                labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString();
-                progressBar1.Value = Math.Min(100, progress);
-                //Refresh - The Labels didnt update for some reason
-                labelStatTimer.Refresh();
-                labelStatSpeed.Refresh();
-                labelStatCurrentSpeed.Refresh();
+            if (rainbowTable.Stopwatch != null)
+            {
+                if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
+                {
+                    double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000);
+                    int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
+                    numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
+                    labelStatTimer.Text = Languages.Translate(10009) + ": " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
+                    labelStatSpeed.Text = Languages.Translate(10012) + " /s" + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
+                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString();
+                    progressBar1.Value = Math.Min(100, progress);
+                    //Refresh - The Labels didnt update for some reason
+                    labelStatTimer.Refresh();
+                    labelStatSpeed.Refresh();
+                    labelStatCurrentSpeed.Refresh();
+                }
             }
         }
 
@@ -398,7 +402,7 @@ namespace HashTester
 
             string originalInput = textBoxBruteForce.Text;
             if (radioButtonRegularBruteForce.Checked)
-                originalInput = hasher.Hash(originalInput, userAlgorithm);
+                originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);
 
             rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeBruteForce.Checked;
 
@@ -412,7 +416,7 @@ namespace HashTester
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 timeToUpdateUI.Start();
-                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, userAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value))
+                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value))
                 {
                     if (checkBoxShowLogRainbowTable.Checked)
                         listBoxLog.Items.Add("-----------------------------------------------");
@@ -420,7 +424,7 @@ namespace HashTester
                     if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
                     {
                         string foundPassword = rainbowTableAttack.FoundPassword;
-                        string foundPasswordHash = hasher.Hash(foundPassword, userAlgorithm);
+                        string foundPasswordHash = hasher.Hash(foundPassword, rainbowTableAlgorithm);
                         long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
 
                         string message = Languages.Translate(291) + "\n" +
@@ -553,7 +557,7 @@ namespace HashTester
             if (radioButtonRegularBruteForce.Checked)
             {
                 userPasswordLenght = textBoxBruteForce.Text.Length;
-                userHashInput = hasher.Hash(textBoxBruteForce.Text, userAlgorithm);
+                userHashInput = hasher.Hash(textBoxBruteForce.Text, bruteForceAlgorithm);
                 if (checkBoxShowLogBrute.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(0) + " '" + textBoxBruteForce.Text + "' " + Languages.Translate(10027) + " " + userHashInput + ".");
@@ -589,7 +593,7 @@ namespace HashTester
             {
                 timer.Start();
                 Console.WriteLine(Languages.Translate(305));
-                bruteForce.BruteForceAttackMultiThread(userAlgorithm, userHashInput, (ulong)numericUpDownMaxAttempts.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
+                bruteForce.BruteForceAttackMultiThread(bruteForceAlgorithm, userHashInput, (ulong)numericUpDownMaxAttempts.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
             }
             else //single Thread
             {
@@ -597,7 +601,7 @@ namespace HashTester
                 timer.Start();
                 await Task.Run(() => bruteForce.PasswordBruteForce
                 (
-                    userAlgorithm, //algorithm
+                    bruteForceAlgorithm, //algorithm
                     false, //useMultiThreading
                     0, //ThreadID
                     1, //numberOfThreadsUsed
@@ -614,7 +618,7 @@ namespace HashTester
             {
                 string message = Languages.Translate(307) + "\n" + 
                           "\n" + Languages.Translate(308) + ": " + userHashInput + 
-                          "\n" + Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm) +
+                          "\n" + Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm) +
                           "\n" + Languages.Translate(310) + ": " + bruteForce.FoundPassword +
                           "\n" + Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) + 
                           "\n" + Languages.Translate(120) + ": " + bruteForce.Attempts +
@@ -626,7 +630,7 @@ namespace HashTester
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add(Languages.Translate(307));
                     listBoxLog.Items.Add(Languages.Translate(308) + ": " + userHashInput);
-                    listBoxLog.Items.Add(Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, userAlgorithm));
+                    listBoxLog.Items.Add(Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm));
                     listBoxLog.Items.Add(Languages.Translate(310) + ": " + bruteForce.FoundPassword);
                     listBoxLog.Items.Add(Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
                     listBoxLog.Items.Add(Languages.Translate(120) + ": " + bruteForce.Attempts);
@@ -743,20 +747,20 @@ namespace HashTester
                 //Finding name
                 while (!foundName)
                 {
-                    if (!File.Exists(path + "JailbreakPassword (" + userAlgorithm.ToString() + ")-" + number + ".txt"))
+                    if (!File.Exists(path + "JailbreakPassword (" + bruteForceAlgorithm.ToString() + ")-" + number + ".txt"))
                     {
                         foundName = true;
-                        path2 = userAlgorithm.ToString() + "-" + number + ".txt";
+                        path2 = bruteForceAlgorithm.ToString() + "-" + number + ".txt";
                     }
                     else number++;
                 }
                 //Writing Results
                 using (StreamWriter writer = new StreamWriter(path + path2))
                 {
-                    writer.WriteLine("Algorithm=" + userAlgorithm.ToString());
+                    writer.WriteLine("Algorithm=" + bruteForceAlgorithm.ToString());
                     writer.WriteLine("<HASH>");
                     writer.WriteLine("Input hash: " + inputHash);
-                    writer.WriteLine("Found hash: " + hasher.Hash(password, userAlgorithm));
+                    writer.WriteLine("Found hash: " + hasher.Hash(password, bruteForceAlgorithm));
                     writer.WriteLine("Password UTF-8: " + password);
                     writer.WriteLine("Password HEX:  " + ConvertToHexBasedOnUser(password));
                 }
@@ -820,6 +824,11 @@ namespace HashTester
             {
                 MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void hashSelectorRainbowTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelectorRainbowTable.SelectedIndex;
         }
     }
 }

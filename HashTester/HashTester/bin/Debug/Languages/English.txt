@@ -34,6 +34,7 @@
 10032==Aborted
 10033==Success
 10034==Registered
+10035==Register
 //****FORMS****
 
 //**Main Form <<0-100>>
@@ -353,16 +354,16 @@
 643==Do you really want to delete this registry from the database?
 644==Registry deleted successfully.
 645==Could not find the registry to delete.
-646==
-647==
-648==
-649==
-650==
-651==
-652==
-653==
-654==
-655==
+646==has priority over settings
+647==Password Tester
+648==Show info
+649==Login
+650==Remove
+651==Remove all
+652==Show all registered users
+653==Info about the ID
+654==Show all ID
+655==Delete all ID
 656==
 657==
 658==
