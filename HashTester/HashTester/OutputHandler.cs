@@ -90,6 +90,7 @@ namespace HashTester
                     break;
                 case OutputTypeEnum.Listbox:
                     listBox.Items.Add(outputString);
+                    listBox.TopIndex = listBox.Items.Count - 1;
                     break;
                 case OutputTypeEnum.TXTFile:
                     SaveFileDialog saveFileDialogCustom = new SaveFileDialog();

@@ -55,6 +55,7 @@
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.buttonShowAllID = new System.Windows.Forms.Button();
             this.buttonRemoveAll = new System.Windows.Forms.Button();
+            this.buttonDeleteAllHashID = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -204,7 +205,7 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(201, 255);
+            this.buttonClipboard.Location = new System.Drawing.Point(202, 282);
             this.buttonClipboard.Name = "buttonClipboard";
             this.buttonClipboard.Size = new System.Drawing.Size(121, 23);
             this.buttonClipboard.TabIndex = 20;
@@ -214,7 +215,7 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(100, 255);
+            this.buttonSaveLog.Location = new System.Drawing.Point(101, 282);
             this.buttonSaveLog.Name = "buttonSaveLog";
             this.buttonSaveLog.Size = new System.Drawing.Size(95, 23);
             this.buttonSaveLog.TabIndex = 19;
@@ -224,7 +225,7 @@
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(12, 255);
+            this.buttonClearListBox.Location = new System.Drawing.Point(13, 282);
             this.buttonClearListBox.Name = "buttonClearListBox";
             this.buttonClearListBox.Size = new System.Drawing.Size(82, 23);
             this.buttonClearListBox.TabIndex = 18;
@@ -236,9 +237,9 @@
             // 
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
-            this.listBoxLog.Location = new System.Drawing.Point(12, 167);
+            this.listBoxLog.Location = new System.Drawing.Point(15, 160);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(310, 82);
+            this.listBoxLog.Size = new System.Drawing.Size(310, 121);
             this.listBoxLog.TabIndex = 17;
             // 
             // checkBoxUseLog
@@ -253,13 +254,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonDeleteAllHashID);
             this.groupBox2.Controls.Add(this.buttonShowAllID);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.textBoxHashID);
             this.groupBox2.Location = new System.Drawing.Point(332, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(279, 112);
+            this.groupBox2.Size = new System.Drawing.Size(279, 146);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Show info";
@@ -329,11 +331,21 @@
             this.buttonRemoveAll.UseVisualStyleBackColor = true;
             this.buttonRemoveAll.Click += new System.EventHandler(this.buttonRemoveAll_Click);
             // 
+            // buttonDeleteAllHashID
+            // 
+            this.buttonDeleteAllHashID.Location = new System.Drawing.Point(3, 112);
+            this.buttonDeleteAllHashID.Name = "buttonDeleteAllHashID";
+            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(270, 23);
+            this.buttonDeleteAllHashID.TabIndex = 26;
+            this.buttonDeleteAllHashID.Text = "Delete all ID";
+            this.buttonDeleteAllHashID.UseVisualStyleBackColor = true;
+            this.buttonDeleteAllHashID.Click += new System.EventHandler(this.buttonDeleteAllHashID_Click);
+            // 
             // SaltAndPepperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 294);
+            this.ClientSize = new System.Drawing.Size(626, 323);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.checkBoxUseLog);
@@ -389,5 +401,6 @@
         private System.Windows.Forms.Label labelAlgorithm;
         private System.Windows.Forms.Button buttonShowAllID;
         private System.Windows.Forms.Button buttonRemoveAll;
+        private System.Windows.Forms.Button buttonDeleteAllHashID;
     }
 }

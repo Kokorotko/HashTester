@@ -30,6 +30,10 @@
 10028==Saved
 10029==Copy
 10030==Question
+10031==Info
+10032==Aborted
+10033==Success
+10034==Registered
 //****FORMS****
 
 //**Main Form <<0-100>>
@@ -279,7 +283,7 @@
 556==Select a folder
 557==Path changed
 
-//**Other <<571-580>>
+//**Other <<571-610>>
 571==Salt not inicialized.
 572==Pepper not inicialized.
 573==Found
@@ -313,4 +317,96 @@
 599==All OutputStyles are bool  
 600==Salt and Pepper bool  
 601==Other - Path  
+
+//**SaltAndPepperForm <<611-700>>
+612==HashID
+613==There are no IDs to show.
+614==Please write name into the Name textbox.
+615==Please write password into the Password textbox.
+616==Please write hashID into the textbox.
+617==Logged in successfully
+618==Wrong password
+619==There are no informations to show about HashID.
+620==There are no registered users in database.
+621==Do you really want to delete the entire database?
+622==Database deleted successfully.
+623==This name is already registered.
+624==Not using salt and pepper.
+625==Hashed password
+626==Succesfully registered.
+627==Used algorithm for login
+628==Username not found in database.
+629==Used salt
+630==Used pepper
+631==Full input password before hashing
+632==This ID is associated with name
+633==and hash
+634==hashed with
+635==Didnt find any name assosiated with this ID.
+636==Could not find any password assosiated with this hashID
+637==Salt saved for this ID
+638==Lenght of pepper used is
+639==Could not find any salt/pepper assosiated with this hashID
+640==Do you really want to delete the all HashID?
+641==There are no hashIDs.
+642==All HashID deleted successfully.
+643==Do you really want to delete this registry from the database?
+644==Registry deleted successfully.
+645==Could not find the registry to delete.
+646==
+647==
+648==
+649==
+650==
+651==
+652==
+653==
+654==
+655==
+656==
+657==
+658==
+659==
+660==
+661==
+662==
+663==
+664==
+665==
+666==
+667==
+668==
+669==
+670==
+671==
+672==
+673==
+674==
+675==
+676==
+677==
+678==
+679==
+680==
+681==
+682==
+683==
+684==
+685==
+686==
+687==
+688==
+689==
+690==
+691==
+692==
+693==
+694==
+695==
+696==
+697==
+698==
+699==
+700==
+
   

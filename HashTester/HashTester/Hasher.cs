@@ -142,14 +142,11 @@ namespace HashTester
             {
                 return false;
             }
-            //Generate usable UTF-16            
+            //Generate usable ASCII        
             List<char> usableChars = new List<char>();
-            for (int i = 0; i <= 0xFFFF; i++)
+            for (int i = 0; i <= 255; i++)
             {
-                if (i < 0xD800 || i > 0xDFFF) // Exclude surrogate pairs
-                {
-                    usableChars.Add((char)i);
-                }
+                usableChars.Add((char)i);
             }
 
             long totalCombinations = (long)Math.Pow(usableChars.Count, length);
