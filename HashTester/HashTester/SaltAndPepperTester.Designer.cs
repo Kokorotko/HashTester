@@ -1,6 +1,6 @@
 ﻿namespace HashTester
 {
-    partial class SaltAndPepperForm
+    partial class SaltAndPepperTester
     {
         /// <summary>
         /// Required designer variable.

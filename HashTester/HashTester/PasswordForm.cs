@@ -50,7 +50,6 @@ namespace HashTester
             radioButtonRockYouShort.Text = Languages.Translate(252);
             radioButtonRockYouFullShortShort.Text = Languages.Translate(253);
             radioButtonRockyouCustom.Text = Languages.Translate(254);
-            buttonDictionaryChangePath.Text = Languages.Translate(255);
             //Time to crack calculator
             labelCrackLenght.Text = Languages.Translate(256) + "/" + Languages.Translate(257);
             labelCrackSpeed.Text = Languages.Translate(258);
@@ -72,6 +71,7 @@ namespace HashTester
             labelStopTimer.Text = Languages.Translate(270);
             checkBoxUnknownLenghtBruteForce.Text = Languages.Translate(271);
             checkBoxHexOutputBruteForce.Text = Languages.Translate(272);
+            groupBoxUI.Text = Languages.Translate(10036);
             #endregion
             hashSelectorBruteForce.SelectedIndex = 0;
             hashSelectorRainbowTable.SelectedIndex = 0;
@@ -115,23 +115,13 @@ namespace HashTester
 
         private bool FindIfTXTIsPresent(string name)
         {
-            return File.Exists(Settings.PasswordPathToFiles + "\\" + name + ".txt");
+            return File.Exists(Settings.DirectoryPathToWordlists + "\\" + name + ".txt");
         }
 
         private void GenerateInfoTXT()
         {
             string s =Languages.Translate(273) +": " + "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt \r\nRockYouShort 1mil.\r\nRockYouVeryShort 5k\r\n" + Languages.Translate(274);
-            File.WriteAllText(Settings.PasswordPathToFiles + "\\_wordlistInfo.txt", s);
-        }
-
-        private void buttonChangePath_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.PasswordPathToFiles = dialog.SelectedPath;
-                Settings.SaveSettings();
-            }
+            File.WriteAllText(Settings.DirectoryPathToWordlists + "\\_wordlistInfo.txt", s);
         }
         private void buttonLogClear_Click(object sender, EventArgs e)
         {
@@ -179,21 +169,21 @@ namespace HashTester
             //Decider of what txt to use
             if (radioButtonRockYouFull.Checked)
             {
-                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyou.txt";
+                pathToFile = Settings.DirectoryPathToWordlists + "\\" + "rockyou.txt";
             }
             else if (radioButtonRockYouShort.Checked)
             {
-                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouShort.txt";
+                pathToFile = Settings.DirectoryPathToWordlists + "\\" + "rockyouShort.txt";
             }
             else if (radioButtonRockYouFullShortShort.Checked)
             {
-                pathToFile = Settings.PasswordPathToFiles + "\\" + "rockyouVeryShort.txt";
+                pathToFile = Settings.DirectoryPathToWordlists + "\\" + "rockyouVeryShort.txt";
             }
             else
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
+                    openFileDialog.InitialDirectory = Settings.DirectoryPathToWordlists;
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {                        
                         pathToFile = openFileDialog.FileName; //Own txt
@@ -300,7 +290,7 @@ namespace HashTester
             whatTaskIsWorking = 1;
             DisableUI();            
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.PasswordPathToFiles;
+            openFileDialog.InitialDirectory = Settings.DirectoryPathToWordlists;
             //Timer
             Timer updateUITimer = new Timer();
             updateUITimer.Interval = Settings.UpdateUIms;
@@ -408,7 +398,7 @@ namespace HashTester
 
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = Settings.PasswordPathToFiles
+                InitialDirectory = Settings.DirectoryPathToWordlists
             };
 
             rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
@@ -740,7 +730,7 @@ namespace HashTester
         {            
             if (MessageBox.Show(Languages.Translate(314), Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                string path = Path.GetFullPath(Settings.PasswordPathToFiles);
+                string path = Path.GetFullPath(Settings.DirectoryPathToWordlists);
                 string path2 = "";
                 bool foundName = false;
                 int number = 1;

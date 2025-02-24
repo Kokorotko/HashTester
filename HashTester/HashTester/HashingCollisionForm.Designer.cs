@@ -49,8 +49,10 @@
             this.buttonCheckCollision = new System.Windows.Forms.Button();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.groupBoxUI = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.groupBoxUI.SuspendLayout();
             this.SuspendLayout();
             // 
             // hashSelector
@@ -141,7 +143,7 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(281, 56);
+            this.labelTimer.Location = new System.Drawing.Point(15, 16);
             this.labelTimer.Name = "labelTimer";
             this.labelTimer.Size = new System.Drawing.Size(39, 13);
             this.labelTimer.TabIndex = 17;
@@ -186,7 +188,7 @@
             // labelAttempts
             // 
             this.labelAttempts.AutoSize = true;
-            this.labelAttempts.Location = new System.Drawing.Point(281, 69);
+            this.labelAttempts.Location = new System.Drawing.Point(15, 29);
             this.labelAttempts.Name = "labelAttempts";
             this.labelAttempts.Size = new System.Drawing.Size(105, 13);
             this.labelAttempts.TabIndex = 21;
@@ -195,7 +197,7 @@
             // labelCurrentSpeed
             // 
             this.labelCurrentSpeed.AutoSize = true;
-            this.labelCurrentSpeed.Location = new System.Drawing.Point(282, 83);
+            this.labelCurrentSpeed.Location = new System.Drawing.Point(16, 43);
             this.labelCurrentSpeed.Name = "labelCurrentSpeed";
             this.labelCurrentSpeed.Size = new System.Drawing.Size(84, 13);
             this.labelCurrentSpeed.TabIndex = 22;
@@ -216,7 +218,7 @@
             // labelAverageSpeed
             // 
             this.labelAverageSpeed.AutoSize = true;
-            this.labelAverageSpeed.Location = new System.Drawing.Point(281, 96);
+            this.labelAverageSpeed.Location = new System.Drawing.Point(15, 56);
             this.labelAverageSpeed.Name = "labelAverageSpeed";
             this.labelAverageSpeed.Size = new System.Drawing.Size(85, 13);
             this.labelAverageSpeed.TabIndex = 24;
@@ -267,30 +269,40 @@
             // 
             this.buttonClipboard.Location = new System.Drawing.Point(266, 260);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(129, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(139, 23);
             this.buttonClipboard.TabIndex = 30;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
+            // 
+            // groupBoxUI
+            // 
+            this.groupBoxUI.Controls.Add(this.labelTimer);
+            this.groupBoxUI.Controls.Add(this.labelAttempts);
+            this.groupBoxUI.Controls.Add(this.labelCurrentSpeed);
+            this.groupBoxUI.Controls.Add(this.labelAverageSpeed);
+            this.groupBoxUI.Location = new System.Drawing.Point(266, 41);
+            this.groupBoxUI.Name = "groupBoxUI";
+            this.groupBoxUI.Size = new System.Drawing.Size(277, 74);
+            this.groupBoxUI.TabIndex = 31;
+            this.groupBoxUI.TabStop = false;
+            this.groupBoxUI.Text = "UI";
             // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 295);
+            this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBoxUseHex);
-            this.Controls.Add(this.labelAverageSpeed);
             this.Controls.Add(this.checkBoxListBoxLog);
-            this.Controls.Add(this.labelCurrentSpeed);
-            this.Controls.Add(this.labelAttempts);
             this.Controls.Add(this.labelLenght);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.buttonAbort);
-            this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.labelMaxAttempts);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.buttonReturn);
@@ -304,6 +316,8 @@
             this.Load += new System.EventHandler(this.HashingCollisionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.groupBoxUI.ResumeLayout(false);
+            this.groupBoxUI.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,5 +346,6 @@
         private System.Windows.Forms.Button buttonCheckCollision;
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.Button buttonClipboard;
+        private System.Windows.Forms.GroupBox groupBoxUI;
     }
 }

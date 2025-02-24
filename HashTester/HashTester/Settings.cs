@@ -19,11 +19,6 @@ namespace HashTester
         private static int updateUIms;
         private static int threadsUsagePercentage;
         private static string selectedLanguage;
-        private static string basePathToFiles;
-        private static string passwordPathToFiles;
-        private static string collisionPathToFiles;
-        private static string logSavePathToFiles;
-        private static string settingsPathToFiles;
         #endregion
 
         #region Get&Set
@@ -97,7 +92,7 @@ namespace HashTester
         {
             get
             {
-                if (updateUIms < 1 || updateUIms > 1000) return 32;
+                if (updateUIms < 1 || updateUIms > 1000) return 32; //around 30fps
                 return updateUIms;
             }
             set
@@ -110,135 +105,70 @@ namespace HashTester
                 else updateUIms = 32; //around 30fps
             }
         }
-        public static string BasePathToFiles
+        public static string DirectoryExeBase
         {
             get
             {
-                if (string.IsNullOrEmpty(basePathToFiles) || !Directory.Exists(basePathToFiles))
-                {
-                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
-                }
-                return basePathToFiles;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
-                {
-                    basePathToFiles = Path.GetDirectoryName(Application.ExecutablePath);
-                }
-                else
-                {
-                    basePathToFiles = value;
-                }
+                string path = Path.GetDirectoryName(Application.ExecutablePath);
+                if (!Directory.Exists(path)) throw new Exception("Unable to get application executable path");
+                return path;
             }
         }
 
-        public static string SettingsPathToFiles
+        public static string DirectoryPathToSettings
         {
             get
             {
-                if (string.IsNullOrEmpty(settingsPathToFiles) || !Directory.Exists(settingsPathToFiles))
-                {
-                    settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
-                }
-                return settingsPathToFiles;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
-                {
-                    settingsPathToFiles = Path.Combine(BasePathToFiles, "Settings");
-                }
-                else
-                {
-                    settingsPathToFiles = value;
-                }
-            }
-        }
-
-        public static string PasswordPathToFiles
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(passwordPathToFiles) || !Directory.Exists(passwordPathToFiles))
-                {
-                    passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
-                }
-                return passwordPathToFiles;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
-                {
-                    passwordPathToFiles = Path.Combine(BasePathToFiles, "Wordlists");
-                }
-                else
-                {
-                    passwordPathToFiles = value;
-                }
-            }
-        }
-
-        public static string CollisionPathToFiles
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(collisionPathToFiles) || !Directory.Exists(collisionPathToFiles))
-                {
-                    collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
-                }
-                return collisionPathToFiles;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
-                {
-                    collisionPathToFiles = Path.Combine(BasePathToFiles, "SameHashingResults");
-                }
-                else
-                {
-                    collisionPathToFiles = value;
-                }
-            }
-        }
-
-        public static string LogSavePathToFiles
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(logSavePathToFiles) || !Directory.Exists(logSavePathToFiles))
-                {
-                    logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
-                }
-                return logSavePathToFiles;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
-                {
-                    logSavePathToFiles = Path.Combine(BasePathToFiles, "Logs");
-                }
-                else
-                {
-                    logSavePathToFiles = value;
-                }
-            }
-        }
-
-        public static string PathToHashData
-        {
-            get
-            {
-                string path = Path.Combine(BasePathToFiles, "HashData/");
+                string path = Path.Combine(DirectoryExeBase, "Settings/");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
         }
-        public static string PathToPasswordTester
+
+        public static string DirectoryPathToWordlists
         {
             get
             {
-                string path = Path.Combine(BasePathToFiles, "HashData/PasswordTester/");
+                string path = Path.Combine(DirectoryExeBase, "Wordlists/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+
+        public static string DirectoryPathToCollisions
+        {
+            get
+            {
+                string path = Path.Combine(DirectoryExeBase, "Collisions/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+
+        public static string DirectoryPathToLogs
+        {
+            get
+            {
+                string path = Path.Combine(DirectoryExeBase, "Logs/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+
+        public static string DirectoryToHashData
+        {
+            get
+            {
+                string path = Path.Combine(DirectoryExeBase, "HashData/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
+        public static string DirectoryToPasswordTester
+        {
+            get
+            {
+                string path = Path.Combine(DirectoryExeBase, "HashData/PasswordTester/");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -270,19 +200,15 @@ namespace HashTester
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;
             UsePepper = false;
-            BasePathToFiles = null;
-            PasswordPathToFiles = null;
-            CollisionPathToFiles = null;
-            LogSavePathToFiles = null;
             SaveSettings();
         }
         
         public static void SaveSettings()
         {
             //Create File
-            string settingsPathToFileTemp = Path.Combine(SettingsPathToFiles, "temp.txt");
+            string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
             Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
-            string settingsPathToFileSettings = Path.Combine(SettingsPathToFiles, "settings.txt");
+            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
             Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
             //Create Directory if it doesnt exist
             string settingsDirectory = Path.GetDirectoryName(settingsPathToFileTemp);
@@ -334,11 +260,11 @@ namespace HashTester
                     if (UsePepper) writer.WriteLine("usePepper=1");
                     else writer.WriteLine("usePepper=0");
                     writer.WriteLine("//" + Languages.Translate(601));
-                    writer.WriteLine("basePathToFiles=" + BasePathToFiles);
-                    writer.WriteLine("settingsPathToFiles=" + SettingsPathToFiles);
-                    writer.WriteLine("passwordPathToFiles=" + PasswordPathToFiles);
-                    writer.WriteLine("collisionPathToFiles=" + CollisionPathToFiles);
-                    writer.WriteLine("logSavePathToFiles=" + LogSavePathToFiles);
+                    writer.WriteLine("basePathToFiles=" + DirectoryExeBase);
+                    writer.WriteLine("settingsPathToFiles=" + DirectoryPathToSettings);
+                    writer.WriteLine("passwordPathToFiles=" + DirectoryPathToWordlists);
+                    writer.WriteLine("collisionPathToFiles=" + DirectoryPathToCollisions);
+                    writer.WriteLine("logSavePathToFiles=" + DirectoryPathToLogs);
                 }
 
             }
@@ -352,7 +278,7 @@ namespace HashTester
         }
         public static void LoadSettings()
         {
-            string settingsPathToFileSettings = Path.Combine(SettingsPathToFiles, "settings.txt");
+            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
             if (File.Exists(settingsPathToFileSettings))
             {
                 using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
@@ -466,66 +392,6 @@ namespace HashTester
                                             catch (Exception)
                                             {
                                                 UsePepper = false;
-                                            }
-                                            break;
-                                        }
-                                    case "basePathToFiles":
-                                        {
-                                            try
-                                            {
-                                                BasePathToFiles = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                BasePathToFiles = "";
-                                            }
-                                            break;
-                                        }
-                                    case "passwordPathToFiles":
-                                        {
-                                            try
-                                            {
-                                                PasswordPathToFiles = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                PasswordPathToFiles = "";
-                                            }
-                                            break;
-                                        }
-                                    case "collisionPathToFiles":
-                                        {
-                                            try
-                                            {
-                                                CollisionPathToFiles = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                CollisionPathToFiles = "";
-                                            }
-                                            break;
-                                        }
-                                    case "logSavePathToFiles":
-                                        {
-                                            try
-                                            {
-                                                LogSavePathToFiles = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                LogSavePathToFiles = "";
-                                            }
-                                            break;
-                                        }
-                                    case "settingsPathToFiles":
-                                        {
-                                            try
-                                            {
-                                                SettingsPathToFiles = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                SettingsPathToFiles = "";
                                             }
                                             break;
                                         }

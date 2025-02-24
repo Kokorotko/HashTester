@@ -94,7 +94,7 @@ namespace HashTester
                     break;
                 case OutputTypeEnum.TXTFile:
                     SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
-                    saveFileDialogCustom.InitialDirectory = Settings.BasePathToFiles;
+                    saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
                     if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
                     {
                         File.WriteAllText(saveFileDialogCustom.FileName, outputString);
@@ -120,7 +120,7 @@ namespace HashTester
                     break;
                 case OutputTypeEnum.TXTFile:
                     SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
-                    saveFileDialogCustom.InitialDirectory = Settings.BasePathToFiles;
+                    saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
                     if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
                     {
                         File.WriteAllText(saveFileDialogCustom.FileName, ArrayStringToOne(arrayOutputString));

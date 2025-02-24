@@ -66,7 +66,7 @@ namespace HashTester
         public static string[] AllLanguages()
         {
             List<string> list = new List<string>();
-            string[] temp = Directory.GetFiles(Path.Combine(Settings.BasePathToFiles, "Languages"));
+            string[] temp = Directory.GetFiles(Path.Combine(Settings.DirectoryExeBase, "Languages"));
             foreach (string s in temp)
             {
                 if (!Path.GetFileName(s).StartsWith("_"))
@@ -80,7 +80,7 @@ namespace HashTester
 
         private static string GetPath(string name)
         {
-            string languagesPath = Path.Combine(Settings.BasePathToFiles, "Languages");
+            string languagesPath = Path.Combine(Settings.DirectoryExeBase, "Languages");
             if (!Directory.Exists(languagesPath)) return null;
             string[] temp = Directory.GetFiles(languagesPath);
             if (string.IsNullOrWhiteSpace(name)) return null;

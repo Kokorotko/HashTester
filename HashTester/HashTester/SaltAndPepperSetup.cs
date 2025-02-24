@@ -6,20 +6,31 @@ using System.Xml.Linq;
 
 namespace HashTester
 {
-    public partial class SaltAndPepperQuestion : Form
+    public partial class SaltAndPepperSetup : Form
     {
-        public SaltAndPepperQuestion()
+        public SaltAndPepperSetup()
         {
             InitializeComponent();
             if (Settings.UseSalt) groupBoxSalt.Enabled = true;
             if (Settings.UsePepper) groupBoxPepper.Enabled = true;
+            textBoxHashID.Text = SetHashID();
         }
 
-        public SaltAndPepperQuestion(bool useSalt, bool usePepper)
+        public SaltAndPepperSetup(bool useSalt, bool usePepper)
         {
             InitializeComponent();
             if (useSalt) groupBoxSalt.Enabled = true;
             if (usePepper) groupBoxPepper.Enabled = true;
+            textBoxHashID.Text = SetHashID();
+        }
+
+        public SaltAndPepperSetup(bool useSalt, bool usePepper, string hashID)
+        {
+            InitializeComponent();
+            if (useSalt) groupBoxSalt.Enabled = true;
+            if (usePepper) groupBoxPepper.Enabled = true;
+            if (!String.IsNullOrEmpty(hashID)) textBoxHashID.Text = SetHashID(hashID);
+            else textBoxHashID.Text = SetHashID();
         }
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
@@ -40,7 +51,6 @@ namespace HashTester
             #endregion
             textBoxSalt.Enabled = false;
             textBoxPepper.Enabled = false;
-            textBoxHashID.Text = SetHashID();
         }
 
         private void textBoxGenerate_Click(object sender, EventArgs e)
@@ -114,7 +124,21 @@ namespace HashTester
             int index = 1;
             while (true)
             {
-                string path = Path.Combine(Settings.BasePathToFiles, "HashData", name + index + ".txt");
+                string path = Path.Combine(Settings.DirectoryToHashData, name + index + ".txt");
+                if (!File.Exists(path))
+                {
+                    return name + index.ToString();
+                }
+                index++;
+            }
+        }
+
+        private string SetHashID(string name)
+        {
+            int index = 1;
+            while (true)
+            {
+                string path = Path.Combine(Settings.DirectoryToHashData, name + index + ".txt");
                 if (!File.Exists(path))
                 {
                     return name + index.ToString();
@@ -125,7 +149,7 @@ namespace HashTester
 
         private bool CheckHashID(string hashID)
         {
-            string path = Path.Combine(Settings.BasePathToFiles, "HashData",  hashID + ".txt");
+            string path = Path.Combine(Settings.DirectoryExeBase, "HashData",  hashID + ".txt");
             if (File.Exists(path))
             {                
                 if (MessageBox.Show(Languages.Translate(401), Languages.Translate(10025), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)

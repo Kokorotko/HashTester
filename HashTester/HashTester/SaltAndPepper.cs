@@ -12,9 +12,9 @@ namespace HashTester
     {
         public bool CheckIfPasswordTesterExists(bool showMessageBoxOutput)
         {
-            if (!File.Exists(Path.Combine(Settings.PathToPasswordTester, "nameTable.txt")))
+            if (!File.Exists(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))
             {
-                using (StreamWriter writer = new StreamWriter(Path.Combine(Settings.PathToPasswordTester, "nameTable.txt")))
+                using (StreamWriter writer = new StreamWriter(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))
                 {
                     writer.WriteLine("//name==hashID==algorithm==passwordHash");
                 }
@@ -26,7 +26,7 @@ namespace HashTester
 
         public void GenerateNameTableFile()
         {
-            using (StreamWriter writer = new StreamWriter(Path.Combine(Settings.PathToPasswordTester, "nameTable.txt")))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))
             {
                 writer.WriteLine("//name==hashID==algorithm==passwordHash");
             }

@@ -229,7 +229,7 @@ namespace HashTester
         {           
             if (MessageBox.Show(Languages.Translate(123), Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                string path = Path.GetFullPath(Settings.CollisionPathToFiles);
+                string path = Path.GetFullPath(Settings.DirectoryPathToCollisions);
                 string path2 = "";
                 bool foundName = false;
                 int number = 1;
@@ -489,10 +489,11 @@ namespace HashTester
             buttonClearListBox.Text = Languages.Translate(10000);
             buttonClipboard.Text = Languages.Translate(10002);
             buttonSaveLog.Text = Languages.Translate(10001);
+            groupBoxUI.Text = Languages.Translate(10036);
             #endregion
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
-            string path = Settings.CollisionPathToFiles;
+            string path = Settings.DirectoryPathToCollisions;
             Console.Write(path + "_collisionInfo.txt");
             if (!File.Exists(path + "_collisionInfo.txt"))
             {

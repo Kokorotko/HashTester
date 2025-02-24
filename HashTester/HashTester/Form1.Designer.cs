@@ -43,6 +43,7 @@
             this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fileChecksumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saltPepperTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordBruteForceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,11 +53,6 @@
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.basePathToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.baseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.collisionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UIUpdateFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.threadsAndCPUSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +69,6 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
-            this.saltPepperTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,6 +203,13 @@
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             this.fileChecksumToolStripMenuItem.Click += new System.EventHandler(this.fileChecksumToolStripMenuItem_Click);
             // 
+            // saltPepperTesterToolStripMenuItem
+            // 
+            this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
+            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
+            this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
+            // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
@@ -243,12 +245,11 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.visualModeToolStripMenuItem,
-            this.basePathToFolderToolStripMenuItem,
             this.UIUpdateFrequencyToolStripMenuItem,
             this.threadsAndCPUSettingsToolStripMenuItem,
             this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // visualModeToolStripMenuItem
@@ -284,45 +285,6 @@
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
-            // basePathToFolderToolStripMenuItem
-            // 
-            this.basePathToFolderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.baseToolStripMenuItem,
-            this.collisionToolStripMenuItem,
-            this.passwordToolStripMenuItem,
-            this.logSaveToolStripMenuItem});
-            this.basePathToFolderToolStripMenuItem.Name = "basePathToFolderToolStripMenuItem";
-            this.basePathToFolderToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.basePathToFolderToolStripMenuItem.Text = "Path to Folders";
-            // 
-            // baseToolStripMenuItem
-            // 
-            this.baseToolStripMenuItem.Name = "baseToolStripMenuItem";
-            this.baseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.baseToolStripMenuItem.Text = "Base";
-            this.baseToolStripMenuItem.Click += new System.EventHandler(this.baseToolStripMenuItem_Click);
-            // 
-            // collisionToolStripMenuItem
-            // 
-            this.collisionToolStripMenuItem.Name = "collisionToolStripMenuItem";
-            this.collisionToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.collisionToolStripMenuItem.Text = "Collision";
-            this.collisionToolStripMenuItem.Click += new System.EventHandler(this.collisionToolStripMenuItem_Click);
-            // 
-            // passwordToolStripMenuItem
-            // 
-            this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.passwordToolStripMenuItem.Text = "Password";
-            this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
-            // 
-            // logSaveToolStripMenuItem
-            // 
-            this.logSaveToolStripMenuItem.Name = "logSaveToolStripMenuItem";
-            this.logSaveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.logSaveToolStripMenuItem.Text = "Log save";
-            this.logSaveToolStripMenuItem.Click += new System.EventHandler(this.logSaveToolStripMenuItem_Click);
-            // 
             // UIUpdateFrequencyToolStripMenuItem
             // 
             this.UIUpdateFrequencyToolStripMenuItem.Name = "UIUpdateFrequencyToolStripMenuItem";
@@ -351,7 +313,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputTypeStripMenuItem.Name = "outputTypeStripMenuItem";
-            this.outputTypeStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputTypeStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputTypeStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -384,7 +346,7 @@
             this.includeSaltAndPepperToolStripMenuItem,
             this.includeAllToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -448,13 +410,6 @@
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
-            // saltPepperTesterToolStripMenuItem
-            // 
-            this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
-            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
-            this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,12 +470,7 @@
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem basePathToFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetAllSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem baseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem collisionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem passwordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logSaveToolStripMenuItem;
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.ToolStripMenuItem UIUpdateFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem threadsAndCPUSettingsToolStripMenuItem;

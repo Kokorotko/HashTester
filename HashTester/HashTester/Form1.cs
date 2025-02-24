@@ -41,7 +41,7 @@ namespace HashTester
             bool askForSaltPepper = false;
             if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
+            openFileDialog.InitialDirectory = Settings.DirectoryExeBase;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ProcessingHashTXTInput(algorithm, openFileDialog.FileName ,askForSaltPepper);
@@ -134,7 +134,7 @@ namespace HashTester
         {
             FormGradual formGradual = new FormGradual();
             formGradual.StartPosition = FormStartPosition.CenterScreen;
-            formGradual.Show();
+            formGradual.ShowDialog();
         }
 
         #endregion
@@ -144,7 +144,7 @@ namespace HashTester
         {
             MultipleHashing multipleHashing = new MultipleHashing();
             multipleHashing.StartPosition = FormStartPosition.CenterScreen;
-            multipleHashing.Show();
+            multipleHashing.ShowDialog();
         }
         #endregion
 
@@ -153,7 +153,7 @@ namespace HashTester
         {
             HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
             hashingCollisionForm.StartPosition = FormStartPosition.CenterScreen;
-            hashingCollisionForm.Show();
+            hashingCollisionForm.ShowDialog();
         }
         #endregion
 
@@ -204,29 +204,6 @@ namespace HashTester
                 FormManagement.SetUpFormTheme(this);
             }
         }
-        #endregion
-
-        #region PathToFolder
-        private void baseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.ChangeDirectory(FormManagement.FolderType.Base);
-        }
-
-        private void collisionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.ChangeDirectory(FormManagement.FolderType.Collision);
-        }
-
-        private void passwordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.ChangeDirectory(FormManagement.FolderType.Password);
-        }
-
-        private void logSaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.ChangeDirectory(FormManagement.FolderType.Log);
-        }
-
         #endregion
 
         #region ResetAllSettings
@@ -404,7 +381,7 @@ namespace HashTester
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.BasePathToFiles;
+            openFileDialog.InitialDirectory = Settings.DirectoryExeBase;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (StreamReader reader = new StreamReader(openFileDialog.FileName))
@@ -434,7 +411,7 @@ namespace HashTester
             isPepperUsed = false;
             if (Settings.UseSalt || Settings.UsePepper)
             {
-                using (SaltAndPepperQuestion saltAndPepperQuestion = new SaltAndPepperQuestion())
+                using (SaltAndPepperSetup saltAndPepperQuestion = new SaltAndPepperSetup())
                 {
                     saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
                     if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
@@ -502,17 +479,12 @@ namespace HashTester
             outputTypeStripMenuItem.Text = Languages.Translate(9);
             outputStyleToolStripMenuItem.Text = Languages.Translate(10);
             visualModeToolStripMenuItem.Text = Languages.Translate(11);
-            basePathToFolderToolStripMenuItem.Text = Languages.Translate(12);
             UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(13);
             threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(14);
             resetAllSettingsToolStripMenuItem.Text = Languages.Translate(15);
             systemToolStripMenuItem.Text = Languages.Translate(16);
             lightToolStripMenuItem.Text = Languages.Translate(17);
             darkToolStripMenuItem.Text = Languages.Translate(18);
-            baseToolStripMenuItem.Text = Languages.Translate(19);
-            collisionToolStripMenuItem.Text = Languages.Translate(20);
-            passwordToolStripMenuItem.Text = Languages.Translate(21);
-            logSaveToolStripMenuItem.Text = Languages.Translate(22);
             languagesToolStripMenuItem.Text = Languages.Translate(23);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(31);
@@ -527,7 +499,7 @@ namespace HashTester
         {
             PasswordForm passwordForm = new PasswordForm();
             passwordForm.StartPosition = FormStartPosition.CenterScreen;
-            passwordForm.Show();
+            passwordForm.ShowDialog();
         }
 
         private void buttonSaveLog_Click(object sender, EventArgs e)
@@ -652,20 +624,20 @@ namespace HashTester
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileChecksum fileChecksum = new FileChecksum();
-            fileChecksum.Show();
+            fileChecksum.ShowDialog();
         }
 
         private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaltAndPepperForm saltAndPepperForm = new SaltAndPepperForm();
-            saltAndPepperForm.Show();
+            SaltAndPepperTester saltAndPepperForm = new SaltAndPepperTester();
+            saltAndPepperForm.ShowDialog();
         }
     }
 }

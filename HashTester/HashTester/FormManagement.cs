@@ -25,7 +25,7 @@ namespace HashTester
         public static void SaveLog(ListBox listbox, Form form)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Settings.LogSavePathToFiles;
+            saveFileDialog.InitialDirectory = Settings.DirectoryPathToLogs;
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             saveFileDialog.DefaultExt = "txt";
             saveFileDialog.AddExtension = true;
@@ -45,36 +45,7 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(553), Languages.Translate(10028), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else MessageBox.Show(Languages.Translate(554), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        public static void ChangeDirectory(FolderType folderType)
-        {
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-            {
-                folderBrowserDialog.Description = Languages.Translate(556);
-                folderBrowserDialog.ShowNewFolderButton = true;
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    switch (folderType)
-                    {
-                        case FolderType.Base:
-                            Settings.BasePathToFiles = folderBrowserDialog.SelectedPath;
-                            break;
-                        case FolderType.Password:
-                            Settings.PasswordPathToFiles = folderBrowserDialog.SelectedPath;
-                            break;
-                        case FolderType.Collision:
-                            Settings.CollisionPathToFiles = folderBrowserDialog.SelectedPath;
-                            break;
-                        case FolderType.Log:
-                            Settings.LogSavePathToFiles = folderBrowserDialog.SelectedPath;
-                            break;
-                    }
-                    Settings.SaveSettings();
-                    MessageBox.Show(Languages.Translate(557), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
+        }        
 
         public static int NumberOfThreadsToUse()
         {

@@ -34,7 +34,6 @@
             this.radioButtonRockYouShort = new System.Windows.Forms.RadioButton();
             this.radioButtonRockYouFullShortShort = new System.Windows.Forms.RadioButton();
             this.radioButtonRockyouCustom = new System.Windows.Forms.RadioButton();
-            this.buttonDictionaryChangePath = new System.Windows.Forms.Button();
             this.groupBoxDictionary = new System.Windows.Forms.GroupBox();
             this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
             this.groupBoxTimeToCrack = new System.Windows.Forms.GroupBox();
@@ -91,6 +90,7 @@
             this.checkBoxPerformanceModeRainbowTable = new System.Windows.Forms.CheckBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.hashSelectorRainbowTable = new System.Windows.Forms.ComboBox();
+            this.groupBoxUI = new System.Windows.Forms.GroupBox();
             this.groupBoxDictionary.SuspendLayout();
             this.groupBoxTimeToCrack.SuspendLayout();
             this.groupBoxBruteForce.SuspendLayout();
@@ -98,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLenght)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxAttempts)).BeginInit();
             this.groupBoxRainbowTable.SuspendLayout();
+            this.groupBoxUI.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCheckPassword
@@ -115,14 +116,14 @@
             this.textBoxDictionary.Location = new System.Drawing.Point(6, 49);
             this.textBoxDictionary.Multiline = true;
             this.textBoxDictionary.Name = "textBoxDictionary";
-            this.textBoxDictionary.Size = new System.Drawing.Size(199, 49);
+            this.textBoxDictionary.Size = new System.Drawing.Size(199, 80);
             this.textBoxDictionary.TabIndex = 1;
             this.textBoxDictionary.Text = "budakkecik";
             // 
             // radioButtonRockYouFull
             // 
             this.radioButtonRockYouFull.AutoSize = true;
-            this.radioButtonRockYouFull.Location = new System.Drawing.Point(6, 128);
+            this.radioButtonRockYouFull.Location = new System.Drawing.Point(5, 159);
             this.radioButtonRockYouFull.Name = "radioButtonRockYouFull";
             this.radioButtonRockYouFull.Size = new System.Drawing.Size(130, 17);
             this.radioButtonRockYouFull.TabIndex = 2;
@@ -133,7 +134,7 @@
             // radioButtonRockYouShort
             // 
             this.radioButtonRockYouShort.AutoSize = true;
-            this.radioButtonRockYouShort.Location = new System.Drawing.Point(6, 151);
+            this.radioButtonRockYouShort.Location = new System.Drawing.Point(5, 182);
             this.radioButtonRockYouShort.Name = "radioButtonRockYouShort";
             this.radioButtonRockYouShort.Size = new System.Drawing.Size(140, 17);
             this.radioButtonRockYouShort.TabIndex = 3;
@@ -144,7 +145,7 @@
             // radioButtonRockYouFullShortShort
             // 
             this.radioButtonRockYouFullShortShort.AutoSize = true;
-            this.radioButtonRockYouFullShortShort.Location = new System.Drawing.Point(6, 174);
+            this.radioButtonRockYouFullShortShort.Location = new System.Drawing.Point(5, 205);
             this.radioButtonRockYouFullShortShort.Name = "radioButtonRockYouFullShortShort";
             this.radioButtonRockYouFullShortShort.Size = new System.Drawing.Size(163, 17);
             this.radioButtonRockYouFullShortShort.TabIndex = 4;
@@ -155,7 +156,7 @@
             // radioButtonRockyouCustom
             // 
             this.radioButtonRockyouCustom.AutoSize = true;
-            this.radioButtonRockyouCustom.Location = new System.Drawing.Point(5, 197);
+            this.radioButtonRockyouCustom.Location = new System.Drawing.Point(4, 228);
             this.radioButtonRockyouCustom.Name = "radioButtonRockyouCustom";
             this.radioButtonRockyouCustom.Size = new System.Drawing.Size(77, 17);
             this.radioButtonRockyouCustom.TabIndex = 5;
@@ -163,21 +164,10 @@
             this.radioButtonRockyouCustom.Text = "Custom .txt";
             this.radioButtonRockyouCustom.UseVisualStyleBackColor = true;
             // 
-            // buttonDictionaryChangePath
-            // 
-            this.buttonDictionaryChangePath.Location = new System.Drawing.Point(5, 220);
-            this.buttonDictionaryChangePath.Name = "buttonDictionaryChangePath";
-            this.buttonDictionaryChangePath.Size = new System.Drawing.Size(200, 23);
-            this.buttonDictionaryChangePath.TabIndex = 6;
-            this.buttonDictionaryChangePath.Text = "Change path to password folder";
-            this.buttonDictionaryChangePath.UseVisualStyleBackColor = true;
-            this.buttonDictionaryChangePath.Click += new System.EventHandler(this.buttonChangePath_Click);
-            // 
             // groupBoxDictionary
             // 
             this.groupBoxDictionary.Controls.Add(this.checkBoxShowLogDictionary);
             this.groupBoxDictionary.Controls.Add(this.buttonCheckPassword);
-            this.groupBoxDictionary.Controls.Add(this.buttonDictionaryChangePath);
             this.groupBoxDictionary.Controls.Add(this.textBoxDictionary);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockyouCustom);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockYouFull);
@@ -195,7 +185,7 @@
             this.checkBoxShowLogDictionary.AutoSize = true;
             this.checkBoxShowLogDictionary.Checked = true;
             this.checkBoxShowLogDictionary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(5, 104);
+            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(4, 135);
             this.checkBoxShowLogDictionary.Name = "checkBoxShowLogDictionary";
             this.checkBoxShowLogDictionary.Size = new System.Drawing.Size(114, 17);
             this.checkBoxShowLogDictionary.TabIndex = 39;
@@ -359,7 +349,7 @@
             this.checkBoxShowLogBruteForce.AutoSize = true;
             this.checkBoxShowLogBruteForce.Checked = true;
             this.checkBoxShowLogBruteForce.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogBruteForce.Location = new System.Drawing.Point(167, 223);
+            this.checkBoxShowLogBruteForce.Location = new System.Drawing.Point(167, 217);
             this.checkBoxShowLogBruteForce.Name = "checkBoxShowLogBruteForce";
             this.checkBoxShowLogBruteForce.Size = new System.Drawing.Size(114, 17);
             this.checkBoxShowLogBruteForce.TabIndex = 43;
@@ -631,7 +621,7 @@
             // labelStatSpeed
             // 
             this.labelStatSpeed.AutoSize = true;
-            this.labelStatSpeed.Location = new System.Drawing.Point(15, 308);
+            this.labelStatSpeed.Location = new System.Drawing.Point(5, 54);
             this.labelStatSpeed.Name = "labelStatSpeed";
             this.labelStatSpeed.Size = new System.Drawing.Size(98, 13);
             this.labelStatSpeed.TabIndex = 28;
@@ -640,7 +630,7 @@
             // labelStatCurrentSpeed
             // 
             this.labelStatCurrentSpeed.AutoSize = true;
-            this.labelStatCurrentSpeed.Location = new System.Drawing.Point(16, 295);
+            this.labelStatCurrentSpeed.Location = new System.Drawing.Point(6, 41);
             this.labelStatCurrentSpeed.Name = "labelStatCurrentSpeed";
             this.labelStatCurrentSpeed.Size = new System.Drawing.Size(92, 13);
             this.labelStatCurrentSpeed.TabIndex = 27;
@@ -649,7 +639,7 @@
             // labelStatAttempts
             // 
             this.labelStatAttempts.AutoSize = true;
-            this.labelStatAttempts.Location = new System.Drawing.Point(15, 281);
+            this.labelStatAttempts.Location = new System.Drawing.Point(5, 27);
             this.labelStatAttempts.Name = "labelStatAttempts";
             this.labelStatAttempts.Size = new System.Drawing.Size(105, 13);
             this.labelStatAttempts.TabIndex = 26;
@@ -658,7 +648,7 @@
             // labelStatTimer
             // 
             this.labelStatTimer.AutoSize = true;
-            this.labelStatTimer.Location = new System.Drawing.Point(15, 268);
+            this.labelStatTimer.Location = new System.Drawing.Point(5, 14);
             this.labelStatTimer.Name = "labelStatTimer";
             this.labelStatTimer.Size = new System.Drawing.Size(39, 13);
             this.labelStatTimer.TabIndex = 25;
@@ -666,7 +656,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(17, 324);
+            this.buttonCancel.Location = new System.Drawing.Point(723, 328);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(121, 23);
             this.buttonCancel.TabIndex = 35;
@@ -812,11 +802,25 @@
             this.hashSelectorRainbowTable.TabIndex = 44;
             this.hashSelectorRainbowTable.SelectedIndexChanged += new System.EventHandler(this.hashSelectorRainbowTable_SelectedIndexChanged);
             // 
+            // groupBoxUI
+            // 
+            this.groupBoxUI.Controls.Add(this.labelStatCurrentSpeed);
+            this.groupBoxUI.Controls.Add(this.labelStatTimer);
+            this.groupBoxUI.Controls.Add(this.labelStatAttempts);
+            this.groupBoxUI.Controls.Add(this.labelStatSpeed);
+            this.groupBoxUI.Location = new System.Drawing.Point(17, 268);
+            this.groupBoxUI.Name = "groupBoxUI";
+            this.groupBoxUI.Size = new System.Drawing.Size(200, 80);
+            this.groupBoxUI.TabIndex = 43;
+            this.groupBoxUI.TabStop = false;
+            this.groupBoxUI.Text = "UI";
+            // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 526);
+            this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.groupBoxRainbowTable);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonLogSave);
@@ -825,10 +829,6 @@
             this.Controls.Add(this.labelProgressBar);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.labelStatSpeed);
-            this.Controls.Add(this.labelStatCurrentSpeed);
-            this.Controls.Add(this.labelStatAttempts);
-            this.Controls.Add(this.labelStatTimer);
             this.Controls.Add(this.groupBoxBruteForce);
             this.Controls.Add(this.groupBoxTimeToCrack);
             this.Controls.Add(this.groupBoxDictionary);
@@ -846,6 +846,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxAttempts)).EndInit();
             this.groupBoxRainbowTable.ResumeLayout(false);
             this.groupBoxRainbowTable.PerformLayout();
+            this.groupBoxUI.ResumeLayout(false);
+            this.groupBoxUI.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -859,7 +861,6 @@
         private System.Windows.Forms.RadioButton radioButtonRockYouShort;
         private System.Windows.Forms.RadioButton radioButtonRockYouFullShortShort;
         private System.Windows.Forms.RadioButton radioButtonRockyouCustom;
-        private System.Windows.Forms.Button buttonDictionaryChangePath;
         private System.Windows.Forms.GroupBox groupBoxDictionary;
         private System.Windows.Forms.GroupBox groupBoxTimeToCrack;
         private System.Windows.Forms.Button buttonCrackCalculate;
@@ -916,5 +917,6 @@
         private System.Windows.Forms.RadioButton radioButtonHashedRainbowTable;
         private System.Windows.Forms.TextBox textBoxRainbowTable;
         private System.Windows.Forms.RadioButton radioButtonRegularRainbowTable;
+        private System.Windows.Forms.GroupBox groupBoxUI;
     }
 }

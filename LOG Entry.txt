@@ -174,3 +174,8 @@ File checksum form
 Gave up on Unit tests
 **2025-02-18,19,20
 Salt/Pepper playground with Password simulation
+**2025-02-24
+All forms changed to be modular (.ShowDialog)
+Settings path to files is based on .exe file and no longer can be changed (its much easier)
+CRC32 pre-generate the table (optimalization)
+Hasher added method overloading for string(bytes), bytes(string) and bytes(bytes)

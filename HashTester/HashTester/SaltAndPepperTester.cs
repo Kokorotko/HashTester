@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace HashTester
 {
-    public partial class SaltAndPepperForm: Form
+    public partial class SaltAndPepperTester: Form
     {
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
         SaltAndPepper saltAndPepper = new SaltAndPepper();
-        public SaltAndPepperForm()
+        public SaltAndPepperTester()
         {
             InitializeComponent();
         }
@@ -87,7 +87,7 @@ namespace HashTester
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -238,7 +238,7 @@ namespace HashTester
         {
             if (MessageBox.Show(Languages.Translate(621), Languages.Translate(10025), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                string path = Path.Combine(Settings.PathToPasswordTester, "nameTable.txt");
+                string path = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
                 if (!File.Exists(path)) File.Delete(path);
                 saltAndPepper.GenerateNameTableFile();
                 MessageBox.Show(Languages.Translate(622), Languages.Translate(10033), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -253,7 +253,7 @@ namespace HashTester
 
         private void buttonShowAllID_Click_1(object sender, EventArgs e) //Show All ID
         {
-            string[] fileNames = Directory.GetFiles(Settings.PathToHashData)
+            string[] fileNames = Directory.GetFiles(Settings.DirectoryToHashData)
                               .Select(Path.GetFileName)
                               .ToArray();
             if (fileNames.Count() <= 0)
@@ -275,7 +275,7 @@ namespace HashTester
 
         private bool Register()
         {
-            string pathToFile = Path.Combine(Settings.PathToPasswordTester, "nameTable.txt");
+            string pathToFile = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
             string name = textBoxName.Text;
             string passwordHash = "";
             bool useSalt = checkBoxUseSalt.Checked;
@@ -301,10 +301,10 @@ namespace HashTester
                 }
             }
             //Register
-            if (!hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, out salt, out pepper, out hashID))
+            if (!hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, textBoxName.Text, out salt, out pepper, out hashID))
             {
                 if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(624));
-                string tempPath = Path.Combine(Settings.BasePathToFiles, "HashData", hashID + ".txt");
+                string tempPath = Path.Combine(Settings.DirectoryExeBase, "HashData", hashID + ".txt");
                 if (File.Exists(tempPath)) File.Delete(tempPath);
                 hashID = "null";
                 usePepper = false;
@@ -335,7 +335,7 @@ namespace HashTester
             string passwordHash = "";
             string hashID = "";
             string userPassword = textBoxPassword.Text;
-            using (StreamReader reader = new StreamReader(Path.Combine(Settings.PathToPasswordTester, "nameTable.txt")))
+            using (StreamReader reader = new StreamReader(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))
             {
                 while (!reader.EndOfStream && !foundName)
                 {
@@ -401,7 +401,7 @@ namespace HashTester
 
         private bool RemoveSingle()
         {
-            string path = Path.Combine(Settings.PathToPasswordTester, "nameTable.txt");
+            string path = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
             string tempPath = Path.Combine(Path.GetDirectoryName(path), "nameTableTemp.txt");
             bool foundName = false;
             using (StreamReader reader = new StreamReader(path))
@@ -432,7 +432,7 @@ namespace HashTester
 
         private List<string> ShowAllRegisteredUsers()
         {
-            string path = Path.Combine(Settings.PathToPasswordTester, "nameTable.txt");
+            string path = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
             List<string> allHashID = new List<string>();
             using (StreamReader reader = new StreamReader(path))
             {
@@ -451,8 +451,8 @@ namespace HashTester
 
         private List<string> ShowIDInfo()
         {
-            string pathNameTable = Path.Combine(Settings.PathToPasswordTester, "nameTable.txt");
-            string pathHashID = Path.Combine(Settings.PathToHashData, textBoxHashID.Text + ".txt");
+            string pathNameTable = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
+            string pathHashID = Path.Combine(Settings.DirectoryToHashData, textBoxHashID.Text + ".txt");
             bool foundIDinNameTable = false;
             List<string> info = new List<string>();
             //checkNameTable
@@ -499,7 +499,7 @@ namespace HashTester
         {
             if (MessageBox.Show(Languages.Translate(640), Languages.Translate(10025), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                string[] fileNames = Directory.GetFiles(Settings.PathToHashData).ToArray();
+                string[] fileNames = Directory.GetFiles(Settings.DirectoryToHashData).ToArray();
                 if (fileNames.Count() <= 0)
                 {
                     if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(613));
