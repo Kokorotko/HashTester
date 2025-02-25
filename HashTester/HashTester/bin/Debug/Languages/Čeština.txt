@@ -1,0 +1,371 @@
+//Běžně používané
+10000==Vymazat listbox
+10001==Uložit záznam
+10002==Schránka
+10003==Nepodařilo se zkopírovat do schránky.
+10004==Chyba při kopírování
+10005==Zrušit proces
+10006==Přejít zpět
+10007==Maximální počet pokusů
+10008==Délka náhodného textu
+10009==Čas
+10010==Počet pokusů
+10011==Aktuální rychlost
+10012==Průměrná rychlost
+10013==Zobrazit záznam v listBoxu
+10014==Použít HEX pro zobrazení textu
+10015==Výkonnostní režim
+10016==Nepodařilo se najít kolizi v rámci daných pokusů.
+10017==Proces byl ukončen.
+10018==Nepodařilo se najít kolizi.
+10019==Zrušeno
+10020==Chyba
+10021==a
+10022==Nepodařilo se přečíst obsah tohoto souboru.
+10023==Před kopírováním vyberte položku ze seznamu záznamů.
+10024==Algoritmus
+10025==Upozornění
+10026==Počet použitých vláken
+10027==do
+10028==Uložit
+10029==Kopírovat
+10030==Dotaz
+10031==Info
+10032==Přerušeno
+10033==Úspěch
+10034==Zaregistrováno
+10035==Zaregistrovat
+10036==UI
+
+//**Name of Forms <<15000-15100>>
+15000==Hlavní formulář
+15001==Postupné hašování
+15002==Vyhledávač kolizí
+15003==Kontrola kolizí
+15004==Vícenásobný Hashing 
+15005==Heslový formulář
+15006==Formulář na vlákna
+15007==Formulář pro aktualizaci UI
+15008==Formulář pro sůl a pepř
+15009==Dotazník pro sůl a pepř
+
+//**Hlavní formulář <<0-100>>
+
+//ToolStrip Menu <<0-30>>
+0==Hashování
+1==Sůl a pepř
+2==Vícenásobné hashování
+3==Vyhledávání kolizí
+4==Heslo Brute Force
+5==Použit sůl
+6==Použit pepře
+7==Volba
+8==Nastavení
+9==Typ výstupu
+10==Styl výstupu
+11==VisualMode
+13==Frekvence aktualizace uživatelského rozhraní
+14==Vlákna a nastavení CPU
+15==Resetování všech nastavení
+16==Motiv systému
+17==Motiv světla
+18==Tmavé téma
+23==Jazyky
+
+//Formulář uživatelského rozhraní <<31-40>>
+31==Hash textu
+32==Hash souboru
+33==Kontrolní součet souboru
+34==Umístění souboru
+35==Vyberte soubor
+36==Kontrola kontrolního součtu
+37==Vypočítat všechny kontrolní součty
+
+//Messages <<41-100>>
+41==Vstup přerušen
+42==Před kopírováním vyberte položku ze seznamu záznamu.
+45==Jste si jisti, že chcete obnovit všechna nastavení?
+46==Potvrzení
+47==Soubor neexistuje.
+48==Používáte SHA1 (Ano) nebo RipeMD-160 (Ne)?
+49==Prosím zadejte hash pro kontrolní součet.
+50==Kontrolní součty jsou správné. Hashe jsou stejné.
+51==Kontrolní součty NEJSOU správné. Hashe NEJSOU stejné.
+52==Správné
+53==Nesprávné
+54==Kontrolní součet
+
+//**Gradual Hashing <<101-110>>
+101==Postupné hashování
+102==Před kopírováním vyberte položku z listboxu.
+
+//**Hashing Collision <<111-200>>
+111==Kontrola kolize
+112==Vygenerovat kolizi
+113==Kontrola kolize z .txt
+114==Spuštění procesu ve výkonném režimu.
+115==Počet přiřazených vláken: 
+116==Spuštění procesu v normálním režimu.
+117==Nalezena kolize!
+118==Kolize
+119==Heslo kolize
+120==Pokusy
+121==Čas k nalezení
+122==Nalezena kolize
+123==Chcete uložit kolizi do souboru .txt?
+124==Zjištěna kolize
+125==Společný hash
+126==Vstupní texty nevytváří kolizi
+//info <<130-136>>
+130==//Komentář, tento program podporuje formáty <STRING> <HEX> <BIN> a pracuje na řádcích. Nejprve je formát, pak se načtou a porovnají dva řádky. Pro příklad zkuste vygenerovat kolizi ve formuláři postupného hashování.
+131==//!Program zkontroluje pouze první formát a texty!
+132==//<STRING> Podporuje formát UTF-8 (příklad al85WTh).
+133==//<HEX> Podporuje 8D-B7 či 8DB7 nezáleží na tom, zda malá nebo velká písmena.
+134==//<BIN> Podporuje 0111 0001 s mezerami nebo bez nich.
+135==//Vždy musí být uveden algoritmus a musí být před formátem (podporované formáty: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) příklad Algorithm=RIPEMD160
+136==// V <HASH> najdete oba hashe pro text 1 a 2. To je jen pro uživatele a lze to libovolně měnit (Ale proč by to někdo dělal).
+
+//**CheckCollisionForm <<201-220>>
+201==Vstupní formát
+202==Řetězec
+203==HEX
+204==Binární
+205==Text
+206==Kontrola
+
+//**MultipleHashing <<221-240>>
+221==Přepíše „Zahrnout hashovací algoritmus“ v nastavení výstupního stylu
+222==Zobrazit algoritmus
+223==Prosím, vyberte alespoň jeden algoritmus!
+
+//**PasswordForm <<241-500>>
+241==Ukazatel průběhu
+242==Přerušit proces
+243==Počet pokusů
+244==Aktuální rychlost /s
+245==Průměrná rychlost /s
+246==Zobrazit záznam v listBoxu
+247==Slovníkový útok
+248==Čas k prolomení kalkulátor
+249==Útok duhovou tabulkou
+250==Útok hrubou silou
+
+//Slovníkový útok
+251==Plná verze
+252==Zkrácená verze
+253==Hodně zkrácená verze
+254==vlastní soubor
+
+//Time to crack calculator
+256==Počet znaků
+257==Heslo
+258==Rychlost /s
+259==Malá písmena
+260==Velká písmena
+261==Číslice
+262==Speciální
+263==Vypočítat
+
+//Rainbow Table attack
+264==Normální text
+265==Hash
+266==Vygenerování duhové tabulky
+267==Útok duhovou tabulkou
+
+//Brute force attack
+268==Maximální počet pokusů
+269==Délka
+270==Časovač zastavení (sec)
+271==Neznámá délka
+272==Zobrazení hesla jako HEX
+
+//Script
+273==Rockyou má více než 14 milionů hesel. Můžete si ji stáhnout zde
+274==Pokud chcete přidat další nebo něco jiného, můžete, jen se ujistěte, že je stejný formát.
+275==Ano
+276==Zpracovává se řádek
+277==Cesta k seznamu slov
+278==Není vybrána žádná cesta, proces se ruší.
+279==Uživatel přerušil proces.
+280==Heslo
+281==bylo nalezeno ve slovníku na řádku
+282==Doporučuji použít jiné heslo.
+283==nebylo nalezeno ve slovníku. Dobrá práce.
+284==Maximální délka hesla je 50.
+285==Délka hesla je nastavena na 50.
+286==Prolomit toto heslo bude trvat přes 1 miliardu let.
+287==Kombinace čísel
+288==Duhová tabulka byla úspěšně vygenerována.
+289==Program nemohl vygenerovat duhovou tabulku. Rušení procesu.
+290==Generování duhové tabulky bylo ukončeno.
+291==Nalezený hash pomocí slovníkového útoku
+292==Původní heslo
+293==Hash původního hesla
+294==Nalezené heslo na řádku
+295==Nalezený hash hesla
+296==Nalezené heslo v UTF-8
+297==Nalezené heslo v HEX
+298==Program nemohl najít heslo v časovém limitu.
+299==Program nemohl najít heslo v limitu pokusů.
+300==Nenašlo se heslo v souboru.
+301==Nepodařilo se spustit slovníkový útok.
+302==Neplatný formát souboru nebo soubor nebyl nalezen. Rušení slovníkového útoku.
+303==Počet zpracovaných řádků
+304==Počet všech možných kombinací
+305==Výkonný režim zapnut
+306==Výkonný režim vypnut
+307==Heslo nalezeno!
+308==Původní hash
+309==Nalezený hash hesla
+310==Nalezené heslo v UTF-8
+311==Nalezené heslo v HEX
+312==Nenašlo se heslo pod počtem zadaných pokusů.
+313==Nenašlo se původní heslo.
+314==Chcete nalezené heslo uložit do souboru txt?
+315==Chyba, nepodařilo se zastavit proces.
+
+//**SaltAndPepperQuestions <<401-420>>
+401== Opravdu chcete přepsat jiné hash ID? (Mohli byste přijít o data)
+402==Sůl
+403==Pepř
+404==Vygenerujte sůl
+405==Vygenerujte pepř
+406==Délka soli
+407==Délka pepře
+408==Použít vlastní sůl
+409==Použít vlastní pepř
+410==Vlastní sůl
+411==Vlastní pepř
+412==ID haše
+413==Generovat
+414==Prosím, zadejte platné hashID
+
+//**ThreadsForm <<421-500>>
+421==Kolik vláken chcete v programu používat?
+422==Počet vláken
+423==Procento použitých vláken
+424==Od 1 do max. počtu vláken
+425==Od 0 % do 100 %
+426==Jedno vlákno
+427==2 vlákna
+428==4 vlákna
+429==8 vláken
+430==Maximální počet vláken
+431==0% znamená, že vždy může být použito pouze jedno vlákno
+432==Vězte, že počítač upřednostňuje procenta
+433==Menší počet vláken může zpomalit výpočty
+434==Uložit
+435==Výchozí
+436==Zrušit
+437==Informace o procesoru
+438==Název
+439==Výrobce
+440==Počet jader
+441==Počet vláken
+442==Max. taktovací frekvence
+443==Popis procesoru
+444==Neznámé
+445==MHz
+446==Chybné načítání údajů o procesoru
+447==Prosím nastavte procentuální hodnotu od 0% do 100%
+
+//**UI Update Frequency <<501-550>>
+501==Kolikrát za sekundu chcete aktualizovat uživatelské rozhraní (pro konkrétní operace)
+502==Cílové snímky za sekundu
+503==Čas do další aktualizace (v milisekundách)
+504==Prosím, nastavte číslo od 1 do 125
+505==Prosím nastavte čísla od 8 do 1000
+506==Vězte, že počítač upřednostňuje milisekundy
+507==Vyšší obnovovací frekvence může způsobit problémy s výkonem
+508==Prosím, zadejte platné hodnoty
+509==Neplatné hodnoty. Zadejte prosím pouze celá čísla.
+
+//****SCRIPTS****
+
+//**FormManagement <<551-570>>
+551==Záznam uložen na
+552==Záznam uložen z
+553==Záznam úspěšně uložen.
+554==Uložení záznamu bylo zrušeno.
+556==Vyberte složku
+557==Změněna cesta
+
+//**Other <<571-610>>
+571==Sůl není inicializovaná.
+572==Pepř není inicializován.
+573==Nalezeno
+574==na řádku
+575==let
+576==měsíců  
+577==dnů
+578==hodin  
+579==minut  
+580==vteřin  
+581==Duhová tabulka souboru
+582==s
+583==algoritmus hašování je hotov.
+584==Soubor už obsahuje duhovou tabulku.
+585==Soubor neobsahuje duhovou tabulku.
+586==Soubor je zahešován pomocí
+587==ale uživatel chce 
+588==Algoritmy musí být stejné. Rušení útoku...
+
+//Settings
+589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.
+590==Bool znamená 0 <<false>> a 1 <<true>>; vše ostatní vyžaduje specifický vstup
+591==Připojil jsem komentáře o tom, jaké hodnoty jsou povoleny. Jinak se nastaví výchozí hodnota  
+592==Vizuální režim od 0 do 2  
+593==UpdateUI v milisekundách  
+594==<<8 - 1000>> celé číslo  
+595==Počet maximálně použitých vláken v procentech (%)  
+596==<<1 - 100>> celé číslo  
+597==Preferovaný jazyk  
+598==Typ výstupu od 0 do 2  
+599==Všechny OutputStyles jsou bool  
+600==Sůl a pepř bool  
+
+//**SaltAndPepperForm <<611-700>>
+612==HashID
+613==Neexistují ID na ukázání.
+614==Prosím napište jméno do textboxu.
+615==Prosím napište heslo do textboxu.
+616==Prosím napište HashID do textboxu.
+617==Přihlášení proběhlo úspěšně
+618==Špatné heslo
+619==Nejsou k dispozici žádné informace o HashID.
+620==Nejsou žádní registrovaní uživatele v databázi.
+621==Doopravdy chcete smazat celou databázi?
+622==Databáze úspěšně smazána.
+623==Tohle jméno je už registrováno.
+624==Nepoužívá se sůl či pepř.
+625==Zaheshované heslo
+626==Úspěšně zaregistrován.
+627==Použitá hash. funkce pro přihlášení
+628==Jméno nebylo nazeleno v databázi.
+629==Použita sůl
+630==Použitý pepř
+631==Úplné vstupní heslo před hashováním
+632==Tohle ID je spojeno s jménem
+633==a hash
+634==zaheshováno pomocí
+635==Nebylo nazeleno jakékoliv jméno pro tuto HashID
+636==Nebylo nazeleno jakékoliv heslo pro tuto HashID
+637==Sůl uložena pro tohle ID
+638==Délka použitého pepře je
+639==Nenašla se žádná šůl/pepř spojena s tímto hashID.
+640==Doopravdy chcete smazat všechna HashID?
+641==Nenašla se žádná HashID.
+642==Všechna hashID úspěšně smazány.
+643==Doopravdy chcete smazat registraci z databáze?
+644==Registrace úspěšně smazána.
+645==Nenašla se registrace k smazání.
+646==má prioritu před nastavením.
+647==Password Tester
+648==Ukázat info
+649==Přihlášení
+650==Vymazat
+651==Vymazat všechny
+652==Ukázat všechny 
+653==Informace o ID
+654==Ukázat všechny ID
+655==Smazat všechny ID

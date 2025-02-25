@@ -35,7 +35,19 @@
 10033==Success
 10034==Registered
 10035==Register
-//****FORMS****
+10036==UI
+
+//**Name of Forms <<15000-15100>>
+15000==Main form
+15001==Gradual Hashing
+15002==Hash Collision Finder
+15003==Hash Collision Checker
+15004==Multiple Hashing 
+15005==Password Form
+15006==Threads Form
+15007==UI Updater Form
+15008==SaltAndPepperForm
+15009==SaltAndPepperQuestions
 
 //**Main Form <<0-100>>
 
@@ -52,17 +64,12 @@
 9==Output Type
 10==Output Style
 11==VisualMode
-12==Path to Folders
 13==UI Update Frequency
 14==Threads and CPU settings
 15==Reset all settings
 16==System theme
 17==Light theme
 18==Dark theme
-19==Base
-20==Collisions
-21==Password
-22==Log save
 23==Languages
 
 //Form UI <<31-40>>
@@ -148,7 +155,6 @@
 252==short version
 253==very short version
 254==custom file
-255==Change path to password folder
 
 //Time to crack calculator
 256==Number of chars
@@ -174,7 +180,7 @@
 272==Display password as HEX
 
 //Script
-273==RockYou has over 14 mil. passwords. You can download it from hereLangu
+273==RockYou has over 14 mil. passwords. You can download it from here
 274==If you want to add more or something different you can, just make sure the format is the same.
 275==Yes
 276==Currently working on line
@@ -317,7 +323,6 @@
 598==OutputType from 0 to 2  
 599==All OutputStyles are bool  
 600==Salt and Pepper bool  
-601==Other - Path  
 
 //**SaltAndPepperForm <<611-700>>
 612==HashID
@@ -364,50 +369,3 @@
 653==Info about the ID
 654==Show all ID
 655==Delete all ID
-656==
-657==
-658==
-659==
-660==
-661==
-662==
-663==
-664==
-665==
-666==
-667==
-668==
-669==
-670==
-671==
-672==
-673==
-674==
-675==
-676==
-677==
-678==
-679==
-680==
-681==
-682==
-683==
-684==
-685==
-686==
-687==
-688==
-689==
-690==
-691==
-692==
-693==
-694==
-695==
-696==
-697==
-698==
-699==
-700==
-
-  
