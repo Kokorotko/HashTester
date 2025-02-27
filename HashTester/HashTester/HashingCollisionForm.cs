@@ -207,22 +207,26 @@ namespace HashTester
 
         private void UpdateTimerLabel()
         {
-            //Update Timer
-            int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
-            int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
-            labelTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
-            int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
-            numberOfAttempsInLastUpdate = attempts;
-            //Attempts
-            labelAttempts.Text =  Languages.Translate(10010) + ": " + attempts;
-            //Update Speed
-            double speed = triesBetween / (Settings.UpdateUIms / 1000);
-            labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + speed;
-            //Update Average Speed
-            double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
-            labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
-            //listbox
-            listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
+            try
+            {
+                //Update Timer
+                int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
+                int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
+                labelTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
+                int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
+                numberOfAttempsInLastUpdate = attempts;
+                //Attempts
+                labelAttempts.Text = Languages.Translate(10010) + ": " + attempts;
+                //Update Speed
+                double speed = triesBetween / (Settings.UpdateUIms / 1000);
+                labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + speed;
+                //Update Average Speed
+                double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
+                labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
+                //listbox
+                listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
+            }
+            catch(Exception ex) { Console.WriteLine("Collision UI problem: " + ex.Message); }
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)

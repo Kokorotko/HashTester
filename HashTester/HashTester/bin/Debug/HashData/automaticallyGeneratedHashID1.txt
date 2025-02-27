@@ -1,2 +1,0 @@
-salt==aaaaa
-pepperLength==2

@@ -179,3 +179,6 @@ All forms changed to be modular (.ShowDialog)
 Settings path to files is based on .exe file and no longer can be changed (its much easier)
 CRC32 pre-generate the table (optimalization)
 Hasher added method overloading for string(bytes), bytes(string) and bytes(bytes)
+**2025-02-27
+Debugging all
+Seeking all problems

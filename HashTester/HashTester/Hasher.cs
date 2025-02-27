@@ -532,7 +532,10 @@ namespace HashTester
         uint[] crc32Table = null;
         string HashCRC32(string text)
         {
-            if (crc32Table == null) CRC32Table();
+            if (crc32Table == null) // Check if the table is initialized
+            {
+                CRC32Table();
+            }
             //Main algorithm
             uint crcValue = 0xffffffff;
             byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(text);
@@ -598,7 +601,7 @@ namespace HashTester
 
         void CRC32Table()
         {
-            uint[] crc32Table = new uint[256]; //Size (CRC32 == 32 bytes)
+            crc32Table = new uint[256]; //Size (CRC32 == 32 bytes)
             const uint polynomial = 0xedb88320; //Polynom G (G as Generated)
 
             for (uint i = 0; i < 256; i++) //CRC table precalculation
