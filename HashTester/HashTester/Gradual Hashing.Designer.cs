@@ -35,21 +35,22 @@
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.labelQualityName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxLog
             // 
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(12, 68);
+            this.listBoxLog.Location = new System.Drawing.Point(12, 94);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(547, 342);
+            this.listBoxLog.Size = new System.Drawing.Size(547, 316);
             this.listBoxLog.TabIndex = 6;
             // 
             // buttonHashGradualHashing
             // 
             this.buttonHashGradualHashing.Location = new System.Drawing.Point(12, 12);
             this.buttonHashGradualHashing.Name = "buttonHashGradualHashing";
-            this.buttonHashGradualHashing.Size = new System.Drawing.Size(102, 23);
+            this.buttonHashGradualHashing.Size = new System.Drawing.Size(160, 23);
             this.buttonHashGradualHashing.TabIndex = 5;
             this.buttonHashGradualHashing.Text = "Gradual Hashing";
             this.buttonHashGradualHashing.UseVisualStyleBackColor = true;
@@ -74,7 +75,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(121, 13);
+            this.hashSelector.Location = new System.Drawing.Point(178, 14);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 8;
@@ -110,11 +111,21 @@
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
+            // labelQualityName
+            // 
+            this.labelQualityName.AutoSize = true;
+            this.labelQualityName.Location = new System.Drawing.Point(12, 69);
+            this.labelQualityName.Name = "labelQualityName";
+            this.labelQualityName.Size = new System.Drawing.Size(128, 13);
+            this.labelQualityName.TabIndex = 12;
+            this.labelQualityName.Text = "*will NOT use salt/pepper";
+            // 
             // FormGradual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 450);
+            this.Controls.Add(this.labelQualityName);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
@@ -139,5 +150,6 @@
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.Button buttonClipboard;
+        private System.Windows.Forms.Label labelQualityName;
     }
 }

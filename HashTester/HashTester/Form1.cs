@@ -32,9 +32,12 @@ namespace HashTester
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
-            bool askForSaltPepper = false;
-            if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
-            ProcessingHash(textHashSimple.Lines, algorithm, askForSaltPepper);
+            if (!String.IsNullOrEmpty(textHashSimple.Text)) //check
+            {
+                bool askForSaltPepper = false;
+                if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+                ProcessingHash(textHashSimple.Lines, algorithm, askForSaltPepper);
+            }
         }
         public void TXTInput_Click(object sender, EventArgs e)
         {
@@ -42,6 +45,8 @@ namespace HashTester
             if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.DirectoryExeBase;
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            openFileDialog.DefaultExt = "txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ProcessingHashTXTInput(algorithm, openFileDialog.FileName ,askForSaltPepper);
@@ -319,24 +324,25 @@ namespace HashTester
             bool isPepperUsed = false;
             string salt = "";
             string pepper = "";
+            OutputHandler outputHandler = new OutputHandler(algorithm);
+            string[] outputString = new string [originalText.Length];
             if (askForSaltPepper) usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out isSaltUsed, out isPepperUsed, out salt, out pepper);
             for (int i = 0; i < originalText.Length; i++)
             {
                 string hash = string.Empty;
                 if (usingSaltAndPepper)
                 {
-                    Console.WriteLine("ProcessHashing - Salt: " + salt);
-                    Console.WriteLine("ProcessHashing - Pepper: " + pepper);
+                    //Console.WriteLine("ProcessHashing - Salt: " + salt);
+                    //Console.WriteLine("ProcessHashing - Pepper: " + pepper);
                     hash = hasher.HashSaltPepper(originalText[i], isSaltUsed, isPepperUsed, salt, pepper, algorithm);
                 }
                 else
                 {
                     hash = hasher.Hash(originalText[i], algorithm);
                 }
-                OutputHandler outputHandler = new OutputHandler(algorithm);
-                string outputString = outputHandler.OutputStyleString(originalText[i], hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);
-                outputHandler.OutputTypeShow(outputString, listBoxLog);
+                outputString[i] = outputHandler.OutputStyleString(originalText[i], hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);                
             }
+            outputHandler.OutputTypeShow(outputString, listBoxLog);
         }
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, string fileNamePath, bool askForSaltPepper)
         {
@@ -465,34 +471,7 @@ namespace HashTester
             UIToolStripMenuLoad();
             AddLanguagesToMenu();
             FormManagement.SetUpFormTheme(this);
-            #region Language Load            
-            //Toolstrip menu
-            hashingToolStripMenuItem.Text = Languages.Translate(0);
-            saltAndPepperToolStripMenuItem.Text = Languages.Translate(1);
-            multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
-            findingCollisionsToolStripMenuItem.Text = Languages.Translate(3);
-            passwordBruteForceToolStripMenuItem.Text = Languages.Translate(4);
-            includeSaltToolStripMenuItem.Text = Languages.Translate(5);
-            includePepperToolStripMenuItem.Text = Languages.Translate(6);
-            optionsToolStripMenuItem.Text = Languages.Translate(7);
-            settingsToolStripMenuItem.Text = Languages.Translate(8);
-            outputTypeStripMenuItem.Text = Languages.Translate(9);
-            outputStyleToolStripMenuItem.Text = Languages.Translate(10);
-            visualModeToolStripMenuItem.Text = Languages.Translate(11);
-            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(13);
-            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(14);
-            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(15);
-            systemToolStripMenuItem.Text = Languages.Translate(16);
-            lightToolStripMenuItem.Text = Languages.Translate(17);
-            darkToolStripMenuItem.Text = Languages.Translate(18);
-            languagesToolStripMenuItem.Text = Languages.Translate(23);
-            //Form
-            buttonHashSimpleText.Text = Languages.Translate(31);
-            buttonFileInput.Text = Languages.Translate(32);
-            buttonClearListBox.Text = Languages.Translate(34);
-            buttonSaveLog.Text = Languages.Translate(35);
-            buttonClipboard.Text = Languages.Translate(36);
-            #endregion
+            FormUISetUpLanguages();
         }
 
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
@@ -585,6 +564,7 @@ namespace HashTester
                         }
                         newItem.Checked = true;
                         Settings.SelectedLanguage = newItem.Name;
+                        FormUISetUpLanguages(); //set new language
                         Settings.SaveSettings();
                     };
 
@@ -622,7 +602,7 @@ namespace HashTester
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
                 else MessageBox.Show(Languages.Translate(42), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
                 MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -638,6 +618,41 @@ namespace HashTester
         {
             SaltAndPepperTester saltAndPepperForm = new SaltAndPepperTester();
             saltAndPepperForm.ShowDialog();
+        }
+
+        private void FormUISetUpLanguages()
+        {
+            hashingToolStripMenuItem.Text = Languages.Translate(0);
+            saltAndPepperToolStripMenuItem.Text = Languages.Translate(1);
+            multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
+            findingCollisionsToolStripMenuItem.Text = Languages.Translate(3);
+            passwordCrackerToolStripMenuItem.Text = Languages.Translate(4);
+            includeSaltToolStripMenuItem.Text = Languages.Translate(5);
+            includePepperToolStripMenuItem.Text = Languages.Translate(6);
+            optionsToolStripMenuItem.Text = Languages.Translate(7);
+            settingsToolStripMenuItem.Text = Languages.Translate(8);
+            outputTypeStripMenuItem.Text = Languages.Translate(9);
+            outputStyleToolStripMenuItem.Text = Languages.Translate(10);
+            visualModeToolStripMenuItem.Text = Languages.Translate(11);
+            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(13);
+            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(14);
+            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(15);
+            systemToolStripMenuItem.Text = Languages.Translate(16);
+            lightToolStripMenuItem.Text = Languages.Translate(17);
+            darkToolStripMenuItem.Text = Languages.Translate(18);
+            languagesToolStripMenuItem.Text = Languages.Translate(23);
+            txtFileToolStripMenuItem.Text = Languages.Translate(24);
+            includeAllToolStripMenuItem.Text = 
+            includeHashingAlgorithmToolStripMenuItem.Text = 
+            includeNumberOfHashToolStripMenuItem.Text = 
+            includeOriginalStringToolStripMenuItem.Text =
+            includePepperToolStripMenuItem.Text = 
+            //Form
+            buttonHashSimpleText.Text = Languages.Translate(31);
+            buttonFileInput.Text = Languages.Translate(32);
+            buttonClearListBox.Text = Languages.Translate(10000);
+            buttonSaveLog.Text = Languages.Translate(10001);
+            buttonClipboard.Text = Languages.Translate(10002);
         }
     }
 }

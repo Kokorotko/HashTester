@@ -64,8 +64,11 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(414));
-                textBoxHashID.Focus();
+
+                if (MessageBox.Show(Languages.Translate(414), Languages.Translate(10030), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    DialogResult = DialogResult.OK;
+                }
             }            
         }
 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.labelQuestion = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxMiliseconds = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonDefault = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.labelInfo = new System.Windows.Forms.Label();
             this.labelRangeFPS = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxFPS = new System.Windows.Forms.TextBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -61,13 +61,13 @@
             this.labelQuestion.TabIndex = 0;
             this.labelQuestion.Text = "How many times a second do you want to update the UI (for specific operations)";
             // 
-            // textBox2
+            // textBoxMiliseconds
             // 
-            this.textBox2.Location = new System.Drawing.Point(210, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBoxMiliseconds.Location = new System.Drawing.Point(210, 54);
+            this.textBoxMiliseconds.Name = "textBoxMiliseconds";
+            this.textBoxMiliseconds.Size = new System.Drawing.Size(187, 20);
+            this.textBoxMiliseconds.TabIndex = 2;
+            this.textBoxMiliseconds.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // buttonSave
             // 
@@ -195,13 +195,13 @@
             this.labelRangeFPS.TabIndex = 9;
             this.labelRangeFPS.Text = "Please set numbers from 1 to 125";
             // 
-            // textBox1
+            // textBoxFPS
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxFPS.Location = new System.Drawing.Point(16, 54);
+            this.textBoxFPS.Name = "textBoxFPS";
+            this.textBoxFPS.Size = new System.Drawing.Size(187, 20);
+            this.textBoxFPS.TabIndex = 1;
+            this.textBoxFPS.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // radioButton1
             // 
@@ -286,7 +286,7 @@
             this.Controls.Add(this.labelTimeToUpdate);
             this.Controls.Add(this.radioButton6);
             this.Controls.Add(this.labelFPS);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxMiliseconds);
             this.Controls.Add(this.radioButton7);
             this.Controls.Add(this.radioButton5);
             this.Controls.Add(this.labelRangeT);
@@ -300,7 +300,7 @@
             this.Controls.Add(this.labelInfo2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.buttonDefault);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxFPS);
             this.Controls.Add(this.labelRangeFPS);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
@@ -316,7 +316,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelQuestion;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxMiliseconds;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonDefault;
@@ -329,7 +329,7 @@
         private System.Windows.Forms.RadioButton radioButton9;
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Label labelRangeFPS;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxFPS;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;

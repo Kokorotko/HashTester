@@ -60,7 +60,7 @@
             // 
             this.buttonChecksum.Location = new System.Drawing.Point(349, 9);
             this.buttonChecksum.Name = "buttonChecksum";
-            this.buttonChecksum.Size = new System.Drawing.Size(122, 23);
+            this.buttonChecksum.Size = new System.Drawing.Size(174, 23);
             this.buttonChecksum.TabIndex = 1;
             this.buttonChecksum.Text = "Checksum check";
             this.buttonChecksum.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             this.groupBoxChecksum.Controls.Add(this.labelMD5);
             this.groupBoxChecksum.Location = new System.Drawing.Point(13, 110);
             this.groupBoxChecksum.Name = "groupBoxChecksum";
-            this.groupBoxChecksum.Size = new System.Drawing.Size(453, 266);
+            this.groupBoxChecksum.Size = new System.Drawing.Size(505, 266);
             this.groupBoxChecksum.TabIndex = 3;
             this.groupBoxChecksum.TabStop = false;
             this.groupBoxChecksum.Text = "Checksum";
@@ -101,7 +101,7 @@
             // 
             this.button5.Location = new System.Drawing.Point(343, 235);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(104, 23);
+            this.button5.Size = new System.Drawing.Size(156, 23);
             this.button5.TabIndex = 12;
             this.button5.Text = "Copy CRC32";
             this.button5.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // 
             this.button4.Location = new System.Drawing.Point(343, 210);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(104, 23);
+            this.button4.Size = new System.Drawing.Size(156, 23);
             this.button4.TabIndex = 11;
             this.button4.Text = "Copy RipeMD-160";
             this.button4.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(343, 125);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 23);
+            this.button3.Size = new System.Drawing.Size(156, 23);
             this.button3.TabIndex = 10;
             this.button3.Text = "Copy SHA512";
             this.button3.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(343, 72);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 23);
+            this.button2.Size = new System.Drawing.Size(156, 23);
             this.button2.TabIndex = 9;
             this.button2.Text = "Copy SHA256";
             this.button2.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(343, 43);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
+            this.button1.Size = new System.Drawing.Size(156, 23);
             this.button1.TabIndex = 8;
             this.button1.Text = "Copy SHA1";
             this.button1.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             // 
             this.buttonCopyMD5.Location = new System.Drawing.Point(343, 15);
             this.buttonCopyMD5.Name = "buttonCopyMD5";
-            this.buttonCopyMD5.Size = new System.Drawing.Size(104, 23);
+            this.buttonCopyMD5.Size = new System.Drawing.Size(156, 23);
             this.buttonCopyMD5.TabIndex = 7;
             this.buttonCopyMD5.Text = "Copy MD5";
             this.buttonCopyMD5.UseVisualStyleBackColor = true;
@@ -230,7 +230,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(331, 38);
+            this.checkBox1.Location = new System.Drawing.Point(383, 38);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(140, 17);
             this.checkBox1.TabIndex = 5;
@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 382);
+            this.ClientSize = new System.Drawing.Size(530, 382);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.labelLocation);
             this.Controls.Add(this.groupBoxChecksum);

@@ -265,6 +265,8 @@
             // checkBoxUseLog
             // 
             this.checkBoxUseLog.AutoSize = true;
+            this.checkBoxUseLog.Checked = true;
+            this.checkBoxUseLog.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxUseLog.Location = new System.Drawing.Point(12, 111);
             this.checkBoxUseLog.Name = "checkBoxUseLog";
             this.checkBoxUseLog.Size = new System.Drawing.Size(112, 17);
@@ -341,7 +343,7 @@
             this.labelAlgorithm.TabIndex = 23;
             this.labelAlgorithm.Text = "Choose algorithm";
             // 
-            // SaltAndPepperForm
+            // SaltAndPepperTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -360,7 +362,7 @@
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
-            this.Name = "SaltAndPepperForm";
+            this.Name = "SaltAndPepperTester";
             this.Text = "SaltAndPepperForm";
             this.Load += new System.EventHandler(this.SaltAndPepperForm_Load);
             this.groupBoxTester.ResumeLayout(false);

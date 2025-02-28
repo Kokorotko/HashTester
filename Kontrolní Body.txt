@@ -16,7 +16,6 @@ Password JailBreak - DONE
 KB03:
 Vyjímky
 CZ/EN možnost - Done
-Informace o různých Hashech (info)
 Dokumentace Praktická část
 Zlepšení UI - Done
 Light/DarkMode - Done

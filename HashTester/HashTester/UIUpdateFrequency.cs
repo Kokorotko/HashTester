@@ -27,7 +27,7 @@ namespace HashTester
         private void button3_Click(object sender, EventArgs e)
         {
             fps = 30;
-            textBox1.Text = fps.ToString();
+            textBoxFPS.Text = fps.ToString();
         }
 
         private void UIUpdateFrequency_Load(object sender, EventArgs e)
@@ -47,8 +47,8 @@ namespace HashTester
             #endregion
             miliseconds = Settings.UpdateUIms;
             fps = (int)Math.Ceiling(1000.0 / miliseconds);
-            textBox1.Text = fps.ToString();
-            textBox2.Text = miliseconds.ToString();
+            textBoxFPS.Text = fps.ToString();
+            textBoxMiliseconds.Text = miliseconds.ToString();
         }
 
         private void selectedRadioButtonChanged(object sender, EventArgs e)
@@ -73,8 +73,8 @@ namespace HashTester
                 fps = 1000 / miliseconds;
             }
 
-            textBox1.Text = fps.ToString();
-            textBox2.Text = miliseconds.ToString();
+            textBoxFPS.Text = fps.ToString();
+            textBoxMiliseconds.Text = miliseconds.ToString();
             radioButtonSet = false;
         }
 
@@ -83,13 +83,18 @@ namespace HashTester
             if (!radioButtonSet)
             {
                 DeselectAllRadioButtons();
-                if (double.TryParse(textBox1.Text, out double temp) && temp > 0)
+                if (double.TryParse(textBoxFPS.Text, out double temp) && temp > 0)
                 {
-                    textBox2.Text = Math.Ceiling(1000.0 / temp).ToString();
+                    if (temp > 125)
+                    {
+                        textBoxMiliseconds.Text = "8";
+                        textBoxFPS.Text = "125";
+                    }
+                    textBoxMiliseconds.Text = Math.Ceiling(1000.0 / temp).ToString();
                 }
                 else
                 {
-                    textBox2.Text = "";
+                    textBoxMiliseconds.Text = "";
                 }
             }            
         }
@@ -99,13 +104,23 @@ namespace HashTester
             if (!radioButtonSet)
             {
                 DeselectAllRadioButtons();
-                if (double.TryParse(textBox2.Text, out double temp) && temp > 0)
+                if (double.TryParse(textBoxMiliseconds.Text, out double temp) && temp > 0)
                 {
-                    textBox1.Text = Math.Ceiling(1000.0 / temp).ToString();
+                    if (temp < 8)
+                    {
+                        textBoxFPS.Text = "125";
+                        textBoxMiliseconds.Text = "8";
+                    }
+                    else if (temp > 1000)
+                    {
+                        textBoxFPS.Text = "1";
+                        textBoxMiliseconds.Text = "1000";
+                    }
+                    else textBoxFPS.Text = Math.Ceiling(1000.0 / temp).ToString();
                 }
                 else
                 {
-                    textBox1.Text = "";
+                    textBoxFPS.Text = "";
                 }
             }
         }
@@ -131,7 +146,7 @@ namespace HashTester
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox1.Text, out fps) && int.TryParse(textBox2.Text, out miliseconds))
+            if (int.TryParse(textBoxFPS.Text, out fps) && int.TryParse(textBoxMiliseconds.Text, out miliseconds))
             {
                 if (miliseconds >= 8 && miliseconds <= 1000)
                 {

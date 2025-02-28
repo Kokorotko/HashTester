@@ -38,15 +38,12 @@
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradualHashingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fileChecksumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saltPepperTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.passwordBruteForceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordCrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +66,9 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.saltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +101,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(178, 67);
+            this.hashSelector.Location = new System.Drawing.Point(281, 65);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 4;
@@ -111,9 +111,9 @@
             // 
             this.buttonFileInput.Location = new System.Drawing.Point(97, 65);
             this.buttonFileInput.Name = "buttonFileInput";
-            this.buttonFileInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonFileInput.Size = new System.Drawing.Size(135, 23);
             this.buttonFileInput.TabIndex = 5;
-            this.buttonFileInput.Text = "TXTInput";
+            this.buttonFileInput.Text = "Hash .txt file";
             this.buttonFileInput.UseVisualStyleBackColor = true;
             this.buttonFileInput.Click += new System.EventHandler(this.TXTInput_Click);
             // 
@@ -155,85 +155,62 @@
             // hashingToolStripMenuItem
             // 
             this.hashingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saltAndPepperToolStripMenuItem,
             this.gradualHashingToolStripMenuItem1,
             this.fileChecksumToolStripMenuItem,
             this.saltPepperTesterToolStripMenuItem,
             this.multipleHashingToolStripMenuItem,
             this.findingCollisionsToolStripMenuItem,
-            this.passwordBruteForceToolStripMenuItem});
+            this.passwordCrackerToolStripMenuItem});
             this.hashingToolStripMenuItem.Name = "hashingToolStripMenuItem";
             this.hashingToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.hashingToolStripMenuItem.Text = "Hashing";
             // 
-            // saltAndPepperToolStripMenuItem
-            // 
-            this.saltAndPepperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.includeSaltToolStripMenuItem,
-            this.includePepperToolStripMenuItem});
-            this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
-            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
-            // 
-            // includeSaltToolStripMenuItem
-            // 
-            this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.includeSaltToolStripMenuItem.Text = "Use Salt";
-            this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click);
-            // 
-            // includePepperToolStripMenuItem
-            // 
-            this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.includePepperToolStripMenuItem.Text = "Use Pepper";
-            this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click);
-            // 
             // gradualHashingToolStripMenuItem1
             // 
             this.gradualHashingToolStripMenuItem1.Name = "gradualHashingToolStripMenuItem1";
-            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             this.fileChecksumToolStripMenuItem.Click += new System.EventHandler(this.fileChecksumToolStripMenuItem_Click);
             // 
             // saltPepperTesterToolStripMenuItem
             // 
             this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
-            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
             this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
             // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
-            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // findingCollisionsToolStripMenuItem
             // 
             this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
-            // passwordBruteForceToolStripMenuItem
+            // passwordCrackerToolStripMenuItem
             // 
-            this.passwordBruteForceToolStripMenuItem.Name = "passwordBruteForceToolStripMenuItem";
-            this.passwordBruteForceToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.passwordBruteForceToolStripMenuItem.Text = "Password Brute Force";
-            this.passwordBruteForceToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
+            this.passwordCrackerToolStripMenuItem.Name = "passwordCrackerToolStripMenuItem";
+            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.passwordCrackerToolStripMenuItem.Text = "Password Cracker";
+            this.passwordCrackerToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saltAndPepperToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.outputTypeStripMenuItem,
             this.outputStyleToolStripMenuItem});
@@ -319,21 +296,21 @@
             // messageBoxToolStripMenuItem
             // 
             this.messageBoxToolStripMenuItem.Name = "messageBoxToolStripMenuItem";
-            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.messageBoxToolStripMenuItem.Text = "MessageBox";
             this.messageBoxToolStripMenuItem.Click += new System.EventHandler(this.messageBoxToolStripMenuItem_Click);
             // 
             // listBoxToolStripMenuItem
             // 
             this.listBoxToolStripMenuItem.Name = "listBoxToolStripMenuItem";
-            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listBoxToolStripMenuItem.Text = "ListBox";
             this.listBoxToolStripMenuItem.Click += new System.EventHandler(this.listBoxToolStripMenuItem_Click);
             // 
             // txtFileToolStripMenuItem
             // 
             this.txtFileToolStripMenuItem.Name = "txtFileToolStripMenuItem";
-            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.txtFileToolStripMenuItem.Text = "TxtFile";
             this.txtFileToolStripMenuItem.Click += new System.EventHandler(this.txtFileToolStripMenuItem_Click);
             // 
@@ -410,6 +387,27 @@
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
+            // saltAndPepperToolStripMenuItem
+            // 
+            this.saltAndPepperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.includeSaltToolStripMenuItem,
+            this.includePepperToolStripMenuItem});
+            this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
+            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
+            // 
+            // includeSaltToolStripMenuItem
+            // 
+            this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includeSaltToolStripMenuItem.Text = "Use Salt";
+            // 
+            // includePepperToolStripMenuItem
+            // 
+            this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includePepperToolStripMenuItem.Text = "Use Pepper";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,7 +446,6 @@
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem hashingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saltAndPepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputTypeStripMenuItem;
@@ -459,8 +456,6 @@
         private System.Windows.Forms.ToolStripMenuItem includeOriginalStringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeNumberOfHashToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeHashingAlgorithmToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem includeSaltToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gradualHashingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeSaltAndPepperToolStripMenuItem;
@@ -476,9 +471,12 @@
         private System.Windows.Forms.ToolStripMenuItem threadsAndCPUSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeAllToolStripMenuItem;
         private System.Windows.Forms.Button buttonClipboard;
-        private System.Windows.Forms.ToolStripMenuItem passwordBruteForceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordCrackerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileChecksumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saltPepperTesterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saltAndPepperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem includeSaltToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
     }
 }
 

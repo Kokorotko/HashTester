@@ -731,16 +731,24 @@ namespace HashTester
         {
             salt = null;
             pepperLenght = -1;
-            string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");
-            using (StreamReader reader = new StreamReader(path))
+            try
             {
-                while (!reader.EndOfStream)
+                string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    string line = reader.ReadLine();
-                    string[] splitLine = line.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries);
-                    if (splitLine[0] == "salt") salt = splitLine[1];
-                    if (splitLine[0] == "pepperLength") pepperLenght = int.Parse(splitLine[1]);
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        string[] splitLine = line.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries);
+                        if (splitLine[0] == "salt") salt = splitLine[1];
+                        if (splitLine[0] == "pepperLength") pepperLenght = int.Parse(splitLine[1]);
+                    }
                 }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show(Languages.Translate(656), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
         }
 
@@ -814,6 +822,7 @@ namespace HashTester
                 using (SaltAndPepperSetup saltAndPepperQuestion = new SaltAndPepperSetup(useSalt, usePepper))
                 {
                     // Show dialog and handle result
+                    saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
                     if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
                     {
                         saltAndPepperQuestion.GetSaltPepperInformation(

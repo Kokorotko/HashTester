@@ -1,46 +1,3 @@
-MAIN:
-Change default to save to listbox
-MessageBox Output přetížení
-Když se nevybere salt/pepper v normálním, vypsat "Hashování bez soli/pepře"
-Změna jazyka při zmáčknutí jazyka
-"Tmavé téma" na Tmavý motiv
-"Motiv světla" na Světlý motiv
-Špatný český překlad u Clipboardu
-"TxtFile" na Soubor .txt (Český překlad)
-"Hash" změnit na Hashovat soubor (nebo to stačí jen roztáhnout)
-Možnosti ve výstupu nejsou přeloženy do češtiny
-Output txt file při přerušení messageBox chyby
-Output txt file nastavit .txt jako základ a jméno "hashed text"
-Když je input prázný, nic nehešovat, ani messageBox neukázat
-MessageBox output když je jich několik tak ukázat všechy najednou ne postupně (stejné pro .txt output)
-Přesunout použít sůl a pepř do Voleb
-Heslo brute Force není správný název
-THREADS:
-Threads form nenastavují se defaultní hodnoty do textboxu
-Zkontrolovat jestli má PC možnost použít 2,4,8 vláken, jestli ne, tak zablokovat radiobutton
-Jestli zadá více vláken než má CPU, tak to skočí zpátky na max
-GRADUAL HASHING:
-Postupné hashování zvětšit button (nevejde se tam text)
-Vypsat messagebox error když je prázndný vstup
-Nepoužívat sůl/pepř
-FILE CHECKSUM:
-čeština zvětšit tlačítka na kopírování
-"Hashe jsou stejné" místo toho soubory jsou stejné (taky pro Angličtinu)
-Všechny kopírovat do CLipboardu catch(Argument Null Exception)
-SALT AND PEPPER FORM:
-Default check Show log in Listbox
-Use Salt, Use Pepper a has prioti.... chybí *
-Salt and Pepper spawn form in the middle
-Vypsalo do logu stejnou informaci podle Lenght textu (how)
-LoadSalt FileNotFoundException pro neznáme ID, throw error
-Info about the ID když není, hodit místo Info Warning
-English "Password" translation Missing
-Info about the ID, do not show if the text is null
-Shows shit in the listbox even when Show Log in listbox is unchecked
-SALT AND PEPPER QUESTION:
-Když je ID of Hash nic, zeptat se pomocí messagebox jestli chce pokračovat, když chce, neuloží se .txt soubor
-MULTIPLE HASHING:
-tlačítko abort or some shit zvětšit
 COLLISION DETECTOR:
 Aktuální rychlost a průměrná rychlost se nezobrazuje
 Po max. attempts do Logu output
@@ -48,7 +5,6 @@ Problém se reset values
 button save log a copy is enabled (should not be)
 Cannot find collision
 Zjištěná kolize chybí :
-Multithread:
 Počet přiřazených vláken 0
 Počet pokusů má problémy
 Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
@@ -59,7 +15,6 @@ LOG output when saved, not put into the Logs folder + starting name set "Log.txt
 UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
 NameTable when reset doesnt generate //shit
 
-ZKONTROLOVAT PASSWORD FORM
 
 
 

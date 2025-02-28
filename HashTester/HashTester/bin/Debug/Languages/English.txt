@@ -56,7 +56,7 @@
 1==Salt and Pepper
 2==Multiple Hashing
 3==Finding Collisions
-4==Password Brute Force
+4==Password Cracker
 5==Use Salt
 6==Use Pepper
 7==Options
@@ -71,6 +71,12 @@
 17==Light theme
 18==Dark theme
 23==Languages
+24==File .txt
+25==Include original text
+26==Include numbering
+27==Include hashing algorithm
+28==Include salt and pepper
+29==Include all options
 
 //Form UI <<31-40>>
 31==Hash text
@@ -89,15 +95,19 @@
 47==File doesnt exists.
 48==Do you use SHA1 (Yes) or RipeMD-160 (No)
 49==Please input a hash for checksum.
-50==Checksums are correct. Hashes are the same.
-51==Checksums are NOT correct. Hashes are NOT the same.
+50==Checksums are correct. Files are the same.
+51==Checksums are NOT correct. Files are NOT the same.
 52==Correct
 53==Wrong
 54==Checksum
+55==File has not been saved.
+56==An error has occured. Please contact the creator and report this bug.
 
 //**Gradual Hashing <<101-110>>
 101==Gradual hashing
 102==Please select an item from the log listbox before copying.
+103==Please set text before hashing.
+104==will NOT use salt/pepper
 
 //**Hashing Collision <<111-200>>
 111==Check collision
@@ -238,7 +248,7 @@
 411==Own pepper
 412==ID of hash
 413==Generate
-414==Please enter a valid hashID
+414==If you don't set HashID, salt nor pepper will be saved. Do you wish to continue?
 
 //**ThreadsForm <<421-500>>
 421==How many threads do you want to use in a program?
@@ -369,3 +379,4 @@
 653==Info about the ID
 654==Show all ID
 655==Delete all ID
+656==This HashID file does NOT exist.

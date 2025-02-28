@@ -193,7 +193,7 @@ namespace HashTester
         public static void ResetSettings()
         {
             VisualMode = VisualModeEnum.System;
-            OutputType = OutputTypeEnum.MessageBox;
+            OutputType = OutputTypeEnum.Listbox;
             OutputStyleIncludeHashAlgorithm = false;
             OutputStyleIncludeNumberOfHash = false;
             OutputStyleIncludeOriginalString = false;

@@ -56,7 +56,7 @@
 1==Sůl a pepř
 2==Vícenásobné hashování
 3==Vyhledávání kolizí
-4==Heslo Brute Force
+4==Prolamovač hesel
 5==Použit sůl
 6==Použit pepře
 7==Volba
@@ -68,13 +68,19 @@
 14==Vlákna a nastavení CPU
 15==Resetování všech nastavení
 16==Motiv systému
-17==Motiv světla
-18==Tmavé téma
+17==Světlý motiv
+18==Tmavý motiv
 23==Jazyky
+24==Soubor .txt
+25==Zahrnout původní text
+26==Zahrnout číslování
+27==Zahrnout hashovací algoritmus
+28==Zahrnout sůl a pepř
+29==Zahrnout všechny možnosti
 
 //Formulář uživatelského rozhraní <<31-40>>
 31==Hash textu
-32==Hash souboru
+32==Hash .txt souboru
 33==Kontrolní součet souboru
 34==Umístění souboru
 35==Vyberte soubor
@@ -89,15 +95,19 @@
 47==Soubor neexistuje.
 48==Používáte SHA1 (Ano) nebo RipeMD-160 (Ne)?
 49==Prosím zadejte hash pro kontrolní součet.
-50==Kontrolní součty jsou správné. Hashe jsou stejné.
-51==Kontrolní součty NEJSOU správné. Hashe NEJSOU stejné.
+50==Kontrolní součty jsou správné. Soubory jsou stejné.
+51==Kontrolní součty NEJSOU správné. Soubory NEJSOU stejné.
 52==Správné
 53==Nesprávné
 54==Kontrolní součet
+55==Soubor se nepodařilo uložit.
+56==Došlo k chybě. Kontaktujte prosím tvůrce a nahlašte tuto chybu.
 
 //**Gradual Hashing <<101-110>>
 101==Postupné hashování
 102==Před kopírováním vyberte položku z listboxu.
+103==Prosím zadejte text před hashováním.
+104==NEpoužívá se sůl/pepř.
 
 //**Hashing Collision <<111-200>>
 111==Kontrola kolize
@@ -238,7 +248,7 @@
 411==Vlastní pepř
 412==ID haše
 413==Generovat
-414==Prosím, zadejte platné hashID
+414==Pokud nezadáte hashID, nebudou sůl a pepř uloženy. Chcete pokračovat?
 
 //**ThreadsForm <<421-500>>
 421==Kolik vláken chcete v programu používat?
@@ -369,3 +379,4 @@
 653==Informace o ID
 654==Ukázat všechny ID
 655==Smazat všechny ID
+656==Soubor se zadaným HashID neexistuje.

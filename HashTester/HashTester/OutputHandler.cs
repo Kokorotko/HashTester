@@ -90,18 +90,32 @@ namespace HashTester
                     break;
                 case OutputTypeEnum.Listbox:
                     listBox.Items.Add(outputString);
-                    listBox.TopIndex = listBox.Items.Count - 1;
+                    listBox.TopIndex = listBox.Items.Count - 1; //go all the way down
                     break;
                 case OutputTypeEnum.TXTFile:
-                    SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
-                    saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
-                    if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
+                    try
                     {
-                        File.WriteAllText(saveFileDialogCustom.FileName, outputString);
+                        SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
+                        saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
+                        saveFileDialogCustom.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                        saveFileDialogCustom.DefaultExt = "txt";
+                        saveFileDialogCustom.FileName = "Hashed text";
+                        saveFileDialogCustom.AddExtension = true;
+                        if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
+                        {
+                            File.WriteAllText(saveFileDialogCustom.FileName, outputString);
+                        }
+                        else MessageBox.Show(Languages.Translate(55), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
                     }
-                    break;
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(Languages.Translate(56) + "\n" + ex.Message, Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
             }
         }
+
         /// <summary>
         /// Handles output based on user settings for multiple string.
         /// </summary>
@@ -116,16 +130,30 @@ namespace HashTester
                     foreach (string s in arrayOutputString)
                     {
                         if (s != "") listBox.Items.Add(s);
-                    }                    
+                    }
+                    listBox.TopIndex = listBox.Items.Count - 1; //go all the way down
                     break;
                 case OutputTypeEnum.TXTFile:
-                    SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
-                    saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
-                    if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
+                    try
                     {
-                        File.WriteAllText(saveFileDialogCustom.FileName, ArrayStringToOne(arrayOutputString));
+                        SaveFileDialog saveFileDialogCustom = new SaveFileDialog();
+                        saveFileDialogCustom.InitialDirectory = Settings.DirectoryExeBase;
+                        saveFileDialogCustom.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                        saveFileDialogCustom.DefaultExt = "txt";
+                        saveFileDialogCustom.FileName = "Multiple hashed texts";
+                        saveFileDialogCustom.AddExtension = true;
+                        if (saveFileDialogCustom.ShowDialog() == DialogResult.OK)
+                        {                            
+                            File.WriteAllText(saveFileDialogCustom.FileName, ArrayStringToOne(arrayOutputString));
+                        }
+                        else MessageBox.Show(Languages.Translate(55), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
                     }
-                    break;
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(Languages.Translate(56) + "\n" + ex.Message, Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
             }
         }
 
@@ -134,8 +162,9 @@ namespace HashTester
             string outputString = "";
             foreach (string s in array)
             {
-                outputString += s + Environment.NewLine;
+                outputString += s + "\n";
             }
+            outputString = outputString.TrimEnd('\n');
             return outputString;
         }
     }

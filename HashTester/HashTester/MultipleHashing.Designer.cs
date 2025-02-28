@@ -160,7 +160,7 @@
             // 
             this.buttonGoBack.Location = new System.Drawing.Point(11, 415);
             this.buttonGoBack.Name = "buttonGoBack";
-            this.buttonGoBack.Size = new System.Drawing.Size(75, 23);
+            this.buttonGoBack.Size = new System.Drawing.Size(191, 23);
             this.buttonGoBack.TabIndex = 21;
             this.buttonGoBack.Text = "Go Back";
             this.buttonGoBack.UseVisualStyleBackColor = true;

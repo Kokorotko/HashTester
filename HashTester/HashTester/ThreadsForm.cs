@@ -73,14 +73,21 @@ namespace HashTester
 
             if (int.TryParse(textBoxThread.Text, out int threads) && threads > 0)
             {
-                int percent = (int)((double)threads / numberOfThreadsInCPU * 100);
-                textBoxPercent.Text = Math.Min(percent, 100).ToString();
+                if (threads > numberOfThreadsInCPU) // bigger than max Threads
+                {
+                    textBoxThread.Text = numberOfThreadsInCPU.ToString();
+                    textBoxPercent.Text = "100";
+                }
+                else
+                {
+                    int percent = (int)((double)threads / numberOfThreadsInCPU * 100);
+                    textBoxPercent.Text = Math.Min(percent, 100).ToString();
+                }
             }
             else
             {
                 textBoxPercent.Text = "0";
             }
-
             updating = false;
         }
 
@@ -89,8 +96,13 @@ namespace HashTester
             if (updating) return;
             updating = true;
 
-            if (int.TryParse(textBoxPercent.Text, out int percent) && percent >= 0 && percent <= 100)
+            if (int.TryParse(textBoxPercent.Text, out int percent) && percent >= 0 )
             {
+                if (percent > 100)
+                {
+                    textBoxPercent.Text = "100";
+                    textBoxThread.Text = numberOfThreadsInCPU.ToString();
+                }
                 int threads = Math.Max(1, (int)Math.Round((double)percent / 100 * numberOfThreadsInCPU));
                 textBoxThread.Text = threads.ToString();
             }
@@ -98,14 +110,12 @@ namespace HashTester
             {
                 textBoxThread.Text = "1";
             }
-
             updating = false;
         }
 
         private void ThreadsForm_Load(object sender, EventArgs e)
         {
             FormManagement.SetUpFormTheme(this);
-
             #region Languages
             labelHowMany.Text = Languages.Translate(421);
             labelThreads.Text = Languages.Translate(422);
@@ -144,16 +154,71 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(446) + ": " + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             percentage = Settings.ThreadsUsagePercentage;
-            if (percentage == 100) radioButtonPercentHunred.Checked = true;
-            else if (percentage == 75) radioButtonPercent2.Checked = true;
-            else if (percentage == 50) radioButtonPercent3.Checked = true;
-            else if (percentage == 25) radioButtonPercent4.Checked = true;
-            else if (percentage == 0) radioButtonPercentZero.Checked = true;
-            else if (percentage * numberOfThreadsInCPU == 1) radioButtonThread1.Checked = true;
-            else if (percentage * numberOfThreadsInCPU == 2) radioButtonThread2.Checked = true;
-            else if (percentage * numberOfThreadsInCPU == 4) radioButtonThread3.Checked = true;
-            else if (percentage * numberOfThreadsInCPU == 8) radioButtonThread4.Checked = true;
-            else textBoxPercent.Text = percentage.ToString();
+            if (percentage == 100)
+            {
+                radioButtonPercentHunred.Checked = true;
+                textBoxPercent.Text = "100";
+            }
+            else if (percentage == 75)
+            {
+                radioButtonPercent2.Checked = true;
+                textBoxPercent.Text = "75";
+            }
+            else if (percentage == 50)
+            {
+                radioButtonPercent3.Checked = true;
+                textBoxPercent.Text = "50";
+            }
+            else if (percentage == 25)
+            {
+                radioButtonPercent4.Checked = true;
+                textBoxPercent.Text = "25";
+            }
+            else if (percentage == 0)
+            {
+                radioButtonPercentZero.Checked = true;
+                textBoxPercent.Text = "0";
+            }
+            else if (percentage * numberOfThreadsInCPU == 1)
+            {
+                radioButtonThread1.Checked = true;
+                textBoxThread.Text = "1";
+            }
+            else if (percentage / 100.00 * numberOfThreadsInCPU == 2)
+            {
+                radioButtonThread2.Checked = true;
+                textBoxThread.Text = "2";
+            }
+            else if (percentage / 100.00 * numberOfThreadsInCPU == 4)
+            {
+                radioButtonThread3.Checked = true;
+                textBoxThread.Text = "4";
+            }
+            else if (percentage / 100.00 * numberOfThreadsInCPU == 8)
+            {
+                radioButtonThread4.Checked = true;
+                textBoxThread.Text = "8";
+            }
+            else
+            {
+                textBoxPercent.Text = percentage.ToString();
+            }
+            //Block Thread counts
+            if (numberOfThreadsInCPU < 2)
+            {
+                radioButtonThread2.Enabled = false;
+                radioButtonThread3.Enabled = false;
+                radioButtonThread4.Enabled = false; 
+            }
+            else if (numberOfThreadsInCPU < 4)
+            {
+                radioButtonThread3.Enabled = false;
+                radioButtonThread4.Enabled = false;
+            }
+            else if (numberOfThreadsInCPU < 8)
+            {
+                radioButtonThread4.Enabled = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

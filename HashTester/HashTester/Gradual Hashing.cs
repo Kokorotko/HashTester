@@ -25,19 +25,16 @@ namespace HashTester
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
             string originalString = textBoxHash.Text;
+            if (String.IsNullOrEmpty(originalString))
+            {
+                MessageBox.Show(Languages.Translate(103), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             OutputHandler outputHandler = new OutputHandler(algorithm);
             string[] hash = null;
             for (int i = 0; i < originalString.Length; i++)
-            {                
-                if (!mainForm.IsUsingSaltAndPepper(originalString, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashIDforTesting))
-                {
-                    hash = hasher.GradualHashing(textBoxHash.Text, algorithm);
-                }
-                else //salt/Pepper IS used
-                {
-                    hash = hasher.GradualHashingSaltPepper(textBoxHash.Text, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
-                }
-                hash = outputHandler.OutputStyleString(originalString, hash, isSaltUsed, isPepperUsed, salt, pepper);
+            {
+                hash = hasher.GradualHashing(textBoxHash.Text, algorithm);
             }
             outputHandler.OutputTypeShow(hash, listBoxLog);
         }
@@ -54,9 +51,10 @@ namespace HashTester
 
             #region Language
             buttonHashGradualHashing.Text = Languages.Translate(101);
-            buttonClearListBox.Text = Languages.Translate(34);
-            buttonSaveLog.Text = Languages.Translate(35);
-            buttonClipboard.Text = Languages.Translate(36);
+            labelQualityName.Text = Languages.Translate(104);
+            buttonClearListBox.Text = Languages.Translate(10000);
+            buttonSaveLog.Text = Languages.Translate(10001);
+            buttonClipboard.Text = Languages.Translate(10002);
             #endregion
         }
 
@@ -77,9 +75,9 @@ namespace HashTester
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
                 else MessageBox.Show(Languages.Translate(102), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

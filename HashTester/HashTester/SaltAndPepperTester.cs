@@ -43,29 +43,26 @@ namespace HashTester
             string salt = "";
             string pepper = "";
             string hashID = "";
+            string hash = "";
+            OutputHandler outputHandler = new OutputHandler(algorithm);
             if (askForSaltPepper) usingSaltAndPepper = hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, out salt, out pepper, out hashID);
-            for (int i = 0; i < originalText.Length; i++)
+            if (usingSaltAndPepper)
             {
-                string hash = string.Empty;
-                if (usingSaltAndPepper)
+                if (checkBoxUseLog.Checked)
                 {
-                    if (checkBoxUseLog.Checked)
-                    {
-                        if (!String.IsNullOrEmpty(salt)) listBoxLog.Items.Add(Languages.Translate(402) + ": " + salt);
-                        if (!String.IsNullOrEmpty(pepper)) listBoxLog.Items.Add(Languages.Translate(403) + ": " + pepper);
-                        if (!String.IsNullOrEmpty(hashID)) listBoxLog.Items.Add(Languages.Translate(612) + ": " + hashID);
-                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                    }
-                    hash = hasher.HashSaltPepper(originalText, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
+                    if (!String.IsNullOrEmpty(salt)) listBoxLog.Items.Add(Languages.Translate(402) + ": " + salt);
+                    if (!String.IsNullOrEmpty(pepper)) listBoxLog.Items.Add(Languages.Translate(403) + ": " + pepper);
+                    if (!String.IsNullOrEmpty(hashID)) listBoxLog.Items.Add(Languages.Translate(612) + ": " + hashID);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
-                else
-                {
-                    hash = hasher.Hash(originalText, algorithm);
-                }
-                OutputHandler outputHandler = new OutputHandler(algorithm);
-                string outputString = outputHandler.OutputStyleString(originalText, hash, i + 1, isSaltUsed, isPepperUsed, salt, pepper);
-                outputHandler.OutputTypeShow(outputString, listBoxLog);
+                hash = hasher.HashSaltPepper(originalText, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
             }
+            else
+            {
+                hash = hasher.Hash(originalText, algorithm);
+            }
+            string outputString = outputHandler.OutputStyleString(originalText, hash, 1, isSaltUsed, isPepperUsed, salt, pepper);
+            outputHandler.OutputTypeShow(outputString, listBoxLog);
         }
 
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -85,7 +82,7 @@ namespace HashTester
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
                 else MessageBox.Show(Languages.Translate(42),Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
                 MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -97,10 +94,10 @@ namespace HashTester
             FormManagement.SetUpFormTheme(this);
             #region Languages
             buttonHashSimpleText.Text = Languages.Translate(31);
-            checkBoxUsePepper.Text = Languages.Translate(6);
-            checkBoxUseSalt.Text = Languages.Translate(5);
+            checkBoxUsePepper.Text = Languages.Translate(6) + "*";
+            checkBoxUseSalt.Text = Languages.Translate(5) + "*";
             checkBoxUseLog.Text = Languages.Translate(246);
-            label1.Text = Languages.Translate(646);
+            label1.Text = "*" + Languages.Translate(646);
             labelAlgorithm.Text = Languages.Translate(10024);
             buttonClearListBox.Text = Languages.Translate(10000);
             buttonSaveLog.Text = Languages.Translate(10001);
@@ -108,7 +105,7 @@ namespace HashTester
             groupBoxTester.Text = Languages.Translate(647);
             groupBoxShowInfo.Text = Languages.Translate(648);
             labelName.Text = Languages.Translate(438);
-            labelPassword.Text = Languages.Translate(21);
+            labelPassword.Text = Languages.Translate(257);
             buttonRegister.Text = Languages.Translate(10035);
             buttonLogin.Text = Languages.Translate(649);
             buttonRemove.Text = Languages.Translate(650);
@@ -159,7 +156,11 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(645));
+                    if (checkBoxUseLog.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(645));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
                     MessageBox.Show(Languages.Translate(645), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -199,8 +200,11 @@ namespace HashTester
             List<string> info = ShowIDInfo();
             if (info.Count == 0)
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(619));
-                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                if (checkBoxUseLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(619));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(619), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -210,7 +214,7 @@ namespace HashTester
                 if (checkBoxUseLog.Checked) listBoxLog.Items.Add(info[i]);
                 s += info[i] + Environment.NewLine;
             }            
-            if (checkBoxUseLog.Checked) listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             MessageBox.Show(s, Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }        
 
@@ -220,7 +224,11 @@ namespace HashTester
             List<string> allHashID = ShowAllRegisteredUsers();           
             if (allHashID.Count <= 0)
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(620));
+                if (checkBoxUseLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(620));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(620), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -230,7 +238,7 @@ namespace HashTester
                 if (checkBoxUseLog.Checked) listBoxLog.Items.Add(allHashID[i]);
                 s += allHashID[i] + Environment.NewLine;
             }
-            if (checkBoxUseLog.Checked) listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             MessageBox.Show(s, Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -258,7 +266,11 @@ namespace HashTester
                               .ToArray();
             if (fileNames.Count() <= 0)
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(613));
+                if (checkBoxUseLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(613));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(613), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -269,7 +281,7 @@ namespace HashTester
                 if (checkBoxUseLog.Checked) listBoxLog.Items.Add(temp);
                 s += temp + Environment.NewLine;
             }
-            if (checkBoxUseLog.Checked) listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             MessageBox.Show(s, Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -294,7 +306,11 @@ namespace HashTester
                         if (split[0] == name)
                         {
                             MessageBox.Show(Languages.Translate(623), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(623));
+                            if (checkBoxUseLog.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(623));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             return false;
                         }
                     }
@@ -303,7 +319,11 @@ namespace HashTester
             //Register
             if (!hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, textBoxName.Text, out salt, out pepper, out hashID))
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(624));
+                if (checkBoxUseLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(624));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 string tempPath = Path.Combine(Settings.DirectoryExeBase, "HashData", hashID + ".txt");
                 if (File.Exists(tempPath)) File.Delete(tempPath);
                 hashID = "null";
@@ -316,11 +336,16 @@ namespace HashTester
                 listBoxLog.Items.Add(Languages.Translate(625) + ": " + passwordHash);
                 if (useSalt) listBoxLog.Items.Add(Languages.Translate(402) + ": " + salt);
                 if (usePepper) listBoxLog.Items.Add(Languages.Translate(403) + ": " + pepper);
+                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
             using (StreamWriter writer = new StreamWriter(pathToFile, true))
             {
                 string s = name + "==" + hashID + "==" + algorithm.ToString() + "==" + passwordHash;
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(s);
+                if (checkBoxUseLog.Checked)
+                {
+                    listBoxLog.Items.Add(s);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 writer.WriteLine(s);
                 MessageBox.Show(Languages.Translate(626), Languages.Translate(10034), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -390,6 +415,7 @@ namespace HashTester
                         if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(630) + ": " + pepper);
                     }
                 }
+                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
             if (checkBoxUseLog.Checked)
             {
@@ -502,8 +528,11 @@ namespace HashTester
                 string[] fileNames = Directory.GetFiles(Settings.DirectoryToHashData).ToArray();
                 if (fileNames.Count() <= 0)
                 {
-                    if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(613));
-                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    if (checkBoxUseLog.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(613));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
                     MessageBox.Show(Languages.Translate(641), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }

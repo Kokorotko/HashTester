@@ -99,9 +99,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelMD5.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -111,9 +111,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelSHA1.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -123,9 +123,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelSHA256.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -135,9 +135,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelSHA512.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -147,9 +147,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelRipeMD160.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -159,9 +159,9 @@ namespace HashTester
             {
                 Clipboard.SetText(labelCRC32.Text.Split(' ')[1]);
             }
-            catch (System.Runtime.InteropServices.ExternalException)
+            catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(43), Languages.Translate(44), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
