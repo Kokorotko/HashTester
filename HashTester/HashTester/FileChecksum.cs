@@ -77,6 +77,7 @@ namespace HashTester
 
         private void File_checksum_Load(object sender, EventArgs e)
         {
+            this.Name = Languages.Translate(702);
             Settings.LoadSettings();
             FormManagement.SetUpFormTheme(this);
             #region Langugages

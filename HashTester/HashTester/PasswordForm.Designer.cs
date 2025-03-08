@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCheckPassword = new System.Windows.Forms.Button();
+            this.buttonDictionaryAttack = new System.Windows.Forms.Button();
             this.textBoxDictionary = new System.Windows.Forms.TextBox();
             this.radioButtonRockYouFull = new System.Windows.Forms.RadioButton();
             this.radioButtonRockYouShort = new System.Windows.Forms.RadioButton();
@@ -48,7 +48,6 @@
             this.labelCrackLenght = new System.Windows.Forms.Label();
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBoxBruteForce = new System.Windows.Forms.GroupBox();
-            this.checkBoxShowLogBruteForce = new System.Windows.Forms.CheckBox();
             this.checkBoxUnknownLenghtBruteForce = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
             this.checkBoxHexOutputBruteForce = new System.Windows.Forms.CheckBox();
@@ -101,15 +100,15 @@
             this.groupBoxUI.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonCheckPassword
+            // buttonDictionaryAttack
             // 
-            this.buttonCheckPassword.Location = new System.Drawing.Point(6, 19);
-            this.buttonCheckPassword.Name = "buttonCheckPassword";
-            this.buttonCheckPassword.Size = new System.Drawing.Size(199, 23);
-            this.buttonCheckPassword.TabIndex = 0;
-            this.buttonCheckPassword.Text = "Dictionary attack";
-            this.buttonCheckPassword.UseVisualStyleBackColor = true;
-            this.buttonCheckPassword.Click += new System.EventHandler(this.buttonCheckPassword_Click);
+            this.buttonDictionaryAttack.Location = new System.Drawing.Point(6, 19);
+            this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
+            this.buttonDictionaryAttack.Size = new System.Drawing.Size(199, 23);
+            this.buttonDictionaryAttack.TabIndex = 0;
+            this.buttonDictionaryAttack.Text = "Dictionary attack";
+            this.buttonDictionaryAttack.UseVisualStyleBackColor = true;
+            this.buttonDictionaryAttack.Click += new System.EventHandler(this.buttonCheckPassword_Click);
             // 
             // textBoxDictionary
             // 
@@ -167,7 +166,7 @@
             // groupBoxDictionary
             // 
             this.groupBoxDictionary.Controls.Add(this.checkBoxShowLogDictionary);
-            this.groupBoxDictionary.Controls.Add(this.buttonCheckPassword);
+            this.groupBoxDictionary.Controls.Add(this.buttonDictionaryAttack);
             this.groupBoxDictionary.Controls.Add(this.textBoxDictionary);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockyouCustom);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockYouFull);
@@ -316,7 +315,6 @@
             // 
             // groupBoxBruteForce
             // 
-            this.groupBoxBruteForce.Controls.Add(this.checkBoxShowLogBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxUnknownLenghtBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxShowLogBrute);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxHexOutputBruteForce);
@@ -343,18 +341,6 @@
             this.groupBoxBruteForce.TabIndex = 9;
             this.groupBoxBruteForce.TabStop = false;
             this.groupBoxBruteForce.Text = "Brute force attack";
-            // 
-            // checkBoxShowLogBruteForce
-            // 
-            this.checkBoxShowLogBruteForce.AutoSize = true;
-            this.checkBoxShowLogBruteForce.Checked = true;
-            this.checkBoxShowLogBruteForce.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogBruteForce.Location = new System.Drawing.Point(167, 217);
-            this.checkBoxShowLogBruteForce.Name = "checkBoxShowLogBruteForce";
-            this.checkBoxShowLogBruteForce.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogBruteForce.TabIndex = 43;
-            this.checkBoxShowLogBruteForce.Text = "Show log in listBox";
-            this.checkBoxShowLogBruteForce.UseVisualStyleBackColor = true;
             // 
             // checkBoxUnknownLenghtBruteForce
             // 
@@ -438,7 +424,7 @@
             // 
             this.buttonBruteForceAttack.Location = new System.Drawing.Point(5, 219);
             this.buttonBruteForceAttack.Name = "buttonBruteForceAttack";
-            this.buttonBruteForceAttack.Size = new System.Drawing.Size(147, 23);
+            this.buttonBruteForceAttack.Size = new System.Drawing.Size(276, 23);
             this.buttonBruteForceAttack.TabIndex = 11;
             this.buttonBruteForceAttack.Text = "Brute Force Attack";
             this.buttonBruteForceAttack.UseVisualStyleBackColor = true;
@@ -855,7 +841,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonCheckPassword;
+        private System.Windows.Forms.Button buttonDictionaryAttack;
         private System.Windows.Forms.TextBox textBoxDictionary;
         private System.Windows.Forms.RadioButton radioButtonRockYouFull;
         private System.Windows.Forms.RadioButton radioButtonRockYouShort;
@@ -910,7 +896,6 @@
         private System.Windows.Forms.CheckBox checkBoxUnknownLenghtBruteForce;
         private System.Windows.Forms.Button buttonClipboard;
         private System.Windows.Forms.GroupBox groupBoxRainbowTable;
-        private System.Windows.Forms.CheckBox checkBoxShowLogBruteForce;
         private System.Windows.Forms.CheckBox checkBoxPerformanceModeRainbowTable;
         private System.Windows.Forms.Label labelAlgorithm;
         private System.Windows.Forms.ComboBox hashSelectorRainbowTable;

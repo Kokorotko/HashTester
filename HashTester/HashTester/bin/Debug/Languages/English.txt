@@ -201,10 +201,10 @@
 281==has been found in wordlist at line
 282==I recommend using a different password.
 283==has not been found in wordlist. Good Job.
-284==Maximum lenght of a password is 50.
-285==Lenght of the password set to 50.
-286==Prolomit toto heslo bude trvat přes 1 miliardu let.
-287==Pocet kombinací
+284==Maximum lenght of a password is 1000.
+285==Lenght of the password set to 1000.
+286==It will take over 18 quadrilion years to crack this password.
+287==Number of possible combinations
 288==Rainbow Table has been generated succesfully.
 289==Program could not generate the rainbow table. Abbandoning process.
 290==Rainbow Table Generator abandoned.
@@ -319,6 +319,7 @@
 586==File is hashed with
 587==but the user wants 
 588==The algorithms needs to be the same. Cancelling attack...
+601==Number of lines to process
 
 //Settings
 589==Warning! If theres nothing after the = it will set the setting into default  
@@ -380,3 +381,16 @@
 654==Show all ID
 655==Delete all ID
 656==This HashID file does NOT exist.
+
+//Form Names <<701-720>>
+701==HashTester
+702==File Checksum Tool
+703==Gradual Hasher
+704==Collision Finder
+705==Collision Checker
+706==Multi Hasher
+707==Password Tester
+708==Salt and Pepper Chooser
+709==Salt and Pepper Tester
+710==Thread Manager
+711==UI Manager

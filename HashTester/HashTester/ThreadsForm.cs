@@ -117,6 +117,7 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
+            this.Name = Languages.Translate(710);
             labelHowMany.Text = Languages.Translate(421);
             labelThreads.Text = Languages.Translate(422);
             labelPercentages.Text = Languages.Translate(423);

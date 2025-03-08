@@ -10,6 +10,16 @@ Počet pokusů má problémy
 Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
 Kontrola kolize HEX nefunguje, bere se pořád jako text (zkontroluj i BIN)
 
+
+DICTIONARY DONE, CALCULATOR DONE
+
+RAINBOW TABLE GENERATOR
+UI problemy s buttons
+generovani tabulky performance mode moc nefunguje
+
+RAINBOW TABLE ATTACK
+rainbow table attack absolutne nefunguje
+
 OTHER:
 LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
 UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)

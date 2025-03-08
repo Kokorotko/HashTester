@@ -34,6 +34,7 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
+            this.Name = Languages.Translate(711);
             labelQuestion.Text = Languages.Translate(501);
             labelFPS.Text = Languages.Translate(502);
             labelTimeToUpdate.Text = Languages.Translate(503);

@@ -182,3 +182,8 @@ Hasher added method overloading for string(bytes), bytes(string) and bytes(bytes
 **2025-02-27
 Debugging all
 Seeking all problems
+**2025-03-06
+Problem seeking and debugging
+Form Names translation
+**2025-03-08
+Problem seeking and debugging (Rainbow Table Generator, Brute Force Attack)

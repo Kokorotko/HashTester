@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
 
 namespace HashTester
@@ -65,8 +66,7 @@ namespace HashTester
             Hasher.HashingAlgorithm desiredAlgorithm,
             string fileName,
             bool inputFileIsInPlainText,
-            CancellationToken cancellationToken,
-            CancellationToken multiThreadToken,
+            CancellationTokenSource token,
             long timeToStopAttack,
             long maxAttempts)
         {
@@ -84,7 +84,7 @@ namespace HashTester
                 while (!reader.EndOfStream)
                 {
                     Attempts++;
-                    if (cancellationToken.IsCancellationRequested || multiThreadToken.IsCancellationRequested) break;
+                    if (token.IsCancellationRequested) break;
                     if (useTimeToStop && Stopwatch.ElapsedMilliseconds / 1000 > timeToStopAttack)
                     {
                         ranOutOfTime = true;
@@ -107,7 +107,8 @@ namespace HashTester
                     }
                 }
             }
-            return !string.IsNullOrEmpty(FoundPassword);
+            bool temp = !String.IsNullOrEmpty(FoundPassword);
+            return temp;
         }
 
         private bool ProcessLine(
@@ -152,68 +153,74 @@ namespace HashTester
             }
         }
 
-        private bool SplitFile(string fileName, string userAlgorithm, CancellationToken token, out string[] tempFilesPath)
+        private bool SplitFile(string fileName, string userAlgorithm, CancellationTokenSource token, out string[] tempFilesPath)
         {
-            Console.WriteLine("Splitting file into multiple parts");
-
             // Count total lines in file
             long totalLinesInFile = File.ReadLines(fileName).LongCount();
-            int numberOfThreadsUsed = (int)Math.Max(1, Environment.ProcessorCount / 1.5);
-            long linesPerThread = totalLinesInFile / numberOfThreadsUsed;
-
-            // Create output file paths
-            tempFilesPath = new string[numberOfThreadsUsed];
-            for (int i = 0; i < numberOfThreadsUsed; i++)
+            long linesPerThread = totalLinesInFile / FormManagement.NumberOfThreadsToUse();
+            tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
+            try
             {
-                tempFilesPath[i] = Path.Combine(Directory.GetDirectoryRoot(fileName), "rainbowTableTemp-" + userAlgorithm + "-" + i + ".txt");
-            }
+                //Console.WriteLine("Splitting file into multiple parts");
 
-            using (StreamReader readerInput = new StreamReader(fileName))
-            {
-                StreamWriter[] writers = new StreamWriter[numberOfThreadsUsed];
-
-                try
+                // Create output file paths                
+                for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
                 {
-                    // Open all writer files
-                    for (int i = 0; i < numberOfThreadsUsed; i++)
+                    tempFilesPath[i] = Path.Combine(Directory.GetDirectoryRoot(fileName), "rainbowTableTemp-" + userAlgorithm + "-" + i + ".txt");
+                }
+
+                using (StreamReader readerInput = new StreamReader(fileName))
+                {
+                    StreamWriter[] writers = new StreamWriter[FormManagement.NumberOfThreadsToUse()];
+
+                    try
                     {
-                        writers[i] = new StreamWriter(tempFilesPath[i]);
+                        // Open all writer files
+                        for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
+                        {
+                            writers[i] = new StreamWriter(tempFilesPath[i]);
+                        }
+
+                        long currentLine = 0;
+                        string line;
+
+                        // Read the file and distribute lines across multiple files
+                        while ((line = readerInput.ReadLine()) != null)
+                        {
+                            if (token.IsCancellationRequested)
+                            {
+                                return false; // Stop if canceled
+                            }
+
+                            int threadIndex = (int)(currentLine / linesPerThread);
+                            if (threadIndex >= FormManagement.NumberOfThreadsToUse())
+                            {
+                                threadIndex = FormManagement.NumberOfThreadsToUse() - 1; // Last file gets all remaining lines
+                            }
+
+                            writers[threadIndex].WriteLine(line);
+                            currentLine++;
+                        }
                     }
-
-                    long currentLine = 0;
-                    string line;
-
-                    // Read the file and distribute lines across multiple files
-                    while ((line = readerInput.ReadLine()) != null)
+                    finally
                     {
-                        if (token.IsCancellationRequested)
+                        // Close all writers
+                        for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
                         {
-                            return false; // Stop if canceled
+                            if (writers[i] != null)
+                            {
+                                writers[i].Close();
+                            }
                         }
-
-                        int threadIndex = (int)(currentLine / linesPerThread);
-                        if (threadIndex >= numberOfThreadsUsed)
-                        {
-                            threadIndex = numberOfThreadsUsed - 1; // Last file gets all remaining lines
-                        }
-
-                        writers[threadIndex].WriteLine(line);
-                        currentLine++;
                     }
                 }
-                finally
-                {
-                    // Close all writers
-                    for (int i = 0; i < numberOfThreadsUsed; i++)
-                    {
-                        if (writers[i] != null)
-                        {
-                            writers[i].Close();
-                        }
-                    }
-                }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: while splitting file in rainbowTableAttack: " + ex.Message);
+                return false;
+            }
         }
 
         private void ResetValues()
@@ -231,63 +238,76 @@ namespace HashTester
         }
 
         //Public
-        public bool PerformRainbowAttack(string fileName, string userInputHash, Hasher.HashingAlgorithm userAlgorithm, long timeToStopAttack, long maxAttempts)
+        public async Task<bool> PerformRainbowAttack(string fileName, string userInputHash, Hasher.HashingAlgorithm userAlgorithm, long timeToStopAttack, long maxAttempts)
         {
-            ResetValues();
-            stopwatch.Start();
-            CancellationTokenSource = new CancellationTokenSource();
-            CancellationToken token = CancellationTokenSource.Token;
-            CancellationTokenSource = new CancellationTokenSource();
-            CancellationToken multiThreadToken = CancellationTokenSource.Token;
-
-            string firstLine = File.ReadLines(fileName).FirstOrDefault();
-            if (firstLine == null) return false;
-
-            GetFileAlgorithm(firstLine, out bool inputFileIsInPlainText, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm);
-            if (fileAlgorithm != userAlgorithm)
+            try
             {
-                WrongAlgorithms(fileAlgorithm.ToString(), userAlgorithm.ToString());
-                return false;
-            }
-            if (!continueTheAttack) return false;
+                ResetValues();
+                stopwatch.Start();
+                CancellationTokenSource token = new CancellationTokenSource();
 
-            if (PerformanceMode && FormManagement.UseMultiThread())
-            {
-                Console.WriteLine("Performance Mode On");
-                int numberOfThreadsUsed = FormManagement.NumberOfThreadsToUse();
-                //totalLinesInFile = We get this from splitting the file
-                long linesPerThread = totalLinesInFile / numberOfThreadsUsed;
-                List<Task> allTasks = new List<Task>();
-                string[] tempFilesPath = new string[numberOfThreadsUsed];
-                //Split The File
-                if (SplitFile(fileName, userAlgorithm.ToString(), token, out tempFilesPath))
+                string firstLine = File.ReadLines(fileName).FirstOrDefault();
+                if (firstLine == null) return false;
+
+                GetFileAlgorithm(firstLine, out bool inputFileIsInPlainText, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm);
+                if (fileAlgorithm != userAlgorithm)
                 {
-                    token.ThrowIfCancellationRequested();
+                    WrongAlgorithms(fileAlgorithm.ToString(), userAlgorithm.ToString());
                     return false;
                 }
-                //MultiThread Start Attack
-                for (int i = 0; i < numberOfThreadsUsed; i++)
+                if (!continueTheAttack) return false;
+                //Performance On
+                if (PerformanceMode && FormManagement.UseMultiThread())
                 {
-                    allTasks.Add(Task.Run(() =>
+                    //Console.WriteLine("Performance Mode On");
+                    //totalLinesInFile = We get this from splitting the file
+                    long linesPerThread = totalLinesInFile / FormManagement.NumberOfThreadsToUse();
+                    List<Task> allTasks = new List<Task>();
+                    string[] tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
+                    //Split The File
+                    if (!SplitFile(fileName, userAlgorithm.ToString(), token, out tempFilesPath))
                     {
-                        SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, tempFilesPath[i], inputFileIsInPlainText, token, multiThreadToken, timeToStopAttack, maxAttempts);
-                    }, token));
+                        token.Cancel();
+                        return false;
+                    }
+                    //MultiThread Start Attack                    
+                    for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
+                    {
+                        allTasks.Add(Task.Run(() =>
+                        {
+                            if (!SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, tempFilesPath[i], inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
+                            {
+                                token.Cancel();
+                            }
+                        }));
+                    }                    
+                    await Task.WhenAll(allTasks);
+                    if (token.IsCancellationRequested) return false;
+                    //Console.WriteLine("All Tasks are done");
                 }
-                Task.WaitAll(allTasks.ToArray());
-                Console.WriteLine("All Tasks are done");
-            }
-            else
-            {
-                Console.WriteLine("Performance Mode Off");
-                Task task = Task.Run(() =>
+                //performance Off
+                else
                 {
-                    SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, fileName, inputFileIsInPlainText, token, multiThreadToken, timeToStopAttack, maxAttempts);
-                }, token);
-                task.Wait();
-                Console.WriteLine("All Tasks are done");
+                    //Console.WriteLine("Performance Mode Off");
+                    Task task = Task.Run(() =>
+                    {
+                        if(!SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, fileName, inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
+                        {
+                            token.Cancel();
+                        }
+                    });
+                    await Task.WhenAll(task);
+                    if (token.IsCancellationRequested) return false;
+                    //Console.WriteLine("All Tasks are done");
+                }
+                stopwatch.Stop();
+                return true;
             }
-            stopwatch.Stop();
-            return true;
+            catch (Exception ex)
+            {                
+                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
+                return false;
+            }
         }
 
         public void LogReset()

@@ -20,7 +20,7 @@ namespace HashTester
 
         //Get and Set
 
-        public bool Token
+        public bool UserAbandoned
         {
             get { return cancellationTokenSource.Token.IsCancellationRequested; }
         }
@@ -104,7 +104,7 @@ namespace HashTester
                     FoundMatch[i] = false;
                     lineFoundMatch[i] = -1;
                 }
-                while (!reader.EndOfStream && !Token)
+                while (!reader.EndOfStream && !UserAbandoned)
                 {
                     CurrentLine++;
                     string line = reader.ReadLine();                    

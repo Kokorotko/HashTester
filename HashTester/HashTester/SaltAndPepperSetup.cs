@@ -36,6 +36,7 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
+            this.Name = Languages.Translate(708);
             groupBoxSalt.Text = Languages.Translate(402);
             groupBoxPepper.Text = Languages.Translate(403);
             radioButtonSaltGen.Text = Languages.Translate(404); //hehe funny web number

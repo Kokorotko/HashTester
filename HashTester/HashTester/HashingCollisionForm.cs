@@ -477,6 +477,7 @@ namespace HashTester
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
             #region Languages
+            this.Name = Languages.Translate(704);
             buttonCheckCollision.Text = Languages.Translate(111);
             buttonGenerateCollision.Text = Languages.Translate(112);
             buttonTakeCollisionFromTXT.Text = Languages.Translate(113);

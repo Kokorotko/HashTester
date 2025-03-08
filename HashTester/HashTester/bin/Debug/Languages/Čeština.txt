@@ -37,6 +37,15 @@
 10035==Zaregistrovat
 10036==UI
 
+//**Try and Catch <<11000-12000>>
+11000==Vyskytnul se error v programu.
+11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 18 triliónů.
+11002==Prosím zadejte do "Počet znaků/heslo" celé nenulové číslo do 1000 nebo text.
+11003==Chcete odstranit nedokončený soubor?
+11004==Soubor smazán
+11005==Varování, těchto souborů bude několik.
+
+
 //**Name of Forms <<15000-15100>>
 15000==Hlavní formulář
 15001==Postupné hašování
@@ -164,7 +173,7 @@
 251==Plná verze
 252==Zkrácená verze
 253==Hodně zkrácená verze
-254==vlastní soubor
+254==Vlastní soubor
 
 //Time to crack calculator
 256==Počet znaků
@@ -201,9 +210,9 @@
 281==bylo nalezeno ve slovníku na řádku
 282==Doporučuji použít jiné heslo.
 283==nebylo nalezeno ve slovníku. Dobrá práce.
-284==Maximální délka hesla je 50.
-285==Délka hesla je nastavena na 50.
-286==Prolomit toto heslo bude trvat přes 1 miliardu let.
+284==Maximální délka hesla je 1000.
+285==Délka hesla je nastavena na 1000.
+286==Prolomit toto heslo bude trvat přes 18 triliónů let.
 287==Kombinace čísel
 288==Duhová tabulka byla úspěšně vygenerována.
 289==Program nemohl vygenerovat duhovou tabulku. Rušení procesu.
@@ -319,6 +328,7 @@
 586==Soubor je zahešován pomocí
 587==ale uživatel chce 
 588==Algoritmy musí být stejné. Rušení útoku...
+601==Počet řádků na zpracování
 
 //Settings
 589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.
@@ -380,3 +390,16 @@
 654==Ukázat všechny ID
 655==Smazat všechny ID
 656==Soubor se zadaným HashID neexistuje.
+
+//Form Names <<701-720>>
+701==HashTester
+702==Kontrolní Součet Souboru
+703==Postupné Hašování  
+704==Hledač Kolizí  
+705==Kontrola Kolizí  
+706==Multi Hašovací Nástroj  
+707==Tester Hesel  
+708==Výběrčí Soli a Pepře  
+709==Tester Soli a Pepře  
+710==Správce Vláken  
+711==Správce UI

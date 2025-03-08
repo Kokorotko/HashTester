@@ -5,14 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Threading;
 using Timer = System.Windows.Forms.Timer;
-using System.Runtime.Remoting.Channels;
-using System.Security.Policy;
-using System.Diagnostics.Eventing.Reader;
-using System.Reflection;
-using System.Timers;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace HashTester
 {
@@ -22,25 +17,39 @@ namespace HashTester
         {
             InitializeComponent();
         }
+        public enum TaskType
+        {
+            None,
+            RainbowTableGenerator,
+            RainbowTableAttack,
+            DictionaryAttack,
+            BruteForceAttack
+        }
+        //management
+        Timer timerDictionary = new Timer();
+        Timer timerRainbowTableGen = new Timer();
+        Timer timerRainbowTableAttack = new Timer();
+        Timer timerBruteForce = new Timer();
 
         bool taskCurrentlyWorking = false;
-        int whatTaskIsWorking = -1; //1 == RainbowTableGenerator; 2== RainbowTableAttack; 3 == PasswordLeakTest
+        bool userAbortedTheProcess = false;
+        TaskType currentTaskType = TaskType.None;
         Hasher.HashingAlgorithm bruteForceAlgorithm = Hasher.HashingAlgorithm.MD5;
         Hasher.HashingAlgorithm rainbowTableAlgorithm = Hasher.HashingAlgorithm.MD5;
         Hasher hasher = new Hasher();
-        //Password Dictionary Attack and Bruteforce Attack
 
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
         {
-            FormManagement.SetUpFormTheme(this);          
+            FormManagement.SetUpFormTheme(this);
             #region Languages
+            this.Name = Languages.Translate(707);
             labelProgressBar.Text = Languages.Translate(241);
             buttonCancel.Text = Languages.Translate(242);
-            labelStatAttempts.Text = Languages.Translate(243);
-            labelStatCurrentSpeed.Text = Languages.Translate(244);
-            labelStatSpeed.Text = Languages.Translate(245);
-            labelStatTimer.Text = Languages.Translate(10009);
+            labelStatAttempts.Text = Languages.Translate(243) + ":";
+            labelStatCurrentSpeed.Text = Languages.Translate(244) + ":";
+            labelStatSpeed.Text = Languages.Translate(245) + ":";
+            labelStatTimer.Text = Languages.Translate(10009) + ":";
             groupBoxDictionary.Text = Languages.Translate(247);
             groupBoxTimeToCrack.Text = Languages.Translate(248);
             groupBoxRainbowTable.Text = Languages.Translate(249);
@@ -100,19 +109,6 @@ namespace HashTester
             //radioButton04 (custom) is always available
         }
 
-        private void DisableUI()
-        {
-            foreach (Control control in this.Controls) if (!(control is Label)) control.Enabled = false; //no need to disable labels
-            listBoxLog.Enabled = true;
-            buttonCancel.Enabled = true;
-        }
-
-        private void ActivateUI()
-        {
-            foreach (Control control in this.Controls) control.Enabled = true;
-            progressBar1.Value = 0;
-        }
-
         private bool FindIfTXTIsPresent(string name)
         {
             return File.Exists(Settings.DirectoryPathToWordlists + "\\" + name + ".txt");
@@ -138,31 +134,43 @@ namespace HashTester
         long passwordCheckLinesProcessedLastUpdate = 0;
         private void UpdateUIPassword(object sender, EventArgs e)
         {
-            if (passwordCheck.Stopwatch.ElapsedMilliseconds > 0)
+            try
             {
+                //time
                 int passwordLinesProcessedBetweenUpdates = (int)(passwordCheck.CurrentLine - passwordCheckLinesProcessedLastUpdate);
                 passwordCheckLinesProcessedLastUpdate = passwordCheck.CurrentLine;
                 labelStatTimer.Text = Languages.Translate(10009) + ": " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
-                double currentSpeed = passwordLinesProcessedBetweenUpdates / (Settings.UpdateUIms / 1000);
-                labelStatCurrentSpeed.Text = Languages.Translate(244) + " " + currentSpeed.ToString("#,0");
-                double averageSpeed = passwordCheck.CurrentLine / (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0); //in seconds
-                if (!double.IsInfinity(averageSpeed)) labelStatSpeed.Text = Languages.Translate(245) + " " + Math.Floor(averageSpeed).ToString("#,0");
+                //current speed
+                double currentSpeed = passwordLinesProcessedBetweenUpdates / (Settings.UpdateUIms / 1000.0);
+                labelStatCurrentSpeed.Text = Languages.Translate(244) + ": " + currentSpeed.ToString("#,0");
+                //average speed
+                double elapsedSeconds = passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0;
+                double averageSpeed = elapsedSeconds > 0 ? passwordCheck.CurrentLine / elapsedSeconds : 0;
+                if (!double.IsInfinity(averageSpeed)) labelStatSpeed.Text = Languages.Translate(245) + ": " + Math.Floor(averageSpeed).ToString("#,0");
                 else labelStatSpeed.Text = Languages.Translate(245) + ": " + Languages.Translate(275);
-                labelStatAttempts.Text = Languages.Translate(276) + " " + passwordCheck.CurrentLine.ToString("#,0");
+                //attemps
+                labelStatAttempts.Text = Languages.Translate(276) + ": " + passwordCheck.CurrentLine.ToString("#,0");
+                //progress
                 progressBar1.Value = passwordCheck.Progress;
+                //log
                 foreach (string temp in passwordCheck.LogOutput)
                 {
                     listBoxLog.Items.Add(temp);
                 }
                 passwordCheck.LogOutput.Clear();
             }
+            catch (Exception ex)
+            {
+                if (!(ex is DivideByZeroException)) Console.WriteLine("UpdateUIPassword has an error: " + ex.Message); //Yeah it just tries to divide 0 on the start its okay its fine it can handle it
+                return;
+            }
         }
         private async void buttonCheckPassword_Click(object sender, EventArgs e)
         {
             string pathToFile = "";
             taskCurrentlyWorking = true;
-            whatTaskIsWorking = 3;
-            DisableUI();
+            currentTaskType = TaskType.DictionaryAttack;
+            TurnOffUI();
             string messageBoxAnswer = "";
             bool continueToChecker = true;
             string[] passwords = textBoxDictionary.Lines;           
@@ -198,19 +206,20 @@ namespace HashTester
             }
             if (continueToChecker)
             {
-                Timer timer = new Timer();
-                timer.Interval = Settings.UpdateUIms;
-                timer.Tick += UpdateUIPassword;
-                timer.Start();
+                timerDictionary.Interval = Settings.UpdateUIms;
+                timerDictionary.Tick += UpdateUIPassword;
+                timerDictionary.Start();
                 await Task.Run(() => { passwordCheck.PasswordFinder(pathToFile, passwords); });
-                timer.Stop();
-                timer.Dispose();
+                timerDictionary.Stop();
+                timerDictionary.Dispose();
                 UpdateUIPassword(sender, e);
                 progressBar1.Value = 100;
-                if (passwordCheck.Token)
+                if (passwordCheck.UserAbandoned)
                 {
                     if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(279));
                     MessageBox.Show(Languages.Translate(279));
+                    TurnOnUI();
+                    return; //cancels
                 }
                 //Console.WriteLine("passwordCheck.FoundMatch[i]: " + passwordCheck.FoundMatch.Count);
                 //Console.WriteLine("passwords count " + passwords.Count)
@@ -218,7 +227,7 @@ namespace HashTester
                 {
                     if (passwordCheck.FoundMatch[i])
                     {
-                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + passwordCheck.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
+                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + " " + passwordCheck.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
                         messageBoxAnswer += temp;
                         if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
                     }
@@ -232,14 +241,13 @@ namespace HashTester
                 MessageBox.Show(messageBoxAnswer);
             }
             taskCurrentlyWorking = false;
-            whatTaskIsWorking = -1;
-            ActivateUI();
+            currentTaskType = TaskType.None;
+            TurnOnUI();
         }                                 
 
         #endregion
 
-        #region Password Strenght Calculator
-        PasswordStrenghtCalculator passwordStrenghtCalculator = new PasswordStrenghtCalculator();        
+        #region Password Strenght Calculator 
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
             int numberOfChars = 0;
@@ -248,35 +256,44 @@ namespace HashTester
             if (checkBoxCrackDigit.Checked) numberOfChars += 10;
             if (checkBoxCrackSpecial.Checked) numberOfChars += 33;
 
-            int passwordLenght;
-            if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
-            if (passwordLenght > 50)
+            ulong passwordLenght;
+            if (!ulong.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = (ulong)textBoxCrackLenght.Text.Length;
+            if (passwordLenght > 1000)
             {
-                passwordLenght = 50;
+                passwordLenght = 1000;
                 MessageBox.Show(Languages.Translate(284));
                 if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(285));
             }
-            double speed = double.Parse(textBoxCrackSpeed.Text);
+            if (passwordLenght <= 0)
+            {
+                MessageBox.Show(Languages.Translate(11002));
+                return;
+            }
+            BigInteger speed = 0;
+            if (!BigInteger.TryParse(textBoxCrackSpeed.Text, out speed))
+            {
+                MessageBox.Show(Languages.Translate(11001));
+                return;
+            }
 
-            double pocet = passwordStrenghtCalculator.Calculator(passwordLenght, numberOfChars, speed, out double rychlost);
+            BigInteger totalCombinations = PasswordStrenghtCalculator.Calculator(passwordLenght, (ulong)numberOfChars, speed, out BigInteger timeInSec, out bool overflowed);
             //Output
-            if ((long)rychlost / 100 >= 315569260000) //31556926 == seconds in a year * 100 000 000
+            if (!overflowed) 
+            {
+                if (checkBoxShowLogCrack.Checked)
+                {
+                    listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
+                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
+                }
+                MessageBox.Show(PasswordStrenghtCalculator.Output(timeInSec) + Environment.NewLine + Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
+            }
+            else 
             {
                 if (checkBoxShowLogCrack.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(286));
-                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + pocet.ToString("N0"));
                 }
-                MessageBox.Show(Languages.Translate(286) + "\n" + Languages.Translate(287) + ": " + pocet.ToString("N0")); //if it takes more than 1 bilion years
-            }
-            else
-            {
-                if (checkBoxShowLogCrack.Checked)
-                {
-                    listBoxLog.Items.Add(passwordStrenghtCalculator.Output(rychlost));
-                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + pocet.ToString("N0"));
-                }
-                MessageBox.Show(passwordStrenghtCalculator.Output(rychlost) + "\n" + Languages.Translate(287) + ": " + pocet.ToString("N0")); //N0 == Formats the number to have spaces between each thousand. (1 mil. == 1 000 000)
+                MessageBox.Show(Languages.Translate(286));
             }
         }
         #endregion
@@ -284,18 +301,17 @@ namespace HashTester
         #region Rainbow Table
 
         RainbowTable rainbowTable = new RainbowTable();
-        private void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
+        private async void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
         {
             taskCurrentlyWorking = true;
-            whatTaskIsWorking = 1;
-            DisableUI();            
+            currentTaskType = TaskType.RainbowTableGenerator;
+            TurnOffUI();        
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.DirectoryPathToWordlists;
             //Timer
-            Timer updateUITimer = new Timer();
-            updateUITimer.Interval = Settings.UpdateUIms;
-            updateUITimer.Tick += UpdateUIRainbowTable;
-            updateUITimer.Enabled = true;
+            timerRainbowTableGen.Interval = Settings.UpdateUIms;
+            timerRainbowTableGen.Tick += UpdateUIRainbowTable;
+            timerRainbowTableGen.Enabled = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -305,7 +321,7 @@ namespace HashTester
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {                    
-                    updateUITimer.Start();
+                    timerRainbowTableGen.Start();
                     //MultiThread
                     if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
                     {
@@ -313,222 +329,277 @@ namespace HashTester
                         if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(10026) + ": "  + numberOfThreadsToUse);
                         if (rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm))
                         {
-                            updateUITimer.Stop();
+                            timerRainbowTableGen.Stop();
                             if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
                             MessageBox.Show(Languages.Translate(288));
                         }
                         else
                         {
-                            updateUITimer.Stop();
-                            string s = Languages.Translate(289);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
-                            MessageBox.Show(s);
+                            timerRainbowTableGen.Stop();
+                            if (!userAbortedTheProcess)
+                            {
+                                string s = Languages.Translate(289);
+                                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                MessageBox.Show(s);
+                            }
                         }
                     }
                     //Single Thread
                     else
                     {
-                        if (rainbowTable.GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm))
+                        bool operationWasSuccesful = false;
+                        await Task.Run(() =>
                         {
-                            updateUITimer.Stop();
+                            operationWasSuccesful = rainbowTable.GenerateRainbowTable(openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm);
+                        });
+
+                        if (operationWasSuccesful)
+                        {
+                            timerRainbowTableGen.Stop();
                             if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
                             MessageBox.Show(Languages.Translate(288));
                         }
                         else
                         {
-                            updateUITimer.Stop();
-                            string s =Languages.Translate(289);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
-                            MessageBox.Show(s);
+                            timerRainbowTableGen.Stop();
+                            if (!userAbortedTheProcess)
+                            {
+                                string s = Languages.Translate(289);
+                                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                MessageBox.Show(s);
+                            }
                         }
                     }
                 }
             }
             else
             {
-                updateUITimer.Stop();
+                timerRainbowTableGen.Stop();
                 MessageBox.Show(Languages.Translate(290));
                 if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(290));
-            }            
-            ActivateUI(); 
+            }
+            TurnOnUI();
             taskCurrentlyWorking = false;
-            whatTaskIsWorking = -1;
+            currentTaskType = TaskType.None;
         }
 
         private long numberOfAttemptsInLastUpdateRainbowTable = 0;
         private void UpdateUIRainbowTable(object sender, EventArgs e)
         {
-            if (rainbowTable.Stopwatch != null)
+            try
             {
-                if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
+                if (rainbowTable.Stopwatch != null)
                 {
-                    double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000);
-                    int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
-                    numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
-                    labelStatTimer.Text = Languages.Translate(10009) + ": " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
-                    labelStatSpeed.Text = Languages.Translate(10012) + " /s" + rainbowTable.LinesProcessed / (double)(rainbowTable.Stopwatch.ElapsedMilliseconds / 1000);
-                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString();
-                    progressBar1.Value = Math.Min(100, progress);
-                    //Refresh - The Labels didnt update for some reason
-                    labelStatTimer.Refresh();
-                    labelStatSpeed.Refresh();
-                    labelStatCurrentSpeed.Refresh();
+                    if (rainbowTable.Stopwatch.ElapsedMilliseconds > 0 && rainbowTable.LinesProcessed > 0 && rainbowTable.AllLinesInInputFile > 0)
+                    {
+                        double speed = (rainbowTable.LinesProcessed - numberOfAttemptsInLastUpdateRainbowTable) / (Settings.UpdateUIms / 1000.0);
+                        int progress = (int)((double)rainbowTable.LinesProcessed / rainbowTable.AllLinesInInputFile * 100);
+                        numberOfAttemptsInLastUpdateRainbowTable = rainbowTable.LinesProcessed;
+                        labelStatTimer.Text = Languages.Translate(10009) + ": " + rainbowTable.Stopwatch.ElapsedMilliseconds / 1000 + "." + rainbowTable.Stopwatch.ElapsedMilliseconds % 1000;
+                        double averageSpeed = Math.Floor(rainbowTable.LinesProcessed / (rainbowTable.Stopwatch.ElapsedMilliseconds / 1000.0));
+                        labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + averageSpeed;
+                        labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString();
+                        progressBar1.Value = Math.Min(100, progress);
+                        //Refresh - The Labels didnt update for some reason
+                        labelStatTimer.Refresh();
+                        labelStatSpeed.Refresh();
+                        labelStatCurrentSpeed.Refresh();
+                    }
                 }
+            }
+            catch (DivideByZeroException) //it does that dont worry
+            {
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR in UpdateUITable: " + ex.Message);
+                return;
             }
         }
 
         #endregion
 
-        #region Rainbow Table Attack  - Done    
+        #region Rainbow Table Attack  
         RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
-        private void buttonRainbowTableAttack_Click(object sender, EventArgs e)
+        private async void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
-            Timer timeToUpdateUI = new Timer();
-            timeToUpdateUI.Interval = Settings.UpdateUIms;
-            timeToUpdateUI.Tick += (s, args) => UpdateTheUIRainbowTableAttack();
-            TurnOffUI();
-            taskCurrentlyWorking = true;
-            whatTaskIsWorking = 2;
-
-            string originalInput = textBoxBruteForce.Text;
-            if (radioButtonRegularBruteForce.Checked)
-                originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);
-
-            rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeBruteForce.Checked;
-
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            try
             {
-                InitialDirectory = Settings.DirectoryPathToWordlists
-            };
+                timerRainbowTableAttack.Interval = Settings.UpdateUIms;
+                timerRainbowTableAttack.Tick += (s, args) => UpdateTheUIRainbowTableAttack();
+                TurnOffUI();
+                taskCurrentlyWorking = true;
+                currentTaskType = TaskType.RainbowTableAttack;
 
-            rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
+                string originalInput = textBoxBruteForce.Text;
+                if (radioButtonRegularBruteForce.Checked)
+                    originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                timeToUpdateUI.Start();
-                if (rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value))
+                rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeBruteForce.Checked;
+
+                OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    if (checkBoxShowLogRainbowTable.Checked)
-                        listBoxLog.Items.Add("-----------------------------------------------");
+                    InitialDirectory = Settings.DirectoryPathToWordlists
+                };
+                rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
 
-                    if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    timerRainbowTableAttack.Start();
+                    bool operationWasASuccess = await rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value);
+
+                    if (operationWasASuccess)
                     {
-                        string foundPassword = rainbowTableAttack.FoundPassword;
-                        string foundPasswordHash = hasher.Hash(foundPassword, rainbowTableAlgorithm);
-                        long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
-
-                        string message = Languages.Translate(291) + "\n" +
-                                Languages.Translate(292) + ": " + foundPassword + "\n" +
-                                Languages.Translate(293) + ": " + originalInput + "\n" +
-                                Languages.Translate(294) + ": " + foundAtLine + "\n" +
-                                Languages.Translate(295) + ": " + foundPasswordHash + "\n" +
-                                Languages.Translate(296) + ": " + foundPassword + "\n" +
-                                Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword);
-
-
                         if (checkBoxShowLogRainbowTable.Checked)
+                            listBoxLog.Items.Add("-----------------------------------------------");
+
+                        if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
                         {
-                            listBoxLog.Items.Add(Languages.Translate(291)); 
-                            listBoxLog.Items.Add(Languages.Translate(292) + ": " + foundPassword); 
-                            listBoxLog.Items.Add(Languages.Translate(295) + ": " + originalInput); 
-                            listBoxLog.Items.Add(Languages.Translate(294) + ": " + foundAtLine); 
-                            listBoxLog.Items.Add(Languages.Translate(296) + ": " + foundPassword);
-                            listBoxLog.Items.Add(Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword));
+                            string foundPassword = rainbowTableAttack.FoundPassword;
+                            string foundPasswordHash = hasher.Hash(foundPassword, rainbowTableAlgorithm);
+                            long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
+
+                            string message = Languages.Translate(291) + "\n" +
+                                    Languages.Translate(292) + ": " + foundPassword + "\n" +
+                                    Languages.Translate(293) + ": " + originalInput + "\n" +
+                                    Languages.Translate(294) + ": " + foundAtLine + "\n" +
+                                    Languages.Translate(295) + ": " + foundPasswordHash + "\n" +
+                                    Languages.Translate(296) + ": " + foundPassword + "\n" +
+                                    Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword);
+
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(291));
+                                listBoxLog.Items.Add(Languages.Translate(292) + ": " + foundPassword);
+                                listBoxLog.Items.Add(Languages.Translate(295) + ": " + originalInput);
+                                listBoxLog.Items.Add(Languages.Translate(294) + ": " + foundAtLine);
+                                listBoxLog.Items.Add(Languages.Translate(296) + ": " + foundPassword);
+                                listBoxLog.Items.Add(Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword));
+                            }
+                            if (timerRainbowTableAttack != null)
+                                timerRainbowTableAttack.Stop();
+                            PasswordFoundMessageBox(message, originalInput, foundPassword);
                         }
-                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
-                        PasswordFoundMessageBox(message, originalInput, foundPassword);
-                    }
-                    else if (rainbowTableAttack.CancelTokenActive())
-                    {
-                        MessageBox.Show(Languages.Translate(279));
-                        if (checkBoxShowLogRainbowTable.Checked)
-                            listBoxLog.Items.Add(Languages.Translate(279));
-                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
-                    }
-                    else if (rainbowTableAttack.RanOutOfTime)
-                    {
-                        MessageBox.Show(Languages.Translate(298));
-                        if (checkBoxShowLogRainbowTable.Checked)
+                        else if (rainbowTableAttack.CancelTokenActive())
                         {
-                            listBoxLog.Items.Add(Languages.Translate(298));
+                            MessageBox.Show(Languages.Translate(279));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                            if (timerRainbowTableAttack != null)
+                                timerRainbowTableAttack.Stop();
                         }
-                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
-                    }
-                    else if (rainbowTableAttack.RanOutOfAttempts)
-                    {
-                        MessageBox.Show(Languages.Translate(299));
-                        if (checkBoxShowLogRainbowTable.Checked)
+                        else if (rainbowTableAttack.RanOutOfTime)
                         {
-                            listBoxLog.Items.Add(Languages.Translate(299));
+                            MessageBox.Show(Languages.Translate(298));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(298));
+                            }
+                            if (timerRainbowTableAttack != null)
+                                timerRainbowTableAttack.Stop();
                         }
-                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+                        else if (rainbowTableAttack.RanOutOfAttempts)
+                        {
+                            MessageBox.Show(Languages.Translate(299));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(299));
+                            }
+                            if (timerRainbowTableAttack != null)
+                                timerRainbowTableAttack.Stop();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Languages.Translate(300));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(300));
+                            }
+                            if (timerRainbowTableAttack != null)
+                                timerRainbowTableAttack.Stop();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(Languages.Translate(300));
+                        MessageBox.Show(Languages.Translate(301));
                         if (checkBoxShowLogRainbowTable.Checked)
-                        {
-                            listBoxLog.Items.Add(Languages.Translate(300));
-                        }
-                        if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+                            listBoxLog.Items.Add(Languages.Translate(301));
+                        if (timerRainbowTableAttack != null)
+                            timerRainbowTableAttack.Stop();
                     }
                 }
                 else
                 {
-                    MessageBox.Show(Languages.Translate(301));
                     if (checkBoxShowLogRainbowTable.Checked)
-                        listBoxLog.Items.Add(Languages.Translate(301));
-                    if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+                        listBoxLog.Items.Add(Languages.Translate(302));
+                    if (timerRainbowTableAttack != null)
+                        timerRainbowTableAttack.Stop();
                 }
+
+                if (timerRainbowTableAttack != null)
+                    timerRainbowTableAttack.Stop();
+
+                TurnOnUI();
+                taskCurrentlyWorking = false;
+                currentTaskType = TaskType.None;
             }
-            else
+            catch (Exception ex)
             {
-                if (checkBoxShowLogRainbowTable.Checked)
-                    listBoxLog.Items.Add(Languages.Translate(302));
-                if (timeToUpdateUI != null) timeToUpdateUI.Stop();
+                MessageBox.Show("An error occurred:" + ex.Message);
+                TurnOnUI();
+                taskCurrentlyWorking = false;
+                currentTaskType = TaskType.None;
             }
-            if (timeToUpdateUI != null) timeToUpdateUI.Stop();
-            TurnOnUI();
-            taskCurrentlyWorking = false;
-            whatTaskIsWorking = -1;
         }
 
-        // Tracking the last update count for UI updates
         long RainbowAttacknumberOfLinesInLastUpdate = 0;
 
         private void UpdateTheUIRainbowTableAttack()
         {
-            int seconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000);
-            int milliseconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds % 1000);
-
-            long currentLinesProcessed = rainbowTableAttack.LinesProcessed;
-            int triesBetween = (int)(currentLinesProcessed - RainbowAttacknumberOfLinesInLastUpdate);
-            RainbowAttacknumberOfLinesInLastUpdate = currentLinesProcessed;
-
-            // Speed Calculation
-            double speed = triesBetween / (Settings.UpdateUIms / 1000);
-            labelStatCurrentSpeed.Text = Languages.Translate(10001) + "/s: " + speed.ToString("#,0");
-
-            // Attempts Display
-            labelStatAttempts.Text = Languages.Translate(303) + ": " + currentLinesProcessed.ToString("#,0");
-
-            // Average Speed Calculation
-            double averageSpeed = (rainbowTableAttack.Stopwatch.ElapsedMilliseconds > 0)
-                ? currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0)
-                : 0;
-            labelStatSpeed.Text = Languages.Translate(10012) + "/s: " + Math.Floor(averageSpeed).ToString("#,0");
-
-            // Progress Bar Update
-            int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
-            progressBar1.Value = Math.Max(0, Math.Min(progress, 100));  // Ensure value is between 0-100
-
-            // Logging
-            if (rainbowTableAttack.LogOutput != null)
+            try
             {
-                foreach (string logEntry in rainbowTableAttack.LogOutput)
-                    listBoxLog.Items.Add(logEntry);
+                int seconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000);
+                int milliseconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds % 1000);
 
-                rainbowTableAttack.LogReset(); // Clear logs after adding them
+                long currentLinesProcessed = rainbowTableAttack.LinesProcessed;
+                int triesBetween = (int)(currentLinesProcessed - RainbowAttacknumberOfLinesInLastUpdate);
+                RainbowAttacknumberOfLinesInLastUpdate = currentLinesProcessed;
+
+                // Speed Calculation
+                double speed = triesBetween / (Settings.UpdateUIms / 1000);
+                labelStatCurrentSpeed.Text = Languages.Translate(10001) + "/s: " + speed.ToString("#,0");
+
+                // Attempts Display
+                labelStatAttempts.Text = Languages.Translate(303) + ": " + currentLinesProcessed.ToString("#,0");
+
+                // Average Speed Calculation
+                double averageSpeed = (rainbowTableAttack.Stopwatch.ElapsedMilliseconds > 0)
+                    ? currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0)
+                    : 0;
+                labelStatSpeed.Text = Languages.Translate(10012) + "/s: " + Math.Floor(averageSpeed).ToString("#,0");
+
+                // Progress Bar Update
+                int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
+                progressBar1.Value = Math.Max(0, Math.Min(progress, 100));  // Ensure value is between 0-100
+
+                // Logging
+                if (rainbowTableAttack.LogOutput != null)
+                {
+                    foreach (string logEntry in rainbowTableAttack.LogOutput)
+                        listBoxLog.Items.Add(logEntry);
+
+                    rainbowTableAttack.LogReset(); // Clear logs after adding them
+                }
+            }
+            catch (DivideByZeroException) //it does that dont worry
+            {
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR in UpdateUI Rainbow Table Attack: " + ex.Message);
+                return;
             }
         }
 
@@ -540,7 +611,7 @@ namespace HashTester
         private async void buttonBruteForceAttack_Click(object sender, EventArgs e)
         {
             taskCurrentlyWorking = true;
-            whatTaskIsWorking = 4;
+            currentTaskType = TaskType.BruteForceAttack;
             TurnOffUI();
             string userHashInput = textBoxBruteForce.Text;
             int userPasswordLenght = 0;
@@ -571,9 +642,8 @@ namespace HashTester
 
 
             //timer
-            Timer timer = new Timer();
-            timer.Interval = Settings.UpdateUIms;
-            timer.Tick += UpdateTheUIBruteForceAttack;            
+            timerBruteForce.Interval = Settings.UpdateUIms;
+            timerBruteForce.Tick += UpdateTheUIBruteForceAttack;            
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
             //Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
@@ -581,14 +651,14 @@ namespace HashTester
             if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp);
             if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
             {
-                timer.Start();
+                timerBruteForce.Start();
                 Console.WriteLine(Languages.Translate(305));
                 bruteForce.BruteForceAttackMultiThread(bruteForceAlgorithm, userHashInput, (ulong)numericUpDownMaxAttempts.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
             }
             else //single Thread
             {
                 Console.WriteLine(Languages.Translate(306));
-                timer.Start();
+                timerBruteForce.Start();
                 await Task.Run(() => bruteForce.PasswordBruteForce
                 (
                     bruteForceAlgorithm, //algorithm
@@ -600,8 +670,8 @@ namespace HashTester
                     userPasswordLenght,
                      (long)numericUpDownStopTimer.Value));
             }
-            timer.Stop();
-            timer.Dispose();
+            timerBruteForce.Stop();
+            timerBruteForce.Dispose();
             UpdateTheUIBruteForceAttack(sender, e); //last update                                                    
             //Output
             if (bruteForce.FoundPasswordBool)
@@ -650,45 +720,57 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(313));
             }
             taskCurrentlyWorking = true;
-            whatTaskIsWorking = -1;
+            currentTaskType = TaskType.None;
             TurnOnUI();
         }
         private long numberOfAttemptsInLastUpdateBruteForce = 0;
         private void UpdateTheUIBruteForceAttack(object sender, EventArgs e)
         {
-            //Update Timer
-            //Console.WriteLine("UpdateTheUIBruteForceAttack");
-            int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
-            int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
-            labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
-            int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
-            numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
-            //Update Speed
-            double speed = triesBetween / (Settings.UpdateUIms / 1000);
-            labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
-            //Attempts
-            labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
-            //Update Average Speed
-            double averageSpeed = 0;
-            if (bruteForce.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
-            labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
-            //update progressbar
-            progressBar1.Value = bruteForce.Progress;
+            try
+            {
+                //Update Timer
+                //Console.WriteLine("UpdateTheUIBruteForceAttack");
+                int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
+                int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
+                labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
+                int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
+                numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
+                //Update Speed
+                double speed = triesBetween / (Settings.UpdateUIms / 1000);
+                labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
+                //Attempts
+                labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
+                //Update Average Speed
+                double averageSpeed = 0;
+                if (bruteForce.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
+                labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
+                //update progressbar
+                progressBar1.Value = bruteForce.Progress;
+            }
+            catch (DivideByZeroException) //it does that dont worry
+            {
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR in UpdateUITable brute force attack: " + ex.Message);
+                return;
+            }
         }       
         #endregion
 
-        private void TurnOffUI()
+        private void TurnOffUI() //Turns off everything except the labels
         {
             foreach (Control control in this.Controls)
             {
-                if (control is Button) control.Enabled = false;
-                else if (control is GroupBox box)
+                if (control is GroupBox box)
                 {
                     foreach (Control child in box.Controls)
                     {
-                        if (child is Button) child.Enabled = false;
+                        if (!(child is Label)) child.Enabled = false;
                     }
                 }
+                else if (!(control is Label)) control.Enabled = false;                
             }
             progressBar1.Value = 0;
             progressBar1.Enabled = true;
@@ -708,6 +790,7 @@ namespace HashTester
                 }
             }
             progressBar1.Value = 0;
+            userAbortedTheProcess = false; //yes I reset it here shut
         }
         private string ConvertToHexBasedOnUser(string text)
         {
@@ -757,17 +840,46 @@ namespace HashTester
             }
             MessageBox.Show(message, Languages.Translate(117), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e) //Abort
         {
             if (taskCurrentlyWorking)
             {
-                switch(whatTaskIsWorking)
+                userAbortedTheProcess = true;
+                switch (currentTaskType)
                 {
-                    case 1: rainbowTable.Abort(); break;
-                    case 2: rainbowTableAttack.Abort(); break;
-                    case 3: passwordCheck.Abort(); break;
-                    case 4: bruteForce.Abort(); break;
-                    default: MessageBox.Show(Languages.Translate(315), Languages.Translate(20), MessageBoxButtons.OK, MessageBoxIcon.Error); break;
+                    case TaskType.RainbowTableGenerator:
+                        {
+                            timerRainbowTableGen.Dispose();
+                            rainbowTable.Abort();
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            break;
+                        }
+                    case TaskType.RainbowTableAttack:
+                        {
+                            timerRainbowTableAttack.Dispose();
+                            rainbowTableAttack.Abort();
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            break;
+                        }
+                    case TaskType.DictionaryAttack:
+                        {
+                            timerDictionary.Dispose();
+                            passwordCheck.Abort();
+                            if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            break;
+                        }
+                    case TaskType.BruteForceAttack:
+                        {
+                            timerBruteForce.Dispose();
+                            bruteForce.Abort();
+                            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            break;
+                        }
+                    case TaskType.None:
+                        {
+                            MessageBox.Show(Languages.Translate(315), Languages.Translate(20), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
                 }
             }
         }

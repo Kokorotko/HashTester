@@ -43,6 +43,7 @@ namespace HashTester
 
         private void CheckCollisionForm_Load(object sender, EventArgs e)
         {
+            this.Name = Languages.Translate(705);
             hashSelector.SelectedIndex = 0;
             FormManagement.SetUpFormTheme(this);
             #region Languages

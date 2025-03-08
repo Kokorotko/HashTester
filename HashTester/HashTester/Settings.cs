@@ -173,7 +173,6 @@ namespace HashTester
                 return path;
             }
         }
-
         #endregion
 
         #region Enum

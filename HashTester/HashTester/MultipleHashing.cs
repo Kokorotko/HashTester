@@ -108,6 +108,7 @@ namespace HashTester
 
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
+            this.Name = Languages.Translate(706);
             FormManagement.SetUpFormTheme(this);
             #region Languages
             labelInfo.Text = "*" + Languages.Translate(221);

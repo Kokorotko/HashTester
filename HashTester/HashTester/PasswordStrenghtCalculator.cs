@@ -1,36 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace HashTester
 {
-    public class PasswordStrenghtCalculator
+    public static class PasswordStrenghtCalculator
     {
 
-        public double Calculator(int delkaHesla, long pocetZnaku, double zaSekundu, out double rychlost)
+        public static BigInteger Calculator(ulong passwordLenght, ulong numberOfChars, BigInteger donePerSec, out BigInteger speed, out bool overflowed)
         {
-            double pocet = Math.Pow(pocetZnaku, delkaHesla);
-            rychlost = pocet / zaSekundu;
-            return pocet;
+            overflowed = !TryPower(numberOfChars, passwordLenght, out BigInteger number);
+            speed = number / donePerSec;
+            return number;
         }
 
-        public string Output(double numberSeconds)
+
+        private static bool TryPower(ulong basedValue, ulong exponent, out BigInteger result)
         {
-            double numberYears = numberSeconds / 31556926; //years
-            double numberMonths = (numberSeconds % 31556926) / (2629749); //months
-            double numberDays = (numberSeconds % 2629749) / (86400); //days
-            double numberHours = (numberSeconds % 86400) / (3600); //hours
-            double numberMinutes = (numberSeconds % 3600) / (60); //minutes
-            double numberSecondsLeft = numberSeconds % 60; //seconds
-            string s = Math.Floor(numberYears).ToString("N0") + " " + Languages.Translate(575) + ", " +
-           Math.Floor(numberMonths) + " " + Languages.Translate(576) + ", " +
-           Math.Floor(numberDays) + " " + Languages.Translate(577) + ", " +
-           Math.Floor(numberHours) + " " + Languages.Translate(578) + ", " +
-           Math.Floor(numberMinutes) + " " + Languages.Translate(579) + ", " +
-           Math.Floor(numberSecondsLeft) + " " + Languages.Translate(580);
-           return s;
+            result = 1;
+            try
+            {
+                for (ulong i = 0; i < exponent; i++)
+                {
+                    result *= basedValue;
+                }
+                return true;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
+        }
+
+
+
+        public static string Output(BigInteger numberSeconds)
+        {
+            BigInteger numberBillionYears = numberSeconds / 3155692600000000000;
+            BigInteger numberYears = (numberSeconds % 3155692600000000000) / 31556926;
+            BigInteger numberMonths = (numberSeconds % 31556926) / 2629749;
+            BigInteger numberDays = (numberSeconds % 2629749) / 86400;
+            BigInteger numberHours = (numberSeconds % 86400) / 3600;
+            BigInteger numberMinutes = (numberSeconds % 3600) / 60;
+            BigInteger numberSecondsLeft = numberSeconds % 60;
+
+            string s = "";
+            if (numberBillionYears > 0) s += numberBillionYears.ToString("N0") + " " + Languages.Translate(575) + " " + Languages.Translate(581) + ", ";
+            if (numberYears > 0)  s += numberYears.ToString("N0") + " " + Languages.Translate(575) + ", ";
+            if (numberMonths > 0) s += numberMonths.ToString("N0") + " " + Languages.Translate(576) + ", ";
+            if (numberDays > 0)  s += numberDays.ToString("N0") + " " + Languages.Translate(577) + ", ";
+            if (numberHours > 0) s += numberHours.ToString("N0") + " " + Languages.Translate(578) + ", ";
+            if (numberMinutes > 0) s += numberMinutes.ToString("N0") + " " + Languages.Translate(579) + ", ";
+            if (numberSecondsLeft > 0 || s == "") s += numberSecondsLeft.ToString("N0") + " " + Languages.Translate(580);
+            if (s.EndsWith(", ")) s = s.Substring(0, s.Length - 2);
+            return s;
         }
     }
 }

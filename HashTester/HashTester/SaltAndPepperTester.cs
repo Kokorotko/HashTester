@@ -93,6 +93,7 @@ namespace HashTester
             hashSelector.SelectedIndex = 0;
             FormManagement.SetUpFormTheme(this);
             #region Languages
+            this.Name = Languages.Translate(709);
             buttonHashSimpleText.Text = Languages.Translate(31);
             checkBoxUsePepper.Text = Languages.Translate(6) + "*";
             checkBoxUseSalt.Text = Languages.Translate(5) + "*";
