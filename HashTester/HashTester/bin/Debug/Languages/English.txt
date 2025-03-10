@@ -37,6 +37,14 @@
 10035==Register
 10036==UI
 
+//**Try and Catch <<11000-12000>>
+11000==V programu došlo k chybě.
+11001==Prosím, zadejte do pole „Počet pokusů /s“ nenulové celé číslo do 18 bilionů.
+11002==Prosím, zadejte nenulové celé číslo do 1000 nebo text do pole „Počet znaků/heslo“.
+11003==Chcete odstranit nedokončený soubor?
+11004==Soubor odstraněn
+11005== Varování, těchto souborů bude několik.
+
 //**Name of Forms <<15000-15100>>
 15000==Main form
 15001==Gradual Hashing
@@ -233,6 +241,7 @@
 313==Could not find the original password.
 314==Would you like to save found password to a txt file?
 315==Error, could not stop the process.
+316==Password found with rainbow table attack.
 
 //**SaltAndPepperQuestions <<401-420>>
 401==Do you really want to override another hash ID? (You could lose data)

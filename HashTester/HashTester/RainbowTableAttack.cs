@@ -26,7 +26,11 @@ namespace HashTester
         #region GetAndSet
         public CancellationTokenSource CancellationTokenSource { get; private set; }
         public bool UseStopTimer { get; set; }
-        public long TotalLinesInFile => totalLinesInFile;
+        public long TotalLinesInFile
+        {
+            get { return totalLinesInFile; }
+            private set { totalLinesInFile = value; }
+        }
         public ConcurrentBag<string> LogOutput => logOutput;
         public string FoundPassword { get; private set; } = "";
         public long FoundPasswordAtLine { get; private set; } = -1;
@@ -131,25 +135,34 @@ namespace HashTester
             out bool continueTheAttack,
             out Hasher.HashingAlgorithm fileAlgorithm)
         {
-            inputFileIsInPlainText = !line.Contains("=");
-            continueTheAttack = true;
             fileAlgorithm = Hasher.HashingAlgorithm.CRC32;
-
-            if (!inputFileIsInPlainText)
+            inputFileIsInPlainText = false;
+            try
             {
-                LogOutput.Add(Languages.Translate(584));
-                string[] algorithmText = line.Split('=');
-                if (algorithmText.Length < 2)
+                inputFileIsInPlainText = !line.Contains("==");
+                continueTheAttack = true;
+                if (!inputFileIsInPlainText)
                 {
-                    continueTheAttack = false;
-                    return;
+                    LogOutput.Add(Languages.Translate(584));
+                    string[] algorithmText = line.Split(new string[] { "==" }, StringSplitOptions.None);
+                    if (algorithmText.Length < 2)
+                    {
+                        continueTheAttack = false;
+                        return;
+                    }
+                    Enum.TryParse(algorithmText[1], out fileAlgorithm);
+                    Console.WriteLine("Algorithm: " + fileAlgorithm);
                 }
-                Enum.TryParse(algorithmText[1], out fileAlgorithm);
-                Console.WriteLine("Algorithm: " + fileAlgorithm);
+                else
+                {
+                    LogOutput.Add(Languages.Translate(585));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                LogOutput.Add(Languages.Translate(585));
+                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                continueTheAttack = false;
+                return;
             }
         }
 
@@ -161,7 +174,7 @@ namespace HashTester
             tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
             try
             {
-                //Console.WriteLine("Splitting file into multiple parts");
+                Console.WriteLine("Splitting file into multiple parts");
 
                 // Create output file paths                
                 for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
@@ -243,25 +256,37 @@ namespace HashTester
             try
             {
                 ResetValues();
-                stopwatch.Start();
+                stopwatch.Restart();
                 CancellationTokenSource token = new CancellationTokenSource();
-
-                string firstLine = File.ReadLines(fileName).FirstOrDefault();
-                if (firstLine == null) return false;
-
+                //First Line
+                string firstLine = "";
+                long tempTotalLinesInFile = 0;
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    firstLine = reader.ReadLine(); // Reads only the first line
+                    while (!reader.EndOfStream) //reads all lines
+                    {
+                        reader.ReadLine();
+                        tempTotalLinesInFile++;
+                    }
+                }
+                TotalLinesInFile = tempTotalLinesInFile;
+                if (String.IsNullOrEmpty(firstLine)) return false;
+                Console.WriteLine("First line Detected");
                 GetFileAlgorithm(firstLine, out bool inputFileIsInPlainText, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm);
                 if (fileAlgorithm != userAlgorithm)
                 {
                     WrongAlgorithms(fileAlgorithm.ToString(), userAlgorithm.ToString());
+                    Console.WriteLine("Wrong algorithm");
                     return false;
                 }
                 if (!continueTheAttack) return false;
+                Console.WriteLine("Continue attack is true");
                 //Performance On
                 if (PerformanceMode && FormManagement.UseMultiThread())
                 {
-                    //Console.WriteLine("Performance Mode On");
-                    //totalLinesInFile = We get this from splitting the file
-                    long linesPerThread = totalLinesInFile / FormManagement.NumberOfThreadsToUse();
+                    Console.WriteLine("Performance Mode On");
+                    long linesPerThread = TotalLinesInFile / FormManagement.NumberOfThreadsToUse();
                     List<Task> allTasks = new List<Task>();
                     string[] tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
                     //Split The File
@@ -282,13 +307,17 @@ namespace HashTester
                         }));
                     }                    
                     await Task.WhenAll(allTasks);
-                    if (token.IsCancellationRequested) return false;
+                    if (token.IsCancellationRequested)
+                    {
+                        stopwatch.Stop();
+                        return false;
+                    }
                     //Console.WriteLine("All Tasks are done");
                 }
                 //performance Off
                 else
                 {
-                    //Console.WriteLine("Performance Mode Off");
+                    Console.WriteLine("Performance Mode Off");
                     Task task = Task.Run(() =>
                     {
                         if(!SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, fileName, inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
@@ -297,7 +326,12 @@ namespace HashTester
                         }
                     });
                     await Task.WhenAll(task);
-                    if (token.IsCancellationRequested) return false;
+                    if (token.IsCancellationRequested)
+                    {
+                        Console.WriteLine("Cancellation token");
+                        stopwatch.Stop();
+                        return false;
+                    }
                     //Console.WriteLine("All Tasks are done");
                 }
                 stopwatch.Stop();

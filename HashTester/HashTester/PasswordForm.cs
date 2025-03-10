@@ -431,122 +431,87 @@ namespace HashTester
                 TurnOffUI();
                 taskCurrentlyWorking = true;
                 currentTaskType = TaskType.RainbowTableAttack;
-
                 string originalInput = textBoxBruteForce.Text;
-                if (radioButtonRegularBruteForce.Checked)
-                    originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);
-
+                if (radioButtonRegularBruteForce.Checked) originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);                    
                 rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeBruteForce.Checked;
-
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    InitialDirectory = Settings.DirectoryPathToWordlists
-                };
+                OpenFileDialog openFileDialog = new OpenFileDialog { InitialDirectory = Settings.DirectoryPathToWordlists };               
                 rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
-
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     timerRainbowTableAttack.Start();
                     bool operationWasASuccess = await rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value);
-
                     if (operationWasASuccess)
                     {
-                        if (checkBoxShowLogRainbowTable.Checked)
-                            listBoxLog.Items.Add("-----------------------------------------------");
-
+                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add("-----------------------------------------------");                           
                         if (!string.IsNullOrEmpty(rainbowTableAttack.FoundPassword))
                         {
                             string foundPassword = rainbowTableAttack.FoundPassword;
                             string foundPasswordHash = hasher.Hash(foundPassword, rainbowTableAlgorithm);
                             long foundAtLine = rainbowTableAttack.FoundPasswordAtLine + 1;
-
-                            string message = Languages.Translate(291) + "\n" +
+                            string message = Languages.Translate(316) + "\n" +
                                     Languages.Translate(292) + ": " + foundPassword + "\n" +
                                     Languages.Translate(293) + ": " + originalInput + "\n" +
                                     Languages.Translate(294) + ": " + foundAtLine + "\n" +
                                     Languages.Translate(295) + ": " + foundPasswordHash + "\n" +
                                     Languages.Translate(296) + ": " + foundPassword + "\n" +
                                     Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword);
-
                             if (checkBoxShowLogRainbowTable.Checked)
                             {
-                                listBoxLog.Items.Add(Languages.Translate(291));
+                                listBoxLog.Items.Add(Languages.Translate(316));
                                 listBoxLog.Items.Add(Languages.Translate(292) + ": " + foundPassword);
                                 listBoxLog.Items.Add(Languages.Translate(295) + ": " + originalInput);
                                 listBoxLog.Items.Add(Languages.Translate(294) + ": " + foundAtLine);
                                 listBoxLog.Items.Add(Languages.Translate(296) + ": " + foundPassword);
                                 listBoxLog.Items.Add(Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword));
                             }
-                            if (timerRainbowTableAttack != null)
-                                timerRainbowTableAttack.Stop();
+                            if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();                                
                             PasswordFoundMessageBox(message, originalInput, foundPassword);
                         }
                         else if (rainbowTableAttack.CancelTokenActive())
                         {
-                            MessageBox.Show(Languages.Translate(279));
-                            if (checkBoxShowLogRainbowTable.Checked)
-                                listBoxLog.Items.Add(Languages.Translate(279));
-                            if (timerRainbowTableAttack != null)
-                                timerRainbowTableAttack.Stop();
+                            MessageBox.Show(Languages.Translate(279), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));                                
+                            if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         else if (rainbowTableAttack.RanOutOfTime)
                         {
-                            MessageBox.Show(Languages.Translate(298));
-                            if (checkBoxShowLogRainbowTable.Checked)
-                            {
-                                listBoxLog.Items.Add(Languages.Translate(298));
-                            }
-                            if (timerRainbowTableAttack != null)
-                                timerRainbowTableAttack.Stop();
+                            MessageBox.Show(Languages.Translate(298), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(298));
+                            if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         else if (rainbowTableAttack.RanOutOfAttempts)
                         {
-                            MessageBox.Show(Languages.Translate(299));
-                            if (checkBoxShowLogRainbowTable.Checked)
-                            {
-                                listBoxLog.Items.Add(Languages.Translate(299));
-                            }
-                            if (timerRainbowTableAttack != null)
-                                timerRainbowTableAttack.Stop();
+                            MessageBox.Show(Languages.Translate(299), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(299));
+                            if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         else
                         {
-                            MessageBox.Show(Languages.Translate(300));
-                            if (checkBoxShowLogRainbowTable.Checked)
-                            {
-                                listBoxLog.Items.Add(Languages.Translate(300));
-                            }
-                            if (timerRainbowTableAttack != null)
-                                timerRainbowTableAttack.Stop();
+                            MessageBox.Show(Languages.Translate(300), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(300));
+                            if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                     }
                     else
                     {
-                        MessageBox.Show(Languages.Translate(301));
-                        if (checkBoxShowLogRainbowTable.Checked)
-                            listBoxLog.Items.Add(Languages.Translate(301));
-                        if (timerRainbowTableAttack != null)
-                            timerRainbowTableAttack.Stop();
+                        MessageBox.Show(Languages.Translate(301), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(301));
+                        if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                     }
                 }
                 else
                 {
-                    if (checkBoxShowLogRainbowTable.Checked)
-                        listBoxLog.Items.Add(Languages.Translate(302));
-                    if (timerRainbowTableAttack != null)
-                        timerRainbowTableAttack.Stop();
+                    if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(302));
+                    if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                 }
-
-                if (timerRainbowTableAttack != null)
-                    timerRainbowTableAttack.Stop();
-
+                if (timerRainbowTableAttack != null) timerRainbowTableAttack.Dispose();
                 TurnOnUI();
                 taskCurrentlyWorking = false;
                 currentTaskType = TaskType.None;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred:" + ex.Message);
+                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020),MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TurnOnUI();
                 taskCurrentlyWorking = false;
                 currentTaskType = TaskType.None;
@@ -561,35 +526,30 @@ namespace HashTester
             {
                 int seconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000);
                 int milliseconds = (int)(rainbowTableAttack.Stopwatch.ElapsedMilliseconds % 1000);
-
                 long currentLinesProcessed = rainbowTableAttack.LinesProcessed;
                 int triesBetween = (int)(currentLinesProcessed - RainbowAttacknumberOfLinesInLastUpdate);
                 RainbowAttacknumberOfLinesInLastUpdate = currentLinesProcessed;
 
                 // Speed Calculation
-                double speed = triesBetween / (Settings.UpdateUIms / 1000);
+                double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
                 labelStatCurrentSpeed.Text = Languages.Translate(10001) + "/s: " + speed.ToString("#,0");
-
-                // Attempts Display
                 labelStatAttempts.Text = Languages.Translate(303) + ": " + currentLinesProcessed.ToString("#,0");
-
                 // Average Speed Calculation
-                double averageSpeed = (rainbowTableAttack.Stopwatch.ElapsedMilliseconds > 0)
-                    ? currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0)
-                    : 0;
+                double averageSpeed = 0;
+                if (rainbowTableAttack.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0);
                 labelStatSpeed.Text = Languages.Translate(10012) + "/s: " + Math.Floor(averageSpeed).ToString("#,0");
-
                 // Progress Bar Update
-                int progress = (int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);
-                progressBar1.Value = Math.Max(0, Math.Min(progress, 100));  // Ensure value is between 0-100
+                int progress = 0;
+                if (rainbowTableAttack.TotalLinesInFile != 0) progress =(int)((double)currentLinesProcessed / rainbowTableAttack.TotalLinesInFile * 100);               
+                progressBar1.Value = Math.Max(0, Math.Min(progress, 100)); //<0-100>
 
-                // Logging
+                // Log
                 if (rainbowTableAttack.LogOutput != null)
                 {
-                    foreach (string logEntry in rainbowTableAttack.LogOutput)
-                        listBoxLog.Items.Add(logEntry);
-
+                    List<string> logs = rainbowTableAttack.LogOutput.ToList(); //avoid reading LogOutput while its being changed
                     rainbowTableAttack.LogReset(); // Clear logs after adding them
+                    foreach (string logEntry in logs)
+                    listBoxLog.Items.Add(logEntry);                    
                 }
             }
             catch (DivideByZeroException) //it does that dont worry

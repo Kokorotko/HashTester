@@ -9,18 +9,6 @@ namespace HashTester
 {
     public class Hasher
     {
-        private string currentSalt;
-        private string currentPepper;
-        public string CurrentSalt 
-        { 
-            get { return currentSalt; }
-            set { currentSalt = value; }
-        }
-        public string CurrentPepper
-        {
-            get { return currentPepper; }
-            set { currentPepper = value; }
-        }
         public Hasher() { }
         public enum HashingAlgorithm
         {
@@ -601,22 +589,17 @@ namespace HashTester
 
         void CRC32Table()
         {
-            crc32Table = new uint[256]; //Size (CRC32 == 32 bytes)
+            crc32Table = new uint[256]; //Size (CRC32 == 32 bytes/256 bits)
             const uint polynomial = 0xedb88320; //Polynom G (G as Generated)
-
             for (uint i = 0; i < 256; i++) //CRC table precalculation
             {
                 uint crc = i;
                 for (uint j = 8; j > 0; j--)
                 {
-                    if ((crc & 1) == 1) // & ==> bit AND
-                    {
-                        crc = (crc >> 1) ^ polynomial; //^ ==> bit XOR
-                    }
-                    else
-                    {
-                        crc >>= 1;
-                    }
+                    if ((crc & 1) == 1) crc = (crc >> 1) ^ polynomial;
+                    // & ==> bit AND 
+                    //^ ==> bit XOR
+                    else crc >>= 1;
                 }
                 crc32Table[i] = crc;
             }
