@@ -101,13 +101,21 @@ namespace HashTester
             {
                 ResetValues();
                 stopwatch = Stopwatch.StartNew();
-                if (!File.Exists(fileInputPath)) { return false; }
-                allLinesInInputFile = File.ReadLines(fileInputPath).LongCount();
+                if (!File.Exists(fileInputPath)) { return false; }                
+                using (StreamReader reader = new StreamReader(fileInputPath)) //Number of lines in a file
+                {
+                    long temp = 0;
+                    while (!reader.EndOfStream)
+                    {
+                        reader.ReadLine();
+                        temp++;
+                    }
+                    allLinesInInputFile = temp;
+                }
                 LogOutput = Languages.Translate(589) + ": " + allLinesInInputFile;
                 long numberOfCurrentLines = 0;
-
-                // Split the file
-                using (StreamReader readerInput = new StreamReader(fileInputPath))
+                
+                using (StreamReader readerInput = new StreamReader(fileInputPath)) // Split the file
                 {
                     for (int i = 0; i < numberOfThreadsUsed; i++)
                     {
@@ -162,9 +170,8 @@ namespace HashTester
                 });
 
                 if (cancellationTokenSource.Token.IsCancellationRequested) return false;
-
-                // Combine the splits
-                using (StreamWriter writer = new StreamWriter(fileOutputPath))
+               
+                using (StreamWriter writer = new StreamWriter(fileOutputPath)) // Combine the splits
                 {
                     writer.WriteLine("algorithm==" + hashingAlgorithm.ToString());
                     foreach (string fileOutput in tempFilesOutput)
@@ -198,6 +205,7 @@ namespace HashTester
             {
                 RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
                 cancellationTokenSource.Cancel();
+                stopwatch.Stop();
                 Console.WriteLine("ERROR: Rainbow Table Generator multithread thread has failed: " + ex.Message);
                 MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
                 return false;

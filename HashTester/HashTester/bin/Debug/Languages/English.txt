@@ -242,6 +242,7 @@
 314==Would you like to save found password to a txt file?
 315==Error, could not stop the process.
 316==Password found with rainbow table attack.
+317==!Please dont name any files in this directory Temp or InputSplit. They will be deleted!
 
 //**SaltAndPepperQuestions <<401-420>>
 401==Do you really want to override another hash ID? (You could lose data)

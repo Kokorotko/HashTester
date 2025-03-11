@@ -60,11 +60,13 @@ namespace HashTester
             private set { attempts = value; }
         }
 
+        public bool FoundPasswordBool { get; private set; }
+
         #endregion
 
         public void Abort() => CancellationTokenSource.Cancel();
 
-        private bool SingleThreadRainbowTableAttack(
+        private bool SingleThreadRainbowTableAttack( //returns if the operation was a success, use FoundPasswordBool to know if it has been found
             string userInputHash,
             Hasher.HashingAlgorithm fileAlgorithm,
             Hasher.HashingAlgorithm desiredAlgorithm,
@@ -74,45 +76,54 @@ namespace HashTester
             long timeToStopAttack,
             long maxAttempts)
         {
-            FoundPassword = "";
-            FoundPasswordAtLine = -1;
-            bool foundMatch = false;
-            bool useTimeToStop = true;
-            bool useMaxAttempts = true;
-            if (timeToStopAttack <= 0) useTimeToStop = false;
-            if (maxAttempts <= 0) useMaxAttempts = false;
-
-            linesProcessed = 0;
-            using (StreamReader reader = new StreamReader(fileName))
+            try
             {
-                while (!reader.EndOfStream)
-                {
-                    Attempts++;
-                    if (token.IsCancellationRequested) break;
-                    if (useTimeToStop && Stopwatch.ElapsedMilliseconds / 1000 > timeToStopAttack)
-                    {
-                        ranOutOfTime = true;
-                        break;
-                    }
-                    if (useMaxAttempts && Attempts > maxAttempts)
-                    {
-                        RanOutOfAttempts = true;
-                        break;
-                    }
-                    string fullLine = reader.ReadLine();
-                    foundMatch = ProcessLine(fullLine, userInputHash, desiredAlgorithm, inputFileIsInPlainText, ref linesProcessed);
+                FoundPassword = "";
+                FoundPasswordBool = false;
+                FoundPasswordAtLine = -1;
+                bool foundMatch = false;
+                bool useTimeToStop = true;
+                bool useMaxAttempts = true;
+                if (timeToStopAttack <= 0) useTimeToStop = false;
+                if (maxAttempts <= 0) useMaxAttempts = false;
 
-                    if (foundMatch)
+                linesProcessed = 0;
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    while (!reader.EndOfStream)
                     {
-                        Console.WriteLine("Found Match");
-                        FoundPassword = inputFileIsInPlainText ? fullLine : fullLine.Split('=')[0];
-                        FoundPasswordAtLine = linesProcessed - 1; //-1 because the first one is algorithm
-                        break;
+                        Attempts++;
+                        if (token.IsCancellationRequested) break;
+                        if (useTimeToStop && Stopwatch.ElapsedMilliseconds / 1000 > timeToStopAttack)
+                        {
+                            ranOutOfTime = true;
+                            break;
+                        }
+                        if (useMaxAttempts && Attempts > maxAttempts)
+                        {
+                            RanOutOfAttempts = true;
+                            break;
+                        }
+                        string fullLine = reader.ReadLine();
+                        foundMatch = ProcessLine(fullLine, userInputHash, desiredAlgorithm, inputFileIsInPlainText, ref linesProcessed);
+
+                        if (foundMatch)
+                        {
+                            Console.WriteLine("Found Match");
+                            FoundPasswordBool = true;
+                            FoundPassword = inputFileIsInPlainText ? fullLine : fullLine.Split('=')[0];
+                            FoundPasswordAtLine = linesProcessed - 1; //-1 because the first one is algorithm
+                            break;
+                        }
                     }
                 }
+                return true;
             }
-            bool temp = !String.IsNullOrEmpty(FoundPassword);
-            return temp;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Rainbow Table Attack Single Thread error: " + ex.Message);
+                return false;
+            }
         }
 
         private bool ProcessLine(
@@ -202,6 +213,7 @@ namespace HashTester
                         {
                             if (token.IsCancellationRequested)
                             {
+                                DeleteAllTempFiles(tempFilesPath);
                                 return false; // Stop if canceled
                             }
 
@@ -218,11 +230,11 @@ namespace HashTester
                     finally
                     {
                         // Close all writers
-                        for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
+                        foreach (StreamWriter writer in writers)
                         {
-                            if (writers[i] != null)
+                            if (writer != null)
                             {
-                                writers[i].Close();
+                                writer.Close();
                             }
                         }
                     }
@@ -231,9 +243,23 @@ namespace HashTester
             }
             catch (Exception ex)
             {
+                DeleteAllTempFiles(tempFilesPath);
                 Console.WriteLine("ERROR: while splitting file in rainbowTableAttack: " + ex.Message);
                 return false;
             }
+        }
+
+        private void DeleteAllTempFiles(string[] paths)
+        {
+            foreach (string path in paths)
+            {
+                DeleteTempFile(path);
+            }
+        }
+
+        private void DeleteTempFile(string path)
+        {
+            if (File.Exists(path)) File.Delete(path);
         }
 
         private void ResetValues()
@@ -246,6 +272,7 @@ namespace HashTester
             logOutput = new ConcurrentBag<string>();
             FoundPassword = "";
             FoundPasswordAtLine = -1;
+            FoundPasswordBool = false;
             PerformanceMode = false;
             linesProcessed = 0;
         }
@@ -272,16 +299,16 @@ namespace HashTester
                 }
                 TotalLinesInFile = tempTotalLinesInFile;
                 if (String.IsNullOrEmpty(firstLine)) return false;
-                Console.WriteLine("First line Detected");
+                //Console.WriteLine("First line Detected");
                 GetFileAlgorithm(firstLine, out bool inputFileIsInPlainText, out bool continueTheAttack, out Hasher.HashingAlgorithm fileAlgorithm);
                 if (fileAlgorithm != userAlgorithm)
                 {
                     WrongAlgorithms(fileAlgorithm.ToString(), userAlgorithm.ToString());
-                    Console.WriteLine("Wrong algorithm");
+                    //Console.WriteLine("Wrong algorithm");
                     return false;
                 }
                 if (!continueTheAttack) return false;
-                Console.WriteLine("Continue attack is true");
+                //Console.WriteLine("Continue attack is true");
                 //Performance On
                 if (PerformanceMode && FormManagement.UseMultiThread())
                 {
@@ -358,8 +385,11 @@ namespace HashTester
         private void WrongAlgorithms(string fileAlgo, string userAlgo)
         {
             FoundPassword = "";
+            FoundPasswordBool = false;
             FoundPasswordAtLine = -1;
-            LogOutput.Add(Languages.Translate(586) + " " + fileAlgo + " " + Languages.Translate(587)+ " " + userAlgo + ". " + Languages.Translate(588));
+            string s = Languages.Translate(586) + " " + fileAlgo + " " + Languages.Translate(587) + " " + userAlgo + ". " + Languages.Translate(588);
+            LogOutput.Add(s);
+            MessageBox.Show(s, Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }        
     }
 }

@@ -3,11 +3,10 @@ Teoreticky zpracujte problematiku hashování. S pomoci nejménì dvou hashovacích a
 **Programy a Technologie
 C#
 Visual Studio 2022 (.NET framework)
-Visual Code (úprava kodu a .txt souborù)
+Visual Code
 Git, GitHub, GitHub Desktop
-Web Freelo.io (Kanban -- Agilní)
-Word (dokumentace)
-ChatGPT
+Web Freelo.io (Kanban)
+Word (thesis)
 
 HASHES:
 MD5

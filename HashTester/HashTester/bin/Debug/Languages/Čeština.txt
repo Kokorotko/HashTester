@@ -243,6 +243,7 @@
 314==Chcete nalezené heslo uložit do souboru txt?
 315==Chyba, nepodařilo se zastavit proces.
 316==Heslo nalezeno pomocí útoku duhovou tabulkou.
+317==!Prosím nepojmenovávejte soubory v téhle složce Temp nebo InputSplit. Tyto soubory budou smazány!
 
 //**SaltAndPepperQuestions <<401-420>>
 401== Opravdu chcete přepsat jiné hash ID? (Mohli byste přijít o data)
@@ -321,13 +322,13 @@
 578==hodin  
 579==minut  
 580==vteřin  
-581==Duhová tabulka souboru
+581==Duhová tabulka v souboru
 582==s
 583==algoritmus hašování je hotov.
 584==Soubor už obsahuje duhovou tabulku.
 585==Soubor neobsahuje duhovou tabulku.
 586==Soubor je zahešován pomocí
-587==ale uživatel chce 
+587==ale uživatel chce
 588==Algoritmy musí být stejné. Rušení útoku...
 601==Počet řádků na zpracování
 

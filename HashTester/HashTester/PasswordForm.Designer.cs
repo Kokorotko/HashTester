@@ -205,7 +205,7 @@
             this.groupBoxTimeToCrack.Controls.Add(this.textBoxCrackLenght);
             this.groupBoxTimeToCrack.Location = new System.Drawing.Point(235, 13);
             this.groupBoxTimeToCrack.Name = "groupBoxTimeToCrack";
-            this.groupBoxTimeToCrack.Size = new System.Drawing.Size(137, 252);
+            this.groupBoxTimeToCrack.Size = new System.Drawing.Size(153, 252);
             this.groupBoxTimeToCrack.TabIndex = 8;
             this.groupBoxTimeToCrack.TabStop = false;
             this.groupBoxTimeToCrack.Text = "Time to crack calculator";
@@ -226,7 +226,7 @@
             // 
             this.buttonCrackCalculate.Location = new System.Drawing.Point(6, 219);
             this.buttonCrackCalculate.Name = "buttonCrackCalculate";
-            this.buttonCrackCalculate.Size = new System.Drawing.Size(118, 23);
+            this.buttonCrackCalculate.Size = new System.Drawing.Size(141, 23);
             this.buttonCrackCalculate.TabIndex = 8;
             this.buttonCrackCalculate.Text = "Calculate";
             this.buttonCrackCalculate.UseVisualStyleBackColor = true;
@@ -293,7 +293,7 @@
             // 
             this.textBoxCrackSpeed.Location = new System.Drawing.Point(6, 75);
             this.textBoxCrackSpeed.Name = "textBoxCrackSpeed";
-            this.textBoxCrackSpeed.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCrackSpeed.Size = new System.Drawing.Size(141, 20);
             this.textBoxCrackSpeed.TabIndex = 2;
             this.textBoxCrackSpeed.Text = "20000000";
             // 
@@ -310,7 +310,7 @@
             // 
             this.textBoxCrackLenght.Location = new System.Drawing.Point(6, 34);
             this.textBoxCrackLenght.Name = "textBoxCrackLenght";
-            this.textBoxCrackLenght.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCrackLenght.Size = new System.Drawing.Size(141, 20);
             this.textBoxCrackLenght.TabIndex = 0;
             // 
             // groupBoxBruteForce
@@ -335,7 +335,7 @@
             this.groupBoxBruteForce.Controls.Add(this.numericUpDownMaxAttempts);
             this.groupBoxBruteForce.Controls.Add(this.hashSelectorBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.textBoxBruteForce);
-            this.groupBoxBruteForce.Location = new System.Drawing.Point(543, 12);
+            this.groupBoxBruteForce.Location = new System.Drawing.Point(590, 12);
             this.groupBoxBruteForce.Name = "groupBoxBruteForce";
             this.groupBoxBruteForce.Size = new System.Drawing.Size(301, 252);
             this.groupBoxBruteForce.TabIndex = 9;
@@ -424,7 +424,7 @@
             // 
             this.buttonBruteForceAttack.Location = new System.Drawing.Point(5, 219);
             this.buttonBruteForceAttack.Name = "buttonBruteForceAttack";
-            this.buttonBruteForceAttack.Size = new System.Drawing.Size(276, 23);
+            this.buttonBruteForceAttack.Size = new System.Drawing.Size(285, 23);
             this.buttonBruteForceAttack.TabIndex = 11;
             this.buttonBruteForceAttack.Text = "Brute Force Attack";
             this.buttonBruteForceAttack.UseVisualStyleBackColor = true;
@@ -588,7 +588,7 @@
             // 
             this.buttonRainbowTableAttack.Location = new System.Drawing.Point(7, 216);
             this.buttonRainbowTableAttack.Name = "buttonRainbowTableAttack";
-            this.buttonRainbowTableAttack.Size = new System.Drawing.Size(140, 23);
+            this.buttonRainbowTableAttack.Size = new System.Drawing.Size(178, 23);
             this.buttonRainbowTableAttack.TabIndex = 38;
             this.buttonRainbowTableAttack.Text = "Rainbow Table Attack";
             this.buttonRainbowTableAttack.UseVisualStyleBackColor = true;
@@ -598,7 +598,7 @@
             // 
             this.buttonGenerateRainbowTable.Location = new System.Drawing.Point(8, 189);
             this.buttonGenerateRainbowTable.Name = "buttonGenerateRainbowTable";
-            this.buttonGenerateRainbowTable.Size = new System.Drawing.Size(138, 23);
+            this.buttonGenerateRainbowTable.Size = new System.Drawing.Size(176, 23);
             this.buttonGenerateRainbowTable.TabIndex = 10;
             this.buttonGenerateRainbowTable.Text = "Generate Rainbow Table";
             this.buttonGenerateRainbowTable.UseVisualStyleBackColor = true;
@@ -644,7 +644,7 @@
             // 
             this.buttonCancel.Location = new System.Drawing.Point(723, 328);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(121, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(168, 23);
             this.buttonCancel.TabIndex = 35;
             this.buttonCancel.Text = "Abort The Process";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -655,7 +655,7 @@
             this.progressBar1.Cursor = System.Windows.Forms.Cursors.Default;
             this.progressBar1.Location = new System.Drawing.Point(19, 354);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(825, 23);
+            this.progressBar1.Size = new System.Drawing.Size(872, 23);
             this.progressBar1.TabIndex = 36;
             // 
             // labelProgressBar
@@ -672,7 +672,7 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(19, 384);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(825, 95);
+            this.listBoxLog.Size = new System.Drawing.Size(872, 95);
             this.listBoxLog.TabIndex = 38;
             // 
             // buttonLogClear
@@ -689,7 +689,7 @@
             // 
             this.buttonLogSave.Location = new System.Drawing.Point(258, 486);
             this.buttonLogSave.Name = "buttonLogSave";
-            this.buttonLogSave.Size = new System.Drawing.Size(258, 23);
+            this.buttonLogSave.Size = new System.Drawing.Size(294, 23);
             this.buttonLogSave.TabIndex = 40;
             this.buttonLogSave.Text = "Save Log";
             this.buttonLogSave.UseVisualStyleBackColor = true;
@@ -697,9 +697,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(522, 486);
+            this.buttonClipboard.Location = new System.Drawing.Point(558, 486);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(322, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(333, 23);
             this.buttonClipboard.TabIndex = 41;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -716,9 +716,9 @@
             this.groupBoxRainbowTable.Controls.Add(this.hashSelectorRainbowTable);
             this.groupBoxRainbowTable.Controls.Add(this.buttonRainbowTableAttack);
             this.groupBoxRainbowTable.Controls.Add(this.checkBoxShowLogRainbowTable);
-            this.groupBoxRainbowTable.Location = new System.Drawing.Point(378, 13);
+            this.groupBoxRainbowTable.Location = new System.Drawing.Point(394, 13);
             this.groupBoxRainbowTable.Name = "groupBoxRainbowTable";
-            this.groupBoxRainbowTable.Size = new System.Drawing.Size(159, 252);
+            this.groupBoxRainbowTable.Size = new System.Drawing.Size(191, 252);
             this.groupBoxRainbowTable.TabIndex = 42;
             this.groupBoxRainbowTable.TabStop = false;
             this.groupBoxRainbowTable.Text = "Rainbow table attack";
@@ -737,7 +737,7 @@
             // 
             this.textBoxRainbowTable.Location = new System.Drawing.Point(6, 21);
             this.textBoxRainbowTable.Name = "textBoxRainbowTable";
-            this.textBoxRainbowTable.Size = new System.Drawing.Size(140, 20);
+            this.textBoxRainbowTable.Size = new System.Drawing.Size(178, 20);
             this.textBoxRainbowTable.TabIndex = 44;
             this.textBoxRainbowTable.Text = "budakkecik";
             // 
@@ -784,7 +784,7 @@
             "CRC32"});
             this.hashSelectorRainbowTable.Location = new System.Drawing.Point(6, 117);
             this.hashSelectorRainbowTable.Name = "hashSelectorRainbowTable";
-            this.hashSelectorRainbowTable.Size = new System.Drawing.Size(114, 21);
+            this.hashSelectorRainbowTable.Size = new System.Drawing.Size(178, 21);
             this.hashSelectorRainbowTable.TabIndex = 44;
             this.hashSelectorRainbowTable.SelectedIndexChanged += new System.EventHandler(this.hashSelectorRainbowTable_SelectedIndexChanged);
             // 
@@ -796,7 +796,7 @@
             this.groupBoxUI.Controls.Add(this.labelStatSpeed);
             this.groupBoxUI.Location = new System.Drawing.Point(17, 268);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Size = new System.Drawing.Size(200, 80);
+            this.groupBoxUI.Size = new System.Drawing.Size(211, 80);
             this.groupBoxUI.TabIndex = 43;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
@@ -805,7 +805,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 526);
+            this.ClientSize = new System.Drawing.Size(902, 526);
             this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.groupBoxRainbowTable);
             this.Controls.Add(this.buttonClipboard);
