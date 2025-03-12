@@ -110,6 +110,7 @@
 54==Checksum
 55==File has not been saved.
 56==An error has occured. Please contact the creator and report this bug.
+57==Please select a hash for checksum.
 
 //**Gradual Hashing <<101-110>>
 101==Gradual hashing

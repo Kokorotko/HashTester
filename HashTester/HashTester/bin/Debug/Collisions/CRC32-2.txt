@@ -1,0 +1,10 @@
+Algorithm=CRC32
+<STRING>
+'Tõî3»d©
+Á#®GµÙÎ.3
+<HEX>
+89-27-54-F5-EE-9A-33-BB-64-A9
+C1-23-AE-97-47-B5-D9-CE-2E-33
+<HASH>
+hash1: 47948a89
+hash2: 47948a89

@@ -17,6 +17,7 @@ OTHER:
 LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
 UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
 NameTable when reset doesnt generate //shit
+HashingCollisionForm problémy s dělením nulou
 
 
 

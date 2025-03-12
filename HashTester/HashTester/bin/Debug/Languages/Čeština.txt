@@ -111,6 +111,7 @@
 54==Kontrolní součet
 55==Soubor se nepodařilo uložit.
 56==Došlo k chybě. Kontaktujte prosím tvůrce a nahlašte tuto chybu.
+57==Prosím vyberte hash pro kontrolní součet.
 
 //**Gradual Hashing <<101-110>>
 101==Postupné hashování

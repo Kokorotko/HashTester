@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace HashTester
 {
@@ -25,21 +26,7 @@ namespace HashTester
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     TurnOffUI();
-                    labelLocation.Text = Languages.Translate(34) + ": " + dialog.FileName;
-                    foreach (Hasher.HashingAlgorithm algorithm in Enum.GetValues(typeof(Hasher.HashingAlgorithm)))
-                    {
-                        string hash = Hasher.FileChecksum(dialog.FileName, algorithm);
-                        switch (algorithm)
-                        {
-                            case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
-                            case Hasher.HashingAlgorithm.SHA1: labelSHA1.Text = "SHA1: " + hash; break;
-                            case Hasher.HashingAlgorithm.SHA256: labelSHA256.Text = "SHA256: " + hash; break;
-                            case Hasher.HashingAlgorithm.SHA512: labelSHA512.Text = "SHA512: " + hash; break;
-                            case Hasher.HashingAlgorithm.RIPEMD160: labelRipeMD160.Text = "RipeMD-160: " + hash; break;
-                            case Hasher.HashingAlgorithm.CRC32: labelCRC32.Text = "CRC32: " + hash; break;
-                            default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + algorithm.ToString()); break;
-                        }
-                    }
+                    GenerateCheckSum(dialog.FileName);
                     TurnOnUI();
                 }
             }
@@ -83,7 +70,6 @@ namespace HashTester
             #region Langugages
             buttonFile.Text = Languages.Translate(35);
             buttonChecksum.Text = Languages.Translate(36);
-            checkBox1.Text = Languages.Translate(37);
             groupBoxChecksum.Text = Languages.Translate(54);
             buttonCopyMD5.Text = Languages.Translate(10029) + " MD5";
             button1.Text = Languages.Translate(10029) + " SHA1";
@@ -195,37 +181,109 @@ namespace HashTester
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    TurnOffUI();
-                    labelLocation.Text = Languages.Translate(34) + ": " + dialog.FileName;
-                    if (checkBox1.Checked) //Generate Checksum for all
+                    GenerateCheckSum(dialog.FileName, checksum, fileAlgorithm);
+                }
+                TurnOnUI();
+            }
+        }
+
+        private void labelLocation_TextChanged(object sender, EventArgs e)
+        {
+            if (labelLocation.Text.Length > 180) labelLocation.Text = labelLocation.Text.Substring(0, 177) + "...";
+        }
+
+        private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm fileAlgorithm)
+        {
+            TurnOffUI();
+            labelLocation.Text = Languages.Translate(34) + ": " + filename;
+            //get what algorithms to file checksum
+            bool[] useAlgorithm =
+            {
+                    checkBoxMD5.Checked,
+                    checkBoxSHA1.Checked,
+                    checkBoxSHA256.Checked,
+                    checkBoxSHA512.Checked,
+                    checkBoxRIPEMD160.Checked,
+                    checkBoxCRC32.Checked
+                };
+
+            //Check to see if any are selected
+            bool anySelected = false;
+            foreach (bool bul in useAlgorithm)
+            {
+                if (bul) anySelected = true;
+            }
+            if (!anySelected)
+            {
+                MessageBox.Show(Languages.Translate(57), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            for (int i = 0; i < useAlgorithm.Count(); i++)
+            {
+                if (useAlgorithm[i])
+                {
+                    string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
+                    if ((Hasher.HashingAlgorithm)i == fileAlgorithm)
                     {
-                        foreach (Hasher.HashingAlgorithm algorithm in Enum.GetValues(typeof(Hasher.HashingAlgorithm)))
-                        {
-                            string hash = Hasher.FileChecksum(dialog.FileName, algorithm);
-                            if (algorithm == fileAlgorithm)
-                            {
-                                if (checksum == hash) MessageBox.Show(Languages.Translate(50), Languages.Translate(52), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                else MessageBox.Show(Languages.Translate(51), Languages.Translate(53), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            switch (algorithm)
-                            {
-                                case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
-                                case Hasher.HashingAlgorithm.SHA1: labelMD5.Text = "SHA1: " + hash; break;
-                                case Hasher.HashingAlgorithm.SHA256: labelMD5.Text = "SHA256: " + hash; break;
-                                case Hasher.HashingAlgorithm.SHA512: labelMD5.Text = "SHA512: " + hash; break;
-                                case Hasher.HashingAlgorithm.RIPEMD160: labelMD5.Text = "RipeMD-160: " + hash; break;
-                                case Hasher.HashingAlgorithm.CRC32: labelMD5.Text = "CRC32: " + hash; break;
-                                default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + algorithm.ToString()); break;
-                            }
-                        }
-                    }
-                    else //Generate checksum for only the one
-                    {
-                        string hash = Hasher.FileChecksum(dialog.FileName, fileAlgorithm);
                         if (checksum == hash) MessageBox.Show(Languages.Translate(50), Languages.Translate(52), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else MessageBox.Show(Languages.Translate(51), Languages.Translate(53), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    TurnOnUI();
+                    switch ((Hasher.HashingAlgorithm)i)
+                    {
+                        case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA1: labelMD5.Text = "SHA1: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA256: labelMD5.Text = "SHA256: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA512: labelMD5.Text = "SHA512: " + hash; break;
+                        case Hasher.HashingAlgorithm.RIPEMD160: labelMD5.Text = "RipeMD-160: " + hash; break;
+                        case Hasher.HashingAlgorithm.CRC32: labelMD5.Text = "CRC32: " + hash; break;
+                        default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
+                    }
+                }
+            }
+        }
+
+        private void GenerateCheckSum(string filename)
+        {
+            TurnOffUI();
+            labelLocation.Text = Languages.Translate(34) + ": " + filename;
+            //get what algorithms to file checksum
+            bool[] useAlgorithm =
+            {
+                    checkBoxMD5.Checked,
+                    checkBoxSHA1.Checked,
+                    checkBoxSHA256.Checked,
+                    checkBoxSHA512.Checked,
+                    checkBoxRIPEMD160.Checked,
+                    checkBoxCRC32.Checked
+                };
+            //Check to see if any are selected
+            bool anySelected = false;
+            foreach(bool bul in useAlgorithm)
+            {
+                if (bul) anySelected = true;
+            }
+            if (!anySelected)
+            {
+                MessageBox.Show(Languages.Translate(57), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //Code
+            for (int i = 0; i < useAlgorithm.Count(); i++)
+            {
+                if (useAlgorithm[i])
+                {
+                    string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
+                    switch ((Hasher.HashingAlgorithm)i)
+                    {
+                        case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA1: labelMD5.Text = "SHA1: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA256: labelMD5.Text = "SHA256: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA512: labelMD5.Text = "SHA512: " + hash; break;
+                        case Hasher.HashingAlgorithm.RIPEMD160: labelMD5.Text = "RipeMD-160: " + hash; break;
+                        case Hasher.HashingAlgorithm.CRC32: labelMD5.Text = "CRC32: " + hash; break;
+                        default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
+                    }
                 }
             }
         }

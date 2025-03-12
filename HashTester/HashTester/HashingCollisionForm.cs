@@ -146,7 +146,7 @@ namespace HashTester
                 collision2 = "";
                 List<string> hashedList = new List<string>();
                 List<string> textList = new List<string>();
-                Random random = new Random((int)(DateTime.Now.Ticks ^ threadNumber));
+                Random random = new Random((int)(DateTime.Now.Ticks * threadNumber));
 
                 while (!foundCollision && !stopHashing && !attemptsRanOut)
                 {
@@ -200,7 +200,7 @@ namespace HashTester
             char[] result = new char[length];
             for (int i = 0; i < length; i++)
             {
-                result[i] = (char)random.Next(32, 256);  //Generates random UTF-8 without the first 32 since those are not printable
+                result[i] = (char)random.Next(33, 256); 
             }
             return new string(result);
         }
@@ -282,7 +282,8 @@ namespace HashTester
             using (OpenFileDialog soubor = new OpenFileDialog())
             {
                 soubor.DefaultExt = ".txt";
-                soubor.InitialDirectory = Path.GetFullPath(@"..\..\SameHashingResults");
+                soubor.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                soubor.InitialDirectory = Settings.DirectoryPathToCollisions;
                 if (soubor.ShowDialog() == DialogResult.OK)
                 {
                     using (StreamReader reader = new StreamReader(soubor.FileName))
@@ -341,8 +342,7 @@ namespace HashTester
                                 }
                             }
                         }
-                        if (gotInformation && !String.IsNullOrEmpty(textCollision01) && !String.IsNullOrEmpty(textCollision02))
-                                CheckCollision(algorithmTemp, textCollision01, textCollision02, format);
+                        if (gotInformation && !String.IsNullOrEmpty(textCollision01) && !String.IsNullOrEmpty(textCollision02)) CheckCollision(algorithmTemp, textCollision01, textCollision02, format);
                         else MessageBox.Show(Languages.Translate(10022), Languages.Translate(10021), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
