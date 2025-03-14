@@ -78,7 +78,7 @@
       <DependentUpon>FileChecksum.cs</DependentUpon>
     </Compile>
     <Compile Include="Languages.cs" />
-    <Compile Include="PasswordCheck.cs" />
+    <Compile Include="DictionaryAttack.cs" />
     <Compile Include="PasswordStrenghtCalculator.cs" />
     <Compile Include="RainbowTableAttack.cs" />
     <Compile Include="Form1.cs">

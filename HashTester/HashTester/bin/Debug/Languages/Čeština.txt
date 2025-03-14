@@ -38,12 +38,13 @@
 10036==UI
 
 //**Try and Catch <<11000-12000>>
-11000==Vyskytnul se error v programu.
-11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 18 triliónů.
-11002==Prosím zadejte do "Počet znaků/heslo" celé nenulové číslo do 1000 nebo text.
+11000==Vyskytla se chyba v programu.
+11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 2 miliard.
+11002==Prosím zadejte do "Počet znaků/heslo" celé nenulové číslo do 1000 nebo heslo.
 11003==Chcete odstranit nedokončený soubor?
 11004==Soubor smazán
 11005==Varování, těchto souborů bude několik.
+11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.
 
 
 //**Name of Forms <<15000-15100>>

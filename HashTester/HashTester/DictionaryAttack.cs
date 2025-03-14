@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace HashTester
 {
-    public class PasswordCheck
+    public class DictionaryAttack
     {
         //private
         private List<string> logOutput = new List<string>();
@@ -67,7 +68,7 @@ namespace HashTester
             get
             {
                 if (LinesInTXT == 0) return 0;
-                int temp = (int)((double)CurrentLine / LinesInTXT * 100);
+                int temp = (int)(CurrentLine / (double)LinesInTXT * 100);
                 if (temp > 100) return 100;
                 else if (temp < 0) return 0;
                 else return temp;
@@ -94,39 +95,49 @@ namespace HashTester
             ResetValue();
             using (StreamReader reader = new StreamReader(fullPathToTXT))
             {
-                stopwatch.Start();
-                LinesInTXT = CountNumberOfLinesInFile(fullPathToTXT);
-                //Set Up
-                foundMatch = new bool[passwords.Count()];
-                lineFoundMatch = new long[passwords.Count()];
-                for (int i = 0; i < passwords.Count(); i++)
+                try
                 {
-                    FoundMatch[i] = false;
-                    lineFoundMatch[i] = -1;
-                }
-                while (!reader.EndOfStream && !UserAbandoned)
-                {
-                    CurrentLine++;
-                    string line = reader.ReadLine();                    
+                    stopwatch.Start();
+                    LinesInTXT = CountNumberOfLinesInFile(fullPathToTXT);
+                    //Set Up
+                    foundMatch = new bool[passwords.Count()];
+                    lineFoundMatch = new long[passwords.Count()];
                     for (int i = 0; i < passwords.Count(); i++)
                     {
-                        if (!FoundMatch[i])
+                        FoundMatch[i] = false;
+                        lineFoundMatch[i] = -1;
+                    }
+                    while (!reader.EndOfStream && !UserAbandoned)
+                    {
+                        CurrentLine++;
+                        string line = reader.ReadLine();
+                        for (int i = 0; i < passwords.Count(); i++)
                         {
-                            if (passwords[i] == line)
-                            {                                
-                                lineFoundMatch[i] = CurrentLine;
-                                foundMatch[i] = true;
-                                logOutput.Add(Languages.Translate(573) + " '" + passwords[i] + "' " + Languages.Translate(574) + ": " + CurrentLine);
-                                if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
+                            if (!FoundMatch[i])
+                            {
+                                if (passwords[i] == line)
                                 {
-                                    return;
-                                }
+                                    lineFoundMatch[i] = CurrentLine;
+                                    foundMatch[i] = true;
+                                    logOutput.Add(Languages.Translate(573) + " '" + passwords[i] + "' " + Languages.Translate(574) + ": " + CurrentLine);
+                                    if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
+                                    {
+                                        stopwatch.Stop();
+                                        return;
+                                    }
 
+                                }
                             }
                         }
                     }
+                    stopwatch.Stop();
                 }
-                stopwatch.Stop();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    stopwatch.Stop();
+                    return;
+                }
             }
         }
 

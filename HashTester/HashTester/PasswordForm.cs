@@ -131,34 +131,34 @@ namespace HashTester
         #endregion
 
         #region Password Dictionary Attack - Done
-        PasswordCheck passwordCheck = new PasswordCheck();
+        DictionaryAttack dictionaryAttack = new DictionaryAttack();
         long passwordCheckLinesProcessedLastUpdate = 0;
         private void UpdateUIPassword(object sender, EventArgs e)
         {
             try
             {
                 //time
-                int passwordLinesProcessedBetweenUpdates = (int)(passwordCheck.CurrentLine - passwordCheckLinesProcessedLastUpdate);
-                passwordCheckLinesProcessedLastUpdate = passwordCheck.CurrentLine;
-                labelStatTimer.Text = Languages.Translate(10009) + ": " + (passwordCheck.Stopwatch.ElapsedMilliseconds / 1000 + "." + passwordCheck.Stopwatch.ElapsedMilliseconds % 1000);
+                int passwordLinesProcessedBetweenUpdates = (int)(dictionaryAttack.CurrentLine - passwordCheckLinesProcessedLastUpdate);
+                passwordCheckLinesProcessedLastUpdate = dictionaryAttack.CurrentLine;
+                labelStatTimer.Text = Languages.Translate(10009) + ": " + (dictionaryAttack.Stopwatch.ElapsedMilliseconds / 1000 + "." + dictionaryAttack.Stopwatch.ElapsedMilliseconds % 1000);
                 //current speed
                 double currentSpeed = passwordLinesProcessedBetweenUpdates / (Settings.UpdateUIms / 1000.0);
                 labelStatCurrentSpeed.Text = Languages.Translate(244) + ": " + currentSpeed.ToString("#,0");
                 //average speed
-                double elapsedSeconds = passwordCheck.Stopwatch.ElapsedMilliseconds / 1000.0;
-                double averageSpeed = elapsedSeconds > 0 ? passwordCheck.CurrentLine / elapsedSeconds : 0;
+                double elapsedSeconds = dictionaryAttack.Stopwatch.ElapsedMilliseconds / 1000.0;
+                double averageSpeed = elapsedSeconds > 0 ? dictionaryAttack.CurrentLine / elapsedSeconds : 0;
                 if (!double.IsInfinity(averageSpeed)) labelStatSpeed.Text = Languages.Translate(245) + ": " + Math.Floor(averageSpeed).ToString("#,0");
                 else labelStatSpeed.Text = Languages.Translate(245) + ": " + Languages.Translate(275);
                 //attemps
-                labelStatAttempts.Text = Languages.Translate(276) + ": " + passwordCheck.CurrentLine.ToString("#,0");
+                labelStatAttempts.Text = Languages.Translate(276) + ": " + dictionaryAttack.CurrentLine.ToString("#,0");
                 //progress
-                progressBar1.Value = passwordCheck.Progress;
+                progressBar1.Value = dictionaryAttack.Progress;
                 //log
-                foreach (string temp in passwordCheck.LogOutput)
+                foreach (string temp in dictionaryAttack.LogOutput)
                 {
                     listBoxLog.Items.Add(temp);
                 }
-                passwordCheck.LogOutput.Clear();
+                dictionaryAttack.LogOutput.Clear();
             }
             catch (Exception ex)
             {
@@ -210,12 +210,12 @@ namespace HashTester
                 timerDictionary.Interval = Settings.UpdateUIms;
                 timerDictionary.Tick += UpdateUIPassword;
                 timerDictionary.Start();
-                await Task.Run(() => { passwordCheck.PasswordFinder(pathToFile, passwords); });
+                await Task.Run(() => { dictionaryAttack.PasswordFinder(pathToFile, passwords); });
                 timerDictionary.Stop();
                 timerDictionary.Dispose();
                 UpdateUIPassword(sender, e);
                 progressBar1.Value = 100;
-                if (passwordCheck.UserAbandoned)
+                if (dictionaryAttack.UserAbandoned)
                 {
                     if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(279));
                     MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -226,9 +226,9 @@ namespace HashTester
                 //Console.WriteLine("passwords count " + passwords.Count)
                 for (int i = 0; i < passwords.Count(); i++)
                 {
-                    if (passwordCheck.FoundMatch[i])
+                    if (dictionaryAttack.FoundMatch[i])
                     {
-                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + " " + passwordCheck.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
+                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
                         messageBoxAnswer += temp;
                         if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
                     }
@@ -244,59 +244,68 @@ namespace HashTester
             taskCurrentlyWorking = false;
             currentTaskType = TaskType.None;
             TurnOnUI();
-        }                                 
+        }
 
         #endregion
 
         #region Password Strenght Calculator 
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
-            int numberOfChars = 0;
-            if (checkBoxCrackLower.Checked) numberOfChars += 26;
-            if (checkBoxCrackUpper.Checked) numberOfChars += 26;
-            if (checkBoxCrackDigit.Checked) numberOfChars += 10;
-            if (checkBoxCrackSpecial.Checked) numberOfChars += 33;
+            try
+            {
+                int numberOfChars = 0;
+                if (checkBoxCrackLower.Checked) numberOfChars += 26;
+                if (checkBoxCrackUpper.Checked) numberOfChars += 26;
+                if (checkBoxCrackDigit.Checked) numberOfChars += 10;
+                if (checkBoxCrackSpecial.Checked) numberOfChars += 33;
 
-            ulong passwordLenght;
-            if (!ulong.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = (ulong)textBoxCrackLenght.Text.Length;
-            if (passwordLenght > 1000)
-            {
-                passwordLenght = 1000;
-                MessageBox.Show(Languages.Translate(284));
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(285));
-            }
-            if (passwordLenght <= 0)
-            {
-                MessageBox.Show(Languages.Translate(11002));
-                return;
-            }
-            BigInteger speed = 0;
-            if (!BigInteger.TryParse(textBoxCrackSpeed.Text, out speed))
-            {
-                MessageBox.Show(Languages.Translate(11001));
-                return;
-            }
+                int passwordLenght;
+                if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
+                if (passwordLenght > 1000)
+                {
+                    passwordLenght = 1000;
+                    MessageBox.Show(Languages.Translate(284));
+                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(285));
+                }
+                if (passwordLenght <= 0)
+                {
+                    MessageBox.Show(Languages.Translate(11002));
+                    return;
+                }
+                BigInteger speed = 0;
+                if (!BigInteger.TryParse(textBoxCrackSpeed.Text, out speed))
+                {
+                    MessageBox.Show(Languages.Translate(11001));
+                    return;
+                }
 
-            BigInteger totalCombinations = PasswordStrenghtCalculator.Calculator(passwordLenght, (ulong)numberOfChars, speed, out BigInteger timeInSec, out bool overflowed);
-            //Output
-            if (!overflowed) 
-            {
-                if (checkBoxShowLogCrack.Checked)
+                BigInteger totalCombinations = PasswordStrenghtCalculator.Calculator(passwordLenght, numberOfChars, speed, out BigInteger timeInSec, out bool overflowed);
+                //Output
+                if (!overflowed)
                 {
-                    listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
-                    listBoxLog.Items.Add(Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
+                    if (checkBoxShowLogCrack.Checked)
+                    {
+                        listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
+                        listBoxLog.Items.Add(Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
+                    }
+                    MessageBox.Show(PasswordStrenghtCalculator.Output(timeInSec) + Environment.NewLine + Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
                 }
-                MessageBox.Show(PasswordStrenghtCalculator.Output(timeInSec) + Environment.NewLine + Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
-            }
-            else 
-            {
-                if (checkBoxShowLogCrack.Checked)
+                else
                 {
-                    listBoxLog.Items.Add(Languages.Translate(286));
+                    if (checkBoxShowLogCrack.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(286));
+                    }
+                    MessageBox.Show(Languages.Translate(286));
                 }
-                MessageBox.Show(Languages.Translate(286));
             }
-        }
+            catch (Exception ex)
+            {
+                string s = Languages.Translate(11000) + Environment.NewLine + ex.Message;
+                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(s);
+                MessageBox.Show(s, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+         }
         #endregion
 
         #region Rainbow Table
@@ -848,7 +857,7 @@ namespace HashTester
                     case TaskType.DictionaryAttack:
                         {
                             timerDictionary.Dispose();
-                            passwordCheck.Abort();
+                            dictionaryAttack.Abort();
                             if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add(Languages.Translate(279));
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;

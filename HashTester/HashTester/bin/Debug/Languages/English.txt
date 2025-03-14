@@ -1,3 +1,6 @@
+//Some translations are made with DeepL translator (free version)
+//https://www.deepl.com
+
 //Multiple 
 10000==Clear Listbox
 10001==Save log
@@ -38,12 +41,13 @@
 10036==UI
 
 //**Try and Catch <<11000-12000>>
-11000==V programu došlo k chybě.
-11001==Prosím, zadejte do pole „Počet pokusů /s“ nenulové celé číslo do 18 bilionů.
-11002==Prosím, zadejte nenulové celé číslo do 1000 nebo text do pole „Počet znaků/heslo“.
-11003==Chcete odstranit nedokončený soubor?
-11004==Soubor odstraněn
-11005== Varování, těchto souborů bude několik.
+11000== An error has occured in the program.
+11001== Please enter a non-zero integer up to 2 billion in "Number of attempts /s".
+11002== Please enter a non-zero integer up to 1000 or a password in "Number of characters/password".
+11003==Want to delete an unfinished file?
+11004==File deleted
+11005== Warning, there will be several of these files.
+11006==Counting error occurred, we recommend choosing smaller numbers.
 
 //**Name of Forms <<15000-15100>>
 15000==Main form
