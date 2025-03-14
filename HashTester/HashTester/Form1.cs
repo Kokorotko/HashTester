@@ -643,11 +643,11 @@ namespace HashTester
             darkToolStripMenuItem.Text = Languages.Translate(18);
             languagesToolStripMenuItem.Text = Languages.Translate(23);
             txtFileToolStripMenuItem.Text = Languages.Translate(24);
-            includeAllToolStripMenuItem.Text = 
-            includeHashingAlgorithmToolStripMenuItem.Text = 
-            includeNumberOfHashToolStripMenuItem.Text = 
-            includeOriginalStringToolStripMenuItem.Text =
-            includePepperToolStripMenuItem.Text = 
+            includeAllToolStripMenuItem.Text = Languages.Translate(29);
+            includeHashingAlgorithmToolStripMenuItem.Text = Languages.Translate(27);
+            includeNumberOfHashToolStripMenuItem.Text = Languages.Translate(26);
+            includeOriginalStringToolStripMenuItem.Text = Languages.Translate(25);
+            includeSaltAndPepperToolStripMenuItem.Text = Languages.Translate(28);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(31);
             buttonFileInput.Text = Languages.Translate(32);
