@@ -68,7 +68,7 @@
 3==Vyhledávání kolizí
 4==Prolamovač hesel
 5==Použit sůl
-6==Použit pepře
+6==Použit pepř
 7==Volba
 8==Nastavení
 9==Typ výstupu
@@ -306,7 +306,7 @@
 //****SCRIPTS****
 
 //**FormManagement <<551-570>>
-551==Záznam uložen na
+551==Záznam uložen v
 552==Záznam uložen z
 553==Záznam úspěšně uložen.
 554==Uložení záznamu bylo zrušeno.

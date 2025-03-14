@@ -648,6 +648,9 @@ namespace HashTester
             includeNumberOfHashToolStripMenuItem.Text = Languages.Translate(26);
             includeOriginalStringToolStripMenuItem.Text = Languages.Translate(25);
             includeSaltAndPepperToolStripMenuItem.Text = Languages.Translate(28);
+            gradualHashingToolStripMenuItem1.Text = Languages.Translate(15001);
+            fileChecksumToolStripMenuItem.Text = Languages.Translate(33);
+            saltPepperTesterToolStripMenuItem.Text = Languages.Translate(709);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(31);
             buttonFileInput.Text = Languages.Translate(32);

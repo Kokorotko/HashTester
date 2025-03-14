@@ -42,16 +42,14 @@ namespace HashTester
 
         public static string Output(BigInteger numberSeconds)
         {
-            BigInteger numberMilionYears = numberSeconds / 3155692600000000000;
-            BigInteger numberYears = (numberSeconds % 3155692600000000000) / 31556926;
+            BigInteger numberYears = numberSeconds / 31556926;
             BigInteger numberMonths = (numberSeconds % 31556926) / 2629749;
             BigInteger numberDays = (numberSeconds % 2629749) / 86400;
             BigInteger numberHours = (numberSeconds % 86400) / 3600;
             BigInteger numberMinutes = (numberSeconds % 3600) / 60;
             BigInteger numberSecondsLeft = numberSeconds % 60;
 
-            string s = "";
-            if (numberMilionYears > 0) s += numberMilionYears.ToString("N0") + " " + Languages.Translate(575) + " " + Languages.Translate(581) + ", ";
+            string s = "";           
             if (numberYears > 0)  s += numberYears.ToString("N0") + " " + Languages.Translate(575) + ", ";
             if (numberMonths > 0) s += numberMonths.ToString("N0") + " " + Languages.Translate(576) + ", ";
             if (numberDays > 0)  s += numberDays.ToString("N0") + " " + Languages.Translate(577) + ", ";

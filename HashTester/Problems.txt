@@ -17,7 +17,21 @@ OTHER:
 LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
 UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
 NameTable when reset doesnt generate //shit
-HashingCollisionForm problémy s dělením nulou
+-UI Update Frequency při změně času automaticky updatuje(not good)
+-Jména formulářů Languages.Translate();
+-ThreadsForm 8 vláken (kdyz disabled napsat disabled, nechat enabled a locknout moznost radiobuttnu)
+-Kdyz zavre bez ulozeni, messagebox jestli chce pokracovat
+-Gradual Hashing jestli vypsat info checkbox (Show algorithm z multipleHashing) 
+-Log save uklada datum 2x 
+-ThreadsForm výchozí nastavení je 1 vlákno (mělo by být 50%)
+-File Checksum output u více je fucked up labels
+-File Checksum pouzit task a postupne ukazovat hashe
+-HashingCOllisionForm current speed a average speed nemaka
+-HashingColliisonForm resetValues nefunguje
+              Number of Threads assigned: 0
+-HashingColliisonForm Performance mode not working
+
+
 
 
 
