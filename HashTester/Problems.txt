@@ -1,22 +1,25 @@
 COLLISION DETECTOR:
-Aktuální rychlost a průměrná rychlost se nezobrazuje
-Po max. attempts do Logu output
-Problém se reset values
-button save log a copy is enabled (should not be)
-Cannot find collision
-Zjištěná kolize chybí :
-Počet přiřazených vláken 0
-Počet pokusů má problémy
-Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
-Kontrola kolize HEX nefunguje, bere se pořád jako text (zkontroluj i BIN)
+-Aktuální rychlost a průměrná rychlost se nezobrazuje
+-Po max. attempts do Logu output
+-Problém se reset values
+-button save log a copy is enabled (should not be)
+-Cannot find collision
+-Zjištěná kolize chybí :
+-Počet přiřazených vláken 0
+-Počet pokusů má problémy
+-Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
+-Kontrola kolize HEX nefunguje, bere se pořád jako text (zkontroluj i BIN)
 
-
-DICTIONARY DONE, CALCULATOR DONE, RAINBOW TABLE GENERATOR, RAINBOW TABLE ATTACK
+BRUTEFORCE ATTACK
+-UI not doing
+-Cant find the thing
+-On UI Update show currently working thing
+-Number of attempts velice rád přetýká
 
 OTHER:
-LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
-UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
-NameTable when reset doesnt generate //shit
+-LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
+-UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
+-NameTable when reset doesnt generate //shit
 -UI Update Frequency při změně času automaticky updatuje(not good)
 -Jména formulářů Languages.Translate();
 -ThreadsForm 8 vláken (kdyz disabled napsat disabled, nechat enabled a locknout moznost radiobuttnu)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace HashTester
 {
@@ -22,16 +23,22 @@ namespace HashTester
         Hasher hasher = new Hasher();
         CancellationTokenSource cancellationToken = new CancellationTokenSource();
         CancellationTokenSource cancellationMultiThreadToken = new CancellationTokenSource();
-        private long numberOfAllPossibleCombinations = 0;
+        private BigInteger numberOfAllPossibleCombinations = 0;
         private long attempts = 0;
+        private bool useMaxAttempts = false;
+        private BigInteger maxAttempts = 0;
         //Get Set
         public Stopwatch Stopwatch
         {
             get { return stopwatch; }
         }
-        public long NumberOfAllPossibleCombinations
+        public BigInteger NumberOfAllPossibleCombinations
         {
-            get { return numberOfAllPossibleCombinations; }
+            get 
+            {
+                if (useMaxAttempts) return maxAttempts;
+                else return numberOfAllPossibleCombinations; 
+            }
             private set { if (value >= 0) numberOfAllPossibleCombinations = value; }
         }
 
@@ -71,7 +78,7 @@ namespace HashTester
             set
             {
                 if (value > 0) maximumLenghtForBruteForce = value;
-                else maximumLenghtForBruteForce = 20; //Reset
+                else maximumLenghtForBruteForce = 50; //Reset
             }
         }
         public ConcurrentBag<string> LogOutput
@@ -97,9 +104,9 @@ namespace HashTester
         }
 
         //Private Methods
-        private static long Pow(long number, int exponent) //yes I had to do this
+        private static BigInteger Pow(long number, int exponent) //yes I had to do this
         {
-            long result = 1;
+            BigInteger result = 1;
             for (int i = 0; i < exponent; i++)
             {
                 result *= number;
@@ -107,32 +114,30 @@ namespace HashTester
             return result;
         }
 
-        private string GenerateText(long index, char[] allPossibleChars, int length)
+        private string GenerateText(BigInteger index, char[] allPossibleChars, int length)
         {
-            uint baseSize = (uint)allPossibleChars.Length;
+            BigInteger baseSize = allPossibleChars.Length;
             List<char> result = new List<char>();
             while (index > 0)
             {
-                result.Insert(0, allPossibleChars[index % baseSize]);
+                result.Insert(0, allPossibleChars[(int)(index % baseSize)]);
                 index /= baseSize;
             }
-            // Ensure minimum length
             while (result.Count < length)
             {
-                result.Insert(0, allPossibleChars[0]); // Padding with first char
+                result.Insert(0, allPossibleChars[0]);
             }
             return new string(result.ToArray());
         }
 
-
-        public long CalculateAllPossibleCombinations(bool variablePasswordLength, int userPasswordLenght)
+        public BigInteger CalculateAllPossibleCombinations(bool variablePasswordLength, int userPasswordLenght)
         {
             //Console.WriteLine("CalculateAllPossibleCombinationsLong");
             if (usableChars == null) return 0;
             //Console.WriteLine("Usable chars: " + usableChars.Length);
             if (variablePasswordLength) // Variable password length
             {
-                long temp = 0;
+                BigInteger temp = 0;
                 for (int length = 1; length <= maximumLenghtForBruteForce; length++) //maximumLenghtForBruteForce can be change at the start of the script
                 {
                     temp += Pow(usableChars.Length, length);
@@ -163,9 +168,7 @@ namespace HashTester
             Attempts = 0;
         }
 
-
         //Public methods
-
         public void SelectAllUsableChars(string allUsableChars)
         {
             usableChars = new char[allUsableChars.Length];
@@ -217,31 +220,28 @@ namespace HashTester
             }
         }
 
-        public bool PasswordBruteForce(
+        public Task<bool> PasswordBruteForce(
         Hasher.HashingAlgorithm algorithm,
         bool useMultiThreading,
         int threadID,
         int numberOfThreadsUsed,
         string userHashInput,
-        ulong maxAttempts,
+        BigInteger userMaxAttempts,
         int userPasswordLenght,
-        long timeToStopTimer)
+        BigInteger timeToStopTimer)
         {
+            maxAttempts = userMaxAttempts;
             Console.WriteLine("PasswordBruteForce");
             ResetValue();
-
-            if (usableChars == null || usableChars.Length == 0)
-                SelectAllUsableChars(true, true, true, true); // Restart with all chars
-
-            bool variablePasswordLenght = userPasswordLenght == 0;
+            if (usableChars == null || usableChars.Length == 0) SelectAllUsableChars(true, true, true, true); // Restart with all chars
+            bool variablePasswordLenght = (userPasswordLenght == 0);
             stopwatch.Start();
-
-            bool useMaxAttempts = maxAttempts > 0;
-            long index = 0;
+            useMaxAttempts = maxAttempts > 0;
+            BigInteger index = 0;
             int currentLength = variablePasswordLenght ? 1 : userPasswordLenght;
             bool checkedAllPossibleCombinations = false;
-            long allPossibleCombinationsForCurrentLength = CalculateAllPossibleCombinations(false, currentLength);
-            long allPossibleCombinationsForOneThread = 0;
+            BigInteger allPossibleCombinationsForCurrentLength = CalculateAllPossibleCombinations(false, currentLength);
+            BigInteger allPossibleCombinationsForOneThread = 0;
 
             NumberOfAllPossibleCombinations = CalculateAllPossibleCombinations(variablePasswordLenght, userPasswordLenght);
             Console.WriteLine("All Possible Combinations in BruteForce: " + NumberOfAllPossibleCombinations);
@@ -249,10 +249,10 @@ namespace HashTester
             if (useMultiThreading)
             {
                 allPossibleCombinationsForOneThread = NumberOfAllPossibleCombinations / numberOfThreadsUsed;
-                long assignedStartIndex = allPossibleCombinationsForOneThread * threadID;
+                BigInteger assignedStartIndex = allPossibleCombinationsForOneThread * threadID;
 
                 // Find the correct starting length
-                long tempCombinations = 0;
+                BigInteger tempCombinations = 0;
                 currentLength = 1;
                 while (assignedStartIndex >= tempCombinations + CalculateAllPossibleCombinations(false, currentLength))
                 {
@@ -288,13 +288,12 @@ namespace HashTester
                     }
                 }
 
-                // If we reach the limit for this length, move to the next length
+                //Move to next lenght
                 if (variablePasswordLenght && index >= allPossibleCombinationsForCurrentLength)
                 {
-                    index = 0; // Reset index when moving to the next password length
+                    index = 0;
                     currentLength++;
-
-                    if (currentLength > MaximumLenghtForBruteForce)
+                    if (currentLength >= MaximumLenghtForBruteForce)
                     {
                         checkedAllPossibleCombinations = true;
                         break;
@@ -320,31 +319,33 @@ namespace HashTester
                     Console.WriteLine("Ran Out Of Attempts");
                     return false;
                 }
-
                 Interlocked.Increment(ref attempts);
                 index++;
             }
             return false;
         }
 
-        public void BruteForceAttackMultiThread(
-        Hasher.HashingAlgorithm algorithm,
-        string userHashInput,
-        ulong maxAttempts,
-        int userPasswordLenght,
-        long timeToStopTimer)
+        public async Task BruteForceAttackMultiThreadAsync(
+    Hasher.HashingAlgorithm algorithm,
+    string userHashInput,
+    BigInteger userMaxAttempts,
+    int userPasswordLenght,
+    BigInteger timeToStopTimer)
         {
+            maxAttempts = userMaxAttempts;
             Console.WriteLine("BruteForceAttackMultiThread started.");
+
             int maxThreads = FormManagement.NumberOfThreadsToUse();
             List<Task> allTasks = new List<Task>();
+
+            // Start each task asynchronously
             for (int i = 0; i < maxThreads; i++)
             {
                 int threadID = i; // Unique ID for each thread
-                allTasks.Add(Task.Run(() =>
+                allTasks.Add(Task.Run(async () =>
                 {
                     Console.WriteLine($"Thread {threadID} has started working.");
-
-                    if (PasswordBruteForce(
+                    if (await PasswordBruteForce(
                         algorithm,
                         true,
                         threadID,
@@ -364,11 +365,10 @@ namespace HashTester
                 }));
             }
 
-            // Wait until all tasks are completed
-            Task.WhenAll(allTasks).Wait(); // Blocking here to wait for all tasks to complete
-
+            await Task.WhenAll(allTasks);
             Console.WriteLine("All Threads are done.");
         }
+
 
 
         public void Abort()
@@ -380,3 +380,4 @@ namespace HashTester
         }
     }
 }
+

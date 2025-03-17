@@ -158,6 +158,7 @@ namespace HashTester
                 {
                     listBoxLog.Items.Add(temp);
                 }
+                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 dictionaryAttack.LogOutput.Clear();
             }
             catch (Exception ex)
@@ -196,11 +197,19 @@ namespace HashTester
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {                        
                         pathToFile = openFileDialog.FileName; //Own txt
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(277) + ": " + pathToFile);
+                        if (checkBoxShowLogCrack.Checked)
+                        {
+                            listBoxLog.Items.Add(Languages.Translate(277) + ": " + pathToFile);
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                     }
                     else
                     {
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(278));
+                        if (checkBoxShowLogCrack.Checked)
+                        {
+                            listBoxLog.Items.Add(Languages.Translate(278));
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                         continueToChecker = false;
                     }
                 }
@@ -217,7 +226,11 @@ namespace HashTester
                 progressBar1.Value = 100;
                 if (dictionaryAttack.UserAbandoned)
                 {
-                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                    if (checkBoxShowLogCrack.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(279));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
                     MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     TurnOnUI();
                     return; //cancels
@@ -230,13 +243,21 @@ namespace HashTester
                     {
                         string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
+                        if (checkBoxShowLogCrack.Checked)
+                        {
+                            listBoxLog.Items.Add(temp);
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                     }
                     else
                     {
                         string temp = Languages.Translate(280) + "' " + passwords[i] + "' " + Languages.Translate(283) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(temp);
+                        if (checkBoxShowLogCrack.Checked)
+                        {
+                            listBoxLog.Items.Add(temp);
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                     }
                 }
                 MessageBox.Show(messageBoxAnswer);
@@ -265,7 +286,11 @@ namespace HashTester
                 {
                     passwordLenght = 1000;
                     MessageBox.Show(Languages.Translate(284));
-                    if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(Languages.Translate(285));
+                    if (checkBoxShowLogCrack.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(285));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
                 }
                 if (passwordLenght <= 0)
                 {
@@ -287,6 +312,7 @@ namespace HashTester
                     {
                         listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
                         listBoxLog.Items.Add(Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                     }
                     MessageBox.Show(PasswordStrenghtCalculator.Output(timeInSec) + Environment.NewLine + Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
                 }
@@ -295,6 +321,7 @@ namespace HashTester
                     if (checkBoxShowLogCrack.Checked)
                     {
                         listBoxLog.Items.Add(Languages.Translate(286));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                     }
                     MessageBox.Show(Languages.Translate(286));
                 }
@@ -302,7 +329,11 @@ namespace HashTester
             catch (Exception ex)
             {
                 string s = Languages.Translate(11000) + Environment.NewLine + ex.Message;
-                if (checkBoxShowLogCrack.Checked) listBoxLog.Items.Add(s);
+                if (checkBoxShowLogCrack.Checked)
+                {
+                    listBoxLog.Items.Add(s);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(s, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
          }
@@ -337,17 +368,25 @@ namespace HashTester
                     {
                         int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
                         Console.WriteLine("Number of threads: " + numberOfThreadsToUse);
-                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(10026) + ": "  + numberOfThreadsToUse);
+                        if (checkBoxShowLogRainbowTable.Checked)
+                        {
+                            listBoxLog.Items.Add(Languages.Translate(10026) + ": " + numberOfThreadsToUse);
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                         bool output = false;
                         await Task.Run(() =>
                         {
-                            output = rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm);
+                            output = rainbowTable.GenerateRainbowTableMultiThread(numberOfThreadsToUse, openFileDialog.FileName, saveFileDialog.FileName, rainbowTableAlgorithm).Result;
                         });
                         
                         if (output)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(288));
                         }
                         else
@@ -356,7 +395,11 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(289);
-                                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                if (checkBoxShowLogRainbowTable.Checked)
+                                {
+                                    listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                                }
                                 MessageBox.Show(s);
                             }
                         }
@@ -373,7 +416,11 @@ namespace HashTester
                         if (operationWasSuccesful)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(288));
                         }
                         else
@@ -382,7 +429,11 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(289);
-                                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                if (checkBoxShowLogRainbowTable.Checked)
+                                {
+                                    listBoxLog.Items.Add(rainbowTable.LogOutput);
+                                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                                }
                                 MessageBox.Show(s);
                             }
                         }
@@ -393,7 +444,11 @@ namespace HashTester
             {
                 timerRainbowTableGen.Stop();
                 MessageBox.Show(Languages.Translate(290));
-                if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(290));
+                if (checkBoxShowLogRainbowTable.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(290));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
             }
             TurnOnUI();
             FilesCleanUp("InputSplit");
@@ -482,6 +537,7 @@ namespace HashTester
                                 listBoxLog.Items.Add(Languages.Translate(294) + ": " + foundAtLine);
                                 listBoxLog.Items.Add(Languages.Translate(296) + ": " + foundPassword);
                                 listBoxLog.Items.Add(Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                             }
                             if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();                                
                             PasswordFoundMessageBox(message, originalInput, foundPassword);
@@ -490,28 +546,44 @@ namespace HashTester
                         else if (rainbowTableAttack.CancelTokenActive())
                         {
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));                                
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         //ran out of time
                         else if (rainbowTableAttack.RanOutOfTime)
                         {
                             MessageBox.Show(Languages.Translate(298), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(298));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(298));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         //ran out of attempts
                         else if (rainbowTableAttack.RanOutOfAttempts)
                         {
                             MessageBox.Show(Languages.Translate(299), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(299));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(299));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                         //didnt find
                         else
                         {
                             MessageBox.Show(Languages.Translate(300), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(300));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(300));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                         }
                     }
@@ -519,13 +591,21 @@ namespace HashTester
                     else
                     {
                         MessageBox.Show(Languages.Translate(301), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(301));
+                        if (checkBoxShowLogRainbowTable.Checked)
+                        {
+                            listBoxLog.Items.Add(Languages.Translate(301));
+                            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                        }
                         if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                     }
                 }
                 else
                 {
-                    if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(302));
+                    if (checkBoxShowLogRainbowTable.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(302));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
                     if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                 }
                 if (timerRainbowTableAttack != null) timerRainbowTableAttack.Dispose();
@@ -575,11 +655,12 @@ namespace HashTester
                     progressBar1.Value = Math.Max(0, Math.Min(progress, 100)); //<0-100>
 
                     // Log
-                    if (rainbowTableAttack.LogOutput != null)
+                    if (rainbowTableAttack.LogOutput != null && checkBoxShowLogRainbowTable.Checked)
                     {
                         List<string> logs = rainbowTableAttack.LogOutput.ToList(); //avoid reading LogOutput while its being changed
                         rainbowTableAttack.LogReset(); // Clear logs after adding them
                         foreach (string logEntry in logs) listBoxLog.Items.Add(logEntry);
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                     }
                 }
             }
@@ -613,6 +694,7 @@ namespace HashTester
                 if (checkBoxShowLogBrute.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(0) + " '" + textBoxBruteForce.Text + "' " + Languages.Translate(10027) + " " + userHashInput + ".");
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             }
             else
@@ -638,13 +720,22 @@ namespace HashTester
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
             //Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
-            long temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
-            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp);
-            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
+            BigInteger temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
+            if (checkBoxShowLogBrute.Checked)
             {
-                timerBruteForce.Start();
+                listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp);
+                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+            }
+            //Console.WriteLine(checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread());
+            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
+            {                
                 Console.WriteLine(Languages.Translate(305));
-                bruteForce.BruteForceAttackMultiThread(bruteForceAlgorithm, userHashInput, (ulong)numericUpDownMaxAttempts.Value, userPasswordLenght, (long)numericUpDownStopTimer.Value);
+                await Task.Run(() => bruteForce.BruteForceAttackMultiThread(
+                    bruteForceAlgorithm,
+                    userHashInput,
+                    (ulong)numericUpDownMaxAttempts.Value,
+                    userPasswordLenght,
+                    (ulong)numericUpDownStopTimer.Value));                
             }
             else //single Thread
             {
@@ -659,7 +750,7 @@ namespace HashTester
                     userHashInput,
                     (ulong)numericUpDownMaxAttempts.Value, 
                     userPasswordLenght,
-                     (long)numericUpDownStopTimer.Value));
+                    (ulong)numericUpDownStopTimer.Value));
             }
             timerBruteForce.Stop();
             timerBruteForce.Dispose();
@@ -687,27 +778,44 @@ namespace HashTester
                     listBoxLog.Items.Add(Languages.Translate(120) + ": " + bruteForce.Attempts);
                     listBoxLog.Items.Add(Languages.Translate(10009) + ": " + labelStatTimer.Text.Split(' ')[1]);
                     listBoxLog.Items.Add(Languages.Translate(10012) + ": " + labelStatSpeed.Text);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 PasswordFoundMessageBox(message, userHashInput, bruteForce.FoundPassword);
             }
             else if (bruteForce.RanOutOfAttemps)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(312));
+                if (checkBoxShowLogBrute.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(312));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(312), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (bruteForce.RanOutOfTime)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(312));
+                if (checkBoxShowLogBrute.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(312));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(312), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (bruteForce.UserAborted)
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(10017));
+                if (checkBoxShowLogBrute.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(10017));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(10017), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(313));
+                if (checkBoxShowLogBrute.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(313));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 MessageBox.Show(Languages.Translate(313));
             }
             taskCurrentlyWorking = true;
@@ -715,28 +823,31 @@ namespace HashTester
             TurnOnUI();
         }
         private long numberOfAttemptsInLastUpdateBruteForce = 0;
+
         private void UpdateTheUIBruteForceAttack(object sender, EventArgs e)
         {
             try
             {
-                //Update Timer
-                //Console.WriteLine("UpdateTheUIBruteForceAttack");
-                int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
-                int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
-                labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
-                int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
-                numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
-                //Update Speed
-                double speed = triesBetween / (Settings.UpdateUIms / 1000);
-                labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
-                //Attempts
-                labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
-                //Update Average Speed
-                double averageSpeed = 0;
-                if (bruteForce.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
-                labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
-                //update progressbar
-                progressBar1.Value = bruteForce.Progress;
+                if (bruteForce.Stopwatch != null && bruteForce.Stopwatch.ElapsedMilliseconds != 0)
+                {
+                    //Console.WriteLine("UpdateTheUIBruteForceAttack");
+                    int seconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds / 1000);
+                    int milliseconds = (int)(bruteForce.Stopwatch.ElapsedMilliseconds % 1000);
+                    labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
+                    int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
+                    numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
+                    //Update Speed
+                    double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
+                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
+                    //Attempts
+                    labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
+                    //Update Average Speed
+                    double averageSpeed = 0;
+                    averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
+                    labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
+                    //update progressbar
+                    progressBar1.Value = bruteForce.Progress;
+                }
             }
             catch (DivideByZeroException) //it does that dont worry
             {
@@ -842,7 +953,11 @@ namespace HashTester
                         {
                             timerRainbowTableGen.Dispose();
                             rainbowTable.Abort();
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         }
@@ -850,7 +965,11 @@ namespace HashTester
                         {
                             timerRainbowTableAttack.Dispose();
                             rainbowTableAttack.Abort();
-                            if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            if (checkBoxShowLogRainbowTable.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         }
@@ -858,7 +977,11 @@ namespace HashTester
                         {
                             timerDictionary.Dispose();
                             dictionaryAttack.Abort();
-                            if (checkBoxShowLogDictionary.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            if (checkBoxShowLogDictionary.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         }
@@ -866,7 +989,11 @@ namespace HashTester
                         {
                             timerBruteForce.Dispose();
                             bruteForce.Abort();
-                            if (checkBoxShowLogBrute.Checked) listBoxLog.Items.Add(Languages.Translate(279));
+                            if (checkBoxShowLogBrute.Checked)
+                            {
+                                listBoxLog.Items.Add(Languages.Translate(279));
+                                listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                            }
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         }

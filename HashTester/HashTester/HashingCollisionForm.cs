@@ -73,9 +73,17 @@ namespace HashTester
             List<Task> allTasks = new List<Task>();
             if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(114));
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(114));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(115) + maxAttempts);
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(115) + maxAttempts);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
                 {
                     allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
@@ -83,7 +91,11 @@ namespace HashTester
             }
             else //single Thread
             {
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(116));
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(116));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
                 allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
             }
             await Task.WhenAll(allTasks);
@@ -98,6 +110,7 @@ namespace HashTester
                     listBoxLog.Items.Add(Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm));
                     listBoxLog.Items.Add(Languages.Translate(120) + ": " + attempts);
                     listBoxLog.Items.Add(Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]);
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 string message = Languages.Translate(117) +
                                         "\n" + Languages.Translate(118) + " 1: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
@@ -110,17 +123,29 @@ namespace HashTester
             else if (stopHashing)
             {
                 MessageBox.Show(Languages.Translate(10017), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(10017));
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(10017));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
             }
             else if (attemptsRanOut)
             {
                 MessageBox.Show(Languages.Translate(10016), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(10016));
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(10016));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
             }
             else
             {
                 MessageBox.Show(Languages.Translate(10018), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(10018));
+                if (checkBoxListBoxLog.Checked)
+                {
+                    listBoxLog.Items.Add(Languages.Translate(10018));
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                }
             } 
         }
 
@@ -168,6 +193,7 @@ namespace HashTester
                                 string s = Languages.Translate(122) + ": " + collision1 + " " + Languages.Translate(10021) + " " + collision2;
                                 if (useHexForOutput) s = Languages.Translate(122) + ": " + ConvertStringToHex(collision1) + " " + Languages.Translate(10021) + " " + ConvertStringToHex(collision2);
                                 Invoke((Action)(() => listBoxLog.Items.Add(s)));
+                                Invoke((Action)(() => listBoxLog.TopIndex = listBoxLog.Items.Count - 1));
                             }
                             return true;
                         }
