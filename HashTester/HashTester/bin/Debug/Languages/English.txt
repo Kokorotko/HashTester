@@ -41,13 +41,14 @@
 10036==UI
 
 //**Try and Catch <<11000-12000>>
-11000== An error has occured in the program.
-11001== Please enter a non-zero integer up to 2 billion in "Number of attempts /s".
-11002== Please enter a non-zero integer up to 1000 or a password in "Number of characters/password".
+11000==An error has occured in the program.
+11001==Please enter a non-zero integer up to 2 billion in "Number of attempts /s".
+11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters/password".
 11003==Want to delete an unfinished file?
 11004==File deleted
-11005== Warning, there will be several of these files.
+11005==Warning, there will be several of these files.
 11006==Counting error occurred, we recommend choosing smaller numbers.
+11007==The program failed to rename the files, we recommend to move or delete temporary files before generating the table again.
 
 //**Name of Forms <<15000-15100>>
 15000==Main form

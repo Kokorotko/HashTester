@@ -45,6 +45,7 @@
 11004==Soubor smazán
 11005==Varování, těchto souborů bude několik.
 11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.
+11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.
 
 
 //**Name of Forms <<15000-15100>>

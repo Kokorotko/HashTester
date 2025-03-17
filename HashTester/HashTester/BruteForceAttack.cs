@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -111,32 +107,29 @@ namespace HashTester
             return result;
         }
 
-        private string GenerateTextForBruteForce(long index, char[] allPossibleChars, int length)
+        private string GenerateText(long index, char[] allPossibleChars, int length)
         {
             uint baseSize = (uint)allPossibleChars.Length;
             List<char> result = new List<char>();
-
             while (index > 0)
             {
                 result.Insert(0, allPossibleChars[index % baseSize]);
                 index /= baseSize;
             }
-
             // Ensure minimum length
             while (result.Count < length)
             {
                 result.Insert(0, allPossibleChars[0]); // Padding with first char
             }
-
             return new string(result.ToArray());
         }
 
 
         public long CalculateAllPossibleCombinations(bool variablePasswordLength, int userPasswordLenght)
         {
-            Console.WriteLine("CalculateAllPossibleCombinationsLong");
+            //Console.WriteLine("CalculateAllPossibleCombinationsLong");
             if (usableChars == null) return 0;
-            Console.WriteLine("Usable chars: " + usableChars.Length);
+            //Console.WriteLine("Usable chars: " + usableChars.Length);
             if (variablePasswordLength) // Variable password length
             {
                 long temp = 0;
@@ -310,7 +303,7 @@ namespace HashTester
                 }
 
                 // Generate a password and check it
-                string tryText = GenerateTextForBruteForce(index, usableChars, currentLength);
+                string tryText = GenerateText(index, usableChars, currentLength);
                 //Console.WriteLine($"Thread {threadID} | Index: {index} | Length: {currentLength} | TryText: {tryText}"); - Debug
 
                 string hashedText = hasher.Hash(tryText, algorithm);

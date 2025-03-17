@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HashTester
 {
-    public class RainbowTable
+    public class RainbowTableGenerator
     {
         //private
         private string logOutput = "";
@@ -93,8 +91,9 @@ namespace HashTester
             }
         }
 
-        public bool GenerateRainbowTableMultiThread(int numberOfThreadsUsed, string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
+        public async Task<bool> GenerateRainbowTableMultiThread(int numberOfThreadsUsed, string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
         {
+            //Task<bool> because async method cant return anything unless like this
             string[] tempFilesInput = new string[numberOfThreadsUsed];
             string[] tempFilesOutput = new string[numberOfThreadsUsed];
             try
@@ -125,8 +124,8 @@ namespace HashTester
                             return false; // Stop if canceled
                         }
 
-                        tempFilesInput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "InputSplit-" + i + ".txt");
-                        tempFilesOutput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "Temp-" + i + ".txt");
+                        tempFilesInput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "tempSplit-" + i + ".txt");
+                        tempFilesOutput[i] = Path.Combine(Path.GetDirectoryName(fileOutputPath), "tempRainbow-" + i + ".txt");
                         long numberOfLinesForThread = allLinesInInputFile / numberOfThreadsUsed;
 
                         using (StreamWriter writer = new StreamWriter(tempFilesInput[i]))
@@ -160,14 +159,22 @@ namespace HashTester
                     }
                 }
 
-                // Process the file
-                Parallel.ForEach(tempFilesInput, (inputFile, state, index) =>
+                List<Task> tasks = new List<Task>();
+                for (int i = 0; i < tempFilesInput.Length; i++)
                 {
-                    if (cancellationTokenSource.Token.IsCancellationRequested) return;
+                    string inputFile = tempFilesInput[i];
+                    string outputFile = tempFilesOutput[i];
+                    tasks.Add(Task.Run(() =>
+                    {
+                        if (cancellationTokenSource.Token.IsCancellationRequested) return;
 
-                    Console.WriteLine($"Thread {index} started running");
-                    GenerateRainbowTableMultiThreadForSingleThread(inputFile, tempFilesOutput[index], hashingAlgorithm);
-                });
+                        GenerateRainbowTableMultiThreadForSingleThread(inputFile, outputFile, hashingAlgorithm);
+                    }, cancellationTokenSource.Token));
+                }
+
+                // Wait for all tasks to complete
+                await Task.WhenAll(tasks);
+
 
                 if (cancellationTokenSource.Token.IsCancellationRequested) return false;
                
@@ -272,6 +279,31 @@ namespace HashTester
                 }
                 MessageBox.Show(Languages.Translate(11004), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else //rename files to not cause problems
+            {
+                foreach (string tempFile in tempFilesInput) //Input is not needed
+                {
+                    try
+                    {
+                        if (File.Exists(tempFile)) File.Delete(tempFile);
+                    }
+                    catch (Exception) { continue; }
+                }
+                try
+                {
+                    string rename = Directory.GetDirectories(tempFilesOutput[0]).FirstOrDefault();
+                    string time = DateTime.UtcNow.ToString("yyyy,MM,dd-HH,mm,ss");
+                    for(int i = 1; i < tempFilesOutput.Length + 1; i++)
+                    {
+                        string path = Path.Combine(rename, "failedRainbowTable-" + i + "-" + time + ".txt");
+                        File.Move(tempFilesOutput[i - 1], path);
+                    } 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Languages.Translate(11007) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void RemoveFilesQuestion(string fileOutputPath)
@@ -287,6 +319,20 @@ namespace HashTester
                 }
                 catch (Exception) { }
                 MessageBox.Show(Languages.Translate(11004), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else //rename files to not cause problems
+            {
+                try
+                {
+                    string rename = Directory.GetDirectories(fileOutputPath).FirstOrDefault();
+                    string time = DateTime.UtcNow.ToString("yyyy,MM,dd-HH,mm,ss");
+                    rename = Path.Combine(rename, "failedRainbowTable-" + time + ".txt");
+                    File.Move(fileOutputPath, rename);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Languages.Translate(11007) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }    

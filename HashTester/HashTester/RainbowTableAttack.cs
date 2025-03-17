@@ -155,7 +155,7 @@ namespace HashTester
                 if (!inputFileIsInPlainText)
                 {
                     LogOutput.Add(Languages.Translate(584));
-                    string[] algorithmText = line.Split(new string[] { "==" }, StringSplitOptions.None);
+                    string[] algorithmText = line.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries);
                     if (algorithmText.Length < 2)
                     {
                         continueTheAttack = false;

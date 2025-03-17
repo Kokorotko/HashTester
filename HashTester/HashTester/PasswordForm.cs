@@ -310,7 +310,7 @@ namespace HashTester
 
         #region Rainbow Table
 
-        RainbowTable rainbowTable = new RainbowTable();
+        RainbowTableGenerator rainbowTable = new RainbowTableGenerator();
         private async void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
         {
             taskCurrentlyWorking = true;
