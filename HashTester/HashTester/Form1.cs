@@ -470,6 +470,7 @@ namespace HashTester
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Settings.InitialFolderChecker();
             this.Name = Languages.Translate(701);
             hashSelector.SelectedIndex = 0;
             Settings.LoadSettings();

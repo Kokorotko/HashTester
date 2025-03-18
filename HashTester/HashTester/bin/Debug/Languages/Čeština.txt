@@ -46,6 +46,8 @@
 11005==Varování, těchto souborů bude několik.
 11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.
 11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.
+11008==Prosím, přesuňte program do složky, kde má přístup ke čtení/zápisu souborů, nebo spusťte aplikaci s administrátorskými právy.
+11009==Počáteční inicializace složek se nezdařilo. Před dalším používáním programu problém vyřešte.
 
 
 //**Name of Forms <<15000-15100>>

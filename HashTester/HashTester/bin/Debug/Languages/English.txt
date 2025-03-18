@@ -49,6 +49,8 @@
 11005==Warning, there will be several of these files.
 11006==Counting error occurred, we recommend choosing smaller numbers.
 11007==The program failed to rename the files, we recommend to move or delete temporary files before generating the table again.
+11008==Please move the program to a folder where it has read/write file access, or run the application with administrative privileges.
+11009==The initial setup of the folders failed. Please resolve the issue before continuing to use the program.
 
 //**Name of Forms <<15000-15100>>
 15000==Main form
