@@ -712,24 +712,22 @@ namespace HashTester
                  checkBoxDigits.Checked,
                  checkBoxSpecialChars.Checked
              );
-
-
             //timer
             timerBruteForce.Interval = Settings.UpdateUIms;
-            timerBruteForce.Tick += UpdateTheUIBruteForceAttack;            
+            timerBruteForce.Tick += UpdateTheUIBruteForceAttack;   
+            
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
-            //Console.WriteLine("UserPasswordLenght: " + userPasswordLenght);
             BigInteger temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
             if (checkBoxShowLogBrute.Checked)
             {
-                listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp);
+                listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp.ToString("N0"));
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
-            //Console.WriteLine(checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread());
-            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread())
+            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread()) //multi thread
             {                
                 Console.WriteLine(Languages.Translate(305));
+                timerBruteForce.Start();
                 await Task.Run(() => bruteForce.BruteForceAttackMultiThread(
                     bruteForceAlgorithm,
                     userHashInput,
@@ -802,12 +800,7 @@ namespace HashTester
             }
             else if (bruteForce.UserAborted)
             {
-                if (checkBoxShowLogBrute.Checked)
-                {
-                    listBoxLog.Items.Add(Languages.Translate(10017));
-                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                }
-                MessageBox.Show(Languages.Translate(10017), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //yeah, programmer 100
             }
             else
             {
@@ -836,15 +829,19 @@ namespace HashTester
                     labelStatTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
                     int triesBetween = (int)(bruteForce.Attempts - numberOfAttemptsInLastUpdateBruteForce);
                     numberOfAttemptsInLastUpdateBruteForce = bruteForce.Attempts;
+
                     //Update Speed
                     double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
                     labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
+
                     //Attempts
                     labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");
+
                     //Update Average Speed
                     double averageSpeed = 0;
                     averageSpeed = bruteForce.Attempts / (bruteForce.Stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second            
                     labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
+
                     //update progressbar
                     progressBar1.Value = bruteForce.Progress;
                 }
@@ -999,7 +996,7 @@ namespace HashTester
                         }
                     case TaskType.None:
                         {
-                            MessageBox.Show(Languages.Translate(315), Languages.Translate(20), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Languages.Translate(315), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         }
                 }

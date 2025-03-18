@@ -264,6 +264,7 @@
             this.buttonSaveLog.TabIndex = 29;
             this.buttonSaveLog.Text = "Save Log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
+            this.buttonSaveLog.Click += new System.EventHandler(this.buttonSaveLog_Click);
             // 
             // buttonClipboard
             // 

@@ -22,7 +22,7 @@ namespace HashTester
         private ConcurrentBag<string> logOutput = new ConcurrentBag<string>();
         Hasher hasher = new Hasher();
         CancellationTokenSource cancellationToken = new CancellationTokenSource();
-        CancellationTokenSource cancellationMultiThreadToken = new CancellationTokenSource();
+        CancellationTokenSource token = new CancellationTokenSource();
         private BigInteger numberOfAllPossibleCombinations = 0;
         private long attempts = 0;
         private bool useMaxAttempts = false;
@@ -152,7 +152,7 @@ namespace HashTester
 
         private void ResetValue()
         {
-            stopwatch = new Stopwatch();
+            stopwatch.Reset();
             foundPasswordBool = false;
             RanOutOfTime = false;
             FoundPassword = "";
@@ -161,9 +161,9 @@ namespace HashTester
             MaximumLenghtForBruteForce = 20;
             logOutput = new ConcurrentBag<string>();
             if (cancellationToken != null) cancellationToken.Dispose();
-            if (cancellationMultiThreadToken != null) cancellationMultiThreadToken.Dispose();
+            if (token != null) token.Dispose();
             cancellationToken = new CancellationTokenSource();
-            cancellationMultiThreadToken = new CancellationTokenSource();
+            token = new CancellationTokenSource();
             NumberOfAllPossibleCombinations = 0;
             Attempts = 0;
         }
@@ -232,10 +232,13 @@ namespace HashTester
         {
             maxAttempts = userMaxAttempts;
             Console.WriteLine("PasswordBruteForce");
-            ResetValue();
             if (usableChars == null || usableChars.Length == 0) SelectAllUsableChars(true, true, true, true); // Restart with all chars
             bool variablePasswordLenght = (userPasswordLenght == 0);
-            stopwatch.Start();
+            if (!useMultiThreading)
+            {
+                ResetValue();
+                stopwatch.Start();
+            }
             useMaxAttempts = maxAttempts > 0;
             BigInteger index = 0;
             int currentLength = variablePasswordLenght ? 1 : userPasswordLenght;
@@ -244,7 +247,7 @@ namespace HashTester
             BigInteger allPossibleCombinationsForOneThread = 0;
 
             NumberOfAllPossibleCombinations = CalculateAllPossibleCombinations(variablePasswordLenght, userPasswordLenght);
-            Console.WriteLine("All Possible Combinations in BruteForce: " + NumberOfAllPossibleCombinations);
+            //Console.WriteLine("All Possible Combinations in BruteForce: " + NumberOfAllPossibleCombinations);
 
             if (useMultiThreading)
             {
@@ -274,17 +277,16 @@ namespace HashTester
 
             while (!checkedAllPossibleCombinations)
             {
-                if (cancellationToken.Token.IsCancellationRequested || cancellationMultiThreadToken.IsCancellationRequested)
+                if (token.IsCancellationRequested)
                 {
-                    return false;
+                     return Task.FromResult(false);
                 }
                 if (useStopTimer)
                 {
                     if (stopwatch.ElapsedMilliseconds / 1000 > timeToStopTimer)
                     {
                         RanOutOfTime = true;
-                        cancellationToken.Cancel();
-                        cancellationMultiThreadToken.Cancel();
+                        token.Cancel();
                     }
                 }
 
@@ -296,7 +298,8 @@ namespace HashTester
                     if (currentLength >= MaximumLenghtForBruteForce)
                     {
                         checkedAllPossibleCombinations = true;
-                        break;
+                        if (!useMultiThreading) stopwatch.Stop();
+                        return Task.FromResult(false);
                     }
                     allPossibleCombinationsForCurrentLength = CalculateAllPossibleCombinations(false, currentLength);
                 }
@@ -310,44 +313,46 @@ namespace HashTester
                 {
                     FoundPasswordBool = true;
                     FoundPassword = tryText; // Found the password
-                    return true;
+                    if (!useMultiThreading) stopwatch.Stop();
+                    return Task.FromResult(true);
                 }
 
                 if (useMaxAttempts && (ulong)attempts >= maxAttempts)
                 {
                     RanOutOfAttemps = true;
                     Console.WriteLine("Ran Out Of Attempts");
-                    return false;
+                    if (!useMultiThreading) stopwatch.Stop();
+                    return Task.FromResult(false);
                 }
                 Interlocked.Increment(ref attempts);
                 index++;
             }
-            return false;
+            if (!useMultiThreading) stopwatch.Stop();
+            return Task.FromResult(false);
         }
 
-        public async Task BruteForceAttackMultiThreadAsync(
-    Hasher.HashingAlgorithm algorithm,
-    string userHashInput,
-    BigInteger userMaxAttempts,
-    int userPasswordLenght,
-    BigInteger timeToStopTimer)
+        public async Task BruteForceAttackMultiThread(
+        Hasher.HashingAlgorithm algorithm,
+        string userHashInput,
+        BigInteger userMaxAttempts,
+        int userPasswordLenght,
+        BigInteger timeToStopTimer)
         {
             maxAttempts = userMaxAttempts;
-            Console.WriteLine("BruteForceAttackMultiThread started.");
-
+            ResetValue();
+            //Console.WriteLine("BruteForceAttackMultiThread started.");
             int maxThreads = FormManagement.NumberOfThreadsToUse();
             List<Task> allTasks = new List<Task>();
-
-            // Start each task asynchronously
+            stopwatch.Start();
             for (int i = 0; i < maxThreads; i++)
             {
                 int threadID = i; // Unique ID for each thread
                 allTasks.Add(Task.Run(async () =>
                 {
-                    Console.WriteLine($"Thread {threadID} has started working.");
+                    Console.WriteLine("Thread " +threadID + " has started working.");
                     if (await PasswordBruteForce(
                         algorithm,
-                        true,
+                        true, //use multithread
                         threadID,
                         maxThreads,
                         userHashInput,
@@ -356,16 +361,16 @@ namespace HashTester
                         timeToStopTimer))
                     {
                         FoundPasswordBool = true;
-                        cancellationMultiThreadToken.Cancel(); // Cancel all threads if password is found
+                        token.Cancel(); // Cancel all threads if password is found
                     }
                     else
                     {
-                        Console.WriteLine($"Thread {threadID} is finished.");
+                        Console.WriteLine("Thread " + threadID + "  is finished.");
                     }
                 }));
             }
-
             await Task.WhenAll(allTasks);
+            stopwatch.Stop();
             Console.WriteLine("All Threads are done.");
         }
 
@@ -376,7 +381,7 @@ namespace HashTester
             Console.WriteLine("User Aborted");
             UserAborted = true;
             cancellationToken.Cancel();
-            cancellationMultiThreadToken.Cancel();
+            token.Cancel();
         }
     }
 }

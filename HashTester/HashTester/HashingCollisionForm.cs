@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
@@ -43,7 +35,6 @@ namespace HashTester
         {
             listBoxLog.Items.Clear();
         }
-
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -60,6 +51,7 @@ namespace HashTester
         private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
             TurnOffUI();
+            ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
             int rngTextLenght = (int)numericUpDown2.Value;
             switch (hashSelector.SelectedIndex)
@@ -71,6 +63,7 @@ namespace HashTester
                 default: algorithm = Hasher.HashingAlgorithm.CRC32; break;
             }
             List<Task> allTasks = new List<Task>();
+            stopwatch.Start();
             if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
                 if (checkBoxListBoxLog.Checked)
@@ -81,9 +74,9 @@ namespace HashTester
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(115) + maxAttempts);
+                    listBoxLog.Items.Add(Languages.Translate(115)  + " :"+ maxThreads);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                }
+                }                
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
                 {
                     allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
@@ -99,6 +92,7 @@ namespace HashTester
                 allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
             }
             await Task.WhenAll(allTasks);
+            stopwatch.Stop();
             TurnOnUI();
             if (foundCollision) //MessageBoxOutput
             {
@@ -153,7 +147,7 @@ namespace HashTester
         {
             attempts = 0;
             bool useAttempts = false;
-            if (maxAttempts > 0) useAttempts = true;
+            if (maxAttempts > 0) useAttempts = true;            
             if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, out string collision01, out string collision02))
             {
                 textCollision01 = collision01;
@@ -236,23 +230,27 @@ namespace HashTester
             try
             {
                 //Update Timer
-                int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
-                int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
-                labelTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
-                int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
-                numberOfAttempsInLastUpdate = attempts;
-                //Attempts
-                labelAttempts.Text = Languages.Translate(10010) + ": " + attempts;
-                //Update Speed
-                double speed = triesBetween / (Settings.UpdateUIms / 1000);
-                labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + speed;
-                //Update Average Speed
-                double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
-                labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
-                //listbox
-                listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
+                if (stopwatch != null && stopwatch.ElapsedMilliseconds != 0)
+                {
+                    int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
+                    int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
+                    labelTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
+                    int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
+                    numberOfAttempsInLastUpdate = attempts;
+                    //Attempts
+                    labelAttempts.Text = Languages.Translate(10010) + ": " + attempts;
+                    //Update Speed
+                    double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
+                    labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + speed;
+                    //Update Average Speed
+                    double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
+                    labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
+                    //listbox
+                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
+                }
             }
-            catch(Exception ex) { Console.WriteLine("Collision UI problem: " + ex.Message); }
+            catch (DivideByZeroException) { return; } //it does that
+            catch (Exception ex) { Console.WriteLine("Collision UI problem: " + ex.Message); }
         }
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
@@ -378,6 +376,8 @@ namespace HashTester
         private void buttonCheckCollision_Click(object sender, EventArgs e)
         {
             CheckCollisionForm checkCollisionForm = new CheckCollisionForm();
+            checkCollisionForm.StartPosition = FormStartPosition.CenterScreen;
+            checkCollisionForm.Name = Languages.Translate(15003);
             if (checkCollisionForm.ShowDialog() == DialogResult.OK)
             {
                 CheckCollision(checkCollisionForm.HashingAlgorithm, checkCollisionForm.Text01, checkCollisionForm.Text02, checkCollisionForm.Format);
@@ -422,8 +422,6 @@ namespace HashTester
             timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
             timeToFindCollision.Start();
             //Stopwatch
-            stopwatch.Restart();
-            stopwatch.Start();
             buttonReturn.Enabled = false;
             buttonClearListBox.Enabled = false;
             buttonGenerateCollision.Enabled = false;
@@ -440,10 +438,9 @@ namespace HashTester
         private void TurnOnUI()
         {
             //timer
-            timeToFindCollision.Stop();
             timeToFindCollision.Dispose();
             //stopwatch
-            stopwatch.Stop();
+            stopwatch.Reset();  
             //UI
             buttonReturn.Enabled = true;
             buttonClearListBox.Enabled = true;
@@ -528,12 +525,12 @@ namespace HashTester
             Console.Write(path + "_collisionInfo.txt");
             if (!File.Exists(path + "_collisionInfo.txt"))
             {
-                string s = Languages.Translate(130) + "\r\n" +
-                               Languages.Translate(131) + "\r\n" +
-                               Languages.Translate(132) + "\r\n" +
-                               Languages.Translate(133) + "\r\n" +
-                               Languages.Translate(134) + "\r\n" +
-                               Languages.Translate(135) + "\r\n" +
+                string s = Languages.Translate(130) + Environment.NewLine +
+                               Languages.Translate(131) + Environment.NewLine +
+                               Languages.Translate(132) + Environment.NewLine +
+                               Languages.Translate(133) + Environment.NewLine +
+                               Languages.Translate(134) + Environment.NewLine +
+                               Languages.Translate(135) + Environment.NewLine +
                                Languages.Translate(136);
                 File.WriteAllText(path + "_collisionInfo.txt", s);
                 Console.WriteLine("Generated _collisionInfo.txt into the " + path);
@@ -551,6 +548,26 @@ namespace HashTester
             {
                 MessageBox.Show(Languages.Translate(1003),Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
+        }
+
+        private void ResetValues()
+        {
+            stopHashing = false;
+            foundCollision = false;
+            attemptsRanOut = false;
+            textCollision01 = "";
+            textCollision02 = "";
+            maxAttempts = 0;
+            attempts = 0;
+            numberOfAttempsInLastUpdate = 0;
+
+            // Reset Stopwatch
+            stopwatch.Reset();
         }
     }
 }

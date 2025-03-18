@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -14,6 +15,8 @@ namespace HashTester
         bool radioButtonSet = false;
         int miliseconds;
         int fps;
+        private bool dontUpdate = false;
+        private bool unsavedChanges = false;
 
         //Set and Get
         public int Miliseconds
@@ -23,6 +26,11 @@ namespace HashTester
                 if (miliseconds > 7 && miliseconds < 1001) return miliseconds;
                 else return 34;
             }
+        }
+
+        private void setMilliseconds(string s)
+        {
+            int.TryParse(s, out miliseconds);
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -81,6 +89,9 @@ namespace HashTester
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            if (dontUpdate) return;
+            dontUpdate = true;
+            unsavedChanges = true;
             if (!radioButtonSet)
             {
                 DeselectAllRadioButtons();
@@ -89,19 +100,22 @@ namespace HashTester
                     if (temp > 125)
                     {
                         textBoxMiliseconds.Text = "8";
-                        textBoxFPS.Text = "125";
                     }
-                    textBoxMiliseconds.Text = Math.Ceiling(1000.0 / temp).ToString();
+                    else textBoxMiliseconds.Text = Math.Ceiling(1000.0 / temp).ToString();
                 }
                 else
                 {
                     textBoxMiliseconds.Text = "";
                 }
-            }            
+            }
+            dontUpdate = false;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            if (dontUpdate) return;
+            dontUpdate = true;
+            unsavedChanges = true;
             if (!radioButtonSet)
             {
                 DeselectAllRadioButtons();
@@ -124,6 +138,7 @@ namespace HashTester
                     textBoxFPS.Text = "";
                 }
             }
+            dontUpdate = false;
         }
 
         private void DeselectAllRadioButtons()
@@ -161,6 +176,22 @@ namespace HashTester
             else
             {
                 MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UIUpdateFrequency_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            setMilliseconds(textBoxMiliseconds.Text);
+            if (Settings.UpdateUIms == Miliseconds) unsavedChanges = false;
+            if (unsavedChanges)
+            {
+                DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                switch (temp)
+                {
+                    case DialogResult.Yes: DialogResult = DialogResult.OK; break;
+                    case DialogResult.No: DialogResult = DialogResult.Cancel; break;
+                    case DialogResult.Cancel: e.Cancel = true; break;
+                }
             }
         }
     }

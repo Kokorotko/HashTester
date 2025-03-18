@@ -10,6 +10,7 @@ namespace HashTester
         private int numberOfThreadsInCPU = Environment.ProcessorCount;
         private int percentage = 0;
         private bool updating = false;// Prevents infinite loops in text change events
+        private bool unsavedChanges = false;
 
         public ThreadsForm()
         {
@@ -18,6 +19,7 @@ namespace HashTester
         public int Percentage
         {
             get => (percentage >= 0 && percentage <= 100) ? percentage : 50; //Range from 0 to 100, if outside, it is set to default (50%)
+            private set { percentage = value; }
         }
 
         public void RadioButtonPressed(object sender, EventArgs e)
@@ -67,9 +69,10 @@ namespace HashTester
         }
 
         private void textBoxThread_TextChanged(object sender, EventArgs e)
-        {
+        {            
             if (updating) return;
             updating = true;
+            unsavedChanges = true;
 
             if (int.TryParse(textBoxThread.Text, out int threads) && threads > 0)
             {
@@ -95,6 +98,7 @@ namespace HashTester
         {
             if (updating) return;
             updating = true;
+            unsavedChanges = true;
 
             if (int.TryParse(textBoxPercent.Text, out int percent) && percent >= 0 )
             {
@@ -103,8 +107,9 @@ namespace HashTester
                     textBoxPercent.Text = "100";
                     textBoxThread.Text = numberOfThreadsInCPU.ToString();
                 }
-                int threads = Math.Max(1, (int)Math.Round((double)percent / 100 * numberOfThreadsInCPU));
-                textBoxThread.Text = threads.ToString();
+                int threads = Math.Max(1, (int)Math.Round(percent / 100.0 * numberOfThreadsInCPU));
+                if (threads > numberOfThreadsInCPU) textBoxThread.Text = numberOfThreadsInCPU.ToString();
+               else textBoxThread.Text = threads.ToString();
             }
             else
             {
@@ -226,16 +231,33 @@ namespace HashTester
         {
             try
             {
-                percentage = int.Parse(textBoxPercent.Text);
-                if (percentage >= 0 && percentage <= 100)
-                {
-                    DialogResult = DialogResult.OK;
-                }
-                else throw new Exception();
+                Percentage = int.Parse(textBoxPercent.Text);
+                DialogResult = DialogResult.OK;
             }
             catch (Exception)
             {
                 MessageBox.Show(Languages.Translate(447), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonDefault_Click(object sender, EventArgs e)
+        {
+            textBoxPercent.Text = "50";
+        }
+
+        private void ThreadsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Percentage = int.Parse(textBoxPercent.Text);
+            if (Settings.ThreadsUsagePercentage == Percentage) unsavedChanges = false;
+            if (unsavedChanges)
+            {
+                DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                switch (temp)
+                {
+                    case DialogResult.Yes: DialogResult = DialogResult.OK; break;
+                    case DialogResult.No: DialogResult = DialogResult.Cancel; break;
+                    case DialogResult.Cancel: e.Cancel = true; break;
+                }
             }
         }
     }

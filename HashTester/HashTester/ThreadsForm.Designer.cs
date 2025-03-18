@@ -225,6 +225,7 @@
             this.buttonDefault.TabIndex = 26;
             this.buttonDefault.Text = "Default";
             this.buttonDefault.UseVisualStyleBackColor = true;
+            this.buttonDefault.Click += new System.EventHandler(this.buttonDefault_Click);
             // 
             // textBoxThread
             // 
@@ -392,6 +393,7 @@
             this.Controls.Add(this.labelHowMany);
             this.Name = "ThreadsForm";
             this.Text = "ThreadsForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThreadsForm_FormClosing);
             this.Load += new System.EventHandler(this.ThreadsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

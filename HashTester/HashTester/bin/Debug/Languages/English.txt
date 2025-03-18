@@ -59,8 +59,8 @@
 15005==Password Form
 15006==Threads Form
 15007==UI Updater Form
-15008==SaltAndPepperForm
-15009==SaltAndPepperQuestions
+15008==Salt and Pepper Form
+15009==Salt and Pepper Questions
 
 //**Main Form <<0-100>>
 
@@ -128,7 +128,7 @@
 112==Generate a collision
 113==Check a collision from a TXT
 114==Starting the process in performance mode.
-115==Number of Threads assigned: 
+115==Number of Threads assigned
 116==Starting the process in normal mode.
 117==Collision found!
 118==Collision
@@ -336,6 +336,7 @@
 587==but the user wants 
 588==The algorithms needs to be the same. Cancelling attack...
 601==Number of lines to process
+602==There are unsaved changes, do you wish to save them?
 
 //Settings
 589==Warning! If theres nothing after the = it will set the setting into default  

@@ -126,11 +126,11 @@
 112==Vygenerovat kolizi
 113==Kontrola kolize z .txt
 114==Spuštění procesu ve výkonném režimu.
-115==Počet přiřazených vláken: 
+115==Počet přiřazených vláken
 116==Spuštění procesu v normálním režimu.
 117==Nalezena kolize!
 118==Kolize
-119==Heslo kolize
+119==Vstup kolize
 120==Pokusy
 121==Čas k nalezení
 122==Nalezena kolize
@@ -334,6 +334,7 @@
 587==ale uživatel chce
 588==Algoritmy musí být stejné. Rušení útoku...
 601==Počet řádků na zpracování
+602==There are unsaved changes, do you wish to save them?
 
 //Settings
 589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.

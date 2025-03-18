@@ -139,6 +139,7 @@ namespace HashTester
         {
             FormGradual formGradual = new FormGradual();
             formGradual.StartPosition = FormStartPosition.CenterScreen;
+            formGradual.Name = Languages.Translate(15001);
             formGradual.ShowDialog();
         }
 
@@ -149,6 +150,7 @@ namespace HashTester
         {
             MultipleHashing multipleHashing = new MultipleHashing();
             multipleHashing.StartPosition = FormStartPosition.CenterScreen;
+            multipleHashing.Name = Languages.Translate(15004);
             multipleHashing.ShowDialog();
         }
         #endregion
@@ -158,6 +160,7 @@ namespace HashTester
         {
             HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
             hashingCollisionForm.StartPosition = FormStartPosition.CenterScreen;
+            hashingCollisionForm.Name = Languages.Translate(15002);
             hashingCollisionForm.ShowDialog();
         }
         #endregion
@@ -420,6 +423,7 @@ namespace HashTester
                 using (SaltAndPepperSetup saltAndPepperQuestion = new SaltAndPepperSetup())
                 {
                     saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
+                    saltAndPepperQuestion.Name = Languages.Translate(15009);
                     if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
                     {
                         saltAndPepperQuestion.GetSaltPepperInformation
@@ -479,6 +483,7 @@ namespace HashTester
         {
             PasswordForm passwordForm = new PasswordForm();
             passwordForm.StartPosition = FormStartPosition.CenterScreen;
+            passwordForm.Name = Languages.Translate(15005);
             passwordForm.ShowDialog();
         }
 
@@ -518,6 +523,7 @@ namespace HashTester
         {
             UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
             uIUpdateFrequency.StartPosition = FormStartPosition.CenterScreen;
+            uIUpdateFrequency.Name = Languages.Translate(15007);
             if (uIUpdateFrequency.ShowDialog() == DialogResult.OK)
             {
                 Settings.UpdateUIms = uIUpdateFrequency.Miliseconds;
@@ -589,6 +595,7 @@ namespace HashTester
         {
             ThreadsForm threadsForm = new ThreadsForm();
             threadsForm.StartPosition = FormStartPosition.CenterScreen;
+            threadsForm.Name = Languages.Translate(15006);
             if (threadsForm.ShowDialog() == DialogResult.OK)
             {
                 Settings.ThreadsUsagePercentage = threadsForm.Percentage;
@@ -612,12 +619,16 @@ namespace HashTester
         private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileChecksum fileChecksum = new FileChecksum();
+            fileChecksum.Name = Languages.Translate(33);
+            fileChecksum.StartPosition = FormStartPosition.CenterScreen;
             fileChecksum.ShowDialog();
         }
 
         private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaltAndPepperTester saltAndPepperForm = new SaltAndPepperTester();
+            saltAndPepperForm.StartPosition = FormStartPosition.CenterScreen;
+            saltAndPepperForm.Name = Languages.Translate(15008);
             saltAndPepperForm.ShowDialog();
         }
 

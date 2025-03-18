@@ -10,29 +10,15 @@ COLLISION DETECTOR:
 -Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
 -Kontrola kolize HEX nefunguje, bere se pořád jako text (zkontroluj i BIN)
 
-BRUTEFORCE ATTACK
--UI not doing
--Cant find the thing
--On UI Update show currently working thing
--Number of attempts velice rád přetýká
-
 OTHER:
--LOG output when saved, not put into the Logs folder + starting name set "Log.txt"
--UpdateTimerLabel divisionZeroProblems (mrdni tam proste try)
 -NameTable when reset doesnt generate //shit
 -UI Update Frequency při změně času automaticky updatuje(not good)
--Jména formulářů Languages.Translate();
--ThreadsForm 8 vláken (kdyz disabled napsat disabled, nechat enabled a locknout moznost radiobuttnu)
 -Kdyz zavre bez ulozeni, messagebox jestli chce pokracovat
 -Gradual Hashing jestli vypsat info checkbox (Show algorithm z multipleHashing) 
--Log save uklada datum 2x 
--ThreadsForm výchozí nastavení je 1 vlákno (mělo by být 50%)
--File Checksum output u více je fucked up labels
+-ThreadsForm ošetřit vstupy
+-UIshit ošetřit vstupy
 -File Checksum pouzit task a postupne ukazovat hashe
--HashingCOllisionForm current speed a average speed nemaka
--HashingColliisonForm resetValues nefunguje
-              Number of Threads assigned: 0
--HashingColliisonForm Performance mode not working
+-HashingColliisonForm MultiThreading problem
 
 
 

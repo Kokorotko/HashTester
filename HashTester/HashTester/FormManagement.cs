@@ -28,15 +28,14 @@ namespace HashTester
             saveFileDialog.InitialDirectory = Settings.DirectoryPathToLogs;
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             saveFileDialog.DefaultExt = "txt";
+            saveFileDialog.FileName = "log.txt";
             saveFileDialog.AddExtension = true;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                 {
-                    writer.WriteLine(Languages.Translate(551)  + ": " + DateTime.Today + DateTime.Now);
-                    Console.WriteLine(Languages.Translate(551) + ": " + DateTime.Today + DateTime.Now);
+                    writer.WriteLine(Languages.Translate(551)  + ": " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
                     writer.WriteLine(Languages.Translate(552) +  ": " + form.Name);
-                    Console.WriteLine(Languages.Translate(552) + ": " + form.Name);
                     foreach (string item in listbox.Items)
                     {
                         writer.WriteLine(item);
