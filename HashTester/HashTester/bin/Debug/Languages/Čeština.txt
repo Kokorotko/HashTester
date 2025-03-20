@@ -1,5 +1,5 @@
 //Běžně používané
-10000==Vymazat listbox
+10000==Vymazat záznam
 10001==Uložit záznam
 10002==Schránka
 10003==Nepodařilo se zkopírovat do schránky.
@@ -70,13 +70,13 @@
 2==Vícenásobné hashování
 3==Vyhledávání kolizí
 4==Prolamovač hesel
-5==Použit sůl
-6==Použit pepř
+5==Použít sůl
+6==Použít pepř
 7==Volba
 8==Nastavení
 9==Typ výstupu
 10==Styl výstupu
-11==VisualMode
+11==Motiv
 13==Frekvence aktualizace uživatelského rozhraní
 14==Vlákna a nastavení CPU
 15==Resetování všech nastavení
@@ -262,7 +262,7 @@
 409==Použít vlastní pepř
 410==Vlastní sůl
 411==Vlastní pepř
-412==ID haše
+412==ID hashe
 413==Generovat
 414==Pokud nezadáte hashID, nebudou sůl a pepř uloženy. Chcete pokračovat?
 

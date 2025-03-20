@@ -78,7 +78,7 @@
 8==Settings
 9==Output Type
 10==Output Style
-11==VisualMode
+11==Theme
 13==UI Update Frequency
 14==Threads and CPU settings
 15==Reset all settings

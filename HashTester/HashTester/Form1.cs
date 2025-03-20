@@ -559,7 +559,7 @@ namespace HashTester
                         dictionaryNameLoad = newItem.Name;
                         firstItem = false;
                     }
-
+                    //Set item to do something
                     newItem.Click += (sender, e) =>
                     {
                         Languages.LoadDictionary(newItem.Name);
@@ -587,9 +587,7 @@ namespace HashTester
                         break;
                     }
                 }
-
             }
-
         }
 
         private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -669,6 +667,18 @@ namespace HashTester
             buttonClearListBox.Text = Languages.Translate(10000);
             buttonSaveLog.Text = Languages.Translate(10001);
             buttonClipboard.Text = Languages.Translate(10002);
+        }
+
+        private void includeSaltToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            includeSaltToolStripMenuItem.Checked = !includeSaltToolStripMenuItem.Checked;
+            Settings.UseSalt = includeSaltToolStripMenuItem.Checked;
+        }
+
+        private void includePepperToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            includePepperToolStripMenuItem.Checked = !includePepperToolStripMenuItem.Checked;
+            Settings.UsePepper = includePepperToolStripMenuItem.Checked;
         }
     }
 }

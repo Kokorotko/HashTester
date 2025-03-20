@@ -136,7 +136,7 @@
             this.groupBoxTester.Controls.Add(this.labelName);
             this.groupBoxTester.Location = new System.Drawing.Point(331, 12);
             this.groupBoxTester.Name = "groupBoxTester";
-            this.groupBoxTester.Size = new System.Drawing.Size(286, 149);
+            this.groupBoxTester.Size = new System.Drawing.Size(314, 149);
             this.groupBoxTester.TabIndex = 12;
             this.groupBoxTester.TabStop = false;
             this.groupBoxTester.Text = "Password Tester";
@@ -145,7 +145,7 @@
             // 
             this.buttonRemoveAll.Location = new System.Drawing.Point(189, 120);
             this.buttonRemoveAll.Name = "buttonRemoveAll";
-            this.buttonRemoveAll.Size = new System.Drawing.Size(91, 23);
+            this.buttonRemoveAll.Size = new System.Drawing.Size(119, 23);
             this.buttonRemoveAll.TabIndex = 25;
             this.buttonRemoveAll.Text = "Remove All";
             this.buttonRemoveAll.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@
             // 
             this.buttonRemove.Location = new System.Drawing.Point(189, 95);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(91, 23);
+            this.buttonRemove.Size = new System.Drawing.Size(119, 23);
             this.buttonRemove.TabIndex = 6;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(116, 55);
+            this.labelPassword.Location = new System.Drawing.Point(143, 55);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(53, 13);
             this.labelPassword.TabIndex = 3;
@@ -204,20 +204,20 @@
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(10, 71);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(270, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(298, 20);
             this.textBoxPassword.TabIndex = 2;
             // 
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(10, 32);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(270, 20);
+            this.textBoxName.Size = new System.Drawing.Size(298, 20);
             this.textBoxName.TabIndex = 1;
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(124, 16);
+            this.labelName.Location = new System.Drawing.Point(151, 16);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(35, 13);
             this.labelName.TabIndex = 0;
@@ -283,7 +283,7 @@
             this.groupBoxShowInfo.Controls.Add(this.textBoxHashID);
             this.groupBoxShowInfo.Location = new System.Drawing.Point(332, 170);
             this.groupBoxShowInfo.Name = "groupBoxShowInfo";
-            this.groupBoxShowInfo.Size = new System.Drawing.Size(279, 146);
+            this.groupBoxShowInfo.Size = new System.Drawing.Size(313, 146);
             this.groupBoxShowInfo.TabIndex = 22;
             this.groupBoxShowInfo.TabStop = false;
             this.groupBoxShowInfo.Text = "Show info";
@@ -292,7 +292,7 @@
             // 
             this.buttonDeleteAllHashID.Location = new System.Drawing.Point(3, 112);
             this.buttonDeleteAllHashID.Name = "buttonDeleteAllHashID";
-            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(270, 23);
+            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(304, 23);
             this.buttonDeleteAllHashID.TabIndex = 26;
             this.buttonDeleteAllHashID.Text = "Delete all ID";
             this.buttonDeleteAllHashID.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@
             // 
             this.buttonShowAllID.Location = new System.Drawing.Point(3, 83);
             this.buttonShowAllID.Name = "buttonShowAllID";
-            this.buttonShowAllID.Size = new System.Drawing.Size(270, 23);
+            this.buttonShowAllID.Size = new System.Drawing.Size(304, 23);
             this.buttonShowAllID.TabIndex = 25;
             this.buttonShowAllID.Text = "Show all ID";
             this.buttonShowAllID.UseVisualStyleBackColor = true;
@@ -312,7 +312,7 @@
             // 
             this.buttonInfoID.Location = new System.Drawing.Point(3, 56);
             this.buttonInfoID.Name = "buttonInfoID";
-            this.buttonInfoID.Size = new System.Drawing.Size(270, 23);
+            this.buttonInfoID.Size = new System.Drawing.Size(304, 23);
             this.buttonInfoID.TabIndex = 23;
             this.buttonInfoID.Text = "Info about the ID";
             this.buttonInfoID.UseVisualStyleBackColor = true;
@@ -321,7 +321,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 14);
+            this.label2.Location = new System.Drawing.Point(142, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 6;
@@ -331,7 +331,7 @@
             // 
             this.textBoxHashID.Location = new System.Drawing.Point(3, 30);
             this.textBoxHashID.Name = "textBoxHashID";
-            this.textBoxHashID.Size = new System.Drawing.Size(270, 20);
+            this.textBoxHashID.Size = new System.Drawing.Size(304, 20);
             this.textBoxHashID.TabIndex = 6;
             // 
             // labelAlgorithm
@@ -347,7 +347,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 323);
+            this.ClientSize = new System.Drawing.Size(657, 323);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.groupBoxShowInfo);
             this.Controls.Add(this.checkBoxUseLog);

@@ -110,7 +110,10 @@ namespace HashTester
             get
             {
                 string path = Path.GetDirectoryName(Application.ExecutablePath);
-                if (!Directory.Exists(path)) throw new Exception("Unable to get application executable path");
+                if (!Directory.Exists(path))
+                {
+                    throw new Exception("Unable to get application executable path");
+                }
                 return path;
             }
         }
@@ -210,80 +213,251 @@ namespace HashTester
             UseSalt = false;
             UsePepper = false;
             SaveSettings();
-        }
-        
+        }       
         public static void SaveSettings()
+{
+    try
+    {
+        //Create File
+        string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
+        Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
+        string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
+        Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
+        //Create Directory if it doesnt exist
+        if (!Directory.Exists(Settings.DirectoryPathToSettings))
         {
-            //Create File
-            string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-            Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
-            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-            Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
-            //Create Directory if it doesnt exist
-            string settingsDirectory = Path.GetDirectoryName(settingsPathToFileTemp);
-            if (!Directory.Exists(settingsDirectory))
+                Directory.CreateDirectory(Settings.DirectoryPathToSettings);
+        }
+        using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
+        {
+            using (StreamWriter writer = new StreamWriter(fileSettings))
             {
-                throw new Exception("Directory doesnt exist");
-            }
-            using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
-            {
-                using (StreamWriter writer = new StreamWriter(fileSettings))
+                writer.WriteLine("//" + Languages.Translate(589));
+                writer.WriteLine("//" + Languages.Translate(590));
+                writer.WriteLine("//" + Languages.Translate(591));
+                writer.WriteLine("//" + Languages.Translate(592));
+                switch (VisualMode)
                 {
-                    writer.WriteLine("//" + Languages.Translate(589));
-                    writer.WriteLine("//" + Languages.Translate(590));
-                    writer.WriteLine("//" + Languages.Translate(591));
-                    writer.WriteLine("//" + Languages.Translate(592));
-                    switch (VisualMode)
-                    {
-                        case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
-                        case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
-                        case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
-                    }
-                    writer.WriteLine("//" + Languages.Translate(593));
-                    writer.WriteLine("//" + Languages.Translate(594));
-                    writer.WriteLine("UIupdateInMS=" + UpdateUIms);
-                    writer.WriteLine("//" + Languages.Translate(595));
-                    writer.WriteLine("//" + Languages.Translate(596));
-                    writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
-                    writer.WriteLine("//" + Languages.Translate(597));
-                    writer.WriteLine("language=" + SelectedLanguage);
-                    writer.WriteLine("//" + Languages.Translate(598));
-                    switch (OutputType)
-                    {
-                        case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
-                        case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
-                        case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
-                    }
-                    writer.WriteLine("//" + Languages.Translate(599));
-                    if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
-                    else writer.WriteLine("outputStyle_IncludeOriginalString=0");
-                    if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
-                    else writer.WriteLine("outputStyle_IncludeHash=0");
-                    if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
-                    else writer.WriteLine("outputStyle_IncludeNumber=0");
-                    if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
-                    else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
-                    writer.WriteLine("//" + Languages.Translate(600));
-                    if (UseSalt) writer.WriteLine("useSalt=1");
-                    else writer.WriteLine("useSalt=0");
-                    if (UsePepper) writer.WriteLine("usePepper=1");
-                    else writer.WriteLine("usePepper=0");
-                    writer.WriteLine("//" + Languages.Translate(601));
-                    writer.WriteLine("basePathToFiles=" + DirectoryExeBase);
-                    writer.WriteLine("settingsPathToFiles=" + DirectoryPathToSettings);
-                    writer.WriteLine("passwordPathToFiles=" + DirectoryPathToWordlists);
-                    writer.WriteLine("collisionPathToFiles=" + DirectoryPathToCollisions);
-                    writer.WriteLine("logSavePathToFiles=" + DirectoryPathToLogs);
+                    case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
+                    case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
+                    case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
                 }
-
+                writer.WriteLine("//" + Languages.Translate(593));
+                writer.WriteLine("//" + Languages.Translate(594));
+                writer.WriteLine("UIupdateInMS=" + UpdateUIms);
+                writer.WriteLine("//" + Languages.Translate(595));
+                writer.WriteLine("//" + Languages.Translate(596));
+                writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
+                writer.WriteLine("//" + Languages.Translate(597));
+                writer.WriteLine("language=" + SelectedLanguage);
+                writer.WriteLine("//" + Languages.Translate(598));
+                switch (OutputType)
+                {
+                    case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
+                    case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
+                    case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
+                }
+                writer.WriteLine("//" + Languages.Translate(599));
+                if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
+                else writer.WriteLine("outputStyle_IncludeOriginalString=0");
+                if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
+                else writer.WriteLine("outputStyle_IncludeHash=0");
+                if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
+                else writer.WriteLine("outputStyle_IncludeNumber=0");
+                if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
+                else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
+                writer.WriteLine("//" + Languages.Translate(600));
+                if (UseSalt) writer.WriteLine("useSalt=1");
+                else writer.WriteLine("useSalt=0");
+                if (UsePepper) writer.WriteLine("usePepper=1");
+                else writer.WriteLine("usePepper=0");
             }
 
-            if (!File.Exists(settingsPathToFileSettings))
+        }
+        File.Delete(settingsPathToFileSettings);
+        File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
+    }
+    catch (UnauthorizedAccessException)
+    {
+        MessageBox.Show(Languages.Translate(11008), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        Application.Exit();
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(Languages.Translate(11009) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+    }
+}
+        public static void LoadSettings()
+        {
+            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
+            if (File.Exists(settingsPathToFileSettings))
             {
-                File.Delete(settingsPathToFileSettings);
+                using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader reader = new StreamReader(fileSettings))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            string line = reader.ReadLine();
+                            char[] splitChar = { '=' };
+                            string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
+                            if (data[0].Substring(0, 2) != "//") //Comments in Settings
+                            {
+                                switch (data[0])
+                                {
+                                    case "visualMode":
+                                        {
+                                            try
+                                            {
+                                                if (data[1] == "0") VisualMode = VisualModeEnum.System;
+                                                else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
+                                                else VisualMode = VisualModeEnum.Dark;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                VisualMode = VisualModeEnum.System;
+                                            }
+                                            break;
+                                        }
+                                    case "outputType":
+                                        {
+                                            try
+                                            {
+                                                if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
+                                                else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
+                                                else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
+                                                else OutputType = OutputTypeEnum.Listbox;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                OutputType = OutputTypeEnum.Listbox;
+                                            }
+                                            break;
+                                        }
+                                    case "outputStyle_IncludeOriginalString":
+                                        {
+                                            try
+                                            {
+                                                OutputStyleIncludeOriginalString = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                OutputStyleIncludeOriginalString = false;
+                                            }
+                                            break;
+                                        }
+                                    case "outputStyle_IncludeHash":
+                                        {
+                                            try
+                                            {
+                                                OutputStyleIncludeHashAlgorithm = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                OutputStyleIncludeHashAlgorithm = false;
+                                            }
+                                            break;
+                                        }
+                                    case "outputStyle_IncludeNumber":
+                                        {
+                                            try
+                                            {
+                                                OutputStyleIncludeNumberOfHash = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                OutputStyleIncludeNumberOfHash = false;
+                                            }
+                                            break;
+                                        }
+                                    case "outputStyle_IncludeSaltPepper":
+                                        {
+                                            try
+                                            {
+                                                OutputStyleIncludeSaltPepper = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                OutputStyleIncludeSaltPepper = false;
+                                            }
+                                            break;
+                                        }
+                                    case "useSalt":
+                                        {
+                                            try
+                                            {
+                                                UseSalt = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                UseSalt = false;
+                                            }
+                                            break;
+                                        }
+                                    case "usePepper":
+                                        {
+                                            try
+                                            {
+                                                UsePepper = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                UsePepper = false;
+                                            }
+                                            break;
+                                        }
+                                    case "UIupdateInMS":
+                                        {
+                                            try
+                                            {
+                                                UpdateUIms = int.Parse(data[1]);
+                                            }
+                                            catch (Exception)
+                                            {
+                                                UpdateUIms = 0;
+                                            }
+                                            break;
+                                        }
+                                    case "threadsUsagePercentage":
+                                        {
+                                            try
+                                            {
+                                                ThreadsUsagePercentage = int.Parse(data[1]);
+                                            }
+                                            catch (Exception)
+                                            {
+                                                ThreadsUsagePercentage = 50;
+                                            }
+                                            break;
+                                        }
+                                    case "language":
+                                        {
+                                            try
+                                            {
+                                                SelectedLanguage = data[1];
+                                            }
+                                            catch (Exception)
+                                            {
+                                                SelectedLanguage = "";
+                                            }
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            File.Delete(settingsPathToFileSettings);
-            File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
+            else
+            {
+                Settings.ResetSettings();
+                Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
+            }
         }
         public static void InitialFolderChecker()
         {
@@ -5845,178 +6019,6 @@ namespace HashTester
             {
                 MessageBox.Show(Languages.Translate(11009) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-        }
-
-        public static void LoadSettings()
-        {
-            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-            if (File.Exists(settingsPathToFileSettings))
-            {
-                using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
-                {
-                    using (StreamReader reader = new StreamReader(fileSettings))
-                    {
-                        while (!reader.EndOfStream)
-                        {
-                            string line = reader.ReadLine();
-                            char[] splitChar = { '=' };
-                            string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
-                            if (data[0].Substring(0, 2) != "//") //Comments in Settings
-                            {
-                                switch (data[0])
-                                {
-                                    case "visualMode":
-                                        {
-                                            try
-                                            {
-                                                if (data[1] == "0") VisualMode = VisualModeEnum.System;
-                                                else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
-                                                else VisualMode = VisualModeEnum.Dark;
-                                            }
-                                            catch (Exception)
-                                            {
-                                                VisualMode = VisualModeEnum.System;
-                                            }
-                                            break;
-                                        }
-                                    case "outputType":
-                                        {
-                                            try
-                                            {
-                                                if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
-                                                else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
-                                                else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
-                                                else OutputType = OutputTypeEnum.MessageBox;
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputType = OutputTypeEnum.MessageBox;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeOriginalString":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeOriginalString = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeOriginalString = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeHash":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeHashAlgorithm = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeHashAlgorithm = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeNumber":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeNumberOfHash = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeNumberOfHash = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeSaltPepper":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeSaltPepper = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeSaltPepper = false;
-                                            }
-                                            break;
-                                        }
-                                    case "useSalt":
-                                        {
-                                            try
-                                            {
-                                                UseSalt = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UseSalt = false;
-                                            }
-                                            break;
-                                        }
-                                    case "usePepper":
-                                        {
-                                            try
-                                            {
-                                                UsePepper = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UsePepper = false;
-                                            }
-                                            break;
-                                        }
-                                    case "UIupdateInMS":
-                                        {
-                                            try
-                                            {
-                                                UpdateUIms = int.Parse(data[1]);
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UpdateUIms = 0;
-                                            }
-                                            break;
-                                        }
-                                    case "threadsUsagePercentage":
-                                        {
-                                            try
-                                            {
-                                                ThreadsUsagePercentage = int.Parse(data[1]);
-                                            }
-                                            catch (Exception)
-                                            {
-                                                ThreadsUsagePercentage = 50;
-                                            }
-                                            break;
-                                        }
-                                    case "language":
-                                        {
-                                            try
-                                            {
-                                                SelectedLanguage = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                SelectedLanguage = "";
-                                            }
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Settings.ResetSettings();
-                Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
             }
         }
     }

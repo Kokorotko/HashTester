@@ -45,6 +45,9 @@
             this.findingCollisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordCrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +69,6 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
-            this.saltAndPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includeSaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includePepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,6 +218,29 @@
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
+            // saltAndPepperToolStripMenuItem
+            // 
+            this.saltAndPepperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.includeSaltToolStripMenuItem,
+            this.includePepperToolStripMenuItem});
+            this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
+            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
+            // 
+            // includeSaltToolStripMenuItem
+            // 
+            this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includeSaltToolStripMenuItem.Text = "Use Salt";
+            this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click_1);
+            // 
+            // includePepperToolStripMenuItem
+            // 
+            this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includePepperToolStripMenuItem.Text = "Use Pepper";
+            this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click_1);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -296,21 +319,21 @@
             // messageBoxToolStripMenuItem
             // 
             this.messageBoxToolStripMenuItem.Name = "messageBoxToolStripMenuItem";
-            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.messageBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.messageBoxToolStripMenuItem.Text = "MessageBox";
             this.messageBoxToolStripMenuItem.Click += new System.EventHandler(this.messageBoxToolStripMenuItem_Click);
             // 
             // listBoxToolStripMenuItem
             // 
             this.listBoxToolStripMenuItem.Name = "listBoxToolStripMenuItem";
-            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listBoxToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.listBoxToolStripMenuItem.Text = "ListBox";
             this.listBoxToolStripMenuItem.Click += new System.EventHandler(this.listBoxToolStripMenuItem_Click);
             // 
             // txtFileToolStripMenuItem
             // 
             this.txtFileToolStripMenuItem.Name = "txtFileToolStripMenuItem";
-            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.txtFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.txtFileToolStripMenuItem.Text = "TxtFile";
             this.txtFileToolStripMenuItem.Click += new System.EventHandler(this.txtFileToolStripMenuItem_Click);
             // 
@@ -386,27 +409,6 @@
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
-            // 
-            // saltAndPepperToolStripMenuItem
-            // 
-            this.saltAndPepperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.includeSaltToolStripMenuItem,
-            this.includePepperToolStripMenuItem});
-            this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
-            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
-            // 
-            // includeSaltToolStripMenuItem
-            // 
-            this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.includeSaltToolStripMenuItem.Text = "Use Salt";
-            // 
-            // includePepperToolStripMenuItem
-            // 
-            this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.includePepperToolStripMenuItem.Text = "Use Pepper";
             // 
             // Form1
             // 

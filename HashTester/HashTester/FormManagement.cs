@@ -1,18 +1,13 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HashTester
 {
     public static class FormManagement
     {
-
         #region Enum
         public enum FolderType
         {
@@ -45,7 +40,6 @@ namespace HashTester
             }
             else MessageBox.Show(Languages.Translate(554), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }        
-
         public static int NumberOfThreadsToUse()
         {
             int percentage = Settings.ThreadsUsagePercentage;
@@ -68,7 +62,6 @@ namespace HashTester
                 default: return true;
             }
         }
-
         private static bool RegistryUseLightMode()
         {
             string registryKey = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
@@ -90,9 +83,7 @@ namespace HashTester
             Console.WriteLine("Settings theme as light");
             return true;
         }
-
         #region FormTheme
-
         public static void SetUpFormTheme(Form form)
         {
             Color controlColor;
