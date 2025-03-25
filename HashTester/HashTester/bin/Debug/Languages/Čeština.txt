@@ -177,7 +177,7 @@
 //Slovníkový útok
 251==Plná verze
 252==Zkrácená verze
-253==Hodně zkrácená verze
+253==Velice zkrácená verze
 254==Vlastní soubor
 
 //Time to crack calculator
@@ -191,9 +191,9 @@
 263==Vypočítat
 
 //Rainbow Table attack
-264==Normální text
+264==Text
 265==Hash
-266==Vygenerování duhové tabulky
+266==Vygenerovat duhovou tabulku
 267==Útok duhovou tabulkou
 
 //Brute force attack
@@ -215,10 +215,10 @@
 281==bylo nalezeno ve slovníku na řádku
 282==Doporučuji použít jiné heslo.
 283==nebylo nalezeno ve slovníku. Dobrá práce.
-284==Maximální délka hesla je 1000.
-285==Délka hesla je nastavena na 1000.
-286==Prolomit toto heslo bude trvat přes 18 triliónů let.
-287==Kombinace čísel
+//284==Maximální délka hesla je 1000.
+//285==Délka hesla je nastavena na 1000.
+//286==Prolomit toto heslo bude trvat přes 18 triliónů let.
+287==Počet kombinací
 288==Duhová tabulka byla úspěšně vygenerována.
 289==Program nemohl vygenerovat duhovou tabulku. Rušení procesu.
 290==Generování duhové tabulky bylo ukončeno.
@@ -322,11 +322,11 @@
 573==Nalezeno
 574==na řádku
 575==let
-576==měsíců  
+576==měsíců
 577==dnů
-578==hodin  
-579==minut  
-580==vteřin  
+578==hodin
+579==minut
+580==vteřin
 581==Duhová tabulka v souboru
 582==s
 583==algoritmus hašování je hotov.

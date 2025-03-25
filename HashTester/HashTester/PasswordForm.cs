@@ -62,10 +62,10 @@ namespace HashTester
             //Time to crack calculator
             labelCrackLenght.Text = Languages.Translate(256) + "/" + Languages.Translate(257);
             labelCrackSpeed.Text = Languages.Translate(258);
-            checkBoxCrackLower.Text = Languages.Translate(259);
-            checkBoxCrackUpper.Text = Languages.Translate(260);
-            checkBoxCrackDigit.Text = Languages.Translate(261);
-            checkBoxCrackSpecial.Text = Languages.Translate(262);
+            checkBoxCrackLower.Text = Languages.Translate(259) + " (26)";
+            checkBoxCrackUpper.Text = Languages.Translate(260) + " (26)";
+            checkBoxCrackDigit.Text = Languages.Translate(261) + " (10)";
+            checkBoxCrackSpecial.Text = Languages.Translate(262) + " (33)";
             buttonCrackCalculate.Text = Languages.Translate(263);
             //RainbowTableAttack
             radioButtonRegularRainbowTable.Text = Languages.Translate(264);
@@ -282,16 +282,6 @@ namespace HashTester
 
                 int passwordLenght;
                 if (!int.TryParse(textBoxCrackLenght.Text, out passwordLenght)) passwordLenght = textBoxCrackLenght.Text.Length;
-                if (passwordLenght > 1000)
-                {
-                    passwordLenght = 1000;
-                    MessageBox.Show(Languages.Translate(284));
-                    if (checkBoxShowLogCrack.Checked)
-                    {
-                        listBoxLog.Items.Add(Languages.Translate(285));
-                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                    }
-                }
                 if (passwordLenght <= 0)
                 {
                     MessageBox.Show(Languages.Translate(11002));

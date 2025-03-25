@@ -193,8 +193,8 @@
 263==Calculate
 
 //Rainbow Table attack
-264==Regular text
-265==Hashed
+264==Text
+265==Hash
 266==Generate rainbow table
 267==Rainbow Table attack
 
@@ -217,9 +217,9 @@
 281==has been found in wordlist at line
 282==I recommend using a different password.
 283==has not been found in wordlist. Good Job.
-284==Maximum lenght of a password is 1000.
-285==Lenght of the password set to 1000.
-286==It will take over 18 quadrilion years to crack this password.
+//284==Maximum lenght of a password is 1000.
+//285==Lenght of the password set to 1000.
+//286==It will take over 18 quadrilion years to crack this password.
 287==Number of possible combinations
 288==Rainbow Table has been generated succesfully.
 289==Program could not generate the rainbow table. Abbandoning process.
@@ -324,11 +324,11 @@
 573==Found
 574==on line
 575==years
-576==months  
+576==months
 577==days
-578==hours  
-579==minutes  
-580==seconds  
+578==hours
+579==minutes
+580==seconds
 581==Rainbow Table of the file
 582==with
 583==hashing algorithm is done.

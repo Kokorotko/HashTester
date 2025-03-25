@@ -295,7 +295,7 @@
             this.textBoxCrackSpeed.Name = "textBoxCrackSpeed";
             this.textBoxCrackSpeed.Size = new System.Drawing.Size(141, 20);
             this.textBoxCrackSpeed.TabIndex = 2;
-            this.textBoxCrackSpeed.Text = "20000000";
+            this.textBoxCrackSpeed.Text = "2000000000";
             // 
             // labelCrackLenght
             // 
