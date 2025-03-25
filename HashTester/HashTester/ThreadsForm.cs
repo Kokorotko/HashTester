@@ -225,6 +225,7 @@ namespace HashTester
             {
                 radioButtonThread4.Enabled = false;
             }
+            unsavedChanges = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -232,6 +233,8 @@ namespace HashTester
             try
             {
                 Percentage = int.Parse(textBoxPercent.Text);
+                Settings.ThreadsUsagePercentage = Percentage;
+                unsavedChanges = false;
                 DialogResult = DialogResult.OK;
             }
             catch (Exception)
@@ -246,16 +249,30 @@ namespace HashTester
         }
 
         private void ThreadsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Percentage = int.Parse(textBoxPercent.Text);
+        {            
             if (Settings.ThreadsUsagePercentage == Percentage) unsavedChanges = false;
             if (unsavedChanges)
             {
                 DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 switch (temp)
                 {
-                    case DialogResult.Yes: DialogResult = DialogResult.OK; break;
-                    case DialogResult.No: DialogResult = DialogResult.Cancel; break;
+                    case DialogResult.Yes:
+                        {
+                            try
+                            {
+                                Percentage = int.Parse(textBoxPercent.Text);
+                                Settings.ThreadsUsagePercentage = Percentage;
+                                unsavedChanges = false;
+                                DialogResult = DialogResult.OK;
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show(Languages.Translate(447), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Cancel = true;
+                            }                           
+                            break;
+                        }
+                    case DialogResult.No: DialogResult = DialogResult.No; break;
                     case DialogResult.Cancel: e.Cancel = true; break;
                 }
             }

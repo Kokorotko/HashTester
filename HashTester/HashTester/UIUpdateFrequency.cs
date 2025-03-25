@@ -58,6 +58,7 @@ namespace HashTester
             fps = (int)Math.Ceiling(1000.0 / miliseconds);
             textBoxFPS.Text = fps.ToString();
             textBoxMiliseconds.Text = miliseconds.ToString();
+            unsavedChanges = false;
         }
 
         private void selectedRadioButtonChanged(object sender, EventArgs e)
@@ -166,6 +167,8 @@ namespace HashTester
             {
                 if (miliseconds >= 8 && miliseconds <= 1000)
                 {
+                    unsavedChanges = false;
+                    Settings.UpdateUIms = Miliseconds;
                     DialogResult = DialogResult.OK;
                 }
                 else
@@ -176,7 +179,7 @@ namespace HashTester
             else
             {
                 MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }    
         }
 
         private void UIUpdateFrequency_FormClosing(object sender, FormClosingEventArgs e)
@@ -188,7 +191,31 @@ namespace HashTester
                 DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 switch (temp)
                 {
-                    case DialogResult.Yes: DialogResult = DialogResult.OK; break;
+                    case DialogResult.Yes:
+                        {
+                            if (int.TryParse(textBoxFPS.Text, out fps) && int.TryParse(textBoxMiliseconds.Text, out miliseconds))
+                            {
+                                if (miliseconds >= 8 && miliseconds <= 1000)
+                                {
+                                    Settings.UpdateUIms = Miliseconds;
+                                    DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    e.Cancel = true;
+                                    MessageBox.Show(Languages.Translate(508) + " (8-1000ms).", Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                                MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            }
+                            DialogResult = DialogResult.OK; 
+                            break;
+                        }
                     case DialogResult.No: DialogResult = DialogResult.Cancel; break;
                     case DialogResult.Cancel: e.Cancel = true; break;
                 }

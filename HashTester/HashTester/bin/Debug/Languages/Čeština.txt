@@ -337,6 +337,7 @@
 588==Algoritmy musí být stejné. Rušení útoku...
 601==Počet řádků na zpracování
 602==There are unsaved changes, do you wish to save them?
+603==Limit pokusů
 
 //Settings
 589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.

@@ -2,13 +2,16 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace HashTester
 {
@@ -34,7 +37,6 @@ namespace HashTester
         public ConcurrentBag<string> LogOutput => logOutput;
         public string FoundPassword { get; private set; } = "";
         public long FoundPasswordAtLine { get; private set; } = -1;
-        public bool PerformanceMode { get; set; }
         public long LinesProcessed
         {
             get { return Interlocked.Read(ref linesProcessed); }
@@ -66,7 +68,7 @@ namespace HashTester
 
         public void Abort() => CancellationTokenSource.Cancel();
 
-        private bool SingleThreadRainbowTableAttack( //returns if the operation was a success, use FoundPasswordBool to know if it has been found
+        private Task<bool> SingleThreadRainbowTableAttack( //returns if the operation was a success, use FoundPasswordBool to know if it has been found
             string userInputHash,
             Hasher.HashingAlgorithm fileAlgorithm,
             Hasher.HashingAlgorithm desiredAlgorithm,
@@ -117,12 +119,12 @@ namespace HashTester
                         }
                     }
                 }
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Rainbow Table Attack Single Thread error: " + ex.Message);
-                return false;
+                return Task.FromResult(false);
             }
         }
 
@@ -177,29 +179,26 @@ namespace HashTester
             }
         }
 
-        private bool SplitFile(string fileName, string userAlgorithm, CancellationTokenSource token, out string[] tempFilesPath)
+        private async Task<(bool Success, string[] TempFilesPath)> SplitFile(string fileName, string userAlgorithm, CancellationTokenSource token)
         {
-            // Count total lines in file
             long totalLinesInFile = File.ReadLines(fileName).LongCount();
             long linesPerThread = totalLinesInFile / FormManagement.NumberOfThreadsToUse();
-            tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
+            string[] tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
+
             try
             {
                 Console.WriteLine("Splitting file into multiple parts");
 
-                // Create output file paths                
                 for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
                 {
-                    tempFilesPath[i] = Path.Combine(Directory.GetDirectoryRoot(fileName), "rainbowTableTemp-" + userAlgorithm + "-" + i + ".txt");
+                    tempFilesPath[i] = Path.Combine(Path.GetDirectoryName(fileName), $"rainbowTableTemp-{userAlgorithm}-{i}.txt");
                 }
 
                 using (StreamReader readerInput = new StreamReader(fileName))
                 {
                     StreamWriter[] writers = new StreamWriter[FormManagement.NumberOfThreadsToUse()];
-
                     try
                     {
-                        // Open all writer files
                         for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
                         {
                             writers[i] = new StreamWriter(tempFilesPath[i]);
@@ -208,46 +207,39 @@ namespace HashTester
                         long currentLine = 0;
                         string line;
 
-                        // Read the file and distribute lines across multiple files
-                        while ((line = readerInput.ReadLine()) != null)
+                        while ((line = await readerInput.ReadLineAsync()) != null) // Asynchronní čtení řádku
                         {
                             if (token.IsCancellationRequested)
                             {
                                 DeleteAllTempFiles(tempFilesPath);
-                                return false; // Stop if canceled
+                                return (false, tempFilesPath);
                             }
 
                             int threadIndex = (int)(currentLine / linesPerThread);
-                            if (threadIndex >= FormManagement.NumberOfThreadsToUse())
-                            {
-                                threadIndex = FormManagement.NumberOfThreadsToUse() - 1; // Last file gets all remaining lines
-                            }
+                            if (threadIndex >= FormManagement.NumberOfThreadsToUse()) threadIndex = FormManagement.NumberOfThreadsToUse() - 1;
 
-                            writers[threadIndex].WriteLine(line);
+                            await writers[threadIndex].WriteLineAsync(line); // Asynchronní zápis
                             currentLine++;
                         }
                     }
                     finally
                     {
-                        // Close all writers
                         foreach (StreamWriter writer in writers)
                         {
-                            if (writer != null)
-                            {
-                                writer.Close();
-                            }
+                            if (writer != null) writer.Close();
                         }
                     }
                 }
-                return true;
+                return (true, tempFilesPath);
             }
             catch (Exception ex)
             {
                 DeleteAllTempFiles(tempFilesPath);
                 Console.WriteLine("ERROR: while splitting file in rainbowTableAttack: " + ex.Message);
-                return false;
+                return (false, tempFilesPath);
             }
         }
+
 
         private void DeleteAllTempFiles(string[] paths)
         {
@@ -273,7 +265,6 @@ namespace HashTester
             FoundPassword = "";
             FoundPasswordAtLine = -1;
             FoundPasswordBool = false;
-            PerformanceMode = false;
             linesProcessed = 0;
         }
 
@@ -308,59 +299,39 @@ namespace HashTester
                     return false;
                 }
                 if (!continueTheAttack) return false;
-                //Console.WriteLine("Continue attack is true");
-                //Performance On
-                if (PerformanceMode && FormManagement.UseMultiThread())
+
+                #region R.I.P. MultiThreading in Rainbow Table Attack (????–2025)
+                //Here lies the great MultiThreading,
+                //Slain by the merciless hand of "Just Make It Simpler".
+
+                //He tried to divide and conquer,
+                //Yet was conquered himself by "SingleThread Supremacy".
+
+                //May his threads rest in pieces,
+                //Forever lost in the void of "Not Worth It".
+
+                //Gone but not forgotten—
+                //Except in production, where he’s very much forgotten.
+
+                //Press F to pay respects.
+                //-ChatGPT on 25.03.2025 21:23:15
+                #endregion
+
+                Task task = Task.Run(async () =>
                 {
-                    Console.WriteLine("Performance Mode On");
-                    long linesPerThread = TotalLinesInFile / FormManagement.NumberOfThreadsToUse();
-                    List<Task> allTasks = new List<Task>();
-                    string[] tempFilesPath = new string[FormManagement.NumberOfThreadsToUse()];
-                    //Split The File
-                    if (!SplitFile(fileName, userAlgorithm.ToString(), token, out tempFilesPath))
+                    if(!await SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, fileName, inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
                     {
                         token.Cancel();
-                        return false;
                     }
-                    //MultiThread Start Attack                    
-                    for (int i = 0; i < FormManagement.NumberOfThreadsToUse(); i++)
-                    {
-                        allTasks.Add(Task.Run(() =>
-                        {
-                            if (!SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, tempFilesPath[i], inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
-                            {
-                                token.Cancel();
-                            }
-                        }));
-                    }                    
-                    await Task.WhenAll(allTasks);
-                    if (token.IsCancellationRequested)
-                    {
-                        stopwatch.Stop();
-                        return false;
-                    }
-                    //Console.WriteLine("All Tasks are done");
-                }
-                //performance Off
-                else
+                });
+                await task;
+                if (token.IsCancellationRequested)
                 {
-                    Console.WriteLine("Performance Mode Off");
-                    Task task = Task.Run(() =>
-                    {
-                        if(!SingleThreadRainbowTableAttack(userInputHash, fileAlgorithm, userAlgorithm, fileName, inputFileIsInPlainText, token, timeToStopAttack, maxAttempts))
-                        {
-                            token.Cancel();
-                        }
-                    });
-                    await Task.WhenAll(task);
-                    if (token.IsCancellationRequested)
-                    {
-                        Console.WriteLine("Cancellation token");
-                        stopwatch.Stop();
-                        return false;
-                    }
-                    //Console.WriteLine("All Tasks are done");
+                    Console.WriteLine("Cancellation token");
+                    stopwatch.Stop();
+                    return false;
                 }
+                //Console.WriteLine("All Tasks are done");
                 stopwatch.Stop();
                 return true;
             }

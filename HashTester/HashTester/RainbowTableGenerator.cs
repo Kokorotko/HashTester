@@ -68,6 +68,8 @@ namespace HashTester
                         {
                             if (cancellationTokenSource.Token.IsCancellationRequested)
                             {
+                                reader.Close();
+                                writer.Close();
                                 RemoveFilesQuestion(fileOutputPath);
                                 return false; // Stop if canceled
                             }
@@ -120,6 +122,7 @@ namespace HashTester
                     {
                         if (cancellationTokenSource.Token.IsCancellationRequested)
                         {
+                            readerInput.Close();
                             RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
                             return false; // Stop if canceled
                         }
@@ -136,6 +139,7 @@ namespace HashTester
                                 {
                                     if (cancellationTokenSource.Token.IsCancellationRequested)
                                     {
+                                        writer.Close();
                                         RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
                                         return false; // Stop if canceled
                                     }
@@ -148,6 +152,7 @@ namespace HashTester
                                 {
                                     if (cancellationTokenSource.Token.IsCancellationRequested)
                                     {
+                                        writer.Close();
                                         RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
                                         return false; // Stop if canceled
                                     }
@@ -166,17 +171,22 @@ namespace HashTester
                     string outputFile = tempFilesOutput[i];
                     tasks.Add(Task.Run(() =>
                     {
-                        if (cancellationTokenSource.Token.IsCancellationRequested) return;
-
+                        if (cancellationTokenSource.Token.IsCancellationRequested)
+                        {
+                            RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
+                            return;
+                        }
                         GenerateRainbowTableMultiThreadForSingleThread(inputFile, outputFile, hashingAlgorithm);
                     }, cancellationTokenSource.Token));
                 }
 
                 // Wait for all tasks to complete
                 await Task.WhenAll(tasks);
-
-
-                if (cancellationTokenSource.Token.IsCancellationRequested) return false;
+                if (cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
+                    return false;
+                }
                
                 using (StreamWriter writer = new StreamWriter(fileOutputPath)) // Combine the splits
                 {
@@ -189,6 +199,7 @@ namespace HashTester
                             {
                                 if (cancellationTokenSource.Token.IsCancellationRequested)
                                 {
+                                    writer.Close();
                                     RemoveFilesQuestionMultiThread(tempFilesInput, tempFilesOutput);
                                     return false; // Stop if canceled
                                 }
@@ -248,6 +259,7 @@ namespace HashTester
                 return;
             }
         }
+
         public void ResetValues()
         {
             cancellationTokenSource = new CancellationTokenSource();
@@ -259,7 +271,7 @@ namespace HashTester
 
         private void RemoveFilesQuestionMultiThread(string[] tempFilesInput, string[] tempFilesOutput)
         {
-            if (MessageBox.Show(Languages.Translate(11003) + Environment.NewLine + Languages.Translate(11005), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show(Languages.Translate(11003) + Environment.NewLine + Languages.Translate(11005), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 foreach (string tempFile in tempFilesInput)
                 {
@@ -291,7 +303,7 @@ namespace HashTester
                 }
                 try
                 {
-                    string rename = Directory.GetDirectories(tempFilesOutput[0]).FirstOrDefault();
+                    string rename = Path.GetDirectoryName(tempFilesOutput[0]);
                     string time = DateTime.UtcNow.ToString("yyyy,MM,dd-HH,mm,ss");
                     for(int i = 1; i < tempFilesOutput.Length + 1; i++)
                     {
@@ -308,7 +320,7 @@ namespace HashTester
 
         private void RemoveFilesQuestion(string fileOutputPath)
         {
-            if (MessageBox.Show(Languages.Translate(11003), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show(Languages.Translate(11003), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
@@ -324,7 +336,7 @@ namespace HashTester
             {
                 try
                 {
-                    string rename = Directory.GetDirectories(fileOutputPath).FirstOrDefault();
+                    string rename = Path.GetDirectoryName(fileOutputPath);
                     string time = DateTime.UtcNow.ToString("yyyy,MM,dd-HH,mm,ss");
                     rename = Path.Combine(rename, "failedRainbowTable-" + time + ".txt");
                     File.Move(fileOutputPath, rename);

@@ -53,6 +53,7 @@ namespace HashTester
             TurnOffUI();
             ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
+            if (maxAttempts > 0 && checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(603) + ": " + maxAttempts); 
             int rngTextLenght = (int)numericUpDown2.Value;
             switch (hashSelector.SelectedIndex)
             {
@@ -79,7 +80,8 @@ namespace HashTester
                 }                
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
                 {
-                    allTasks.Add(Task.Run(() => CollisionThread(i, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
+                    int threadIndex = i;
+                    allTasks.Add(Task.Run(() => CollisionThread(threadIndex, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
                 }
             }
             else //single Thread
@@ -94,24 +96,32 @@ namespace HashTester
             await Task.WhenAll(allTasks);
             stopwatch.Stop();
             TurnOnUI();
-            if (foundCollision) //MessageBoxOutput
-            {
+            if (foundCollision) 
+            {                
+                //LogOutput
                 if (checkBoxListBoxLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(117));
-                    listBoxLog.Items.Add(Languages.Translate(118) + " 1: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision01) : textCollision01));
-                    listBoxLog.Items.Add(Languages.Translate(118) + " 1: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision02) : textCollision02));
+                    listBoxLog.Items.Add(Languages.Translate(118) + " 1: " + (textCollision01));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(118) + " 1 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision01));
+                    listBoxLog.Items.Add(Languages.Translate(118) + " 2: " + (textCollision02));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(118) + " 2 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision02));
                     listBoxLog.Items.Add(Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm));
                     listBoxLog.Items.Add(Languages.Translate(120) + ": " + attempts);
-                    listBoxLog.Items.Add(Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]);
+                    try { listBoxLog.Items.Add(Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]); } //so that I dont have to format it again :)
+                    catch { /*Hi :3*/ }
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
-                string message = Languages.Translate(117) +
-                                        "\n" + Languages.Translate(118) + " 1: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision01) : textCollision01) +
-                                       "\n" + Languages.Translate(118) + " 2: " + (checkBoxUseHex.Checked ? ConvertStringToHex(textCollision02) : textCollision02) +
-                                       "\n" + Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm) +
-                                       "\n" + Languages.Translate(120) + ": " + attempts +
-                                       "\n" + Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]; // Only the number                
+                //MessageBoxOutput
+                string message = Languages.Translate(117) + Environment.NewLine + Languages.Translate(118) + " 1: " + textCollision01;
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(118) + " 1 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision01);
+                message += Environment.NewLine + Languages.Translate(118) + " 2: " + textCollision02;
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(118) + " 2 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision02);
+                message += Environment.NewLine + Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm) + 
+                    Environment.NewLine + Languages.Translate(120) + ": " + attempts;
+                listBoxLog.Items.Add(message);
+                try { message += Environment.NewLine + Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]; }
+                catch { /*Back again?*/}
                 CollisionFoundMessageBox(message, textCollision01, textCollision02);
             }
             else if (stopHashing)
@@ -150,11 +160,13 @@ namespace HashTester
             if (maxAttempts > 0) useAttempts = true;            
             if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, out string collision01, out string collision02))
             {
+                Console.WriteLine("Le " + threadNumber + " found collision");
                 textCollision01 = collision01;
                 textCollision02 = collision02;
                 foundCollision = true;
             }
             else stopHashing = true;
+            Console.WriteLine("Le " + threadNumber + " has ended.");
         }
 
         private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLog, bool useHexForOutput, out string collision1, out string collision2)

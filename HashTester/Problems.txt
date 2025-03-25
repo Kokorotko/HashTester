@@ -1,17 +1,5 @@
-COLLISION DETECTOR:
--Aktuální rychlost a průměrná rychlost se nezobrazuje
--Po max. attempts do Logu output
--Problém se reset values
--button save log a copy is enabled (should not be)
--Cannot find collision
--Zjištěná kolize chybí :
--Počet přiřazených vláken 0
--Počet pokusů má problémy
--Výstup při kolizi (Pokusy jsou 0, Místo heslo hash, I při HEX output napsat normální zápis)
 -Kontrola kolize HEX nefunguje, bere se pořád jako text (zkontroluj i BIN)
-
-OTHER:
--NameTable when reset doesnt generate //shit
+-Threads Form formulář se vypne bez uložení změn
 -UI Update Frequency při změně času automaticky updatuje(not good)
 -Kdyz zavre bez ulozeni, messagebox jestli chce pokracovat
 -Gradual Hashing jestli vypsat info checkbox (Show algorithm z multipleHashing) 
@@ -19,7 +7,7 @@ OTHER:
 -UIshit ošetřit vstupy
 -File Checksum pouzit task a postupne ukazovat hashe
 -HashingColliisonForm MultiThreading problem
-
+-Problém u přiřazených vláken, zaokrouhluje dolů
 
 
 

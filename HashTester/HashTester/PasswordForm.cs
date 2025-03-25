@@ -497,7 +497,6 @@ namespace HashTester
                 currentTaskType = TaskType.RainbowTableAttack;
                 string originalInput = textBoxRainbowTable.Text;
                 if (radioButtonRegularBruteForce.Checked) originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);                    
-                rainbowTableAttack.PerformanceMode = checkBoxPerformanceModeRainbowTable.Checked;
                 OpenFileDialog openFileDialog = new OpenFileDialog { InitialDirectory = Settings.DirectoryPathToWordlists };               
                 rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -631,13 +630,13 @@ namespace HashTester
 
                     // Speed Calculation
                     double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
-                    labelStatCurrentSpeed.Text = Languages.Translate(10001) + "/s: " + speed.ToString("#,0");
+                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s: " + speed.ToString("#,0");
                     labelStatAttempts.Text = Languages.Translate(303) + ": " + currentLinesProcessed.ToString("#,0");
 
                     // Average Speed Calculation
                     double averageSpeed = 0;
                     if (rainbowTableAttack.Stopwatch.ElapsedMilliseconds != 0) averageSpeed = currentLinesProcessed / (rainbowTableAttack.Stopwatch.ElapsedMilliseconds / 1000.0);
-                    labelStatSpeed.Text = Languages.Translate(10012) + "/s: " + Math.Floor(averageSpeed).ToString("#,0");
+                    labelStatSpeed.Text = Languages.Translate(10012) + " /s: " + Math.Floor(averageSpeed).ToString("#,0");
 
                     // Progress Bar Update
                     int progress = 0;
