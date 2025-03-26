@@ -93,21 +93,16 @@ namespace HashTester
             if (dontUpdate) return;
             dontUpdate = true;
             unsavedChanges = true;
+
             if (!radioButtonSet)
             {
                 DeselectAllRadioButtons();
                 if (double.TryParse(textBoxFPS.Text, out double temp) && temp > 0)
                 {
-                    if (temp > 125)
-                    {
-                        textBoxMiliseconds.Text = "8";
-                    }
+                    if (temp > 125) textBoxMiliseconds.Text = "8";
                     else textBoxMiliseconds.Text = Math.Ceiling(1000.0 / temp).ToString();
                 }
-                else
-                {
-                    textBoxMiliseconds.Text = "";
-                }
+                else textBoxMiliseconds.Text = "";
             }
             dontUpdate = false;
         }

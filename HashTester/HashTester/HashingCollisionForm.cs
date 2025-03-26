@@ -303,128 +303,15 @@ namespace HashTester
 
         #endregion
 
-        #region CollisionDetectionFromAFile3000
-
-        #region TXTFile
-        public enum CollisionDetectionFormat
-        {
-            HEX,
-            STRING,
-            BIN
-        }
-
-        private void buttonTakeCollisionFromTXT_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog soubor = new OpenFileDialog())
-            {
-                soubor.DefaultExt = ".txt";
-                soubor.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                soubor.InitialDirectory = Settings.DirectoryPathToCollisions;
-                if (soubor.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamReader reader = new StreamReader(soubor.FileName))
-                    {
-                        Hasher.HashingAlgorithm algorithmTemp = Hasher.HashingAlgorithm.CRC32;
-                        CollisionDetectionFormat format = CollisionDetectionFormat.STRING;
-                        string textCollision01 = "", textCollision02 = "";
-                        bool gotInformation = false;
-                        while (!reader.EndOfStream && !gotInformation)
-                        {
-                            string line = reader.ReadLine();
-                            if (!line.StartsWith("//") && !String.IsNullOrEmpty(line))
-                            {
-                                if (line.StartsWith("Algorithm="))
-                                {
-                                    string nextLine = line.Remove(0, 10);
-                                    Console.WriteLine(nextLine);
-                                    switch (nextLine)
-                                    {
-                                        case "MD5": algorithmTemp = Hasher.HashingAlgorithm.MD5; break;
-                                        case "SHA1": algorithmTemp = Hasher.HashingAlgorithm.SHA1; break;
-                                        case "SHA256": algorithmTemp = Hasher.HashingAlgorithm.SHA256; break;
-                                        case "SHA512": algorithmTemp = Hasher.HashingAlgorithm.SHA512; break;
-                                        case "RIPEMD160": algorithmTemp = Hasher.HashingAlgorithm.RIPEMD160; break;
-                                        case "CRC32": algorithmTemp = Hasher.HashingAlgorithm.CRC32; break;
-                                        default: algorithmTemp = Hasher.HashingAlgorithm.CRC32; break;
-                                    }
-                                }
-                                switch (line)
-                                {                                    
-                                    case "<STRING>":
-                                        {
-                                            format = CollisionDetectionFormat.STRING;
-                                            textCollision01 = reader.ReadLine();
-                                            textCollision02 = reader.ReadLine();
-                                            gotInformation = true;
-                                            break;
-                                        }
-                                    case "<BIN>":
-                                        {
-                                            format = CollisionDetectionFormat.BIN;
-                                            textCollision01 = reader.ReadLine();
-                                            textCollision02 = reader.ReadLine();
-                                            gotInformation = true;
-                                            break;
-                                        }
-                                    case "<HEX>":
-                                        {
-                                            format = CollisionDetectionFormat.HEX;
-                                            textCollision01 = reader.ReadLine();
-                                            textCollision02 = reader.ReadLine();
-                                            gotInformation = true;
-                                            break;
-                                        }
-                                    default: break;
-                                }
-                            }
-                        }
-                        if (gotInformation && !String.IsNullOrEmpty(textCollision01) && !String.IsNullOrEmpty(textCollision02)) CheckCollision(algorithmTemp, textCollision01, textCollision02, format);
-                        else MessageBox.Show(Languages.Translate(10022), Languages.Translate(10021), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-        #endregion
+        #region CollisionDetection        
         private void buttonCheckCollision_Click(object sender, EventArgs e)
         {
             CheckCollisionForm checkCollisionForm = new CheckCollisionForm();
             checkCollisionForm.StartPosition = FormStartPosition.CenterScreen;
             checkCollisionForm.Name = Languages.Translate(15003);
-            if (checkCollisionForm.ShowDialog() == DialogResult.OK)
-            {
-                CheckCollision(checkCollisionForm.HashingAlgorithm, checkCollisionForm.Text01, checkCollisionForm.Text02, checkCollisionForm.Format);
-            }
-        }
-        private void CheckCollision(Hasher.HashingAlgorithm hashAlgorithm, string text01, string text02, CollisionDetectionFormat format)
-        {            
-            //Format
-            if (format == CollisionDetectionFormat.HEX)
-            {
-                Console.WriteLine("Before update Text01: " + text01);
-                Console.WriteLine("Before update Text02: " + text02);
-                text01 = ConvertHexToString(text01);
-                text02 = ConvertHexToString(text02);
-                Console.WriteLine("After update Text01: " + text01);
-                Console.WriteLine("Before update Text02: " + text02);
-            }
-            else if (format == CollisionDetectionFormat.BIN)
-            {
-                Console.WriteLine("Before update Text01: " + text01);
-                Console.WriteLine("Before update Text02: " + text02);
-                text01 = ConvertBinToString(text01);
-                text02 = ConvertBinToString(text02);
-                Console.WriteLine("After update Text01: " + text01);
-                Console.WriteLine("Before update Text02: " + text02);
-            }
-            //CheckCollision
-            Hasher hasher = new Hasher();
-            string hash01 = hasher.Hash(text01, hashAlgorithm);
-            string hash02 = hasher.Hash(text02, hashAlgorithm);
-            Console.WriteLine("Hash01: " + hash01);
-            Console.WriteLine("Hash02: " + hash02);
-            if (hash01 == hash02) MessageBox.Show( Languages.Translate(124) + "\n"  +  Languages.Translate(125) +  " " + hash01, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else MessageBox.Show(Languages.Translate(126) + "\nHash01: " + hash01 + "\nHash02: " + hash02, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            checkCollisionForm.Show();
+        }       
+
         #endregion
 
         private void TurnOffUI()
@@ -437,7 +324,6 @@ namespace HashTester
             buttonReturn.Enabled = false;
             buttonClearListBox.Enabled = false;
             buttonGenerateCollision.Enabled = false;
-            buttonTakeCollisionFromTXT.Enabled = false;
             numericUpDown1.Enabled = false;
             numericUpDown2.Enabled = false;
             hashSelector.Enabled = false;
@@ -457,7 +343,6 @@ namespace HashTester
             buttonReturn.Enabled = true;
             buttonClearListBox.Enabled = true;
             buttonGenerateCollision.Enabled = true;
-            buttonTakeCollisionFromTXT.Enabled = true;
             numericUpDown1.Enabled = true;
             numericUpDown2.Enabled = true;
             hashSelector.Enabled = true;
@@ -480,33 +365,7 @@ namespace HashTester
                 }
             }
             return hexBuilder.ToString();
-        }
-
-        private string ConvertHexToString(string hex)
-        {
-            StringBuilder output = new StringBuilder();
-            hex = hex.ToLower();
-            hex = hex.Replace("-", "");
-            for (int i = 0; i < hex.Length; i += 2)
-            {
-                string hexPair = hex.Substring(i, 2);
-                int temp = Convert.ToInt32(hexPair, 16);
-                output.Append((char)temp);
-            }
-            return output.ToString();
-        }
-
-        private string ConvertBinToString(string binary)
-        {
-            binary = binary.Replace(" ", "");
-            byte[] bytes = new byte[binary.Length / 8];
-            for (int i = 0; i < binary.Length; i += 8)
-            {
-                string byteString = binary.Substring(i, 8);
-                bytes[i / 8] = Convert.ToByte(byteString, 2);
-            }
-            return bytes.ToString();
-        }
+        }        
         #endregion
 
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
@@ -514,8 +373,7 @@ namespace HashTester
             #region Languages
             this.Name = Languages.Translate(704);
             buttonCheckCollision.Text = Languages.Translate(111);
-            buttonGenerateCollision.Text = Languages.Translate(112);
-            buttonTakeCollisionFromTXT.Text = Languages.Translate(113);
+            buttonGenerateCollision.Text = Languages.Translate(112);            
             buttonAbort.Text = Languages.Translate(10005);
             buttonReturn.Text = Languages.Translate(10006);
             labelAttempts.Text = Languages.Translate(10010);

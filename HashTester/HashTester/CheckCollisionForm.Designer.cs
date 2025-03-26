@@ -39,6 +39,7 @@
             this.buttonCheck = new System.Windows.Forms.Button();
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
+            this.buttonTakeTXT = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,7 +123,7 @@
             // 
             this.buttonCheck.Location = new System.Drawing.Point(12, 118);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(327, 23);
+            this.buttonCheck.Size = new System.Drawing.Size(142, 23);
             this.buttonCheck.TabIndex = 8;
             this.buttonCheck.Text = "Check";
             this.buttonCheck.UseVisualStyleBackColor = true;
@@ -132,12 +133,12 @@
             // 
             this.hashSelector.FormattingEnabled = true;
             this.hashSelector.Items.AddRange(new object[] {
-            "CRC32",
             "MD5",
-            "RipeMD-160",
             "SHA1",
             "SHA256",
-            "SHA512"});
+            "SHA512",
+            "RipeMD-160",
+            "CRC32"});
             this.hashSelector.Location = new System.Drawing.Point(222, 29);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
@@ -153,11 +154,22 @@
             this.labelAlgorithm.TabIndex = 10;
             this.labelAlgorithm.Text = "Algorithm";
             // 
+            // buttonTakeTXT
+            // 
+            this.buttonTakeTXT.Location = new System.Drawing.Point(160, 117);
+            this.buttonTakeTXT.Name = "buttonTakeTXT";
+            this.buttonTakeTXT.Size = new System.Drawing.Size(183, 23);
+            this.buttonTakeTXT.TabIndex = 11;
+            this.buttonTakeTXT.Text = "Check from TXT file";
+            this.buttonTakeTXT.UseVisualStyleBackColor = true;
+            this.buttonTakeTXT.Click += new System.EventHandler(this.buttonTakeTXT_Click);
+            // 
             // CheckCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 152);
+            this.Controls.Add(this.buttonTakeTXT);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.buttonCheck);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Label labelAlgorithm;
+        private System.Windows.Forms.Button buttonTakeTXT;
     }
 }

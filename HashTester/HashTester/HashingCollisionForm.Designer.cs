@@ -30,7 +30,6 @@
         {
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.buttonGenerateCollision = new System.Windows.Forms.Button();
-            this.buttonTakeCollisionFromTXT = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
@@ -65,30 +64,20 @@
             "RipeMD-160",
             "MD5",
             "SHA1"});
-            this.hashSelector.Location = new System.Drawing.Point(12, 41);
+            this.hashSelector.Location = new System.Drawing.Point(14, 56);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(121, 21);
+            this.hashSelector.Size = new System.Drawing.Size(120, 21);
             this.hashSelector.TabIndex = 9;
             // 
             // buttonGenerateCollision
             // 
             this.buttonGenerateCollision.Location = new System.Drawing.Point(12, 12);
             this.buttonGenerateCollision.Name = "buttonGenerateCollision";
-            this.buttonGenerateCollision.Size = new System.Drawing.Size(121, 23);
+            this.buttonGenerateCollision.Size = new System.Drawing.Size(190, 23);
             this.buttonGenerateCollision.TabIndex = 10;
             this.buttonGenerateCollision.Text = "Generate a Collision";
             this.buttonGenerateCollision.UseVisualStyleBackColor = true;
             this.buttonGenerateCollision.Click += new System.EventHandler(this.buttonGenerateCollision_Click);
-            // 
-            // buttonTakeCollisionFromTXT
-            // 
-            this.buttonTakeCollisionFromTXT.Location = new System.Drawing.Point(248, 11);
-            this.buttonTakeCollisionFromTXT.Name = "buttonTakeCollisionFromTXT";
-            this.buttonTakeCollisionFromTXT.Size = new System.Drawing.Size(147, 23);
-            this.buttonTakeCollisionFromTXT.TabIndex = 11;
-            this.buttonTakeCollisionFromTXT.Text = "Check a collision from TXT";
-            this.buttonTakeCollisionFromTXT.UseVisualStyleBackColor = true;
-            this.buttonTakeCollisionFromTXT.Click += new System.EventHandler(this.buttonTakeCollisionFromTXT_Click);
             // 
             // listBoxLog
             // 
@@ -121,20 +110,20 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 84);
+            this.numericUpDown1.Location = new System.Drawing.Point(12, 103);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(247, 20);
             this.numericUpDown1.TabIndex = 15;
             // 
             // labelMaxAttempts
             // 
             this.labelMaxAttempts.AutoSize = true;
-            this.labelMaxAttempts.Location = new System.Drawing.Point(9, 65);
+            this.labelMaxAttempts.Location = new System.Drawing.Point(9, 84);
             this.labelMaxAttempts.Name = "labelMaxAttempts";
             this.labelMaxAttempts.Size = new System.Drawing.Size(95, 13);
             this.labelMaxAttempts.TabIndex = 16;
@@ -162,7 +151,7 @@
             // labelLenght
             // 
             this.labelLenght.AutoSize = true;
-            this.labelLenght.Location = new System.Drawing.Point(136, 65);
+            this.labelLenght.Location = new System.Drawing.Point(136, 37);
             this.labelLenght.Name = "labelLenght";
             this.labelLenght.Size = new System.Drawing.Size(128, 13);
             this.labelLenght.TabIndex = 20;
@@ -170,7 +159,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(139, 84);
+            this.numericUpDown2.Location = new System.Drawing.Point(140, 57);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             50,
             0,
@@ -248,9 +237,9 @@
             // 
             // buttonCheckCollision
             // 
-            this.buttonCheckCollision.Location = new System.Drawing.Point(139, 12);
+            this.buttonCheckCollision.Location = new System.Drawing.Point(208, 11);
             this.buttonCheckCollision.Name = "buttonCheckCollision";
-            this.buttonCheckCollision.Size = new System.Drawing.Size(103, 23);
+            this.buttonCheckCollision.Size = new System.Drawing.Size(187, 23);
             this.buttonCheckCollision.TabIndex = 28;
             this.buttonCheckCollision.Text = "Check a collision";
             this.buttonCheckCollision.UseVisualStyleBackColor = true;
@@ -284,7 +273,7 @@
             this.groupBoxUI.Controls.Add(this.labelAverageSpeed);
             this.groupBoxUI.Location = new System.Drawing.Point(266, 41);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Size = new System.Drawing.Size(277, 74);
+            this.groupBoxUI.Size = new System.Drawing.Size(277, 82);
             this.groupBoxUI.TabIndex = 31;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
@@ -309,7 +298,6 @@
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.buttonTakeCollisionFromTXT);
             this.Controls.Add(this.buttonGenerateCollision);
             this.Controls.Add(this.hashSelector);
             this.Name = "HashingCollisionForm";
@@ -328,7 +316,6 @@
 
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Button buttonGenerateCollision;
-        private System.Windows.Forms.Button buttonTakeCollisionFromTXT;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.Button buttonReturn;

@@ -44,7 +44,7 @@ namespace HashTester
         {
             int percentage = Settings.ThreadsUsagePercentage;
             if (percentage == 0) return 1; //Single Thread
-            return (int)Math.Floor(percentage / 100.0 * Environment.ProcessorCount);
+            return (int)Math.Ceiling(percentage / 100.0 * Environment.ProcessorCount);
         }
         public static bool UseMultiThread()
         {

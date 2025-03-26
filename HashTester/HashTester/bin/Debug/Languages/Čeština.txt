@@ -1,4 +1,5 @@
 //Běžně používané
+9999==Hash
 10000==Vymazat záznam
 10001==Uložit záznam
 10002==Schránka
@@ -36,6 +37,7 @@
 10034==Zaregistrováno
 10035==Zaregistrovat
 10036==UI
+10037==Hex
 
 //**Try and Catch <<11000-12000>>
 11000==Vyskytla se chyba v programu.
@@ -48,7 +50,9 @@
 11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.
 11008==Prosím, přesuňte program do složky, kde má přístup ke čtení/zápisu souborů, nebo spusťte aplikaci s administrátorskými právy.
 11009==Počáteční inicializace složek se nezdařilo. Před dalším používáním programu problém vyřešte.
-
+11010==Prosím zadejte validní vstup do Text01.
+11011==Prosím zadejte validní vstup do Text02.
+11012==Nepodařilo se převést vstup na string.
 
 //**Name of Forms <<15000-15100>>
 15000==Hlavní formulář

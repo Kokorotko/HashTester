@@ -3,5 +3,5 @@ Algorithm=CRC32
 ·ì¼ÓÁ!¢o¾
 #±JÁõâ«ú
 <HEX>
-8D-B7-EC-BC-D3-C1-21-A2-6F-BE
-23-B1-4A-81-C1-F5-E2-90-AB-FA
+8db7ecbcd3c121a26fbe
+23b14a81c1f5e290abfa

@@ -107,7 +107,7 @@ namespace HashTester
                     textBoxPercent.Text = "100";
                     textBoxThread.Text = numberOfThreadsInCPU.ToString();
                 }
-                int threads = Math.Max(1, (int)Math.Round(percent / 100.0 * numberOfThreadsInCPU));
+                int threads = Math.Max(1, (int)Math.Ceiling(percent / 100.0 * numberOfThreadsInCPU));
                 if (threads > numberOfThreadsInCPU) textBoxThread.Text = numberOfThreadsInCPU.ToString();
                else textBoxThread.Text = threads.ToString();
             }
@@ -228,7 +228,7 @@ namespace HashTester
             unsavedChanges = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //save
         {
             try
             {
@@ -249,8 +249,8 @@ namespace HashTester
         }
 
         private void ThreadsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {            
-            if (Settings.ThreadsUsagePercentage == Percentage) unsavedChanges = false;
+        {
+            Console.WriteLine("unsavedChanges: " + unsavedChanges);
             if (unsavedChanges)
             {
                 DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
