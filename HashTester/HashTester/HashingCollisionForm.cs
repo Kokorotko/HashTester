@@ -75,7 +75,7 @@ namespace HashTester
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(115)  + " :"+ maxThreads);
+                    listBoxLog.Items.Add(Languages.Translate(115)  + ": "+ maxThreads);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }                
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread

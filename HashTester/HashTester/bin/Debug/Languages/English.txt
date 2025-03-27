@@ -41,6 +41,8 @@
 10035==Register
 10036==UI
 10037==Hex
+10038==Current version
+10039==Program made by
 
 //**Try and Catch <<11000-12000>>
 11000==An error has occured in the program.

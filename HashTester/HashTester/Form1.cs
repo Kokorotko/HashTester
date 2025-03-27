@@ -28,6 +28,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
+        readonly string programVersion = "0.95";
 
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
@@ -661,6 +662,7 @@ namespace HashTester
             gradualHashingToolStripMenuItem1.Text = Languages.Translate(15001);
             fileChecksumToolStripMenuItem.Text = Languages.Translate(33);
             saltPepperTesterToolStripMenuItem.Text = Languages.Translate(709);
+            labelCredits.Text = Languages.Translate(10039) + " Kamil Franek" + Environment.NewLine + Languages.Translate(10038) + ": " + programVersion;
             //Form
             buttonHashSimpleText.Text = Languages.Translate(31);
             buttonFileInput.Text = Languages.Translate(32);

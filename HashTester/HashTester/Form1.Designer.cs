@@ -69,6 +69,7 @@
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.labelCredits = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,42 +169,42 @@
             // gradualHashingToolStripMenuItem1
             // 
             this.gradualHashingToolStripMenuItem1.Name = "gradualHashingToolStripMenuItem1";
-            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             this.fileChecksumToolStripMenuItem.Click += new System.EventHandler(this.fileChecksumToolStripMenuItem_Click);
             // 
             // saltPepperTesterToolStripMenuItem
             // 
             this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
-            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
             this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
             // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
-            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // findingCollisionsToolStripMenuItem
             // 
             this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
             // passwordCrackerToolStripMenuItem
             // 
             this.passwordCrackerToolStripMenuItem.Name = "passwordCrackerToolStripMenuItem";
-            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.passwordCrackerToolStripMenuItem.Text = "Password Cracker";
             this.passwordCrackerToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
@@ -224,20 +225,20 @@
             this.includeSaltToolStripMenuItem,
             this.includePepperToolStripMenuItem});
             this.saltAndPepperToolStripMenuItem.Name = "saltAndPepperToolStripMenuItem";
-            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saltAndPepperToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.saltAndPepperToolStripMenuItem.Text = "Salt and Pepper";
             // 
             // includeSaltToolStripMenuItem
             // 
             this.includeSaltToolStripMenuItem.Name = "includeSaltToolStripMenuItem";
-            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includeSaltToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.includeSaltToolStripMenuItem.Text = "Use Salt";
             this.includeSaltToolStripMenuItem.Click += new System.EventHandler(this.includeSaltToolStripMenuItem_Click_1);
             // 
             // includePepperToolStripMenuItem
             // 
             this.includePepperToolStripMenuItem.Name = "includePepperToolStripMenuItem";
-            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.includePepperToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.includePepperToolStripMenuItem.Text = "Use Pepper";
             this.includePepperToolStripMenuItem.Click += new System.EventHandler(this.includePepperToolStripMenuItem_Click_1);
             // 
@@ -249,7 +250,7 @@
             this.threadsAndCPUSettingsToolStripMenuItem,
             this.resetAllSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // visualModeToolStripMenuItem
@@ -313,7 +314,7 @@
             this.listBoxToolStripMenuItem,
             this.txtFileToolStripMenuItem});
             this.outputTypeStripMenuItem.Name = "outputTypeStripMenuItem";
-            this.outputTypeStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputTypeStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.outputTypeStripMenuItem.Text = "Output Type";
             // 
             // messageBoxToolStripMenuItem
@@ -346,7 +347,7 @@
             this.includeSaltAndPepperToolStripMenuItem,
             this.includeAllToolStripMenuItem});
             this.outputStyleToolStripMenuItem.Name = "outputStyleToolStripMenuItem";
-            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outputStyleToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.outputStyleToolStripMenuItem.Text = "Output Style";
             // 
             // includeOriginalStringToolStripMenuItem
@@ -410,12 +411,22 @@
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
+            // labelCredits
+            // 
+            this.labelCredits.AutoSize = true;
+            this.labelCredits.Location = new System.Drawing.Point(16, 445);
+            this.labelCredits.Name = "labelCredits";
+            this.labelCredits.Size = new System.Drawing.Size(118, 26);
+            this.labelCredits.TabIndex = 17;
+            this.labelCredits.Text = "Made by: Kamil Fnanek\r\nCurrent Version: 0.95";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(420, 450);
+            this.ClientSize = new System.Drawing.Size(420, 481);
+            this.Controls.Add(this.labelCredits);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
@@ -479,6 +490,7 @@
         private System.Windows.Forms.ToolStripMenuItem saltAndPepperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeSaltToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
+        private System.Windows.Forms.Label labelCredits;
     }
 }
 

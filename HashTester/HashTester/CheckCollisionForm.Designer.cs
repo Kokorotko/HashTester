@@ -40,6 +40,7 @@
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.buttonTakeTXT = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(114, 30);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(209, 20);
             this.textBox1.TabIndex = 4;
             // 
             // labelText
@@ -116,7 +117,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(114, 81);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 6;
             // 
             // buttonCheck
@@ -139,7 +140,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(222, 29);
+            this.hashSelector.Location = new System.Drawing.Point(329, 29);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 9;
@@ -148,7 +149,7 @@
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
-            this.labelAlgorithm.Location = new System.Drawing.Point(219, 14);
+            this.labelAlgorithm.Location = new System.Drawing.Point(326, 14);
             this.labelAlgorithm.Name = "labelAlgorithm";
             this.labelAlgorithm.Size = new System.Drawing.Size(50, 13);
             this.labelAlgorithm.TabIndex = 10;
@@ -158,17 +159,28 @@
             // 
             this.buttonTakeTXT.Location = new System.Drawing.Point(160, 117);
             this.buttonTakeTXT.Name = "buttonTakeTXT";
-            this.buttonTakeTXT.Size = new System.Drawing.Size(183, 23);
+            this.buttonTakeTXT.Size = new System.Drawing.Size(163, 23);
             this.buttonTakeTXT.TabIndex = 11;
             this.buttonTakeTXT.Text = "Check from TXT file";
             this.buttonTakeTXT.UseVisualStyleBackColor = true;
             this.buttonTakeTXT.Click += new System.EventHandler(this.buttonTakeTXT_Click);
             // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(329, 117);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(124, 22);
+            this.buttonClose.TabIndex = 12;
+            this.buttonClose.Text = "Check";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
             // CheckCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 152);
+            this.ClientSize = new System.Drawing.Size(462, 152);
+            this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonTakeTXT);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.hashSelector);
@@ -202,5 +214,6 @@
         private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.Label labelAlgorithm;
         private System.Windows.Forms.Button buttonTakeTXT;
+        private System.Windows.Forms.Button buttonClose;
     }
 }

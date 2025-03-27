@@ -38,6 +38,8 @@
 10035==Zaregistrovat
 10036==UI
 10037==Hex
+10038==Aktuální verze
+10039==Program vytvořil
 
 //**Try and Catch <<11000-12000>>
 11000==Vyskytla se chyba v programu.
