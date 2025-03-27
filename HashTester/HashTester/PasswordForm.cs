@@ -821,7 +821,7 @@ namespace HashTester
 
                     //Update Speed
                     double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
-                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + " /s:  " + speed.ToString("#,0");
+                    labelStatCurrentSpeed.Text = Languages.Translate(10011) + ":  " + speed.ToString("#,0");
 
                     //Attempts
                     labelStatAttempts.Text = Languages.Translate(10010) + ": " + bruteForce.Attempts.ToString("#,0");

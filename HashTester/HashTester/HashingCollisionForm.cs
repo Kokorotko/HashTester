@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -160,13 +161,13 @@ namespace HashTester
             if (maxAttempts > 0) useAttempts = true;            
             if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, out string collision01, out string collision02))
             {
-                Console.WriteLine("Le " + threadNumber + " found collision");
+                //Console.WriteLine("Le " + threadNumber + " found collision");
                 textCollision01 = collision01;
                 textCollision02 = collision02;
                 foundCollision = true;
             }
             else stopHashing = true;
-            Console.WriteLine("Le " + threadNumber + " has ended.");
+            //Console.WriteLine("Le " + threadNumber + " has ended.");
         }
 
         private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLog, bool useHexForOutput, out string collision1, out string collision2)
@@ -177,12 +178,12 @@ namespace HashTester
                 collision2 = "";
                 List<string> hashedList = new List<string>();
                 List<string> textList = new List<string>();
-                Random random = new Random((int)(DateTime.Now.Ticks * threadNumber));
+                //Random random = new Random((int)(DateTime.Now.Ticks * threadNumber)); old RNG
 
                 while (!foundCollision && !stopHashing && !attemptsRanOut)
                 {
                     Interlocked.Increment(ref attempts);
-                    string randomText = GenerateRandomString(random, length);
+                    string randomText = GenerateRandomString(length);
                     string hashedValue = hasher.Hash(randomText, algorithm);
 
                     if (hashedList.Contains(hashedValue))
@@ -227,12 +228,13 @@ namespace HashTester
             return false;
         }
 
-        private string GenerateRandomString(Random random, int length)
+        private string GenerateRandomString(int length)
         {
+            Random random = new Random(GenerateRandomSeed());
             char[] result = new char[length];
             for (int i = 0; i < length; i++)
             {
-                result[i] = (char)random.Next(33, 256); 
+                result[i] = (char)random.Next(0, 256); 
             }
             return new string(result);
         }
@@ -253,7 +255,7 @@ namespace HashTester
                     labelAttempts.Text = Languages.Translate(10010) + ": " + attempts;
                     //Update Speed
                     double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
-                    labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + speed;
+                    labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + Math.Floor(speed);
                     //Update Average Speed
                     double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
                     labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
@@ -435,9 +437,17 @@ namespace HashTester
             maxAttempts = 0;
             attempts = 0;
             numberOfAttempsInLastUpdate = 0;
-
-            // Reset Stopwatch
             stopwatch.Reset();
+        }
+
+        private static int GenerateRandomSeed()
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                byte[] buffer = new byte[4];
+                rng.GetBytes(buffer);
+                return BitConverter.ToInt32(buffer, 0) & int.MaxValue; // Ensure positive seed
+            }
         }
     }
 }
