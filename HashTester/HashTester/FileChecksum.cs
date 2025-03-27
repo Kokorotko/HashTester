@@ -261,7 +261,11 @@ namespace HashTester
             bool anySelected = false;
             foreach(bool bul in useAlgorithm)
             {
-                if (bul) anySelected = true;
+                if (bul)
+                {
+                    anySelected = true;
+                    break;
+                }
             }
             if (!anySelected)
             {
@@ -277,11 +281,11 @@ namespace HashTester
                     switch ((Hasher.HashingAlgorithm)i)
                     {
                         case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA1: labelMD5.Text = "SHA1: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA256: labelMD5.Text = "SHA256: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA512: labelMD5.Text = "SHA512: " + hash; break;
-                        case Hasher.HashingAlgorithm.RIPEMD160: labelMD5.Text = "RipeMD-160: " + hash; break;
-                        case Hasher.HashingAlgorithm.CRC32: labelMD5.Text = "CRC32: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA1: labelSHA1.Text = "SHA1: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA256: labelSHA256.Text = "SHA256: " + hash; break;
+                        case Hasher.HashingAlgorithm.SHA512: labelSHA512.Text = "SHA512: " + hash; break;
+                        case Hasher.HashingAlgorithm.RIPEMD160: labelRipeMD160.Text = "RipeMD-160: " + hash; break;
+                        case Hasher.HashingAlgorithm.CRC32: labelCRC32.Text = "CRC32: " + hash; break;
                         default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
                     }
                 }
