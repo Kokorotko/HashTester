@@ -95,7 +95,7 @@
             // 
             this.textBoxPercent.Location = new System.Drawing.Point(209, 50);
             this.textBoxPercent.Name = "textBoxPercent";
-            this.textBoxPercent.Size = new System.Drawing.Size(187, 20);
+            this.textBoxPercent.Size = new System.Drawing.Size(180, 20);
             this.textBoxPercent.TabIndex = 23;
             this.textBoxPercent.TextChanged += new System.EventHandler(this.textBoxPercent_TextChanged);
             // 
@@ -231,7 +231,7 @@
             // 
             this.textBoxThread.Location = new System.Drawing.Point(15, 50);
             this.textBoxThread.Name = "textBoxThread";
-            this.textBoxThread.Size = new System.Drawing.Size(162, 20);
+            this.textBoxThread.Size = new System.Drawing.Size(180, 20);
             this.textBoxThread.TabIndex = 22;
             this.textBoxThread.TextChanged += new System.EventHandler(this.textBoxThread_TextChanged);
             // 
@@ -249,7 +249,7 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Location = new System.Drawing.Point(285, 245);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(124, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(129, 23);
             this.buttonCancel.TabIndex = 25;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@
             // labelHowMany
             // 
             this.labelHowMany.AutoSize = true;
-            this.labelHowMany.Location = new System.Drawing.Point(12, 9);
+            this.labelHowMany.Location = new System.Drawing.Point(82, 9);
             this.labelHowMany.Name = "labelHowMany";
             this.labelHowMany.Size = new System.Drawing.Size(264, 13);
             this.labelHowMany.TabIndex = 21;
@@ -303,7 +303,7 @@
             this.groupBox1.Controls.Add(this.labelCPUName);
             this.groupBox1.Location = new System.Drawing.Point(18, 274);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 117);
+            this.groupBox1.Size = new System.Drawing.Size(396, 117);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CPU Info";
@@ -366,7 +366,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 407);
+            this.ClientSize = new System.Drawing.Size(426, 407);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.radioButtonThreadMax);
             this.Controls.Add(this.labelZeroPercent);

@@ -216,5 +216,10 @@ namespace HashTester
                 }
             }
         }
+
+        private void labelInfo2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

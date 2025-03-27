@@ -139,10 +139,17 @@ namespace HashTester
 
         private string SetHashID(string name)
         {
+            //check if file exists
+            string path = Path.Combine(Settings.DirectoryToHashData, name + ".txt");
+            if (!File.Exists(path))
+            {
+                return name;
+            }
+            //automatically generate with index
             int index = 1;
             while (true)
             {
-                string path = Path.Combine(Settings.DirectoryToHashData, name + index + ".txt");
+                path = Path.Combine(Settings.DirectoryToHashData, name + index + ".txt");
                 if (!File.Exists(path))
                 {
                     return name + index.ToString();
@@ -153,7 +160,7 @@ namespace HashTester
 
         private bool CheckHashID(string hashID)
         {
-            string path = Path.Combine(Settings.DirectoryExeBase, "HashData",  hashID + ".txt");
+            string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");
             if (File.Exists(path))
             {                
                 if (MessageBox.Show(Languages.Translate(401), Languages.Translate(10025), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)

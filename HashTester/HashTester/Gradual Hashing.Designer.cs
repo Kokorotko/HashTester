@@ -43,14 +43,14 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(12, 94);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(547, 316);
+            this.listBoxLog.Size = new System.Drawing.Size(400, 316);
             this.listBoxLog.TabIndex = 6;
             // 
             // buttonHashGradualHashing
             // 
             this.buttonHashGradualHashing.Location = new System.Drawing.Point(12, 12);
             this.buttonHashGradualHashing.Name = "buttonHashGradualHashing";
-            this.buttonHashGradualHashing.Size = new System.Drawing.Size(160, 23);
+            this.buttonHashGradualHashing.Size = new System.Drawing.Size(200, 23);
             this.buttonHashGradualHashing.TabIndex = 5;
             this.buttonHashGradualHashing.Text = "Gradual Hashing";
             this.buttonHashGradualHashing.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             // 
             this.textBoxHash.Location = new System.Drawing.Point(12, 42);
             this.textBoxHash.Name = "textBoxHash";
-            this.textBoxHash.Size = new System.Drawing.Size(547, 20);
+            this.textBoxHash.Size = new System.Drawing.Size(400, 20);
             this.textBoxHash.TabIndex = 7;
             // 
             // hashSelector
@@ -75,7 +75,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(178, 14);
+            this.hashSelector.Location = new System.Drawing.Point(291, 14);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 8;
@@ -83,9 +83,9 @@
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(12, 418);
+            this.buttonClearListBox.Location = new System.Drawing.Point(10, 418);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(160, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(130, 23);
             this.buttonClearListBox.TabIndex = 9;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -93,9 +93,9 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(178, 418);
+            this.buttonSaveLog.Location = new System.Drawing.Point(146, 418);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(232, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(130, 23);
             this.buttonSaveLog.TabIndex = 10;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -103,9 +103,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(417, 417);
+            this.buttonClipboard.Location = new System.Drawing.Point(282, 418);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(142, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(130, 23);
             this.buttonClipboard.TabIndex = 11;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 450);
+            this.ClientSize = new System.Drawing.Size(424, 450);
             this.Controls.Add(this.labelQualityName);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);

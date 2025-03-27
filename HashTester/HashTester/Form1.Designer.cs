@@ -75,9 +75,9 @@
             // 
             // buttonHashSimpleText
             // 
-            this.buttonHashSimpleText.Location = new System.Drawing.Point(16, 67);
+            this.buttonHashSimpleText.Location = new System.Drawing.Point(12, 67);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
-            this.buttonHashSimpleText.Size = new System.Drawing.Size(75, 23);
+            this.buttonHashSimpleText.Size = new System.Drawing.Size(133, 23);
             this.buttonHashSimpleText.TabIndex = 0;
             this.buttonHashSimpleText.Text = "Hash text";
             this.buttonHashSimpleText.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             this.textHashSimple.Location = new System.Drawing.Point(13, 94);
             this.textHashSimple.Multiline = true;
             this.textHashSimple.Name = "textHashSimple";
-            this.textHashSimple.Size = new System.Drawing.Size(389, 59);
+            this.textHashSimple.Size = new System.Drawing.Size(400, 59);
             this.textHashSimple.TabIndex = 1;
             this.textHashSimple.Text = "Hello This is Test";
             // 
@@ -102,7 +102,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(281, 65);
+            this.hashSelector.Location = new System.Drawing.Point(292, 67);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 4;
@@ -110,7 +110,7 @@
             // 
             // buttonFileInput
             // 
-            this.buttonFileInput.Location = new System.Drawing.Point(97, 65);
+            this.buttonFileInput.Location = new System.Drawing.Point(151, 67);
             this.buttonFileInput.Name = "buttonFileInput";
             this.buttonFileInput.Size = new System.Drawing.Size(135, 23);
             this.buttonFileInput.TabIndex = 5;
@@ -128,14 +128,14 @@
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.Location = new System.Drawing.Point(13, 159);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(389, 251);
+            this.listBoxLog.Size = new System.Drawing.Size(400, 108);
             this.listBoxLog.TabIndex = 10;
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(13, 415);
+            this.buttonClearListBox.Location = new System.Drawing.Point(12, 273);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(99, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(130, 23);
             this.buttonClearListBox.TabIndex = 11;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -393,9 +393,9 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(118, 416);
+            this.buttonSaveLog.Location = new System.Drawing.Point(147, 273);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(114, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(130, 23);
             this.buttonSaveLog.TabIndex = 15;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -403,9 +403,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(238, 416);
+            this.buttonClipboard.Location = new System.Drawing.Point(283, 273);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(164, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(130, 23);
             this.buttonClipboard.TabIndex = 16;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -414,18 +414,18 @@
             // labelCredits
             // 
             this.labelCredits.AutoSize = true;
-            this.labelCredits.Location = new System.Drawing.Point(16, 445);
+            this.labelCredits.Location = new System.Drawing.Point(16, 299);
             this.labelCredits.Name = "labelCredits";
-            this.labelCredits.Size = new System.Drawing.Size(118, 26);
+            this.labelCredits.Size = new System.Drawing.Size(115, 26);
             this.labelCredits.TabIndex = 17;
-            this.labelCredits.Text = "Made by: Kamil Fnanek\r\nCurrent Version: 0.95";
+            this.labelCredits.Text = "Made by: Kamil Franek\r\nCurrent Version: 0.95";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(420, 481);
+            this.ClientSize = new System.Drawing.Size(420, 330);
             this.Controls.Add(this.labelCredits);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);

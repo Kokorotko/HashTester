@@ -207,9 +207,9 @@
             // 
             // textBoxHashID
             // 
-            this.textBoxHashID.Location = new System.Drawing.Point(22, 187);
+            this.textBoxHashID.Location = new System.Drawing.Point(13, 187);
             this.textBoxHashID.Name = "textBoxHashID";
-            this.textBoxHashID.Size = new System.Drawing.Size(223, 20);
+            this.textBoxHashID.Size = new System.Drawing.Size(243, 20);
             this.textBoxHashID.TabIndex = 8;
             // 
             // labelID
@@ -221,7 +221,7 @@
             this.labelID.TabIndex = 9;
             this.labelID.Text = "ID of hash";
             // 
-            // SaltAndPepperQuestion
+            // SaltAndPepperSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -231,7 +231,7 @@
             this.Controls.Add(this.buttonGenerate);
             this.Controls.Add(this.groupBoxPepper);
             this.Controls.Add(this.groupBoxSalt);
-            this.Name = "SaltAndPepperQuestion";
+            this.Name = "SaltAndPepperSetup";
             this.Text = "SaltAndPepperQuestion";
             this.Load += new System.EventHandler(this.SaltAndPepperQuestion_Load);
             this.groupBoxSalt.ResumeLayout(false);

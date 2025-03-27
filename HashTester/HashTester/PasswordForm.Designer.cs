@@ -642,9 +642,9 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(723, 328);
+            this.buttonCancel.Location = new System.Drawing.Point(710, 328);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(168, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(180, 23);
             this.buttonCancel.TabIndex = 35;
             this.buttonCancel.Text = "Abort The Process";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -653,9 +653,9 @@
             // progressBar1
             // 
             this.progressBar1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.progressBar1.Location = new System.Drawing.Point(19, 354);
+            this.progressBar1.Location = new System.Drawing.Point(12, 354);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(872, 23);
+            this.progressBar1.Size = new System.Drawing.Size(879, 23);
             this.progressBar1.TabIndex = 36;
             // 
             // labelProgressBar
@@ -670,16 +670,16 @@
             // listBoxLog
             // 
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(19, 384);
+            this.listBoxLog.Location = new System.Drawing.Point(12, 383);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(872, 95);
+            this.listBoxLog.Size = new System.Drawing.Size(878, 95);
             this.listBoxLog.TabIndex = 38;
             // 
             // buttonLogClear
             // 
-            this.buttonLogClear.Location = new System.Drawing.Point(19, 486);
+            this.buttonLogClear.Location = new System.Drawing.Point(12, 484);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(233, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(286, 23);
             this.buttonLogClear.TabIndex = 39;
             this.buttonLogClear.Text = "Clear Log";
             this.buttonLogClear.UseVisualStyleBackColor = true;
@@ -687,9 +687,9 @@
             // 
             // buttonLogSave
             // 
-            this.buttonLogSave.Location = new System.Drawing.Point(258, 486);
+            this.buttonLogSave.Location = new System.Drawing.Point(304, 484);
             this.buttonLogSave.Name = "buttonLogSave";
-            this.buttonLogSave.Size = new System.Drawing.Size(294, 23);
+            this.buttonLogSave.Size = new System.Drawing.Size(286, 23);
             this.buttonLogSave.TabIndex = 40;
             this.buttonLogSave.Text = "Save Log";
             this.buttonLogSave.UseVisualStyleBackColor = true;
@@ -697,9 +697,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(558, 486);
+            this.buttonClipboard.Location = new System.Drawing.Point(604, 484);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(333, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(286, 23);
             this.buttonClipboard.TabIndex = 41;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -794,9 +794,9 @@
             this.groupBoxUI.Controls.Add(this.labelStatTimer);
             this.groupBoxUI.Controls.Add(this.labelStatAttempts);
             this.groupBoxUI.Controls.Add(this.labelStatSpeed);
-            this.groupBoxUI.Location = new System.Drawing.Point(17, 268);
+            this.groupBoxUI.Location = new System.Drawing.Point(12, 268);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Size = new System.Drawing.Size(211, 80);
+            this.groupBoxUI.Size = new System.Drawing.Size(216, 80);
             this.groupBoxUI.TabIndex = 43;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";

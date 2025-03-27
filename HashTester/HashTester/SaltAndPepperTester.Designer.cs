@@ -70,7 +70,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(204, 82);
+            this.hashSelector.Location = new System.Drawing.Point(204, 80);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 7;
@@ -97,7 +97,7 @@
             // checkBoxUseSalt
             // 
             this.checkBoxUseSalt.AutoSize = true;
-            this.checkBoxUseSalt.Location = new System.Drawing.Point(12, 67);
+            this.checkBoxUseSalt.Location = new System.Drawing.Point(15, 67);
             this.checkBoxUseSalt.Name = "checkBoxUseSalt";
             this.checkBoxUseSalt.Size = new System.Drawing.Size(68, 17);
             this.checkBoxUseSalt.TabIndex = 8;
@@ -107,7 +107,7 @@
             // checkBoxUsePepper
             // 
             this.checkBoxUsePepper.AutoSize = true;
-            this.checkBoxUsePepper.Location = new System.Drawing.Point(12, 88);
+            this.checkBoxUsePepper.Location = new System.Drawing.Point(15, 88);
             this.checkBoxUsePepper.Name = "checkBoxUsePepper";
             this.checkBoxUsePepper.Size = new System.Drawing.Size(85, 17);
             this.checkBoxUsePepper.TabIndex = 9;
@@ -117,7 +117,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 131);
+            this.label1.Location = new System.Drawing.Point(12, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 13);
             this.label1.TabIndex = 10;
@@ -225,9 +225,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(202, 282);
+            this.buttonClipboard.Location = new System.Drawing.Point(220, 282);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(121, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(95, 23);
             this.buttonClipboard.TabIndex = 20;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -235,7 +235,7 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(101, 282);
+            this.buttonSaveLog.Location = new System.Drawing.Point(116, 282);
             this.buttonSaveLog.Name = "buttonSaveLog";
             this.buttonSaveLog.Size = new System.Drawing.Size(95, 23);
             this.buttonSaveLog.TabIndex = 19;
@@ -245,9 +245,9 @@
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(13, 282);
+            this.buttonClearListBox.Location = new System.Drawing.Point(15, 282);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(82, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(95, 23);
             this.buttonClearListBox.TabIndex = 18;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -257,9 +257,9 @@
             // 
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
-            this.listBoxLog.Location = new System.Drawing.Point(15, 160);
+            this.listBoxLog.Location = new System.Drawing.Point(15, 155);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(310, 121);
+            this.listBoxLog.Size = new System.Drawing.Size(300, 121);
             this.listBoxLog.TabIndex = 17;
             // 
             // checkBoxUseLog
@@ -267,7 +267,7 @@
             this.checkBoxUseLog.AutoSize = true;
             this.checkBoxUseLog.Checked = true;
             this.checkBoxUseLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseLog.Location = new System.Drawing.Point(12, 111);
+            this.checkBoxUseLog.Location = new System.Drawing.Point(15, 111);
             this.checkBoxUseLog.Name = "checkBoxUseLog";
             this.checkBoxUseLog.Size = new System.Drawing.Size(112, 17);
             this.checkBoxUseLog.TabIndex = 21;

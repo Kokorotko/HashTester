@@ -32,6 +32,12 @@
             this.buttonChecksum = new System.Windows.Forms.Button();
             this.buttonFile = new System.Windows.Forms.Button();
             this.groupBoxChecksum = new System.Windows.Forms.GroupBox();
+            this.checkBoxCRC32 = new System.Windows.Forms.CheckBox();
+            this.checkBoxRIPEMD160 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA512 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA256 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSHA1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxMD5 = new System.Windows.Forms.CheckBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -43,14 +49,8 @@
             this.labelSHA512 = new System.Windows.Forms.Label();
             this.labelSHA256 = new System.Windows.Forms.Label();
             this.labelSHA1 = new System.Windows.Forms.Label();
-            this.labelLocation = new System.Windows.Forms.Label();
-            this.checkBoxMD5 = new System.Windows.Forms.CheckBox();
             this.labelMD5 = new System.Windows.Forms.Label();
-            this.checkBoxSHA1 = new System.Windows.Forms.CheckBox();
-            this.checkBoxSHA256 = new System.Windows.Forms.CheckBox();
-            this.checkBoxSHA512 = new System.Windows.Forms.CheckBox();
-            this.checkBoxRIPEMD160 = new System.Windows.Forms.CheckBox();
-            this.checkBoxCRC32 = new System.Windows.Forms.CheckBox();
+            this.labelLocation = new System.Windows.Forms.Label();
             this.groupBoxChecksum.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,9 +73,9 @@
             // 
             // buttonFile
             // 
-            this.buttonFile.Location = new System.Drawing.Point(13, 38);
+            this.buttonFile.Location = new System.Drawing.Point(12, 38);
             this.buttonFile.Name = "buttonFile";
-            this.buttonFile.Size = new System.Drawing.Size(187, 23);
+            this.buttonFile.Size = new System.Drawing.Size(190, 23);
             this.buttonFile.TabIndex = 2;
             this.buttonFile.Text = "Select File";
             this.buttonFile.UseVisualStyleBackColor = true;
@@ -107,6 +107,60 @@
             this.groupBoxChecksum.TabIndex = 3;
             this.groupBoxChecksum.TabStop = false;
             this.groupBoxChecksum.Text = "Checksum";
+            // 
+            // checkBoxCRC32
+            // 
+            this.checkBoxCRC32.AutoSize = true;
+            this.checkBoxCRC32.Location = new System.Drawing.Point(6, 243);
+            this.checkBoxCRC32.Name = "checkBoxCRC32";
+            this.checkBoxCRC32.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxCRC32.TabIndex = 18;
+            this.checkBoxCRC32.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRIPEMD160
+            // 
+            this.checkBoxRIPEMD160.AutoSize = true;
+            this.checkBoxRIPEMD160.Location = new System.Drawing.Point(6, 218);
+            this.checkBoxRIPEMD160.Name = "checkBoxRIPEMD160";
+            this.checkBoxRIPEMD160.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxRIPEMD160.TabIndex = 17;
+            this.checkBoxRIPEMD160.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSHA512
+            // 
+            this.checkBoxSHA512.AutoSize = true;
+            this.checkBoxSHA512.Location = new System.Drawing.Point(6, 138);
+            this.checkBoxSHA512.Name = "checkBoxSHA512";
+            this.checkBoxSHA512.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSHA512.TabIndex = 16;
+            this.checkBoxSHA512.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSHA256
+            // 
+            this.checkBoxSHA256.AutoSize = true;
+            this.checkBoxSHA256.Location = new System.Drawing.Point(6, 84);
+            this.checkBoxSHA256.Name = "checkBoxSHA256";
+            this.checkBoxSHA256.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSHA256.TabIndex = 15;
+            this.checkBoxSHA256.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSHA1
+            // 
+            this.checkBoxSHA1.AutoSize = true;
+            this.checkBoxSHA1.Location = new System.Drawing.Point(6, 56);
+            this.checkBoxSHA1.Name = "checkBoxSHA1";
+            this.checkBoxSHA1.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSHA1.TabIndex = 14;
+            this.checkBoxSHA1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxMD5
+            // 
+            this.checkBoxMD5.AutoSize = true;
+            this.checkBoxMD5.Location = new System.Drawing.Point(6, 28);
+            this.checkBoxMD5.Name = "checkBoxMD5";
+            this.checkBoxMD5.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMD5.TabIndex = 13;
+            this.checkBoxMD5.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -218,26 +272,6 @@
             this.labelSHA1.TabIndex = 1;
             this.labelSHA1.Text = "SHA1: ";
             // 
-            // labelLocation
-            // 
-            this.labelLocation.AutoSize = true;
-            this.labelLocation.Location = new System.Drawing.Point(12, 64);
-            this.labelLocation.MaximumSize = new System.Drawing.Size(525, 0);
-            this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(69, 26);
-            this.labelLocation.TabIndex = 4;
-            this.labelLocation.Text = "File location: \r\n\r\n";
-            this.labelLocation.TextChanged += new System.EventHandler(this.labelLocation_TextChanged);
-            // 
-            // checkBoxMD5
-            // 
-            this.checkBoxMD5.AutoSize = true;
-            this.checkBoxMD5.Location = new System.Drawing.Point(6, 28);
-            this.checkBoxMD5.Name = "checkBoxMD5";
-            this.checkBoxMD5.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMD5.TabIndex = 13;
-            this.checkBoxMD5.UseVisualStyleBackColor = true;
-            // 
             // labelMD5
             // 
             this.labelMD5.AutoSize = true;
@@ -248,50 +282,16 @@
             this.labelMD5.TabIndex = 0;
             this.labelMD5.Text = "MD5: ";
             // 
-            // checkBoxSHA1
+            // labelLocation
             // 
-            this.checkBoxSHA1.AutoSize = true;
-            this.checkBoxSHA1.Location = new System.Drawing.Point(6, 56);
-            this.checkBoxSHA1.Name = "checkBoxSHA1";
-            this.checkBoxSHA1.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSHA1.TabIndex = 14;
-            this.checkBoxSHA1.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSHA256
-            // 
-            this.checkBoxSHA256.AutoSize = true;
-            this.checkBoxSHA256.Location = new System.Drawing.Point(6, 84);
-            this.checkBoxSHA256.Name = "checkBoxSHA256";
-            this.checkBoxSHA256.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSHA256.TabIndex = 15;
-            this.checkBoxSHA256.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSHA512
-            // 
-            this.checkBoxSHA512.AutoSize = true;
-            this.checkBoxSHA512.Location = new System.Drawing.Point(6, 138);
-            this.checkBoxSHA512.Name = "checkBoxSHA512";
-            this.checkBoxSHA512.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSHA512.TabIndex = 16;
-            this.checkBoxSHA512.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRIPEMD160
-            // 
-            this.checkBoxRIPEMD160.AutoSize = true;
-            this.checkBoxRIPEMD160.Location = new System.Drawing.Point(6, 218);
-            this.checkBoxRIPEMD160.Name = "checkBoxRIPEMD160";
-            this.checkBoxRIPEMD160.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxRIPEMD160.TabIndex = 17;
-            this.checkBoxRIPEMD160.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxCRC32
-            // 
-            this.checkBoxCRC32.AutoSize = true;
-            this.checkBoxCRC32.Location = new System.Drawing.Point(6, 243);
-            this.checkBoxCRC32.Name = "checkBoxCRC32";
-            this.checkBoxCRC32.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxCRC32.TabIndex = 18;
-            this.checkBoxCRC32.UseVisualStyleBackColor = true;
+            this.labelLocation.AutoSize = true;
+            this.labelLocation.Location = new System.Drawing.Point(16, 64);
+            this.labelLocation.MaximumSize = new System.Drawing.Size(525, 0);
+            this.labelLocation.Name = "labelLocation";
+            this.labelLocation.Size = new System.Drawing.Size(69, 26);
+            this.labelLocation.TabIndex = 4;
+            this.labelLocation.Text = "File location: \r\n\r\n";
+            this.labelLocation.TextChanged += new System.EventHandler(this.labelLocation_TextChanged);
             // 
             // FileChecksum
             // 

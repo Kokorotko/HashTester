@@ -90,7 +90,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 30);
+            this.textBox1.Location = new System.Drawing.Point(114, 42);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(209, 20);
             this.textBox1.TabIndex = 4;
@@ -98,7 +98,7 @@
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Location = new System.Drawing.Point(114, 14);
+            this.labelText.Location = new System.Drawing.Point(114, 26);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(40, 13);
             this.labelText.TabIndex = 5;
@@ -107,7 +107,7 @@
             // labelText2
             // 
             this.labelText2.AutoSize = true;
-            this.labelText2.Location = new System.Drawing.Point(114, 65);
+            this.labelText2.Location = new System.Drawing.Point(114, 76);
             this.labelText2.Name = "labelText2";
             this.labelText2.Size = new System.Drawing.Size(40, 13);
             this.labelText2.TabIndex = 7;
@@ -115,7 +115,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(114, 81);
+            this.textBox2.Location = new System.Drawing.Point(114, 92);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 6;
@@ -124,7 +124,7 @@
             // 
             this.buttonCheck.Location = new System.Drawing.Point(12, 118);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(142, 23);
+            this.buttonCheck.Size = new System.Drawing.Size(96, 23);
             this.buttonCheck.TabIndex = 8;
             this.buttonCheck.Text = "Check";
             this.buttonCheck.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(329, 29);
+            this.hashSelector.Location = new System.Drawing.Point(329, 41);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(121, 21);
             this.hashSelector.TabIndex = 9;
@@ -149,7 +149,7 @@
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
-            this.labelAlgorithm.Location = new System.Drawing.Point(326, 14);
+            this.labelAlgorithm.Location = new System.Drawing.Point(326, 26);
             this.labelAlgorithm.Name = "labelAlgorithm";
             this.labelAlgorithm.Size = new System.Drawing.Size(50, 13);
             this.labelAlgorithm.TabIndex = 10;
@@ -157,9 +157,9 @@
             // 
             // buttonTakeTXT
             // 
-            this.buttonTakeTXT.Location = new System.Drawing.Point(160, 117);
+            this.buttonTakeTXT.Location = new System.Drawing.Point(114, 118);
             this.buttonTakeTXT.Name = "buttonTakeTXT";
-            this.buttonTakeTXT.Size = new System.Drawing.Size(163, 23);
+            this.buttonTakeTXT.Size = new System.Drawing.Size(206, 23);
             this.buttonTakeTXT.TabIndex = 11;
             this.buttonTakeTXT.Text = "Check from TXT file";
             this.buttonTakeTXT.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(329, 117);
+            this.buttonClose.Location = new System.Drawing.Point(326, 119);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(124, 22);
             this.buttonClose.TabIndex = 12;
@@ -179,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 152);
+            this.ClientSize = new System.Drawing.Size(459, 152);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonTakeTXT);
             this.Controls.Add(this.labelAlgorithm);

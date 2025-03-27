@@ -71,9 +71,9 @@
             // 
             // buttonGenerateCollision
             // 
-            this.buttonGenerateCollision.Location = new System.Drawing.Point(12, 12);
+            this.buttonGenerateCollision.Location = new System.Drawing.Point(14, 12);
             this.buttonGenerateCollision.Name = "buttonGenerateCollision";
-            this.buttonGenerateCollision.Size = new System.Drawing.Size(190, 23);
+            this.buttonGenerateCollision.Size = new System.Drawing.Size(180, 23);
             this.buttonGenerateCollision.TabIndex = 10;
             this.buttonGenerateCollision.Text = "Generate a Collision";
             this.buttonGenerateCollision.UseVisualStyleBackColor = true;
@@ -85,14 +85,14 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(12, 134);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(393, 121);
+            this.listBoxLog.Size = new System.Drawing.Size(400, 121);
             this.listBoxLog.TabIndex = 12;
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(12, 261);
+            this.buttonClearListBox.Location = new System.Drawing.Point(12, 260);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(109, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(130, 23);
             this.buttonClearListBox.TabIndex = 13;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(411, 261);
+            this.buttonReturn.Location = new System.Drawing.Point(418, 260);
             this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(143, 23);
+            this.buttonReturn.Size = new System.Drawing.Size(130, 23);
             this.buttonReturn.TabIndex = 14;
             this.buttonReturn.Text = "Go Back";
             this.buttonReturn.UseVisualStyleBackColor = true;
@@ -110,14 +110,14 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 103);
+            this.numericUpDown1.Location = new System.Drawing.Point(14, 103);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(247, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(246, 20);
             this.numericUpDown1.TabIndex = 15;
             // 
             // labelMaxAttempts
@@ -140,9 +140,9 @@
             // 
             // buttonAbort
             // 
-            this.buttonAbort.Location = new System.Drawing.Point(401, 11);
+            this.buttonAbort.Location = new System.Drawing.Point(386, 11);
             this.buttonAbort.Name = "buttonAbort";
-            this.buttonAbort.Size = new System.Drawing.Size(153, 23);
+            this.buttonAbort.Size = new System.Drawing.Size(166, 23);
             this.buttonAbort.TabIndex = 18;
             this.buttonAbort.Text = "Cancel The Process";
             this.buttonAbort.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             // labelLenght
             // 
             this.labelLenght.AutoSize = true;
-            this.labelLenght.Location = new System.Drawing.Point(136, 37);
+            this.labelLenght.Location = new System.Drawing.Point(137, 37);
             this.labelLenght.Name = "labelLenght";
             this.labelLenght.Size = new System.Drawing.Size(128, 13);
             this.labelLenght.TabIndex = 20;
@@ -197,7 +197,7 @@
             this.checkBoxListBoxLog.AutoSize = true;
             this.checkBoxListBoxLog.Checked = true;
             this.checkBoxListBoxLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxListBoxLog.Location = new System.Drawing.Point(411, 134);
+            this.checkBoxListBoxLog.Location = new System.Drawing.Point(418, 134);
             this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
             this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
             this.checkBoxListBoxLog.TabIndex = 23;
@@ -218,7 +218,7 @@
             this.checkBoxUseHex.AutoSize = true;
             this.checkBoxUseHex.Checked = true;
             this.checkBoxUseHex.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseHex.Location = new System.Drawing.Point(411, 157);
+            this.checkBoxUseHex.Location = new System.Drawing.Point(418, 157);
             this.checkBoxUseHex.Name = "checkBoxUseHex";
             this.checkBoxUseHex.Size = new System.Drawing.Size(137, 17);
             this.checkBoxUseHex.TabIndex = 26;
@@ -228,7 +228,7 @@
             // checkBoxPerformanceMode
             // 
             this.checkBoxPerformanceMode.AutoSize = true;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(411, 180);
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(418, 180);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
             this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
             this.checkBoxPerformanceMode.TabIndex = 27;
@@ -237,9 +237,9 @@
             // 
             // buttonCheckCollision
             // 
-            this.buttonCheckCollision.Location = new System.Drawing.Point(208, 11);
+            this.buttonCheckCollision.Location = new System.Drawing.Point(200, 11);
             this.buttonCheckCollision.Name = "buttonCheckCollision";
-            this.buttonCheckCollision.Size = new System.Drawing.Size(187, 23);
+            this.buttonCheckCollision.Size = new System.Drawing.Size(180, 23);
             this.buttonCheckCollision.TabIndex = 28;
             this.buttonCheckCollision.Text = "Check a collision";
             this.buttonCheckCollision.UseVisualStyleBackColor = true;
@@ -247,9 +247,9 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(127, 260);
+            this.buttonSaveLog.Location = new System.Drawing.Point(148, 260);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(132, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(130, 23);
             this.buttonSaveLog.TabIndex = 29;
             this.buttonSaveLog.Text = "Save Log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -257,9 +257,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(266, 260);
+            this.buttonClipboard.Location = new System.Drawing.Point(282, 260);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(139, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(130, 23);
             this.buttonClipboard.TabIndex = 30;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;

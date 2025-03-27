@@ -55,7 +55,7 @@
             // labelQuestion
             // 
             this.labelQuestion.AutoSize = true;
-            this.labelQuestion.Location = new System.Drawing.Point(13, 13);
+            this.labelQuestion.Location = new System.Drawing.Point(26, 9);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(384, 13);
             this.labelQuestion.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(16, 251);
+            this.buttonSave.Location = new System.Drawing.Point(16, 235);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(129, 23);
             this.buttonSave.TabIndex = 3;
@@ -82,16 +82,16 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(286, 251);
+            this.buttonCancel.Location = new System.Drawing.Point(286, 235);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(124, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(129, 23);
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonDefault
             // 
-            this.buttonDefault.Location = new System.Drawing.Point(151, 251);
+            this.buttonDefault.Location = new System.Drawing.Point(151, 235);
             this.buttonDefault.Name = "buttonDefault";
             this.buttonDefault.Size = new System.Drawing.Size(129, 23);
             this.buttonDefault.TabIndex = 5;
@@ -102,11 +102,12 @@
             // labelInfo2
             // 
             this.labelInfo2.AutoSize = true;
-            this.labelInfo2.Location = new System.Drawing.Point(13, 235);
+            this.labelInfo2.Location = new System.Drawing.Point(16, 219);
             this.labelInfo2.Name = "labelInfo2";
             this.labelInfo2.Size = new System.Drawing.Size(239, 13);
             this.labelInfo2.TabIndex = 6;
             this.labelInfo2.Text = "*Higher frequency can cause performance issues";
+            this.labelInfo2.Click += new System.EventHandler(this.labelInfo2_Click);
             // 
             // labelRangeT
             // 
@@ -180,7 +181,7 @@
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(13, 221);
+            this.labelInfo.Location = new System.Drawing.Point(16, 206);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(255, 13);
             this.labelInfo.TabIndex = 13;
@@ -282,7 +283,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 287);
+            this.ClientSize = new System.Drawing.Size(426, 265);
             this.Controls.Add(this.labelTimeToUpdate);
             this.Controls.Add(this.radioButton6);
             this.Controls.Add(this.labelFPS);

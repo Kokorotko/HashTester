@@ -70,9 +70,9 @@
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(208, 415);
+            this.buttonClearListBox.Location = new System.Drawing.Point(208, 308);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(223, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(190, 23);
             this.buttonClearListBox.TabIndex = 14;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.Location = new System.Drawing.Point(208, 77);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(579, 329);
+            this.listBoxLog.Size = new System.Drawing.Size(600, 225);
             this.listBoxLog.TabIndex = 13;
             // 
             // textHashSimple
@@ -92,7 +92,7 @@
             this.textHashSimple.Location = new System.Drawing.Point(11, 12);
             this.textHashSimple.Multiline = true;
             this.textHashSimple.Name = "textHashSimple";
-            this.textHashSimple.Size = new System.Drawing.Size(775, 59);
+            this.textHashSimple.Size = new System.Drawing.Size(797, 59);
             this.textHashSimple.TabIndex = 12;
             this.textHashSimple.Text = "test\r\ntest2";
             // 
@@ -158,7 +158,7 @@
             // 
             // buttonGoBack
             // 
-            this.buttonGoBack.Location = new System.Drawing.Point(11, 415);
+            this.buttonGoBack.Location = new System.Drawing.Point(11, 308);
             this.buttonGoBack.Name = "buttonGoBack";
             this.buttonGoBack.Size = new System.Drawing.Size(191, 23);
             this.buttonGoBack.TabIndex = 21;
@@ -194,9 +194,9 @@
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(437, 415);
+            this.buttonSaveLog.Location = new System.Drawing.Point(413, 308);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(186, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(190, 23);
             this.buttonSaveLog.TabIndex = 24;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -204,9 +204,9 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(629, 415);
+            this.buttonClipboard.Location = new System.Drawing.Point(618, 308);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(157, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(190, 23);
             this.buttonClipboard.TabIndex = 25;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -216,7 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(827, 344);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.labelInfo);
