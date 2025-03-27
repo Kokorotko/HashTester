@@ -58,7 +58,7 @@
 
 //**Name of Forms <<15000-15100>>
 15000==Hlavní formulář
-15001==Postupné hašování
+15001==Postupné hashování
 15002==Vyhledávač kolizí
 15003==Kontrola kolizí
 15004==Vícenásobný Hashing 
@@ -271,6 +271,7 @@
 412==ID hashe
 413==Generovat
 414==Pokud nezadáte hashID, nebudou sůl a pepř uloženy. Chcete pokračovat?
+415==Jméno
 
 //**ThreadsForm <<421-500>>
 421==Kolik vláken chcete v programu používat?
@@ -335,7 +336,7 @@
 580==vteřin
 581==Duhová tabulka v souboru
 582==s
-583==algoritmus hašování je hotov.
+583==algoritmus hashování je hotov.
 584==Soubor už obsahuje duhovou tabulku.
 585==Soubor neobsahuje duhovou tabulku.
 586==Soubor je zahešován pomocí
@@ -409,10 +410,10 @@
 //Form Names <<701-720>>
 701==HashTester
 702==Kontrolní Součet Souboru
-703==Postupné Hašování  
+703==Postupné Hashování  
 704==Hledač Kolizí  
 705==Kontrola Kolizí  
-706==Multi Hašovací Nástroj  
+706==Multi Hashovací Nástroj  
 707==Tester Hesel  
 708==Výběrčí Soli a Pepře  
 709==Tester Soli a Pepře  

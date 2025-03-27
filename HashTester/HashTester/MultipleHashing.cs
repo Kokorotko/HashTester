@@ -118,7 +118,7 @@ namespace HashTester
             buttonSaveLog.Text = Languages.Translate(10001);
             buttonHashSimpleText.Text = Languages.Translate(31);
             buttonTXTInput.Text = Languages.Translate(32);
-            buttonGoBack.Text = Languages.Translate(10005);
+            buttonGoBack.Text = Languages.Translate(10006);
             #endregion
         }
     }

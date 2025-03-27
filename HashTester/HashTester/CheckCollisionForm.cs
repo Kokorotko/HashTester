@@ -56,6 +56,7 @@ namespace HashTester
             labelText.Text = Languages.Translate(205) + "1";
             labelText2.Text = Languages.Translate(205) + "2";
             buttonCheck.Text = Languages.Translate(206);
+            buttonClose.Text = Languages.Translate(10006);
             buttonTakeTXT.Text = Languages.Translate(113);
             #endregion
         }

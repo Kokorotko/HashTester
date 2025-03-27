@@ -105,7 +105,7 @@ namespace HashTester
             buttonClipboard.Text = Languages.Translate(10002);
             groupBoxTester.Text = Languages.Translate(647);
             groupBoxShowInfo.Text = Languages.Translate(648);
-            labelName.Text = Languages.Translate(438);
+            labelName.Text = Languages.Translate(415);
             labelPassword.Text = Languages.Translate(257);
             buttonRegister.Text = Languages.Translate(10035);
             buttonLogin.Text = Languages.Translate(649);

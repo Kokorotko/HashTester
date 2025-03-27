@@ -274,6 +274,7 @@
 412==ID of hash
 413==Generate
 414==If you don't set HashID, salt nor pepper will be saved. Do you wish to continue?
+415==Username
 
 //**ThreadsForm <<421-500>>
 421==How many threads do you want to use in a program?
