@@ -1,0 +1,4 @@
+Visual Studio hashing and encryption program
+Create a project that allows encryption of files using at least four freely available encryption algorithms and hashing of text, text in a .txt file, or a file (for checksum) using four freely available hashing algorithms. The project shall ensure decryption of encrypted files and text. The project will also allow storage of encrypted and hashed text or files. The application will include basic functions for working with files and folders, including searching according to specified criteria. Also, the application will allow calculation of password strength against brute force attack, brute force tester and password generator according to criteria. VS development environment, C# language, sharing and saving via GitHub, Kanban type project development.
+
+Translated with DeepL.com (free version)

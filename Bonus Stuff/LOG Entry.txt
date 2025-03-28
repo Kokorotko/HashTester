@@ -185,9 +185,6 @@ Seeking all problems
 **2025-03-06
 Problem seeking and debugging
 Form Names translation
-**2025-03-08,09,11
-Problem seeking and debugging (Rainbow Table Generator, Brute Force Attack)
-**2025-03-10,11,12
-Thesis documentation
-**2025-03-12
-FileChecksum form UI update
+**2025-03-06 - 2025-03-28
+Bugfixing
+Thesis work
