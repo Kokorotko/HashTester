@@ -476,7 +476,7 @@ namespace HashTester
                         writer.WriteLine("//Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm");
                         writer.WriteLine("//!The program will only check the first format and texts!");
                         writer.WriteLine("//<STRING> Supports UTF-8 format (example al85WTh)");
-                        writer.WriteLine("//<HEX> Supports 8D-B7/8DB7/8D B7 doesnt matter if lowercase or uppercase");
+                        writer.WriteLine("//<HEX> Supports 8D-B7/8DB7/8D B7 and 3a 5e 0 0 0 0 c doesnt matter if lowercase or uppercase");
                         writer.WriteLine("//<BIN> Supports 0111 0001 with or without spaces between");
                         writer.Write("//There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160");
                     }
@@ -496,18 +496,6 @@ namespace HashTester
                     }
                 }
                 s = Path.Combine(Settings.DirectoryPathToCollisions, "CRC32-Prefab02.txt");
-                if (!File.Exists(s))
-                {
-                    using (StreamWriter writer = new StreamWriter(s))
-                    {
-                        writer.WriteLine("Algorithm=CRC32");
-                        writer.WriteLine("<HEX>");
-                        writer.WriteLine("aa aa 3 0 0 0 8 0 45 0 0 34 0 0 40 0 40 6 b7 e c0 a8 1 64 c0 a8 1 1 dd 95 0 50 f4 11 d8 cf 81 8e e5 e3 80 10 10 0 d6 4c 0 0 1 1 8 a f a7 bf e0 0 0 2a f9 da b3 91 bd");
-                        writer.WriteLine("aa aa 3 0 0 0 86 dd 60 0 77 b0 1 49 11 ff fe 80 0 0 0 0 0 0 0 2 b9 df 87 1b 9a 36 ff 2 0 0 0 0 0 0 0 0 0 0 0 0 0 fb 14 e9 14 e9 1 49 36 d5 0 0 0 0 0 11 0 0 0 0 0 1 8 5f 61 69 72 70 6c 61 79 4 5f 74 63 70 5 6c 6f 63 61 6c 0 0 c 0 1 5 5f 72 61 6f 70 c0 15 0 c 0 1 8 5f 61 69 72 70 6f 72 74 c0 15 0 c 0 1 7 5f 75 73 63 61 6e 73 c0 15 0 c 0 1 8 5f 73 63 61 6e 6e 65 72 c0 15 0 c 0 1 6 5f 75 73 63 61 6e c0 15 0 c 0 1 7 5f 69 70 70 75 73 62 c0 15 0 c 0 1 4 5f 69 70 70 c0 15 0 c 0 1 5 5f 69 70 70 73 c0 15 0 c 0 1 8 5f 70 72 69 6e 74 65 72 c0 15 0 c 0 1 f 5f 70 64 6c 2d 64 61 74 61 73 74 72 65 61 6d c0 15 0 c 0 1 4 5f 70 74 70 c0 15 0 c 0 1 d 5f 61 70 70 6c 65 2d 6d 6f 62 64 65 76 c0 15 0 c 0 1 8 39 30 65 33 30 37 66 63 4 5f 73 75 62 e 5f 61 70 70 6c 65 2d 6d 6f 62 64 65 76 32 c0 15 0 c 0 1 f 5f 61 70 70 6c 65 2d 70 61 69 72 61 62 6c 65 c0 15 0 c 0 1 c0 e1 0 c 0 1 c 5f 73 6c 65 65 70 2d 70 72 6f 78 79 4 5f 75 64 70 c0 1a 0 c 0 1 0 0 29 5 a0 0 0 11 94 0 c 0 4 0 8 0 c e0 ac cb 92 66 48 c2 43 4c 9f");
-                        writer.WriteLine("//Hashing value = 0x2144DF1C - 0x == HEX");
-                    }
-                }
-                s = Path.Combine(Settings.DirectoryPathToCollisions, "CRC32-Prefab03.txt");
                 if (!File.Exists(s))
                 {
                     using (StreamWriter writer = new StreamWriter(s))
@@ -575,6 +563,7 @@ namespace HashTester
                         writer.WriteLine("//Some translations are made with DeepL translator (free version)");
                         writer.WriteLine("//https://www.deepl.com");
                         writer.WriteLine("");
+                        writer.WriteLine("9999=Hash");
                         writer.WriteLine("//Multiple ");
                         writer.WriteLine("10000==Clear Listbox");
                         writer.WriteLine("10001==Save log");
@@ -613,6 +602,9 @@ namespace HashTester
                         writer.WriteLine("10034==Registered");
                         writer.WriteLine("10035==Register");
                         writer.WriteLine("10036==UI");
+                        writer.WriteLine("10037==Hex");
+                        writer.WriteLine("10038==Current version");
+                        writer.WriteLine("10039==Program made by");
                         writer.WriteLine("");
                         writer.WriteLine("//**Try and Catch <<11000-12000>>");
                         writer.WriteLine("11000==An error has occured in the program.");
@@ -623,6 +615,11 @@ namespace HashTester
                         writer.WriteLine("11005==Warning, there will be several of these files.");
                         writer.WriteLine("11006==Counting error occurred, we recommend choosing smaller numbers.");
                         writer.WriteLine("11007==The program failed to rename the files, we recommend to move or delete temporary files before generating the table again.");
+                        writer.WriteLine("11008==Please move the program to a folder where it has read/write file access, or run the application with administrative privileges.");
+                        writer.WriteLine("11009==The initial setup of the folders failed. Please resolve the issue before continuing to use the program.");
+                        writer.WriteLine("11010==Please enter valid input into Text01.");
+                        writer.WriteLine("11011==Please enter valid input into Text02.");
+                        writer.WriteLine("11012==Could not convert input to string.");
                         writer.WriteLine("");
                         writer.WriteLine("//**Name of Forms <<15000-15100>>");
                         writer.WriteLine("15000==Main form");
@@ -765,8 +762,8 @@ namespace HashTester
                         writer.WriteLine("263==Calculate");
                         writer.WriteLine("");
                         writer.WriteLine("//Rainbow Table attack");
-                        writer.WriteLine("264==Regular text");
-                        writer.WriteLine("265==Hashed");
+                        writer.WriteLine("264==Text");
+                        writer.WriteLine("265==Hash");
                         writer.WriteLine("266==Generate rainbow table");
                         writer.WriteLine("267==Rainbow Table attack");
                         writer.WriteLine("");
@@ -789,9 +786,9 @@ namespace HashTester
                         writer.WriteLine("281==has been found in wordlist at line");
                         writer.WriteLine("282==I recommend using a different password.");
                         writer.WriteLine("283==has not been found in wordlist. Good Job.");
-                        writer.WriteLine("284==Maximum lenght of a password is 1000.");
-                        writer.WriteLine("285==Lenght of the password set to 1000.");
-                        writer.WriteLine("286==It will take over 18 quadrilion years to crack this password.");
+                        writer.WriteLine("//284==Maximum lenght of a password is 1000.");
+                        writer.WriteLine("//285==Lenght of the password set to 1000.");
+                        writer.WriteLine("//286==It will take over 18 quadrilion years to crack this password.");
                         writer.WriteLine("287==Number of possible combinations");
                         writer.WriteLine("288==Rainbow Table has been generated succesfully.");
                         writer.WriteLine("289==Program could not generate the rainbow table. Abbandoning process.");
@@ -839,6 +836,7 @@ namespace HashTester
                         writer.WriteLine("412==ID of hash");
                         writer.WriteLine("413==Generate");
                         writer.WriteLine("414==If you don't set HashID, salt nor pepper will be saved. Do you wish to continue?");
+                        writer.WriteLine("415==Username");
                         writer.WriteLine("");
                         writer.WriteLine("//**ThreadsForm <<421-500>>");
                         writer.WriteLine("421==How many threads do you want to use in a program?");
@@ -911,6 +909,7 @@ namespace HashTester
                         writer.WriteLine("588==The algorithms needs to be the same. Cancelling attack...");
                         writer.WriteLine("601==Number of lines to process");
                         writer.WriteLine("602==There are unsaved changes, do you wish to save them?");
+                        writer.WriteLine("603==Attempts limit");
                         writer.WriteLine("");
                         writer.WriteLine("//Settings");
                         writer.WriteLine("589==Warning! If theres nothing after the = it will set the setting into default  ");
@@ -924,7 +923,7 @@ namespace HashTester
                         writer.WriteLine("597==Preferred language  ");
                         writer.WriteLine("598==OutputType from 0 to 2  ");
                         writer.WriteLine("599==All OutputStyles are bool  ");
-                        writer.WriteLine("600==Salt and Pepper bool  ");
+                        writer.WriteLine("600==Salt and Pepper bool ");
                         writer.WriteLine("");
                         writer.WriteLine("//**SaltAndPepperForm <<611-700>>");
                         writer.WriteLine("612==HashID");
@@ -985,7 +984,6 @@ namespace HashTester
                         writer.WriteLine("709==Salt and Pepper Tester");
                         writer.WriteLine("710==Thread Manager");
                         writer.Write("711==UI Manager");
-
                     }
                 }
                 //Logs

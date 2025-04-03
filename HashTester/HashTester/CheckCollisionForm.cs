@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -104,27 +106,67 @@ namespace HashTester
         #region Convertors
         private string ConvertHexToString(string hex)
         {
-            hex = hex.ToLower().Replace("-", "").Replace(" ", ""); // Clean up the hex string
-
-            if (hex.Length % 2 != 0)
-                hex += "0"; // If odd length, append a '0' to make it even
-
+            if (!TryNormalizeHex(hex, out string formattedHex)) return "error";
             try
             {
                 StringBuilder result = new StringBuilder();
-                for (int i = 0; i < hex.Length; i += 2)
+                for (int i = 0; i < formattedHex.Length; i += 2)
                 {
-                    string hexPair = hex.Substring(i, 2);
-                    byte byteValue = Convert.ToByte(hexPair, 16); // Convert the hex pair to a byte
-                    result.Append((char)byteValue); // Append the corresponding character
+                    string hexPair = formattedHex.Substring(i, 2);
+                    byte byteValue = Convert.ToByte(hexPair, 16);
+                    result.Append((char)byteValue);
                 }
                 return result.ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error converting hex to string: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return string.Empty; // Return empty string in case of error
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "error";
             }
+
+    }
+
+    public static bool TryNormalizeHex(string hex, out string formattedHex)
+        {
+            try
+            {
+                char[] separator = { ' ', '-', '-' };
+                formattedHex = "error";
+                string[] parts = hex.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    if (parts[i].Length == 1)
+                    {
+                        parts[i] = "0" + parts[i]; //add 0
+                    }
+                }
+                formattedHex = string.Join("", parts); //remove empty space
+                if (IsValidHex(formattedHex))
+                {
+                    return true;
+                }
+                else
+                {
+                    formattedHex = "error";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Languages.Translate(11012) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                formattedHex = "error";
+                return false;
+            }
+        }
+
+        public static bool IsValidHex(string hex)
+        {
+            string validChars = "0123456789abcdefABCDEF ";
+            foreach (char c in hex)
+            {
+                if (!validChars.Contains(c)) return false; //invalid
+            }
+            return true; //valid
         }
 
         private byte[] ConvertBinToByte(string binary)

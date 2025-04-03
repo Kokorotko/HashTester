@@ -1,0 +1,10 @@
+Algorithm=CRC32
+<STRING>
+¿´_!ÂAY
+onÞ°PD÷ä6
+<HEX>
+01-BF-B4-5F-8E-21-9B-C2-41-59
+6F-6E-DE-B0-50-0F-44-F7-E4-36
+<HASH>
+hash1: e81db155
+hash2: e81db155

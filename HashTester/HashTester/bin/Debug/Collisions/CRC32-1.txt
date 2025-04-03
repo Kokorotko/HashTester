@@ -1,7 +1,4 @@
 Algorithm=CRC32
-<STRING>
-}ì'·ÿ!¢NÏ
-ºHÇwU5Ü.w
 <HEX>
 7D-90-EC-27-B7-FF-21-A2-4E-CF
 BA-48-C7-77-55-9E-35-DC-2E-77
