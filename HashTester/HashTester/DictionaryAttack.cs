@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace HashTester
         private long[] lineFoundMatch;
         private long linesInTXT = 0;
         private long currentLine = 0;
+        private string[] foundPassword;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         Stopwatch stopwatch = new Stopwatch();
 
@@ -30,6 +32,14 @@ namespace HashTester
             get
             {
                 return foundMatch;
+            }
+        }
+
+        public string[] FoundPassword
+        {
+            get
+            {
+                return foundPassword;
             }
         }
 
@@ -90,42 +100,106 @@ namespace HashTester
             CurrentLine = 0;
             cancellationTokenSource = new CancellationTokenSource();
         }
-        public void PasswordFinder(string fullPathToTXT, string[] passwords)
+
+        private void ResetVar(int index)
+        {
+            foundMatch = new bool[index];
+            lineFoundMatch = new long[index];
+            foundPassword = new string[index];
+            for (int i = 0; i < index; i++)
+            {
+                foundPassword[i] = "";
+                FoundMatch[i] = false;
+                lineFoundMatch[i] = -1;
+            }
+        }
+
+        /// <summary>
+        /// Similar to PasswordFinder, but finds using a hash
+        /// </summary>
+        /// <param name="fullPathToTXT"></param>
+        /// <param name="hashes"></param>
+        public void MultiplePasswordBreaker(string fullPathToTXT, string[] hashes, Hasher.HashingAlgorithm hashingAlgorithm)
+        {
+            ResetValue();
+            using (StreamReader reader = new StreamReader(fullPathToTXT))
+            {
+                try
+                {                   
+                    Hasher hasher = new Hasher();
+                    LinesInTXT = CountNumberOfLinesInFile(fullPathToTXT);
+                    stopwatch.Start();
+                    //Set Up
+                    ResetVar(hashes.Count());
+                    while (!reader.EndOfStream && !UserAbandoned)
+                    {
+                        CurrentLine++;
+                        string line = reader.ReadLine();
+                        string tempHash = hasher.Hash(line, hashingAlgorithm);
+                        for (int i = 0; i < hashes.Count(); i++)
+                        {
+                            if (!FoundMatch[i])
+                            {
+                                if (hashes[i] == tempHash)
+                                {
+                                    lineFoundMatch[i] = CurrentLine;
+                                    foundMatch[i] = true;
+                                    foundPassword[i] = "'" + line + "' (" + tempHash + ")";
+                                    logOutput.Add(Languages.Translate(573) + " " + FoundPassword[i] +  " " + Languages.Translate(574) + ": " + CurrentLine);
+                                    if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
+                                    {
+                                        stopwatch.Stop();
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stopwatch.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    stopwatch.Stop();
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Finds password from a .txt file, supports multiple inputs at the same time
+        /// </summary>
+        /// <param name="fullPathToTXT"></param>
+        /// <param name="passwords"></param>
+        public void MultiplePasswordFinder(string fullPathToTXT, string[] passwords)
         {
             ResetValue();
             using (StreamReader reader = new StreamReader(fullPathToTXT))
             {
                 try
                 {
+                    ResetVar(passwords.Count());
                     stopwatch.Start();
                     LinesInTXT = CountNumberOfLinesInFile(fullPathToTXT);
-                    //Set Up
-                    foundMatch = new bool[passwords.Count()];
-                    lineFoundMatch = new long[passwords.Count()];
-                    for (int i = 0; i < passwords.Count(); i++)
-                    {
-                        FoundMatch[i] = false;
-                        lineFoundMatch[i] = -1;
-                    }
                     while (!reader.EndOfStream && !UserAbandoned)
                     {
                         CurrentLine++;
                         string line = reader.ReadLine();
                         for (int i = 0; i < passwords.Count(); i++)
                         {
-                            if (!FoundMatch[i])
+                            if (!FoundMatch[i]) //optimalization
                             {
                                 if (passwords[i] == line)
                                 {
                                     lineFoundMatch[i] = CurrentLine;
                                     foundMatch[i] = true;
-                                    logOutput.Add(Languages.Translate(573) + " '" + passwords[i] + "' " + Languages.Translate(574) + ": " + CurrentLine);
+                                    foundPassword[i] = line;
+                                    logOutput.Add(Languages.Translate(573) + " " + FoundPassword[i] + " " + Languages.Translate(574) + ": " + CurrentLine);
                                     if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
                                     {
                                         stopwatch.Stop();
                                         return;
                                     }
-
                                 }
                             }
                         }

@@ -16,7 +16,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.0.0";
+        readonly string programVersion = "1.0.2";
 
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)

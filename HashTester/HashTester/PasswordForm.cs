@@ -36,6 +36,7 @@ namespace HashTester
         TaskType currentTaskType = TaskType.None;
         Hasher.HashingAlgorithm bruteForceAlgorithm = Hasher.HashingAlgorithm.MD5;
         Hasher.HashingAlgorithm rainbowTableAlgorithm = Hasher.HashingAlgorithm.MD5;
+        Hasher.HashingAlgorithm dictionaryAlgorithm = Hasher.HashingAlgorithm.MD5;
         Hasher hasher = new Hasher();
 
         #region FormManagement
@@ -44,6 +45,7 @@ namespace HashTester
             FormManagement.SetUpFormTheme(this);
             #region Languages
             this.Name = Languages.Translate(707);
+            labelAlgorithm.Text = Languages.Translate(10024);
             labelProgressBar.Text = Languages.Translate(241);
             buttonCancel.Text = Languages.Translate(242);
             labelStatAttempts.Text = Languages.Translate(243) + ":";
@@ -55,6 +57,8 @@ namespace HashTester
             groupBoxRainbowTable.Text = Languages.Translate(249);
             groupBoxBruteForce.Text = Languages.Translate(250);
             //Dictionary Attack
+            radioButtonHashedDictionary.Text = Languages.Translate(265);
+            radioButtonRegularDictionary.Text = Languages.Translate(264);
             radioButtonRockYouFull.Text = Languages.Translate(251);
             radioButtonRockYouShort.Text = Languages.Translate(252);
             radioButtonRockYouFullShortShort.Text = Languages.Translate(253);
@@ -82,8 +86,7 @@ namespace HashTester
             checkBoxHexOutputBruteForce.Text = Languages.Translate(272);
             groupBoxUI.Text = Languages.Translate(10036);
             #endregion
-            hashSelectorBruteForce.SelectedIndex = 0;
-            hashSelectorRainbowTable.SelectedIndex = 0;
+            hashSelector.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
             DisableRockYouRadioButtons();
             if (FindIfTXTIsPresent("rockyou")) radioButtonRockYouFull.Enabled = true;
@@ -94,11 +97,6 @@ namespace HashTester
             else if (radioButtonRockYouShort.Enabled) radioButtonRockYouShort.Checked = true;
             else if (radioButtonRockYouFullShortShort.Enabled) radioButtonRockYouFullShortShort.Checked = true;
             else radioButtonRockyouCustom.Checked = true;
-        }
-
-        private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bruteForceAlgorithm = (Hasher.HashingAlgorithm)hashSelectorBruteForce.SelectedIndex;
         }
 
         private void DisableRockYouRadioButtons()
@@ -197,7 +195,7 @@ namespace HashTester
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {                        
                         pathToFile = openFileDialog.FileName; //Own txt
-                        if (checkBoxShowLogCrack.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(Languages.Translate(277) + ": " + pathToFile);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -205,7 +203,7 @@ namespace HashTester
                     }
                     else
                     {
-                        if (checkBoxShowLogCrack.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(Languages.Translate(278));
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -219,14 +217,21 @@ namespace HashTester
                 timerDictionary.Interval = Settings.UpdateUIms;
                 timerDictionary.Tick += UpdateUIPassword;
                 timerDictionary.Start();
-                await Task.Run(() => { dictionaryAttack.PasswordFinder(pathToFile, passwords); });
+                if (radioButtonRegularDictionary.Checked)
+                {
+                    await Task.Run(() => { dictionaryAttack.MultiplePasswordFinder(pathToFile, passwords); });
+                }
+                else
+                {
+                    await Task.Run(() => { dictionaryAttack.MultiplePasswordBreaker(pathToFile, passwords, dictionaryAlgorithm); });
+                }
                 timerDictionary.Stop();
                 timerDictionary.Dispose();
                 UpdateUIPassword(sender, e);
                 progressBar1.Value = 100;
                 if (dictionaryAttack.UserAbandoned)
                 {
-                    if (checkBoxShowLogCrack.Checked)
+                    if (checkBoxShowLog.Checked)
                     {
                         listBoxLog.Items.Add(Languages.Translate(279));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -241,9 +246,9 @@ namespace HashTester
                 {
                     if (dictionaryAttack.FoundMatch[i])
                     {
-                        string temp = Languages.Translate(280) + " '" + passwords[i] + "' " + Languages.Translate(281) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
+                        string temp = Languages.Translate(280) + " " + dictionaryAttack.FoundPassword[i] + " " + Languages.Translate(281) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(282) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLogCrack.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(temp);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -253,7 +258,7 @@ namespace HashTester
                     {
                         string temp = Languages.Translate(280) + "' " + passwords[i] + "' " + Languages.Translate(283) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLogCrack.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(temp);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -298,7 +303,7 @@ namespace HashTester
                 //Output
                 if (!overflowed)
                 {
-                    if (checkBoxShowLogCrack.Checked)
+                    if (checkBoxShowLog.Checked)
                     {
                         listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
                         listBoxLog.Items.Add(Languages.Translate(287) + ": " + totalCombinations.ToString("N0"));
@@ -308,7 +313,7 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxShowLogCrack.Checked)
+                    if (checkBoxShowLog.Checked)
                     {
                         listBoxLog.Items.Add(Languages.Translate(286));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -319,7 +324,7 @@ namespace HashTester
             catch (Exception ex)
             {
                 string s = Languages.Translate(11000) + Environment.NewLine + ex.Message;
-                if (checkBoxShowLogCrack.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add(s);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -354,11 +359,11 @@ namespace HashTester
                 {                    
                     timerRainbowTableGen.Start();
                     //MultiThread
-                    if (checkBoxPerformanceModeRainbowTable.Checked && FormManagement.UseMultiThread())
+                    if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
                     {
                         int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
                         Console.WriteLine("Number of threads: " + numberOfThreadsToUse);
-                        if (checkBoxShowLogRainbowTable.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(Languages.Translate(10026) + ": " + numberOfThreadsToUse);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -372,7 +377,7 @@ namespace HashTester
                         if (output)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(rainbowTable.LogOutput);
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -385,7 +390,7 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(289);
-                                if (checkBoxShowLogRainbowTable.Checked)
+                                if (checkBoxShowLog.Checked)
                                 {
                                     listBoxLog.Items.Add(rainbowTable.LogOutput);
                                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -406,7 +411,7 @@ namespace HashTester
                         if (operationWasSuccesful)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(rainbowTable.LogOutput);
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -419,7 +424,7 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(289);
-                                if (checkBoxShowLogRainbowTable.Checked)
+                                if (checkBoxShowLog.Checked)
                                 {
                                     listBoxLog.Items.Add(rainbowTable.LogOutput);
                                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -434,7 +439,7 @@ namespace HashTester
             {
                 timerRainbowTableGen.Stop();
                 MessageBox.Show(Languages.Translate(290));
-                if (checkBoxShowLogRainbowTable.Checked)
+                if (checkBoxShowLog .Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(290));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -505,7 +510,7 @@ namespace HashTester
                     bool noErrorsFound = await rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value);
                     if (noErrorsFound)
                     {
-                        if (checkBoxShowLogRainbowTable.Checked) listBoxLog.Items.Add("-----------------------------------------------");                           
+                        if (checkBoxShowLog.Checked) listBoxLog.Items.Add("-----------------------------------------------");                           
                         if (rainbowTableAttack.FoundPasswordBool)
                         {
                             string foundPassword = rainbowTableAttack.FoundPassword;
@@ -518,7 +523,7 @@ namespace HashTester
                                     Languages.Translate(295) + ": " + foundPasswordHash + "\n" +
                                     Languages.Translate(296) + ": " + foundPassword + "\n" +
                                     Languages.Translate(297) + ": " + ConvertToHexBasedOnUser(foundPassword);
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(316));
                                 listBoxLog.Items.Add(Languages.Translate(292) + ": " + foundPassword);
@@ -535,7 +540,7 @@ namespace HashTester
                         else if (rainbowTableAttack.CancelTokenActive())
                         {
                             MessageBox.Show(Languages.Translate(10017), Languages.Translate(10032), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(279));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -546,7 +551,7 @@ namespace HashTester
                         else if (rainbowTableAttack.RanOutOfTime)
                         {
                             MessageBox.Show(Languages.Translate(298), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(298));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -557,7 +562,7 @@ namespace HashTester
                         else if (rainbowTableAttack.RanOutOfAttempts)
                         {
                             MessageBox.Show(Languages.Translate(299), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(299));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -568,7 +573,7 @@ namespace HashTester
                         else
                         {
                             MessageBox.Show(Languages.Translate(300), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(300));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -580,7 +585,7 @@ namespace HashTester
                     else
                     {
                         MessageBox.Show(Languages.Translate(301), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (checkBoxShowLogRainbowTable.Checked)
+                        if (checkBoxShowLog.Checked)
                         {
                             listBoxLog.Items.Add(Languages.Translate(301));
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -590,7 +595,7 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxShowLogRainbowTable.Checked)
+                    if (checkBoxShowLog.Checked)
                     {
                         listBoxLog.Items.Add(Languages.Translate(302));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -644,7 +649,7 @@ namespace HashTester
                     progressBar1.Value = Math.Max(0, Math.Min(progress, 100)); //<0-100>
 
                     // Log
-                    if (rainbowTableAttack.LogOutput != null && checkBoxShowLogRainbowTable.Checked)
+                    if (rainbowTableAttack.LogOutput != null && checkBoxShowLog.Checked)
                     {
                         List<string> logs = rainbowTableAttack.LogOutput.ToList(); //avoid reading LogOutput while its being changed
                         rainbowTableAttack.LogReset(); // Clear logs after adding them
@@ -680,7 +685,7 @@ namespace HashTester
             {
                 userPasswordLenght = textBoxBruteForce.Text.Length;
                 userHashInput = hasher.Hash(textBoxBruteForce.Text, bruteForceAlgorithm);
-                if (checkBoxShowLogBrute.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(0) + " '" + textBoxBruteForce.Text + "' " + Languages.Translate(10027) + " " + userHashInput + ".");
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -708,12 +713,12 @@ namespace HashTester
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
             BigInteger temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
-            if (checkBoxShowLogBrute.Checked)
+            if (checkBoxShowLog.Checked)
             {
                 listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp.ToString("N0"));
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
-            if (checkBoxPerformanceModeBruteForce.Checked && FormManagement.UseMultiThread()) //multi thread
+            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread()) //multi thread
             {                
                 Console.WriteLine(Languages.Translate(305));
                 timerBruteForce.Start();
@@ -754,7 +759,7 @@ namespace HashTester
                           "\n" + Languages.Translate(10009) + ": " + labelStatTimer.Text +
                           "\n" + Languages.Translate(10012) + ": " + labelStatSpeed.Text;
 
-                if (checkBoxShowLogBrute.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add(Languages.Translate(307));
@@ -771,7 +776,7 @@ namespace HashTester
             }
             else if (bruteForce.RanOutOfAttemps)
             {
-                if (checkBoxShowLogBrute.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(312));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -780,7 +785,7 @@ namespace HashTester
             }
             else if (bruteForce.RanOutOfTime)
             {
-                if (checkBoxShowLogBrute.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(312));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -793,7 +798,7 @@ namespace HashTester
             }
             else
             {
-                if (checkBoxShowLogBrute.Checked)
+                if (checkBoxShowLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(313));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -939,7 +944,7 @@ namespace HashTester
                         {
                             timerRainbowTableGen.Dispose();
                             rainbowTable.Abort();
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(279));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -951,7 +956,7 @@ namespace HashTester
                         {
                             timerRainbowTableAttack.Dispose();
                             rainbowTableAttack.Abort();
-                            if (checkBoxShowLogRainbowTable.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(279));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -963,7 +968,7 @@ namespace HashTester
                         {
                             timerDictionary.Dispose();
                             dictionaryAttack.Abort();
-                            if (checkBoxShowLogDictionary.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(279));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -975,7 +980,7 @@ namespace HashTester
                         {
                             timerBruteForce.Dispose();
                             bruteForce.Abort();
-                            if (checkBoxShowLogBrute.Checked)
+                            if (checkBoxShowLog.Checked)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(279));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -1038,7 +1043,7 @@ namespace HashTester
 
         private void hashSelectorRainbowTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelectorRainbowTable.SelectedIndex;
+            rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
         private void FilesCleanUp(string nameOfFilesToClear)

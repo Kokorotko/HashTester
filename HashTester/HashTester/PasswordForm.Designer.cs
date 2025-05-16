@@ -35,9 +35,8 @@
             this.radioButtonRockYouFullShortShort = new System.Windows.Forms.RadioButton();
             this.radioButtonRockyouCustom = new System.Windows.Forms.RadioButton();
             this.groupBoxDictionary = new System.Windows.Forms.GroupBox();
-            this.checkBoxShowLogDictionary = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLog = new System.Windows.Forms.CheckBox();
             this.groupBoxTimeToCrack = new System.Windows.Forms.GroupBox();
-            this.checkBoxShowLogCrack = new System.Windows.Forms.CheckBox();
             this.buttonCrackCalculate = new System.Windows.Forms.Button();
             this.checkBoxCrackSpecial = new System.Windows.Forms.CheckBox();
             this.checkBoxCrackDigit = new System.Windows.Forms.CheckBox();
@@ -49,11 +48,10 @@
             this.textBoxCrackLenght = new System.Windows.Forms.TextBox();
             this.groupBoxBruteForce = new System.Windows.Forms.GroupBox();
             this.checkBoxUnknownLenghtBruteForce = new System.Windows.Forms.CheckBox();
-            this.checkBoxShowLogBrute = new System.Windows.Forms.CheckBox();
             this.checkBoxHexOutputBruteForce = new System.Windows.Forms.CheckBox();
             this.labelStopTimer = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxPerformanceModeBruteForce = new System.Windows.Forms.CheckBox();
+            this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.checkBoxSpecialChars = new System.Windows.Forms.CheckBox();
             this.buttonBruteForceAttack = new System.Windows.Forms.Button();
             this.checkBoxDigits = new System.Windows.Forms.CheckBox();
@@ -64,11 +62,8 @@
             this.numericUpDownLenght = new System.Windows.Forms.NumericUpDown();
             this.radioButtonRegularBruteForce = new System.Windows.Forms.RadioButton();
             this.labelMaxAttempts = new System.Windows.Forms.Label();
-            this.labelAlgorithm2 = new System.Windows.Forms.Label();
             this.numericUpDownMaxAttempts = new System.Windows.Forms.NumericUpDown();
-            this.hashSelectorBruteForce = new System.Windows.Forms.ComboBox();
             this.textBoxBruteForce = new System.Windows.Forms.TextBox();
-            this.checkBoxShowLogRainbowTable = new System.Windows.Forms.CheckBox();
             this.buttonRainbowTableAttack = new System.Windows.Forms.Button();
             this.buttonGenerateRainbowTable = new System.Windows.Forms.Button();
             this.labelStatSpeed = new System.Windows.Forms.Label();
@@ -86,10 +81,12 @@
             this.radioButtonHashedRainbowTable = new System.Windows.Forms.RadioButton();
             this.textBoxRainbowTable = new System.Windows.Forms.TextBox();
             this.radioButtonRegularRainbowTable = new System.Windows.Forms.RadioButton();
-            this.checkBoxPerformanceModeRainbowTable = new System.Windows.Forms.CheckBox();
-            this.labelAlgorithm = new System.Windows.Forms.Label();
-            this.hashSelectorRainbowTable = new System.Windows.Forms.ComboBox();
+            this.hashSelector = new System.Windows.Forms.ComboBox();
             this.groupBoxUI = new System.Windows.Forms.GroupBox();
+            this.radioButtonRegularDictionary = new System.Windows.Forms.RadioButton();
+            this.radioButtonHashedDictionary = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelAlgorithm = new System.Windows.Forms.Label();
             this.groupBoxDictionary.SuspendLayout();
             this.groupBoxTimeToCrack.SuspendLayout();
             this.groupBoxBruteForce.SuspendLayout();
@@ -98,11 +95,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxAttempts)).BeginInit();
             this.groupBoxRainbowTable.SuspendLayout();
             this.groupBoxUI.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDictionaryAttack
             // 
-            this.buttonDictionaryAttack.Location = new System.Drawing.Point(6, 19);
+            this.buttonDictionaryAttack.Location = new System.Drawing.Point(6, 220);
             this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
             this.buttonDictionaryAttack.Size = new System.Drawing.Size(199, 23);
             this.buttonDictionaryAttack.TabIndex = 0;
@@ -112,60 +110,56 @@
             // 
             // textBoxDictionary
             // 
-            this.textBoxDictionary.Location = new System.Drawing.Point(6, 49);
+            this.textBoxDictionary.Location = new System.Drawing.Point(2, 43);
             this.textBoxDictionary.Multiline = true;
             this.textBoxDictionary.Name = "textBoxDictionary";
-            this.textBoxDictionary.Size = new System.Drawing.Size(199, 80);
+            this.textBoxDictionary.Size = new System.Drawing.Size(208, 77);
             this.textBoxDictionary.TabIndex = 1;
             this.textBoxDictionary.Text = "budakkecik";
             // 
             // radioButtonRockYouFull
             // 
             this.radioButtonRockYouFull.AutoSize = true;
-            this.radioButtonRockYouFull.Location = new System.Drawing.Point(5, 159);
+            this.radioButtonRockYouFull.Location = new System.Drawing.Point(7, 128);
             this.radioButtonRockYouFull.Name = "radioButtonRockYouFull";
             this.radioButtonRockYouFull.Size = new System.Drawing.Size(130, 17);
             this.radioButtonRockYouFull.TabIndex = 2;
-            this.radioButtonRockYouFull.TabStop = true;
             this.radioButtonRockYouFull.Text = "rockyou.txt full version";
             this.radioButtonRockYouFull.UseVisualStyleBackColor = true;
             // 
             // radioButtonRockYouShort
             // 
             this.radioButtonRockYouShort.AutoSize = true;
-            this.radioButtonRockYouShort.Location = new System.Drawing.Point(5, 182);
+            this.radioButtonRockYouShort.Location = new System.Drawing.Point(7, 151);
             this.radioButtonRockYouShort.Name = "radioButtonRockYouShort";
             this.radioButtonRockYouShort.Size = new System.Drawing.Size(140, 17);
             this.radioButtonRockYouShort.TabIndex = 3;
-            this.radioButtonRockYouShort.TabStop = true;
             this.radioButtonRockYouShort.Text = "rockyou.txt short version";
             this.radioButtonRockYouShort.UseVisualStyleBackColor = true;
             // 
             // radioButtonRockYouFullShortShort
             // 
             this.radioButtonRockYouFullShortShort.AutoSize = true;
-            this.radioButtonRockYouFullShortShort.Location = new System.Drawing.Point(5, 205);
+            this.radioButtonRockYouFullShortShort.Location = new System.Drawing.Point(7, 174);
             this.radioButtonRockYouFullShortShort.Name = "radioButtonRockYouFullShortShort";
             this.radioButtonRockYouFullShortShort.Size = new System.Drawing.Size(163, 17);
             this.radioButtonRockYouFullShortShort.TabIndex = 4;
-            this.radioButtonRockYouFullShortShort.TabStop = true;
             this.radioButtonRockYouFullShortShort.Text = "rockyou.txt very short version";
             this.radioButtonRockYouFullShortShort.UseVisualStyleBackColor = true;
             // 
             // radioButtonRockyouCustom
             // 
             this.radioButtonRockyouCustom.AutoSize = true;
-            this.radioButtonRockyouCustom.Location = new System.Drawing.Point(4, 228);
+            this.radioButtonRockyouCustom.Location = new System.Drawing.Point(6, 197);
             this.radioButtonRockyouCustom.Name = "radioButtonRockyouCustom";
             this.radioButtonRockyouCustom.Size = new System.Drawing.Size(77, 17);
             this.radioButtonRockyouCustom.TabIndex = 5;
-            this.radioButtonRockyouCustom.TabStop = true;
             this.radioButtonRockyouCustom.Text = "Custom .txt";
             this.radioButtonRockyouCustom.UseVisualStyleBackColor = true;
             // 
             // groupBoxDictionary
             // 
-            this.groupBoxDictionary.Controls.Add(this.checkBoxShowLogDictionary);
+            this.groupBoxDictionary.Controls.Add(this.panel1);
             this.groupBoxDictionary.Controls.Add(this.buttonDictionaryAttack);
             this.groupBoxDictionary.Controls.Add(this.textBoxDictionary);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockyouCustom);
@@ -179,21 +173,20 @@
             this.groupBoxDictionary.TabStop = false;
             this.groupBoxDictionary.Text = "Dictionary Attack";
             // 
-            // checkBoxShowLogDictionary
+            // checkBoxShowLog
             // 
-            this.checkBoxShowLogDictionary.AutoSize = true;
-            this.checkBoxShowLogDictionary.Checked = true;
-            this.checkBoxShowLogDictionary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogDictionary.Location = new System.Drawing.Point(4, 135);
-            this.checkBoxShowLogDictionary.Name = "checkBoxShowLogDictionary";
-            this.checkBoxShowLogDictionary.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogDictionary.TabIndex = 39;
-            this.checkBoxShowLogDictionary.Text = "Show log in listBox";
-            this.checkBoxShowLogDictionary.UseVisualStyleBackColor = true;
+            this.checkBoxShowLog.AutoSize = true;
+            this.checkBoxShowLog.Checked = true;
+            this.checkBoxShowLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowLog.Location = new System.Drawing.Point(711, 314);
+            this.checkBoxShowLog.Name = "checkBoxShowLog";
+            this.checkBoxShowLog.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxShowLog.TabIndex = 39;
+            this.checkBoxShowLog.Text = "Show log in listBox";
+            this.checkBoxShowLog.UseVisualStyleBackColor = true;
             // 
             // groupBoxTimeToCrack
             // 
-            this.groupBoxTimeToCrack.Controls.Add(this.checkBoxShowLogCrack);
             this.groupBoxTimeToCrack.Controls.Add(this.buttonCrackCalculate);
             this.groupBoxTimeToCrack.Controls.Add(this.checkBoxCrackSpecial);
             this.groupBoxTimeToCrack.Controls.Add(this.checkBoxCrackDigit);
@@ -209,18 +202,6 @@
             this.groupBoxTimeToCrack.TabIndex = 8;
             this.groupBoxTimeToCrack.TabStop = false;
             this.groupBoxTimeToCrack.Text = "Time to crack calculator";
-            // 
-            // checkBoxShowLogCrack
-            // 
-            this.checkBoxShowLogCrack.AutoSize = true;
-            this.checkBoxShowLogCrack.Checked = true;
-            this.checkBoxShowLogCrack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogCrack.Location = new System.Drawing.Point(6, 194);
-            this.checkBoxShowLogCrack.Name = "checkBoxShowLogCrack";
-            this.checkBoxShowLogCrack.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogCrack.TabIndex = 39;
-            this.checkBoxShowLogCrack.Text = "Show log in listBox";
-            this.checkBoxShowLogCrack.UseVisualStyleBackColor = true;
             // 
             // buttonCrackCalculate
             // 
@@ -316,11 +297,9 @@
             // groupBoxBruteForce
             // 
             this.groupBoxBruteForce.Controls.Add(this.checkBoxUnknownLenghtBruteForce);
-            this.groupBoxBruteForce.Controls.Add(this.checkBoxShowLogBrute);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxHexOutputBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.labelStopTimer);
             this.groupBoxBruteForce.Controls.Add(this.numericUpDownStopTimer);
-            this.groupBoxBruteForce.Controls.Add(this.checkBoxPerformanceModeBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxSpecialChars);
             this.groupBoxBruteForce.Controls.Add(this.buttonBruteForceAttack);
             this.groupBoxBruteForce.Controls.Add(this.checkBoxDigits);
@@ -331,9 +310,7 @@
             this.groupBoxBruteForce.Controls.Add(this.numericUpDownLenght);
             this.groupBoxBruteForce.Controls.Add(this.radioButtonRegularBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.labelMaxAttempts);
-            this.groupBoxBruteForce.Controls.Add(this.labelAlgorithm2);
             this.groupBoxBruteForce.Controls.Add(this.numericUpDownMaxAttempts);
-            this.groupBoxBruteForce.Controls.Add(this.hashSelectorBruteForce);
             this.groupBoxBruteForce.Controls.Add(this.textBoxBruteForce);
             this.groupBoxBruteForce.Location = new System.Drawing.Point(590, 12);
             this.groupBoxBruteForce.Name = "groupBoxBruteForce";
@@ -345,31 +322,19 @@
             // checkBoxUnknownLenghtBruteForce
             // 
             this.checkBoxUnknownLenghtBruteForce.AutoSize = true;
-            this.checkBoxUnknownLenghtBruteForce.Location = new System.Drawing.Point(6, 128);
+            this.checkBoxUnknownLenghtBruteForce.Location = new System.Drawing.Point(7, 128);
             this.checkBoxUnknownLenghtBruteForce.Name = "checkBoxUnknownLenghtBruteForce";
             this.checkBoxUnknownLenghtBruteForce.Size = new System.Drawing.Size(108, 17);
             this.checkBoxUnknownLenghtBruteForce.TabIndex = 42;
             this.checkBoxUnknownLenghtBruteForce.Text = "Unknown Lenght";
             this.checkBoxUnknownLenghtBruteForce.UseVisualStyleBackColor = true;
             // 
-            // checkBoxShowLogBrute
-            // 
-            this.checkBoxShowLogBrute.AutoSize = true;
-            this.checkBoxShowLogBrute.Checked = true;
-            this.checkBoxShowLogBrute.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogBrute.Location = new System.Drawing.Point(5, 194);
-            this.checkBoxShowLogBrute.Name = "checkBoxShowLogBrute";
-            this.checkBoxShowLogBrute.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogBrute.TabIndex = 40;
-            this.checkBoxShowLogBrute.Text = "Show log in listBox";
-            this.checkBoxShowLogBrute.UseVisualStyleBackColor = true;
-            // 
             // checkBoxHexOutputBruteForce
             // 
             this.checkBoxHexOutputBruteForce.AutoSize = true;
             this.checkBoxHexOutputBruteForce.Checked = true;
             this.checkBoxHexOutputBruteForce.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxHexOutputBruteForce.Location = new System.Drawing.Point(5, 150);
+            this.checkBoxHexOutputBruteForce.Location = new System.Drawing.Point(7, 151);
             this.checkBoxHexOutputBruteForce.Name = "checkBoxHexOutputBruteForce";
             this.checkBoxHexOutputBruteForce.Size = new System.Drawing.Size(147, 17);
             this.checkBoxHexOutputBruteForce.TabIndex = 37;
@@ -379,7 +344,7 @@
             // labelStopTimer
             // 
             this.labelStopTimer.AutoSize = true;
-            this.labelStopTimer.Location = new System.Drawing.Point(182, 82);
+            this.labelStopTimer.Location = new System.Drawing.Point(197, 43);
             this.labelStopTimer.Name = "labelStopTimer";
             this.labelStopTimer.Size = new System.Drawing.Size(84, 13);
             this.labelStopTimer.TabIndex = 36;
@@ -387,26 +352,26 @@
             // 
             // numericUpDownStopTimer
             // 
-            this.numericUpDownStopTimer.Location = new System.Drawing.Point(185, 100);
+            this.numericUpDownStopTimer.Location = new System.Drawing.Point(134, 60);
             this.numericUpDownStopTimer.Maximum = new decimal(new int[] {
             172800,
             0,
             0,
             0});
             this.numericUpDownStopTimer.Name = "numericUpDownStopTimer";
-            this.numericUpDownStopTimer.Size = new System.Drawing.Size(96, 20);
+            this.numericUpDownStopTimer.Size = new System.Drawing.Size(147, 20);
             this.numericUpDownStopTimer.TabIndex = 35;
             this.numericUpDownStopTimer.ThousandsSeparator = true;
             // 
-            // checkBoxPerformanceModeBruteForce
+            // checkBoxPerformanceMode
             // 
-            this.checkBoxPerformanceModeBruteForce.AutoSize = true;
-            this.checkBoxPerformanceModeBruteForce.Location = new System.Drawing.Point(6, 173);
-            this.checkBoxPerformanceModeBruteForce.Name = "checkBoxPerformanceModeBruteForce";
-            this.checkBoxPerformanceModeBruteForce.Size = new System.Drawing.Size(113, 17);
-            this.checkBoxPerformanceModeBruteForce.TabIndex = 34;
-            this.checkBoxPerformanceModeBruteForce.Text = "PerformanceMode";
-            this.checkBoxPerformanceModeBruteForce.UseVisualStyleBackColor = true;
+            this.checkBoxPerformanceMode.AutoSize = true;
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(710, 337);
+            this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxPerformanceMode.TabIndex = 34;
+            this.checkBoxPerformanceMode.Text = "PerformanceMode";
+            this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // checkBoxSpecialChars
             // 
@@ -469,7 +434,7 @@
             // labelLenght
             // 
             this.labelLenght.AutoSize = true;
-            this.labelLenght.Location = new System.Drawing.Point(131, 82);
+            this.labelLenght.Location = new System.Drawing.Point(6, 83);
             this.labelLenght.Name = "labelLenght";
             this.labelLenght.Size = new System.Drawing.Size(40, 13);
             this.labelLenght.TabIndex = 31;
@@ -478,7 +443,7 @@
             // radioButtonBruteForceHashed
             // 
             this.radioButtonBruteForceHashed.AutoSize = true;
-            this.radioButtonBruteForceHashed.Location = new System.Drawing.Point(6, 59);
+            this.radioButtonBruteForceHashed.Location = new System.Drawing.Point(10, 59);
             this.radioButtonBruteForceHashed.Name = "radioButtonBruteForceHashed";
             this.radioButtonBruteForceHashed.Size = new System.Drawing.Size(62, 17);
             this.radioButtonBruteForceHashed.TabIndex = 8;
@@ -488,14 +453,14 @@
             // 
             // numericUpDownLenght
             // 
-            this.numericUpDownLenght.Location = new System.Drawing.Point(134, 101);
+            this.numericUpDownLenght.Location = new System.Drawing.Point(7, 101);
             this.numericUpDownLenght.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
             this.numericUpDownLenght.Name = "numericUpDownLenght";
-            this.numericUpDownLenght.Size = new System.Drawing.Size(45, 20);
+            this.numericUpDownLenght.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownLenght.TabIndex = 30;
             this.numericUpDownLenght.Value = new decimal(new int[] {
             10,
@@ -507,7 +472,7 @@
             // 
             this.radioButtonRegularBruteForce.AutoSize = true;
             this.radioButtonRegularBruteForce.Checked = true;
-            this.radioButtonRegularBruteForce.Location = new System.Drawing.Point(5, 41);
+            this.radioButtonRegularBruteForce.Location = new System.Drawing.Point(9, 41);
             this.radioButtonRegularBruteForce.Name = "radioButtonRegularBruteForce";
             this.radioButtonRegularBruteForce.Size = new System.Drawing.Size(62, 17);
             this.radioButtonRegularBruteForce.TabIndex = 7;
@@ -519,49 +484,24 @@
             // labelMaxAttempts
             // 
             this.labelMaxAttempts.AutoSize = true;
-            this.labelMaxAttempts.Location = new System.Drawing.Point(4, 82);
+            this.labelMaxAttempts.Location = new System.Drawing.Point(190, 82);
             this.labelMaxAttempts.Name = "labelMaxAttempts";
             this.labelMaxAttempts.Size = new System.Drawing.Size(95, 13);
             this.labelMaxAttempts.TabIndex = 29;
             this.labelMaxAttempts.Text = "Maximum Attempts";
             // 
-            // labelAlgorithm2
-            // 
-            this.labelAlgorithm2.AutoSize = true;
-            this.labelAlgorithm2.Location = new System.Drawing.Point(231, 43);
-            this.labelAlgorithm2.Name = "labelAlgorithm2";
-            this.labelAlgorithm2.Size = new System.Drawing.Size(50, 13);
-            this.labelAlgorithm2.TabIndex = 6;
-            this.labelAlgorithm2.Text = "Algorithm";
-            // 
             // numericUpDownMaxAttempts
             // 
-            this.numericUpDownMaxAttempts.Location = new System.Drawing.Point(7, 101);
+            this.numericUpDownMaxAttempts.Location = new System.Drawing.Point(134, 98);
             this.numericUpDownMaxAttempts.Maximum = new decimal(new int[] {
             1215752191,
             23,
             0,
             0});
             this.numericUpDownMaxAttempts.Name = "numericUpDownMaxAttempts";
-            this.numericUpDownMaxAttempts.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMaxAttempts.Size = new System.Drawing.Size(147, 20);
             this.numericUpDownMaxAttempts.TabIndex = 28;
             this.numericUpDownMaxAttempts.ThousandsSeparator = true;
-            // 
-            // hashSelectorBruteForce
-            // 
-            this.hashSelectorBruteForce.FormattingEnabled = true;
-            this.hashSelectorBruteForce.Items.AddRange(new object[] {
-            "MD5",
-            "SHA1",
-            "SHA256",
-            "SHA512",
-            "RipeMD-160",
-            "CRC32"});
-            this.hashSelectorBruteForce.Location = new System.Drawing.Point(185, 59);
-            this.hashSelectorBruteForce.Name = "hashSelectorBruteForce";
-            this.hashSelectorBruteForce.Size = new System.Drawing.Size(96, 21);
-            this.hashSelectorBruteForce.TabIndex = 5;
-            this.hashSelectorBruteForce.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
             // textBoxBruteForce
             // 
@@ -571,18 +511,6 @@
             this.textBoxBruteForce.TabIndex = 0;
             this.textBoxBruteForce.Text = "budakkecik";
             this.textBoxBruteForce.TextChanged += new System.EventHandler(this.textBoxBruteForceInput_TextChanged);
-            // 
-            // checkBoxShowLogRainbowTable
-            // 
-            this.checkBoxShowLogRainbowTable.AutoSize = true;
-            this.checkBoxShowLogRainbowTable.Checked = true;
-            this.checkBoxShowLogRainbowTable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLogRainbowTable.Location = new System.Drawing.Point(9, 167);
-            this.checkBoxShowLogRainbowTable.Name = "checkBoxShowLogRainbowTable";
-            this.checkBoxShowLogRainbowTable.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxShowLogRainbowTable.TabIndex = 39;
-            this.checkBoxShowLogRainbowTable.Text = "Show log in listBox";
-            this.checkBoxShowLogRainbowTable.UseVisualStyleBackColor = true;
             // 
             // buttonRainbowTableAttack
             // 
@@ -642,7 +570,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(710, 328);
+            this.buttonCancel.Location = new System.Drawing.Point(711, 358);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(180, 23);
             this.buttonCancel.TabIndex = 35;
@@ -653,7 +581,7 @@
             // progressBar1
             // 
             this.progressBar1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.progressBar1.Location = new System.Drawing.Point(12, 354);
+            this.progressBar1.Location = new System.Drawing.Point(14, 387);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(879, 23);
             this.progressBar1.TabIndex = 36;
@@ -661,7 +589,7 @@
             // labelProgressBar
             // 
             this.labelProgressBar.AutoSize = true;
-            this.labelProgressBar.Location = new System.Drawing.Point(391, 338);
+            this.labelProgressBar.Location = new System.Drawing.Point(393, 371);
             this.labelProgressBar.Name = "labelProgressBar";
             this.labelProgressBar.Size = new System.Drawing.Size(67, 13);
             this.labelProgressBar.TabIndex = 37;
@@ -670,14 +598,14 @@
             // listBoxLog
             // 
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(12, 383);
+            this.listBoxLog.Location = new System.Drawing.Point(14, 416);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(878, 95);
             this.listBoxLog.TabIndex = 38;
             // 
             // buttonLogClear
             // 
-            this.buttonLogClear.Location = new System.Drawing.Point(12, 484);
+            this.buttonLogClear.Location = new System.Drawing.Point(14, 517);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(286, 23);
             this.buttonLogClear.TabIndex = 39;
@@ -687,7 +615,7 @@
             // 
             // buttonLogSave
             // 
-            this.buttonLogSave.Location = new System.Drawing.Point(304, 484);
+            this.buttonLogSave.Location = new System.Drawing.Point(306, 517);
             this.buttonLogSave.Name = "buttonLogSave";
             this.buttonLogSave.Size = new System.Drawing.Size(286, 23);
             this.buttonLogSave.TabIndex = 40;
@@ -697,7 +625,7 @@
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(604, 484);
+            this.buttonClipboard.Location = new System.Drawing.Point(606, 517);
             this.buttonClipboard.Name = "buttonClipboard";
             this.buttonClipboard.Size = new System.Drawing.Size(286, 23);
             this.buttonClipboard.TabIndex = 41;
@@ -710,12 +638,8 @@
             this.groupBoxRainbowTable.Controls.Add(this.radioButtonHashedRainbowTable);
             this.groupBoxRainbowTable.Controls.Add(this.textBoxRainbowTable);
             this.groupBoxRainbowTable.Controls.Add(this.radioButtonRegularRainbowTable);
-            this.groupBoxRainbowTable.Controls.Add(this.checkBoxPerformanceModeRainbowTable);
-            this.groupBoxRainbowTable.Controls.Add(this.labelAlgorithm);
             this.groupBoxRainbowTable.Controls.Add(this.buttonGenerateRainbowTable);
-            this.groupBoxRainbowTable.Controls.Add(this.hashSelectorRainbowTable);
             this.groupBoxRainbowTable.Controls.Add(this.buttonRainbowTableAttack);
-            this.groupBoxRainbowTable.Controls.Add(this.checkBoxShowLogRainbowTable);
             this.groupBoxRainbowTable.Location = new System.Drawing.Point(394, 13);
             this.groupBoxRainbowTable.Name = "groupBoxRainbowTable";
             this.groupBoxRainbowTable.Size = new System.Drawing.Size(191, 252);
@@ -753,40 +677,21 @@
             this.radioButtonRegularRainbowTable.Text = "Regular";
             this.radioButtonRegularRainbowTable.UseVisualStyleBackColor = true;
             // 
-            // checkBoxPerformanceModeRainbowTable
+            // hashSelector
             // 
-            this.checkBoxPerformanceModeRainbowTable.AutoSize = true;
-            this.checkBoxPerformanceModeRainbowTable.Location = new System.Drawing.Point(9, 144);
-            this.checkBoxPerformanceModeRainbowTable.Name = "checkBoxPerformanceModeRainbowTable";
-            this.checkBoxPerformanceModeRainbowTable.Size = new System.Drawing.Size(113, 17);
-            this.checkBoxPerformanceModeRainbowTable.TabIndex = 44;
-            this.checkBoxPerformanceModeRainbowTable.Text = "PerformanceMode";
-            this.checkBoxPerformanceModeRainbowTable.UseVisualStyleBackColor = true;
-            // 
-            // labelAlgorithm
-            // 
-            this.labelAlgorithm.AutoSize = true;
-            this.labelAlgorithm.Location = new System.Drawing.Point(6, 99);
-            this.labelAlgorithm.Name = "labelAlgorithm";
-            this.labelAlgorithm.Size = new System.Drawing.Size(50, 13);
-            this.labelAlgorithm.TabIndex = 45;
-            this.labelAlgorithm.Text = "Algorithm";
-            // 
-            // hashSelectorRainbowTable
-            // 
-            this.hashSelectorRainbowTable.FormattingEnabled = true;
-            this.hashSelectorRainbowTable.Items.AddRange(new object[] {
+            this.hashSelector.FormattingEnabled = true;
+            this.hashSelector.Items.AddRange(new object[] {
             "MD5",
             "SHA1",
             "SHA256",
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelectorRainbowTable.Location = new System.Drawing.Point(6, 117);
-            this.hashSelectorRainbowTable.Name = "hashSelectorRainbowTable";
-            this.hashSelectorRainbowTable.Size = new System.Drawing.Size(178, 21);
-            this.hashSelectorRainbowTable.TabIndex = 44;
-            this.hashSelectorRainbowTable.SelectedIndexChanged += new System.EventHandler(this.hashSelectorRainbowTable_SelectedIndexChanged);
+            this.hashSelector.Location = new System.Drawing.Point(711, 287);
+            this.hashSelector.Name = "hashSelector";
+            this.hashSelector.Size = new System.Drawing.Size(179, 21);
+            this.hashSelector.TabIndex = 44;
+            this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelectorRainbowTable_SelectedIndexChanged);
             // 
             // groupBoxUI
             // 
@@ -794,21 +699,64 @@
             this.groupBoxUI.Controls.Add(this.labelStatTimer);
             this.groupBoxUI.Controls.Add(this.labelStatAttempts);
             this.groupBoxUI.Controls.Add(this.labelStatSpeed);
-            this.groupBoxUI.Location = new System.Drawing.Point(12, 268);
+            this.groupBoxUI.Location = new System.Drawing.Point(12, 287);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Size = new System.Drawing.Size(216, 80);
+            this.groupBoxUI.Size = new System.Drawing.Size(216, 72);
             this.groupBoxUI.TabIndex = 43;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
+            // 
+            // radioButtonRegularDictionary
+            // 
+            this.radioButtonRegularDictionary.AutoSize = true;
+            this.radioButtonRegularDictionary.Checked = true;
+            this.radioButtonRegularDictionary.Location = new System.Drawing.Point(7, 0);
+            this.radioButtonRegularDictionary.Name = "radioButtonRegularDictionary";
+            this.radioButtonRegularDictionary.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonRegularDictionary.TabIndex = 46;
+            this.radioButtonRegularDictionary.Text = "Regular";
+            this.radioButtonRegularDictionary.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHashedDictionary
+            // 
+            this.radioButtonHashedDictionary.AutoSize = true;
+            this.radioButtonHashedDictionary.Location = new System.Drawing.Point(141, 0);
+            this.radioButtonHashedDictionary.Name = "radioButtonHashedDictionary";
+            this.radioButtonHashedDictionary.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonHashedDictionary.TabIndex = 47;
+            this.radioButtonHashedDictionary.Text = "Hashed";
+            this.radioButtonHashedDictionary.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButtonRegularDictionary);
+            this.panel1.Controls.Add(this.radioButtonHashedDictionary);
+            this.panel1.Location = new System.Drawing.Point(2, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(208, 19);
+            this.panel1.TabIndex = 44;
+            // 
+            // labelAlgorithm
+            // 
+            this.labelAlgorithm.AutoSize = true;
+            this.labelAlgorithm.Location = new System.Drawing.Point(707, 268);
+            this.labelAlgorithm.Name = "labelAlgorithm";
+            this.labelAlgorithm.Size = new System.Drawing.Size(50, 13);
+            this.labelAlgorithm.TabIndex = 48;
+            this.labelAlgorithm.Text = "Algorithm";
             // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 526);
+            this.ClientSize = new System.Drawing.Size(902, 548);
+            this.Controls.Add(this.labelAlgorithm);
+            this.Controls.Add(this.checkBoxShowLog);
             this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.groupBoxRainbowTable);
             this.Controls.Add(this.buttonClipboard);
+            this.Controls.Add(this.hashSelector);
+            this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.buttonLogSave);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.listBoxLog);
@@ -834,6 +782,8 @@
             this.groupBoxRainbowTable.PerformLayout();
             this.groupBoxUI.ResumeLayout(false);
             this.groupBoxUI.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -862,11 +812,9 @@
         private System.Windows.Forms.TextBox textBoxBruteForce;
         private System.Windows.Forms.RadioButton radioButtonBruteForceHashed;
         private System.Windows.Forms.RadioButton radioButtonRegularBruteForce;
-        private System.Windows.Forms.Label labelAlgorithm2;
-        private System.Windows.Forms.ComboBox hashSelectorBruteForce;
         private System.Windows.Forms.Button buttonBruteForceAttack;
         private System.Windows.Forms.Button buttonGenerateRainbowTable;
-        private System.Windows.Forms.CheckBox checkBoxPerformanceModeBruteForce;
+        private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
         private System.Windows.Forms.CheckBox checkBoxSpecialChars;
         private System.Windows.Forms.CheckBox checkBoxDigits;
         private System.Windows.Forms.CheckBox checkBoxUpperCase;
@@ -887,21 +835,20 @@
         private System.Windows.Forms.CheckBox checkBoxHexOutputBruteForce;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonRainbowTableAttack;
-        private System.Windows.Forms.CheckBox checkBoxShowLogDictionary;
+        private System.Windows.Forms.CheckBox checkBoxShowLog;
         private System.Windows.Forms.Button buttonLogClear;
         private System.Windows.Forms.Button buttonLogSave;
-        private System.Windows.Forms.CheckBox checkBoxShowLogCrack;
-        private System.Windows.Forms.CheckBox checkBoxShowLogBrute;
-        private System.Windows.Forms.CheckBox checkBoxShowLogRainbowTable;
         private System.Windows.Forms.CheckBox checkBoxUnknownLenghtBruteForce;
         private System.Windows.Forms.Button buttonClipboard;
         private System.Windows.Forms.GroupBox groupBoxRainbowTable;
-        private System.Windows.Forms.CheckBox checkBoxPerformanceModeRainbowTable;
-        private System.Windows.Forms.Label labelAlgorithm;
-        private System.Windows.Forms.ComboBox hashSelectorRainbowTable;
+        private System.Windows.Forms.ComboBox hashSelector;
         private System.Windows.Forms.RadioButton radioButtonHashedRainbowTable;
         private System.Windows.Forms.TextBox textBoxRainbowTable;
         private System.Windows.Forms.RadioButton radioButtonRegularRainbowTable;
         private System.Windows.Forms.GroupBox groupBoxUI;
+        private System.Windows.Forms.RadioButton radioButtonHashedDictionary;
+        private System.Windows.Forms.RadioButton radioButtonRegularDictionary;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelAlgorithm;
     }
 }
