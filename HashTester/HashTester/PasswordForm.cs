@@ -496,7 +496,7 @@ namespace HashTester
                 taskCurrentlyWorking = true;
                 currentTaskType = TaskType.RainbowTableAttack;
                 string originalInput = textBoxRainbowTable.Text;
-                if (radioButtonRegularBruteForce.Checked) originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);                    
+                if (radioButtonRegularRainbowTable.Checked) originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);                    
                 OpenFileDialog openFileDialog = new OpenFileDialog { InitialDirectory = Settings.DirectoryPathToWordlists };               
                 rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
