@@ -17,6 +17,7 @@
 mono_crash.*
 
 # Ignore all Debug folders
+[Bb]uilds/*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
