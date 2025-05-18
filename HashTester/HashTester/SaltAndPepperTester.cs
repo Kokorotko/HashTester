@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -38,8 +32,6 @@ namespace HashTester
         private void ProcessingHash(string originalText, Hasher.HashingAlgorithm algorithm, bool askForSaltPepper)
         {
             bool usingSaltAndPepper = false;
-            bool isSaltUsed = false;
-            bool isPepperUsed = false;
             string salt = "";
             string pepper = "";
             string hashID = "";
@@ -55,13 +47,13 @@ namespace HashTester
                     if (!String.IsNullOrEmpty(hashID)) listBoxLog.Items.Add(Languages.Translate(612) + ": " + hashID);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
-                hash = hasher.HashSaltPepper(originalText, isSaltUsed, isPepperUsed, salt, pepper, algorithm);
+                hash = hasher.HashSaltPepper(originalText, checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, salt, pepper, algorithm);
             }
             else
             {
                 hash = hasher.Hash(originalText, algorithm);
             }
-            string outputString = outputHandler.OutputStyleString(originalText, hash, 1, isSaltUsed, isPepperUsed, salt, pepper);
+            string outputString = outputHandler.OutputStyleString(originalText, hash, 1, checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, salt, pepper);
             outputHandler.OutputTypeShow(outputString, listBoxLog);
         }
 
