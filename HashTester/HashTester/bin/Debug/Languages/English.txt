@@ -1,8 +1,8 @@
 //Some translations are made with DeepL translator (free version)
 //https://www.deepl.com
 
+9999=Hash
 //Multiple 
-9999==Hash
 10000==Clear Listbox
 10001==Save log
 10002==Clipboard
@@ -43,11 +43,12 @@
 10037==Hex
 10038==Current version
 10039==Program made by
+10040==2fast4you
 
 //**Try and Catch <<11000-12000>>
 11000==An error has occured in the program.
-11001==Please enter a non-zero integer up to 2 billion in "Number of attempts /s".
-11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters/password".
+11001==Please enter a non-zero integer up to 2 billion in "Number of attempts / s".
+11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters / password".
 11003==Want to delete an unfinished file?
 11004==File deleted
 11005==Warning, there will be several of these files.
@@ -85,7 +86,7 @@
 8==Settings
 9==Output Type
 10==Output Style
-11==Theme
+11==VisualMode
 13==UI Update Frequency
 14==Threads and CPU settings
 15==Reset all settings
@@ -179,7 +180,7 @@
 245==Average speed /s
 246==Show log in listBox
 247==Dictionary attack
-248==Time to crack calculator
+248==Brute force time estimator
 249==Rainbow table attack
 250==Brute force attack
 
@@ -258,6 +259,7 @@
 315==Error, could not stop the process.
 316==Password found with rainbow table attack.
 317==!Please dont name any files in this directory Temp or InputSplit. They will be deleted!
+318==Rainbow table attack abbandoned.
 
 //**SaltAndPepperQuestions <<401-420>>
 401==Do you really want to override another hash ID? (You could lose data)
@@ -332,11 +334,11 @@
 573==Found
 574==on line
 575==years
-576==months
+576==months  
 577==days
-578==hours
-579==minutes
-580==seconds
+578==hours  
+579==minutes  
+580==seconds  
 581==Rainbow Table of the file
 582==with
 583==hashing algorithm is done.
@@ -361,7 +363,7 @@
 597==Preferred language  
 598==OutputType from 0 to 2  
 599==All OutputStyles are bool  
-600==Salt and Pepper bool  
+600==Salt and Pepper bool 
 
 //**SaltAndPepperForm <<611-700>>
 612==HashID

@@ -504,7 +504,8 @@ namespace HashTester
                 if (radioButtonRegularRainbowTable.Checked) originalInput = hasher.Hash(originalInput, rainbowTableAlgorithm);                    
                 OpenFileDialog openFileDialog = new OpenFileDialog { InitialDirectory = Settings.DirectoryPathToWordlists };               
                 rainbowTableAttack.UseStopTimer = numericUpDownStopTimer.Value != 0;
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                DialogResult dialogResult = openFileDialog.ShowDialog();
+                if (dialogResult == DialogResult.OK)
                 {
                     timerRainbowTableAttack.Start();
                     bool noErrorsFound = await rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value);
@@ -592,6 +593,16 @@ namespace HashTester
                         }
                         if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
                     }
+                }
+                else if (dialogResult == DialogResult.Cancel || dialogResult == DialogResult.Abort)
+                {
+                    if (checkBoxShowLog.Checked)
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(318));
+                        listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+                    }
+                    if (timerRainbowTableAttack != null) timerRainbowTableAttack.Stop();
+                    MessageBox.Show(Languages.Translate(318), Languages.Translate(436), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -718,18 +729,21 @@ namespace HashTester
                 listBoxLog.Items.Add(Languages.Translate(304) + ": " + temp.ToString("N0"));
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
-            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread()) //multi thread
+            //multi thread
+            if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {                
                 Console.WriteLine(Languages.Translate(305));
                 timerBruteForce.Start();
                 await Task.Run(() => bruteForce.BruteForceAttackMultiThread(
-                    bruteForceAlgorithm,
-                    userHashInput,
-                    (ulong)numericUpDownMaxAttempts.Value,
-                    userPasswordLenght,
-                    (ulong)numericUpDownStopTimer.Value));                
+                    bruteForceAlgorithm, //algorithm
+                    userHashInput, //input
+                    (ulong)numericUpDownMaxAttempts.Value, //maxAttempts
+                    userPasswordLenght, //password lenght (0 if more)
+                    checkBoxUnknownLenghtBruteForce.Checked, 
+                    (ulong)numericUpDownStopTimer.Value)); //Time to stop in sec.                
             }
-            else //single Thread
+            //single Thread
+            else
             {
                 Console.WriteLine(Languages.Translate(306));
                 timerBruteForce.Start();
@@ -742,7 +756,10 @@ namespace HashTester
                     userHashInput,
                     (ulong)numericUpDownMaxAttempts.Value, 
                     userPasswordLenght,
-                    (ulong)numericUpDownStopTimer.Value));
+                    (ulong)numericUpDownStopTimer.Value,
+                    //next is completely useless for single thread
+                    0, //start Index
+                    temp)); //end Index
             }
             timerBruteForce.Stop();
             timerBruteForce.Dispose();
@@ -768,7 +785,15 @@ namespace HashTester
                     listBoxLog.Items.Add(Languages.Translate(310) + ": " + bruteForce.FoundPassword);
                     listBoxLog.Items.Add(Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
                     listBoxLog.Items.Add(Languages.Translate(120) + ": " + bruteForce.Attempts);
-                    listBoxLog.Items.Add(Languages.Translate(10009) + ": " + labelStatTimer.Text.Split(' ')[1]);
+                    try
+                    {
+                        string s = Languages.Translate(10009) + ": " + labelStatTimer.Text.Split(' ')[1];
+                        listBoxLog.Items.Add(s);
+                    }
+                    catch
+                    {
+                        listBoxLog.Items.Add(Languages.Translate(10009) + ": " + Languages.Translate(10040));
+                    }
                     listBoxLog.Items.Add(Languages.Translate(10012) + ": " + labelStatSpeed.Text);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
@@ -1052,6 +1077,14 @@ namespace HashTester
             foreach (string file in files)
             {
                 if (file.Contains(nameOfFilesToClear)) File.Delete(file);
+            }
+        }
+
+        private void numericUpDownLenght_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDownLenght.Value == 0)
+            {
+                checkBoxUnknownLenghtBruteForce.Enabled = true;
             }
         }
     }

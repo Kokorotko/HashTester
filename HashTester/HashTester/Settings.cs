@@ -122,7 +122,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "Settings/");
+                string path = Path.Combine(DirectoryExeBase, "Settings");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -132,7 +132,8 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "Wordlists/");
+                string path = Path.Combine(DirectoryExeBase, "Wordlists");
+                Console.WriteLine(path);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -142,7 +143,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "Collisions/");
+                string path = Path.Combine(DirectoryExeBase, "Collisions");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -152,7 +153,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "Logs/");
+                string path = Path.Combine(DirectoryExeBase, "Logs");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -162,7 +163,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "HashData/");
+                string path = Path.Combine(DirectoryExeBase, "HashData");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -171,7 +172,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "HashData/PasswordTester/");
+                string path = Path.Combine(DirectoryExeBase, "HashData/PasswordTester");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -181,7 +182,7 @@ namespace HashTester
         {
             get
             {
-                string path = Path.Combine(DirectoryExeBase, "Languages/");
+                string path = Path.Combine(DirectoryExeBase, "Languages");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }

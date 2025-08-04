@@ -35,6 +35,9 @@
             this.radioButtonRockYouFullShortShort = new System.Windows.Forms.RadioButton();
             this.radioButtonRockyouCustom = new System.Windows.Forms.RadioButton();
             this.groupBoxDictionary = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButtonRegularDictionary = new System.Windows.Forms.RadioButton();
+            this.radioButtonHashedDictionary = new System.Windows.Forms.RadioButton();
             this.checkBoxShowLog = new System.Windows.Forms.CheckBox();
             this.groupBoxTimeToCrack = new System.Windows.Forms.GroupBox();
             this.buttonCrackCalculate = new System.Windows.Forms.Button();
@@ -51,7 +54,6 @@
             this.checkBoxHexOutputBruteForce = new System.Windows.Forms.CheckBox();
             this.labelStopTimer = new System.Windows.Forms.Label();
             this.numericUpDownStopTimer = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.checkBoxSpecialChars = new System.Windows.Forms.CheckBox();
             this.buttonBruteForceAttack = new System.Windows.Forms.Button();
             this.checkBoxDigits = new System.Windows.Forms.CheckBox();
@@ -64,6 +66,7 @@
             this.labelMaxAttempts = new System.Windows.Forms.Label();
             this.numericUpDownMaxAttempts = new System.Windows.Forms.NumericUpDown();
             this.textBoxBruteForce = new System.Windows.Forms.TextBox();
+            this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
             this.buttonRainbowTableAttack = new System.Windows.Forms.Button();
             this.buttonGenerateRainbowTable = new System.Windows.Forms.Button();
             this.labelStatSpeed = new System.Windows.Forms.Label();
@@ -83,11 +86,9 @@
             this.radioButtonRegularRainbowTable = new System.Windows.Forms.RadioButton();
             this.hashSelector = new System.Windows.Forms.ComboBox();
             this.groupBoxUI = new System.Windows.Forms.GroupBox();
-            this.radioButtonRegularDictionary = new System.Windows.Forms.RadioButton();
-            this.radioButtonHashedDictionary = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.groupBoxDictionary.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBoxTimeToCrack.SuspendLayout();
             this.groupBoxBruteForce.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStopTimer)).BeginInit();
@@ -95,7 +96,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxAttempts)).BeginInit();
             this.groupBoxRainbowTable.SuspendLayout();
             this.groupBoxUI.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDictionaryAttack
@@ -173,6 +173,37 @@
             this.groupBoxDictionary.TabStop = false;
             this.groupBoxDictionary.Text = "Dictionary Attack";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButtonRegularDictionary);
+            this.panel1.Controls.Add(this.radioButtonHashedDictionary);
+            this.panel1.Location = new System.Drawing.Point(2, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(208, 19);
+            this.panel1.TabIndex = 44;
+            // 
+            // radioButtonRegularDictionary
+            // 
+            this.radioButtonRegularDictionary.AutoSize = true;
+            this.radioButtonRegularDictionary.Checked = true;
+            this.radioButtonRegularDictionary.Location = new System.Drawing.Point(7, 0);
+            this.radioButtonRegularDictionary.Name = "radioButtonRegularDictionary";
+            this.radioButtonRegularDictionary.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonRegularDictionary.TabIndex = 46;
+            this.radioButtonRegularDictionary.TabStop = true;
+            this.radioButtonRegularDictionary.Text = "Regular";
+            this.radioButtonRegularDictionary.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHashedDictionary
+            // 
+            this.radioButtonHashedDictionary.AutoSize = true;
+            this.radioButtonHashedDictionary.Location = new System.Drawing.Point(141, 0);
+            this.radioButtonHashedDictionary.Name = "radioButtonHashedDictionary";
+            this.radioButtonHashedDictionary.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonHashedDictionary.TabIndex = 47;
+            this.radioButtonHashedDictionary.Text = "Hashed";
+            this.radioButtonHashedDictionary.UseVisualStyleBackColor = true;
+            // 
             // checkBoxShowLog
             // 
             this.checkBoxShowLog.AutoSize = true;
@@ -201,7 +232,7 @@
             this.groupBoxTimeToCrack.Size = new System.Drawing.Size(153, 252);
             this.groupBoxTimeToCrack.TabIndex = 8;
             this.groupBoxTimeToCrack.TabStop = false;
-            this.groupBoxTimeToCrack.Text = "Time to crack calculator";
+            this.groupBoxTimeToCrack.Text = "Brute force attack estimator";
             // 
             // buttonCrackCalculate
             // 
@@ -363,16 +394,6 @@
             this.numericUpDownStopTimer.TabIndex = 35;
             this.numericUpDownStopTimer.ThousandsSeparator = true;
             // 
-            // checkBoxPerformanceMode
-            // 
-            this.checkBoxPerformanceMode.AutoSize = true;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(710, 337);
-            this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
-            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
-            this.checkBoxPerformanceMode.TabIndex = 34;
-            this.checkBoxPerformanceMode.Text = "PerformanceMode";
-            this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
-            // 
             // checkBoxSpecialChars
             // 
             this.checkBoxSpecialChars.AutoSize = true;
@@ -467,6 +488,7 @@
             0,
             0,
             0});
+            this.numericUpDownLenght.ValueChanged += new System.EventHandler(this.numericUpDownLenght_ValueChanged);
             // 
             // radioButtonRegularBruteForce
             // 
@@ -511,6 +533,16 @@
             this.textBoxBruteForce.TabIndex = 0;
             this.textBoxBruteForce.Text = "budakkecik";
             this.textBoxBruteForce.TextChanged += new System.EventHandler(this.textBoxBruteForceInput_TextChanged);
+            // 
+            // checkBoxPerformanceMode
+            // 
+            this.checkBoxPerformanceMode.AutoSize = true;
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(710, 337);
+            this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxPerformanceMode.TabIndex = 34;
+            this.checkBoxPerformanceMode.Text = "PerformanceMode";
+            this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // buttonRainbowTableAttack
             // 
@@ -706,36 +738,6 @@
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
             // 
-            // radioButtonRegularDictionary
-            // 
-            this.radioButtonRegularDictionary.AutoSize = true;
-            this.radioButtonRegularDictionary.Checked = true;
-            this.radioButtonRegularDictionary.Location = new System.Drawing.Point(7, 0);
-            this.radioButtonRegularDictionary.Name = "radioButtonRegularDictionary";
-            this.radioButtonRegularDictionary.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonRegularDictionary.TabIndex = 46;
-            this.radioButtonRegularDictionary.Text = "Regular";
-            this.radioButtonRegularDictionary.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonHashedDictionary
-            // 
-            this.radioButtonHashedDictionary.AutoSize = true;
-            this.radioButtonHashedDictionary.Location = new System.Drawing.Point(141, 0);
-            this.radioButtonHashedDictionary.Name = "radioButtonHashedDictionary";
-            this.radioButtonHashedDictionary.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonHashedDictionary.TabIndex = 47;
-            this.radioButtonHashedDictionary.Text = "Hashed";
-            this.radioButtonHashedDictionary.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.radioButtonRegularDictionary);
-            this.panel1.Controls.Add(this.radioButtonHashedDictionary);
-            this.panel1.Location = new System.Drawing.Point(2, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(208, 19);
-            this.panel1.TabIndex = 44;
-            // 
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
@@ -771,6 +773,8 @@
             this.Load += new System.EventHandler(this.PasswordForm_Load);
             this.groupBoxDictionary.ResumeLayout(false);
             this.groupBoxDictionary.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBoxTimeToCrack.ResumeLayout(false);
             this.groupBoxTimeToCrack.PerformLayout();
             this.groupBoxBruteForce.ResumeLayout(false);
@@ -782,8 +786,6 @@
             this.groupBoxRainbowTable.PerformLayout();
             this.groupBoxUI.ResumeLayout(false);
             this.groupBoxUI.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

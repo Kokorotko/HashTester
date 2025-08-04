@@ -1,6 +1,6 @@
 //Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm
 //!The program will only check the first format and texts!
 //<STRING> Supports UTF-8 format (example al85WTh)
-//<HEX> Supports 8D-B7/8DB7/8D B7 doesnt matter if lowercase or uppercase
+//<HEX> Supports 8D-B7/8DB7/8D B7 and 3a 5e 0 0 0 0 c doesnt matter if lowercase or uppercase
 //<BIN> Supports 0111 0001 with or without spaces between
 //There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160
