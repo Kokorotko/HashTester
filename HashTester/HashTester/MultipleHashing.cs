@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +49,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(223), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseChooseAtLeastOneAlgorithm), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -78,7 +78,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(223), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseChooseAtLeastOneAlgorithm), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -98,27 +98,27 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(10023), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
-            this.Name = Languages.Translate(706);
+            this.Name = Languages.Translate(Languages.L.MultiHasher);
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            labelInfo.Text = "*" + Languages.Translate(221);
-            checkBoxShowAlgorithm.Text = Languages.Translate(222) + "*";
-            buttonClipboard.Text = Languages.Translate(10002);
-            buttonClearListBox.Text = Languages.Translate(10000);
-            buttonSaveLog.Text = Languages.Translate(10001);
-            buttonHashSimpleText.Text = Languages.Translate(31);
-            buttonTXTInput.Text = Languages.Translate(32);
-            buttonGoBack.Text = Languages.Translate(10006);
+            labelInfo.Text = "*" + Languages.Translate(Languages.L.WillOverwriteTheIncludeHashingAlgorithmInTheOutputStyleSettings);
+            checkBoxShowAlgorithm.Text = Languages.Translate(Languages.L.ShowAlgorithm) + "*";
+            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
+            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
+            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
+            buttonTXTInput.Text = Languages.Translate(Languages.L.HashAFile);
+            buttonGoBack.Text = Languages.Translate(Languages.L.GoBack);
             #endregion
         }
     }

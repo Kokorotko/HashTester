@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -54,7 +54,7 @@ namespace HashTester
             TurnOffUI();
             ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
-            if (maxAttempts > 0 && checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(603) + ": " + maxAttempts); 
+            if (maxAttempts > 0 && checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.AttemptsLimit) + ": " + maxAttempts); 
             int rngTextLenght = (int)numericUpDown2.Value;
             switch (hashSelector.SelectedIndex)
             {
@@ -70,13 +70,13 @@ namespace HashTester
             {
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(114));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInPerformanceMode));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(115)  + ": "+ maxThreads);
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned)  + ": "+ maxThreads);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }                
                 for (int i = 0; i < maxThreads - 1; i++) //multiThread
@@ -89,7 +89,7 @@ namespace HashTester
             {
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(116));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInNormalMode));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
@@ -102,53 +102,53 @@ namespace HashTester
                 //LogOutput
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(117));
-                    listBoxLog.Items.Add(Languages.Translate(118) + " 1: " + (textCollision01));
-                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(118) + " 1 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision01));
-                    listBoxLog.Items.Add(Languages.Translate(118) + " 2: " + (textCollision02));
-                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(118) + " 2 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision02));
-                    listBoxLog.Items.Add(Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm));
-                    listBoxLog.Items.Add(Languages.Translate(120) + ": " + attempts);
-                    try { listBoxLog.Items.Add(Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]); } //so that I dont have to format it again :)
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionFound));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1: " + (textCollision01));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision01));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 2: " + (textCollision02));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision02));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionHash) + ": " + hasher.Hash(textCollision01, algorithm));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.Attempts) + ": " + attempts);
+                    try { listBoxLog.Items.Add(Languages.Translate(Languages.L.TimeToFind) + ": " + labelTimer.Text.Split(' ')[1]); } //so that I dont have to format it again :)
                     catch { /*Hi :3*/ }
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 //MessageBoxOutput
-                string message = Languages.Translate(117) + Environment.NewLine + Languages.Translate(118) + " 1: " + textCollision01;
-                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(118) + " 1 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision01);
-                message += Environment.NewLine + Languages.Translate(118) + " 2: " + textCollision02;
-                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(118) + " 2 (" + Languages.Translate(10037) + "): " + ConvertStringToHex(textCollision02);
-                message += Environment.NewLine + Languages.Translate(119) + ": " + hasher.Hash(textCollision01, algorithm) + 
-                    Environment.NewLine + Languages.Translate(120) + ": " + attempts;
+                string message = Languages.Translate(Languages.L.CollisionFound) + Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 1: " + textCollision01;
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision01);
+                message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 2: " + textCollision02;
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision02);
+                message += Environment.NewLine + Languages.Translate(Languages.L.CollisionHash) + ": " + hasher.Hash(textCollision01, algorithm) + 
+                    Environment.NewLine + Languages.Translate(Languages.L.Attempts) + ": " + attempts;
                 listBoxLog.Items.Add(message);
-                try { message += Environment.NewLine + Languages.Translate(121) + ": " + labelTimer.Text.Split(' ')[1]; }
+                try { message += Environment.NewLine + Languages.Translate(Languages.L.TimeToFind) + ": " + labelTimer.Text.Split(' ')[1]; }
                 catch { /*Back again?*/}
                 CollisionFoundMessageBox(message, textCollision01, textCollision02);
             }
             else if (stopHashing)
             {
-                MessageBox.Show(Languages.Translate(10017), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(10017));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             }
             else if (attemptsRanOut)
             {
-                MessageBox.Show(Languages.Translate(10016), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindACollisionUnderTheGivenAttempts), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(10016));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindACollisionUnderTheGivenAttempts));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             }
             else
             {
-                MessageBox.Show(Languages.Translate(10018), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindCollision), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(10018));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindCollision));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             } 
@@ -197,8 +197,8 @@ namespace HashTester
                             foundCollision = true;
                             if (saveLog)
                             {
-                                string s = Languages.Translate(122) + ": " + collision1 + " " + Languages.Translate(10021) + " " + collision2;
-                                if (useHexForOutput) s = Languages.Translate(122) + ": " + ConvertStringToHex(collision1) + " " + Languages.Translate(10021) + " " + ConvertStringToHex(collision2);
+                                string s = Languages.Translate(Languages.L.FoundCollision) + ": " + collision1 + " " + Languages.Translate(Languages.L.And) + " " + collision2;
+                                if (useHexForOutput) s = Languages.Translate(Languages.L.FoundCollision) + ": " + ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + ConvertStringToHex(collision2);
                                 Invoke((Action)(() => listBoxLog.Items.Add(s)));
                                 Invoke((Action)(() => listBoxLog.TopIndex = listBoxLog.Items.Count - 1));
                             }
@@ -248,17 +248,17 @@ namespace HashTester
                 {
                     int seconds = (int)(stopwatch.ElapsedMilliseconds / 1000);
                     int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
-                    labelTimer.Text = Languages.Translate(10009) + ": " + seconds + "." + milliseconds + " s";
+                    labelTimer.Text = Languages.Translate(Languages.L.Timer) + ": " + seconds + "." + milliseconds + " s";
                     int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
                     numberOfAttempsInLastUpdate = attempts;
                     //Attempts
-                    labelAttempts.Text = Languages.Translate(10010) + ": " + attempts;
+                    labelAttempts.Text = Languages.Translate(Languages.L.NumberOfAttempts) + ": " + attempts;
                     //Update Speed
                     double speed = triesBetween / (Settings.UpdateUIms / 1000.0);
-                    labelCurrentSpeed.Text = Languages.Translate(10011) + ": " + Math.Floor(speed);
+                    labelCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeed) + ": " + Math.Floor(speed);
                     //Update Average Speed
                     double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
-                    labelAverageSpeed.Text = Languages.Translate(10012) + ": " + Math.Floor(averageSpeed);
+                    labelAverageSpeed.Text = Languages.Translate(Languages.L.AverageSpeed) + ": " + Math.Floor(averageSpeed);
                     //listbox
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
                 }
@@ -269,7 +269,7 @@ namespace HashTester
 
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
         {           
-            if (MessageBox.Show(Languages.Translate(123), Languages.Translate(46), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(Languages.Translate(Languages.L.WouldYouLikeToSaveCollisionToATxtFile), Languages.Translate(Languages.L.Confirmation), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 string path = Path.GetFullPath(Settings.DirectoryPathToCollisions);
                 string path2 = "";
@@ -300,7 +300,7 @@ namespace HashTester
                     writer.WriteLine("hash2: " + hasher.Hash(collisionText02, algorithm));
                 }
             }
-            MessageBox.Show(message, Languages.Translate(117), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message, Languages.Translate(Languages.L.CollisionFound), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
@@ -310,7 +310,7 @@ namespace HashTester
         {
             CheckCollisionForm checkCollisionForm = new CheckCollisionForm();
             checkCollisionForm.StartPosition = FormStartPosition.CenterScreen;
-            checkCollisionForm.Name = Languages.Translate(15003);
+            checkCollisionForm.Name = Languages.Translate(Languages.L.HashCollisionChecker);
             checkCollisionForm.Show();
         }       
 
@@ -373,23 +373,23 @@ namespace HashTester
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
             #region Languages
-            this.Name = Languages.Translate(704);
-            buttonCheckCollision.Text = Languages.Translate(111);
-            buttonGenerateCollision.Text = Languages.Translate(112);            
-            buttonAbort.Text = Languages.Translate(10005);
-            buttonReturn.Text = Languages.Translate(10006);
-            labelAttempts.Text = Languages.Translate(10010);
-            labelAverageSpeed.Text = Languages.Translate(10012);
-            labelCurrentSpeed.Text = Languages.Translate(10011);
-            labelLenght.Text = Languages.Translate(10008);
-            labelTimer.Text = Languages.Translate(10009);
-            checkBoxListBoxLog.Text = Languages.Translate(10013);
-            checkBoxPerformanceMode.Text = Languages.Translate(10015);
-            checkBoxUseHex.Text = Languages.Translate(10014);
-            buttonClearListBox.Text = Languages.Translate(10000);
-            buttonClipboard.Text = Languages.Translate(10002);
-            buttonSaveLog.Text = Languages.Translate(10001);
-            groupBoxUI.Text = Languages.Translate(10036);
+            this.Name = Languages.Translate(Languages.L.CollisionFinder);
+            buttonCheckCollision.Text = Languages.Translate(Languages.L.CheckCollision);
+            buttonGenerateCollision.Text = Languages.Translate(Languages.L.GenerateACollision);            
+            buttonAbort.Text = Languages.Translate(Languages.L.CancelTheProcess);
+            buttonReturn.Text = Languages.Translate(Languages.L.GoBack);
+            labelAttempts.Text = Languages.Translate(Languages.L.NumberOfAttempts);
+            labelAverageSpeed.Text = Languages.Translate(Languages.L.AverageSpeed);
+            labelCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeed);
+            labelLenght.Text = Languages.Translate(Languages.L.LenghtOfTheRandomText);
+            labelTimer.Text = Languages.Translate(Languages.L.Timer);
+            checkBoxListBoxLog.Text = Languages.Translate(Languages.L.ShowLogInListbox);
+            checkBoxPerformanceMode.Text = Languages.Translate(Languages.L.PerformanceMode);
+            checkBoxUseHex.Text = Languages.Translate(Languages.L.UseHexToDisplayText);
+            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
+            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
+            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            groupBoxUI.Text = Languages.Translate(Languages.L.Ui);
             #endregion
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
@@ -397,13 +397,13 @@ namespace HashTester
             Console.Write(path + "_collisionInfo.txt");
             if (!File.Exists(path + "_collisionInfo.txt"))
             {
-                string s = Languages.Translate(130) + Environment.NewLine +
-                               Languages.Translate(131) + Environment.NewLine +
-                               Languages.Translate(132) + Environment.NewLine +
-                               Languages.Translate(133) + Environment.NewLine +
-                               Languages.Translate(134) + Environment.NewLine +
-                               Languages.Translate(135) + Environment.NewLine +
-                               Languages.Translate(136);
+                string s = Languages.Translate(Languages.L.CommentThisProgramSupportsFormatsStringHexBinAndWorksOnLinesFirstIsFormatThenTwoLinesWillBeReadAndComparedForAnExampleTryToGenerateACollisionInHashingcollisionform) + Environment.NewLine +
+                               Languages.Translate(Languages.L.TheProgramWillOnlyCheckTheFirstFormatAndTexts) + Environment.NewLine +
+                               Languages.Translate(Languages.L.StringSupportsUtf8FormatExampleAl85wth) + Environment.NewLine +
+                               Languages.Translate(Languages.L.HexSupports8db7Or8db7DoesntMatterIfLowercaseOrUppercase) + Environment.NewLine +
+                               Languages.Translate(Languages.L.BinSupports01110001WithOrWithoutSpacesBetween) + Environment.NewLine +
+                               Languages.Translate(Languages.L.ThereMustAlwaysBeAnAlgorithmAndItMustBeBeforeTheFormatSupportedFormatsMd5sha1sha256sha512ripemd160crc32ExampleAlgorithmripemd160) + Environment.NewLine +
+                               Languages.Translate(Languages.L.InHashYouCanFindBothHashesForText1And2ThisIsJustForUserAndCanBeChangedFreelyWhyWouldYouDoThatTho);
                 File.WriteAllText(path + "_collisionInfo.txt", s);
                 Console.WriteLine("Generated _collisionInfo.txt into the " + path);
             }
@@ -414,11 +414,11 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(10023), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show(Languages.Translate(1003),Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(1003),Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

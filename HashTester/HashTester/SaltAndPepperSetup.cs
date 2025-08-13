@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -36,19 +36,19 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            this.Name = Languages.Translate(708);
-            groupBoxSalt.Text = Languages.Translate(402);
-            groupBoxPepper.Text = Languages.Translate(403);
-            radioButtonSaltGen.Text = Languages.Translate(404); //hehe funny web number
-            radioButtonPepperGen.Text = Languages.Translate(405);
-            labelLenghtSalt.Text = Languages.Translate(406);
-            labelLenghtPepper.Text = Languages.Translate(407);
-            radioButtonSaltOwn.Text = Languages.Translate(408);
-            radioButtonPepperOwn.Text = Languages.Translate(409);
-            labelOwnSalt.Text = Languages.Translate(410);
-            labelOwnPepper.Text = Languages.Translate(411);
-            labelID.Text = Languages.Translate(412);
-            buttonGenerate.Text = Languages.Translate(413);
+            this.Name = Languages.Translate(Languages.L.SaltAndPepperChooser);
+            groupBoxSalt.Text = Languages.Translate(Languages.L.Salt);
+            groupBoxPepper.Text = Languages.Translate(Languages.L.Pepper);
+            radioButtonSaltGen.Text = Languages.Translate(Languages.L.GenerateSalt); //hehe funny web number
+            radioButtonPepperGen.Text = Languages.Translate(Languages.L.GeneratePepper);
+            labelLenghtSalt.Text = Languages.Translate(Languages.L.LenghtOfSalt);
+            labelLenghtPepper.Text = Languages.Translate(Languages.L.LenghtOfPepper);
+            radioButtonSaltOwn.Text = Languages.Translate(Languages.L.IncludeOwnSalt);
+            radioButtonPepperOwn.Text = Languages.Translate(Languages.L.IncludeOwnPepper);
+            labelOwnSalt.Text = Languages.Translate(Languages.L.OwnSalt);
+            labelOwnPepper.Text = Languages.Translate(Languages.L.OwnPepper);
+            labelID.Text = Languages.Translate(Languages.L.IdOfHash);
+            buttonGenerate.Text = Languages.Translate(Languages.L.Generate);
             #endregion
             textBoxSalt.Enabled = false;
             textBoxPepper.Enabled = false;
@@ -66,7 +66,7 @@ namespace HashTester
             else
             {
 
-                if (MessageBox.Show(Languages.Translate(414), Languages.Translate(10030), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show(Languages.Translate(Languages.L.IfYouDontSetHashidSaltNorPepperWillBeSavedDoYouWishToContinue), Languages.Translate(Languages.L.Question), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     DialogResult = DialogResult.OK;
                 }
@@ -163,7 +163,7 @@ namespace HashTester
             string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");
             if (File.Exists(path))
             {                
-                if (MessageBox.Show(Languages.Translate(401), Languages.Translate(10025), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show(Languages.Translate(Languages.L.DoYouReallyWantToOverrideAnotherHashIdYouCouldLoseData), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     File.Delete(path);
                     return true;

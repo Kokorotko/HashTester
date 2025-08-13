@@ -77,7 +77,6 @@
 //ToolStrip Menu <<0-30>>
 0==Hashing
 1==Salt and Pepper
-2==Multiple Hashing
 3==Finding Collisions
 4==Password Cracker
 5==Use Salt
@@ -111,8 +110,7 @@
 37==Calculate all checksums
 
 //Messages <<41-100>>
-41==Input přerušen
-42==Please select an item from the log listbox before copying.
+41==Input cancelled
 45==Are you sure you want to reset all settings?
 46==Confirmation
 47==File doesnt exists.
@@ -126,10 +124,6 @@
 55==File has not been saved.
 56==An error has occured. Please contact the creator and report this bug.
 57==Please select a hash for checksum.
-
-//**Gradual Hashing <<101-110>>
-101==Gradual hashing
-102==Please select an item from the log listbox before copying.
 103==Please set text before hashing.
 104==will NOT use salt/pepper
 
@@ -162,7 +156,6 @@
 //**CheckCollisionForm <<201-220>>
 201==Input format
 202==String
-203==HEX
 204==Binary
 205==Text
 206==Check
@@ -175,10 +168,8 @@
 //**PasswordForm <<241-500>>
 241==Progress bar
 242==Abort the process
-243==Number of attempts
 244==Current speed /s
 245==Average speed /s
-246==Show log in listBox
 247==Dictionary attack
 248==Brute force time estimator
 249==Rainbow table attack
@@ -201,13 +192,10 @@
 263==Calculate
 
 //Rainbow Table attack
-264==Text
 265==Hash
 266==Generate rainbow table
-267==Rainbow Table attack
 
 //Brute force attack
-268==Maximum attempts
 269==Lenght
 270==Stop timer (sec)
 271==Unknown Lenght
@@ -221,7 +209,6 @@
 277==Path to wordlist
 278==No path selected, cancelling process.
 279==The user has aborted the process.
-280==Password
 281==has been found in wordlist at line
 282==I recommend using a different password.
 283==has not been found in wordlist. Good Job.
@@ -250,9 +237,6 @@
 306==Performance Mode Off
 307==Password found!
 308==Original hash
-309==Found password hash
-310==Found password in UTF-8
-311==Found password in HEX
 312==Could not find a password under the given attempts.
 313==Could not find the original password.
 314==Would you like to save found password to a txt file?
@@ -299,7 +283,6 @@
 438==Name
 439==Manufacturer
 440==Number of cores
-441==Number of threads
 442==Max clock speed
 443==CPU description
 444==Unknown
@@ -419,7 +402,6 @@
 704==Collision Finder
 705==Collision Checker
 706==Multi Hasher
-707==Password Tester
 708==Salt and Pepper Chooser
 709==Salt and Pepper Tester
 710==Thread Manager

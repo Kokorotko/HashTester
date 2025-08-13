@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -145,7 +145,7 @@ namespace HashTester
                                     lineFoundMatch[i] = CurrentLine;
                                     foundMatch[i] = true;
                                     foundPassword[i] = "'" + line + "' (" + tempHash + ")";
-                                    logOutput.Add(Languages.Translate(573) + " " + FoundPassword[i] +  " " + Languages.Translate(574) + ": " + CurrentLine);
+                                    logOutput.Add(Languages.Translate(Languages.L.Found) + " " + FoundPassword[i] +  " " + Languages.Translate(Languages.L.OnLine) + ": " + CurrentLine);
                                     if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
                                     {
                                         stopwatch.Stop();
@@ -159,7 +159,7 @@ namespace HashTester
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     stopwatch.Stop();
                     return;
                 }
@@ -194,7 +194,7 @@ namespace HashTester
                                     lineFoundMatch[i] = CurrentLine;
                                     foundMatch[i] = true;
                                     foundPassword[i] = line;
-                                    logOutput.Add(Languages.Translate(573) + " " + FoundPassword[i] + " " + Languages.Translate(574) + ": " + CurrentLine);
+                                    logOutput.Add(Languages.Translate(Languages.L.Found) + " " + FoundPassword[i] + " " + Languages.Translate(Languages.L.OnLine) + ": " + CurrentLine);
                                     if (Array.TrueForAll(FoundMatch, value => value)) //If every bool in array is true ==> found all passwords
                                     {
                                         stopwatch.Stop();
@@ -208,7 +208,7 @@ namespace HashTester
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     stopwatch.Stop();
                     return;
                 }

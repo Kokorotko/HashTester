@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.Eventing.Reader;
 using System.Management;
 using System.Windows.Forms;
@@ -122,24 +122,24 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            this.Name = Languages.Translate(710);
-            labelHowMany.Text = Languages.Translate(421);
-            labelThreads.Text = Languages.Translate(422);
-            labelPercentages.Text = Languages.Translate(423);
-            labelMaxThreads.Text = Languages.Translate(424);
-            labelFrom0to100.Text = Languages.Translate(425);
-            radioButtonThread1.Text = Languages.Translate(426);
-            radioButtonThread2.Text = Languages.Translate(427);
-            radioButtonThread3.Text = Languages.Translate(428);
-            radioButtonThread4.Text = Languages.Translate(429);
-            radioButtonThreadMax.Text = Languages.Translate(430);
-            labelZeroPercent.Text = Languages.Translate(431);
-            labelPreference.Text = "*" + Languages.Translate(432);
-            labelCalculations.Text = "*" + Languages.Translate(433);
-            buttonSave.Text = Languages.Translate(434);
-            buttonDefault.Text = Languages.Translate(435);
-            buttonCancel.Text = Languages.Translate(436);
-            groupBox1.Text = Languages.Translate(437);
+            this.Name = Languages.Translate(Languages.L.ThreadManager);
+            labelHowMany.Text = Languages.Translate(Languages.L.HowManyThreadsDoYouWantToUseInAProgram);
+            labelThreads.Text = Languages.Translate(Languages.L.NumberOfThreads);
+            labelPercentages.Text = Languages.Translate(Languages.L.PercentageOfThreadsUsed);
+            labelMaxThreads.Text = Languages.Translate(Languages.L.From1ToMaxNumberOfThreads);
+            labelFrom0to100.Text = Languages.Translate(Languages.L.From0To100);
+            radioButtonThread1.Text = Languages.Translate(Languages.L.SingleThread);
+            radioButtonThread2.Text = Languages.Translate(Languages.L.Threads2);
+            radioButtonThread3.Text = Languages.Translate(Languages.L.Threads4);
+            radioButtonThread4.Text = Languages.Translate(Languages.L.Threads8);
+            radioButtonThreadMax.Text = Languages.Translate(Languages.L.MaximumNumberOfThreads);
+            labelZeroPercent.Text = Languages.Translate(Languages.L.MeansOnlyOneThreadMayBeUsedAtAllTimes0);
+            labelPreference.Text = "*" + Languages.Translate(Languages.L.KnowThatPercentagesArePreferedByTheComputer);
+            labelCalculations.Text = "*" + Languages.Translate(Languages.L.LowerThreadCountCanSlowDownCalculations);
+            buttonSave.Text = Languages.Translate(Languages.L.Save);
+            buttonDefault.Text = Languages.Translate(Languages.L.Default);
+            buttonCancel.Text = Languages.Translate(Languages.L.Cancel);
+            groupBox1.Text = Languages.Translate(Languages.L.CpuInfo);
             #endregion
             // Get CPU Information using WMI
             try
@@ -147,17 +147,17 @@ namespace HashTester
                 ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
                 foreach (ManagementObject obj in searcher.Get())
                 {
-                    labelCPUName.Text = Languages.Translate(438) + ": " + (obj["Name"] ?? Languages.Translate(444));
-                    labelCPUManufacturer.Text = Languages.Translate(439) + ": " + (obj["Manufacturer"] ?? Languages.Translate(444));
-                    labelCPUDescription.Text = Languages.Translate(443) + ": " + (obj["Description"] ?? Languages.Translate(444));
-                    labelCPUCores.Text = Languages.Translate(440) +": " + (obj["NumberOfCores"] ?? Languages.Translate(444));
-                    labelCPUThread.Text = Languages.Translate(441) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(444));
-                    labelCPUMaxSpeed.Text = Languages.Translate(442) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(444)) + " " + Languages.Translate(445);
+                    labelCPUName.Text = Languages.Translate(Languages.L.Name) + ": " + (obj["Name"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUManufacturer.Text = Languages.Translate(Languages.L.Manufacturer) + ": " + (obj["Manufacturer"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUDescription.Text = Languages.Translate(Languages.L.CpuDescription) + ": " + (obj["Description"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUCores.Text = Languages.Translate(Languages.L.NumberOfCores) +": " + (obj["NumberOfCores"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUThread.Text = Languages.Translate(441) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUMaxSpeed.Text = Languages.Translate(Languages.L.MaxClockSpeed) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(Languages.L.Unknown)) + " " + Languages.Translate(Languages.L.Mhz);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Languages.Translate(446) + ": " + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.ErrorFetchingCpuDetails) + ": " + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             percentage = Settings.ThreadsUsagePercentage;
             if (percentage == 100)
@@ -239,7 +239,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(447), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseSetThePercentageValueFrom0To100), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -253,7 +253,7 @@ namespace HashTester
             Console.WriteLine("unsavedChanges: " + unsavedChanges);
             if (unsavedChanges)
             {
-                DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                DialogResult temp = MessageBox.Show(Languages.Translate(Languages.L.ThereAreUnsavedChangesDoYouWishToSaveThem), Languages.Translate(Languages.L.Warning), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 switch (temp)
                 {
                     case DialogResult.Yes:
@@ -267,7 +267,7 @@ namespace HashTester
                             }
                             catch (Exception)
                             {
-                                MessageBox.Show(Languages.Translate(447), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(Languages.Translate(Languages.L.PleaseSetThePercentageValueFrom0To100), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 e.Cancel = true;
                             }                           
                             break;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
@@ -42,17 +42,17 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            this.Name = Languages.Translate(711);
-            labelQuestion.Text = Languages.Translate(501);
-            labelFPS.Text = Languages.Translate(502);
-            labelTimeToUpdate.Text = Languages.Translate(503);
-            labelRangeFPS.Text = Languages.Translate(504);
-            labelRangeT.Text = Languages.Translate(505);
-            labelInfo.Text = Languages.Translate(506);
-            labelInfo2.Text = Languages.Translate(507);
-            buttonSave.Text = Languages.Translate(434);
-            buttonDefault.Text = Languages.Translate(435);
-            buttonCancel.Text = Languages.Translate(436);
+            this.Name = Languages.Translate(Languages.L.UiManager);
+            labelQuestion.Text = Languages.Translate(Languages.L.HowManyTimesASecondDoYouWantToUpdateTheUiForSpecificOperations);
+            labelFPS.Text = Languages.Translate(Languages.L.TargetFramesPerSecond);
+            labelTimeToUpdate.Text = Languages.Translate(Languages.L.TimeToUpdateMiliseconds);
+            labelRangeFPS.Text = Languages.Translate(Languages.L.PleaseSetNumberFrom1To125);
+            labelRangeT.Text = Languages.Translate(Languages.L.PleaseSetNumbersFrom8To1000);
+            labelInfo.Text = Languages.Translate(Languages.L.KnowThatMilisecondsArePreferedByTheComputer);
+            labelInfo2.Text = Languages.Translate(Languages.L.HigherRefreshRateCanCausePerformanceIssues);
+            buttonSave.Text = Languages.Translate(Languages.L.Save);
+            buttonDefault.Text = Languages.Translate(Languages.L.Default);
+            buttonCancel.Text = Languages.Translate(Languages.L.Cancel);
             #endregion
             miliseconds = Settings.UpdateUIms;
             fps = (int)Math.Ceiling(1000.0 / miliseconds);
@@ -168,12 +168,12 @@ namespace HashTester
                 }
                 else
                 {
-                    MessageBox.Show(Languages.Translate(508) + "(8-1000ms).", Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidValues) + "(8-1000ms).", Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.InvalidValuesPleaseEnterWholeNumbersOnly), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }    
         }
 
@@ -183,7 +183,7 @@ namespace HashTester
             if (Settings.UpdateUIms == Miliseconds) unsavedChanges = false;
             if (unsavedChanges)
             {
-                DialogResult temp = MessageBox.Show(Languages.Translate(602), Languages.Translate(10025), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                DialogResult temp = MessageBox.Show(Languages.Translate(Languages.L.ThereAreUnsavedChangesDoYouWishToSaveThem), Languages.Translate(Languages.L.Warning), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 switch (temp)
                 {
                     case DialogResult.Yes:
@@ -198,14 +198,14 @@ namespace HashTester
                                 else
                                 {
                                     e.Cancel = true;
-                                    MessageBox.Show(Languages.Translate(508) + " (8-1000ms).", Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidValues) + " (8-1000ms).", Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     break;
                                 }
                             }
                             else
                             {
                                 e.Cancel = true;
-                                MessageBox.Show(Languages.Translate(509), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(Languages.Translate(Languages.L.InvalidValuesPleaseEnterWholeNumbersOnly), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
                             }
                             DialogResult = DialogResult.OK; 

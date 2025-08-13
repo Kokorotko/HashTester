@@ -1,2 +1,0 @@
-CRC32 Same Hash: https://stackoverflow.com/questions/59183626/crc32-is-the-same-for-different-inputs
-All Hashing used for Unit Tests: https://www.browserling.com/tools/all-hashes

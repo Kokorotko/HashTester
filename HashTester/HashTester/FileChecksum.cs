@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,19 +64,19 @@ namespace HashTester
 
         private void File_checksum_Load(object sender, EventArgs e)
         {
-            this.Name = Languages.Translate(702);
+            this.Name = Languages.Translate(Languages.L.FileChecksumTool);
             Settings.LoadSettings();
             FormManagement.SetUpFormTheme(this);
             #region Langugages
-            buttonFile.Text = Languages.Translate(35);
-            buttonChecksum.Text = Languages.Translate(36);
-            groupBoxChecksum.Text = Languages.Translate(54);
-            buttonCopyMD5.Text = Languages.Translate(10029) + " MD5";
-            button1.Text = Languages.Translate(10029) + " SHA1";
-            button2.Text = Languages.Translate(10029) + " SHA256";
-            button3.Text = Languages.Translate(10029) + " SHA512";
-            button4.Text = Languages.Translate(10029) + " RipeMD-160";
-            button5.Text = Languages.Translate(10029) + " CRC32";
+            buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
+            buttonChecksum.Text = Languages.Translate(Languages.L.ChecksumCheck);
+            groupBoxChecksum.Text = Languages.Translate(Languages.L.Checksum);
+            buttonCopyMD5.Text = Languages.Translate(Languages.L.Copy) + " MD5";
+            button1.Text = Languages.Translate(Languages.L.Copy) + " SHA1";
+            button2.Text = Languages.Translate(Languages.L.Copy) + " SHA256";
+            button3.Text = Languages.Translate(Languages.L.Copy) + " SHA512";
+            button4.Text = Languages.Translate(Languages.L.Copy) + " RipeMD-160";
+            button5.Text = Languages.Translate(Languages.L.Copy) + " CRC32";
             #endregion
         }
         #region Copy
@@ -88,7 +88,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -100,7 +100,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -112,7 +112,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -124,7 +124,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -136,7 +136,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -148,7 +148,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -167,14 +167,14 @@ namespace HashTester
                 case 40:
                     {
                         //SHA1 and RipeMD160 are the same lenght
-                        if (MessageBox.Show(Languages.Translate(48), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) fileAlgorithm = Hasher.HashingAlgorithm.SHA1;
+                        if (MessageBox.Show(Languages.Translate(Languages.L.DoYouUseSha1YesOrRipemd160No), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) fileAlgorithm = Hasher.HashingAlgorithm.SHA1;
                         else fileAlgorithm = Hasher.HashingAlgorithm.RIPEMD160;                        
                         break;
                     }
                 case 64: fileAlgorithm = Hasher.HashingAlgorithm.SHA256; break;
                 case 128: fileAlgorithm = Hasher.HashingAlgorithm.SHA512; break;
                 case 8: fileAlgorithm = Hasher.HashingAlgorithm.CRC32; break;
-                default: MessageBox.Show(Languages.Translate(49), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false; break;
+                default: MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false; break;
             }
             if (!isFileAlgorithmSelected) return;
             using (OpenFileDialog dialog = new OpenFileDialog())
@@ -195,7 +195,7 @@ namespace HashTester
         private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm fileAlgorithm)
         {
             TurnOffUI();
-            labelLocation.Text = Languages.Translate(34) + ": " + filename;
+            labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
             //get what algorithms to file checksum
             bool[] useAlgorithm =
             {
@@ -215,7 +215,7 @@ namespace HashTester
             }
             if (!anySelected)
             {
-                MessageBox.Show(Languages.Translate(57), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -226,8 +226,8 @@ namespace HashTester
                     string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
                     if ((Hasher.HashingAlgorithm)i == fileAlgorithm)
                     {
-                        if (checksum == hash) MessageBox.Show(Languages.Translate(50), Languages.Translate(52), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else MessageBox.Show(Languages.Translate(51), Languages.Translate(53), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (checksum == hash) MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Correct), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     switch ((Hasher.HashingAlgorithm)i)
                     {
@@ -246,7 +246,7 @@ namespace HashTester
         private void GenerateCheckSum(string filename)
         {
             TurnOffUI();
-            labelLocation.Text = Languages.Translate(34) + ": " + filename;
+            labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
             //get what algorithms to file checksum
             bool[] useAlgorithm =
             {
@@ -269,7 +269,7 @@ namespace HashTester
             }
             if (!anySelected)
             {
-                MessageBox.Show(Languages.Translate(57), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             //Code

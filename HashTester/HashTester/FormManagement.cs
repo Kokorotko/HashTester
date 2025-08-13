@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.IO;
@@ -29,16 +29,16 @@ namespace HashTester
             {
                 using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                 {
-                    writer.WriteLine(Languages.Translate(551)  + ": " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
-                    writer.WriteLine(Languages.Translate(552) +  ": " + form.Name);
+                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedOn)  + ": " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
+                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedFrom) +  ": " + form.Name);
                     foreach (string item in listbox.Items)
                     {
                         writer.WriteLine(item);
                     }
                 }
-                MessageBox.Show(Languages.Translate(553), Languages.Translate(10028), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Languages.Translate(Languages.L.LogSaveSuccessfully), Languages.Translate(Languages.L.Saved), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else MessageBox.Show(Languages.Translate(554), Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else MessageBox.Show(Languages.Translate(Languages.L.LogSaveAbbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }        
         public static int NumberOfThreadsToUse()
         {

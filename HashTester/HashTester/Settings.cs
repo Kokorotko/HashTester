@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -233,32 +233,32 @@ namespace HashTester
         {
             using (StreamWriter writer = new StreamWriter(fileSettings))
             {
-                writer.WriteLine("//" + Languages.Translate(589));
-                writer.WriteLine("//" + Languages.Translate(590));
-                writer.WriteLine("//" + Languages.Translate(591));
-                writer.WriteLine("//" + Languages.Translate(592));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.WarningIfTheresNothingAfterTheItWillSetTheSettingIntoDefault));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.BoolMeans0FalseAnd1TrueEverythingOtherTakesSpecialInput));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.IHaveIncludedCommentsOnWhatValueIsAllowedOtherwiseADefaultValueWillBeSet));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.VisualmodeFrom0To2));
                 switch (VisualMode)
                 {
                     case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
                     case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
                     case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
                 }
-                writer.WriteLine("//" + Languages.Translate(593));
-                writer.WriteLine("//" + Languages.Translate(594));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.UpdateuiInMiliseconds));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber81000));
                 writer.WriteLine("UIupdateInMS=" + UpdateUIms);
-                writer.WriteLine("//" + Languages.Translate(595));
-                writer.WriteLine("//" + Languages.Translate(596));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.NumberOfThreadsMaxUsedInPercentage));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber1100));
                 writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
-                writer.WriteLine("//" + Languages.Translate(597));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.PreferredLanguage));
                 writer.WriteLine("language=" + SelectedLanguage);
-                writer.WriteLine("//" + Languages.Translate(598));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.OutputtypeFrom0To2));
                 switch (OutputType)
                 {
                     case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
                     case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
                     case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
                 }
-                writer.WriteLine("//" + Languages.Translate(599));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.AllOutputstylesAreBool));
                 if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
                 else writer.WriteLine("outputStyle_IncludeOriginalString=0");
                 if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
@@ -267,7 +267,7 @@ namespace HashTester
                 else writer.WriteLine("outputStyle_IncludeNumber=0");
                 if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
                 else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
-                writer.WriteLine("//" + Languages.Translate(600));
+                writer.WriteLine("//" + Languages.Translate(Languages.L.SaltAndPepperBool));
                 if (UseSalt) writer.WriteLine("useSalt=1");
                 else writer.WriteLine("useSalt=0");
                 if (UsePepper) writer.WriteLine("usePepper=1");
@@ -280,12 +280,12 @@ namespace HashTester
     }
     catch (UnauthorizedAccessException)
     {
-        MessageBox.Show(Languages.Translate(11008), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
         Application.Exit();
     }
     catch (Exception ex)
     {
-        MessageBox.Show(Languages.Translate(11009) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
     }
 }
@@ -552,6 +552,8 @@ namespace HashTester
                     }
                 }
                 //Languages
+
+                #region Language English
                 if (!Directory.Exists(Settings.DirectoryToLanguages))
                 {
                     Directory.CreateDirectory(Settings.DirectoryToLanguages);
@@ -606,6 +608,7 @@ namespace HashTester
                         writer.WriteLine("10037==Hex");
                         writer.WriteLine("10038==Current version");
                         writer.WriteLine("10039==Program made by");
+                        writer.WriteLine("10040==2fast4you");
                         writer.WriteLine("");
                         writer.WriteLine("//**Try and Catch <<11000-12000>>");
                         writer.WriteLine("11000==An error has occured in the program.");
@@ -639,7 +642,6 @@ namespace HashTester
                         writer.WriteLine("//ToolStrip Menu <<0-30>>");
                         writer.WriteLine("0==Hashing");
                         writer.WriteLine("1==Salt and Pepper");
-                        writer.WriteLine("2==Multiple Hashing");
                         writer.WriteLine("3==Finding Collisions");
                         writer.WriteLine("4==Password Cracker");
                         writer.WriteLine("5==Use Salt");
@@ -673,8 +675,7 @@ namespace HashTester
                         writer.WriteLine("37==Calculate all checksums");
                         writer.WriteLine("");
                         writer.WriteLine("//Messages <<41-100>>");
-                        writer.WriteLine("41==Input přerušen");
-                        writer.WriteLine("42==Please select an item from the log listbox before copying.");
+                        writer.WriteLine("41==Input cancelled");
                         writer.WriteLine("45==Are you sure you want to reset all settings?");
                         writer.WriteLine("46==Confirmation");
                         writer.WriteLine("47==File doesnt exists.");
@@ -688,10 +689,6 @@ namespace HashTester
                         writer.WriteLine("55==File has not been saved.");
                         writer.WriteLine("56==An error has occured. Please contact the creator and report this bug.");
                         writer.WriteLine("57==Please select a hash for checksum.");
-                        writer.WriteLine("");
-                        writer.WriteLine("//**Gradual Hashing <<101-110>>");
-                        writer.WriteLine("101==Gradual hashing");
-                        writer.WriteLine("102==Please select an item from the log listbox before copying.");
                         writer.WriteLine("103==Please set text before hashing.");
                         writer.WriteLine("104==will NOT use salt/pepper");
                         writer.WriteLine("");
@@ -724,7 +721,6 @@ namespace HashTester
                         writer.WriteLine("//**CheckCollisionForm <<201-220>>");
                         writer.WriteLine("201==Input format");
                         writer.WriteLine("202==String");
-                        writer.WriteLine("203==HEX");
                         writer.WriteLine("204==Binary");
                         writer.WriteLine("205==Text");
                         writer.WriteLine("206==Check");
@@ -737,12 +733,10 @@ namespace HashTester
                         writer.WriteLine("//**PasswordForm <<241-500>>");
                         writer.WriteLine("241==Progress bar");
                         writer.WriteLine("242==Abort the process");
-                        writer.WriteLine("243==Number of attempts");
                         writer.WriteLine("244==Current speed /s");
                         writer.WriteLine("245==Average speed /s");
-                        writer.WriteLine("246==Show log in listBox");
                         writer.WriteLine("247==Dictionary attack");
-                        writer.WriteLine("248==Time to crack calculator");
+                        writer.WriteLine("248==Brute force time estimator");
                         writer.WriteLine("249==Rainbow table attack");
                         writer.WriteLine("250==Brute force attack");
                         writer.WriteLine("");
@@ -763,13 +757,10 @@ namespace HashTester
                         writer.WriteLine("263==Calculate");
                         writer.WriteLine("");
                         writer.WriteLine("//Rainbow Table attack");
-                        writer.WriteLine("264==Text");
                         writer.WriteLine("265==Hash");
                         writer.WriteLine("266==Generate rainbow table");
-                        writer.WriteLine("267==Rainbow Table attack");
                         writer.WriteLine("");
                         writer.WriteLine("//Brute force attack");
-                        writer.WriteLine("268==Maximum attempts");
                         writer.WriteLine("269==Lenght");
                         writer.WriteLine("270==Stop timer (sec)");
                         writer.WriteLine("271==Unknown Lenght");
@@ -783,7 +774,6 @@ namespace HashTester
                         writer.WriteLine("277==Path to wordlist");
                         writer.WriteLine("278==No path selected, cancelling process.");
                         writer.WriteLine("279==The user has aborted the process.");
-                        writer.WriteLine("280==Password");
                         writer.WriteLine("281==has been found in wordlist at line");
                         writer.WriteLine("282==I recommend using a different password.");
                         writer.WriteLine("283==has not been found in wordlist. Good Job.");
@@ -812,15 +802,13 @@ namespace HashTester
                         writer.WriteLine("306==Performance Mode Off");
                         writer.WriteLine("307==Password found!");
                         writer.WriteLine("308==Original hash");
-                        writer.WriteLine("309==Found password hash");
-                        writer.WriteLine("310==Found password in UTF-8");
-                        writer.WriteLine("311==Found password in HEX");
                         writer.WriteLine("312==Could not find a password under the given attempts.");
                         writer.WriteLine("313==Could not find the original password.");
                         writer.WriteLine("314==Would you like to save found password to a txt file?");
                         writer.WriteLine("315==Error, could not stop the process.");
                         writer.WriteLine("316==Password found with rainbow table attack.");
                         writer.WriteLine("317==!Please dont name any files in this directory Temp or InputSplit. They will be deleted!");
+                        writer.WriteLine("318==Rainbow table attack abbandoned.");
                         writer.WriteLine("");
                         writer.WriteLine("//**SaltAndPepperQuestions <<401-420>>");
                         writer.WriteLine("401==Do you really want to override another hash ID? (You could lose data)");
@@ -860,7 +848,6 @@ namespace HashTester
                         writer.WriteLine("438==Name");
                         writer.WriteLine("439==Manufacturer");
                         writer.WriteLine("440==Number of cores");
-                        writer.WriteLine("441==Number of threads");
                         writer.WriteLine("442==Max clock speed");
                         writer.WriteLine("443==CPU description");
                         writer.WriteLine("444==Unknown");
@@ -980,13 +967,438 @@ namespace HashTester
                         writer.WriteLine("704==Collision Finder");
                         writer.WriteLine("705==Collision Checker");
                         writer.WriteLine("706==Multi Hasher");
-                        writer.WriteLine("707==Password Tester");
                         writer.WriteLine("708==Salt and Pepper Chooser");
                         writer.WriteLine("709==Salt and Pepper Tester");
                         writer.WriteLine("710==Thread Manager");
-                        writer.Write("711==UI Manager");
+                        writer.WriteLine("711==UI Manager");
                     }
                 }
+                #endregion
+
+                #region Language Czech
+                if (!Directory.Exists(Settings.DirectoryToLanguages))
+                {
+                    Directory.CreateDirectory(Settings.DirectoryToLanguages);
+                }
+                s = Path.Combine(Settings.DirectoryToLanguages, "Čeština.txt");
+                if (!File.Exists(s))
+                {
+                    using (StreamWriter writer = new StreamWriter(s))
+                    {
+                        writer.WriteLine("9999==Hash");
+                        writer.WriteLine("10000==Vymazat záznam");
+                        writer.WriteLine("10001==Uložit záznam");
+                        writer.WriteLine("10002==Schránka");
+                        writer.WriteLine("10003==Nepodařilo se zkopírovat do schránky.");
+                        writer.WriteLine("10004==Chyba při kopírování");
+                        writer.WriteLine("10005==Zrušit proces");
+                        writer.WriteLine("10006==Přejít zpět");
+                        writer.WriteLine("10007==Maximální počet pokusů");
+                        writer.WriteLine("10008==Délka náhodného textu");
+                        writer.WriteLine("10009==Čas");
+                        writer.WriteLine("10010==Počet pokusů");
+                        writer.WriteLine("10011==Aktuální rychlost");
+                        writer.WriteLine("10012==Průměrná rychlost");
+                        writer.WriteLine("10013==Zobrazit záznam v listBoxu");
+                        writer.WriteLine("10014==Použít HEX pro zobrazení textu");
+                        writer.WriteLine("10015==Výkonnostní režim");
+                        writer.WriteLine("10016==Nepodařilo se najít kolizi v rámci daných pokusů.");
+                        writer.WriteLine("10017==Proces byl ukončen.");
+                        writer.WriteLine("10018==Nepodařilo se najít kolizi.");
+                        writer.WriteLine("10019==Zrušeno");
+                        writer.WriteLine("10020==Chyba");
+                        writer.WriteLine("10021==a");
+                        writer.WriteLine("10022==Nepodařilo se přečíst obsah tohoto souboru.");
+                        writer.WriteLine("10023==Před kopírováním vyberte položku ze seznamu záznamů.");
+                        writer.WriteLine("10024==Algoritmus");
+                        writer.WriteLine("10025==Upozornění");
+                        writer.WriteLine("10026==Počet použitých vláken");
+                        writer.WriteLine("10027==do");
+                        writer.WriteLine("10028==Uložit");
+                        writer.WriteLine("10029==Kopírovat");
+                        writer.WriteLine("10030==Dotaz");
+                        writer.WriteLine("10031==Info");
+                        writer.WriteLine("10032==Přerušeno");
+                        writer.WriteLine("10033==Úspěch");
+                        writer.WriteLine("10034==Zaregistrováno");
+                        writer.WriteLine("10035==Zaregistrovat");
+                        writer.WriteLine("10036==UI");
+                        writer.WriteLine("10037==Hex");
+                        writer.WriteLine("10038==Aktuální verze");
+                        writer.WriteLine("10039==Program vytvořil");
+                        writer.WriteLine("10040==2fast4you");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Try and Catch <<11000-12000>>");
+                        writer.WriteLine("11000==Vyskytla se chyba v programu.");
+                        writer.WriteLine("11001==Prosím zadejte do \"Počet pokusů /s\" celé nenulové číslo do 2 miliard.");
+                        writer.WriteLine("11002==Prosím zadejte do \"Počet znaků/heslo\" celé nenulové číslo do 1000 nebo heslo.");
+                        writer.WriteLine("11003==Chcete odstranit nedokončený soubor?");
+                        writer.WriteLine("11004==Soubor smazán");
+                        writer.WriteLine("11005==Varování, těchto souborů bude několik.");
+                        writer.WriteLine("11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.");
+                        writer.WriteLine("11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.");
+                        writer.WriteLine("11008==Prosím, přesuňte program do složky, kde má přístup ke čtení/zápisu souborů, nebo spusťte aplikaci s administrátorskými právy.");
+                        writer.WriteLine("11009==Počáteční inicializace složek se nezdařilo. Před dalším používáním programu problém vyřešte.");
+                        writer.WriteLine("11010==Prosím zadejte validní vstup do Text01.");
+                        writer.WriteLine("11011==Prosím zadejte validní vstup do Text02.");
+                        writer.WriteLine("11012==Nepodařilo se převést vstup na string.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Name of Forms <<15000-15100>>");
+                        writer.WriteLine("15000==Hlavní formulář");
+                        writer.WriteLine("15002==Vyhledávač kolizí");
+                        writer.WriteLine("15003==Kontrola kolizí");
+                        writer.WriteLine("15004==Vícenásobný Hashing ");
+                        writer.WriteLine("15005==Heslový formulář");
+                        writer.WriteLine("15006==Formulář na vlákna");
+                        writer.WriteLine("15007==Formulář pro aktualizaci UI");
+                        writer.WriteLine("15008==Formulář pro sůl a pepř");
+                        writer.WriteLine("15009==Dotazník pro sůl a pepř");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Hlavní formulář <<0-100>>");
+                        writer.WriteLine("");
+                        writer.WriteLine("//ToolStrip Menu <<0-30>>");
+                        writer.WriteLine("0==Hashování");
+                        writer.WriteLine("1==Sůl a pepř");
+                        writer.WriteLine("2==Vícenásobné hashování");
+                        writer.WriteLine("3==Vyhledávání kolizí");
+                        writer.WriteLine("4==Prolamovač hesel");
+                        writer.WriteLine("5==Použít sůl");
+                        writer.WriteLine("6==Použít pepř");
+                        writer.WriteLine("7==Volba");
+                        writer.WriteLine("8==Nastavení");
+                        writer.WriteLine("9==Typ výstupu");
+                        writer.WriteLine("10==Styl výstupu");
+                        writer.WriteLine("11==Motiv");
+                        writer.WriteLine("13==Frekvence aktualizace uživatelského rozhraní");
+                        writer.WriteLine("14==Vlákna a nastavení CPU");
+                        writer.WriteLine("15==Resetování všech nastavení");
+                        writer.WriteLine("16==Motiv systému");
+                        writer.WriteLine("17==Světlý motiv");
+                        writer.WriteLine("18==Tmavý motiv");
+                        writer.WriteLine("23==Jazyky");
+                        writer.WriteLine("24==Soubor .txt");
+                        writer.WriteLine("25==Zahrnout původní text");
+                        writer.WriteLine("26==Zahrnout číslování");
+                        writer.WriteLine("27==Zahrnout hashovací algoritmus");
+                        writer.WriteLine("28==Zahrnout sůl a pepř");
+                        writer.WriteLine("29==Zahrnout všechny možnosti");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Formulář uživatelského rozhraní <<31-40>>");
+                        writer.WriteLine("31==Hash textu");
+                        writer.WriteLine("32==Hash .txt souboru");
+                        writer.WriteLine("33==Kontrolní součet souboru");
+                        writer.WriteLine("34==Umístění souboru");
+                        writer.WriteLine("35==Vyberte soubor");
+                        writer.WriteLine("36==Kontrola kontrolního součtu");
+                        writer.WriteLine("37==Vypočítat všechny kontrolní součty");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Messages <<41-100>>");
+                        writer.WriteLine("41==Vstup přerušen");
+                        writer.WriteLine("42==Před kopírováním vyberte položku ze seznamu záznamu.");
+                        writer.WriteLine("45==Jste si jisti, že chcete obnovit všechna nastavení?");
+                        writer.WriteLine("46==Potvrzení");
+                        writer.WriteLine("47==Soubor neexistuje.");
+                        writer.WriteLine("48==Používáte SHA1 (Ano) nebo RipeMD-160 (Ne)?");
+                        writer.WriteLine("49==Prosím zadejte hash pro kontrolní součet.");
+                        writer.WriteLine("50==Kontrolní součty jsou správné. Soubory jsou stejné.");
+                        writer.WriteLine("51==Kontrolní součty NEJSOU správné. Soubory NEJSOU stejné.");
+                        writer.WriteLine("52==Správné");
+                        writer.WriteLine("53==Nesprávné");
+                        writer.WriteLine("54==Kontrolní součet");
+                        writer.WriteLine("55==Soubor se nepodařilo uložit.");
+                        writer.WriteLine("56==Došlo k chybě. Kontaktujte prosím tvůrce a nahlašte tuto chybu.");
+                        writer.WriteLine("57==Prosím vyberte hash pro kontrolní součet.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Gradual Hashing <<101-110>>");
+                        writer.WriteLine("101==Postupné hashování");
+                        writer.WriteLine("102==Před kopírováním vyberte položku z listboxu.");
+                        writer.WriteLine("103==Prosím zadejte text před hashováním.");
+                        writer.WriteLine("104==NEpoužívá se sůl/pepř.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Hashing Collision <<111-200>>");
+                        writer.WriteLine("111==Kontrola kolize");
+                        writer.WriteLine("112==Vygenerovat kolizi");
+                        writer.WriteLine("113==Kontrola kolize z .txt");
+                        writer.WriteLine("114==Spuštění procesu ve výkonném režimu.");
+                        writer.WriteLine("115==Počet přiřazených vláken");
+                        writer.WriteLine("116==Spuštění procesu v normálním režimu.");
+                        writer.WriteLine("117==Nalezena kolize!");
+                        writer.WriteLine("118==Kolize");
+                        writer.WriteLine("119==Vstup kolize");
+                        writer.WriteLine("120==Pokusy");
+                        writer.WriteLine("121==Čas k nalezení");
+                        writer.WriteLine("122==Nalezena kolize");
+                        writer.WriteLine("123==Chcete uložit kolizi do souboru .txt?");
+                        writer.WriteLine("124==Zjištěna kolize");
+                        writer.WriteLine("125==Společný hash");
+                        writer.WriteLine("126==Vstupní texty nevytváří kolizi");
+                        writer.WriteLine("//info <<130-136>>");
+                        writer.WriteLine("130==//Komentář, tento program podporuje formáty <STRING> <HEX> <BIN> a pracuje na řádcích. Nejprve je formát, pak se načtou a porovnají dva řádky. Pro příklad zkuste vygenerovat kolizi ve formuláři postupného hashování.");
+                        writer.WriteLine("131==//!Program zkontroluje pouze první formát a texty!");
+                        writer.WriteLine("132==//<STRING> Podporuje formát UTF-8 (příklad al85WTh).");
+                        writer.WriteLine("133==//<HEX> Podporuje 8D-B7 či 8DB7 nezáleží na tom, zda malá nebo velká písmena.");
+                        writer.WriteLine("134==//<BIN> Podporuje 0111 0001 s mezerami nebo bez nich.");
+                        writer.WriteLine("135==//Vždy musí být uveden algoritmus a musí být před formátem (podporované formáty: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) příklad Algorithm=RIPEMD160");
+                        writer.WriteLine("136==// V <HASH> najdete oba hashe pro text 1 a 2. To je jen pro uživatele a lze to libovolně měnit (Ale proč by to někdo dělal).");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**CheckCollisionForm <<201-220>>");
+                        writer.WriteLine("201==Vstupní formát");
+                        writer.WriteLine("202==Řetězec");
+                        writer.WriteLine("204==Binární");
+                        writer.WriteLine("205==Text");
+                        writer.WriteLine("206==Kontrola");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**MultipleHashing <<221-240>>");
+                        writer.WriteLine("221==Přepíše „Zahrnout hashovací algoritmus“ v nastavení výstupního stylu");
+                        writer.WriteLine("222==Zobrazit algoritmus");
+                        writer.WriteLine("223==Prosím, vyberte alespoň jeden algoritmus!");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**PasswordForm <<241-500>>");
+                        writer.WriteLine("241==Ukazatel průběhu");
+                        writer.WriteLine("242==Přerušit proces");
+                        writer.WriteLine("244==Aktuální rychlost /s");
+                        writer.WriteLine("245==Průměrná rychlost /s");
+                        writer.WriteLine("247==Slovníkový útok");
+                        writer.WriteLine("248==Odhad času hrubou silou");
+                        writer.WriteLine("250==Útok hrubou silou");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Slovníkový útok");
+                        writer.WriteLine("251==Plná verze");
+                        writer.WriteLine("252==Zkrácená verze");
+                        writer.WriteLine("253==Velice zkrácená verze");
+                        writer.WriteLine("254==Vlastní soubor");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Odhad Času hrubou silou");
+                        writer.WriteLine("256==Počet znaků");
+                        writer.WriteLine("257==Heslo");
+                        writer.WriteLine("258==Rychlost /s");
+                        writer.WriteLine("259==Malá písmena");
+                        writer.WriteLine("260==Velká písmena");
+                        writer.WriteLine("261==Číslice");
+                        writer.WriteLine("262==Speciální");
+                        writer.WriteLine("263==Vypočítat");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Rainbow Table attack");
+                        writer.WriteLine("265==Hash");
+                        writer.WriteLine("266==Vygenerovat duhovou tabulku");
+                        writer.WriteLine("267==Útok duhovou tabulkou");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Brute force attack");
+                        writer.WriteLine("268==Maximální počet pokusů");
+                        writer.WriteLine("269==Délka");
+                        writer.WriteLine("270==Časovač zastavení (sec)");
+                        writer.WriteLine("271==Neznámá délka");
+                        writer.WriteLine("272==Zobrazení hesla jako HEX");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Script");
+                        writer.WriteLine("273==Rockyou má více než 14 milionů hesel. Můžete si ji stáhnout zde");
+                        writer.WriteLine("274==Pokud chcete přidat další nebo něco jiného, můžete, jen se ujistěte, že je stejný formát.");
+                        writer.WriteLine("275==Ano");
+                        writer.WriteLine("276==Zpracovává se řádek");
+                        writer.WriteLine("277==Cesta k seznamu slov");
+                        writer.WriteLine("278==Není vybrána žádná cesta, proces se ruší.");
+                        writer.WriteLine("279==Uživatel přerušil proces.");
+                        writer.WriteLine("281==bylo nalezeno ve slovníku na řádku");
+                        writer.WriteLine("282==Doporučuji použít jiné heslo.");
+                        writer.WriteLine("283==nebylo nalezeno ve slovníku. Dobrá práce.");
+                        writer.WriteLine("//284==Maximální délka hesla je 1000.");
+                        writer.WriteLine("//285==Délka hesla je nastavena na 1000.");
+                        writer.WriteLine("//286==Prolomit toto heslo bude trvat přes 18 triliónů let.");
+                        writer.WriteLine("287==Počet kombinací");
+                        writer.WriteLine("288==Duhová tabulka byla úspěšně vygenerována.");
+                        writer.WriteLine("289==Program nemohl vygenerovat duhovou tabulku. Rušení procesu.");
+                        writer.WriteLine("290==Generování duhové tabulky bylo ukončeno.");
+                        writer.WriteLine("291==Nalezený hash pomocí slovníkového útoku.");
+                        writer.WriteLine("292==Původní heslo");
+                        writer.WriteLine("293==Hash původního hesla");
+                        writer.WriteLine("294==Nalezené heslo na řádku");
+                        writer.WriteLine("295==Nalezený hash hesla");
+                        writer.WriteLine("296==Nalezené heslo v UTF-8");
+                        writer.WriteLine("297==Nalezené heslo v HEX");
+                        writer.WriteLine("298==Program nemohl najít heslo v časovém limitu.");
+                        writer.WriteLine("299==Program nemohl najít heslo v limitu pokusů.");
+                        writer.WriteLine("300==Nenašlo se heslo v souboru.");
+                        writer.WriteLine("301==Nepodařilo se spustit slovníkový útok.");
+                        writer.WriteLine("302==Neplatný formát souboru nebo soubor nebyl nalezen. Rušení slovníkového útoku.");
+                        writer.WriteLine("303==Počet zpracovaných řádků");
+                        writer.WriteLine("304==Počet všech možných kombinací");
+                        writer.WriteLine("305==Výkonný režim zapnut");
+                        writer.WriteLine("306==Výkonný režim vypnut");
+                        writer.WriteLine("307==Heslo nalezeno!");
+                        writer.WriteLine("308==Původní hash");
+                        writer.WriteLine("312==Nenašlo se heslo pod počtem zadaných pokusů.");
+                        writer.WriteLine("313==Nenašlo se původní heslo.");
+                        writer.WriteLine("314==Chcete nalezené heslo uložit do souboru txt?");
+                        writer.WriteLine("315==Chyba, nepodařilo se zastavit proces.");
+                        writer.WriteLine("316==Heslo nalezeno pomocí útoku duhovou tabulkou.");
+                        writer.WriteLine("317==!Prosím nepojmenovávejte soubory v téhle složce Temp nebo InputSplit. Tyto soubory budou smazány!");
+                        writer.WriteLine("318==Útok duhovou tabulkou zrušen.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**SaltAndPepperQuestions <<401-420>>");
+                        writer.WriteLine("401== Opravdu chcete přepsat jiné hash ID? (Mohli byste přijít o data)");
+                        writer.WriteLine("402==Sůl");
+                        writer.WriteLine("403==Pepř");
+                        writer.WriteLine("404==Vygenerujte sůl");
+                        writer.WriteLine("405==Vygenerujte pepř");
+                        writer.WriteLine("406==Délka soli");
+                        writer.WriteLine("407==Délka pepře");
+                        writer.WriteLine("408==Použít vlastní sůl");
+                        writer.WriteLine("409==Použít vlastní pepř");
+                        writer.WriteLine("410==Vlastní sůl");
+                        writer.WriteLine("411==Vlastní pepř");
+                        writer.WriteLine("412==ID hashe");
+                        writer.WriteLine("413==Generovat");
+                        writer.WriteLine("414==Pokud nezadáte hashID, nebudou sůl a pepř uloženy. Chcete pokračovat?");
+                        writer.WriteLine("415==Jméno");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**ThreadsForm <<421-500>>");
+                        writer.WriteLine("421==Kolik vláken chcete v programu používat?");
+                        writer.WriteLine("423==Procento použitých vláken");
+                        writer.WriteLine("424==Od 1 do max. počtu vláken");
+                        writer.WriteLine("425==Od 0 % do 100 %");
+                        writer.WriteLine("426==Jedno vlákno");
+                        writer.WriteLine("427==2 vlákna");
+                        writer.WriteLine("428==4 vlákna");
+                        writer.WriteLine("429==8 vláken");
+                        writer.WriteLine("430==Maximální počet vláken");
+                        writer.WriteLine("431==0% znamená, že vždy může být použito pouze jedno vlákno");
+                        writer.WriteLine("432==Vězte, že počítač upřednostňuje procenta");
+                        writer.WriteLine("433==Menší počet vláken může zpomalit výpočty");
+                        writer.WriteLine("435==Výchozí");
+                        writer.WriteLine("436==Zrušit");
+                        writer.WriteLine("437==Informace o procesoru");
+                        writer.WriteLine("438==Název");
+                        writer.WriteLine("439==Výrobce");
+                        writer.WriteLine("440==Počet jader");
+                        writer.WriteLine("441==Počet vláken");
+                        writer.WriteLine("442==Max. taktovací frekvence");
+                        writer.WriteLine("443==Popis procesoru");
+                        writer.WriteLine("444==Neznámé");
+                        writer.WriteLine("445==MHz");
+                        writer.WriteLine("446==Chybné načítání údajů o procesoru");
+                        writer.WriteLine("447==Prosím nastavte procentuální hodnotu od 0% do 100%");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**UI Update Frequency <<501-550>>");
+                        writer.WriteLine("501==Kolikrát za sekundu chcete aktualizovat uživatelské rozhraní (pro konkrétní operace)");
+                        writer.WriteLine("502==Cílové snímky za sekundu");
+                        writer.WriteLine("503==Čas do další aktualizace (v milisekundách)");
+                        writer.WriteLine("504==Prosím, nastavte číslo od 1 do 125");
+                        writer.WriteLine("505==Prosím nastavte čísla od 8 do 1000");
+                        writer.WriteLine("506==Vězte, že počítač upřednostňuje milisekundy");
+                        writer.WriteLine("507==Vyšší obnovovací frekvence může způsobit problémy s výkonem");
+                        writer.WriteLine("508==Prosím, zadejte platné hodnoty");
+                        writer.WriteLine("509==Neplatné hodnoty. Zadejte prosím pouze celá čísla.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//****SCRIPTS****");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**FormManagement <<551-570>>");
+                        writer.WriteLine("551==Záznam uložen v");
+                        writer.WriteLine("552==Záznam uložen z");
+                        writer.WriteLine("553==Záznam úspěšně uložen.");
+                        writer.WriteLine("554==Uložení záznamu bylo zrušeno.");
+                        writer.WriteLine("556==Vyberte složku");
+                        writer.WriteLine("557==Změněna cesta");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Other <<571-610>>");
+                        writer.WriteLine("571==Sůl není inicializovaná.");
+                        writer.WriteLine("572==Pepř není inicializován.");
+                        writer.WriteLine("573==Nalezeno");
+                        writer.WriteLine("574==na řádku");
+                        writer.WriteLine("575==let");
+                        writer.WriteLine("576==měsíců");
+                        writer.WriteLine("577==dnů");
+                        writer.WriteLine("578==hodin");
+                        writer.WriteLine("579==minut");
+                        writer.WriteLine("580==vteřin");
+                        writer.WriteLine("581==Duhová tabulka v souboru");
+                        writer.WriteLine("582==s");
+                        writer.WriteLine("583==algoritmus hashování je hotov.");
+                        writer.WriteLine("584==Soubor už obsahuje duhovou tabulku.");
+                        writer.WriteLine("585==Soubor neobsahuje duhovou tabulku.");
+                        writer.WriteLine("586==Soubor je zahešován pomocí");
+                        writer.WriteLine("587==ale uživatel chce");
+                        writer.WriteLine("588==Algoritmy musí být stejné. Rušení útoku...");
+                        writer.WriteLine("601==Počet řádků na zpracování");
+                        writer.WriteLine("602==There are unsaved changes, do you wish to save them?");
+                        writer.WriteLine("603==Limit pokusů");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Settings");
+                        writer.WriteLine("589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.");
+                        writer.WriteLine("590==Bool znamená 0 <<false>> a 1 <<true>>; vše ostatní vyžaduje specifický vstup");
+                        writer.WriteLine("591==Připojil jsem komentáře o tom, jaké hodnoty jsou povoleny. Jinak se nastaví výchozí hodnota  ");
+                        writer.WriteLine("592==Vizuální režim od 0 do 2  ");
+                        writer.WriteLine("593==UpdateUI v milisekundách  ");
+                        writer.WriteLine("594==<<8 - 1000>> celé číslo  ");
+                        writer.WriteLine("595==Počet maximálně použitých vláken v procentech (%)  ");
+                        writer.WriteLine("596==<<1 - 100>> celé číslo  ");
+                        writer.WriteLine("597==Preferovaný jazyk  ");
+                        writer.WriteLine("598==Typ výstupu od 0 do 2  ");
+                        writer.WriteLine("599==Všechny OutputStyles jsou bool  ");
+                        writer.WriteLine("600==Sůl a pepř bool  ");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**SaltAndPepperForm <<611-700>>");
+                        writer.WriteLine("612==HashID");
+                        writer.WriteLine("613==Neexistují ID na ukázání.");
+                        writer.WriteLine("614==Prosím napište jméno do textboxu.");
+                        writer.WriteLine("615==Prosím napište heslo do textboxu.");
+                        writer.WriteLine("616==Prosím napište HashID do textboxu.");
+                        writer.WriteLine("617==Přihlášení proběhlo úspěšně");
+                        writer.WriteLine("618==Špatné heslo");
+                        writer.WriteLine("619==Nejsou k dispozici žádné informace o HashID.");
+                        writer.WriteLine("620==Nejsou žádní registrovaní uživatele v databázi.");
+                        writer.WriteLine("621==Doopravdy chcete smazat celou databázi?");
+                        writer.WriteLine("622==Databáze úspěšně smazána.");
+                        writer.WriteLine("623==Tohle jméno je už registrováno.");
+                        writer.WriteLine("624==Nepoužívá se sůl či pepř.");
+                        writer.WriteLine("625==Zaheshované heslo");
+                        writer.WriteLine("626==Úspěšně zaregistrován.");
+                        writer.WriteLine("627==Použitá hash. funkce pro přihlášení");
+                        writer.WriteLine("628==Jméno nebylo nazeleno v databázi.");
+                        writer.WriteLine("629==Použita sůl");
+                        writer.WriteLine("630==Použitý pepř");
+                        writer.WriteLine("631==Úplné vstupní heslo před hashováním");
+                        writer.WriteLine("632==Tohle ID je spojeno s jménem");
+                        writer.WriteLine("633==a hash");
+                        writer.WriteLine("634==zaheshováno pomocí");
+                        writer.WriteLine("635==Nebylo nazeleno jakékoliv jméno pro tuto HashID");
+                        writer.WriteLine("636==Nebylo nazeleno jakékoliv heslo pro tuto HashID");
+                        writer.WriteLine("637==Sůl uložena pro tohle ID");
+                        writer.WriteLine("638==Délka použitého pepře je");
+                        writer.WriteLine("639==Nenašla se žádná šůl/pepř spojena s tímto hashID.");
+                        writer.WriteLine("640==Doopravdy chcete smazat všechna HashID?");
+                        writer.WriteLine("641==Nenašla se žádná HashID.");
+                        writer.WriteLine("642==Všechna hashID úspěšně smazány.");
+                        writer.WriteLine("643==Doopravdy chcete smazat registraci z databáze?");
+                        writer.WriteLine("644==Registrace úspěšně smazána.");
+                        writer.WriteLine("645==Nenašla se registrace k smazání.");
+                        writer.WriteLine("646==má prioritu před nastavením.");
+                        writer.WriteLine("647==Password Tester");
+                        writer.WriteLine("648==Ukázat info");
+                        writer.WriteLine("649==Přihlášení");
+                        writer.WriteLine("650==Vymazat");
+                        writer.WriteLine("651==Vymazat všechny");
+                        writer.WriteLine("652==Ukázat všechny ");
+                        writer.WriteLine("653==Informace o ID");
+                        writer.WriteLine("654==Ukázat všechny ID");
+                        writer.WriteLine("655==Smazat všechny ID");
+                        writer.WriteLine("656==Soubor se zadaným HashID neexistuje.");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Form Names <<701-720>>");
+                        writer.WriteLine("701==HashTester");
+                        writer.WriteLine("702==Kontrolní Součet Souboru");
+                        writer.WriteLine("703==Postupné Hashování  ");
+                        writer.WriteLine("704==Hledač Kolizí  ");
+                        writer.WriteLine("705==Kontrola Kolizí  ");
+                        writer.WriteLine("706==Multi Hashovací Nástroj  ");
+                        writer.WriteLine("707==Tester Hesel  ");
+                        writer.WriteLine("708==Výběrčí Soli a Pepře  ");
+                        writer.WriteLine("709==Tester Soli a Pepře  ");
+                        writer.WriteLine("710==Správce Vláken  ");
+                        writer.WriteLine("711==Správce UI");
+                    }
+                }
+                #endregion
+
                 //Logs
                 if (!Directory.Exists(Settings.DirectoryPathToLogs))
                 {
@@ -6011,12 +6423,12 @@ namespace HashTester
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show(Languages.Translate(11008), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Languages.Translate(11009) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,12 +26,12 @@ namespace HashTester
         {
             if (string.IsNullOrEmpty(textBox1.Text))
             {
-                MessageBox.Show(Languages.Translate(11010), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidInputIntoText01), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (string.IsNullOrEmpty(textBox2.Text))
             {
-                MessageBox.Show(Languages.Translate(11011), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidInputIntoText02), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             CollisionDetectionFormat collisionDetectionFormat = CollisionDetectionFormat.STRING;
@@ -47,19 +47,19 @@ namespace HashTester
 
         private void CheckCollisionForm_Load(object sender, EventArgs e)
         {
-            this.Name = Languages.Translate(705);
+            this.Name = Languages.Translate(Languages.L.CollisionChecker);
             hashSelector.SelectedIndex = hashSelector.Items.Count - 1; //show CRC32 the last one
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            groupBox1.Text = Languages.Translate(201);
-            radioButtonString.Text = Languages.Translate(202);
+            groupBox1.Text = Languages.Translate(Languages.L.InputFormat);
+            radioButtonString.Text = Languages.Translate(Languages.L.String);
             radioButtonHex.Text = Languages.Translate(203);
-            radioButtonBinary.Text = Languages.Translate(204);
-            labelText.Text = Languages.Translate(205) + "1";
-            labelText2.Text = Languages.Translate(205) + "2";
-            buttonCheck.Text = Languages.Translate(206);
-            buttonClose.Text = Languages.Translate(10006);
-            buttonTakeTXT.Text = Languages.Translate(113);
+            radioButtonBinary.Text = Languages.Translate(Languages.L.Binary);
+            labelText.Text = Languages.Translate(Languages.L.Text) + "1";
+            labelText2.Text = Languages.Translate(Languages.L.Text) + "2";
+            buttonCheck.Text = Languages.Translate(Languages.L.Check);
+            buttonClose.Text = Languages.Translate(Languages.L.GoBack);
+            buttonTakeTXT.Text = Languages.Translate(Languages.L.CheckACollisionFromATxt);
             #endregion
         }
 
@@ -88,18 +88,18 @@ namespace HashTester
             }
             if (hash01 == hash02)
             {
-                string s = Languages.Translate(124) + Environment.NewLine +
-                    Languages.Translate(205) + "01: " + text01.Substring(0, Math.Min(text01.Length, 256)) + Environment.NewLine +
-                    Languages.Translate(205) + "02: " + text02.Substring(0, Math.Min(text02.Length, 256)) + Environment.NewLine +
-                    Languages.Translate(125) + ": " + hash01;
-                MessageBox.Show(s, Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string s = Languages.Translate(Languages.L.CollisionDetected) + Environment.NewLine +
+                    Languages.Translate(Languages.L.Text) + "01: " + text01.Substring(0, Math.Min(text01.Length, 256)) + Environment.NewLine +
+                    Languages.Translate(Languages.L.Text) + "02: " + text02.Substring(0, Math.Min(text02.Length, 256)) + Environment.NewLine +
+                    Languages.Translate(Languages.L.CommonHash) + ": " + hash01;
+                MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                string s = Languages.Translate(126) + Environment.NewLine +
+                string s = Languages.Translate(Languages.L.InputTextsDoNotCollide) + Environment.NewLine +
                     Languages.Translate(9999) + "01: " + hash01 + Environment.NewLine +
                     Languages.Translate(9999) + "02: " + hash02;
-                MessageBox.Show(s, Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -153,7 +153,7 @@ namespace HashTester
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Languages.Translate(11012) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.CouldNotConvertInputToString) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 formattedHex = "error";
                 return false;
             }
@@ -185,7 +185,7 @@ namespace HashTester
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Languages.Translate(11012) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.CouldNotConvertInputToString) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new byte[0];
             }
         }
@@ -259,7 +259,7 @@ namespace HashTester
                             }
                         }
                         if (gotInformation && !String.IsNullOrEmpty(textCollision01) && !String.IsNullOrEmpty(textCollision02)) CheckCollision(algorithmTemp, textCollision01, textCollision02, format);
-                        else MessageBox.Show(Languages.Translate(10022), Languages.Translate(10021), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else MessageBox.Show(Languages.Translate(Languages.L.CouldNotReadTheContentsOfThisFile), Languages.Translate(Languages.L.And), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

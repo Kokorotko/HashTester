@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,7 +42,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(41), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.InputCancelled), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace HashTester
         {
             FormGradual formGradual = new FormGradual();
             formGradual.StartPosition = FormStartPosition.CenterScreen;
-            formGradual.Name = Languages.Translate(15001);
+            formGradual.Name = Languages.Translate(Languages.L.GradualHashing);
             formGradual.ShowDialog();
         }
 
@@ -139,7 +139,7 @@ namespace HashTester
         {
             MultipleHashing multipleHashing = new MultipleHashing();
             multipleHashing.StartPosition = FormStartPosition.CenterScreen;
-            multipleHashing.Name = Languages.Translate(15004);
+            multipleHashing.Name = Languages.Translate(Languages.L.MultipleHashing);
             multipleHashing.ShowDialog();
         }
         #endregion
@@ -149,7 +149,7 @@ namespace HashTester
         {
             HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
             hashingCollisionForm.StartPosition = FormStartPosition.CenterScreen;
-            hashingCollisionForm.Name = Languages.Translate(15002);
+            hashingCollisionForm.Name = Languages.Translate(Languages.L.HashCollisionFinder);
             hashingCollisionForm.ShowDialog();
         }
         #endregion
@@ -206,7 +206,7 @@ namespace HashTester
         #region ResetAllSettings
         private void resetAllSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {            
-            if (MessageBox.Show(Languages.Translate(45), Languages.Translate(46),MessageBoxButtons.OKCancel, MessageBoxIcon.Question ) == DialogResult.OK)
+            if (MessageBox.Show(Languages.Translate(Languages.L.AreYouSureYouWantToResetAllSettings), Languages.Translate(Languages.L.Confirmation),MessageBoxButtons.OKCancel, MessageBoxIcon.Question ) == DialogResult.OK)
             {
                 Settings.ResetSettings();
                 Settings.SaveSettings();
@@ -394,7 +394,7 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(41), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.InputCancelled), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -412,7 +412,7 @@ namespace HashTester
                 using (SaltAndPepperSetup saltAndPepperQuestion = new SaltAndPepperSetup())
                 {
                     saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
-                    saltAndPepperQuestion.Name = Languages.Translate(15009);
+                    saltAndPepperQuestion.Name = Languages.Translate(Languages.L.SaltAndPepperQuestions);
                     if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
                     {
                         saltAndPepperQuestion.GetSaltPepperInformation
@@ -460,7 +460,7 @@ namespace HashTester
         private void Form1_Load(object sender, EventArgs e)
         {
             Settings.InitialFolderChecker();
-            this.Name = Languages.Translate(701);
+            this.Name = Languages.Translate(Languages.L.Hashtester);
             hashSelector.SelectedIndex = 0;
             Settings.LoadSettings();
             UIToolStripMenuLoad();
@@ -473,7 +473,7 @@ namespace HashTester
         {
             PasswordForm passwordForm = new PasswordForm();
             passwordForm.StartPosition = FormStartPosition.CenterScreen;
-            passwordForm.Name = Languages.Translate(15005);
+            passwordForm.Name = Languages.Translate(Languages.L.PasswordForm);
             passwordForm.ShowDialog();
         }
 
@@ -493,7 +493,7 @@ namespace HashTester
             }
             else
             {
-                listBoxLog.Items.Add(Languages.Translate(47));
+                listBoxLog.Items.Add(Languages.Translate(Languages.L.FileDoesntExists));
             }
         }
 
@@ -513,7 +513,7 @@ namespace HashTester
         {
             UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
             uIUpdateFrequency.StartPosition = FormStartPosition.CenterScreen;
-            uIUpdateFrequency.Name = Languages.Translate(15007);
+            uIUpdateFrequency.Name = Languages.Translate(Languages.L.UiUpdaterForm);
             if (uIUpdateFrequency.ShowDialog() == DialogResult.OK)
             {
                 Settings.UpdateUIms = uIUpdateFrequency.Miliseconds;
@@ -583,7 +583,7 @@ namespace HashTester
         {
             ThreadsForm threadsForm = new ThreadsForm();
             threadsForm.StartPosition = FormStartPosition.CenterScreen;
-            threadsForm.Name = Languages.Translate(15006);
+            threadsForm.Name = Languages.Translate(Languages.L.ThreadsForm);
             if (threadsForm.ShowDialog() == DialogResult.OK)
             {
                 Settings.ThreadsUsagePercentage = threadsForm.Percentage;
@@ -600,14 +600,14 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileChecksum fileChecksum = new FileChecksum();
-            fileChecksum.Name = Languages.Translate(33);
+            fileChecksum.Name = Languages.Translate(Languages.L.FileChecksum);
             fileChecksum.StartPosition = FormStartPosition.CenterScreen;
             fileChecksum.ShowDialog();
         }
@@ -616,47 +616,47 @@ namespace HashTester
         {
             SaltAndPepperTester saltAndPepperForm = new SaltAndPepperTester();
             saltAndPepperForm.StartPosition = FormStartPosition.CenterScreen;
-            saltAndPepperForm.Name = Languages.Translate(15008);
+            saltAndPepperForm.Name = Languages.Translate(Languages.L.SaltAndPepperForm);
             saltAndPepperForm.ShowDialog();
         }
 
         private void FormUISetUpLanguages()
         {
-            hashingToolStripMenuItem.Text = Languages.Translate(0);
-            saltAndPepperToolStripMenuItem.Text = Languages.Translate(1);
+            hashingToolStripMenuItem.Text = Languages.Translate(Languages.L.Hashing);
+            saltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepper);
             multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
-            findingCollisionsToolStripMenuItem.Text = Languages.Translate(3);
-            passwordCrackerToolStripMenuItem.Text = Languages.Translate(4);
-            includeSaltToolStripMenuItem.Text = Languages.Translate(5);
-            includePepperToolStripMenuItem.Text = Languages.Translate(6);
-            optionsToolStripMenuItem.Text = Languages.Translate(7);
-            settingsToolStripMenuItem.Text = Languages.Translate(8);
-            outputTypeStripMenuItem.Text = Languages.Translate(9);
-            outputStyleToolStripMenuItem.Text = Languages.Translate(10);
-            visualModeToolStripMenuItem.Text = Languages.Translate(11);
-            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(13);
-            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(14);
-            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(15);
-            systemToolStripMenuItem.Text = Languages.Translate(16);
-            lightToolStripMenuItem.Text = Languages.Translate(17);
-            darkToolStripMenuItem.Text = Languages.Translate(18);
-            languagesToolStripMenuItem.Text = Languages.Translate(23);
-            txtFileToolStripMenuItem.Text = Languages.Translate(24);
-            includeAllToolStripMenuItem.Text = Languages.Translate(29);
-            includeHashingAlgorithmToolStripMenuItem.Text = Languages.Translate(27);
-            includeNumberOfHashToolStripMenuItem.Text = Languages.Translate(26);
-            includeOriginalStringToolStripMenuItem.Text = Languages.Translate(25);
-            includeSaltAndPepperToolStripMenuItem.Text = Languages.Translate(28);
-            gradualHashingToolStripMenuItem1.Text = Languages.Translate(15001);
-            fileChecksumToolStripMenuItem.Text = Languages.Translate(33);
-            saltPepperTesterToolStripMenuItem.Text = Languages.Translate(709);
-            labelCredits.Text = Languages.Translate(10039) + " Kamil Franek" + Environment.NewLine + Languages.Translate(10038) + ": " + programVersion;
+            findingCollisionsToolStripMenuItem.Text = Languages.Translate(Languages.L.FindingCollisions);
+            passwordCrackerToolStripMenuItem.Text = Languages.Translate(Languages.L.PasswordCracker);
+            includeSaltToolStripMenuItem.Text = Languages.Translate(Languages.L.UseSalt);
+            includePepperToolStripMenuItem.Text = Languages.Translate(Languages.L.UsePepper);
+            optionsToolStripMenuItem.Text = Languages.Translate(Languages.L.Options);
+            settingsToolStripMenuItem.Text = Languages.Translate(Languages.L.Settings);
+            outputTypeStripMenuItem.Text = Languages.Translate(Languages.L.OutputType);
+            outputStyleToolStripMenuItem.Text = Languages.Translate(Languages.L.OutputStyle);
+            visualModeToolStripMenuItem.Text = Languages.Translate(Languages.L.Visualmode);
+            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(Languages.L.UiUpdateFrequency);
+            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(Languages.L.ThreadsAndCpuSettings);
+            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(Languages.L.ResetAllSettings);
+            systemToolStripMenuItem.Text = Languages.Translate(Languages.L.SystemTheme);
+            lightToolStripMenuItem.Text = Languages.Translate(Languages.L.LightTheme);
+            darkToolStripMenuItem.Text = Languages.Translate(Languages.L.DarkTheme);
+            languagesToolStripMenuItem.Text = Languages.Translate(Languages.L.Languages);
+            txtFileToolStripMenuItem.Text = Languages.Translate(Languages.L.FileTxt);
+            includeAllToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeAllOptions);
+            includeHashingAlgorithmToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeHashingAlgorithm);
+            includeNumberOfHashToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeNumbering);
+            includeOriginalStringToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeOriginalText);
+            includeSaltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeSaltAndPepper);
+            gradualHashingToolStripMenuItem1.Text = Languages.Translate(Languages.L.GradualHashing);
+            fileChecksumToolStripMenuItem.Text = Languages.Translate(Languages.L.FileChecksum);
+            saltPepperTesterToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepperTester);
+            labelCredits.Text = Languages.Translate(Languages.L.ProgramMadeBy) + " Kamil Franek" + Environment.NewLine + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion;
             //Form
-            buttonHashSimpleText.Text = Languages.Translate(31);
-            buttonFileInput.Text = Languages.Translate(32);
-            buttonClearListBox.Text = Languages.Translate(10000);
-            buttonSaveLog.Text = Languages.Translate(10001);
-            buttonClipboard.Text = Languages.Translate(10002);
+            buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
+            buttonFileInput.Text = Languages.Translate(Languages.L.HashAFile);
+            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
+            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
         }
 
         private void includeSaltToolStripMenuItem_Click_1(object sender, EventArgs e)

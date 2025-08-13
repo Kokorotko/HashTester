@@ -1,4 +1,4 @@
-﻿namespace HashTester
+namespace HashTester
 {
     partial class FileChecksum
     {

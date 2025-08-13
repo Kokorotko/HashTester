@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -60,7 +60,7 @@ namespace HashTester
                 using (StreamReader reader = new StreamReader(fileInputPath))
                 {
                     allLinesInInputFile = File.ReadLines(fileInputPath).LongCount();
-                    LogOutput = Languages.Translate(601) + ": " + allLinesInInputFile;
+                    LogOutput = Languages.Translate(Languages.L.NumberOfLinesToProcess) + ": " + allLinesInInputFile;
                     using (StreamWriter writer = new StreamWriter(fileOutputPath))
                     {
                         writer.WriteLine("algorithm==" + hashingAlgorithm.ToString());
@@ -80,7 +80,7 @@ namespace HashTester
                         }
                     }
                 }
-                LogOutput = Languages.Translate(581) + ": " + fileInputPath + " " + Languages.Translate(582) + " " + hashingAlgorithm.ToString()  + " "+ Languages.Translate(583);
+                LogOutput = Languages.Translate(Languages.L.RainbowTableOfTheFile) + ": " + fileInputPath + " " + Languages.Translate(Languages.L.With) + " " + hashingAlgorithm.ToString()  + " "+ Languages.Translate(Languages.L.HashingAlgorithmIsDone);
                 stopwatch.Stop();
                 return true;
             }
@@ -88,7 +88,7 @@ namespace HashTester
             {
                 
                 Console.WriteLine("ERROR: Rainbow Table Generator single thread has failed: " + ex.Message);
-                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
+                MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message);
                 return false;
             }
         }
@@ -113,7 +113,7 @@ namespace HashTester
                     }
                     allLinesInInputFile = temp;
                 }
-                LogOutput = Languages.Translate(589) + ": " + allLinesInInputFile;
+                LogOutput = Languages.Translate(Languages.L.WarningIfTheresNothingAfterTheItWillSetTheSettingIntoDefault) + ": " + allLinesInInputFile;
                 long numberOfCurrentLines = 0;
                 
                 using (StreamReader readerInput = new StreamReader(fileInputPath)) // Split the file
@@ -215,7 +215,7 @@ namespace HashTester
                     File.Delete(tempFile);
                 }
 
-                LogOutput = Languages.Translate(581) + ": " + fileInputPath + " " + Languages.Translate(582) + " " + hashingAlgorithm.ToString() + " " + Languages.Translate(583);
+                LogOutput = Languages.Translate(Languages.L.RainbowTableOfTheFile) + ": " + fileInputPath + " " + Languages.Translate(Languages.L.With) + " " + hashingAlgorithm.ToString() + " " + Languages.Translate(Languages.L.HashingAlgorithmIsDone);
                 stopwatch.Stop();
                 return true;
             }
@@ -225,7 +225,7 @@ namespace HashTester
                 cancellationTokenSource.Cancel();
                 stopwatch.Stop();
                 Console.WriteLine("ERROR: Rainbow Table Generator multithread thread has failed: " + ex.Message);
-                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
+                MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message);
                 return false;
             }
         }
@@ -255,7 +255,7 @@ namespace HashTester
             {
                 cancellationTokenSource.Cancel();
                 Console.WriteLine("ERROR: Rainbow Table Generator multithread thread has failed: " + ex.Message);
-                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
+                MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message);
                 return;
             }
         }
@@ -271,7 +271,7 @@ namespace HashTester
 
         private void RemoveFilesQuestionMultiThread(string[] tempFilesInput, string[] tempFilesOutput)
         {
-            if (MessageBox.Show(Languages.Translate(11003) + Environment.NewLine + Languages.Translate(11005), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show(Languages.Translate(Languages.L.WantToDeleteAnUnfinishedFile) + Environment.NewLine + Languages.Translate(Languages.L.WarningThereWillBeSeveralOfTheseFiles), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 foreach (string tempFile in tempFilesInput)
                 {
@@ -289,7 +289,7 @@ namespace HashTester
                     }
                     catch (Exception) { continue; }
                 }
-                MessageBox.Show(Languages.Translate(11004), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Languages.Translate(Languages.L.FileDeleted), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else //rename files to not cause problems
             {
@@ -313,14 +313,14 @@ namespace HashTester
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(Languages.Translate(11007) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(Languages.L.TheProgramFailedToRenameTheFilesWeRecommendToMoveOrDeleteTemporaryFilesBeforeGeneratingTheTableAgain) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void RemoveFilesQuestion(string fileOutputPath)
         {
-            if (MessageBox.Show(Languages.Translate(11003), Languages.Translate(10030), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show(Languages.Translate(Languages.L.WantToDeleteAnUnfinishedFile), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
@@ -330,7 +330,7 @@ namespace HashTester
                     }
                 }
                 catch (Exception) { }
-                MessageBox.Show(Languages.Translate(11004), Languages.Translate(10031), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Languages.Translate(Languages.L.FileDeleted), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else //rename files to not cause problems
             {
@@ -343,7 +343,7 @@ namespace HashTester
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(Languages.Translate(11007) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Languages.Translate(Languages.L.TheProgramFailedToRenameTheFilesWeRecommendToMoveOrDeleteTemporaryFilesBeforeGeneratingTheTableAgain) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

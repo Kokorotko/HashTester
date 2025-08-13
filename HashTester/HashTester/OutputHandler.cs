@@ -1,4 +1,4 @@
-﻿using HashTester.Properties;
+using HashTester.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,8 +51,8 @@ namespace HashTester
             if (Settings.OutputStyleIncludeSaltPepper)
             {
                 //Console.WriteLine("OutputStyleIncludeSaltPepper");
-                if (isSaltUsed) outputString += " (" + Languages.Translate(402) + ": " + salt + ")";
-                if (isPepperUsed) outputString += " (" + Languages.Translate(403) + ": " + pepper + ")";
+                if (isSaltUsed) outputString += " (" + Languages.Translate(Languages.L.Salt) + ": " + salt + ")";
+                if (isPepperUsed) outputString += " (" + Languages.Translate(Languages.L.Pepper) + ": " + pepper + ")";
             }
             return outputString;
         }
@@ -105,12 +105,12 @@ namespace HashTester
                         {
                             File.WriteAllText(saveFileDialogCustom.FileName, outputString);
                         }
-                        else MessageBox.Show(Languages.Translate(55), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else MessageBox.Show(Languages.Translate(Languages.L.FileHasNotBeenSaved), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(Languages.Translate(56) + "\n" + ex.Message, Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredPleaseContactTheCreatorAndReportThisBug) + "\n" + ex.Message, Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
             }
@@ -146,12 +146,12 @@ namespace HashTester
                         {                            
                             File.WriteAllText(saveFileDialogCustom.FileName, ArrayStringToOne(arrayOutputString));
                         }
-                        else MessageBox.Show(Languages.Translate(55), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else MessageBox.Show(Languages.Translate(Languages.L.FileHasNotBeenSaved), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(Languages.Translate(56) + "\n" + ex.Message, Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredPleaseContactTheCreatorAndReportThisBug) + "\n" + ex.Message, Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
             }

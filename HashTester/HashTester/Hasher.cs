@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
@@ -55,12 +55,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (String.IsNullOrEmpty(salt)) text = salt + text;
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (String.IsNullOrEmpty(pepper)) text += pepper;
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //Hashing
             for (int i = 0; i < text.Length; i++)
@@ -145,12 +145,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (!String.IsNullOrEmpty(salt)) text = salt + text;
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (!String.IsNullOrEmpty(pepper)) text += pepper;
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -169,12 +169,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (!String.IsNullOrEmpty(salt)) bytes = CombineArrays(Encoding.UTF8.GetBytes(salt), bytes);
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (!String.IsNullOrEmpty(pepper)) bytes = CombineArrays(bytes, Encoding.UTF8.GetBytes(pepper));
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -193,12 +193,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (salt != null) bytes = CombineArrays(salt, bytes);
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (pepper != null) bytes = CombineArrays(bytes, pepper);
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -217,12 +217,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (!String.IsNullOrEmpty(salt)) text = salt + text;
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (!String.IsNullOrEmpty(pepper)) text += pepper;
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -241,12 +241,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (!String.IsNullOrEmpty(salt)) bytes = CombineArrays(Encoding.UTF8.GetBytes(salt), bytes);
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (!String.IsNullOrEmpty(pepper)) bytes = CombineArrays(bytes, Encoding.UTF8.GetBytes(pepper));
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -265,12 +265,12 @@ namespace HashTester
             if (useSalt)
             {
                 if (salt != null) bytes = CombineArrays(salt, bytes);
-                else MessageBox.Show(Languages.Translate(571), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.SaltNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (usePepper)
             {
                 if (pepper != null) bytes = CombineArrays(bytes, pepper);
-                else MessageBox.Show(Languages.Translate(572), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show(Languages.Translate(Languages.L.PepperNotInicialized), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             switch (algorithm)
             {
@@ -700,7 +700,7 @@ namespace HashTester
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show(Languages.Translate(656), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.ThisHashidFileDoesNotExist), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             catch (Exception)

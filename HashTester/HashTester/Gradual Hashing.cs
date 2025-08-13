@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +27,7 @@ namespace HashTester
             string originalString = textBoxHash.Text;
             if (String.IsNullOrEmpty(originalString))
             {
-                MessageBox.Show(Languages.Translate(103), Languages.Translate(10025), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseSetTextBeforeHashing), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             OutputHandler outputHandler = new OutputHandler(algorithm);
@@ -46,16 +46,16 @@ namespace HashTester
 
         private void FormGradual_Load(object sender, EventArgs e)
         {
-            this.Name = Languages.Translate(703);
+            this.Name = Languages.Translate(Languages.L.GradualHasher);
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
 
             #region Language
             buttonHashGradualHashing.Text = Languages.Translate(101);
-            labelQualityName.Text = Languages.Translate(104);
-            buttonClearListBox.Text = Languages.Translate(10000);
-            buttonSaveLog.Text = Languages.Translate(10001);
-            buttonClipboard.Text = Languages.Translate(10002);
+            labelQualityName.Text = Languages.Translate(Languages.L.WillNotUseSaltpepper);
+            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
+            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
             #endregion
         }
 
@@ -78,7 +78,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                MessageBox.Show(Languages.Translate(10003), Languages.Translate(10004), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

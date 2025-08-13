@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Numerics;
 using System.Windows.Forms;
 
@@ -13,7 +13,7 @@ namespace HashTester
             if (overflowed)
             {
                 speed = 0;
-                MessageBox.Show(Languages.Translate(11006), Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.CountingErrorOccurredWeRecommendChoosingSmallerNumbers), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;              
             }
             speed = number / donePerSec;
@@ -50,12 +50,12 @@ namespace HashTester
             BigInteger numberSecondsLeft = numberSeconds % 60;
 
             string s = "";           
-            if (numberYears > 0)  s += numberYears.ToString("N0") + " " + Languages.Translate(575) + ", ";
-            if (numberMonths > 0) s += numberMonths.ToString("N0") + " " + Languages.Translate(576) + ", ";
-            if (numberDays > 0)  s += numberDays.ToString("N0") + " " + Languages.Translate(577) + ", ";
-            if (numberHours > 0) s += numberHours.ToString("N0") + " " + Languages.Translate(578) + ", ";
-            if (numberMinutes > 0) s += numberMinutes.ToString("N0") + " " + Languages.Translate(579) + ", ";
-            if (numberSecondsLeft > 0 || s == "") s += numberSecondsLeft.ToString("N0") + " " + Languages.Translate(580);
+            if (numberYears > 0)  s += numberYears.ToString("N0") + " " + Languages.Translate(Languages.L.Years) + ", ";
+            if (numberMonths > 0) s += numberMonths.ToString("N0") + " " + Languages.Translate(Languages.L.Months) + ", ";
+            if (numberDays > 0)  s += numberDays.ToString("N0") + " " + Languages.Translate(Languages.L.Days) + ", ";
+            if (numberHours > 0) s += numberHours.ToString("N0") + " " + Languages.Translate(Languages.L.Hours) + ", ";
+            if (numberMinutes > 0) s += numberMinutes.ToString("N0") + " " + Languages.Translate(Languages.L.Minutes) + ", ";
+            if (numberSecondsLeft > 0 || s == "") s += numberSecondsLeft.ToString("N0") + " " + Languages.Translate(Languages.L.Seconds);
             if (s.EndsWith(", ")) s = s.Substring(0, s.Length - 2);
             return s;
         }

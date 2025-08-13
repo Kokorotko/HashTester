@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -156,7 +156,7 @@ namespace HashTester
                 continueTheAttack = true;
                 if (!inputFileIsInPlainText)
                 {
-                    LogOutput.Add(Languages.Translate(584));
+                    LogOutput.Add(Languages.Translate(Languages.L.FileIsAlreadyARainbowTable));
                     string[] algorithmText = line.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries);
                     if (algorithmText.Length < 2)
                     {
@@ -168,12 +168,12 @@ namespace HashTester
                 }
                 else
                 {
-                    LogOutput.Add(Languages.Translate(585));
+                    LogOutput.Add(Languages.Translate(Languages.L.FileIsNotARainbowTable));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message, Languages.Translate(10020), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 continueTheAttack = false;
                 return;
             }
@@ -337,7 +337,7 @@ namespace HashTester
             }
             catch (Exception ex)
             {                
-                MessageBox.Show(Languages.Translate(11000) + Environment.NewLine + ex.Message);
+                MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message);
                 return false;
             }
         }
@@ -358,9 +358,9 @@ namespace HashTester
             FoundPassword = "";
             FoundPasswordBool = false;
             FoundPasswordAtLine = -1;
-            string s = Languages.Translate(586) + " " + fileAlgo + " " + Languages.Translate(587) + " " + userAlgo + ". " + Languages.Translate(588);
+            string s = Languages.Translate(Languages.L.FileIsHashedWith) + " " + fileAlgo + " " + Languages.Translate(Languages.L.ButTheUserWants) + " " + userAlgo + ". " + Languages.Translate(Languages.L.TheAlgorithmsNeedsToBeTheSameCancellingAttack);
             LogOutput.Add(s);
-            MessageBox.Show(s, Languages.Translate(10019), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(s, Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }        
     }
 }
