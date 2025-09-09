@@ -45,6 +45,17 @@
 10039==Program made by
 10040==2fast4you
 
+//Version Updates
+10041==A new version of the application is available at https://github.com/Kokorotko/HashTester/releases
+10042==A major update is available at https://github.com/Kokorotko/HashTester/releases
+10043==A minor update is available at https://github.com/Kokorotko/HashTester/releases
+10044==Do not remind me about updates at startup
+10045==A new version of the application is available
+10046==New version
+10047==Current version
+10048==An error has occured while trying to check for updates.
+10049==Remind me about updates at startup
+
 //**Try and Catch <<11000-12000>>
 11000==An error has occured in the program.
 11001==Please enter a non-zero integer up to 2 billion in "Number of attempts / s".

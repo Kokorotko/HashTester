@@ -19,9 +19,16 @@ namespace HashTester
         private static int updateUIms;
         private static int threadsUsagePercentage;
         private static string selectedLanguage;
+        private static bool remindUpdate;
         #endregion
 
         #region Get&Set
+
+        public static bool RemindUpdate
+        {
+            get { return remindUpdate; }
+            set { remindUpdate = value; }
+        }
         public static bool OutputStyleIncludeOriginalString
         {
             get { return outputStyleIncludeOriginalString; }
@@ -213,6 +220,7 @@ namespace HashTester
             OutputStyleIncludeSaltPepper = false;
             UseSalt = false;
             UsePepper = false;
+            RemindUpdate = true;
             SaveSettings();
         }       
         public static void SaveSettings()
@@ -272,6 +280,8 @@ namespace HashTester
                 else writer.WriteLine("useSalt=0");
                 if (UsePepper) writer.WriteLine("usePepper=1");
                 else writer.WriteLine("usePepper=0");
+                if (RemindUpdate) writer.WriteLine("remindUpdate=1");
+                else writer.WriteLine("remindUpdate=0");
             }
 
         }
@@ -441,6 +451,18 @@ namespace HashTester
                                             catch (Exception)
                                             {
                                                 SelectedLanguage = "";
+                                            }
+                                            break;
+                                        }
+                                    case "remindUpdate":
+                                        {
+                                            try
+                                            {
+                                                RemindUpdate = (data[1] == "1");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                RemindUpdate = false;
                                             }
                                             break;
                                         }

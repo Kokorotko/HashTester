@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HashTester.Hasher;
 using static HashTester.Settings;
@@ -16,7 +18,8 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.0.2";
+        readonly string programVersion = "1.1.0";
+        private bool updateAvailable = false;
 
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
@@ -466,6 +469,7 @@ namespace HashTester
             UIToolStripMenuLoad();
             AddLanguagesToMenu();
             FormManagement.SetUpFormTheme(this);
+            Task.Run(async () => await CheckForUpdates());
             FormUISetUpLanguages();
         }
 
@@ -622,6 +626,7 @@ namespace HashTester
 
         private void FormUISetUpLanguages()
         {
+            UpdateRemindMe();
             hashingToolStripMenuItem.Text = Languages.Translate(Languages.L.Hashing);
             saltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepper);
             multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
@@ -651,6 +656,7 @@ namespace HashTester
             fileChecksumToolStripMenuItem.Text = Languages.Translate(Languages.L.FileChecksum);
             saltPepperTesterToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepperTester);
             labelCredits.Text = Languages.Translate(Languages.L.ProgramMadeBy) + " Kamil Franek" + Environment.NewLine + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion;
+            if (updateAvailable) labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.newVersionAppAvailable);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
             buttonFileInput.Text = Languages.Translate(Languages.L.HashAFile);
@@ -669,6 +675,67 @@ namespace HashTester
         {
             includePepperToolStripMenuItem.Checked = !includePepperToolStripMenuItem.Checked;
             Settings.UsePepper = includePepperToolStripMenuItem.Checked;
+        }
+
+        private async Task CheckForUpdates()
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable()) return; //Dont check for updates when there is no internet...stupid
+            try
+            {
+                GithubAPI githubAPI = new GithubAPI();
+                string githubVersionString = githubAPI.GetVersion().Result;
+                Version githubVersionL = new Version(githubVersionString);
+                Version currentVersion = new Version(programVersion);
+                if (githubVersionL > currentVersion) //Big Update
+                {
+                    if (githubVersionL.Major > currentVersion.Major)
+                    {
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.bigUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        updateAvailable = true;
+                    }
+                    else if (githubVersionL.Minor > currentVersion.Minor) //medium Update
+                    {
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.mediumUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        updateAvailable = true;
+                    }
+                    else //Small Update
+                    {
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.smallUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        updateAvailable = true;
+                    }
+                }
+                Console.WriteLine("Update Checked");
+                if (updateAvailable)
+                {
+                    Console.WriteLine("Update Available");
+                    labelCredits.Invoke((Action)(() =>
+                    {
+                        labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.newVersionAppAvailable);
+                    }));
+                }
+            }
+            catch 
+            {
+                if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.errorCheckVersion), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void remindOnUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateRemindMe()
+        {
+            if (Settings.RemindUpdate)
+            {
+                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.dontRemindMe);
+            }
+            else
+            {
+                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.remindMe);
+            }
         }
     }
 }

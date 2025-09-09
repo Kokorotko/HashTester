@@ -41,6 +41,17 @@
 10039==Program vytvořil
 10040==2fast4you
 
+//Aktualizace
+10041==Je dostupná nová verze na https://github.com/Kokorotko/ROP-HashTester/releases
+10042==Je dostupná velká aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
+10043==Je dostupná malá aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
+10044==Nepřipomínat aktualizace při spuštění
+10045==Nová verze je dostupná
+10046==Nová verze
+10047==Aktuální verze
+10048==Nastala chyba při kontrole aktualizací.
+10049==Připomínat aktualizace při spuštění
+
 //**Try and Catch <<11000-12000>>
 11000==Vyskytla se chyba v programu.
 11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 2 miliard.
