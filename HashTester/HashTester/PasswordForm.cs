@@ -910,20 +910,11 @@ namespace HashTester
             progressBar1.Value = 0;
             userAbortedTheProcess = false; //yes I reset it here shut
         }
-        private string ConvertToHexBasedOnUser(string text)
+        private string ConvertToHexBasedOnUser(string text) //this is only here because Im lazy
         {
             if (checkBoxHexOutputBruteForce.Checked)
             {
-                var hexBuilder = new StringBuilder();
-                for (int i = 0; i < text.Length; i++)
-                {
-                    hexBuilder.AppendFormat("{0:X2}", (int)text[i]);
-                    if (i < text.Length - 1)
-                    {
-                        hexBuilder.Append('-');
-                    }
-                }
-                return hexBuilder.ToString();
+                return FormManagement.ConvertStringToHex(text);
             }
             else { return text; }
         }

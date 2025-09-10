@@ -2,6 +2,7 @@ using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -179,6 +180,19 @@ namespace HashTester
                 }
             }
         }
+        #endregion
+
+        #region Converters
+        public static string ConvertStringToHex(string input)
+        {
+            var hexBuilder = new StringBuilder();
+            for (int i = 0; i < input.Length; i++)
+            {
+                hexBuilder.AppendFormat("{0:X2}", (int)input[i]);
+            }
+            return hexBuilder.ToString().ToLower();
+        }
+
         #endregion
     }
 }

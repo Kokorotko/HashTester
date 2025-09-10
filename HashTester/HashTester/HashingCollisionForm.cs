@@ -104,9 +104,9 @@ namespace HashTester
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionFound));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1: " + (textCollision01));
-                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision01));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + FormManagement.ConvertStringToHex(textCollision01));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 2: " + (textCollision02));
-                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision02));
+                    if (checkBoxUseHex.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + FormManagement.ConvertStringToHex(textCollision02));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionHash) + ": " + hasher.Hash(textCollision01, algorithm));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Attempts) + ": " + attempts);
                     try { listBoxLog.Items.Add(Languages.Translate(Languages.L.TimeToFind) + ": " + labelTimer.Text.Split(' ')[1]); } //so that I dont have to format it again :)
@@ -115,9 +115,9 @@ namespace HashTester
                 }
                 //MessageBoxOutput
                 string message = Languages.Translate(Languages.L.CollisionFound) + Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 1: " + textCollision01;
-                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision01);
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 1 (" + Languages.Translate(Languages.L.Hex) + "): " + FormManagement.ConvertStringToHex(textCollision01);
                 message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 2: " + textCollision02;
-                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + ConvertStringToHex(textCollision02);
+                if (checkBoxUseHex.Checked) message += Environment.NewLine + Languages.Translate(Languages.L.Collision) + " 2 (" + Languages.Translate(Languages.L.Hex) + "): " + FormManagement.ConvertStringToHex(textCollision02);
                 message += Environment.NewLine + Languages.Translate(Languages.L.CollisionHash) + ": " + hasher.Hash(textCollision01, algorithm) + 
                     Environment.NewLine + Languages.Translate(Languages.L.Attempts) + ": " + attempts;
                 listBoxLog.Items.Add(message);
@@ -198,7 +198,7 @@ namespace HashTester
                             if (saveLog)
                             {
                                 string s = Languages.Translate(Languages.L.FoundCollision) + ": " + collision1 + " " + Languages.Translate(Languages.L.And) + " " + collision2;
-                                if (useHexForOutput) s = Languages.Translate(Languages.L.FoundCollision) + ": " + ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + ConvertStringToHex(collision2);
+                                if (useHexForOutput) s = Languages.Translate(Languages.L.FoundCollision) + ": " + FormManagement.ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + FormManagement.ConvertStringToHex(collision2);
                                 Invoke((Action)(() => listBoxLog.Items.Add(s)));
                                 Invoke((Action)(() => listBoxLog.TopIndex = listBoxLog.Items.Count - 1));
                             }
@@ -293,8 +293,8 @@ namespace HashTester
                     writer.WriteLine(collisionText01);
                     writer.WriteLine(collisionText02);
                     writer.WriteLine("<HEX>");
-                    writer.WriteLine(ConvertStringToHex(collisionText01));
-                    writer.WriteLine(ConvertStringToHex(collisionText02));
+                    writer.WriteLine(FormManagement.ConvertStringToHex(collisionText01));
+                    writer.WriteLine(FormManagement.ConvertStringToHex(collisionText02));
                     writer.WriteLine("<HASH>");
                     writer.WriteLine("hash1: " + hasher.Hash(collisionText01, algorithm));
                     writer.WriteLine("hash2: " + hasher.Hash(collisionText02, algorithm));
@@ -353,22 +353,6 @@ namespace HashTester
             checkBoxPerformanceMode.Enabled = true;
             buttonCheckCollision.Enabled = true;
         }
-
-        #region Converters
-        private string ConvertStringToHex(string input)
-        {
-            var hexBuilder = new StringBuilder();
-            for (int i = 0; i < input.Length; i++)
-            {
-                hexBuilder.AppendFormat("{0:X2}", (int)input[i]);
-                if (i < input.Length - 1)
-                {
-                    hexBuilder.Append('-');
-                }
-            }
-            return hexBuilder.ToString();
-        }        
-        #endregion
 
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
