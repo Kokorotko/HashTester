@@ -197,8 +197,8 @@ namespace HashTester
                             foundCollision = true;
                             if (saveLog)
                             {
-                                string s = Languages.Translate(Languages.L.FoundCollision) + ": " + collision1 + " " + Languages.Translate(Languages.L.And) + " " + collision2;
-                                if (useHexForOutput) s = Languages.Translate(Languages.L.FoundCollision) + ": " + FormManagement.ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + FormManagement.ConvertStringToHex(collision2);
+                                string s = Languages.Translate(Languages.L.CollisionFound) + ": " + collision1 + " " + Languages.Translate(Languages.L.And) + " " + collision2;
+                                if (useHexForOutput) s = Languages.Translate(Languages.L.CollisionFound) + ": " + FormManagement.ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + FormManagement.ConvertStringToHex(collision2);
                                 Invoke((Action)(() => listBoxLog.Items.Add(s)));
                                 Invoke((Action)(() => listBoxLog.TopIndex = listBoxLog.Items.Count - 1));
                             }

@@ -72,7 +72,7 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(42),Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying),Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
@@ -89,7 +89,7 @@ namespace HashTester
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
             checkBoxUsePepper.Text = Languages.Translate(Languages.L.UsePepper) + "*";
             checkBoxUseSalt.Text = Languages.Translate(Languages.L.UseSalt) + "*";
-            checkBoxUseLog.Text = Languages.Translate(246);
+            checkBoxUseLog.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             label1.Text = "*" + Languages.Translate(Languages.L.HasPriorityOverSettings);
             labelAlgorithm.Text = Languages.Translate(Languages.L.Algorithm);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);

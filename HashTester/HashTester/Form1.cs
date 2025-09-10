@@ -656,7 +656,7 @@ namespace HashTester
             fileChecksumToolStripMenuItem.Text = Languages.Translate(Languages.L.FileChecksum);
             saltPepperTesterToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepperTester);
             labelCredits.Text = Languages.Translate(Languages.L.ProgramMadeBy) + " Kamil Franek" + Environment.NewLine + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion;
-            if (updateAvailable) labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.newVersionAppAvailable);
+            if (updateAvailable) labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
             buttonFileInput.Text = Languages.Translate(Languages.L.HashAFile);
@@ -690,17 +690,17 @@ namespace HashTester
                 {
                     if (githubVersionL.Major > currentVersion.Major)
                     {
-                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.bigUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases) + "\n" + Languages.Translate(Languages.L.NewVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion, Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         updateAvailable = true;
                     }
                     else if (githubVersionL.Minor > currentVersion.Minor) //medium Update
                     {
-                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.mediumUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.AMajorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases) + "\n" + Languages.Translate(Languages.L.NewVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion, Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         updateAvailable = true;
                     }
                     else //Small Update
                     {
-                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.smallUpdate) + "\n" + Languages.Translate(Languages.L.newVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.currentVersion) + ": " + programVersion, Languages.Translate(Languages.L.newVersionAppAvailable), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.AMinorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases) + "\n" + Languages.Translate(Languages.L.NewVersion) + ": " + githubVersionString + "\n" + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion, Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         updateAvailable = true;
                     }
                 }
@@ -710,13 +710,13 @@ namespace HashTester
                     Console.WriteLine("Update Available");
                     labelCredits.Invoke((Action)(() =>
                     {
-                        labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.newVersionAppAvailable);
+                        labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
                     }));
                 }
             }
             catch 
             {
-                if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.errorCheckVersion), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Settings.RemindUpdate) MessageBox.Show(Languages.Translate(Languages.L.AnErrorHasOccuredWhileTryingToCheckForUpdates), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -730,12 +730,18 @@ namespace HashTester
         {
             if (Settings.RemindUpdate)
             {
-                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.dontRemindMe);
+                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.DoNotRemindMeAboutUpdatesAtStartup);
             }
             else
             {
-                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.remindMe);
+                remindOnUpdateToolStripMenuItem.Text = Languages.Translate(Languages.L.RemindMeAboutUpdatesAtStartup);
             }
+        }
+
+        private void remindOnUpdateToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Settings.RemindUpdate = !Settings.RemindUpdate;
+            UpdateRemindMe();
         }
     }
 }

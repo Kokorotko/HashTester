@@ -55,6 +55,7 @@ namespace HashTester
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UIUpdateFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.threadsAndCPUSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remindOnUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAllSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputTypeStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,14 +71,13 @@ namespace HashTester
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
             this.labelCredits = new System.Windows.Forms.Label();
-            this.remindOnUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonHashSimpleText
             // 
             this.buttonHashSimpleText.Location = new System.Drawing.Point(16, 82);
-            this.buttonHashSimpleText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonHashSimpleText.Margin = new System.Windows.Forms.Padding(4);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
             this.buttonHashSimpleText.Size = new System.Drawing.Size(177, 28);
             this.buttonHashSimpleText.TabIndex = 0;
@@ -88,7 +88,7 @@ namespace HashTester
             // textHashSimple
             // 
             this.textHashSimple.Location = new System.Drawing.Point(17, 116);
-            this.textHashSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textHashSimple.Margin = new System.Windows.Forms.Padding(4);
             this.textHashSimple.Multiline = true;
             this.textHashSimple.Name = "textHashSimple";
             this.textHashSimple.Size = new System.Drawing.Size(532, 72);
@@ -106,7 +106,7 @@ namespace HashTester
             "RipeMD-160",
             "CRC32"});
             this.hashSelector.Location = new System.Drawing.Point(389, 82);
-            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(160, 24);
             this.hashSelector.TabIndex = 4;
@@ -115,7 +115,7 @@ namespace HashTester
             // buttonFileInput
             // 
             this.buttonFileInput.Location = new System.Drawing.Point(201, 82);
-            this.buttonFileInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonFileInput.Margin = new System.Windows.Forms.Padding(4);
             this.buttonFileInput.Name = "buttonFileInput";
             this.buttonFileInput.Size = new System.Drawing.Size(180, 28);
             this.buttonFileInput.TabIndex = 5;
@@ -133,7 +133,7 @@ namespace HashTester
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.ItemHeight = 16;
             this.listBoxLog.Location = new System.Drawing.Point(17, 196);
-            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(532, 132);
             this.listBoxLog.TabIndex = 10;
@@ -141,7 +141,7 @@ namespace HashTester
             // buttonClearListBox
             // 
             this.buttonClearListBox.Location = new System.Drawing.Point(16, 336);
-            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClearListBox.Name = "buttonClearListBox";
             this.buttonClearListBox.Size = new System.Drawing.Size(173, 28);
             this.buttonClearListBox.TabIndex = 11;
@@ -172,48 +172,48 @@ namespace HashTester
             this.findingCollisionsToolStripMenuItem,
             this.passwordCrackerToolStripMenuItem});
             this.hashingToolStripMenuItem.Name = "hashingToolStripMenuItem";
-            this.hashingToolStripMenuItem.Size = new System.Drawing.Size(77, 26);
+            this.hashingToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.hashingToolStripMenuItem.Text = "Hashing";
             // 
             // gradualHashingToolStripMenuItem1
             // 
             this.gradualHashingToolStripMenuItem1.Name = "gradualHashingToolStripMenuItem1";
-            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(212, 26);
+            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             this.fileChecksumToolStripMenuItem.Click += new System.EventHandler(this.fileChecksumToolStripMenuItem_Click);
             // 
             // saltPepperTesterToolStripMenuItem
             // 
             this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
-            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
             this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
             // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
-            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // findingCollisionsToolStripMenuItem
             // 
             this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
             // passwordCrackerToolStripMenuItem
             // 
             this.passwordCrackerToolStripMenuItem.Name = "passwordCrackerToolStripMenuItem";
-            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.passwordCrackerToolStripMenuItem.Text = "Password Cracker";
             this.passwordCrackerToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
@@ -225,7 +225,7 @@ namespace HashTester
             this.outputTypeStripMenuItem,
             this.outputStyleToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // saltAndPepperToolStripMenuItem
@@ -309,6 +309,13 @@ namespace HashTester
             this.threadsAndCPUSettingsToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.threadsAndCPUSettingsToolStripMenuItem.Text = "Threads and CPU settings";
             this.threadsAndCPUSettingsToolStripMenuItem.Click += new System.EventHandler(this.threadsAndCPUSettingsToolStripMenuItem_Click);
+            // 
+            // remindOnUpdateToolStripMenuItem
+            // 
+            this.remindOnUpdateToolStripMenuItem.Name = "remindOnUpdateToolStripMenuItem";
+            this.remindOnUpdateToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.remindOnUpdateToolStripMenuItem.Text = "Remind On Update";
+            this.remindOnUpdateToolStripMenuItem.Click += new System.EventHandler(this.remindOnUpdateToolStripMenuItem_Click_1);
             // 
             // resetAllSettingsToolStripMenuItem
             // 
@@ -398,13 +405,13 @@ namespace HashTester
             // languagesToolStripMenuItem
             // 
             this.languagesToolStripMenuItem.Name = "languagesToolStripMenuItem";
-            this.languagesToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
+            this.languagesToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.languagesToolStripMenuItem.Text = "Languages";
             // 
             // buttonSaveLog
             // 
             this.buttonSaveLog.Location = new System.Drawing.Point(196, 336);
-            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveLog.Name = "buttonSaveLog";
             this.buttonSaveLog.Size = new System.Drawing.Size(173, 28);
             this.buttonSaveLog.TabIndex = 15;
@@ -415,7 +422,7 @@ namespace HashTester
             // buttonClipboard
             // 
             this.buttonClipboard.Location = new System.Drawing.Point(377, 336);
-            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClipboard.Name = "buttonClipboard";
             this.buttonClipboard.Size = new System.Drawing.Size(173, 28);
             this.buttonClipboard.TabIndex = 16;
@@ -432,13 +439,6 @@ namespace HashTester
             this.labelCredits.Size = new System.Drawing.Size(144, 32);
             this.labelCredits.TabIndex = 17;
             this.labelCredits.Text = "Made by: Kamil Franek\r\nCurrent Version: x.xx.x";
-            // 
-            // remindOnUpdateToolStripMenuItem
-            // 
-            this.remindOnUpdateToolStripMenuItem.Name = "remindOnUpdateToolStripMenuItem";
-            this.remindOnUpdateToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
-            this.remindOnUpdateToolStripMenuItem.Text = "Remind On Update";
-            this.remindOnUpdateToolStripMenuItem.Click += new System.EventHandler(this.remindOnUpdateToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -457,7 +457,7 @@ namespace HashTester
             this.Controls.Add(this.buttonHashSimpleText);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "HashTester";
             this.Load += new System.EventHandler(this.Form1_Load);

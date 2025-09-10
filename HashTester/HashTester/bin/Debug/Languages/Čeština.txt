@@ -1,4 +1,4 @@
-9999==Hash
+
 10000==Vymazat záznam
 10001==Uložit záznam
 10002==Schránka
@@ -6,7 +6,6 @@
 10004==Chyba při kopírování
 10005==Zrušit proces
 10006==Přejít zpět
-10007==Maximální počet pokusů
 10008==Délka náhodného textu
 10009==Čas
 10010==Počet pokusů
@@ -37,7 +36,6 @@
 10035==Zaregistrovat
 10036==UI
 10037==Hex
-10038==Aktuální verze
 10039==Program vytvořil
 10040==2fast4you
 
@@ -71,7 +69,6 @@
 15000==Hlavní formulář
 15002==Vyhledávač kolizí
 15003==Kontrola kolizí
-15004==Vícenásobný Hashing 
 15005==Heslový formulář
 15006==Formulář na vlákna
 15007==Formulář pro aktualizaci UI
@@ -146,12 +143,11 @@
 114==Spuštění procesu ve výkonném režimu.
 115==Počet přiřazených vláken
 116==Spuštění procesu v normálním režimu.
-117==Nalezena kolize!
+117==Nalezena kolize
 118==Kolize
 119==Vstup kolize
 120==Pokusy
 121==Čas k nalezení
-122==Nalezena kolize
 123==Chcete uložit kolizi do souboru .txt?
 124==Zjištěna kolize
 125==Společný hash
@@ -201,6 +197,7 @@
 261==Číslice
 262==Speciální
 263==Vypočítat
+264==Normal
 
 //Rainbow Table attack
 265==Hash
@@ -396,7 +393,6 @@
 644==Registrace úspěšně smazána.
 645==Nenašla se registrace k smazání.
 646==má prioritu před nastavením.
-647==Password Tester
 648==Ukázat info
 649==Přihlášení
 650==Vymazat

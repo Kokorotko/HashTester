@@ -48,7 +48,7 @@ namespace HashTester
             labelAlgorithm.Text = Languages.Translate(Languages.L.Algorithm);
             labelProgressBar.Text = Languages.Translate(Languages.L.ProgressBar);
             buttonCancel.Text = Languages.Translate(Languages.L.AbortTheProcess);
-            labelStatAttempts.Text = Languages.Translate(243) + ":";
+            labelStatAttempts.Text = Languages.Translate(Languages.L.Attempts) + ":";
             labelStatCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeedS) + ":";
             labelStatSpeed.Text = Languages.Translate(Languages.L.AverageSpeedS) + ":";
             labelStatTimer.Text = Languages.Translate(Languages.L.Timer) + ":";
@@ -58,7 +58,7 @@ namespace HashTester
             groupBoxBruteForce.Text = Languages.Translate(Languages.L.BruteForceAttack);
             //Dictionary Attack
             radioButtonHashedDictionary.Text = Languages.Translate(Languages.L.Hash);
-            radioButtonRegularDictionary.Text = Languages.Translate(264);
+            radioButtonRegularDictionary.Text = Languages.Translate(Languages.L.Normal);
             radioButtonRockYouFull.Text = Languages.Translate(Languages.L.FullVersion);
             radioButtonRockYouShort.Text = Languages.Translate(Languages.L.ShortVersion);
             radioButtonRockYouFullShortShort.Text = Languages.Translate(Languages.L.VeryShortVersion);
@@ -74,7 +74,7 @@ namespace HashTester
             //RainbowTableAttack
             radioButtonRegularRainbowTable.Text = Languages.Translate(264);
             radioButtonHashedRainbowTable.Text = Languages.Translate(Languages.L.Hash);
-            buttonGenerateRainbowTable.Text = Languages.Translate(Languages.L.GenerateRainbowTable);
+            buttonGenerateRainbowTable.Text = Languages.Translate(Languages.L.GenerateARainbowTable);
             buttonRainbowTableAttack.Text = Languages.Translate(267);
             //BruteForceAttack
             radioButtonRegularBruteForce.Text = Languages.Translate(264);

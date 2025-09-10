@@ -1,8 +1,6 @@
 //Some translations are made with DeepL translator (free version)
 //https://www.deepl.com
 
-9999=Hash
-//Multiple 
 10000==Clear Listbox
 10001==Save log
 10002==Clipboard
@@ -10,7 +8,6 @@
 10004==Clipboard Error
 10005==Cancel the process
 10006==Go back
-10007==Maximum attempts
 10008==Lenght of the random text
 10009==Timer
 10010==Number of attempts
@@ -41,7 +38,6 @@
 10035==Register
 10036==UI
 10037==Hex
-10038==Current version
 10039==Program made by
 10040==2fast4you
 
@@ -56,7 +52,7 @@
 10048==An error has occured while trying to check for updates.
 10049==Remind me about updates at startup
 
-//**Try and Catch <<11000-12000>>
+//**Try and Catch
 11000==An error has occured in the program.
 11001==Please enter a non-zero integer up to 2 billion in "Number of attempts / s".
 11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters / password".
@@ -71,23 +67,20 @@
 11011==Please enter valid input into Text02.
 11012==Could not convert input to string.
 
-//**Name of Forms <<15000-15100>>
+//**Name of Forms
 15000==Main form
-15001==Gradual Hashing
 15002==Hash Collision Finder
 15003==Hash Collision Checker
-15004==Multiple Hashing 
 15005==Password Form
 15006==Threads Form
 15007==UI Updater Form
 15008==Salt and Pepper Form
 15009==Salt and Pepper Questions
 
-//**Main Form <<0-100>>
-
-//ToolStrip Menu <<0-30>>
+//ToolStrip Menu
 0==Hashing
 1==Salt and Pepper
+2==Multiple Hashing
 3==Finding Collisions
 4==Password Cracker
 5==Use Salt
@@ -98,8 +91,8 @@
 10==Output Style
 11==VisualMode
 13==UI Update Frequency
-14==Threads and CPU settings
-15==Reset all settings
+14==Threads and CPU Settings
+15==Reset all Settings
 16==System theme
 17==Light theme
 18==Dark theme
@@ -135,6 +128,8 @@
 55==File has not been saved.
 56==An error has occured. Please contact the creator and report this bug.
 57==Please select a hash for checksum.
+101==Gradual hashing
+102==Please select an item from the list before copying.
 103==Please set text before hashing.
 104==will NOT use salt/pepper
 
@@ -145,12 +140,11 @@
 114==Starting the process in performance mode.
 115==Number of Threads assigned
 116==Starting the process in normal mode.
-117==Collision found!
+117==Collision found
 118==Collision
 119==Collision hash
 120==Attempts
 121==Time to find
-122==Found collision
 123==Would you like to save collision to a txt file?
 124==Collision detected
 125==Common hash
@@ -183,7 +177,6 @@
 245==Average speed /s
 247==Dictionary attack
 248==Brute force time estimator
-249==Rainbow table attack
 250==Brute force attack
 
 //Dictionary Attack
@@ -201,10 +194,13 @@
 261==Digits
 262==Specials
 263==Calculate
+264==Normal
 
 //Rainbow Table attack
 265==Hash
-266==Generate rainbow table
+266==Generate a Rainbow Table
+267==Rainbow Table Attack
+268==Maximum attempts
 
 //Brute force attack
 269==Lenght
@@ -275,7 +271,6 @@
 
 //**ThreadsForm <<421-500>>
 421==How many threads do you want to use in a program?
-422==Number of threads
 423==Percentage of threads used
 424==From 1 to max. number of threads
 425==From 0% to 100%
@@ -293,7 +288,8 @@
 437==CPU info
 438==Name
 439==Manufacturer
-440==Number of cores
+440==Number of Cores
+441==Number of Threads
 442==Max clock speed
 443==CPU description
 444==Unknown
@@ -395,7 +391,6 @@
 644==Registry deleted successfully.
 645==Could not find the registry to delete.
 646==has priority over settings
-647==Password Tester
 648==Show info
 649==Login
 650==Remove
@@ -413,6 +408,7 @@
 704==Collision Finder
 705==Collision Checker
 706==Multi Hasher
+707==Password Tester
 708==Salt and Pepper Chooser
 709==Salt and Pepper Tester
 710==Thread Manager

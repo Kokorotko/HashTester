@@ -588,8 +588,6 @@ namespace HashTester
                         writer.WriteLine("//Some translations are made with DeepL translator (free version)");
                         writer.WriteLine("//https://www.deepl.com");
                         writer.WriteLine("");
-                        writer.WriteLine("9999=Hash");
-                        writer.WriteLine("//Multiple ");
                         writer.WriteLine("10000==Clear Listbox");
                         writer.WriteLine("10001==Save log");
                         writer.WriteLine("10002==Clipboard");
@@ -597,7 +595,6 @@ namespace HashTester
                         writer.WriteLine("10004==Clipboard Error");
                         writer.WriteLine("10005==Cancel the process");
                         writer.WriteLine("10006==Go back");
-                        writer.WriteLine("10007==Maximum attempts");
                         writer.WriteLine("10008==Lenght of the random text");
                         writer.WriteLine("10009==Timer");
                         writer.WriteLine("10010==Number of attempts");
@@ -628,11 +625,21 @@ namespace HashTester
                         writer.WriteLine("10035==Register");
                         writer.WriteLine("10036==UI");
                         writer.WriteLine("10037==Hex");
-                        writer.WriteLine("10038==Current version");
                         writer.WriteLine("10039==Program made by");
                         writer.WriteLine("10040==2fast4you");
                         writer.WriteLine("");
-                        writer.WriteLine("//**Try and Catch <<11000-12000>>");
+                        writer.WriteLine("//Version Updates");
+                        writer.WriteLine("10041==A new version of the application is available at https://github.com/Kokorotko/HashTester/releases");
+                        writer.WriteLine("10042==A major update is available at https://github.com/Kokorotko/HashTester/releases");
+                        writer.WriteLine("10043==A minor update is available at https://github.com/Kokorotko/HashTester/releases");
+                        writer.WriteLine("10044==Do not remind me about updates at startup");
+                        writer.WriteLine("10045==A new version of the application is available");
+                        writer.WriteLine("10046==New version");
+                        writer.WriteLine("10047==Current version");
+                        writer.WriteLine("10048==An error has occured while trying to check for updates.");
+                        writer.WriteLine("10049==Remind me about updates at startup");
+                        writer.WriteLine("");
+                        writer.WriteLine("//**Try and Catch");
                         writer.WriteLine("11000==An error has occured in the program.");
                         writer.WriteLine("11001==Please enter a non-zero integer up to 2 billion in \"Number of attempts / s\".");
                         writer.WriteLine("11002==Please enter a non-zero integer up to 1000 or a password in \"Number of characters / password\".");
@@ -647,23 +654,20 @@ namespace HashTester
                         writer.WriteLine("11011==Please enter valid input into Text02.");
                         writer.WriteLine("11012==Could not convert input to string.");
                         writer.WriteLine("");
-                        writer.WriteLine("//**Name of Forms <<15000-15100>>");
+                        writer.WriteLine("//**Name of Forms");
                         writer.WriteLine("15000==Main form");
-                        writer.WriteLine("15001==Gradual Hashing");
                         writer.WriteLine("15002==Hash Collision Finder");
                         writer.WriteLine("15003==Hash Collision Checker");
-                        writer.WriteLine("15004==Multiple Hashing ");
                         writer.WriteLine("15005==Password Form");
                         writer.WriteLine("15006==Threads Form");
                         writer.WriteLine("15007==UI Updater Form");
                         writer.WriteLine("15008==Salt and Pepper Form");
                         writer.WriteLine("15009==Salt and Pepper Questions");
                         writer.WriteLine("");
-                        writer.WriteLine("//**Main Form <<0-100>>");
-                        writer.WriteLine("");
-                        writer.WriteLine("//ToolStrip Menu <<0-30>>");
+                        writer.WriteLine("//ToolStrip Menu");
                         writer.WriteLine("0==Hashing");
                         writer.WriteLine("1==Salt and Pepper");
+                        writer.WriteLine("2==Multiple Hashing");
                         writer.WriteLine("3==Finding Collisions");
                         writer.WriteLine("4==Password Cracker");
                         writer.WriteLine("5==Use Salt");
@@ -674,8 +678,8 @@ namespace HashTester
                         writer.WriteLine("10==Output Style");
                         writer.WriteLine("11==VisualMode");
                         writer.WriteLine("13==UI Update Frequency");
-                        writer.WriteLine("14==Threads and CPU settings");
-                        writer.WriteLine("15==Reset all settings");
+                        writer.WriteLine("14==Threads and CPU Settings");
+                        writer.WriteLine("15==Reset all Settings");
                         writer.WriteLine("16==System theme");
                         writer.WriteLine("17==Light theme");
                         writer.WriteLine("18==Dark theme");
@@ -711,6 +715,8 @@ namespace HashTester
                         writer.WriteLine("55==File has not been saved.");
                         writer.WriteLine("56==An error has occured. Please contact the creator and report this bug.");
                         writer.WriteLine("57==Please select a hash for checksum.");
+                        writer.WriteLine("101==Gradual hashing");
+                        writer.WriteLine("102==Please select an item from the list before copying.");
                         writer.WriteLine("103==Please set text before hashing.");
                         writer.WriteLine("104==will NOT use salt/pepper");
                         writer.WriteLine("");
@@ -721,12 +727,11 @@ namespace HashTester
                         writer.WriteLine("114==Starting the process in performance mode.");
                         writer.WriteLine("115==Number of Threads assigned");
                         writer.WriteLine("116==Starting the process in normal mode.");
-                        writer.WriteLine("117==Collision found!");
+                        writer.WriteLine("117==Collision found");
                         writer.WriteLine("118==Collision");
                         writer.WriteLine("119==Collision hash");
                         writer.WriteLine("120==Attempts");
                         writer.WriteLine("121==Time to find");
-                        writer.WriteLine("122==Found collision");
                         writer.WriteLine("123==Would you like to save collision to a txt file?");
                         writer.WriteLine("124==Collision detected");
                         writer.WriteLine("125==Common hash");
@@ -759,7 +764,6 @@ namespace HashTester
                         writer.WriteLine("245==Average speed /s");
                         writer.WriteLine("247==Dictionary attack");
                         writer.WriteLine("248==Brute force time estimator");
-                        writer.WriteLine("249==Rainbow table attack");
                         writer.WriteLine("250==Brute force attack");
                         writer.WriteLine("");
                         writer.WriteLine("//Dictionary Attack");
@@ -777,10 +781,13 @@ namespace HashTester
                         writer.WriteLine("261==Digits");
                         writer.WriteLine("262==Specials");
                         writer.WriteLine("263==Calculate");
+                        writer.WriteLine("264==Normal");
                         writer.WriteLine("");
                         writer.WriteLine("//Rainbow Table attack");
                         writer.WriteLine("265==Hash");
-                        writer.WriteLine("266==Generate rainbow table");
+                        writer.WriteLine("266==Generate a Rainbow Table");
+                        writer.WriteLine("267==Rainbow Table Attack");
+                        writer.WriteLine("268==Maximum attempts");
                         writer.WriteLine("");
                         writer.WriteLine("//Brute force attack");
                         writer.WriteLine("269==Lenght");
@@ -851,7 +858,6 @@ namespace HashTester
                         writer.WriteLine("");
                         writer.WriteLine("//**ThreadsForm <<421-500>>");
                         writer.WriteLine("421==How many threads do you want to use in a program?");
-                        writer.WriteLine("422==Number of threads");
                         writer.WriteLine("423==Percentage of threads used");
                         writer.WriteLine("424==From 1 to max. number of threads");
                         writer.WriteLine("425==From 0% to 100%");
@@ -869,7 +875,8 @@ namespace HashTester
                         writer.WriteLine("437==CPU info");
                         writer.WriteLine("438==Name");
                         writer.WriteLine("439==Manufacturer");
-                        writer.WriteLine("440==Number of cores");
+                        writer.WriteLine("440==Number of Cores");
+                        writer.WriteLine("441==Number of Threads");
                         writer.WriteLine("442==Max clock speed");
                         writer.WriteLine("443==CPU description");
                         writer.WriteLine("444==Unknown");
@@ -971,7 +978,6 @@ namespace HashTester
                         writer.WriteLine("644==Registry deleted successfully.");
                         writer.WriteLine("645==Could not find the registry to delete.");
                         writer.WriteLine("646==has priority over settings");
-                        writer.WriteLine("647==Password Tester");
                         writer.WriteLine("648==Show info");
                         writer.WriteLine("649==Login");
                         writer.WriteLine("650==Remove");
@@ -989,6 +995,7 @@ namespace HashTester
                         writer.WriteLine("704==Collision Finder");
                         writer.WriteLine("705==Collision Checker");
                         writer.WriteLine("706==Multi Hasher");
+                        writer.WriteLine("707==Password Tester");
                         writer.WriteLine("708==Salt and Pepper Chooser");
                         writer.WriteLine("709==Salt and Pepper Tester");
                         writer.WriteLine("710==Thread Manager");
@@ -1007,7 +1014,6 @@ namespace HashTester
                 {
                     using (StreamWriter writer = new StreamWriter(s))
                     {
-                        writer.WriteLine("9999==Hash");
                         writer.WriteLine("10000==Vymazat záznam");
                         writer.WriteLine("10001==Uložit záznam");
                         writer.WriteLine("10002==Schránka");
@@ -1015,7 +1021,6 @@ namespace HashTester
                         writer.WriteLine("10004==Chyba při kopírování");
                         writer.WriteLine("10005==Zrušit proces");
                         writer.WriteLine("10006==Přejít zpět");
-                        writer.WriteLine("10007==Maximální počet pokusů");
                         writer.WriteLine("10008==Délka náhodného textu");
                         writer.WriteLine("10009==Čas");
                         writer.WriteLine("10010==Počet pokusů");
@@ -1046,9 +1051,19 @@ namespace HashTester
                         writer.WriteLine("10035==Zaregistrovat");
                         writer.WriteLine("10036==UI");
                         writer.WriteLine("10037==Hex");
-                        writer.WriteLine("10038==Aktuální verze");
                         writer.WriteLine("10039==Program vytvořil");
                         writer.WriteLine("10040==2fast4you");
+                        writer.WriteLine("");
+                        writer.WriteLine("//Aktualizace");
+                        writer.WriteLine("10041==Je dostupná nová verze na https://github.com/Kokorotko/ROP-HashTester/releases");
+                        writer.WriteLine("10042==Je dostupná velká aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases");
+                        writer.WriteLine("10043==Je dostupná malá aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases");
+                        writer.WriteLine("10044==Nepřipomínat aktualizace při spuštění");
+                        writer.WriteLine("10045==Nová verze je dostupná");
+                        writer.WriteLine("10046==Nová verze");
+                        writer.WriteLine("10047==Aktuální verze");
+                        writer.WriteLine("10048==Nastala chyba při kontrole aktualizací.");
+                        writer.WriteLine("10049==Připomínat aktualizace při spuštění");
                         writer.WriteLine("");
                         writer.WriteLine("//**Try and Catch <<11000-12000>>");
                         writer.WriteLine("11000==Vyskytla se chyba v programu.");
@@ -1069,7 +1084,6 @@ namespace HashTester
                         writer.WriteLine("15000==Hlavní formulář");
                         writer.WriteLine("15002==Vyhledávač kolizí");
                         writer.WriteLine("15003==Kontrola kolizí");
-                        writer.WriteLine("15004==Vícenásobný Hashing ");
                         writer.WriteLine("15005==Heslový formulář");
                         writer.WriteLine("15006==Formulář na vlákna");
                         writer.WriteLine("15007==Formulář pro aktualizaci UI");
@@ -1144,12 +1158,11 @@ namespace HashTester
                         writer.WriteLine("114==Spuštění procesu ve výkonném režimu.");
                         writer.WriteLine("115==Počet přiřazených vláken");
                         writer.WriteLine("116==Spuštění procesu v normálním režimu.");
-                        writer.WriteLine("117==Nalezena kolize!");
+                        writer.WriteLine("117==Nalezena kolize");
                         writer.WriteLine("118==Kolize");
                         writer.WriteLine("119==Vstup kolize");
                         writer.WriteLine("120==Pokusy");
                         writer.WriteLine("121==Čas k nalezení");
-                        writer.WriteLine("122==Nalezena kolize");
                         writer.WriteLine("123==Chcete uložit kolizi do souboru .txt?");
                         writer.WriteLine("124==Zjištěna kolize");
                         writer.WriteLine("125==Společný hash");
@@ -1199,6 +1212,7 @@ namespace HashTester
                         writer.WriteLine("261==Číslice");
                         writer.WriteLine("262==Speciální");
                         writer.WriteLine("263==Vypočítat");
+                        writer.WriteLine("264==Normal");
                         writer.WriteLine("");
                         writer.WriteLine("//Rainbow Table attack");
                         writer.WriteLine("265==Hash");
@@ -1394,7 +1408,6 @@ namespace HashTester
                         writer.WriteLine("644==Registrace úspěšně smazána.");
                         writer.WriteLine("645==Nenašla se registrace k smazání.");
                         writer.WriteLine("646==má prioritu před nastavením.");
-                        writer.WriteLine("647==Password Tester");
                         writer.WriteLine("648==Ukázat info");
                         writer.WriteLine("649==Přihlášení");
                         writer.WriteLine("650==Vymazat");
@@ -1420,6 +1433,7 @@ namespace HashTester
                     }
                 }
                 #endregion
+
 
                 //Logs
                 if (!Directory.Exists(Settings.DirectoryPathToLogs))
