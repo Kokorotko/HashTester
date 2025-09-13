@@ -20,6 +20,7 @@ namespace HashTester
         private static int threadsUsagePercentage;
         private static string selectedLanguage;
         private static bool remindUpdate;
+        private static DateTime githubRequestAPI;
         #endregion
 
         #region Get&Set
@@ -194,6 +195,16 @@ namespace HashTester
                 return path;
             }
         }
+
+        public static DateTime GithubRequestAPI
+        {
+            get { return githubRequestAPI; }
+            set 
+            {  
+                githubRequestAPI = value;
+                SaveSettings();
+            }
+        }
         #endregion
 
         #region Enum
@@ -222,83 +233,86 @@ namespace HashTester
             UsePepper = false;
             RemindUpdate = true;
             SaveSettings();
-        }       
+        }
         public static void SaveSettings()
-{
-    try
-    {
-        //Create File
-        string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-        Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
-        string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-        Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
-        //Create Directory if it doesnt exist
-        if (!Directory.Exists(Settings.DirectoryPathToSettings))
         {
-                Directory.CreateDirectory(Settings.DirectoryPathToSettings);
-        }
-        using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
-        {
-            using (StreamWriter writer = new StreamWriter(fileSettings))
+            try
             {
-                writer.WriteLine("//" + Languages.Translate(Languages.L.WarningIfTheresNothingAfterTheItWillSetTheSettingIntoDefault));
-                writer.WriteLine("//" + Languages.Translate(Languages.L.BoolMeans0FalseAnd1TrueEverythingOtherTakesSpecialInput));
-                writer.WriteLine("//" + Languages.Translate(Languages.L.IHaveIncludedCommentsOnWhatValueIsAllowedOtherwiseADefaultValueWillBeSet));
-                writer.WriteLine("//" + Languages.Translate(Languages.L.VisualmodeFrom0To2));
-                switch (VisualMode)
+                //Create File
+                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
+                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
+                string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
+                Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
+                //Create Directory if it doesnt exist
+                if (!Directory.Exists(Settings.DirectoryPathToSettings))
                 {
-                    case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
-                    case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
-                    case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
+                    Directory.CreateDirectory(Settings.DirectoryPathToSettings);
                 }
-                writer.WriteLine("//" + Languages.Translate(Languages.L.UpdateuiInMiliseconds));
-                writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber81000));
-                writer.WriteLine("UIupdateInMS=" + UpdateUIms);
-                writer.WriteLine("//" + Languages.Translate(Languages.L.NumberOfThreadsMaxUsedInPercentage));
-                writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber1100));
-                writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
-                writer.WriteLine("//" + Languages.Translate(Languages.L.PreferredLanguage));
-                writer.WriteLine("language=" + SelectedLanguage);
-                writer.WriteLine("//" + Languages.Translate(Languages.L.OutputtypeFrom0To2));
-                switch (OutputType)
+                using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
                 {
-                    case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
-                    case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
-                    case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
+                    using (StreamWriter writer = new StreamWriter(fileSettings))
+                    {
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.WarningIfTheresNothingAfterTheItWillSetTheSettingIntoDefault));
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.BoolMeans0FalseAnd1TrueEverythingOtherTakesSpecialInput));
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.IHaveIncludedCommentsOnWhatValueIsAllowedOtherwiseADefaultValueWillBeSet));
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.VisualmodeFrom0To2));
+                        switch (VisualMode)
+                        {
+                            case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
+                            case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
+                            case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
+                        }
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.UpdateuiInMiliseconds));
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber81000));
+                        writer.WriteLine("UIupdateInMS=" + UpdateUIms);
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.NumberOfThreadsMaxUsedInPercentage));
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber1100));
+                        writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.PreferredLanguage));
+                        writer.WriteLine("language=" + SelectedLanguage);
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.OutputtypeFrom0To2));
+                        switch (OutputType)
+                        {
+                            case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
+                            case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
+                            case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
+                        }
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.AllOutputstylesAreBool));
+                        if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
+                        else writer.WriteLine("outputStyle_IncludeOriginalString=0");
+                        if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
+                        else writer.WriteLine("outputStyle_IncludeHash=0");
+                        if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
+                        else writer.WriteLine("outputStyle_IncludeNumber=0");
+                        if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
+                        else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
+                        writer.WriteLine("//" + Languages.Translate(Languages.L.SaltAndPepperBool));
+                        if (UseSalt) writer.WriteLine("useSalt=1");
+                        else writer.WriteLine("useSalt=0");
+                        if (UsePepper) writer.WriteLine("usePepper=1");
+                        else writer.WriteLine("usePepper=0");
+                        if (RemindUpdate) writer.WriteLine("remindUpdate=1");
+                        else writer.WriteLine("remindUpdate=0");
+                        if (GithubRequestAPI != null) writer.WriteLine("githubRequestAPI=" + GithubRequestAPI.ToString());
+                        else writer.WriteLine("githubRequestAPI=0");
+                    }
                 }
-                writer.WriteLine("//" + Languages.Translate(Languages.L.AllOutputstylesAreBool));
-                if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
-                else writer.WriteLine("outputStyle_IncludeOriginalString=0");
-                if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
-                else writer.WriteLine("outputStyle_IncludeHash=0");
-                if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
-                else writer.WriteLine("outputStyle_IncludeNumber=0");
-                if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
-                else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
-                writer.WriteLine("//" + Languages.Translate(Languages.L.SaltAndPepperBool));
-                if (UseSalt) writer.WriteLine("useSalt=1");
-                else writer.WriteLine("useSalt=0");
-                if (UsePepper) writer.WriteLine("usePepper=1");
-                else writer.WriteLine("usePepper=0");
-                if (RemindUpdate) writer.WriteLine("remindUpdate=1");
-                else writer.WriteLine("remindUpdate=0");
+                File.Delete(settingsPathToFileSettings);
+                File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
             }
-
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
-        File.Delete(settingsPathToFileSettings);
-        File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
-    }
-    catch (UnauthorizedAccessException)
-    {
-        MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-        Application.Exit();
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-        return;
-    }
-}
+
         public static void LoadSettings()
         {
             string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
@@ -466,6 +480,16 @@ namespace HashTester
                                             }
                                             break;
                                         }
+                                    case "githubRequestAPI":
+                                        try
+                                        {
+                                            GithubRequestAPI = DateTime.Parse(data[1]);
+                                        }
+                                        catch (Exception)
+                                        {
+                                            GithubRequestAPI = DateTime.MinValue;
+                                        }
+                                        break;
                                     default:
                                         {
                                             break;

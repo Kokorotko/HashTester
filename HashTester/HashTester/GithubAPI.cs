@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Drawing.Printing;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace HashTester
 {
@@ -20,8 +21,15 @@ namespace HashTester
                 string latestRelease = release["tag_name"]?.ToString();
                 latestRelease = latestRelease.Substring(1); //remove the version (v1.0.0 ==> 1.0.0)
                 Console.WriteLine("Newest version: " + latestRelease);
+                Settings.GithubRequestAPI = DateTime.Now;
                 return latestRelease;
             }
+        }
+
+        public static bool CheckGithubAPITime()
+        {
+            if (Settings.GithubRequestAPI.AddHours(12) <= DateTime.Now) return true;
+            else return false;
         }
     }
 }

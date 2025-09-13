@@ -1,0 +1,25 @@
+//Warning! If theres nothing after the = it will set the setting into default  
+//Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input  
+//I have included comments on what value is allowed. Otherwise a default value will be set  
+//VisualMode from 0 to 2  
+visualMode=0
+//UpdateUI in Miliseconds  
+//<<8 - 1000>> whole number  
+UIupdateInMS=32
+//Number of threads max. used in percentage (%)  
+//<<1 - 100>> whole number  
+threadsUsagePercentage=1
+//Preferred language  
+language=Čeština
+//OutputType from 0 to 2  
+outputType=1
+//All OutputStyles are bool  
+outputStyle_IncludeOriginalString=0
+outputStyle_IncludeHash=0
+outputStyle_IncludeNumber=0
+outputStyle_IncludeSaltPepper=0
+//Salt and Pepper bool 
+useSalt=0
+usePepper=0
+remindUpdate=0
+githubRequestAPI=13.09.2025 16:50:10

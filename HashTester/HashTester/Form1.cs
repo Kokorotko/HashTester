@@ -680,6 +680,7 @@ namespace HashTester
         private async Task CheckForUpdates()
         {
             if (!NetworkInterface.GetIsNetworkAvailable()) return; //Dont check for updates when there is no internet...stupid
+            if (!GithubAPI.CheckGithubAPITime()) return; //Please dont spam the Github API :( - 12 hours delay
             try
             {
                 GithubAPI githubAPI = new GithubAPI();
