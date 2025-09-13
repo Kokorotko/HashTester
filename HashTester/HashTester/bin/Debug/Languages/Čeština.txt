@@ -340,7 +340,7 @@
 587==ale uživatel chce
 588==Algoritmy musí být stejné. Rušení útoku...
 601==Počet řádků na zpracování
-602==There are unsaved changes, do you wish to save them?
+602==Existují neuložené změny, chcete je uložit?
 603==Limit pokusů
 
 //Settings

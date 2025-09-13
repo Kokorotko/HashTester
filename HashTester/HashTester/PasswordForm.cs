@@ -2,12 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 
 namespace HashTester
 {
@@ -44,7 +42,7 @@ namespace HashTester
         {
             FormManagement.SetUpFormTheme(this);
             #region Languages
-            this.Name = Languages.Translate(707);
+            this.Name = Languages.Translate(Languages.L.PasswordTester);
             labelAlgorithm.Text = Languages.Translate(Languages.L.Algorithm);
             labelProgressBar.Text = Languages.Translate(Languages.L.ProgressBar);
             buttonCancel.Text = Languages.Translate(Languages.L.AbortTheProcess);
@@ -72,14 +70,14 @@ namespace HashTester
             checkBoxCrackSpecial.Text = Languages.Translate(Languages.L.Specials) + " (33)";
             buttonCrackCalculate.Text = Languages.Translate(Languages.L.Calculate);
             //RainbowTableAttack
-            radioButtonRegularRainbowTable.Text = Languages.Translate(264);
+            radioButtonRegularRainbowTable.Text = Languages.Translate(Languages.L.Normal);
             radioButtonHashedRainbowTable.Text = Languages.Translate(Languages.L.Hash);
             buttonGenerateRainbowTable.Text = Languages.Translate(Languages.L.GenerateARainbowTable);
-            buttonRainbowTableAttack.Text = Languages.Translate(267);
+            buttonRainbowTableAttack.Text = Languages.Translate(Languages.L.RainbowTableAttack);
             //BruteForceAttack
-            radioButtonRegularBruteForce.Text = Languages.Translate(264);
+            radioButtonRegularBruteForce.Text = Languages.Translate(Languages.L.Normal);
             radioButtonBruteForceHashed.Text = Languages.Translate(Languages.L.Hash);
-            labelMaxAttempts.Text = Languages.Translate(268);
+            labelMaxAttempts.Text = Languages.Translate(Languages.L.MaximumAttempts);
             labelLenght.Text = Languages.Translate(Languages.L.Lenght);
             labelStopTimer.Text = Languages.Translate(Languages.L.StopTimerSec);
             checkBoxUnknownLenghtBruteForce.Text = Languages.Translate(Languages.L.UnknownLenght);
@@ -128,7 +126,7 @@ namespace HashTester
         }
         #endregion
 
-        #region Password Dictionary Attack - Done
+        #region Password Dictionary Attack
         DictionaryAttack dictionaryAttack = new DictionaryAttack();
         long passwordCheckLinesProcessedLastUpdate = 0;
         private void UpdateUIPassword(object sender, EventArgs e)
@@ -246,7 +244,7 @@ namespace HashTester
                 {
                     if (dictionaryAttack.FoundMatch[i])
                     {
-                        string temp = Languages.Translate(280) + " " + dictionaryAttack.FoundPassword[i] + " " + Languages.Translate(Languages.L.HasBeenFoundInWordlistAtLine) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(Languages.L.IRecommendUsingADifferentPassword) + Environment.NewLine;
+                        string temp = Languages.Translate(Languages.L.Password) + " " + dictionaryAttack.FoundPassword[i] + " " + Languages.Translate(Languages.L.HasBeenFoundInWordlistAtLine) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(Languages.L.IRecommendUsingADifferentPassword) + Environment.NewLine;
                         messageBoxAnswer += temp;
                         if (checkBoxShowLog.Checked)
                         {
@@ -256,7 +254,7 @@ namespace HashTester
                     }
                     else
                     {
-                        string temp = Languages.Translate(280) + "' " + passwords[i] + "' " + Languages.Translate(Languages.L.HasNotBeenFoundInWordlistGoodJob) + Environment.NewLine;
+                        string temp = Languages.Translate(Languages.L.Password) + "' " + passwords[i] + "' " + Languages.Translate(Languages.L.HasNotBeenFoundInWordlistGoodJob) + Environment.NewLine;
                         messageBoxAnswer += temp;
                         if (checkBoxShowLog.Checked)
                         {
@@ -315,10 +313,10 @@ namespace HashTester
                 {
                     if (checkBoxShowLog.Checked)
                     {
-                        listBoxLog.Items.Add(Languages.Translate(286));
+                        listBoxLog.Items.Add(Languages.Translate(Languages.L.MaximumAttempts));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                     }
-                    MessageBox.Show(Languages.Translate(286));
+                    MessageBox.Show(Languages.Translate(Languages.L.MaximumAttempts));
                 }
             }
             catch (Exception ex)
@@ -682,7 +680,7 @@ namespace HashTester
 
         #endregion
 
-        #region Password BruteForce Attack - Done
+        #region Password BruteForce Attack
 
         BruteForceAttack bruteForce = new BruteForceAttack();
         private async void buttonBruteForceAttack_Click(object sender, EventArgs e)
@@ -769,9 +767,9 @@ namespace HashTester
             {
                 string message = Languages.Translate(Languages.L.PasswordFound) + "\n" + 
                           "\n" + Languages.Translate(Languages.L.OriginalHash) + ": " + userHashInput + 
-                          "\n" + Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm) +
-                          "\n" + Languages.Translate(310) + ": " + bruteForce.FoundPassword +
-                          "\n" + Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) + 
+                          "\n" + Languages.Translate(Languages.L.FoundPasswordHash) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm) +
+                          "\n" + Languages.Translate(Languages.L.FoundPasswordInUtf8) + ": " + bruteForce.FoundPassword +
+                          "\n" + Languages.Translate(Languages.L.FoundPasswordInHex) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword) + 
                           "\n" + Languages.Translate(Languages.L.Attempts) + ": " + bruteForce.Attempts +
                           "\n" + Languages.Translate(Languages.L.Timer) + ": " + labelStatTimer.Text +
                           "\n" + Languages.Translate(Languages.L.AverageSpeed) + ": " + labelStatSpeed.Text;
@@ -781,9 +779,9 @@ namespace HashTester
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.PasswordFound));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.OriginalHash) + ": " + userHashInput);
-                    listBoxLog.Items.Add(Languages.Translate(309) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm));
-                    listBoxLog.Items.Add(Languages.Translate(310) + ": " + bruteForce.FoundPassword);
-                    listBoxLog.Items.Add(Languages.Translate(311) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.FoundPasswordHash) + ": " + hasher.Hash(bruteForce.FoundPassword, bruteForceAlgorithm));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.FoundPasswordInUtf8) + ": " + bruteForce.FoundPassword);
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.FoundPasswordInHex) + ": " + ConvertToHexBasedOnUser(bruteForce.FoundPassword));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Attempts) + ": " + bruteForce.Attempts);
                     try
                     {
@@ -1049,7 +1047,7 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {

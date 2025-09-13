@@ -1355,7 +1355,7 @@ namespace HashTester
                         writer.WriteLine("587==ale uživatel chce");
                         writer.WriteLine("588==Algoritmy musí být stejné. Rušení útoku...");
                         writer.WriteLine("601==Počet řádků na zpracování");
-                        writer.WriteLine("602==There are unsaved changes, do you wish to save them?");
+                        writer.WriteLine("602==Existují neuložené změny, chcete je uložit?");
                         writer.WriteLine("603==Limit pokusů");
                         writer.WriteLine("");
                         writer.WriteLine("//Settings");

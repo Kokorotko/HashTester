@@ -50,7 +50,12 @@ namespace HashTester
         public static bool UseMultiThread()
         {
             int percentage = Settings.ThreadsUsagePercentage;
-            if (percentage == 0) return false;
+            int threadsTemp = FormManagement.NumberOfThreadsToUse(); //There is no need to use multiThread if youre gonna just use 1 thread (smart I know)
+            Console.WriteLine("FormManagement.NumberOfThreadsToUse(): " + FormManagement.NumberOfThreadsToUse());
+            if (percentage == 0 || threadsTemp == 1)
+            {
+                return false;
+            }
             else return true;
         }
         public static bool UseLightMode()

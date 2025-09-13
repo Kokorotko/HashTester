@@ -141,6 +141,7 @@ namespace HashTester
             buttonCancel.Text = Languages.Translate(Languages.L.Cancel);
             groupBox1.Text = Languages.Translate(Languages.L.CpuInfo);
             #endregion
+
             // Get CPU Information using WMI
             try
             {

@@ -66,22 +66,21 @@ namespace HashTester
             }
             List<Task> allTasks = new List<Task>();
             stopwatch.Start();
+            //multithread
             if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
-                if (checkBoxListBoxLog.Checked)
-                {
-                    listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInPerformanceMode));
-                    listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                }
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
                 if (checkBoxListBoxLog.Checked)
                 {
-                    listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned)  + ": "+ maxThreads);
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInPerformanceMode));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned) + ": " + maxThreads);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
-                }                
-                for (int i = 0; i < maxThreads - 1; i++) //multiThread
+                }
+                Console.WriteLine("Max Threads: " + maxThreads);
+                for (int i = 0; i < maxThreads; i++) //multiThread
                 {
                     int threadIndex = i;
+                    Console.WriteLine("Collision Finder Multithread start");
                     allTasks.Add(Task.Run(() => CollisionThread(threadIndex, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
                 }
             }
@@ -90,6 +89,7 @@ namespace HashTester
                 if (checkBoxListBoxLog.Checked)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInNormalMode));
+                    listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned) + ": 1");
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
@@ -378,19 +378,7 @@ namespace HashTester
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
             string path = Settings.DirectoryPathToCollisions;
-            Console.Write(path + "_collisionInfo.txt");
-            if (!File.Exists(path + "_collisionInfo.txt"))
-            {
-                string s = Languages.Translate(Languages.L.CommentThisProgramSupportsFormatsStringHexBinAndWorksOnLinesFirstIsFormatThenTwoLinesWillBeReadAndComparedForAnExampleTryToGenerateACollisionInHashingcollisionform) + Environment.NewLine +
-                               Languages.Translate(Languages.L.TheProgramWillOnlyCheckTheFirstFormatAndTexts) + Environment.NewLine +
-                               Languages.Translate(Languages.L.StringSupportsUtf8FormatExampleAl85wth) + Environment.NewLine +
-                               Languages.Translate(Languages.L.HexSupports8db7Or8db7DoesntMatterIfLowercaseOrUppercase) + Environment.NewLine +
-                               Languages.Translate(Languages.L.BinSupports01110001WithOrWithoutSpacesBetween) + Environment.NewLine +
-                               Languages.Translate(Languages.L.ThereMustAlwaysBeAnAlgorithmAndItMustBeBeforeTheFormatSupportedFormatsMd5sha1sha256sha512ripemd160crc32ExampleAlgorithmripemd160) + Environment.NewLine +
-                               Languages.Translate(Languages.L.InHashYouCanFindBothHashesForText1And2ThisIsJustForUserAndCanBeChangedFreelyWhyWouldYouDoThatTho);
-                File.WriteAllText(path + "_collisionInfo.txt", s);
-                Console.WriteLine("Generated _collisionInfo.txt into the " + path);
-            }
+            if (!File.Exists(path + "_collisionInfo.txt")) Settings.InitialFolderChecker();
         }
 
         private void buttonClipboard_Click(object sender, EventArgs e)
