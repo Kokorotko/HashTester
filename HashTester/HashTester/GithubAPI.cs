@@ -20,15 +20,14 @@ namespace HashTester
                 JObject release = JObject.Parse(json); //convert API
                 string latestRelease = release["tag_name"]?.ToString();
                 latestRelease = latestRelease.Substring(1); //remove the version (v1.0.0 ==> 1.0.0)
-                Console.WriteLine("Newest version: " + latestRelease);
-                Settings.GithubRequestAPI = DateTime.Now;
                 return latestRelease;
             }
         }
 
         public static bool CheckGithubAPITime()
         {
-            if (Settings.GithubRequestAPI.AddHours(12) <= DateTime.Now) return true;
+            DateTime temp = Settings.GithubRequestAPI;
+            if (temp.AddHours(12) <= DateTime.Now) return true;
             else return false;
         }
     }

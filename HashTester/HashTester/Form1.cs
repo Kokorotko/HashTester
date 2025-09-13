@@ -684,7 +684,9 @@ namespace HashTester
             try
             {
                 GithubAPI githubAPI = new GithubAPI();
-                string githubVersionString = githubAPI.GetVersion().Result;
+                string githubVersionString = await githubAPI.GetVersion();
+                Settings.GithubRequestAPI = DateTime.Now;
+                Settings.SaveSettings();
                 Version githubVersionL = new Version(githubVersionString);
                 Version currentVersion = new Version(programVersion);
                 if (githubVersionL > currentVersion) //Big Update

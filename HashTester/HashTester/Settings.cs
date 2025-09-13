@@ -20,7 +20,7 @@ namespace HashTester
         private static int threadsUsagePercentage;
         private static string selectedLanguage;
         private static bool remindUpdate;
-        private static DateTime githubRequestAPI;
+        private static DateTime githubRequestAPI = DateTime.Now;
         #endregion
 
         #region Get&Set
@@ -200,9 +200,9 @@ namespace HashTester
         {
             get { return githubRequestAPI; }
             set 
-            {  
-                githubRequestAPI = value;
-                SaveSettings();
+            {
+                Console.WriteLine("Pain: " + githubRequestAPI);
+                githubRequestAPI = value; 
             }
         }
         #endregion
@@ -295,7 +295,7 @@ namespace HashTester
                         if (RemindUpdate) writer.WriteLine("remindUpdate=1");
                         else writer.WriteLine("remindUpdate=0");
                         if (GithubRequestAPI != null) writer.WriteLine("githubRequestAPI=" + GithubRequestAPI.ToString());
-                        else writer.WriteLine("githubRequestAPI=0");
+                        else writer.WriteLine("githubRequestAPI=" + DateTime.Now.AddDays(-1).ToString());
                     }
                 }
                 File.Delete(settingsPathToFileSettings);
@@ -487,7 +487,7 @@ namespace HashTester
                                         }
                                         catch (Exception)
                                         {
-                                            GithubRequestAPI = DateTime.MinValue;
+                                            GithubRequestAPI = DateTime.Now.AddDays(-1);
                                         }
                                         break;
                                     default:
