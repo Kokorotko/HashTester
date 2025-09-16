@@ -18,7 +18,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.1.0";
+        readonly string programVersion = "1.2.0";
         private bool updateAvailable = false;
 
         #region Form Stuff Handling
@@ -59,6 +59,7 @@ namespace HashTester
         }
 
         #endregion
+
         private void UIToolStripMenuLoad()
         {
             UpdateMenuStripSettings();
@@ -125,37 +126,20 @@ namespace HashTester
 
         #endregion
 
-        #region Gradual Hashing
 
         private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormGradual formGradual = new FormGradual();
-            formGradual.StartPosition = FormStartPosition.CenterScreen;
-            formGradual.Name = Languages.Translate(Languages.L.GradualHashing);
-            formGradual.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.Gradual);
         }
 
-        #endregion
-
-        #region MultipleHashing
         private void multipleHashingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MultipleHashing multipleHashing = new MultipleHashing();
-            multipleHashing.StartPosition = FormStartPosition.CenterScreen;
-            multipleHashing.Name = Languages.Translate(Languages.L.MultipleHashing);
-            multipleHashing.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.MultipleHashing);
         }
-        #endregion
-
-        #region FindingCollisions
         private void findingCollisionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HashingCollisionForm hashingCollisionForm = new HashingCollisionForm();
-            hashingCollisionForm.StartPosition = FormStartPosition.CenterScreen;
-            hashingCollisionForm.Name = Languages.Translate(Languages.L.HashCollisionFinder);
-            hashingCollisionForm.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.HashingCollision);
         }
-        #endregion
 
         #region FileChecksum
 
@@ -475,10 +459,7 @@ namespace HashTester
 
         private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PasswordForm passwordForm = new PasswordForm();
-            passwordForm.StartPosition = FormStartPosition.CenterScreen;
-            passwordForm.Name = Languages.Translate(Languages.L.PasswordForm);
-            passwordForm.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.PasswordForm);
         }
 
         private void buttonSaveLog_Click(object sender, EventArgs e)
@@ -585,12 +566,10 @@ namespace HashTester
 
         private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ThreadsForm threadsForm = new ThreadsForm();
-            threadsForm.StartPosition = FormStartPosition.CenterScreen;
-            threadsForm.Name = Languages.Translate(Languages.L.ThreadsForm);
-            if (threadsForm.ShowDialog() == DialogResult.OK)
+            DialogResult temp = FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm);
+            if (temp == DialogResult.OK)
             {
-                Settings.ThreadsUsagePercentage = threadsForm.Percentage;
+                Settings.ThreadsUsagePercentage = FormManagement.Form_ThreadsForm.Percentage;
                 Settings.SaveSettings();
             }
         }
@@ -600,7 +579,7 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(42), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(42), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {

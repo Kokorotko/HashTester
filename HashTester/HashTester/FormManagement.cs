@@ -9,6 +9,163 @@ namespace HashTester
 {
     public static class FormManagement
     {
+        #region Forms
+        //private form setup
+        private static FileChecksum form_fileChecksum;
+        private static FormGradual form_gradual;
+        private static HashingCollisionForm form_hashingCollision;
+        private static PasswordForm form_passwordForm;
+        private static SaltAndPepperTester form_saltAndPepperTester;
+        private static SaltAndPepperSetup form_saltAndPepperSetup;
+        private static ThreadsForm form_threadsForm;
+        private static UIUpdateFrequency form_uiUpdateFrequency;
+        private static MultipleHashing form_multipleHashing;
+
+        //Public get set
+        public static FileChecksum Form_FileChecksum
+        {
+            get { return form_fileChecksum; }
+            set { form_fileChecksum = value; }
+        }
+
+        public static FormGradual Form_Gradual
+        {
+            get { return form_gradual; }
+            set { form_gradual = value; }
+        }
+
+        public static HashingCollisionForm Form_HashingCollision
+        {
+            get { return form_hashingCollision; }
+            set { form_hashingCollision = value; }
+        }
+
+        public static PasswordForm Form_PasswordForm
+        {
+            get { return form_passwordForm; }
+            set { form_passwordForm = value; }
+        }
+
+        public static SaltAndPepperTester Form_SaltAndPepperTester
+        {
+            get { return form_saltAndPepperTester; }
+            set { form_saltAndPepperTester = value; }
+        }
+
+        public static SaltAndPepperSetup Form_SaltAndPepperSetup
+        {
+            get { return form_saltAndPepperSetup; }
+            set { form_saltAndPepperSetup = value; }
+        }
+
+        public static ThreadsForm Form_ThreadsForm
+        {
+            get { return form_threadsForm; }
+            set { form_threadsForm = value; }
+        }
+
+        public static UIUpdateFrequency Form_UIUpdateFrequency
+        {
+            get { return form_uiUpdateFrequency; }
+            set { form_uiUpdateFrequency = value; }
+        }
+
+        public static MultipleHashing Form_MultipleHashing
+        {
+            get { return form_multipleHashing; }
+            set { form_multipleHashing = value; }
+        }
+
+        public enum Forms
+        {
+            FileChecksum,
+            Gradual,
+            HashingCollision,
+            PasswordForm,
+            SaltAndPepper,
+            SaltAndPepperTester,
+            SaltAndPepperSetup,
+            ThreadsForm,
+            UIUpdateFrequency,
+            MultipleHashing
+        }
+
+        public static DialogResult SpawnForm(Forms formType, bool modal = false)
+        {
+            Form form = null;
+            
+
+            switch (formType)
+            {
+                case Forms.FileChecksum:
+                    if (Form_FileChecksum != null && !Form_FileChecksum.IsDisposed) return DialogResult.None;
+                    Form_FileChecksum = new FileChecksum();
+                    form = Form_FileChecksum;
+                    break;
+
+                case Forms.Gradual:
+                    if (Form_Gradual != null && !Form_Gradual.IsDisposed) return DialogResult.None;
+                    Form_Gradual = new FormGradual();
+                    form = Form_Gradual;
+                    break;
+
+                case Forms.HashingCollision:
+                    if (Form_HashingCollision != null && !Form_HashingCollision.IsDisposed) return DialogResult.None;
+                    Form_HashingCollision = new HashingCollisionForm();
+                    form = Form_HashingCollision;
+                    break;
+
+                case Forms.PasswordForm:
+                    if (Form_PasswordForm != null && !Form_PasswordForm.IsDisposed) return DialogResult.None;
+                    Form_PasswordForm = new PasswordForm();
+                    form = Form_PasswordForm;
+                    break;
+
+                case Forms.SaltAndPepperTester:
+                    if (Form_SaltAndPepperTester != null && !Form_SaltAndPepperTester.IsDisposed) return DialogResult.None;
+                    Form_SaltAndPepperTester = new SaltAndPepperTester();
+                    form = Form_SaltAndPepperTester;
+                    break;
+
+                case Forms.SaltAndPepperSetup:
+                    if (Form_SaltAndPepperSetup != null && !Form_SaltAndPepperSetup.IsDisposed) return DialogResult.None;
+                    Form_SaltAndPepperSetup = new SaltAndPepperSetup();
+                    form = Form_SaltAndPepperSetup;
+                    break;
+
+                case Forms.ThreadsForm:
+                    if (Form_ThreadsForm != null && !Form_ThreadsForm.IsDisposed) return DialogResult.None;
+                    Form_ThreadsForm = new ThreadsForm();
+                    form = Form_ThreadsForm;
+                    break;
+
+                case Forms.UIUpdateFrequency:
+                    if (Form_UIUpdateFrequency != null && !Form_UIUpdateFrequency.IsDisposed) return DialogResult.None;
+                    Form_UIUpdateFrequency = new UIUpdateFrequency();
+                    form = Form_UIUpdateFrequency;
+                    break;
+
+                case Forms.MultipleHashing:
+                    if (Form_MultipleHashing != null && !Form_MultipleHashing.IsDisposed) return DialogResult.None;
+                    Form_MultipleHashing = new MultipleHashing();
+                    form = Form_MultipleHashing;
+                    break;
+            }
+
+            if (form == null) return DialogResult.None;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            if (!modal)
+            {
+                form.Show();
+                return DialogResult.None;
+            }
+            return form.ShowDialog();
+        }
+
+
+
+        #endregion
+
         #region Enum
         public enum FolderType
         {
