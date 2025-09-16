@@ -83,6 +83,7 @@ namespace HashTester
                 if (value <= 1) threadsUsagePercentage = 1;
                 else if (value > 100) threadsUsagePercentage = 100;
                 else threadsUsagePercentage = value;
+                Settings.SaveSettings();
             }
         }
 
@@ -111,6 +112,7 @@ namespace HashTester
                     else updateUIms = value;
                 }
                 else updateUIms = 32; //around 30fps
+                Settings.SaveSettings();
             }
         }
         public static string DirectoryExeBase

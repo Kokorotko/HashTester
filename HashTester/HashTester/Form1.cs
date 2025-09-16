@@ -396,51 +396,46 @@ namespace HashTester
             isPepperUsed = false;
             if (Settings.UseSalt || Settings.UsePepper)
             {
-                using (SaltAndPepperSetup saltAndPepperQuestion = new SaltAndPepperSetup())
+                DialogResult var = FormManagement.SpawnForm(FormManagement.Forms.SaltAndPepperSetup, true);
+                if (var == DialogResult.OK)
                 {
-                    saltAndPepperQuestion.StartPosition = FormStartPosition.CenterScreen;
-                    saltAndPepperQuestion.Name = Languages.Translate(Languages.L.SaltAndPepperQuestions);
-                    if (saltAndPepperQuestion.ShowDialog() == DialogResult.OK)
+                    FormManagement.Form_SaltAndPepperSetup.GetSaltPepperInformation
+                        (
+                        out bool generateSalt,
+                        out int saltLength,
+                        out string ownSalt,
+                        out bool generatePepper,
+                        out int pepperLength,
+                        out string ownPepper,
+                        out hashID
+                        );
+                    if (generateSalt || generatePepper)
                     {
-                        saltAndPepperQuestion.GetSaltPepperInformation
-                            (
-                            out bool generateSalt,
-                            out int saltLength,
-                            out string ownSalt,
-                            out bool generatePepper,
-                            out int pepperLength,
-                            out string ownPepper,
-                            out hashID
-                            );
-                        if (generateSalt || generatePepper)
-                        {
-                            salt = generateSalt ? hasher.GenerateSalt(saltLength) : ownSalt;
-                            pepper = generatePepper ? hasher.GeneratePepper(pepperLength) : ownPepper;
+                        salt = generateSalt ? hasher.GenerateSalt(saltLength) : ownSalt;
+                        pepper = generatePepper ? hasher.GeneratePepper(pepperLength) : ownPepper;
 
-                            if (generateSalt)
-                            {
-                                hasher.SaveSalt(hashID, salt, pepper.Length);
-                            }
-                            isSaltUsed = generateSalt;
-                            isPepperUsed = generatePepper;
-                        }
-                        else
+                        if (generateSalt)
                         {
-                            isSaltUsed = Settings.UseSalt;
-                            isPepperUsed = Settings.UsePepper;
-                            salt = ownSalt;
-                            pepper = ownPepper;
-                            if (ownSalt != "")
-                            {
-                                hasher.SaveSalt(hashID, salt, pepper.Length);
-                            }
+                            hasher.SaveSalt(hashID, salt, pepper.Length);
+                        }
+                        isSaltUsed = generateSalt;
+                        isPepperUsed = generatePepper;
+                    }
+                    else
+                    {
+                        isSaltUsed = Settings.UseSalt;
+                        isPepperUsed = Settings.UsePepper;
+                        salt = ownSalt;
+                        pepper = ownPepper;
+                        if (ownSalt != "")
+                        {
+                            hasher.SaveSalt(hashID, salt, pepper.Length);
                         }
                     }
-                    else return false;
                 }
-                return true;
+                else return false;
             }
-            else return false;
+            return true;
         }
         #endregion
 
@@ -496,13 +491,10 @@ namespace HashTester
 
         private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UIUpdateFrequency uIUpdateFrequency = new UIUpdateFrequency();
-            uIUpdateFrequency.StartPosition = FormStartPosition.CenterScreen;
-            uIUpdateFrequency.Name = Languages.Translate(Languages.L.UiUpdaterForm);
-            if (uIUpdateFrequency.ShowDialog() == DialogResult.OK)
+            DialogResult var = FormManagement.SpawnForm(FormManagement.Forms.UIUpdateFrequency, true);
+            if (var == DialogResult.OK)
             {
-                Settings.UpdateUIms = uIUpdateFrequency.Miliseconds;
-                Settings.SaveSettings();
+                Settings.UpdateUIms = FormManagement.Form_UIUpdateFrequency.Miliseconds;
             }
         }
 
@@ -571,7 +563,7 @@ namespace HashTester
             {
                 Settings.ThreadsUsagePercentage = FormManagement.Form_ThreadsForm.Percentage;
                 Settings.SaveSettings();
-            }
+            }   
         }
 
         private void buttonClipboard_Click(object sender, EventArgs e)
@@ -589,18 +581,12 @@ namespace HashTester
 
         private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileChecksum fileChecksum = new FileChecksum();
-            fileChecksum.Name = Languages.Translate(Languages.L.FileChecksum);
-            fileChecksum.StartPosition = FormStartPosition.CenterScreen;
-            fileChecksum.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.FileChecksum);
         }
 
         private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaltAndPepperTester saltAndPepperForm = new SaltAndPepperTester();
-            saltAndPepperForm.StartPosition = FormStartPosition.CenterScreen;
-            saltAndPepperForm.Name = Languages.Translate(Languages.L.SaltAndPepperForm);
-            saltAndPepperForm.ShowDialog();
+            FormManagement.SpawnForm(FormManagement.Forms.SaltAndPepperTester);
         }
 
         private void FormUISetUpLanguages()
