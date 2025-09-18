@@ -193,7 +193,7 @@ namespace HashTester
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {                        
                         pathToFile = openFileDialog.FileName; //Own txt
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(Languages.Translate(Languages.L.PathToWordlist) + ": " + pathToFile);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -201,7 +201,7 @@ namespace HashTester
                     }
                     else
                     {
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(Languages.Translate(Languages.L.NoPathSelectedCancellingProcess));
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -229,7 +229,7 @@ namespace HashTester
                 progressBar1.Value = 100;
                 if (dictionaryAttack.UserAbandoned)
                 {
-                    if (checkBoxShowLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -246,7 +246,7 @@ namespace HashTester
                     {
                         string temp = Languages.Translate(Languages.L.Password) + " " + dictionaryAttack.FoundPassword[i] + " " + Languages.Translate(Languages.L.HasBeenFoundInWordlistAtLine) + " " + dictionaryAttack.LineFoundMatch[i] + ". " + Languages.Translate(Languages.L.IRecommendUsingADifferentPassword) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(temp);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -256,7 +256,7 @@ namespace HashTester
                     {
                         string temp = Languages.Translate(Languages.L.Password) + "' " + passwords[i] + "' " + Languages.Translate(Languages.L.HasNotBeenFoundInWordlistGoodJob) + Environment.NewLine;
                         messageBoxAnswer += temp;
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(temp);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -301,7 +301,7 @@ namespace HashTester
                 //Output
                 if (!overflowed)
                 {
-                    if (checkBoxShowLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(PasswordStrenghtCalculator.Output(timeInSec));
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfPossibleCombinations) + ": " + totalCombinations.ToString("N0"));
@@ -311,7 +311,7 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxShowLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.MaximumAttempts));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -322,7 +322,7 @@ namespace HashTester
             catch (Exception ex)
             {
                 string s = Languages.Translate(Languages.L.AnErrorHasOccuredInTheProgram) + Environment.NewLine + ex.Message;
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(s);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -361,7 +361,7 @@ namespace HashTester
                     {
                         int numberOfThreadsToUse = FormManagement.NumberOfThreadsToUse();
                         Console.WriteLine("Number of threads: " + numberOfThreadsToUse);
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsUsed) + ": " + numberOfThreadsToUse);
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -375,7 +375,7 @@ namespace HashTester
                         if (output)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(rainbowTable.LogOutput);
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -388,7 +388,7 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(Languages.L.ProgramCouldNotGenerateTheRainbowTableAbbandoningProcess);
-                                if (checkBoxShowLog.Checked)
+                                if (Settings.ShowLog)
                                 {
                                     listBoxLog.Items.Add(rainbowTable.LogOutput);
                                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -409,7 +409,7 @@ namespace HashTester
                         if (operationWasSuccesful)
                         {
                             timerRainbowTableGen.Stop();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(rainbowTable.LogOutput);
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -422,7 +422,7 @@ namespace HashTester
                             if (!userAbortedTheProcess)
                             {
                                 string s = Languages.Translate(Languages.L.ProgramCouldNotGenerateTheRainbowTableAbbandoningProcess);
-                                if (checkBoxShowLog.Checked)
+                                if (Settings.ShowLog)
                                 {
                                     listBoxLog.Items.Add(rainbowTable.LogOutput);
                                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -437,7 +437,7 @@ namespace HashTester
             {
                 timerRainbowTableGen.Stop();
                 MessageBox.Show(Languages.Translate(Languages.L.RainbowTableGeneratorAbandoned));
-                if (checkBoxShowLog .Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.RainbowTableGeneratorAbandoned));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -509,7 +509,7 @@ namespace HashTester
                     bool noErrorsFound = await rainbowTableAttack.PerformRainbowAttack(openFileDialog.FileName, originalInput, rainbowTableAlgorithm, (long)numericUpDownStopTimer.Value, (long)numericUpDownMaxAttempts.Value);
                     if (noErrorsFound)
                     {
-                        if (checkBoxShowLog.Checked) listBoxLog.Items.Add("-----------------------------------------------");                           
+                        if (Settings.ShowLog) listBoxLog.Items.Add("-----------------------------------------------");                           
                         if (rainbowTableAttack.FoundPasswordBool)
                         {
                             string foundPassword = rainbowTableAttack.FoundPassword;
@@ -522,7 +522,7 @@ namespace HashTester
                                     Languages.Translate(Languages.L.FoundPasswordHash) + ": " + foundPasswordHash + "\n" +
                                     Languages.Translate(Languages.L.FoundPasswordInUtf8) + ": " + foundPassword + "\n" +
                                     Languages.Translate(Languages.L.FoundPasswordInHex) + ": " + ConvertToHexBasedOnUser(foundPassword);
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.PasswordFoundWithRainbowTableAttack));
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.OriginalPassword) + ": " + foundPassword);
@@ -539,7 +539,7 @@ namespace HashTester
                         else if (rainbowTableAttack.CancelTokenActive())
                         {
                             MessageBox.Show(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned), Languages.Translate(Languages.L.Aborted), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -550,7 +550,7 @@ namespace HashTester
                         else if (rainbowTableAttack.RanOutOfTime)
                         {
                             MessageBox.Show(Languages.Translate(Languages.L.TheProgramCouldNotFindThePasswordWithinTheTimeLimit), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheProgramCouldNotFindThePasswordWithinTheTimeLimit));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -561,7 +561,7 @@ namespace HashTester
                         else if (rainbowTableAttack.RanOutOfAttempts)
                         {
                             MessageBox.Show(Languages.Translate(Languages.L.TheProgramCouldNotFindThePasswordWithinTheAttemptLimit), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheProgramCouldNotFindThePasswordWithinTheAttemptLimit));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -572,7 +572,7 @@ namespace HashTester
                         else
                         {
                             MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindPasswordInTheFile), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindPasswordInTheFile));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -584,7 +584,7 @@ namespace HashTester
                     else
                     {
                         MessageBox.Show(Languages.Translate(Languages.L.CouldNotRunTheDictionaryAttack), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (checkBoxShowLog.Checked)
+                        if (Settings.ShowLog)
                         {
                             listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotRunTheDictionaryAttack));
                             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -594,7 +594,7 @@ namespace HashTester
                 }
                 else if (dialogResult == DialogResult.Cancel || dialogResult == DialogResult.Abort)
                 {
-                    if (checkBoxShowLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.RainbowTableAttackAbbandoned));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -604,7 +604,7 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxShowLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.InvalidFileFormatOrFileNotFoundCancellingDictionaryAttack));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -658,7 +658,7 @@ namespace HashTester
                     progressBar1.Value = Math.Max(0, Math.Min(progress, 100)); //<0-100>
 
                     // Log
-                    if (rainbowTableAttack.LogOutput != null && checkBoxShowLog.Checked)
+                    if (rainbowTableAttack.LogOutput != null && Settings.ShowLog)
                     {
                         List<string> logs = rainbowTableAttack.LogOutput.ToList(); //avoid reading LogOutput while its being changed
                         rainbowTableAttack.LogReset(); // Clear logs after adding them
@@ -694,7 +694,7 @@ namespace HashTester
             {
                 userPasswordLenght = textBoxBruteForce.Text.Length;
                 userHashInput = hasher.Hash(textBoxBruteForce.Text, bruteForceAlgorithm);
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Hashing) + " '" + textBoxBruteForce.Text + "' " + Languages.Translate(Languages.L.Into) + " " + userHashInput + ".");
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -722,7 +722,7 @@ namespace HashTester
             //Task Set Up                
             List<Task> allTasks = new List<Task>();
             BigInteger temp = bruteForce.CalculateAllPossibleCombinations(checkBoxUnknownLenghtBruteForce.Checked, (int)numericUpDownLenght.Value);
-            if (checkBoxShowLog.Checked)
+            if (Settings.ShowLog)
             {
                 listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfAllPossibleCombinations) + ": " + temp.ToString("N0"));
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -774,7 +774,7 @@ namespace HashTester
                           "\n" + Languages.Translate(Languages.L.Timer) + ": " + labelStatTimer.Text +
                           "\n" + Languages.Translate(Languages.L.AverageSpeed) + ": " + labelStatSpeed.Text;
 
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add("----------------------------");
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.PasswordFound));
@@ -799,7 +799,7 @@ namespace HashTester
             }
             else if (bruteForce.RanOutOfAttemps)
             {
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindAPasswordUnderTheGivenAttempts));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -808,7 +808,7 @@ namespace HashTester
             }
             else if (bruteForce.RanOutOfTime)
             {
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindAPasswordUnderTheGivenAttempts));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -821,7 +821,7 @@ namespace HashTester
             }
             else
             {
-                if (checkBoxShowLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindTheOriginalPassword));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -958,7 +958,7 @@ namespace HashTester
                         {
                             timerRainbowTableGen.Dispose();
                             rainbowTable.Abort();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -970,7 +970,7 @@ namespace HashTester
                         {
                             timerRainbowTableAttack.Dispose();
                             rainbowTableAttack.Abort();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -982,7 +982,7 @@ namespace HashTester
                         {
                             timerDictionary.Dispose();
                             dictionaryAttack.Abort();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -994,7 +994,7 @@ namespace HashTester
                         {
                             timerBruteForce.Dispose();
                             bruteForce.Abort();
-                            if (checkBoxShowLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.TheUserHasAbortedTheProcess));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;

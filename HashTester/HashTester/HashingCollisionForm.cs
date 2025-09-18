@@ -54,7 +54,7 @@ namespace HashTester
             TurnOffUI();
             ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
-            if (maxAttempts > 0 && checkBoxListBoxLog.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.AttemptsLimit) + ": " + maxAttempts); 
+            if (maxAttempts > 0 && Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.AttemptsLimit) + ": " + maxAttempts); 
             int rngTextLenght = (int)numericUpDown2.Value;
             switch (hashSelector.SelectedIndex)
             {
@@ -70,7 +70,7 @@ namespace HashTester
             if (checkBoxPerformanceMode.Checked && FormManagement.UseMultiThread())
             {
                 int maxThreads = FormManagement.NumberOfThreadsToUse();
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInPerformanceMode));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned) + ": " + maxThreads);
@@ -86,13 +86,13 @@ namespace HashTester
             }
             else //single Thread
             {
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.StartingTheProcessInNormalMode));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned) + ": 1");
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
-                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxListBoxLog.Checked, checkBoxUseHex.Checked)));
+                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, Settings.ShowLog, checkBoxUseHex.Checked)));
             }
             await Task.WhenAll(allTasks);
             stopwatch.Stop();
@@ -100,7 +100,7 @@ namespace HashTester
             if (foundCollision) 
             {                
                 //LogOutput
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionFound));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Collision) + " 1: " + (textCollision01));
@@ -128,7 +128,7 @@ namespace HashTester
             else if (stopHashing)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -137,7 +137,7 @@ namespace HashTester
             else if (attemptsRanOut)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindACollisionUnderTheGivenAttempts), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindACollisionUnderTheGivenAttempts));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -146,7 +146,7 @@ namespace HashTester
             else
             {
                 MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindCollision), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (checkBoxListBoxLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindCollision));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -329,7 +329,6 @@ namespace HashTester
             numericUpDown1.Enabled = false;
             numericUpDown2.Enabled = false;
             hashSelector.Enabled = false;
-            checkBoxListBoxLog.Enabled = false;
             checkBoxUseHex.Enabled = false;
             checkBoxPerformanceMode.Enabled = false;
             buttonCheckCollision.Enabled = false;
@@ -348,7 +347,6 @@ namespace HashTester
             numericUpDown1.Enabled = true;
             numericUpDown2.Enabled = true;
             hashSelector.Enabled = true;
-            checkBoxListBoxLog.Enabled = true;
             checkBoxUseHex.Enabled = true;
             checkBoxPerformanceMode.Enabled = true;
             buttonCheckCollision.Enabled = true;
@@ -367,7 +365,6 @@ namespace HashTester
             labelCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeed);
             labelLenght.Text = Languages.Translate(Languages.L.LenghtOfTheRandomText);
             labelTimer.Text = Languages.Translate(Languages.L.Timer);
-            checkBoxListBoxLog.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             checkBoxPerformanceMode.Text = Languages.Translate(Languages.L.PerformanceMode);
             checkBoxUseHex.Text = Languages.Translate(Languages.L.UseHexToDisplayText);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);

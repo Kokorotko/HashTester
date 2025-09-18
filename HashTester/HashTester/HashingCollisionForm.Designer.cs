@@ -41,7 +41,6 @@ namespace HashTester
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.labelAttempts = new System.Windows.Forms.Label();
             this.labelCurrentSpeed = new System.Windows.Forms.Label();
-            this.checkBoxListBoxLog = new System.Windows.Forms.CheckBox();
             this.labelAverageSpeed = new System.Windows.Forms.Label();
             this.checkBoxUseHex = new System.Windows.Forms.CheckBox();
             this.checkBoxPerformanceMode = new System.Windows.Forms.CheckBox();
@@ -64,16 +63,18 @@ namespace HashTester
             "RipeMD-160",
             "MD5",
             "SHA1"});
-            this.hashSelector.Location = new System.Drawing.Point(14, 56);
+            this.hashSelector.Location = new System.Drawing.Point(19, 69);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(120, 21);
+            this.hashSelector.Size = new System.Drawing.Size(159, 24);
             this.hashSelector.TabIndex = 9;
             // 
             // buttonGenerateCollision
             // 
-            this.buttonGenerateCollision.Location = new System.Drawing.Point(14, 12);
+            this.buttonGenerateCollision.Location = new System.Drawing.Point(19, 15);
+            this.buttonGenerateCollision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGenerateCollision.Name = "buttonGenerateCollision";
-            this.buttonGenerateCollision.Size = new System.Drawing.Size(180, 23);
+            this.buttonGenerateCollision.Size = new System.Drawing.Size(240, 28);
             this.buttonGenerateCollision.TabIndex = 10;
             this.buttonGenerateCollision.Text = "Generate a Collision";
             this.buttonGenerateCollision.UseVisualStyleBackColor = true;
@@ -83,16 +84,19 @@ namespace HashTester
             // 
             this.listBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(12, 134);
+            this.listBoxLog.ItemHeight = 17;
+            this.listBoxLog.Location = new System.Drawing.Point(16, 165);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(400, 121);
+            this.listBoxLog.Size = new System.Drawing.Size(532, 140);
             this.listBoxLog.TabIndex = 12;
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(12, 260);
+            this.buttonClearListBox.Location = new System.Drawing.Point(16, 320);
+            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(130, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(173, 28);
             this.buttonClearListBox.TabIndex = 13;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -100,9 +104,10 @@ namespace HashTester
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(418, 260);
+            this.buttonReturn.Location = new System.Drawing.Point(557, 320);
+            this.buttonReturn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(130, 23);
+            this.buttonReturn.Size = new System.Drawing.Size(173, 28);
             this.buttonReturn.TabIndex = 14;
             this.buttonReturn.Text = "Go Back";
             this.buttonReturn.UseVisualStyleBackColor = true;
@@ -110,39 +115,43 @@ namespace HashTester
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(14, 103);
+            this.numericUpDown1.Location = new System.Drawing.Point(19, 127);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(246, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(328, 22);
             this.numericUpDown1.TabIndex = 15;
             // 
             // labelMaxAttempts
             // 
             this.labelMaxAttempts.AutoSize = true;
-            this.labelMaxAttempts.Location = new System.Drawing.Point(9, 84);
+            this.labelMaxAttempts.Location = new System.Drawing.Point(12, 103);
+            this.labelMaxAttempts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMaxAttempts.Name = "labelMaxAttempts";
-            this.labelMaxAttempts.Size = new System.Drawing.Size(95, 13);
+            this.labelMaxAttempts.Size = new System.Drawing.Size(119, 16);
             this.labelMaxAttempts.TabIndex = 16;
             this.labelMaxAttempts.Text = "Maximum Attempts";
             // 
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(15, 16);
+            this.labelTimer.Location = new System.Drawing.Point(20, 20);
+            this.labelTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(39, 13);
+            this.labelTimer.Size = new System.Drawing.Size(48, 16);
             this.labelTimer.TabIndex = 17;
             this.labelTimer.Text = "Timer: ";
             // 
             // buttonAbort
             // 
-            this.buttonAbort.Location = new System.Drawing.Point(386, 11);
+            this.buttonAbort.Location = new System.Drawing.Point(515, 14);
+            this.buttonAbort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAbort.Name = "buttonAbort";
-            this.buttonAbort.Size = new System.Drawing.Size(166, 23);
+            this.buttonAbort.Size = new System.Drawing.Size(221, 28);
             this.buttonAbort.TabIndex = 18;
             this.buttonAbort.Text = "Cancel The Process";
             this.buttonAbort.UseVisualStyleBackColor = true;
@@ -151,22 +160,24 @@ namespace HashTester
             // labelLenght
             // 
             this.labelLenght.AutoSize = true;
-            this.labelLenght.Location = new System.Drawing.Point(137, 37);
+            this.labelLenght.Location = new System.Drawing.Point(183, 46);
+            this.labelLenght.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLenght.Name = "labelLenght";
-            this.labelLenght.Size = new System.Drawing.Size(128, 13);
+            this.labelLenght.Size = new System.Drawing.Size(154, 16);
             this.labelLenght.TabIndex = 20;
             this.labelLenght.Text = "Lenght of the random text";
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(140, 57);
+            this.numericUpDown2.Location = new System.Drawing.Point(187, 70);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(160, 22);
             this.numericUpDown2.TabIndex = 19;
             this.numericUpDown2.Value = new decimal(new int[] {
             10,
@@ -177,39 +188,30 @@ namespace HashTester
             // labelAttempts
             // 
             this.labelAttempts.AutoSize = true;
-            this.labelAttempts.Location = new System.Drawing.Point(15, 29);
+            this.labelAttempts.Location = new System.Drawing.Point(20, 36);
+            this.labelAttempts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAttempts.Name = "labelAttempts";
-            this.labelAttempts.Size = new System.Drawing.Size(105, 13);
+            this.labelAttempts.Size = new System.Drawing.Size(129, 16);
             this.labelAttempts.TabIndex = 21;
             this.labelAttempts.Text = "Number of attempts: ";
             // 
             // labelCurrentSpeed
             // 
             this.labelCurrentSpeed.AutoSize = true;
-            this.labelCurrentSpeed.Location = new System.Drawing.Point(16, 43);
+            this.labelCurrentSpeed.Location = new System.Drawing.Point(21, 53);
+            this.labelCurrentSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCurrentSpeed.Name = "labelCurrentSpeed";
-            this.labelCurrentSpeed.Size = new System.Drawing.Size(84, 13);
+            this.labelCurrentSpeed.Size = new System.Drawing.Size(105, 16);
             this.labelCurrentSpeed.TabIndex = 22;
             this.labelCurrentSpeed.Text = "Hashes per sec:";
-            // 
-            // checkBoxListBoxLog
-            // 
-            this.checkBoxListBoxLog.AutoSize = true;
-            this.checkBoxListBoxLog.Checked = true;
-            this.checkBoxListBoxLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxListBoxLog.Location = new System.Drawing.Point(418, 134);
-            this.checkBoxListBoxLog.Name = "checkBoxListBoxLog";
-            this.checkBoxListBoxLog.Size = new System.Drawing.Size(114, 17);
-            this.checkBoxListBoxLog.TabIndex = 23;
-            this.checkBoxListBoxLog.Text = "Show log in listBox";
-            this.checkBoxListBoxLog.UseVisualStyleBackColor = true;
             // 
             // labelAverageSpeed
             // 
             this.labelAverageSpeed.AutoSize = true;
-            this.labelAverageSpeed.Location = new System.Drawing.Point(15, 56);
+            this.labelAverageSpeed.Location = new System.Drawing.Point(20, 69);
+            this.labelAverageSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAverageSpeed.Name = "labelAverageSpeed";
-            this.labelAverageSpeed.Size = new System.Drawing.Size(85, 13);
+            this.labelAverageSpeed.Size = new System.Drawing.Size(107, 16);
             this.labelAverageSpeed.TabIndex = 24;
             this.labelAverageSpeed.Text = "Average speed: ";
             // 
@@ -218,9 +220,10 @@ namespace HashTester
             this.checkBoxUseHex.AutoSize = true;
             this.checkBoxUseHex.Checked = true;
             this.checkBoxUseHex.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseHex.Location = new System.Drawing.Point(418, 157);
+            this.checkBoxUseHex.Location = new System.Drawing.Point(557, 193);
+            this.checkBoxUseHex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxUseHex.Name = "checkBoxUseHex";
-            this.checkBoxUseHex.Size = new System.Drawing.Size(137, 17);
+            this.checkBoxUseHex.Size = new System.Drawing.Size(168, 20);
             this.checkBoxUseHex.TabIndex = 26;
             this.checkBoxUseHex.Text = "Use HEX to display text";
             this.checkBoxUseHex.UseVisualStyleBackColor = true;
@@ -228,18 +231,20 @@ namespace HashTester
             // checkBoxPerformanceMode
             // 
             this.checkBoxPerformanceMode.AutoSize = true;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(418, 180);
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(557, 222);
+            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
-            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(141, 20);
             this.checkBoxPerformanceMode.TabIndex = 27;
             this.checkBoxPerformanceMode.Text = "PerformanceMode";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
             // 
             // buttonCheckCollision
             // 
-            this.buttonCheckCollision.Location = new System.Drawing.Point(200, 11);
+            this.buttonCheckCollision.Location = new System.Drawing.Point(267, 14);
+            this.buttonCheckCollision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCheckCollision.Name = "buttonCheckCollision";
-            this.buttonCheckCollision.Size = new System.Drawing.Size(180, 23);
+            this.buttonCheckCollision.Size = new System.Drawing.Size(240, 28);
             this.buttonCheckCollision.TabIndex = 28;
             this.buttonCheckCollision.Text = "Check a collision";
             this.buttonCheckCollision.UseVisualStyleBackColor = true;
@@ -247,9 +252,10 @@ namespace HashTester
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(148, 260);
+            this.buttonSaveLog.Location = new System.Drawing.Point(197, 320);
+            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(130, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(173, 28);
             this.buttonSaveLog.TabIndex = 29;
             this.buttonSaveLog.Text = "Save Log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -257,9 +263,10 @@ namespace HashTester
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(282, 260);
+            this.buttonClipboard.Location = new System.Drawing.Point(376, 320);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(130, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(173, 28);
             this.buttonClipboard.TabIndex = 30;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -271,25 +278,26 @@ namespace HashTester
             this.groupBoxUI.Controls.Add(this.labelAttempts);
             this.groupBoxUI.Controls.Add(this.labelCurrentSpeed);
             this.groupBoxUI.Controls.Add(this.labelAverageSpeed);
-            this.groupBoxUI.Location = new System.Drawing.Point(266, 41);
+            this.groupBoxUI.Location = new System.Drawing.Point(355, 50);
+            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Size = new System.Drawing.Size(277, 82);
+            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxUI.Size = new System.Drawing.Size(369, 101);
             this.groupBoxUI.TabIndex = 31;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
             // 
             // HashingCollisionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 295);
+            this.ClientSize = new System.Drawing.Size(745, 363);
             this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonCheckCollision);
             this.Controls.Add(this.checkBoxPerformanceMode);
             this.Controls.Add(this.checkBoxUseHex);
-            this.Controls.Add(this.checkBoxListBoxLog);
             this.Controls.Add(this.labelLenght);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.buttonAbort);
@@ -300,6 +308,7 @@ namespace HashTester
             this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.buttonGenerateCollision);
             this.Controls.Add(this.hashSelector);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "HashingCollisionForm";
             this.Text = "HashingCollisionForm";
             this.Load += new System.EventHandler(this.HashingCollisionForm_Load);
@@ -327,7 +336,6 @@ namespace HashTester
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label labelAttempts;
         private System.Windows.Forms.Label labelCurrentSpeed;
-        private System.Windows.Forms.CheckBox checkBoxListBoxLog;
         private System.Windows.Forms.Label labelAverageSpeed;
         private System.Windows.Forms.CheckBox checkBoxUseHex;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;

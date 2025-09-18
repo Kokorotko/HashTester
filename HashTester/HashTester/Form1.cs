@@ -18,7 +18,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.2.0";
+        readonly string programVersion = "1.1.1";
         private bool updateAvailable = false;
 
         #region Form Stuff Handling
@@ -71,6 +71,7 @@ namespace HashTester
             includeNumberOfHashToolStripMenuItem.Checked = Settings.OutputStyleIncludeNumberOfHash;
             includeHashingAlgorithmToolStripMenuItem.Checked = Settings.OutputStyleIncludeHashAlgorithm;
             includeSaltAndPepperToolStripMenuItem.Checked = Settings.OutputStyleIncludeSaltPepper;
+            showLogToolStripMenuItem.Checked = Settings.ShowLog;
             UpdateIncludeAllOutputStyle();
 
             // Output Type Settings
@@ -571,7 +572,7 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(42), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
@@ -627,6 +628,7 @@ namespace HashTester
             buttonFileInput.Text = Languages.Translate(Languages.L.HashAFile);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            showLogToolStripMenuItem.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
         }
 
@@ -710,6 +712,12 @@ namespace HashTester
         {
             Settings.RemindUpdate = !Settings.RemindUpdate;
             UpdateRemindMe();
+        }
+
+        private void showLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ShowLog = !Settings.ShowLog;
+            showLogToolStripMenuItem.Checked = Settings.ShowLog;
         }
     }
 }

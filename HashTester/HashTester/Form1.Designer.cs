@@ -71,6 +71,7 @@ namespace HashTester
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
             this.labelCredits = new System.Windows.Forms.Label();
+            this.showLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,42 +179,42 @@ namespace HashTester
             // gradualHashingToolStripMenuItem1
             // 
             this.gradualHashingToolStripMenuItem1.Name = "gradualHashingToolStripMenuItem1";
-            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.gradualHashingToolStripMenuItem1.Size = new System.Drawing.Size(212, 26);
             this.gradualHashingToolStripMenuItem1.Text = "Gradual Hashing";
             this.gradualHashingToolStripMenuItem1.Click += new System.EventHandler(this.gradualHashingToolStripMenuItem1_Click);
             // 
             // fileChecksumToolStripMenuItem
             // 
             this.fileChecksumToolStripMenuItem.Name = "fileChecksumToolStripMenuItem";
-            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fileChecksumToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.fileChecksumToolStripMenuItem.Text = "File Checksum";
             this.fileChecksumToolStripMenuItem.Click += new System.EventHandler(this.fileChecksumToolStripMenuItem_Click);
             // 
             // saltPepperTesterToolStripMenuItem
             // 
             this.saltPepperTesterToolStripMenuItem.Name = "saltPepperTesterToolStripMenuItem";
-            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saltPepperTesterToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.saltPepperTesterToolStripMenuItem.Text = "Salt/Pepper Tester";
             this.saltPepperTesterToolStripMenuItem.Click += new System.EventHandler(this.saltPepperTesterToolStripMenuItem_Click);
             // 
             // multipleHashingToolStripMenuItem
             // 
             this.multipleHashingToolStripMenuItem.Name = "multipleHashingToolStripMenuItem";
-            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.multipleHashingToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.multipleHashingToolStripMenuItem.Text = "Multiple Hashing";
             this.multipleHashingToolStripMenuItem.Click += new System.EventHandler(this.multipleHashingToolStripMenuItem_Click);
             // 
             // findingCollisionsToolStripMenuItem
             // 
             this.findingCollisionsToolStripMenuItem.Name = "findingCollisionsToolStripMenuItem";
-            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.findingCollisionsToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.findingCollisionsToolStripMenuItem.Text = "Finding Collisions";
             this.findingCollisionsToolStripMenuItem.Click += new System.EventHandler(this.findingCollisionsToolStripMenuItem_Click);
             // 
             // passwordCrackerToolStripMenuItem
             // 
             this.passwordCrackerToolStripMenuItem.Name = "passwordCrackerToolStripMenuItem";
-            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.passwordCrackerToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.passwordCrackerToolStripMenuItem.Text = "Password Cracker";
             this.passwordCrackerToolStripMenuItem.Click += new System.EventHandler(this.passwordJailbreakToolStripMenuItem_Click);
             // 
@@ -223,7 +224,8 @@ namespace HashTester
             this.saltAndPepperToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.outputTypeStripMenuItem,
-            this.outputStyleToolStripMenuItem});
+            this.outputStyleToolStripMenuItem,
+            this.showLogToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -440,6 +442,13 @@ namespace HashTester
             this.labelCredits.TabIndex = 17;
             this.labelCredits.Text = "Made by: Kamil Franek\r\nCurrent Version: x.xx.x";
             // 
+            // showLogToolStripMenuItem
+            // 
+            this.showLogToolStripMenuItem.Name = "showLogToolStripMenuItem";
+            this.showLogToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showLogToolStripMenuItem.Text = "Show Log";
+            this.showLogToolStripMenuItem.Click += new System.EventHandler(this.showLogToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -513,6 +522,7 @@ namespace HashTester
         private System.Windows.Forms.ToolStripMenuItem includePepperToolStripMenuItem;
         private System.Windows.Forms.Label labelCredits;
         private System.Windows.Forms.ToolStripMenuItem remindOnUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
     }
 }
 

@@ -1,12 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -77,8 +70,12 @@ namespace HashTester
             button3.Text = Languages.Translate(Languages.L.Copy) + " SHA512";
             button4.Text = Languages.Translate(Languages.L.Copy) + " RipeMD-160";
             button5.Text = Languages.Translate(Languages.L.Copy) + " CRC32";
+            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
+            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
+            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
             #endregion
         }
+
         #region Copy
         private void buttonCopyMD5_Click(object sender, EventArgs e)
         {
@@ -153,9 +150,6 @@ namespace HashTester
         }
         #endregion
 
-
-
-
         private void buttonChecksum_Click(object sender, EventArgs e)
         {
             string checksum = textBoxHash.Text;
@@ -163,18 +157,51 @@ namespace HashTester
             bool isFileAlgorithmSelected = true;
             switch (checksum.Length)
             {
-                case 32: fileAlgorithm = Hasher.HashingAlgorithm.MD5; break;
+                case 32:
+                    {
+                        fileAlgorithm = Hasher.HashingAlgorithm.MD5;
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": MD5");
+                        break;
+                    }
                 case 40:
                     {
                         //SHA1 and RipeMD160 are the same lenght
-                        if (MessageBox.Show(Languages.Translate(Languages.L.DoYouUseSha1YesOrRipemd160No), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) fileAlgorithm = Hasher.HashingAlgorithm.SHA1;
-                        else fileAlgorithm = Hasher.HashingAlgorithm.RIPEMD160;                        
+                        if (MessageBox.Show(Languages.Translate(Languages.L.DoYouUseSha1YesOrRipemd160No), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            fileAlgorithm = Hasher.HashingAlgorithm.SHA1;
+                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA1");
+                        }
+                        else
+                        {
+                            fileAlgorithm = Hasher.HashingAlgorithm.RIPEMD160;
+                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": RipeMD-160");
+                        }
                         break;
                     }
-                case 64: fileAlgorithm = Hasher.HashingAlgorithm.SHA256; break;
-                case 128: fileAlgorithm = Hasher.HashingAlgorithm.SHA512; break;
-                case 8: fileAlgorithm = Hasher.HashingAlgorithm.CRC32; break;
-                default: MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false; break;
+                case 64:
+                    {
+                        fileAlgorithm = Hasher.HashingAlgorithm.SHA256;
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA256");
+                        break;
+                    }
+                case 128:
+                    {
+                        fileAlgorithm = Hasher.HashingAlgorithm.SHA512;
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA512");
+                        break;
+                    }
+                case 8:
+                    {
+                        fileAlgorithm = Hasher.HashingAlgorithm.CRC32;
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": CRC32");
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false;
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.PleaseInputAHashForChecksum));
+                        break;
+                    }
             }
             if (!isFileAlgorithmSelected) return;
             using (OpenFileDialog dialog = new OpenFileDialog())
@@ -182,6 +209,7 @@ namespace HashTester
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     GenerateCheckSum(dialog.FileName, checksum, fileAlgorithm);
+
                 }
                 TurnOnUI();
             }
@@ -226,8 +254,16 @@ namespace HashTester
                     string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
                     if ((Hasher.HashingAlgorithm)i == fileAlgorithm)
                     {
-                        if (checksum == hash) MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Correct), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (checksum == hash)
+                        {
+                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame));
+                            MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Correct), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame));
+                            MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     switch ((Hasher.HashingAlgorithm)i)
                     {
@@ -289,6 +325,29 @@ namespace HashTester
                         default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
                     }
                 }
+            }
+        }
+
+        private void buttonClearListBox_Click(object sender, EventArgs e)
+        {
+            listBoxLog.Items.Clear();
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

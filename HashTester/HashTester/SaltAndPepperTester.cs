@@ -40,7 +40,7 @@ namespace HashTester
             if (askForSaltPepper) usingSaltAndPepper = hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, out salt, out pepper, out hashID);
             if (usingSaltAndPepper)
             {
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     if (!String.IsNullOrEmpty(salt)) listBoxLog.Items.Add(Languages.Translate(Languages.L.Salt) + ": " + salt);
                     if (!String.IsNullOrEmpty(pepper)) listBoxLog.Items.Add(Languages.Translate(Languages.L.Pepper) + ": " + pepper);
@@ -89,7 +89,6 @@ namespace HashTester
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
             checkBoxUsePepper.Text = Languages.Translate(Languages.L.UsePepper) + "*";
             checkBoxUseSalt.Text = Languages.Translate(Languages.L.UseSalt) + "*";
-            checkBoxUseLog.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             label1.Text = "*" + Languages.Translate(Languages.L.HasPriorityOverSettings);
             labelAlgorithm.Text = Languages.Translate(Languages.L.Algorithm);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
@@ -140,7 +139,7 @@ namespace HashTester
                 if (!saltAndPepper.CheckIfPasswordTesterExists(true)) return;
                 if (RemoveSingle())
                 {
-                    if (checkBoxUseLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.RegistryDeletedSuccessfully));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -149,7 +148,7 @@ namespace HashTester
                 }
                 else
                 {
-                    if (checkBoxUseLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.CouldNotFindTheRegistryToDelete));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -193,7 +192,7 @@ namespace HashTester
             List<string> info = ShowIDInfo();
             if (info.Count == 0)
             {
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.ThereAreNoInformationsToShowAboutHashid));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -204,7 +203,7 @@ namespace HashTester
             string s = "";
             for(int i = 0; i < info.Count(); i++)
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(info[i]);
+                if (Settings.ShowLog) listBoxLog.Items.Add(info[i]);
                 s += info[i] + Environment.NewLine;
             }            
             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -217,7 +216,7 @@ namespace HashTester
             List<string> allHashID = ShowAllRegisteredUsers();           
             if (allHashID.Count <= 0)
             {
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.ThereAreNoRegisteredUsersInDatabase));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -228,7 +227,7 @@ namespace HashTester
             string s = "";
             for(int i = 0; i < allHashID.Count(); i++)
             {
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(allHashID[i]);
+                if (Settings.ShowLog) listBoxLog.Items.Add(allHashID[i]);
                 s += allHashID[i] + Environment.NewLine;
             }
             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -243,7 +242,7 @@ namespace HashTester
                 if (!File.Exists(path)) File.Delete(path);
                 saltAndPepper.GenerateNameTableFile();
                 MessageBox.Show(Languages.Translate(Languages.L.DatabaseDeletedSuccessfully), Languages.Translate(Languages.L.Success), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.DatabaseDeletedSuccessfully));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -259,7 +258,7 @@ namespace HashTester
                               .ToArray();
             if (fileNames.Count() <= 0)
             {
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.ThereAreNoIdsToShow));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -271,7 +270,7 @@ namespace HashTester
             for (int i = 0; i < fileNames.Count(); i++)
             {
                 string temp = Path.GetFileNameWithoutExtension(fileNames[i]);
-                if (checkBoxUseLog.Checked) listBoxLog.Items.Add(temp);
+                if (Settings.ShowLog) listBoxLog.Items.Add(temp);
                 s += temp + Environment.NewLine;
             }
             listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -299,7 +298,7 @@ namespace HashTester
                         if (split[0] == name)
                         {
                             MessageBox.Show(Languages.Translate(Languages.L.ThisNameIsAlreadyRegistered), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            if (checkBoxUseLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.ThisNameIsAlreadyRegistered));
                                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -312,7 +311,7 @@ namespace HashTester
             //Register
             if (!hasher.IsUsingSaltAndPepper(checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, textBoxName.Text, out salt, out pepper, out hashID))
             {
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.NotUsingSaltAndPepper));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -324,7 +323,7 @@ namespace HashTester
                 useSalt = false;
             }
             passwordHash = hasher.HashSaltPepper(textBoxPassword.Text, useSalt, usePepper, salt, pepper, (Hasher.HashingAlgorithm)hashSelector.SelectedIndex);
-            if (checkBoxUseLog.Checked)
+            if (Settings.ShowLog)
             {
                 listBoxLog.Items.Add(Languages.Translate(Languages.L.HashedPassword) + ": " + passwordHash);
                 if (useSalt) listBoxLog.Items.Add(Languages.Translate(Languages.L.Salt) + ": " + salt);
@@ -334,7 +333,7 @@ namespace HashTester
             using (StreamWriter writer = new StreamWriter(pathToFile, true))
             {
                 string s = name + "==" + hashID + "==" + algorithm.ToString() + "==" + passwordHash;
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(s);
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -375,7 +374,7 @@ namespace HashTester
                             passwordHash = split[3];
                             hashID = split[1];
                             foundName = true;
-                            if (checkBoxUseLog.Checked)
+                            if (Settings.ShowLog)
                             {
                                 listBoxLog.Items.Add("Hash ID: " + hashID);
                                 listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithmForLogin) + ": " + usedAlgorithm);
@@ -398,19 +397,19 @@ namespace HashTester
                 if (!string.IsNullOrEmpty(salt))
                 {
                     userPassword = salt + userPassword;
-                    if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedSalt) + ": " + salt);
+                    if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedSalt) + ": " + salt);
                 }
                 if (pepperLength > 0 && hasher.CheckPepper(textBoxPassword.Text, passwordHash, pepperLength, usedAlgorithm, out string pepper))
                 {
                     if (!string.IsNullOrEmpty(pepper))
                     {
                         userPassword += pepper;
-                        if (checkBoxUseLog.Checked) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedPepper) + ": " + pepper);
+                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedPepper) + ": " + pepper);
                     }
                 }
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
             }
-            if (checkBoxUseLog.Checked)
+            if (Settings.ShowLog)
             {
                 listBoxLog.Items.Add(Languages.Translate(Languages.L.FullInputPasswordBeforeHashing) + ": " + userPassword);
                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -521,7 +520,7 @@ namespace HashTester
                 string[] fileNames = Directory.GetFiles(Settings.DirectoryToHashData).ToArray();
                 if (fileNames.Count() <= 0)
                 {
-                    if (checkBoxUseLog.Checked)
+                    if (Settings.ShowLog)
                     {
                         listBoxLog.Items.Add(Languages.Translate(Languages.L.ThereAreNoIdsToShow));
                         listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
@@ -533,7 +532,7 @@ namespace HashTester
                 {
                     File.Delete(fileNames[i]);
                 }
-                if (checkBoxUseLog.Checked)
+                if (Settings.ShowLog)
                 {
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.AllHashidDeletedSuccessfully));
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;

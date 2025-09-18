@@ -48,7 +48,6 @@ namespace HashTester
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClearListBox = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
-            this.checkBoxUseLog = new System.Windows.Forms.CheckBox();
             this.groupBoxShowInfo = new System.Windows.Forms.GroupBox();
             this.buttonDeleteAllHashID = new System.Windows.Forms.Button();
             this.buttonShowAllID = new System.Windows.Forms.Button();
@@ -70,25 +69,28 @@ namespace HashTester
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(204, 80);
+            this.hashSelector.Location = new System.Drawing.Point(272, 98);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(121, 21);
+            this.hashSelector.Size = new System.Drawing.Size(160, 24);
             this.hashSelector.TabIndex = 7;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
             // textHashSimple
             // 
-            this.textHashSimple.Location = new System.Drawing.Point(12, 41);
+            this.textHashSimple.Location = new System.Drawing.Point(16, 50);
+            this.textHashSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textHashSimple.Name = "textHashSimple";
-            this.textHashSimple.Size = new System.Drawing.Size(313, 20);
+            this.textHashSimple.Size = new System.Drawing.Size(416, 22);
             this.textHashSimple.TabIndex = 6;
             this.textHashSimple.Text = "Hello This is Test";
             // 
             // buttonHashSimpleText
             // 
-            this.buttonHashSimpleText.Location = new System.Drawing.Point(12, 12);
+            this.buttonHashSimpleText.Location = new System.Drawing.Point(16, 15);
+            this.buttonHashSimpleText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
-            this.buttonHashSimpleText.Size = new System.Drawing.Size(313, 23);
+            this.buttonHashSimpleText.Size = new System.Drawing.Size(417, 28);
             this.buttonHashSimpleText.TabIndex = 5;
             this.buttonHashSimpleText.Text = "Hash text";
             this.buttonHashSimpleText.UseVisualStyleBackColor = true;
@@ -97,9 +99,10 @@ namespace HashTester
             // checkBoxUseSalt
             // 
             this.checkBoxUseSalt.AutoSize = true;
-            this.checkBoxUseSalt.Location = new System.Drawing.Point(15, 67);
+            this.checkBoxUseSalt.Location = new System.Drawing.Point(20, 82);
+            this.checkBoxUseSalt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxUseSalt.Name = "checkBoxUseSalt";
-            this.checkBoxUseSalt.Size = new System.Drawing.Size(68, 17);
+            this.checkBoxUseSalt.Size = new System.Drawing.Size(83, 20);
             this.checkBoxUseSalt.TabIndex = 8;
             this.checkBoxUseSalt.Text = "Use salt*";
             this.checkBoxUseSalt.UseVisualStyleBackColor = true;
@@ -107,9 +110,10 @@ namespace HashTester
             // checkBoxUsePepper
             // 
             this.checkBoxUsePepper.AutoSize = true;
-            this.checkBoxUsePepper.Location = new System.Drawing.Point(15, 88);
+            this.checkBoxUsePepper.Location = new System.Drawing.Point(20, 108);
+            this.checkBoxUsePepper.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxUsePepper.Name = "checkBoxUsePepper";
-            this.checkBoxUsePepper.Size = new System.Drawing.Size(85, 17);
+            this.checkBoxUsePepper.Size = new System.Drawing.Size(106, 20);
             this.checkBoxUsePepper.TabIndex = 9;
             this.checkBoxUsePepper.Text = "Use pepper*";
             this.checkBoxUsePepper.UseVisualStyleBackColor = true;
@@ -117,9 +121,10 @@ namespace HashTester
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 131);
+            this.label1.Location = new System.Drawing.Point(16, 161);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.Size = new System.Drawing.Size(156, 16);
             this.label1.TabIndex = 10;
             this.label1.Text = "*has priority over settings";
             // 
@@ -134,18 +139,21 @@ namespace HashTester
             this.groupBoxTester.Controls.Add(this.textBoxPassword);
             this.groupBoxTester.Controls.Add(this.textBoxName);
             this.groupBoxTester.Controls.Add(this.labelName);
-            this.groupBoxTester.Location = new System.Drawing.Point(331, 12);
+            this.groupBoxTester.Location = new System.Drawing.Point(441, 15);
+            this.groupBoxTester.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxTester.Name = "groupBoxTester";
-            this.groupBoxTester.Size = new System.Drawing.Size(314, 149);
+            this.groupBoxTester.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTester.Size = new System.Drawing.Size(419, 183);
             this.groupBoxTester.TabIndex = 12;
             this.groupBoxTester.TabStop = false;
             this.groupBoxTester.Text = "Password Tester";
             // 
             // buttonRemoveAll
             // 
-            this.buttonRemoveAll.Location = new System.Drawing.Point(189, 120);
+            this.buttonRemoveAll.Location = new System.Drawing.Point(252, 148);
+            this.buttonRemoveAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRemoveAll.Name = "buttonRemoveAll";
-            this.buttonRemoveAll.Size = new System.Drawing.Size(119, 23);
+            this.buttonRemoveAll.Size = new System.Drawing.Size(159, 28);
             this.buttonRemoveAll.TabIndex = 25;
             this.buttonRemoveAll.Text = "Remove All";
             this.buttonRemoveAll.UseVisualStyleBackColor = true;
@@ -153,9 +161,10 @@ namespace HashTester
             // 
             // buttonShowRegistrered
             // 
-            this.buttonShowRegistrered.Location = new System.Drawing.Point(10, 120);
+            this.buttonShowRegistrered.Location = new System.Drawing.Point(13, 148);
+            this.buttonShowRegistrered.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonShowRegistrered.Name = "buttonShowRegistrered";
-            this.buttonShowRegistrered.Size = new System.Drawing.Size(176, 23);
+            this.buttonShowRegistrered.Size = new System.Drawing.Size(235, 28);
             this.buttonShowRegistrered.TabIndex = 24;
             this.buttonShowRegistrered.Text = "Show all Registered Users";
             this.buttonShowRegistrered.UseVisualStyleBackColor = true;
@@ -163,9 +172,10 @@ namespace HashTester
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(189, 95);
+            this.buttonRemove.Location = new System.Drawing.Point(252, 117);
+            this.buttonRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(119, 23);
+            this.buttonRemove.Size = new System.Drawing.Size(159, 28);
             this.buttonRemove.TabIndex = 6;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -173,9 +183,10 @@ namespace HashTester
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(97, 95);
+            this.buttonLogin.Location = new System.Drawing.Point(129, 117);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(89, 23);
+            this.buttonLogin.Size = new System.Drawing.Size(119, 28);
             this.buttonLogin.TabIndex = 5;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
@@ -183,9 +194,10 @@ namespace HashTester
             // 
             // buttonRegister
             // 
-            this.buttonRegister.Location = new System.Drawing.Point(10, 95);
+            this.buttonRegister.Location = new System.Drawing.Point(13, 117);
+            this.buttonRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(85, 23);
+            this.buttonRegister.Size = new System.Drawing.Size(113, 28);
             this.buttonRegister.TabIndex = 4;
             this.buttonRegister.Text = "Register";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -194,40 +206,45 @@ namespace HashTester
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(133, 55);
+            this.labelPassword.Location = new System.Drawing.Point(177, 68);
+            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(53, 13);
+            this.labelPassword.Size = new System.Drawing.Size(67, 16);
             this.labelPassword.TabIndex = 3;
             this.labelPassword.Text = "Password";
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(10, 71);
+            this.textBoxPassword.Location = new System.Drawing.Point(13, 87);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(298, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(396, 22);
             this.textBoxPassword.TabIndex = 2;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(10, 32);
+            this.textBoxName.Location = new System.Drawing.Point(13, 39);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(298, 20);
+            this.textBoxName.Size = new System.Drawing.Size(396, 22);
             this.textBoxName.TabIndex = 1;
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(143, 16);
+            this.labelName.Location = new System.Drawing.Point(191, 20);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.Size = new System.Drawing.Size(44, 16);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Name";
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(220, 282);
+            this.buttonClipboard.Location = new System.Drawing.Point(293, 347);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(95, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(127, 28);
             this.buttonClipboard.TabIndex = 20;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -235,9 +252,10 @@ namespace HashTester
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(116, 282);
+            this.buttonSaveLog.Location = new System.Drawing.Point(155, 347);
+            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(95, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(127, 28);
             this.buttonSaveLog.TabIndex = 19;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -245,9 +263,10 @@ namespace HashTester
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(15, 282);
+            this.buttonClearListBox.Location = new System.Drawing.Point(20, 347);
+            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(95, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(127, 28);
             this.buttonClearListBox.TabIndex = 18;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -257,22 +276,12 @@ namespace HashTester
             // 
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
-            this.listBoxLog.Location = new System.Drawing.Point(15, 155);
+            this.listBoxLog.ItemHeight = 16;
+            this.listBoxLog.Location = new System.Drawing.Point(20, 191);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(300, 121);
+            this.listBoxLog.Size = new System.Drawing.Size(399, 148);
             this.listBoxLog.TabIndex = 17;
-            // 
-            // checkBoxUseLog
-            // 
-            this.checkBoxUseLog.AutoSize = true;
-            this.checkBoxUseLog.Checked = true;
-            this.checkBoxUseLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseLog.Location = new System.Drawing.Point(15, 111);
-            this.checkBoxUseLog.Name = "checkBoxUseLog";
-            this.checkBoxUseLog.Size = new System.Drawing.Size(112, 17);
-            this.checkBoxUseLog.TabIndex = 21;
-            this.checkBoxUseLog.Text = "Save log to listbox";
-            this.checkBoxUseLog.UseVisualStyleBackColor = true;
             // 
             // groupBoxShowInfo
             // 
@@ -281,18 +290,21 @@ namespace HashTester
             this.groupBoxShowInfo.Controls.Add(this.buttonInfoID);
             this.groupBoxShowInfo.Controls.Add(this.label2);
             this.groupBoxShowInfo.Controls.Add(this.textBoxHashID);
-            this.groupBoxShowInfo.Location = new System.Drawing.Point(332, 170);
+            this.groupBoxShowInfo.Location = new System.Drawing.Point(443, 209);
+            this.groupBoxShowInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxShowInfo.Name = "groupBoxShowInfo";
-            this.groupBoxShowInfo.Size = new System.Drawing.Size(313, 146);
+            this.groupBoxShowInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxShowInfo.Size = new System.Drawing.Size(417, 180);
             this.groupBoxShowInfo.TabIndex = 22;
             this.groupBoxShowInfo.TabStop = false;
             this.groupBoxShowInfo.Text = "Show info";
             // 
             // buttonDeleteAllHashID
             // 
-            this.buttonDeleteAllHashID.Location = new System.Drawing.Point(3, 112);
+            this.buttonDeleteAllHashID.Location = new System.Drawing.Point(4, 138);
+            this.buttonDeleteAllHashID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDeleteAllHashID.Name = "buttonDeleteAllHashID";
-            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(304, 23);
+            this.buttonDeleteAllHashID.Size = new System.Drawing.Size(405, 28);
             this.buttonDeleteAllHashID.TabIndex = 26;
             this.buttonDeleteAllHashID.Text = "Delete all ID";
             this.buttonDeleteAllHashID.UseVisualStyleBackColor = true;
@@ -300,9 +312,10 @@ namespace HashTester
             // 
             // buttonShowAllID
             // 
-            this.buttonShowAllID.Location = new System.Drawing.Point(3, 83);
+            this.buttonShowAllID.Location = new System.Drawing.Point(4, 102);
+            this.buttonShowAllID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonShowAllID.Name = "buttonShowAllID";
-            this.buttonShowAllID.Size = new System.Drawing.Size(304, 23);
+            this.buttonShowAllID.Size = new System.Drawing.Size(405, 28);
             this.buttonShowAllID.TabIndex = 25;
             this.buttonShowAllID.Text = "Show all ID";
             this.buttonShowAllID.UseVisualStyleBackColor = true;
@@ -310,9 +323,10 @@ namespace HashTester
             // 
             // buttonInfoID
             // 
-            this.buttonInfoID.Location = new System.Drawing.Point(3, 56);
+            this.buttonInfoID.Location = new System.Drawing.Point(4, 69);
+            this.buttonInfoID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonInfoID.Name = "buttonInfoID";
-            this.buttonInfoID.Size = new System.Drawing.Size(304, 23);
+            this.buttonInfoID.Size = new System.Drawing.Size(405, 28);
             this.buttonInfoID.TabIndex = 23;
             this.buttonInfoID.Text = "Info about the ID";
             this.buttonInfoID.UseVisualStyleBackColor = true;
@@ -321,36 +335,38 @@ namespace HashTester
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(142, 14);
+            this.label2.Location = new System.Drawing.Point(189, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "HashID";
             // 
             // textBoxHashID
             // 
-            this.textBoxHashID.Location = new System.Drawing.Point(3, 30);
+            this.textBoxHashID.Location = new System.Drawing.Point(4, 37);
+            this.textBoxHashID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxHashID.Name = "textBoxHashID";
-            this.textBoxHashID.Size = new System.Drawing.Size(304, 20);
+            this.textBoxHashID.Size = new System.Drawing.Size(404, 22);
             this.textBoxHashID.TabIndex = 6;
             // 
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
-            this.labelAlgorithm.Location = new System.Drawing.Point(237, 64);
+            this.labelAlgorithm.Location = new System.Drawing.Point(316, 79);
+            this.labelAlgorithm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAlgorithm.Name = "labelAlgorithm";
-            this.labelAlgorithm.Size = new System.Drawing.Size(88, 13);
+            this.labelAlgorithm.Size = new System.Drawing.Size(112, 16);
             this.labelAlgorithm.TabIndex = 23;
             this.labelAlgorithm.Text = "Choose algorithm";
             // 
             // SaltAndPepperTester
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 323);
+            this.ClientSize = new System.Drawing.Size(876, 398);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.groupBoxShowInfo);
-            this.Controls.Add(this.checkBoxUseLog);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
             this.Controls.Add(this.buttonClearListBox);
@@ -362,6 +378,7 @@ namespace HashTester
             this.Controls.Add(this.hashSelector);
             this.Controls.Add(this.textHashSimple);
             this.Controls.Add(this.buttonHashSimpleText);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SaltAndPepperTester";
             this.Text = "SaltAndPepperForm";
             this.Load += new System.EventHandler(this.SaltAndPepperForm_Load);
@@ -393,7 +410,6 @@ namespace HashTester
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.Button buttonClearListBox;
         private System.Windows.Forms.ListBox listBoxLog;
-        private System.Windows.Forms.CheckBox checkBoxUseLog;
         private System.Windows.Forms.GroupBox groupBoxShowInfo;
         private System.Windows.Forms.Button buttonInfoID;
         private System.Windows.Forms.Label label2;

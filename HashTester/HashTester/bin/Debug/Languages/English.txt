@@ -66,6 +66,7 @@
 11010==Please enter valid input into Text01.
 11011==Please enter valid input into Text02.
 11012==Could not convert input to string.
+11013==Used algorithm
 
 //**Name of Forms
 15000==Main form

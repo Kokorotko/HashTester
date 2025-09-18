@@ -38,7 +38,6 @@ namespace HashTester
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButtonRegularDictionary = new System.Windows.Forms.RadioButton();
             this.radioButtonHashedDictionary = new System.Windows.Forms.RadioButton();
-            this.checkBoxShowLog = new System.Windows.Forms.CheckBox();
             this.groupBoxTimeToCrack = new System.Windows.Forms.GroupBox();
             this.buttonCrackCalculate = new System.Windows.Forms.Button();
             this.checkBoxCrackSpecial = new System.Windows.Forms.CheckBox();
@@ -101,7 +100,7 @@ namespace HashTester
             // buttonDictionaryAttack
             // 
             this.buttonDictionaryAttack.Location = new System.Drawing.Point(8, 271);
-            this.buttonDictionaryAttack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDictionaryAttack.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDictionaryAttack.Name = "buttonDictionaryAttack";
             this.buttonDictionaryAttack.Size = new System.Drawing.Size(265, 28);
             this.buttonDictionaryAttack.TabIndex = 0;
@@ -112,7 +111,7 @@ namespace HashTester
             // textBoxDictionary
             // 
             this.textBoxDictionary.Location = new System.Drawing.Point(3, 53);
-            this.textBoxDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDictionary.Multiline = true;
             this.textBoxDictionary.Name = "textBoxDictionary";
             this.textBoxDictionary.Size = new System.Drawing.Size(276, 94);
@@ -123,7 +122,7 @@ namespace HashTester
             // 
             this.radioButtonRockYouFull.AutoSize = true;
             this.radioButtonRockYouFull.Location = new System.Drawing.Point(9, 158);
-            this.radioButtonRockYouFull.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRockYouFull.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRockYouFull.Name = "radioButtonRockYouFull";
             this.radioButtonRockYouFull.Size = new System.Drawing.Size(157, 20);
             this.radioButtonRockYouFull.TabIndex = 2;
@@ -134,7 +133,7 @@ namespace HashTester
             // 
             this.radioButtonRockYouShort.AutoSize = true;
             this.radioButtonRockYouShort.Location = new System.Drawing.Point(9, 186);
-            this.radioButtonRockYouShort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRockYouShort.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRockYouShort.Name = "radioButtonRockYouShort";
             this.radioButtonRockYouShort.Size = new System.Drawing.Size(170, 20);
             this.radioButtonRockYouShort.TabIndex = 3;
@@ -145,7 +144,7 @@ namespace HashTester
             // 
             this.radioButtonRockYouFullShortShort.AutoSize = true;
             this.radioButtonRockYouFullShortShort.Location = new System.Drawing.Point(9, 214);
-            this.radioButtonRockYouFullShortShort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRockYouFullShortShort.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRockYouFullShortShort.Name = "radioButtonRockYouFullShortShort";
             this.radioButtonRockYouFullShortShort.Size = new System.Drawing.Size(199, 20);
             this.radioButtonRockYouFullShortShort.TabIndex = 4;
@@ -156,7 +155,7 @@ namespace HashTester
             // 
             this.radioButtonRockyouCustom.AutoSize = true;
             this.radioButtonRockyouCustom.Location = new System.Drawing.Point(8, 242);
-            this.radioButtonRockyouCustom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRockyouCustom.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRockyouCustom.Name = "radioButtonRockyouCustom";
             this.radioButtonRockyouCustom.Size = new System.Drawing.Size(91, 20);
             this.radioButtonRockyouCustom.TabIndex = 5;
@@ -173,9 +172,9 @@ namespace HashTester
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockYouFullShortShort);
             this.groupBoxDictionary.Controls.Add(this.radioButtonRockYouShort);
             this.groupBoxDictionary.Location = new System.Drawing.Point(16, 15);
-            this.groupBoxDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxDictionary.Name = "groupBoxDictionary";
-            this.groupBoxDictionary.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxDictionary.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxDictionary.Size = new System.Drawing.Size(288, 311);
             this.groupBoxDictionary.TabIndex = 7;
             this.groupBoxDictionary.TabStop = false;
@@ -186,7 +185,7 @@ namespace HashTester
             this.panel1.Controls.Add(this.radioButtonRegularDictionary);
             this.panel1.Controls.Add(this.radioButtonHashedDictionary);
             this.panel1.Location = new System.Drawing.Point(3, 23);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(277, 23);
             this.panel1.TabIndex = 44;
@@ -196,7 +195,7 @@ namespace HashTester
             this.radioButtonRegularDictionary.AutoSize = true;
             this.radioButtonRegularDictionary.Checked = true;
             this.radioButtonRegularDictionary.Location = new System.Drawing.Point(9, 0);
-            this.radioButtonRegularDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRegularDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRegularDictionary.Name = "radioButtonRegularDictionary";
             this.radioButtonRegularDictionary.Size = new System.Drawing.Size(76, 20);
             this.radioButtonRegularDictionary.TabIndex = 46;
@@ -208,25 +207,12 @@ namespace HashTester
             // 
             this.radioButtonHashedDictionary.AutoSize = true;
             this.radioButtonHashedDictionary.Location = new System.Drawing.Point(188, 0);
-            this.radioButtonHashedDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonHashedDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonHashedDictionary.Name = "radioButtonHashedDictionary";
             this.radioButtonHashedDictionary.Size = new System.Drawing.Size(76, 20);
             this.radioButtonHashedDictionary.TabIndex = 47;
             this.radioButtonHashedDictionary.Text = "Hashed";
             this.radioButtonHashedDictionary.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxShowLog
-            // 
-            this.checkBoxShowLog.AutoSize = true;
-            this.checkBoxShowLog.Checked = true;
-            this.checkBoxShowLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowLog.Location = new System.Drawing.Point(948, 386);
-            this.checkBoxShowLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.checkBoxShowLog.Name = "checkBoxShowLog";
-            this.checkBoxShowLog.Size = new System.Drawing.Size(139, 20);
-            this.checkBoxShowLog.TabIndex = 39;
-            this.checkBoxShowLog.Text = "Show log in listBox";
-            this.checkBoxShowLog.UseVisualStyleBackColor = true;
             // 
             // groupBoxTimeToCrack
             // 
@@ -240,9 +226,9 @@ namespace HashTester
             this.groupBoxTimeToCrack.Controls.Add(this.labelCrackLenght);
             this.groupBoxTimeToCrack.Controls.Add(this.textBoxCrackLenght);
             this.groupBoxTimeToCrack.Location = new System.Drawing.Point(313, 16);
-            this.groupBoxTimeToCrack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTimeToCrack.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxTimeToCrack.Name = "groupBoxTimeToCrack";
-            this.groupBoxTimeToCrack.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTimeToCrack.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxTimeToCrack.Size = new System.Drawing.Size(204, 310);
             this.groupBoxTimeToCrack.TabIndex = 8;
             this.groupBoxTimeToCrack.TabStop = false;
@@ -251,7 +237,7 @@ namespace HashTester
             // buttonCrackCalculate
             // 
             this.buttonCrackCalculate.Location = new System.Drawing.Point(8, 270);
-            this.buttonCrackCalculate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCrackCalculate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCrackCalculate.Name = "buttonCrackCalculate";
             this.buttonCrackCalculate.Size = new System.Drawing.Size(188, 28);
             this.buttonCrackCalculate.TabIndex = 8;
@@ -265,7 +251,7 @@ namespace HashTester
             this.checkBoxCrackSpecial.Checked = true;
             this.checkBoxCrackSpecial.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCrackSpecial.Location = new System.Drawing.Point(8, 210);
-            this.checkBoxCrackSpecial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCrackSpecial.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCrackSpecial.Name = "checkBoxCrackSpecial";
             this.checkBoxCrackSpecial.Size = new System.Drawing.Size(148, 20);
             this.checkBoxCrackSpecial.TabIndex = 7;
@@ -278,7 +264,7 @@ namespace HashTester
             this.checkBoxCrackDigit.Checked = true;
             this.checkBoxCrackDigit.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCrackDigit.Location = new System.Drawing.Point(8, 182);
-            this.checkBoxCrackDigit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCrackDigit.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCrackDigit.Name = "checkBoxCrackDigit";
             this.checkBoxCrackDigit.Size = new System.Drawing.Size(94, 20);
             this.checkBoxCrackDigit.TabIndex = 6;
@@ -291,7 +277,7 @@ namespace HashTester
             this.checkBoxCrackUpper.Checked = true;
             this.checkBoxCrackUpper.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCrackUpper.Location = new System.Drawing.Point(8, 154);
-            this.checkBoxCrackUpper.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCrackUpper.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCrackUpper.Name = "checkBoxCrackUpper";
             this.checkBoxCrackUpper.Size = new System.Drawing.Size(144, 20);
             this.checkBoxCrackUpper.TabIndex = 5;
@@ -304,7 +290,7 @@ namespace HashTester
             this.checkBoxCrackLower.Checked = true;
             this.checkBoxCrackLower.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCrackLower.Location = new System.Drawing.Point(8, 126);
-            this.checkBoxCrackLower.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCrackLower.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCrackLower.Name = "checkBoxCrackLower";
             this.checkBoxCrackLower.Size = new System.Drawing.Size(139, 20);
             this.checkBoxCrackLower.TabIndex = 4;
@@ -324,7 +310,7 @@ namespace HashTester
             // textBoxCrackSpeed
             // 
             this.textBoxCrackSpeed.Location = new System.Drawing.Point(8, 92);
-            this.textBoxCrackSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxCrackSpeed.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCrackSpeed.Name = "textBoxCrackSpeed";
             this.textBoxCrackSpeed.Size = new System.Drawing.Size(187, 22);
             this.textBoxCrackSpeed.TabIndex = 2;
@@ -343,7 +329,7 @@ namespace HashTester
             // textBoxCrackLenght
             // 
             this.textBoxCrackLenght.Location = new System.Drawing.Point(8, 42);
-            this.textBoxCrackLenght.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxCrackLenght.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCrackLenght.Name = "textBoxCrackLenght";
             this.textBoxCrackLenght.Size = new System.Drawing.Size(187, 22);
             this.textBoxCrackLenght.TabIndex = 0;
@@ -367,9 +353,9 @@ namespace HashTester
             this.groupBoxBruteForce.Controls.Add(this.numericUpDownMaxAttempts);
             this.groupBoxBruteForce.Controls.Add(this.textBoxBruteForce);
             this.groupBoxBruteForce.Location = new System.Drawing.Point(787, 15);
-            this.groupBoxBruteForce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxBruteForce.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxBruteForce.Name = "groupBoxBruteForce";
-            this.groupBoxBruteForce.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxBruteForce.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxBruteForce.Size = new System.Drawing.Size(401, 310);
             this.groupBoxBruteForce.TabIndex = 9;
             this.groupBoxBruteForce.TabStop = false;
@@ -379,7 +365,7 @@ namespace HashTester
             // 
             this.checkBoxUnknownLenghtBruteForce.AutoSize = true;
             this.checkBoxUnknownLenghtBruteForce.Location = new System.Drawing.Point(9, 158);
-            this.checkBoxUnknownLenghtBruteForce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxUnknownLenghtBruteForce.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxUnknownLenghtBruteForce.Name = "checkBoxUnknownLenghtBruteForce";
             this.checkBoxUnknownLenghtBruteForce.Size = new System.Drawing.Size(127, 20);
             this.checkBoxUnknownLenghtBruteForce.TabIndex = 42;
@@ -392,7 +378,7 @@ namespace HashTester
             this.checkBoxHexOutputBruteForce.Checked = true;
             this.checkBoxHexOutputBruteForce.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxHexOutputBruteForce.Location = new System.Drawing.Point(9, 186);
-            this.checkBoxHexOutputBruteForce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxHexOutputBruteForce.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxHexOutputBruteForce.Name = "checkBoxHexOutputBruteForce";
             this.checkBoxHexOutputBruteForce.Size = new System.Drawing.Size(185, 20);
             this.checkBoxHexOutputBruteForce.TabIndex = 37;
@@ -412,7 +398,7 @@ namespace HashTester
             // numericUpDownStopTimer
             // 
             this.numericUpDownStopTimer.Location = new System.Drawing.Point(179, 74);
-            this.numericUpDownStopTimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownStopTimer.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownStopTimer.Maximum = new decimal(new int[] {
             172800,
             0,
@@ -429,7 +415,7 @@ namespace HashTester
             this.checkBoxSpecialChars.Checked = true;
             this.checkBoxSpecialChars.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxSpecialChars.Location = new System.Drawing.Point(223, 239);
-            this.checkBoxSpecialChars.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxSpecialChars.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxSpecialChars.Name = "checkBoxSpecialChars";
             this.checkBoxSpecialChars.Size = new System.Drawing.Size(148, 20);
             this.checkBoxSpecialChars.TabIndex = 12;
@@ -439,7 +425,7 @@ namespace HashTester
             // buttonBruteForceAttack
             // 
             this.buttonBruteForceAttack.Location = new System.Drawing.Point(7, 270);
-            this.buttonBruteForceAttack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonBruteForceAttack.Margin = new System.Windows.Forms.Padding(4);
             this.buttonBruteForceAttack.Name = "buttonBruteForceAttack";
             this.buttonBruteForceAttack.Size = new System.Drawing.Size(380, 28);
             this.buttonBruteForceAttack.TabIndex = 11;
@@ -453,7 +439,7 @@ namespace HashTester
             this.checkBoxDigits.Checked = true;
             this.checkBoxDigits.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxDigits.Location = new System.Drawing.Point(223, 210);
-            this.checkBoxDigits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxDigits.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxDigits.Name = "checkBoxDigits";
             this.checkBoxDigits.Size = new System.Drawing.Size(94, 20);
             this.checkBoxDigits.TabIndex = 11;
@@ -466,7 +452,7 @@ namespace HashTester
             this.checkBoxUpperCase.Checked = true;
             this.checkBoxUpperCase.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxUpperCase.Location = new System.Drawing.Point(223, 182);
-            this.checkBoxUpperCase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxUpperCase.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxUpperCase.Name = "checkBoxUpperCase";
             this.checkBoxUpperCase.Size = new System.Drawing.Size(144, 20);
             this.checkBoxUpperCase.TabIndex = 10;
@@ -479,7 +465,7 @@ namespace HashTester
             this.checkBoxLowerCase.Checked = true;
             this.checkBoxLowerCase.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxLowerCase.Location = new System.Drawing.Point(223, 154);
-            this.checkBoxLowerCase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxLowerCase.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxLowerCase.Name = "checkBoxLowerCase";
             this.checkBoxLowerCase.Size = new System.Drawing.Size(139, 20);
             this.checkBoxLowerCase.TabIndex = 9;
@@ -500,7 +486,7 @@ namespace HashTester
             // 
             this.radioButtonBruteForceHashed.AutoSize = true;
             this.radioButtonBruteForceHashed.Location = new System.Drawing.Point(13, 73);
-            this.radioButtonBruteForceHashed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonBruteForceHashed.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonBruteForceHashed.Name = "radioButtonBruteForceHashed";
             this.radioButtonBruteForceHashed.Size = new System.Drawing.Size(76, 20);
             this.radioButtonBruteForceHashed.TabIndex = 8;
@@ -511,7 +497,7 @@ namespace HashTester
             // numericUpDownLenght
             // 
             this.numericUpDownLenght.Location = new System.Drawing.Point(9, 124);
-            this.numericUpDownLenght.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownLenght.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownLenght.Maximum = new decimal(new int[] {
             50,
             0,
@@ -532,7 +518,7 @@ namespace HashTester
             this.radioButtonRegularBruteForce.AutoSize = true;
             this.radioButtonRegularBruteForce.Checked = true;
             this.radioButtonRegularBruteForce.Location = new System.Drawing.Point(12, 50);
-            this.radioButtonRegularBruteForce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRegularBruteForce.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRegularBruteForce.Name = "radioButtonRegularBruteForce";
             this.radioButtonRegularBruteForce.Size = new System.Drawing.Size(76, 20);
             this.radioButtonRegularBruteForce.TabIndex = 7;
@@ -554,7 +540,7 @@ namespace HashTester
             // numericUpDownMaxAttempts
             // 
             this.numericUpDownMaxAttempts.Location = new System.Drawing.Point(179, 121);
-            this.numericUpDownMaxAttempts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownMaxAttempts.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownMaxAttempts.Maximum = new decimal(new int[] {
             1215752191,
             23,
@@ -568,7 +554,7 @@ namespace HashTester
             // textBoxBruteForce
             // 
             this.textBoxBruteForce.Location = new System.Drawing.Point(9, 25);
-            this.textBoxBruteForce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxBruteForce.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBruteForce.Name = "textBoxBruteForce";
             this.textBoxBruteForce.Size = new System.Drawing.Size(364, 22);
             this.textBoxBruteForce.TabIndex = 0;
@@ -579,7 +565,7 @@ namespace HashTester
             // 
             this.checkBoxPerformanceMode.AutoSize = true;
             this.checkBoxPerformanceMode.Location = new System.Drawing.Point(947, 415);
-            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
             this.checkBoxPerformanceMode.Size = new System.Drawing.Size(141, 20);
             this.checkBoxPerformanceMode.TabIndex = 34;
@@ -589,7 +575,7 @@ namespace HashTester
             // buttonRainbowTableAttack
             // 
             this.buttonRainbowTableAttack.Location = new System.Drawing.Point(9, 266);
-            this.buttonRainbowTableAttack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRainbowTableAttack.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRainbowTableAttack.Name = "buttonRainbowTableAttack";
             this.buttonRainbowTableAttack.Size = new System.Drawing.Size(237, 28);
             this.buttonRainbowTableAttack.TabIndex = 38;
@@ -600,7 +586,7 @@ namespace HashTester
             // buttonGenerateRainbowTable
             // 
             this.buttonGenerateRainbowTable.Location = new System.Drawing.Point(11, 233);
-            this.buttonGenerateRainbowTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGenerateRainbowTable.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGenerateRainbowTable.Name = "buttonGenerateRainbowTable";
             this.buttonGenerateRainbowTable.Size = new System.Drawing.Size(235, 28);
             this.buttonGenerateRainbowTable.TabIndex = 10;
@@ -651,7 +637,7 @@ namespace HashTester
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(948, 441);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(240, 28);
             this.buttonCancel.TabIndex = 35;
@@ -663,7 +649,7 @@ namespace HashTester
             // 
             this.progressBar1.Cursor = System.Windows.Forms.Cursors.Default;
             this.progressBar1.Location = new System.Drawing.Point(19, 476);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(1172, 28);
             this.progressBar1.TabIndex = 36;
@@ -683,7 +669,7 @@ namespace HashTester
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.ItemHeight = 16;
             this.listBoxLog.Location = new System.Drawing.Point(19, 512);
-            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(1169, 116);
             this.listBoxLog.TabIndex = 38;
@@ -691,7 +677,7 @@ namespace HashTester
             // buttonLogClear
             // 
             this.buttonLogClear.Location = new System.Drawing.Point(19, 636);
-            this.buttonLogClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogClear.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(381, 28);
             this.buttonLogClear.TabIndex = 39;
@@ -702,7 +688,7 @@ namespace HashTester
             // buttonLogSave
             // 
             this.buttonLogSave.Location = new System.Drawing.Point(408, 636);
-            this.buttonLogSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogSave.Name = "buttonLogSave";
             this.buttonLogSave.Size = new System.Drawing.Size(381, 28);
             this.buttonLogSave.TabIndex = 40;
@@ -713,7 +699,7 @@ namespace HashTester
             // buttonClipboard
             // 
             this.buttonClipboard.Location = new System.Drawing.Point(808, 636);
-            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClipboard.Name = "buttonClipboard";
             this.buttonClipboard.Size = new System.Drawing.Size(381, 28);
             this.buttonClipboard.TabIndex = 41;
@@ -729,9 +715,9 @@ namespace HashTester
             this.groupBoxRainbowTable.Controls.Add(this.buttonGenerateRainbowTable);
             this.groupBoxRainbowTable.Controls.Add(this.buttonRainbowTableAttack);
             this.groupBoxRainbowTable.Location = new System.Drawing.Point(525, 16);
-            this.groupBoxRainbowTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxRainbowTable.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxRainbowTable.Name = "groupBoxRainbowTable";
-            this.groupBoxRainbowTable.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxRainbowTable.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxRainbowTable.Size = new System.Drawing.Size(255, 310);
             this.groupBoxRainbowTable.TabIndex = 42;
             this.groupBoxRainbowTable.TabStop = false;
@@ -741,7 +727,7 @@ namespace HashTester
             // 
             this.radioButtonHashedRainbowTable.AutoSize = true;
             this.radioButtonHashedRainbowTable.Location = new System.Drawing.Point(9, 80);
-            this.radioButtonHashedRainbowTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonHashedRainbowTable.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonHashedRainbowTable.Name = "radioButtonHashedRainbowTable";
             this.radioButtonHashedRainbowTable.Size = new System.Drawing.Size(76, 20);
             this.radioButtonHashedRainbowTable.TabIndex = 45;
@@ -751,7 +737,7 @@ namespace HashTester
             // textBoxRainbowTable
             // 
             this.textBoxRainbowTable.Location = new System.Drawing.Point(8, 26);
-            this.textBoxRainbowTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxRainbowTable.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxRainbowTable.Name = "textBoxRainbowTable";
             this.textBoxRainbowTable.Size = new System.Drawing.Size(236, 22);
             this.textBoxRainbowTable.TabIndex = 44;
@@ -762,7 +748,7 @@ namespace HashTester
             this.radioButtonRegularRainbowTable.AutoSize = true;
             this.radioButtonRegularRainbowTable.Checked = true;
             this.radioButtonRegularRainbowTable.Location = new System.Drawing.Point(8, 58);
-            this.radioButtonRegularRainbowTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonRegularRainbowTable.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonRegularRainbowTable.Name = "radioButtonRegularRainbowTable";
             this.radioButtonRegularRainbowTable.Size = new System.Drawing.Size(76, 20);
             this.radioButtonRegularRainbowTable.TabIndex = 44;
@@ -781,7 +767,7 @@ namespace HashTester
             "RipeMD-160",
             "CRC32"});
             this.hashSelector.Location = new System.Drawing.Point(948, 353);
-            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(237, 24);
             this.hashSelector.TabIndex = 44;
@@ -794,9 +780,9 @@ namespace HashTester
             this.groupBoxUI.Controls.Add(this.labelStatAttempts);
             this.groupBoxUI.Controls.Add(this.labelStatSpeed);
             this.groupBoxUI.Location = new System.Drawing.Point(16, 353);
-            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxUI.Size = new System.Drawing.Size(288, 89);
             this.groupBoxUI.TabIndex = 43;
             this.groupBoxUI.TabStop = false;
@@ -818,7 +804,6 @@ namespace HashTester
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 674);
             this.Controls.Add(this.labelAlgorithm);
-            this.Controls.Add(this.checkBoxShowLog);
             this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.groupBoxRainbowTable);
             this.Controls.Add(this.buttonClipboard);
@@ -833,7 +818,7 @@ namespace HashTester
             this.Controls.Add(this.groupBoxBruteForce);
             this.Controls.Add(this.groupBoxTimeToCrack);
             this.Controls.Add(this.groupBoxDictionary);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PasswordForm";
             this.Text = "PasswordForm";
             this.Load += new System.EventHandler(this.PasswordForm_Load);
@@ -903,7 +888,6 @@ namespace HashTester
         private System.Windows.Forms.CheckBox checkBoxHexOutputBruteForce;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button buttonRainbowTableAttack;
-        private System.Windows.Forms.CheckBox checkBoxShowLog;
         private System.Windows.Forms.Button buttonLogClear;
         private System.Windows.Forms.Button buttonLogSave;
         private System.Windows.Forms.CheckBox checkBoxUnknownLenghtBruteForce;

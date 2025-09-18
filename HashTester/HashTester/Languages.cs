@@ -106,6 +106,7 @@ namespace HashTester
             PleaseEnterValidInputIntoText01 = 11010,
             PleaseEnterValidInputIntoText02 = 11011,
             CouldNotConvertInputToString = 11012,
+            UsedAlgorithm = 11013,
             MainForm = 15000,
             HashCollisionFinder = 15002,
             HashCollisionChecker = 15003,

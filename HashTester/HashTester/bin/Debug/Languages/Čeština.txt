@@ -64,6 +64,7 @@
 11010==Prosím zadejte validní vstup do Text01.
 11011==Prosím zadejte validní vstup do Text02.
 11012==Nepodařilo se převést vstup na string.
+11013==Použitý algoritmus
 
 //**Name of Forms <<15000-15100>>
 15000==Hlavní formulář

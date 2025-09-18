@@ -20,10 +20,21 @@ namespace HashTester
         private static int threadsUsagePercentage;
         private static string selectedLanguage;
         private static bool remindUpdate;
+        private static bool showLog;
         private static DateTime githubRequestAPI = DateTime.Now;
         #endregion
 
         #region Get&Set
+
+        public static bool ShowLog
+        {
+            get { return showLog; }
+            set
+            {
+                showLog = value;
+                Settings.SaveSettings();
+            }
+        }
 
         public static bool RemindUpdate
         {
@@ -298,6 +309,8 @@ namespace HashTester
                         else writer.WriteLine("remindUpdate=0");
                         if (GithubRequestAPI != null) writer.WriteLine("githubRequestAPI=" + GithubRequestAPI.ToString());
                         else writer.WriteLine("githubRequestAPI=" + DateTime.Now.AddDays(-1).ToString());
+                        if (ShowLog) writer.WriteLine("showLog=1");
+                        else writer.WriteLine("showLog=0");
                     }
                 }
                 File.Delete(settingsPathToFileSettings);
@@ -490,6 +503,18 @@ namespace HashTester
                                         catch (Exception)
                                         {
                                             GithubRequestAPI = DateTime.Now.AddDays(-1);
+                                        }
+                                        break;
+                                    case "showLog":
+                                        try
+                                        {
+                                            int temp = int.Parse(data[1]);
+                                            if (temp != 0) showLog = true;
+                                            else showLog = false;
+                                        }
+                                        catch (Exception)
+                                        {
+                                            showLog = true;
                                         }
                                         break;
                                     default:
