@@ -559,7 +559,7 @@ namespace HashTester
 
         private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult temp = FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm);
+            DialogResult temp = FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm, true);
             if (temp == DialogResult.OK)
             {
                 Settings.ThreadsUsagePercentage = FormManagement.Form_ThreadsForm.Percentage;

@@ -22,6 +22,7 @@ namespace HashTester
         private static bool remindUpdate;
         private static bool showLog;
         private static DateTime githubRequestAPI = DateTime.Now;
+        private static bool isFileSettingsUsed = false;
         #endregion
 
         #region Get&Set
@@ -32,7 +33,6 @@ namespace HashTester
             set
             {
                 showLog = value;
-                Settings.SaveSettings();
             }
         }
 
@@ -94,7 +94,6 @@ namespace HashTester
                 if (value <= 1) threadsUsagePercentage = 1;
                 else if (value > 100) threadsUsagePercentage = 100;
                 else threadsUsagePercentage = value;
-                Settings.SaveSettings();
             }
         }
 
@@ -123,7 +122,6 @@ namespace HashTester
                     else updateUIms = value;
                 }
                 else updateUIms = 32; //around 30fps
-                Settings.SaveSettings();
             }
         }
         public static string DirectoryExeBase
@@ -236,6 +234,7 @@ namespace HashTester
         #endregion       
         public static void ResetSettings()
         {
+            Console.WriteLine("ResetSettings");
             VisualMode = VisualModeEnum.System;
             OutputType = OutputTypeEnum.Listbox;
             OutputStyleIncludeHashAlgorithm = false;
@@ -249,11 +248,16 @@ namespace HashTester
         }
         public static void SaveSettings()
         {
+            if (isFileSettingsUsed)
+            {
+                Console.WriteLine("File settings.txt is used. Returning from SaveSettings."); return;
+            }
+            isFileSettingsUsed = true;
             try
             {
                 //Create File
                 string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp); //Delte temp if somehow still exists
                 Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
                 string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
                 Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
@@ -313,224 +317,248 @@ namespace HashTester
                         else writer.WriteLine("showLog=0");
                     }
                 }
-                File.Delete(settingsPathToFileSettings);
-                File.Move(settingsPathToFileTemp, settingsPathToFileSettings);
+                File.Replace(settingsPathToFileTemp, settingsPathToFileSettings, settingsPathToFileSettings); //Its fucked here, file already used
+                isFileSettingsUsed = false;
             }
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
+                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                isFileSettingsUsed = false;
                 Application.Exit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
+                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                isFileSettingsUsed = false;
                 return;
             }
         }
-
         public static void LoadSettings()
         {
-            string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-            if (File.Exists(settingsPathToFileSettings))
+            if (isFileSettingsUsed)
             {
-                using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
+                Console.WriteLine("File settings.txt is used. Returning from LoadSettings."); return;
+            }
+            try
+            {
+                isFileSettingsUsed = true;
+                string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
+                if (File.Exists(settingsPathToFileSettings))
                 {
-                    using (StreamReader reader = new StreamReader(fileSettings))
+                    Console.WriteLine("Existuje settings.txt");
+                    using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
                     {
-                        while (!reader.EndOfStream)
+                        using (StreamReader reader = new StreamReader(fileSettings))
                         {
-                            string line = reader.ReadLine();
-                            char[] splitChar = { '=' };
-                            string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
-                            if (data[0].Substring(0, 2) != "//") //Comments in Settings
+                            while (!reader.EndOfStream)
                             {
-                                switch (data[0])
+                                string line = reader.ReadLine();
+                                char[] splitChar = { '=' };
+                                string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
+                                if (data[0].Substring(0, 2) != "//") //Comments in Settings
                                 {
-                                    case "visualMode":
-                                        {
+                                    switch (data[0])
+                                    {
+                                        case "visualMode":
+                                            {
+                                                try
+                                                {
+                                                    if (data[1] == "0") VisualMode = VisualModeEnum.System;
+                                                    else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
+                                                    else VisualMode = VisualModeEnum.Dark;
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    VisualMode = VisualModeEnum.System;
+                                                }
+                                                break;
+                                            }
+                                        case "outputType":
+                                            {
+                                                try
+                                                {
+                                                    if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
+                                                    else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
+                                                    else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
+                                                    else OutputType = OutputTypeEnum.Listbox;
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    OutputType = OutputTypeEnum.Listbox;
+                                                }
+                                                break;
+                                            }
+                                        case "outputStyle_IncludeOriginalString":
+                                            {
+                                                try
+                                                {
+                                                    OutputStyleIncludeOriginalString = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    OutputStyleIncludeOriginalString = false;
+                                                }
+                                                break;
+                                            }
+                                        case "outputStyle_IncludeHash":
+                                            {
+                                                try
+                                                {
+                                                    OutputStyleIncludeHashAlgorithm = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    OutputStyleIncludeHashAlgorithm = false;
+                                                }
+                                                break;
+                                            }
+                                        case "outputStyle_IncludeNumber":
+                                            {
+                                                try
+                                                {
+                                                    OutputStyleIncludeNumberOfHash = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    OutputStyleIncludeNumberOfHash = false;
+                                                }
+                                                break;
+                                            }
+                                        case "outputStyle_IncludeSaltPepper":
+                                            {
+                                                try
+                                                {
+                                                    OutputStyleIncludeSaltPepper = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    OutputStyleIncludeSaltPepper = false;
+                                                }
+                                                break;
+                                            }
+                                        case "useSalt":
+                                            {
+                                                try
+                                                {
+                                                    UseSalt = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    UseSalt = false;
+                                                }
+                                                break;
+                                            }
+                                        case "usePepper":
+                                            {
+                                                try
+                                                {
+                                                    UsePepper = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    UsePepper = false;
+                                                }
+                                                break;
+                                            }
+                                        case "UIupdateInMS":
+                                            {
+                                                try
+                                                {
+                                                    UpdateUIms = int.Parse(data[1]);
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    UpdateUIms = 0;
+                                                }
+                                                break;
+                                            }
+                                        case "threadsUsagePercentage":
+                                            {
+                                                try
+                                                {
+                                                    ThreadsUsagePercentage = int.Parse(data[1]);
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    ThreadsUsagePercentage = 50;
+                                                }
+                                                break;
+                                            }
+                                        case "language":
+                                            {
+                                                try
+                                                {
+                                                    SelectedLanguage = data[1];
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    SelectedLanguage = "";
+                                                }
+                                                break;
+                                            }
+                                        case "remindUpdate":
+                                            {
+                                                try
+                                                {
+                                                    RemindUpdate = (data[1] == "1");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    RemindUpdate = false;
+                                                }
+                                                break;
+                                            }
+                                        case "githubRequestAPI":
                                             try
                                             {
-                                                if (data[1] == "0") VisualMode = VisualModeEnum.System;
-                                                else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
-                                                else VisualMode = VisualModeEnum.Dark;
+                                                GithubRequestAPI = DateTime.Parse(data[1]);
                                             }
                                             catch (Exception)
                                             {
-                                                VisualMode = VisualModeEnum.System;
+                                                GithubRequestAPI = DateTime.Now.AddDays(-1);
                                             }
                                             break;
-                                        }
-                                    case "outputType":
-                                        {
+                                        case "showLog":
                                             try
                                             {
-                                                if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
-                                                else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
-                                                else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
-                                                else OutputType = OutputTypeEnum.Listbox;
+                                                int temp = int.Parse(data[1]);
+                                                if (temp != 0) showLog = true;
+                                                else showLog = false;
                                             }
                                             catch (Exception)
                                             {
-                                                OutputType = OutputTypeEnum.Listbox;
+                                                showLog = true;
                                             }
                                             break;
-                                        }
-                                    case "outputStyle_IncludeOriginalString":
-                                        {
-                                            try
+                                        default:
                                             {
-                                                OutputStyleIncludeOriginalString = (data[1] == "1");
+                                                break;
                                             }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeOriginalString = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeHash":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeHashAlgorithm = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeHashAlgorithm = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeNumber":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeNumberOfHash = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeNumberOfHash = false;
-                                            }
-                                            break;
-                                        }
-                                    case "outputStyle_IncludeSaltPepper":
-                                        {
-                                            try
-                                            {
-                                                OutputStyleIncludeSaltPepper = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                OutputStyleIncludeSaltPepper = false;
-                                            }
-                                            break;
-                                        }
-                                    case "useSalt":
-                                        {
-                                            try
-                                            {
-                                                UseSalt = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UseSalt = false;
-                                            }
-                                            break;
-                                        }
-                                    case "usePepper":
-                                        {
-                                            try
-                                            {
-                                                UsePepper = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UsePepper = false;
-                                            }
-                                            break;
-                                        }
-                                    case "UIupdateInMS":
-                                        {
-                                            try
-                                            {
-                                                UpdateUIms = int.Parse(data[1]);
-                                            }
-                                            catch (Exception)
-                                            {
-                                                UpdateUIms = 0;
-                                            }
-                                            break;
-                                        }
-                                    case "threadsUsagePercentage":
-                                        {
-                                            try
-                                            {
-                                                ThreadsUsagePercentage = int.Parse(data[1]);
-                                            }
-                                            catch (Exception)
-                                            {
-                                                ThreadsUsagePercentage = 50;
-                                            }
-                                            break;
-                                        }
-                                    case "language":
-                                        {
-                                            try
-                                            {
-                                                SelectedLanguage = data[1];
-                                            }
-                                            catch (Exception)
-                                            {
-                                                SelectedLanguage = "";
-                                            }
-                                            break;
-                                        }
-                                    case "remindUpdate":
-                                        {
-                                            try
-                                            {
-                                                RemindUpdate = (data[1] == "1");
-                                            }
-                                            catch (Exception)
-                                            {
-                                                RemindUpdate = false;
-                                            }
-                                            break;
-                                        }
-                                    case "githubRequestAPI":
-                                        try
-                                        {
-                                            GithubRequestAPI = DateTime.Parse(data[1]);
-                                        }
-                                        catch (Exception)
-                                        {
-                                            GithubRequestAPI = DateTime.Now.AddDays(-1);
-                                        }
-                                        break;
-                                    case "showLog":
-                                        try
-                                        {
-                                            int temp = int.Parse(data[1]);
-                                            if (temp != 0) showLog = true;
-                                            else showLog = false;
-                                        }
-                                        catch (Exception)
-                                        {
-                                            showLog = true;
-                                        }
-                                        break;
-                                    default:
-                                        {
-                                            break;
-                                        }
+                                    }
                                 }
                             }
                         }
                     }
+                    isFileSettingsUsed = false;
+                }
+                else
+                {
+                    isFileSettingsUsed = false;
+                    Settings.ResetSettings();
+                    Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
                 }
             }
-            else
+            catch (Exception)
             {
-                Settings.ResetSettings();
-                Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
+                Console.WriteLine("fuck");
+            }
+            finally
+            {
+                isFileSettingsUsed = false;
             }
         }
         public static void InitialFolderChecker()
