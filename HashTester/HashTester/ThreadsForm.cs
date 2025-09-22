@@ -152,7 +152,7 @@ namespace HashTester
                     labelCPUManufacturer.Text = Languages.Translate(Languages.L.Manufacturer) + ": " + (obj["Manufacturer"] ?? Languages.Translate(Languages.L.Unknown));
                     labelCPUDescription.Text = Languages.Translate(Languages.L.CpuDescription) + ": " + (obj["Description"] ?? Languages.Translate(Languages.L.Unknown));
                     labelCPUCores.Text = Languages.Translate(Languages.L.NumberOfCores) +": " + (obj["NumberOfCores"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUThread.Text = Languages.Translate(441) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUThread.Text = Languages.Translate(Languages.L.CpuInfo) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(Languages.L.Unknown));
                     labelCPUMaxSpeed.Text = Languages.Translate(Languages.L.MaxClockSpeed) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(Languages.L.Unknown)) + " " + Languages.Translate(Languages.L.Mhz);
                 }
             }

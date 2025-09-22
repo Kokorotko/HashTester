@@ -74,7 +74,7 @@ namespace HashTester
         #endregion
 
         #region Main Hashing
-        /////////////////////////////////////******Main Hashing******/////////////////////////////////////
+
         /// <summary>
         /// Takes a string and an algorithm and creates a hash
         /// </summary>
@@ -95,6 +95,13 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes array of bytes and an algorithm and returns string
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public string Hash(byte[] bytes, HashingAlgorithm algorithm)
         {
             switch (algorithm)
@@ -109,6 +116,13 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes a string and an algorithm and creates a hash  thats returned in byte array
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public byte[] HashBytes(string text, HashingAlgorithm algorithm)
         {
             switch (algorithm)
@@ -123,6 +137,13 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes an array and an algorithm and creates a hash that returned in byte array
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public byte[] HashBytes(byte[] bytes, HashingAlgorithm algorithm)
         {
             switch (algorithm)
@@ -164,6 +185,16 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Takes an array of bytes, adds salt and or pepper and returns hash in string
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="useSalt">If add salt</param>
+        /// <param name="usePepper">If add pepper</param>
+        /// <param name="salt">Is ignored if useSalt is false</param>
+        /// <param name="pepper">Is ignored if usePepper is false</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public string HashSaltPepper(byte[] bytes, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {
             if (useSalt)
@@ -188,6 +219,17 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in string
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="useSalt">If add salt</param>
+        /// <param name="usePepper">If add pepper</param>
+        /// <param name="salt">Is ignored if useSalt is false</param>
+        /// <param name="pepper">Is ignored if usePepper is false</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public string HashSaltPepper(byte[] bytes, bool useSalt, bool usePepper, byte[] salt, byte[] pepper, HashingAlgorithm algorithm)
         {
             if (useSalt)
@@ -212,6 +254,16 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Takes a string, adds salt and or pepper and returns hash in array of bytes
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="useSalt">If add salt</param>
+        /// <param name="usePepper">If add pepper</param>
+        /// <param name="salt">Is ignored if useSalt is false</param>
+        /// <param name="pepper">Is ignored if usePepper is false</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public byte[] HashSaltPepperBytes(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {
             if (useSalt)
@@ -236,6 +288,17 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes an array of bytes, adds salt and or pepper and returns hash in array of bytes
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="useSalt">If add salt</param>
+        /// <param name="usePepper">If add pepper</param>
+        /// <param name="salt">Is ignored if useSalt is false</param>
+        /// <param name="pepper">Is ignored if usePepper is false</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public byte[] HashSaltPepperBytes(byte[] bytes, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {
             if (useSalt)
@@ -260,6 +323,17 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in array of bytes
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="useSalt">If add salt</param>
+        /// <param name="usePepper">If add pepper</param>
+        /// <param name="salt">Is ignored if useSalt is false</param>
+        /// <param name="pepper">Is ignored if usePepper is false</param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public byte[] HashSaltPepperBytes(byte[] bytes, bool useSalt, bool usePepper, byte[] salt, byte[] pepper, HashingAlgorithm algorithm)
         {
             if (useSalt)
@@ -284,6 +358,13 @@ namespace HashTester
             }
         }      
 
+        /// <summary>
+        /// Combines two arrays into one
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         public static T[] CombineArrays<T>(T[] first, T[] second)
         {
             T[] result = new T[first.Length + second.Length];
@@ -669,6 +750,13 @@ namespace HashTester
         #endregion
 
         #region SaltAndPepperLogic
+
+        /// <summary>
+        /// Saves salt and pepper based on hashID
+        /// </summary>
+        /// <param name="hashID"></param>
+        /// <param name="salt"></param>
+        /// <param name="pepperLength"></param>
         public void SaveSalt(string hashID, string salt, int pepperLength)
         {
             string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");
@@ -680,6 +768,13 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Loads salt and pepper based on hashID
+        /// </summary>
+        /// <param name="hashID"></param>
+        /// <param name="salt"></param>
+        /// <param name="pepperLenght"></param>
         public void LoadSalt(string hashID, out string salt, out int pepperLenght)
         {
             salt = null;
@@ -709,6 +804,15 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Checks if salt and pepper was used
+        /// </summary>
+        /// <param name="isSaltUsed"></param>
+        /// <param name="isPepperUsed"></param>
+        /// <param name="salt">Is empty if isSaltUsed is false</param>
+        /// <param name="pepper">Is 0 if isPepperUsed is false</param>
+        /// <returns></returns>
         public bool IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper)
         {
             salt = "";
@@ -769,6 +873,16 @@ namespace HashTester
             return false;
         }
 
+
+        /// <summary>
+        /// Retuns if salt and pepper was used, also hashID
+        /// </summary>
+        /// <param name="useSalt"></param>
+        /// <param name="usePepper"></param>
+        /// <param name="salt">Is empty if is useSalt is false</param>
+        /// <param name="pepper">Is 0 if usePepper is false</param>
+        /// <param name="hashID">Returns hash ID</param>
+        /// <returns></returns>
         public bool IsUsingSaltAndPepper(bool useSalt, bool usePepper, out string salt, out string pepper, out string hashID)
         {
             hashID = "";
@@ -821,6 +935,17 @@ namespace HashTester
             return false; //Do not use Salt/Pepper
         }
 
+
+        /// <summary>
+        /// Retuns if salt and pepper was used. Inputs custom hashID
+        /// </summary>
+        /// <param name="useSalt"></param>
+        /// <param name="usePepper"></param>
+        /// <param name="customHashID"></param>
+        /// <param name="salt">Is empty if useSalt is false</param>
+        /// <param name="pepper">Is 0 if usePepper is false</param>
+        /// <param name="hashID"></param>
+        /// <returns></returns>
         public bool IsUsingSaltAndPepper(bool useSalt, bool usePepper, string customHashID, out string salt, out string pepper, out string hashID)
         {
             hashID = "";
@@ -872,6 +997,16 @@ namespace HashTester
             return false; //Do not use Salt/Pepper
         }
 
+
+        /// <summary>
+        /// Checks if pepper was used and returns it
+        /// </summary>
+        /// <param name="originalText"></param>
+        /// <param name="hashedText"></param>
+        /// <param name="length">Expected lenght of the pepper</param>
+        /// <param name="algorithm"></param>
+        /// <param name="pepper"></param>
+        /// <returns></returns>
         public bool CheckPepper(string originalText, string hashedText, int length, HashingAlgorithm algorithm, out string pepper)
         {
             pepper = "";
@@ -908,6 +1043,7 @@ namespace HashTester
             }
             return false;
         }
+        
         #endregion
     }
 }

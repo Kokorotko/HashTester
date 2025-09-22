@@ -60,6 +60,9 @@ namespace HashTester
 
         #endregion
 
+
+        #region Strip Menu
+
         private void UIToolStripMenuLoad()
         {
             UpdateMenuStripSettings();
@@ -108,9 +111,6 @@ namespace HashTester
             else includeAllToolStripMenuItem.Checked = false;
         }
 
-        #region Hashing        
-
-        #region SaltAndPepper
         private void includeSaltToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.UseSalt = !Settings.UseSalt;
@@ -124,8 +124,6 @@ namespace HashTester
             includePepperToolStripMenuItem.Checked = Settings.UsePepper;
             Settings.SaveSettings();
         }    
-
-        #endregion
 
 
         private void gradualHashingToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -141,10 +139,6 @@ namespace HashTester
         {
             FormManagement.SpawnForm(FormManagement.Forms.HashingCollision);
         }
-
-        #region FileChecksum
-
-        #endregion
 
         #region Options
 
@@ -293,10 +287,81 @@ namespace HashTester
 
         #endregion
 
-        #endregion 
+        private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.SpawnForm(FormManagement.Forms.PasswordForm);
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
+        }
+
+        private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult var = FormManagement.SpawnForm(FormManagement.Forms.UIUpdateFrequency, true);
+            if (var == DialogResult.OK)
+            {
+                Settings.UpdateUIms = FormManagement.Form_UIUpdateFrequency.Miliseconds;
+            }
+        }
+
+        private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult temp = FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm, true);
+            if (temp == DialogResult.OK)
+            {
+                Settings.ThreadsUsagePercentage = FormManagement.Form_ThreadsForm.Percentage;
+                Settings.SaveSettings();
+            }
+        }
+
+        private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.SpawnForm(FormManagement.Forms.FileChecksum);
+        }
+
+        private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManagement.SpawnForm(FormManagement.Forms.SaltAndPepperTester);
+        }
+
+        private void includeSaltToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            includeSaltToolStripMenuItem.Checked = !includeSaltToolStripMenuItem.Checked;
+            Settings.UseSalt = includeSaltToolStripMenuItem.Checked;
+        }
+
+        private void includePepperToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            includePepperToolStripMenuItem.Checked = !includePepperToolStripMenuItem.Checked;
+            Settings.UsePepper = includePepperToolStripMenuItem.Checked;
+        }
+
+
+        private void remindOnUpdateToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Settings.RemindUpdate = !Settings.RemindUpdate;
+            UpdateRemindMe();
+        }
+
+        private void showLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ShowLog = !Settings.ShowLog;
+            showLogToolStripMenuItem.Checked = Settings.ShowLog;
+        }
+
+        #endregion
 
         #region ProcessingHash
-        //Singular Algorithms
+
+
+        /// <summary>
+        /// Creates hash (or multiple hashes) and returns it based on options
+        /// </summary>
+        /// <param name="originalText"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="askForSaltPepper"></param>
         public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm algorithm, bool askForSaltPepper)
         {
             bool usingSaltAndPepper = false;
@@ -324,6 +389,14 @@ namespace HashTester
             }
             outputHandler.OutputTypeShow(outputString, listBoxLog);
         }
+
+
+        /// <summary>
+        /// Creates hashes from a .txt file and returns it based on options
+        /// </summary>
+        /// <param name="algorithm">Hash algorithm</param>
+        /// <param name="fileNamePath">File path to file</param>
+        /// <param name="askForSaltPepper">True if you want to use salt and or pepper</param>
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm algorithm, string fileNamePath, bool askForSaltPepper)
         {
             using (StreamReader reader = new StreamReader(fileNamePath))
@@ -336,7 +409,14 @@ namespace HashTester
                 ProcessingHash(lines.ToArray(), algorithm, askForSaltPepper);
             }
          }
-        //Multiple Algorithms
+        
+
+        /// <summary>
+        /// Creates hash (or multiple) and outputs it into a listbox
+        /// </summary>
+        /// <param name="originalText"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="listbox"></param>
         public void ProcessingHash(string[] originalText, Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
         {
             bool usingSaltAndPepper = hasher.IsUsingSaltAndPepper(out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper);
@@ -364,6 +444,13 @@ namespace HashTester
             outputHandler = new OutputHandler();
             outputHandler.OutputTypeShow(outputString.ToArray(), listbox);
         }
+
+
+        /// <summary>
+        /// Creates hash (or hashes) from .txt file and outputs into a listbox
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="listbox">Listbox for output</param>
         public void ProcessingHashTXTInput(Hasher.HashingAlgorithm[] algorithm, ListBox listbox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -388,6 +475,18 @@ namespace HashTester
         #endregion
 
         #region SaltAndPepperLogic
+
+
+        /// <summary>
+        /// Between step if you want to add salt or pepper
+        /// </summary>
+        /// <param name="text">Original input you want to add salt and or pepper to</param>
+        /// <param name="isSaltUsed">True if you want to use salt</param>
+        /// <param name="isPepperUsed">True if you want to use pepper</param>
+        /// <param name="salt">Is empty if isSaltUsed is false</param>
+        /// <param name="pepper">Is empty if isPepper used is false</param>
+        /// <param name="hashID">Outputs hashID for future clarification</param>
+        /// <returns></returns>
         public bool IsUsingSaltAndPepper(string text, out bool isSaltUsed, out bool isPepperUsed, out string salt, out string pepper, out string hashID)
         {
             hashID = "";
@@ -440,30 +539,7 @@ namespace HashTester
         }
         #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Settings.InitialFolderChecker();
-            this.Name = Languages.Translate(Languages.L.Hashtester);
-            hashSelector.SelectedIndex = 0;
-            Settings.LoadSettings();
-            UIToolStripMenuLoad();
-            AddLanguagesToMenu();
-            FormManagement.SetUpFormTheme(this);
-            Task.Run(async () => await CheckForUpdates());
-            FormUISetUpLanguages();
-        }
-
-        private void passwordJailbreakToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.SpawnForm(FormManagement.Forms.PasswordForm);
-        }
-
-        private void buttonSaveLog_Click(object sender, EventArgs e)
-        {
-            FormManagement.SaveLog(listBoxLog, this);
-        }
-
-        #region Unit-Tests
+        #region Unit-Tests (Old - Do not use)
         public void TXTInput_Click_Test(string path, Hasher.HashingAlgorithm tempAlgorithm)
         {
             bool askForSaltPepper = false;
@@ -490,14 +566,7 @@ namespace HashTester
 
         #endregion
 
-        private void UIUpdateFrequencyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult var = FormManagement.SpawnForm(FormManagement.Forms.UIUpdateFrequency, true);
-            if (var == DialogResult.OK)
-            {
-                Settings.UpdateUIms = FormManagement.Form_UIUpdateFrequency.Miliseconds;
-            }
-        }
+        #region Languages Set Up
 
         private void AddLanguagesToMenu()
         {
@@ -557,45 +626,12 @@ namespace HashTester
             }
         }
 
-        private void threadsAndCPUSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult temp = FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm, true);
-            if (temp == DialogResult.OK)
-            {
-                Settings.ThreadsUsagePercentage = FormManagement.Form_ThreadsForm.Percentage;
-                Settings.SaveSettings();
-            }   
-        }
-
-        private void buttonClipboard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void fileChecksumToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.SpawnForm(FormManagement.Forms.FileChecksum);
-        }
-
-        private void saltPepperTesterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormManagement.SpawnForm(FormManagement.Forms.SaltAndPepperTester);
-        }
-
         private void FormUISetUpLanguages()
         {
             UpdateRemindMe();
             hashingToolStripMenuItem.Text = Languages.Translate(Languages.L.Hashing);
             saltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepper);
-            multipleHashingToolStripMenuItem.Text = Languages.Translate(2);
+            multipleHashingToolStripMenuItem.Text = Languages.Translate(Languages.L.MultipleHashing);
             findingCollisionsToolStripMenuItem.Text = Languages.Translate(Languages.L.FindingCollisions);
             passwordCrackerToolStripMenuItem.Text = Languages.Translate(Languages.L.PasswordCracker);
             includeSaltToolStripMenuItem.Text = Languages.Translate(Languages.L.UseSalt);
@@ -632,18 +668,29 @@ namespace HashTester
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
         }
 
-        private void includeSaltToolStripMenuItem_Click_1(object sender, EventArgs e)
+        #endregion
+
+        #region Clipboard
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
         {
-            includeSaltToolStripMenuItem.Checked = !includeSaltToolStripMenuItem.Checked;
-            Settings.UseSalt = includeSaltToolStripMenuItem.Checked;
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void includePepperToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            includePepperToolStripMenuItem.Checked = !includePepperToolStripMenuItem.Checked;
-            Settings.UsePepper = includePepperToolStripMenuItem.Checked;
-        }
+        #endregion
 
+        /// <summary>
+        /// Checks for updates (works with GithubAPI)
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForUpdates()
         {
             if (!NetworkInterface.GetIsNetworkAvailable()) return; //Dont check for updates when there is no internet...stupid
@@ -691,11 +738,10 @@ namespace HashTester
             }
         }
 
-        private void remindOnUpdateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        /// <summary>
+        /// Updates UI Label on remind updates
+        /// </summary>
         private void UpdateRemindMe()
         {
             if (Settings.RemindUpdate)
@@ -708,16 +754,17 @@ namespace HashTester
             }
         }
 
-        private void remindOnUpdateToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            Settings.RemindUpdate = !Settings.RemindUpdate;
-            UpdateRemindMe();
-        }
-
-        private void showLogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.ShowLog = !Settings.ShowLog;
-            showLogToolStripMenuItem.Checked = Settings.ShowLog;
+            Settings.InitialFolderChecker();
+            this.Name = Languages.Translate(Languages.L.Hashtester);
+            hashSelector.SelectedIndex = 0;
+            Settings.LoadSettings();
+            UIToolStripMenuLoad();
+            AddLanguagesToMenu();
+            FormManagement.SetUpFormTheme(this);
+            Task.Run(async () => await CheckForUpdates());
+            FormUISetUpLanguages();
         }
     }
 }

@@ -53,7 +53,7 @@ namespace HashTester
             #region Languages
             groupBox1.Text = Languages.Translate(Languages.L.InputFormat);
             radioButtonString.Text = Languages.Translate(Languages.L.String);
-            radioButtonHex.Text = Languages.Translate(203);
+            radioButtonHex.Text = Languages.Translate(Languages.L.Hex);
             radioButtonBinary.Text = Languages.Translate(Languages.L.Binary);
             labelText.Text = Languages.Translate(Languages.L.Text) + "1";
             labelText2.Text = Languages.Translate(Languages.L.Text) + "2";
@@ -63,6 +63,14 @@ namespace HashTester
             #endregion
         }
 
+
+        /// <summary>
+        /// Checks if two inputs generate a hash colision
+        /// </summary>
+        /// <param name="hashAlgorithm">Used hash algorithm</param>
+        /// <param name="text01">String based input one</param>
+        /// <param name="text02">String based input two</param>
+        /// <param name="format">If input is a string, BIN or HEX</param>
         private void CheckCollision(Hasher.HashingAlgorithm hashAlgorithm, string text01, string text02, CollisionDetectionFormat format)
         {
             Hasher hasher = new Hasher();
@@ -97,8 +105,8 @@ namespace HashTester
             else
             {
                 string s = Languages.Translate(Languages.L.InputTextsDoNotCollide) + Environment.NewLine +
-                    Languages.Translate(9999) + "01: " + hash01 + Environment.NewLine +
-                    Languages.Translate(9999) + "02: " + hash02;
+                    Languages.Translate(Languages.L.Hash) + "01: " + hash01 + Environment.NewLine +
+                    Languages.Translate(Languages.L.Hash) + "02: " + hash02;
                 MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -193,6 +201,12 @@ namespace HashTester
 
         #endregion
 
+
+        /// <summary>
+        /// Input for a CheckCollision Method from a .txt file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonTakeTXT_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog soubor = new OpenFileDialog())

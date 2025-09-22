@@ -1,17 +1,11 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace HashTester
 {
@@ -269,6 +263,17 @@ namespace HashTester
         }
 
         //Public
+
+
+        /// <summary>
+        /// Performs a Rainbow attack
+        /// </summary>
+        /// <param name="fileName">File path to Rainbow Table</param>
+        /// <param name="userInputHash"></param>
+        /// <param name="userAlgorithm"></param>
+        /// <param name="timeToStopAttack">Limit to time is not used if its 0</param>
+        /// <param name="maxAttempts">Limit to attempts is not used if its 0</param>
+        /// <returns></returns>
         public async Task<bool> PerformRainbowAttack(string fileName, string userInputHash, Hasher.HashingAlgorithm userAlgorithm, long timeToStopAttack, long maxAttempts)
         {
             try
@@ -342,6 +347,10 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Resets log
+        /// </summary>
         public void LogReset()
         {
             logOutput = new ConcurrentBag<string>();
@@ -353,6 +362,12 @@ namespace HashTester
             else return false;
         }
 
+
+        /// <summary>
+        /// Hates you for using a wrong rainbow table
+        /// </summary>
+        /// <param name="fileAlgo"></param>
+        /// <param name="userAlgo"></param>
         private void WrongAlgorithms(string fileAlgo, string userAlgo)
         {
             FoundPassword = "";

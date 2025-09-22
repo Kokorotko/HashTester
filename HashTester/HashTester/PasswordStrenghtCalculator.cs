@@ -6,7 +6,15 @@ namespace HashTester
 {
     public static class PasswordStrenghtCalculator
     {
-
+        /// <summary>
+        /// Calculates how long it would take to Brute force a password
+        /// </summary>
+        /// <param name="passwordLenght"></param>
+        /// <param name="numberOfChars"></param>
+        /// <param name="donePerSec"></param>
+        /// <param name="speed"></param>
+        /// <param name="overflowed"></param>
+        /// <returns></returns>
         public static BigInteger Calculator(int passwordLenght, int numberOfChars, BigInteger donePerSec, out BigInteger speed, out bool overflowed)
         {
             overflowed = !TryPower(numberOfChars, passwordLenght, out BigInteger number);
@@ -20,7 +28,13 @@ namespace HashTester
             return number;
         }
 
-
+        /// <summary>
+        /// Power but its for BigInteger
+        /// </summary>
+        /// <param name="basedValue"></param>
+        /// <param name="exponent"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
         private static bool TryPower(BigInteger basedValue, int exponent, out BigInteger result)
         {
             result = 1;
@@ -39,7 +53,11 @@ namespace HashTester
         }
 
 
-
+        /// <summary>
+        /// Converts a big time number into years, months, days, hours, minutes and seconds
+        /// </summary>
+        /// <param name="numberSeconds"></param>
+        /// <returns></returns>
         public static string Output(BigInteger numberSeconds)
         {
             BigInteger numberYears = numberSeconds / 31556926;

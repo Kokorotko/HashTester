@@ -10,6 +10,13 @@ namespace HashTester
 {
     public class SaltAndPepper
     {
+
+
+        /// <summary>
+        /// Checks if nameTable.txt exists in the right folder
+        /// </summary>
+        /// <param name="showMessageBoxOutput"></param>
+        /// <returns></returns>
         public bool CheckIfPasswordTesterExists(bool showMessageBoxOutput)
         {
             if (!File.Exists(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))
@@ -24,6 +31,11 @@ namespace HashTester
             else return true;
         }
 
+
+
+        /// <summary>
+        /// Generates the fucking .txt file
+        /// </summary>
         public void GenerateNameTableFile()
         {
             using (StreamWriter writer = new StreamWriter(Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt")))

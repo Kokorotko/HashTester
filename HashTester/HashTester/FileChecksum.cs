@@ -25,6 +25,10 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Turns all of UI components on
+        /// </summary>
         private void TurnOffUI()
         {
             foreach(Control control in this.Controls)
@@ -40,6 +44,9 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Turns all of UI components on
+        /// </summary>
         private void TurnOnUI()
         {
             foreach (Control control in this.Controls)
@@ -220,7 +227,14 @@ namespace HashTester
             if (labelLocation.Text.Length > 180) labelLocation.Text = labelLocation.Text.Substring(0, 177) + "...";
         }
 
-        private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm fileAlgorithm)
+
+        /// <summary>
+        /// Generates a checksum of a file based on hash algorithm
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="checksum"></param>
+        /// <param name="hashAlgorithm"></param>
+        private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm hashAlgorithm)
         {
             TurnOffUI();
             labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
@@ -252,7 +266,7 @@ namespace HashTester
                 if (useAlgorithm[i])
                 {
                     string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
-                    if ((Hasher.HashingAlgorithm)i == fileAlgorithm)
+                    if ((Hasher.HashingAlgorithm)i == hashAlgorithm)
                     {
                         if (checksum == hash)
                         {
@@ -279,6 +293,11 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Generates check sum of a file from Form
+        /// </summary>
+        /// <param name="filename">Path to file</param>
         private void GenerateCheckSum(string filename)
         {
             TurnOffUI();

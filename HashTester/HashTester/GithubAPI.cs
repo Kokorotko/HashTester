@@ -8,6 +8,11 @@ namespace HashTester
 {
     internal class GithubAPI
     {
+
+        /// <summary>
+        /// Gets version from Github API
+        /// </summary>
+        /// <returns></returns>
         public async Task<string> GetVersion()
         {
             string url = "https://api.github.com/repos/Kokorotko/HashTester/releases/latest";
@@ -24,6 +29,11 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Checks if the program should check version from Github or not
+        /// </summary>
+        /// <returns></returns>
         public static bool CheckGithubAPITime()
         {
             DateTime temp = Settings.GithubRequestAPI;

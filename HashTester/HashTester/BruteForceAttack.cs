@@ -5,19 +5,21 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Numerics;
+using System.Runtime.InteropServices;
+using System.CodeDom;
 
 namespace HashTester
 {
     public class BruteForceAttack
     {
-        //private
+        #region Private
         private Stopwatch stopwatch = new Stopwatch();
         private bool foundPasswordBool = false;
         private bool ranOutOfTime = false;
         private string foundPassword = "";
         private bool userAborted = false;
         private bool ranOutOfAttemps = false;
-        private char[] usableChars;
+        public static char[] usableChars;
         private int maximumLenghtForBruteForce = 20;
         private ConcurrentBag<string> logOutput = new ConcurrentBag<string>();
         Hasher hasher = new Hasher();
@@ -27,7 +29,9 @@ namespace HashTester
         private long attempts = 0;
         private bool useMaxAttempts = false;
         private BigInteger maxAttempts = 0;
-        //Get Set
+        #endregion
+
+        #region GetSet
         public Stopwatch Stopwatch
         {
             get { return stopwatch; }
@@ -103,7 +107,16 @@ namespace HashTester
             }
         }
 
-        //Private Methods
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Custom Math.Pow method that works with BigInteger
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="exponent"></param>
+        /// <returns></returns>
         private static BigInteger Pow(long number, int exponent) //yes I had to do this
         {
             BigInteger result = 1;
@@ -114,6 +127,13 @@ namespace HashTester
             return result;
         }
 
+        /// <summary>
+        /// Generates text combination based on lenght, chars and return a combination on the index
+        /// </summary>
+        /// <param name="index">BigInt based index from 0 to unlimited</param>
+        /// <param name="allPossibleChars">All possible characters used</param>
+        /// <param name="length">Lenght of the word</param>
+        /// <returns></returns>
         private string GenerateText(BigInteger index, char[] allPossibleChars, int length)
         {
             BigInteger baseSize = allPossibleChars.Length;
@@ -130,7 +150,13 @@ namespace HashTester
             return new string(result.ToArray());
         }
 
-        public BigInteger CalculateAllPossibleCombinations(bool variablePasswordLength, int userPasswordLenght)
+        /// <summary>
+        /// Returns all possible combinations of a "password" based on lenght, normally returns Chars pow lenght
+        /// </summary>
+        /// <param name="variablePasswordLength">Goes from 1 to maximumLenghtForBruteForce (readonly var in BruteForceAttack)</param>
+        /// <param name="passwordLenght"></param>
+        /// <returns></returns>
+        public BigInteger CalculateAllPossibleCombinations(bool variablePasswordLength, int passwordLenght)
         {
             //Console.WriteLine("CalculateAllPossibleCombinationsLong");
             if (usableChars == null) return 0;
@@ -146,10 +172,13 @@ namespace HashTester
             }
             else // Known password length
             {
-                return Pow(usableChars.Length, userPasswordLenght);
+                return Pow(usableChars.Length, passwordLenght);
             }
         }
 
+        /// <summary>
+        /// Resets all private values in this .cs
+        /// </summary>
         private void ResetValue()
         {
             stopwatch.Reset();
@@ -168,45 +197,41 @@ namespace HashTester
             Attempts = 0;
         }
 
-        //Public methods
-        public void SelectAllUsableChars(string allUsableChars)
+        /// <summary>
+        /// Returns array of chars that will be used in BruteForce
+        /// </summary>
+        /// <param name="useLowerCase"></param>
+        /// <param name="useUpperCase"></param>
+        /// <param name="useDigits"></param>
+        /// <param name="useSpecialChars"></param>
+        public char[] SelectAllUsableChars(bool useLowerCase, bool useUpperCase, bool useDigits, bool useSpecialChars)
         {
-            usableChars = new char[allUsableChars.Length];
-            for (int i = 0; i < allUsableChars.Length; i++) usableChars[i] = allUsableChars[i];
-        }
-        public void SelectAllUsableChars(char[] allUsableChars)
-        {
-            usableChars = new char[allUsableChars.Length];
-            for (int i = 0; i < allUsableChars.Length; i++) usableChars[i] = allUsableChars[i];
-        }
-        public void SelectAllUsableChars(bool useLowerCase, bool useUpperCase, bool useDigits, bool useSpecialChars)
-        {
-            int pocetZnaku = 0;
-            if (useLowerCase) pocetZnaku += 26;
-            if (useUpperCase) pocetZnaku += 26;
-            if (useDigits) pocetZnaku += 10;
-            if (useSpecialChars) pocetZnaku += 33;
+            int numberOfChars = 0;
+            if (useLowerCase) numberOfChars += 26;
+            if (useUpperCase) numberOfChars += 26;
+            if (useDigits) numberOfChars += 10;
+            if (useSpecialChars) numberOfChars += 33;
             int index = 0;
-            usableChars = new char[pocetZnaku];
+            char[] charSet = new char[numberOfChars];
             if (useLowerCase)
             {
                 for (char c = 'a'; c <= 'z'; c++)
                 {
-                    usableChars[index++] = c;
+                    charSet[index++] = c;
                 }
             }
             if (useUpperCase)
             {
                 for (char c = 'A'; c <= 'Z'; c++)
                 {
-                    usableChars[index++] = c;
+                    charSet[index++] = c;
                 }
             }
             if (useDigits)
             {
                 for (char c = '0'; c <= '9'; c++)
                 {
-                    usableChars[index++] = c;
+                    charSet[index++] = c;
                 }
             }
             if (useSpecialChars)
@@ -215,11 +240,27 @@ namespace HashTester
                 string specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
                 foreach (char c in specialChars)
                 {
-                    usableChars[index++] = c;
+                    charSet[index++] = c;
                 }
             }
+            return charSet; 
         }
 
+
+        /// <summary>
+        /// Starts a Task returning bool that runs Brute force attack
+        /// </summary>
+        /// <param name="algorithm">Hashing algorithm</param>
+        /// <param name="useMultiThreading">Turns multithreading on/off</param>
+        /// <param name="threadID">Every thread used in multiThreading should have different ID (from 0 to *numberOfThreads*)</param>
+        /// <param name="numberOfThreadsUsed">Number of all threads used</param>
+        /// <param name="userHashInput">Hash value we want to BruteForce</param>
+        /// <param name="userMaxAttempts">Sets a limit on how many attempts may be used</param>
+        /// <param name="userPasswordLenght">Password lenght of the hash (0 means unknown)</param>
+        /// <param name="timeToStopTimer">Sets a time limit for how long the operation can work (in seconds)</param>
+        /// <param name="startIndex">Start index of a thread (From where to start)</param>
+        /// <param name="endIndex">End index of a thread (where to stop)</param>
+        /// <returns></returns>
         public Task<bool> PasswordBruteForce(
         Hasher.HashingAlgorithm algorithm,
         bool useMultiThreading,
@@ -235,7 +276,7 @@ namespace HashTester
             Console.WriteLine("PasswordBruteForce");
             BigInteger index = 0;
             BigInteger currentLenghtIndex = 0; //if variable lenght is false, this and index are the same value
-            if (usableChars == null || usableChars.Length == 0) SelectAllUsableChars(true, true, true, true); // Restart with all chars
+            if (usableChars == null || usableChars.Length == 0) usableChars = SelectAllUsableChars(true, true, true, true); // Restart with all chars
             bool variablePasswordLenght = (userPasswordLenght == 0);
             if (!useMultiThreading)
             {
@@ -317,6 +358,16 @@ namespace HashTester
             return Task.FromResult(false);
         }
 
+        /// <summary>
+        /// User multithread BruteForceAttack starter
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="userHashInput"></param>
+        /// <param name="userMaxAttempts"></param>
+        /// <param name="userPasswordLenght"></param>
+        /// <param name="variablePasswordLenght"></param>
+        /// <param name="timeToStopTimer"></param>
+        /// <returns></returns>
         public async Task BruteForceAttackMultiThread(
         Hasher.HashingAlgorithm algorithm,
         string userHashInput,
@@ -376,6 +427,9 @@ namespace HashTester
             Console.WriteLine("All Threads are done.");
         }
 
+        /// <summary>
+        /// Way to abort the Brute Force operation
+        /// </summary>
         public void Abort()
         {
             Console.WriteLine("User Aborted");
@@ -383,6 +437,8 @@ namespace HashTester
             cancellationToken.Cancel();
             token.Cancel();
         }
+
+        #endregion
     }
 }
 

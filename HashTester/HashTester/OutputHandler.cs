@@ -21,6 +21,19 @@ namespace HashTester
             this.algorithm = algorithm;
         }
         public OutputHandler() { }
+
+
+        /// <summary>
+        /// Outputs a string from the original string formatted on the user settings
+        /// </summary>
+        /// <param name="originalString"></param>
+        /// <param name="hash"></param>
+        /// <param name="indexOfHash"></param>
+        /// <param name="isSaltUsed"></param>
+        /// <param name="isPepperUsed"></param>
+        /// <param name="salt"></param>
+        /// <param name="pepper"></param>
+        /// <returns></returns>
         public string OutputStyleString(string originalString, string hash, int indexOfHash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
         {
             //Console.WriteLine("**OutputStyleString**");
@@ -57,6 +70,17 @@ namespace HashTester
             return outputString;
         }
 
+
+        /// <summary>
+        /// Same as OutputStyleString but is an array
+        /// </summary>
+        /// <param name="originalString"></param>
+        /// <param name="hash"></param>
+        /// <param name="isSaltUsed"></param>
+        /// <param name="isPepperUsed"></param>
+        /// <param name="salt"></param>
+        /// <param name="pepper"></param>
+        /// <returns></returns>
         public string[] OutputStyleString(string originalString, string[] hash, bool isSaltUsed, bool isPepperUsed, string salt, string pepper)
         {
             string[] output = new string[hash.Length];   
@@ -68,6 +92,13 @@ namespace HashTester
             return output;
         }
 
+
+        /// <summary>
+        /// Outputs multiple checksums into a listbox
+        /// </summary>
+        /// <param name="checksums"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="listBox"></param>
         public void OutputTypeShowChecksum(string[] checksums, Hasher.HashingAlgorithm[] algorithm, ListBox listBox)
         {
             string[] output = new string[checksums.Length];
@@ -157,6 +188,12 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Transforms string of arrays into one string with CRLF
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         private string ArrayStringToOne(string[] array)
         {
             string outputString = "";

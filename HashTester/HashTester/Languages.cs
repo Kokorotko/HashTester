@@ -12,13 +12,23 @@ namespace HashTester
         private static Dictionary<int, string> englishDictionary = null; // ID → English text
         private static string currentlyUsedLanguage = "English";
 
+
+        /// <summary>
+        /// Returns text based on selected language. Uses BFE (Big Fucking Enum)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static string Translate(L id)
         {
             return Translate((int)id);
         }
 
-
-        public static string Translate(int id)
+        /// <summary>
+        /// Returns text based on selected language. Doesnt use BFE (Big Fucking Enum)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private static string Translate(int id)
         {
             if (dictionary == null && !LoadDictionary("English")) return "error";
 
@@ -409,6 +419,11 @@ namespace HashTester
         }
 
 
+        /// <summary>
+        /// Loads dictionary from the folder Languages
+        /// </summary>
+        /// <param name="nameOfLanguage"></param>
+        /// <returns></returns>
         public static bool LoadDictionary(string nameOfLanguage)
         {
             try
@@ -440,6 +455,10 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Load English
+        /// </summary>
         private static void LoadEnglishLookup()
         {
             englishLookup = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
@@ -463,7 +482,12 @@ namespace HashTester
                 }
             }
         }
+        
 
+        /// <summary>
+        /// Returns array of string containing all the languages in Languages folder
+        /// </summary>
+        /// <returns></returns>
         public static string[] AllLanguages()
         {
             var list = new List<string>();
@@ -475,6 +499,12 @@ namespace HashTester
             return list.ToArray();
         }
 
+
+        /// <summary>
+        /// Returns a path of a specific language
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static string GetPath(string name)
         {
             string languagesPath = Path.Combine(Settings.DirectoryExeBase, "Languages");

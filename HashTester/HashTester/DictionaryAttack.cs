@@ -11,7 +11,8 @@ namespace HashTester
 {
     public class DictionaryAttack
     {
-        //private
+        #region Private
+
         private List<string> logOutput = new List<string>();
         private bool[] foundMatch;
         private long[] lineFoundMatch;
@@ -21,7 +22,9 @@ namespace HashTester
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         Stopwatch stopwatch = new Stopwatch();
 
-        //Get and Set
+        #endregion
+
+        #region GetSet
 
         public bool UserAbandoned
         {
@@ -92,6 +95,13 @@ namespace HashTester
             private set { currentLine = value; }
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Resets Dictionary attack Value
+        /// </summary>
         private void ResetValue()
         {
             logOutput.Clear();
@@ -101,6 +111,10 @@ namespace HashTester
             cancellationTokenSource = new CancellationTokenSource();
         }
 
+        /// <summary>
+        /// Reset
+        /// </summary>
+        /// <param name="index"></param>
         private void ResetVar(int index)
         {
             foundMatch = new bool[index];
@@ -215,6 +229,12 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Returns a value of number of lines in a file
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public long CountNumberOfLinesInFile(string filePath) //Use In Every Fucking Possible Instance
         {
             long numberOfLines = 0;
@@ -233,5 +253,7 @@ namespace HashTester
         {
             cancellationTokenSource.Cancel();
         }
+
+        #endregion
     }
 }

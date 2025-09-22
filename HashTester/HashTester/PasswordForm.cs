@@ -270,6 +270,73 @@ namespace HashTester
             TurnOnUI();
         }
 
+
+        private void textBoxBruteForceInput_TextChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRegularBruteForce.Checked)
+            {
+                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
+                checkBoxUnknownLenghtBruteForce.Checked = false;
+            }
+            else if (radioButtonBruteForceHashed.Checked)
+            {
+                checkBoxUnknownLenghtBruteForce.Checked = true;
+            }
+        }
+
+        private void radioButton6_EnabledChanged(object sender, EventArgs e)
+        {
+            if (radioButtonBruteForceHashed.Checked)
+            {
+                checkBoxUnknownLenghtBruteForce.Checked = true;
+                numericUpDownLenght.Value = 0;
+            }
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRegularBruteForce.Checked)
+            {
+                checkBoxUnknownLenghtBruteForce.Checked = false;
+                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
+            }
+        }
+
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void hashSelectorRainbowTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
+        }
+
+        private void FilesCleanUp(string nameOfFilesToClear)
+        {
+            string[] files = Directory.GetFiles(Settings.DirectoryPathToWordlists);
+            foreach (string file in files)
+            {
+                if (file.Contains(nameOfFilesToClear)) File.Delete(file);
+            }
+        }
+
+        private void numericUpDownLenght_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDownLenght.Value == 0)
+            {
+                checkBoxUnknownLenghtBruteForce.Enabled = true;
+            }
+        }
+
         #endregion
 
         #region Password Strenght Calculator 
@@ -488,6 +555,7 @@ namespace HashTester
         #endregion
 
         #region Rainbow Table Attack  
+
         RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
         private async void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
@@ -709,7 +777,7 @@ namespace HashTester
             //SetUp            
             bool[] checkBoxUsableCharsForAttack = { false, false, false, false };
             //AllUsableChars Based on Input
-            bruteForce.SelectAllUsableChars(
+            BruteForceAttack.usableChars =  bruteForce.SelectAllUsableChars(
                  checkBoxLowerCase.Checked,
                  checkBoxUpperCase.Checked,
                  checkBoxDigits.Checked,
@@ -875,6 +943,9 @@ namespace HashTester
         }       
         #endregion
 
+        /// <summary>
+        /// Turns off every UI element except the labels
+        /// </summary>
         private void TurnOffUI() //Turns off everything except the labels
         {
             foreach (Control control in this.Controls)
@@ -892,6 +963,11 @@ namespace HashTester
             progressBar1.Enabled = true;
             buttonCancel.Enabled = true;
         }
+
+
+        /// <summary>
+        /// Turns on every UI element
+        /// </summary>
         private void TurnOnUI()
         {
             foreach (Control control in this.Controls)
@@ -908,6 +984,13 @@ namespace HashTester
             progressBar1.Value = 0;
             userAbortedTheProcess = false; //yes I reset it here shut
         }
+
+
+        /// <summary>
+        /// Convers Hex based on user Settings
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private string ConvertToHexBasedOnUser(string text) //this is only here because Im lazy
         {
             if (checkBoxHexOutputBruteForce.Checked)
@@ -916,6 +999,14 @@ namespace HashTester
             }
             else { return text; }
         }
+
+
+        /// <summary>
+        /// Shows a message box
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="inputHash"></param>
+        /// <param name="password"></param>
         public void PasswordFoundMessageBox(string message, string inputHash, string password)
         {            
             if (MessageBox.Show(Languages.Translate(Languages.L.WouldYouLikeToSaveFoundPasswordToATxtFile), Languages.Translate(Languages.L.Confirmation), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -1008,72 +1099,6 @@ namespace HashTester
                             break;
                         }
                 }
-            }
-        }
-
-        private void textBoxBruteForceInput_TextChanged(object sender, EventArgs e)
-        {
-            if (radioButtonRegularBruteForce.Checked)
-            {
-                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
-                checkBoxUnknownLenghtBruteForce.Checked = false;
-            }
-            else if (radioButtonBruteForceHashed.Checked)
-            {
-                checkBoxUnknownLenghtBruteForce.Checked = true;
-            }
-        }
-
-        private void radioButton6_EnabledChanged(object sender, EventArgs e)
-        {
-            if (radioButtonBruteForceHashed.Checked)
-            {
-                checkBoxUnknownLenghtBruteForce.Checked = true;
-                numericUpDownLenght.Value = 0;
-            }
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonRegularBruteForce.Checked)
-            {
-                checkBoxUnknownLenghtBruteForce.Checked = false;
-                numericUpDownLenght.Value = textBoxBruteForce.Text.Length;
-            }
-        }
-
-        private void buttonClipboard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (System.Runtime.InteropServices.ExternalException)
-            {
-                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void hashSelectorRainbowTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
-        }
-
-        private void FilesCleanUp(string nameOfFilesToClear)
-        {
-            string[] files = Directory.GetFiles(Settings.DirectoryPathToWordlists);
-            foreach (string file in files)
-            {
-                if (file.Contains(nameOfFilesToClear)) File.Delete(file);
-            }
-        }
-
-        private void numericUpDownLenght_ValueChanged(object sender, EventArgs e)
-        {
-            if (numericUpDownLenght.Value == 0)
-            {
-                checkBoxUnknownLenghtBruteForce.Enabled = true;
             }
         }
     }

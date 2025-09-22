@@ -6,7 +6,6 @@ namespace HashTester
 {
     public static class Settings
     {
-        //private
         #region Private
         private static bool outputStyleIncludeOriginalString;
         private static bool outputStyleIncludeSaltPepper;
@@ -232,6 +231,11 @@ namespace HashTester
             TXTFile
         }
         #endregion       
+
+
+        /// <summary>
+        /// Puts all values to their original values and saves it
+        /// </summary>
         public static void ResetSettings()
         {
             Console.WriteLine("ResetSettings");
@@ -246,6 +250,11 @@ namespace HashTester
             RemindUpdate = true;
             SaveSettings();
         }
+
+
+        /// <summary>
+        /// Saves settings to a settings.txt file located in Settings Folder
+        /// </summary>
         public static void SaveSettings()
         {
             if (isFileSettingsUsed)
@@ -337,6 +346,11 @@ namespace HashTester
                 return;
             }
         }
+
+
+        /// <summary>
+        /// Loads settings from the settings.txt file located in Settings folder
+        /// </summary>
         public static void LoadSettings()
         {
             if (isFileSettingsUsed)
@@ -561,6 +575,11 @@ namespace HashTester
                 isFileSettingsUsed = false;
             }
         }
+
+
+        /// <summary>
+        /// Checks if all folders and files exists, if not, creates them
+        /// </summary>
         public static void InitialFolderChecker()
         {
             try

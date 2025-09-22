@@ -9,7 +9,7 @@ namespace HashTester
 {
     public static class FormManagement
     {
-        #region Forms
+        #region Private
         //private form setup
         private static FileChecksum form_fileChecksum;
         private static FormGradual form_gradual;
@@ -21,7 +21,10 @@ namespace HashTester
         private static UIUpdateFrequency form_uiUpdateFrequency;
         private static MultipleHashing form_multipleHashing;
 
-        //Public get set
+        #endregion
+
+        #region GetSet
+
         public static FileChecksum Form_FileChecksum
         {
             get { return form_fileChecksum; }
@@ -175,6 +178,13 @@ namespace HashTester
             Log
         }
         #endregion
+
+
+        /// <summary>
+        /// Saves log from a listbox to a wanted .txt file
+        /// </summary>
+        /// <param name="listbox">Listbox you want to save from</param>
+        /// <param name="form">In what form is the wanted listbox</param>
         public static void SaveLog(ListBox listbox, Form form)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -198,12 +208,23 @@ namespace HashTester
             }
             else MessageBox.Show(Languages.Translate(Languages.L.LogSaveAbbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }        
+
+        /// <summary>
+        /// Returns number of threads to use from Settings. If multithreading is false, returns 1
+        /// </summary>
+        /// <returns></returns>
         public static int NumberOfThreadsToUse()
         {
+            if (UseMultiThread()) return 1;
             int percentage = Settings.ThreadsUsagePercentage;
             if (percentage == 0) return 1; //Single Thread
             return (int)Math.Ceiling(percentage / 100.0 * Environment.ProcessorCount);
         }
+
+        /// <summary>
+        /// Returns if multithread should be used
+        /// </summary>
+        /// <returns></returns>
         public static bool UseMultiThread()
         {
             int percentage = Settings.ThreadsUsagePercentage;
@@ -215,6 +236,14 @@ namespace HashTester
             }
             else return true;
         }
+
+        /// <summary>
+        /// Returns if light mode should be used (otherwise a dark mode will be used)
+        /// </summary>
+        /// <returns></returns>
+        
+
+        #region FormTheme
         public static bool UseLightMode()
         {
             switch(Settings.VisualMode)
@@ -225,6 +254,12 @@ namespace HashTester
                 default: return true;
             }
         }
+
+
+        /// <summary>
+        /// Checks registry if white mode (false means dark mode)
+        /// </summary>
+        /// <returns></returns>
         private static bool RegistryUseLightMode()
         {
             string registryKey = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
@@ -246,7 +281,11 @@ namespace HashTester
             Console.WriteLine("Settings theme as light");
             return true;
         }
-        #region FormTheme
+
+        /// <summary>
+        /// Sets up dark/white mode for a form
+        /// </summary>
+        /// <param name="form"></param>
         public static void SetUpFormTheme(Form form)
         {
             Color controlColor;
@@ -319,6 +358,13 @@ namespace HashTester
                 }
             }
         }
+
+        /// <summary>
+        /// Aplies white/dark theme to form
+        /// </summary>
+        /// <param name="menuStrip"></param>
+        /// <param name="backColor"></param>
+        /// <param name="textColor"></param>
         private static void ApplyThemeToMenu(ToolStrip menuStrip, Color backColor, Color textColor)
         {
             menuStrip.BackColor = backColor;
@@ -329,6 +375,13 @@ namespace HashTester
                 ApplyThemeToMenuItem(menuItem, backColor, textColor); //Dont worry, it stops...one day
             }
         }
+
+        /// <summary>
+        /// Aplies white/dark theme to strip menu
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <param name="backColor"></param>
+        /// <param name="textColor"></param>
         private static void ApplyThemeToMenuItem(ToolStripMenuItem menuItem, Color backColor, Color textColor)
         {
             menuItem.BackColor = backColor;
@@ -342,15 +395,23 @@ namespace HashTester
                 }
             }
         }
+
+
         #endregion
 
         #region Converters
-        public static string ConvertStringToHex(string input)
+
+        /// <summary>
+        /// Converts string to hex
+        /// </summary>
+        /// <param name="text">Input string</param>
+        /// <returns></returns>
+        public static string ConvertStringToHex(string text)
         {
             var hexBuilder = new StringBuilder();
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < text.Length; i++)
             {
-                hexBuilder.AppendFormat("{0:X2}", (int)input[i]);
+                hexBuilder.AppendFormat("{0:X2}", (int)text[i]);
             }
             return hexBuilder.ToString().ToLower();
         }

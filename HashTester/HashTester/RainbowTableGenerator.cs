@@ -50,6 +50,15 @@ namespace HashTester
             cancellationTokenSource.Cancel();
         }
 
+
+
+        /// <summary>
+        /// Generates a rainbow table
+        /// </summary>
+        /// <param name="fileInputPath">Path to file to take words from</param>
+        /// <param name="fileOutputPath">Path to file to funny hash output</param>
+        /// <param name="hashingAlgorithm"></param>
+        /// <returns></returns>
         public bool GenerateRainbowTable(string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
         {
             try
@@ -93,6 +102,15 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Same as GenerateRainbowTable, but multithread
+        /// </summary>
+        /// <param name="numberOfThreadsUsed"></param>
+        /// <param name="fileInputPath"></param>
+        /// <param name="fileOutputPath"></param>
+        /// <param name="hashingAlgorithm"></param>
+        /// <returns></returns>
         public async Task<bool> GenerateRainbowTableMultiThread(int numberOfThreadsUsed, string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
         {
             //Task<bool> because async method cant return anything unless like this

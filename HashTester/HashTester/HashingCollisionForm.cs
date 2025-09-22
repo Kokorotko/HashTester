@@ -49,6 +49,8 @@ namespace HashTester
         #endregion
 
         #region CollisionGenerator3000
+
+
         private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
             TurnOffUI();
@@ -81,7 +83,7 @@ namespace HashTester
                 {
                     int threadIndex = i;
                     Console.WriteLine("Collision Finder Multithread start");
-                    allTasks.Add(Task.Run(() => CollisionThread(threadIndex, algorithm, maxAttempts, rngTextLenght, false, checkBoxUseHex.Checked)));
+                    allTasks.Add(Task.Run(() => CollisionThread(threadIndex, algorithm, maxAttempts, rngTextLenght, checkBoxUseHex.Checked)));
                 }
             }
             else //single Thread
@@ -92,7 +94,7 @@ namespace HashTester
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.NumberOfThreadsAssigned) + ": 1");
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
-                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, Settings.ShowLog, checkBoxUseHex.Checked)));
+                allTasks.Add(Task.Run(() => CollisionThread(1, algorithm, maxAttempts, rngTextLenght, checkBoxUseHex.Checked)));
             }
             await Task.WhenAll(allTasks);
             stopwatch.Stop();
@@ -154,12 +156,19 @@ namespace HashTester
             } 
         }
 
-        private void CollisionThread(int threadNumber, Hasher.HashingAlgorithm algorithm, long maxAttempts, int length, bool saveLogToListBox, bool useHexForOutput)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="threadNumber">Number used for random generation</param>
+        /// <param name="algorithm"></param>
+        /// <param name="maxAttempts">The thread will cancel after a certain number of attempts</param>
+        /// <param name="length">Lenght of randomly generated text</param>
+        /// <param name="useHexForOutput"></param>
+        private void CollisionThread(int threadNumber, Hasher.HashingAlgorithm algorithm, long maxAttempts, int length, bool useHexForOutput)
         {
-            attempts = 0;
-            bool useAttempts = false;
-            if (maxAttempts > 0) useAttempts = true;            
-            if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useAttempts, saveLogToListBox, useHexForOutput, out string collision01, out string collision02))
+            attempts = 0;        
+            if (GenerateCollision(threadNumber, algorithm, length, maxAttempts, useHexForOutput, out string collision01, out string collision02))
             {
                 //Console.WriteLine("Le " + threadNumber + " found collision");
                 textCollision01 = collision01;
@@ -170,7 +179,18 @@ namespace HashTester
             //Console.WriteLine("Le " + threadNumber + " has ended.");
         }
 
-        private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useAttemps, bool saveLog, bool useHexForOutput, out string collision1, out string collision2)
+        /// <summary>
+        /// Generates a collision between two random inputs
+        /// </summary>
+        /// <param name="threadNumber"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="length">Lenght of a random string input</param>
+        /// <param name="maxAttempts">0 means it wont use limit to attemps</param>
+        /// <param name="useHexForOutput"></param>
+        /// <param name="collision1">Returns a string collision</param>
+        /// <param name="collision2">Returns a string colliiion</param>
+        /// <returns></returns>
+        private bool GenerateCollision(int threadNumber, Hasher.HashingAlgorithm algorithm, int length, long maxAttempts, bool useHexForOutput, out string collision1, out string collision2)
         {
             try
             {
@@ -195,7 +215,7 @@ namespace HashTester
                         if (collision1 != collision2)
                         {
                             foundCollision = true;
-                            if (saveLog)
+                            if (Settings.ShowLog)
                             {
                                 string s = Languages.Translate(Languages.L.CollisionFound) + ": " + collision1 + " " + Languages.Translate(Languages.L.And) + " " + collision2;
                                 if (useHexForOutput) s = Languages.Translate(Languages.L.CollisionFound) + ": " + FormManagement.ConvertStringToHex(collision1) + " " + Languages.Translate(Languages.L.And) + " " + FormManagement.ConvertStringToHex(collision2);
@@ -228,6 +248,12 @@ namespace HashTester
             return false;
         }
 
+
+        /// <summary>
+        /// Generates a random string based on lenght
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         private string GenerateRandomString(int length)
         {
             Random random = new Random(GenerateRandomSeed());
@@ -239,6 +265,10 @@ namespace HashTester
             return new string(result);
         }
 
+
+        /// <summary>
+        /// UI updates timer
+        /// </summary>
         private void UpdateTimerLabel()
         {
             try
@@ -267,6 +297,13 @@ namespace HashTester
             catch (Exception ex) { Console.WriteLine("Collision UI problem: " + ex.Message); }
         }
 
+
+        /// <summary>
+        /// Does exactly how it sounds
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="collisionText01"></param>
+        /// <param name="collisionText02"></param>
         public void CollisionFoundMessageBox(string message, string collisionText01, string collisionText02)
         {           
             if (MessageBox.Show(Languages.Translate(Languages.L.WouldYouLikeToSaveCollisionToATxtFile), Languages.Translate(Languages.L.Confirmation), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -387,7 +424,7 @@ namespace HashTester
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
-                MessageBox.Show(Languages.Translate(1003),Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard),Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -409,6 +446,11 @@ namespace HashTester
             stopwatch.Reset();
         }
 
+
+        /// <summary>
+        /// Generates random int seed (crazy I know)
+        /// </summary>
+        /// <returns></returns>
         private static int GenerateRandomSeed()
         {
             using (var rng = new RNGCryptoServiceProvider())

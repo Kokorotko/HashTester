@@ -51,7 +51,7 @@ namespace HashTester
             hashSelector.SelectedIndex = 0;
 
             #region Language
-            buttonHashGradualHashing.Text = Languages.Translate(101);
+            buttonHashGradualHashing.Text = Languages.Translate(Languages.L.GradualHasher);
             labelQualityName.Text = Languages.Translate(Languages.L.WillNotUseSaltpepper);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
@@ -74,7 +74,7 @@ namespace HashTester
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(102), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
