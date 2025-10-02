@@ -8,7 +8,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace HashTester
 {
@@ -19,22 +18,25 @@ namespace HashTester
             InitializeComponent();
         }
         Hasher hasher = new Hasher();
-        Form1 mainForm = new Form1();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
         
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
-            string originalString = textBoxHash.Text;
-            if (String.IsNullOrEmpty(originalString))
+            if (String.IsNullOrEmpty(textBoxHash.Text))
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseSetTextBeforeHashing), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             OutputHandler outputHandler = new OutputHandler(algorithm);
-            string[] hash = null;
-            for (int i = 0; i < originalString.Length; i++)
+            string[] hash = hasher.GradualHashing(textBoxHash.Text, algorithm);
+            if (checkBoxShowInfo.Checked) //Show info
             {
-                hash = hasher.GradualHashing(textBoxHash.Text, algorithm);
+                string temp = "";
+                for (int i = 0; i < textBoxHash.Text.Length; i++)
+                {
+                    temp += textBoxHash.Text[i].ToString();
+                    hash[i] = "(" + temp + ") " + hash[i];
+                }
             }
             outputHandler.OutputTypeShow(hash, listBoxLog);
         }
@@ -52,6 +54,7 @@ namespace HashTester
 
             #region Language
             buttonHashGradualHashing.Text = Languages.Translate(Languages.L.GradualHasher);
+            checkBoxShowInfo.Text = Languages.Translate(Languages.L.ShowInfo);
             labelQualityName.Text = Languages.Translate(Languages.L.WillNotUseSaltpepper);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);

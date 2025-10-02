@@ -326,7 +326,7 @@ namespace HashTester
                         else writer.WriteLine("showLog=0");
                     }
                 }
-                File.Replace(settingsPathToFileTemp, settingsPathToFileSettings, settingsPathToFileSettings); //Its fucked here, file already used
+                File.Replace(settingsPathToFileTemp, settingsPathToFileSettings, null);
                 isFileSettingsUsed = false;
             }
             catch (UnauthorizedAccessException)
