@@ -1,4 +1,0 @@
-RockYou has over 14 mil. passwords. You can download it from here: https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt 
-RockYouShort 1mil.
-RockYouVeryShort 5k
-If you want to add more or something different you can, just make sure the format is the same.!Please dont name any files in this directory Temp or InputSplit. They will be deleted!

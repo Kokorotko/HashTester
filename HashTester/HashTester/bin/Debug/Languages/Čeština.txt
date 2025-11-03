@@ -1,4 +1,3 @@
-
 10000==Vymazat záznam
 10001==Uložit záznam
 10002==Schránka
@@ -64,7 +63,6 @@
 11010==Prosím zadejte validní vstup do Text01.
 11011==Prosím zadejte validní vstup do Text02.
 11012==Nepodařilo se převést vstup na string.
-11013==Použitý algoritmus
 
 //**Name of Forms <<15000-15100>>
 15000==Hlavní formulář
@@ -413,6 +411,8 @@
 706==Multi Hashovací Nástroj  
 707==Tester Hesel  
 708==Výběrčí Soli a Pepře  
-709==Tester Soli a Pepře  
-710==Správce Vláken  
+709==Tester Soli a Pepře
+710==Správce Vláken
 711==Správce UI
+712==Souhrná šance na najití
+713==Šance na najití v

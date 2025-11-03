@@ -1098,6 +1098,8 @@ namespace HashTester
                         writer.WriteLine("709==Salt and Pepper Tester");
                         writer.WriteLine("710==Thread Manager");
                         writer.WriteLine("711==UI Manager");
+                        writer.WriteLine("712==Cumulative chance to find");
+                        writer.WriteLine("713==Chance to find in the next");
                     }
                 }
                 #endregion
@@ -1519,15 +1521,17 @@ namespace HashTester
                         writer.WriteLine("//Form Names <<701-720>>");
                         writer.WriteLine("701==HashTester");
                         writer.WriteLine("702==Kontrolní Součet Souboru");
-                        writer.WriteLine("703==Postupné Hashování  ");
-                        writer.WriteLine("704==Hledač Kolizí  ");
-                        writer.WriteLine("705==Kontrola Kolizí  ");
-                        writer.WriteLine("706==Multi Hashovací Nástroj  ");
-                        writer.WriteLine("707==Tester Hesel  ");
-                        writer.WriteLine("708==Výběrčí Soli a Pepře  ");
-                        writer.WriteLine("709==Tester Soli a Pepře  ");
-                        writer.WriteLine("710==Správce Vláken  ");
+                        writer.WriteLine("703==Postupné Hashování");
+                        writer.WriteLine("704==Hledač Kolizí");
+                        writer.WriteLine("705==Kontrola Kolizí");
+                        writer.WriteLine("706==Multi Hashovací Nástroj");
+                        writer.WriteLine("707==Tester Hesel");
+                        writer.WriteLine("708==Výběrčí Soli a Pepře");
+                        writer.WriteLine("709==Tester Soli a Pepře");
+                        writer.WriteLine("710==Správce Vláken");
                         writer.WriteLine("711==Správce UI");
+                        writer.WriteLine("712==Souhrná šance na najití");
+                        writer.WriteLine("713==Šance na najití v");
                     }
                 }
                 #endregion

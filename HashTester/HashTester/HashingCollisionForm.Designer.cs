@@ -48,6 +48,8 @@ namespace HashTester
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
             this.groupBoxUI = new System.Windows.Forms.GroupBox();
+            this.labelChanceToFind = new System.Windows.Forms.Label();
+            this.labelCumulativeChanceToFind = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBoxUI.SuspendLayout();
@@ -64,7 +66,7 @@ namespace HashTester
             "MD5",
             "SHA1"});
             this.hashSelector.Location = new System.Drawing.Point(19, 69);
-            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4);
             this.hashSelector.Name = "hashSelector";
             this.hashSelector.Size = new System.Drawing.Size(159, 24);
             this.hashSelector.TabIndex = 9;
@@ -72,7 +74,7 @@ namespace HashTester
             // buttonGenerateCollision
             // 
             this.buttonGenerateCollision.Location = new System.Drawing.Point(19, 15);
-            this.buttonGenerateCollision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGenerateCollision.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGenerateCollision.Name = "buttonGenerateCollision";
             this.buttonGenerateCollision.Size = new System.Drawing.Size(240, 28);
             this.buttonGenerateCollision.TabIndex = 10;
@@ -85,16 +87,16 @@ namespace HashTester
             this.listBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.ItemHeight = 17;
-            this.listBoxLog.Location = new System.Drawing.Point(16, 165);
-            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxLog.Location = new System.Drawing.Point(15, 182);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(532, 140);
             this.listBoxLog.TabIndex = 12;
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(16, 320);
-            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClearListBox.Location = new System.Drawing.Point(15, 337);
+            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClearListBox.Name = "buttonClearListBox";
             this.buttonClearListBox.Size = new System.Drawing.Size(173, 28);
             this.buttonClearListBox.TabIndex = 13;
@@ -104,8 +106,8 @@ namespace HashTester
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(557, 320);
-            this.buttonReturn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonReturn.Location = new System.Drawing.Point(556, 337);
+            this.buttonReturn.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(173, 28);
             this.buttonReturn.TabIndex = 14;
@@ -115,8 +117,8 @@ namespace HashTester
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(19, 127);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Location = new System.Drawing.Point(19, 145);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -125,11 +127,12 @@ namespace HashTester
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(328, 22);
             this.numericUpDown1.TabIndex = 15;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // labelMaxAttempts
             // 
             this.labelMaxAttempts.AutoSize = true;
-            this.labelMaxAttempts.Location = new System.Drawing.Point(12, 103);
+            this.labelMaxAttempts.Location = new System.Drawing.Point(16, 125);
             this.labelMaxAttempts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMaxAttempts.Name = "labelMaxAttempts";
             this.labelMaxAttempts.Size = new System.Drawing.Size(119, 16);
@@ -149,7 +152,7 @@ namespace HashTester
             // buttonAbort
             // 
             this.buttonAbort.Location = new System.Drawing.Point(515, 14);
-            this.buttonAbort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAbort.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAbort.Name = "buttonAbort";
             this.buttonAbort.Size = new System.Drawing.Size(221, 28);
             this.buttonAbort.TabIndex = 18;
@@ -170,7 +173,7 @@ namespace HashTester
             // numericUpDown2
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(187, 70);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             50,
             0,
@@ -220,8 +223,8 @@ namespace HashTester
             this.checkBoxUseHex.AutoSize = true;
             this.checkBoxUseHex.Checked = true;
             this.checkBoxUseHex.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseHex.Location = new System.Drawing.Point(557, 193);
-            this.checkBoxUseHex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxUseHex.Location = new System.Drawing.Point(556, 182);
+            this.checkBoxUseHex.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxUseHex.Name = "checkBoxUseHex";
             this.checkBoxUseHex.Size = new System.Drawing.Size(168, 20);
             this.checkBoxUseHex.TabIndex = 26;
@@ -231,8 +234,8 @@ namespace HashTester
             // checkBoxPerformanceMode
             // 
             this.checkBoxPerformanceMode.AutoSize = true;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(557, 222);
-            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(555, 210);
+            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
             this.checkBoxPerformanceMode.Size = new System.Drawing.Size(141, 20);
             this.checkBoxPerformanceMode.TabIndex = 27;
@@ -242,7 +245,7 @@ namespace HashTester
             // buttonCheckCollision
             // 
             this.buttonCheckCollision.Location = new System.Drawing.Point(267, 14);
-            this.buttonCheckCollision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCheckCollision.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCheckCollision.Name = "buttonCheckCollision";
             this.buttonCheckCollision.Size = new System.Drawing.Size(240, 28);
             this.buttonCheckCollision.TabIndex = 28;
@@ -252,8 +255,8 @@ namespace HashTester
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(197, 320);
-            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSaveLog.Location = new System.Drawing.Point(196, 337);
+            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveLog.Name = "buttonSaveLog";
             this.buttonSaveLog.Size = new System.Drawing.Size(173, 28);
             this.buttonSaveLog.TabIndex = 29;
@@ -263,8 +266,8 @@ namespace HashTester
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(376, 320);
-            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClipboard.Location = new System.Drawing.Point(375, 337);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClipboard.Name = "buttonClipboard";
             this.buttonClipboard.Size = new System.Drawing.Size(173, 28);
             this.buttonClipboard.TabIndex = 30;
@@ -274,24 +277,47 @@ namespace HashTester
             // 
             // groupBoxUI
             // 
+            this.groupBoxUI.Controls.Add(this.labelCumulativeChanceToFind);
+            this.groupBoxUI.Controls.Add(this.labelChanceToFind);
             this.groupBoxUI.Controls.Add(this.labelTimer);
             this.groupBoxUI.Controls.Add(this.labelAttempts);
             this.groupBoxUI.Controls.Add(this.labelCurrentSpeed);
             this.groupBoxUI.Controls.Add(this.labelAverageSpeed);
             this.groupBoxUI.Location = new System.Drawing.Point(355, 50);
-            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxUI.Name = "groupBoxUI";
-            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxUI.Size = new System.Drawing.Size(369, 101);
+            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxUI.Size = new System.Drawing.Size(369, 124);
             this.groupBoxUI.TabIndex = 31;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
+            this.groupBoxUI.Enter += new System.EventHandler(this.groupBoxUI_Enter);
+            // 
+            // labelChanceToFind
+            // 
+            this.labelChanceToFind.AutoSize = true;
+            this.labelChanceToFind.Location = new System.Drawing.Point(21, 85);
+            this.labelChanceToFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelChanceToFind.Name = "labelChanceToFind";
+            this.labelChanceToFind.Size = new System.Drawing.Size(233, 16);
+            this.labelChanceToFind.TabIndex = 25;
+            this.labelChanceToFind.Text = "Chance to find in the next 10k attempts:";
+            // 
+            // labelCumulativeChanceToFind
+            // 
+            this.labelCumulativeChanceToFind.AutoSize = true;
+            this.labelCumulativeChanceToFind.Location = new System.Drawing.Point(21, 101);
+            this.labelCumulativeChanceToFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCumulativeChanceToFind.Name = "labelCumulativeChanceToFind";
+            this.labelCumulativeChanceToFind.Size = new System.Drawing.Size(161, 16);
+            this.labelCumulativeChanceToFind.TabIndex = 26;
+            this.labelCumulativeChanceToFind.Text = "Cumulative chance to find:";
             // 
             // HashingCollisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 363);
+            this.ClientSize = new System.Drawing.Size(745, 385);
             this.Controls.Add(this.groupBoxUI);
             this.Controls.Add(this.buttonClipboard);
             this.Controls.Add(this.buttonSaveLog);
@@ -308,7 +334,7 @@ namespace HashTester
             this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.buttonGenerateCollision);
             this.Controls.Add(this.hashSelector);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HashingCollisionForm";
             this.Text = "HashingCollisionForm";
             this.Load += new System.EventHandler(this.HashingCollisionForm_Load);
@@ -343,5 +369,7 @@ namespace HashTester
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.Button buttonClipboard;
         private System.Windows.Forms.GroupBox groupBoxUI;
+        private System.Windows.Forms.Label labelChanceToFind;
+        private System.Windows.Forms.Label labelCumulativeChanceToFind;
     }
 }

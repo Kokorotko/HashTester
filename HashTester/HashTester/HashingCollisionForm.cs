@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace HashTester
         {
             InitializeComponent();
         }
-
+        const int numberToNextCheckOnProbability = 10000;
         Hasher hasher = new Hasher();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32;
         volatile bool stopHashing = false; // Volatile for thread safety
@@ -267,6 +268,72 @@ namespace HashTester
 
 
         /// <summary>
+        /// Chance to find in next x attempts
+        /// </summary>
+        /// <param name="attempts"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        double ChanceOfCollisionInWholeBatch(long attempts, double n)
+        {
+            return 1.0 - Math.Exp(-(attempts * (attempts - 1)) / (2.0 * n));
+        }
+
+        /// <summary>
+        /// Chance to find in next x attempts
+        /// </summary>
+        /// <param name="attempts"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        double ChanceOfCollisionInWholeBatch(long attempts, Hasher.HashingAlgorithm hash)
+        {
+            double n;
+            switch (hash)
+            {
+                case Hasher.HashingAlgorithm.SHA1: n = Math.Pow(2, 160); break;
+                case Hasher.HashingAlgorithm.SHA256: n = Math.Pow(2, 256); break;
+                case Hasher.HashingAlgorithm.MD5: n = Math.Pow(2, 128); break;
+                case Hasher.HashingAlgorithm.SHA512: n = Math.Pow(2, 512); break;
+                case Hasher.HashingAlgorithm.RIPEMD160: n = Math.Pow(2, 160); break;
+                case Hasher.HashingAlgorithm.CRC32: n = Math.Pow(2, 32); break;
+                default: return 0f;
+            }
+            return 1.0 - Math.Exp(-(attempts * (attempts - 1)) / (2.0 * n));
+        }
+
+
+        /// <summary>
+        /// Chance to find in next x attempts (default is 10k)
+        /// </summary>
+        /// <param name="currentAttempts"></param>
+        /// <param name="nextAttempts"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        float ChanceOfCollisionInNextBatch(long currentAttempts, Hasher.HashingAlgorithm hash)
+        {
+            double n;
+            switch (hash)
+            {
+                case Hasher.HashingAlgorithm.SHA1: n = Math.Pow(2, 160); break;
+                case Hasher.HashingAlgorithm.SHA256: n = Math.Pow(2, 256); break;
+                case Hasher.HashingAlgorithm.MD5: n = Math.Pow(2, 128); break;
+                case Hasher.HashingAlgorithm.SHA512: n = Math.Pow(2, 512); break;
+                case Hasher.HashingAlgorithm.RIPEMD160: n = Math.Pow(2, 160); break;
+                case Hasher.HashingAlgorithm.CRC32: n = Math.Pow(2, 32); break;
+                default: return 0f;
+            }
+
+            double PtotalAfterNext = ChanceOfCollisionInWholeBatch(currentAttempts + numberToNextCheckOnProbability, n);
+            double PtotalCurrent = ChanceOfCollisionInWholeBatch(currentAttempts, n);
+
+            double PnextBatch = PtotalAfterNext - PtotalCurrent;
+            return (float)PnextBatch;
+        }
+
+
+
+        int attemptsChanceToNextProbability = 0;
+
+        /// <summary>
         /// UI updates timer
         /// </summary>
         private void UpdateTimerLabel()
@@ -280,6 +347,7 @@ namespace HashTester
                     int milliseconds = (int)(stopwatch.ElapsedMilliseconds % 1000);
                     labelTimer.Text = Languages.Translate(Languages.L.Timer) + ": " + seconds + "." + milliseconds + " s";
                     int triesBetween = (int)(attempts - numberOfAttempsInLastUpdate);
+                    attemptsChanceToNextProbability += triesBetween;
                     numberOfAttempsInLastUpdate = attempts;
                     //Attempts
                     labelAttempts.Text = Languages.Translate(Languages.L.NumberOfAttempts) + ": " + attempts;
@@ -289,6 +357,13 @@ namespace HashTester
                     //Update Average Speed
                     double averageSpeed = attempts / (stopwatch.ElapsedMilliseconds / 1000.0); //Average speed per second
                     labelAverageSpeed.Text = Languages.Translate(Languages.L.AverageSpeed) + ": " + Math.Floor(averageSpeed);
+                    //Chance to find in next update
+                    if (attemptsChanceToNextProbability >= numberToNextCheckOnProbability) //Optimalization
+                    {
+                        attemptsChanceToNextProbability = 0;
+                        labelCumulativeChanceToFind.Text = Languages.Translate(Languages.L.CumulativeChanceToFind) + ": " + (ChanceOfCollisionInWholeBatch(attempts, algorithm) * 100).ToString() + "%";
+                        labelChanceToFind.Text = Languages.Translate(Languages.L.ChanceToFindIn)  + " " + (numberToNextCheckOnProbability / 1000.0).ToString() + "k " + Languages.Translate(Languages.L.Attempts) + ": " + (ChanceOfCollisionInNextBatch(attempts, algorithm) * 100).ToString() + "%";
+                    }
                     //listbox
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1; // Scroll to the most recent item
                 }
@@ -408,6 +483,8 @@ namespace HashTester
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
             groupBoxUI.Text = Languages.Translate(Languages.L.Ui);
+            labelCumulativeChanceToFind.Text = Languages.Translate(Languages.L.CumulativeChanceToFind);
+            labelChanceToFind.Text = Languages.Translate(Languages.L.ChanceToFindIn);
             #endregion
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
@@ -459,6 +536,16 @@ namespace HashTester
                 rng.GetBytes(buffer);
                 return BitConverter.ToInt32(buffer, 0) & int.MaxValue; // Ensure positive seed
             }
+        }
+
+        private void groupBoxUI_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

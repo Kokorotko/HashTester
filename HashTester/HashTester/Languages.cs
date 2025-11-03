@@ -55,6 +55,8 @@ namespace HashTester
         //GENERATED ENUM
         public enum L
         {
+            CumulativeChanceToFind = 712,
+            ChanceToFindIn = 713,
             ClearListbox = 10000,
             SaveLog = 10001,
             Clipboard = 10002,

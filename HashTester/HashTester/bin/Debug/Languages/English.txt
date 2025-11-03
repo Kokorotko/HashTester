@@ -66,7 +66,6 @@
 11010==Please enter valid input into Text01.
 11011==Please enter valid input into Text02.
 11012==Could not convert input to string.
-11013==Used algorithm
 
 //**Name of Forms
 15000==Main form
@@ -414,3 +413,5 @@
 709==Salt and Pepper Tester
 710==Thread Manager
 711==UI Manager
+712==Cumulative chance to find
+713==Chance to find in the next
