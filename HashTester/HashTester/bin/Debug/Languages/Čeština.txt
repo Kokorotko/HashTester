@@ -1,82 +1,6 @@
-10000==Vymazat záznam
-10001==Uložit záznam
-10002==Schránka
-10003==Nepodařilo se zkopírovat do schránky.
-10004==Chyba při kopírování
-10005==Zrušit proces
-10006==Přejít zpět
-10008==Délka náhodného textu
-10009==Čas
-10010==Počet pokusů
-10011==Aktuální rychlost
-10012==Průměrná rychlost
-10013==Zobrazit záznam v listBoxu
-10014==Použít HEX pro zobrazení textu
-10015==Výkonnostní režim
-10016==Nepodařilo se najít kolizi v rámci daných pokusů.
-10017==Proces byl ukončen.
-10018==Nepodařilo se najít kolizi.
-10019==Zrušeno
-10020==Chyba
-10021==a
-10022==Nepodařilo se přečíst obsah tohoto souboru.
-10023==Před kopírováním vyberte položku ze seznamu záznamů.
-10024==Algoritmus
-10025==Upozornění
-10026==Počet použitých vláken
-10027==do
-10028==Uložit
-10029==Kopírovat
-10030==Dotaz
-10031==Info
-10032==Přerušeno
-10033==Úspěch
-10034==Zaregistrováno
-10035==Zaregistrovat
-10036==UI
-10037==Hex
-10039==Program vytvořil
-10040==2fast4you
+//Some translations are made with DeepL translator (free version)
+//https://www.deepl.com
 
-//Aktualizace
-10041==Je dostupná nová verze na https://github.com/Kokorotko/ROP-HashTester/releases
-10042==Je dostupná velká aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
-10043==Je dostupná malá aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
-10044==Nepřipomínat aktualizace při spuštění
-10045==Nová verze je dostupná
-10046==Nová verze
-10047==Aktuální verze
-10048==Nastala chyba při kontrole aktualizací.
-10049==Připomínat aktualizace při spuštění
-
-//**Try and Catch <<11000-12000>>
-11000==Vyskytla se chyba v programu.
-11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 2 miliard.
-11002==Prosím zadejte do "Počet znaků/heslo" celé nenulové číslo do 1000 nebo heslo.
-11003==Chcete odstranit nedokončený soubor?
-11004==Soubor smazán
-11005==Varování, těchto souborů bude několik.
-11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.
-11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.
-11008==Prosím, přesuňte program do složky, kde má přístup ke čtení/zápisu souborů, nebo spusťte aplikaci s administrátorskými právy.
-11009==Počáteční inicializace složek se nezdařilo. Před dalším používáním programu problém vyřešte.
-11010==Prosím zadejte validní vstup do Text01.
-11011==Prosím zadejte validní vstup do Text02.
-11012==Nepodařilo se převést vstup na string.
-
-//**Name of Forms <<15000-15100>>
-15000==Hlavní formulář
-15002==Vyhledávač kolizí
-15003==Kontrola kolizí
-15005==Heslový formulář
-15006==Formulář na vlákna
-15007==Formulář pro aktualizaci UI
-15008==Formulář pro sůl a pepř
-15009==Dotazník pro sůl a pepř
-
-//**Hlavní formulář <<0-100>>
-
-//ToolStrip Menu <<0-30>>
 0==Hashování
 1==Sůl a pepř
 2==Vícenásobné hashování
@@ -102,8 +26,6 @@
 27==Zahrnout hashovací algoritmus
 28==Zahrnout sůl a pepř
 29==Zahrnout všechny možnosti
-
-//Formulář uživatelského rozhraní <<31-40>>
 31==Hash textu
 32==Hash .txt souboru
 33==Kontrolní součet souboru
@@ -111,8 +33,6 @@
 35==Vyberte soubor
 36==Kontrola kontrolního součtu
 37==Vypočítat všechny kontrolní součty
-
-//Messages <<41-100>>
 41==Vstup přerušen
 42==Před kopírováním vyberte položku ze seznamu záznamu.
 45==Jste si jisti, že chcete obnovit všechna nastavení?
@@ -128,14 +48,10 @@
 55==Soubor se nepodařilo uložit.
 56==Došlo k chybě. Kontaktujte prosím tvůrce a nahlašte tuto chybu.
 57==Prosím vyberte hash pro kontrolní součet.
-
-//**Gradual Hashing <<101-110>>
 101==Postupné hashování
 102==Před kopírováním vyberte položku z listboxu.
 103==Prosím zadejte text před hashováním.
 104==NEpoužívá se sůl/pepř.
-
-//**Hashing Collision <<111-200>>
 111==Kontrola kolize
 112==Vygenerovat kolizi
 113==Kontrola kolize z .txt
@@ -151,7 +67,6 @@
 124==Zjištěna kolize
 125==Společný hash
 126==Vstupní texty nevytváří kolizi
-//info <<130-136>>
 130==//Komentář, tento program podporuje formáty <STRING> <HEX> <BIN> a pracuje na řádcích. Nejprve je formát, pak se načtou a porovnají dva řádky. Pro příklad zkuste vygenerovat kolizi ve formuláři postupného hashování.
 131==//!Program zkontroluje pouze první formát a texty!
 132==//<STRING> Podporuje formát UTF-8 (příklad al85WTh).
@@ -159,20 +74,14 @@
 134==//<BIN> Podporuje 0111 0001 s mezerami nebo bez nich.
 135==//Vždy musí být uveden algoritmus a musí být před formátem (podporované formáty: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) příklad Algorithm=RIPEMD160
 136==// V <HASH> najdete oba hashe pro text 1 a 2. To je jen pro uživatele a lze to libovolně měnit (Ale proč by to někdo dělal).
-
-//**CheckCollisionForm <<201-220>>
 201==Vstupní formát
 202==Řetězec
 204==Binární
 205==Text
 206==Kontrola
-
-//**MultipleHashing <<221-240>>
 221==Přepíše „Zahrnout hashovací algoritmus“ v nastavení výstupního stylu
 222==Zobrazit algoritmus
 223==Prosím, vyberte alespoň jeden algoritmus!
-
-//**PasswordForm <<241-500>>
 241==Ukazatel průběhu
 242==Přerušit proces
 244==Aktuální rychlost /s
@@ -180,14 +89,10 @@
 247==Slovníkový útok
 248==Odhad času hrubou silou
 250==Útok hrubou silou
-
-//Slovníkový útok
 251==Plná verze
 252==Zkrácená verze
 253==Velice zkrácená verze
 254==Vlastní soubor
-
-//Odhad Času hrubou silou
 256==Počet znaků
 257==Heslo
 258==Rychlost /s
@@ -197,20 +102,14 @@
 262==Speciální
 263==Vypočítat
 264==Normal
-
-//Rainbow Table attack
 265==Hash
 266==Vygenerovat duhovou tabulku
 267==Útok duhovou tabulkou
-
-//Brute force attack
 268==Maximální počet pokusů
 269==Délka
 270==Časovač zastavení (sec)
 271==Neznámá délka
 272==Zobrazení hesla jako HEX
-
-//Script
 273==Rockyou má více než 14 milionů hesel. Můžete si ji stáhnout zde
 274==Pokud chcete přidat další nebo něco jiného, můžete, jen se ujistěte, že je stejný formát.
 275==Ano
@@ -221,9 +120,6 @@
 281==bylo nalezeno ve slovníku na řádku
 282==Doporučuji použít jiné heslo.
 283==nebylo nalezeno ve slovníku. Dobrá práce.
-//284==Maximální délka hesla je 1000.
-//285==Délka hesla je nastavena na 1000.
-//286==Prolomit toto heslo bude trvat přes 18 triliónů let.
 287==Počet kombinací
 288==Duhová tabulka byla úspěšně vygenerována.
 289==Program nemohl vygenerovat duhovou tabulku. Rušení procesu.
@@ -253,9 +149,7 @@
 316==Heslo nalezeno pomocí útoku duhovou tabulkou.
 317==!Prosím nepojmenovávejte soubory v téhle složce Temp nebo InputSplit. Tyto soubory budou smazány!
 318==Útok duhovou tabulkou zrušen.
-
-//**SaltAndPepperQuestions <<401-420>>
-401== Opravdu chcete přepsat jiné hash ID? (Mohli byste přijít o data)
+401==Opravdu chcete přepsat jiné hash ID? (Mohli byste přijít o data)
 402==Sůl
 403==Pepř
 404==Vygenerujte sůl
@@ -270,8 +164,6 @@
 413==Generovat
 414==Pokud nezadáte hashID, nebudou sůl a pepř uloženy. Chcete pokračovat?
 415==Jméno
-
-//**ThreadsForm <<421-500>>
 421==Kolik vláken chcete v programu používat?
 423==Procento použitých vláken
 424==Od 1 do max. počtu vláken
@@ -297,8 +189,6 @@
 445==MHz
 446==Chybné načítání údajů o procesoru
 447==Prosím nastavte procentuální hodnotu od 0% do 100%
-
-//**UI Update Frequency <<501-550>>
 501==Kolikrát za sekundu chcete aktualizovat uživatelské rozhraní (pro konkrétní operace)
 502==Cílové snímky za sekundu
 503==Čas do další aktualizace (v milisekundách)
@@ -308,18 +198,12 @@
 507==Vyšší obnovovací frekvence může způsobit problémy s výkonem
 508==Prosím, zadejte platné hodnoty
 509==Neplatné hodnoty. Zadejte prosím pouze celá čísla.
-
-//****SCRIPTS****
-
-//**FormManagement <<551-570>>
 551==Záznam uložen v
 552==Záznam uložen z
 553==Záznam úspěšně uložen.
 554==Uložení záznamu bylo zrušeno.
 556==Vyberte složku
 557==Změněna cesta
-
-//**Other <<571-610>>
 571==Sůl není inicializovaná.
 572==Pepř není inicializován.
 573==Nalezeno
@@ -338,25 +222,21 @@
 586==Soubor je zahešován pomocí
 587==ale uživatel chce
 588==Algoritmy musí být stejné. Rušení útoku...
+589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.
+590==Bool znamená 0 <<false>> a 1 <<true>>; vše ostatní vyžaduje specifický vstup
+591==Připojil jsem komentáře o tom, jaké hodnoty jsou povoleny. Jinak se nastaví výchozí hodnota
+592==Vizuální režim od 0 do 2
+593==UpdateUI v milisekundách
+594==<<8 - 1000>> celé číslo
+595==Počet maximálně použitých vláken v procentech (%)
+596==<<1 - 100>> celé číslo
+597==Preferovaný jazyk
+598==Typ výstupu od 0 do 2
+599==Všechny OutputStyles jsou bool
+600==Sůl a pepř bool
 601==Počet řádků na zpracování
 602==Existují neuložené změny, chcete je uložit?
 603==Limit pokusů
-
-//Settings
-589==Varování! Pokud za znakem = není nic, nastaví se výchozí hodnota.
-590==Bool znamená 0 <<false>> a 1 <<true>>; vše ostatní vyžaduje specifický vstup
-591==Připojil jsem komentáře o tom, jaké hodnoty jsou povoleny. Jinak se nastaví výchozí hodnota  
-592==Vizuální režim od 0 do 2  
-593==UpdateUI v milisekundách  
-594==<<8 - 1000>> celé číslo  
-595==Počet maximálně použitých vláken v procentech (%)  
-596==<<1 - 100>> celé číslo  
-597==Preferovaný jazyk  
-598==Typ výstupu od 0 do 2  
-599==Všechny OutputStyles jsou bool  
-600==Sůl a pepř bool  
-
-//**SaltAndPepperForm <<611-700>>
 612==HashID
 613==Neexistují ID na ukázání.
 614==Prosím napište jméno do textboxu.
@@ -396,23 +276,90 @@
 649==Přihlášení
 650==Vymazat
 651==Vymazat všechny
-652==Ukázat všechny 
+652==Ukázat všechny
 653==Informace o ID
 654==Ukázat všechny ID
 655==Smazat všechny ID
 656==Soubor se zadaným HashID neexistuje.
-
-//Form Names <<701-720>>
 701==HashTester
 702==Kontrolní Součet Souboru
-703==Postupné Hashování  
-704==Hledač Kolizí  
-705==Kontrola Kolizí  
-706==Multi Hashovací Nástroj  
-707==Tester Hesel  
-708==Výběrčí Soli a Pepře  
+703==Postupné Hashování
+704==Hledač Kolizí
+705==Kontrola Kolizí
+706==Multi Hashovací Nástroj
+707==Tester Hesel
+708==Výběrčí Soli a Pepře
 709==Tester Soli a Pepře
 710==Správce Vláken
 711==Správce UI
 712==Souhrná šance na najití
 713==Šance na najití v
+10000==Vymazat záznam
+10001==Uložit záznam
+10002==Schránka
+10003==Nepodařilo se zkopírovat do schránky.
+10004==Chyba při kopírování
+10005==Zrušit proces
+10006==Přejít zpět
+10008==Délka náhodného textu
+10009==Čas
+10010==Počet pokusů
+10011==Aktuální rychlost
+10012==Průměrná rychlost
+10013==Zobrazit záznam v listBoxu
+10014==Použít HEX pro zobrazení textu
+10015==Výkonnostní režim
+10016==Nepodařilo se najít kolizi v rámci daných pokusů.
+10017==Proces byl ukončen.
+10018==Nepodařilo se najít kolizi.
+10019==Zrušeno
+10020==Chyba
+10021==a
+10022==Nepodařilo se přečíst obsah tohoto souboru.
+10023==Před kopírováním vyberte položku ze seznamu záznamů.
+10024==Algoritmus
+10025==Upozornění
+10026==Počet použitých vláken
+10027==do
+10028==Uložit
+10029==Kopírovat
+10030==Dotaz
+10031==Info
+10032==Přerušeno
+10033==Úspěch
+10034==Zaregistrováno
+10035==Zaregistrovat
+10036==UI
+10037==Hex
+10039==Program vytvořil
+10040==2fast4you
+10041==Je dostupná nová verze na https://github.com/Kokorotko/ROP-HashTester/releases
+10042==Je dostupná velká aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
+10043==Je dostupná malá aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases
+10044==Nepřipomínat aktualizace při spuštění
+10045==Nová verze je dostupná
+10046==Nová verze
+10047==Aktuální verze
+10048==Nastala chyba při kontrole aktualizací.
+10049==Připomínat aktualizace při spuštění
+11000==Vyskytla se chyba v programu.
+11001==Prosím zadejte do "Počet pokusů /s" celé nenulové číslo do 2 miliard.
+11002==Prosím zadejte do "Počet znaků/heslo" celé nenulové číslo do 1000 nebo heslo.
+11003==Chcete odstranit nedokončený soubor?
+11004==Soubor smazán
+11005==Varování, těchto souborů bude několik.
+11006==Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.
+11007==Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.
+11008==Prosím, přesuňte program do složky, kde má přístup ke čtení/zápisu souborů, nebo spusťte aplikaci s administrátorskými právy.
+11009==Počáteční inicializace složek se nezdařilo. Před dalším používáním programu problém vyřešte.
+11010==Prosím zadejte validní vstup do Text01.
+11011==Prosím zadejte validní vstup do Text02.
+11012==Nepodařilo se převést vstup na string.
+15000==Hlavní formulář
+15002==Vyhledávač kolizí
+15003==Kontrola kolizí
+15005==Heslový formulář
+15006==Formulář na vlákna
+15007==Formulář pro aktualizaci UI
+15008==Formulář pro sůl a pepř
+15009==Dotazník pro sůl a pepř

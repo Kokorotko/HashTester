@@ -1,83 +1,6 @@
 //Some translations are made with DeepL translator (free version)
 //https://www.deepl.com
 
-10000==Clear Listbox
-10001==Save log
-10002==Clipboard
-10003==Failed to copy to clipboard.
-10004==Clipboard Error
-10005==Cancel the process
-10006==Go back
-10008==Lenght of the random text
-10009==Timer
-10010==Number of attempts
-10011==Current speed
-10012==Average speed
-10013==Show log in listBox
-10014==Use HEX to display text
-10015==Performance mode
-10016==Could not find a collision under the given attempts.
-10017==The process has been abandoned.
-10018==Could not find collision.
-10019==Abandoned
-10020==Error
-10021==and
-10022==Could not read the contents of this file.
-10023==Please select an item from the log listbox before copying.
-10024==Algorithm
-10025==Warning
-10026==Number of threads used
-10027==into
-10028==Saved
-10029==Copy
-10030==Question
-10031==Info
-10032==Aborted
-10033==Success
-10034==Registered
-10035==Register
-10036==UI
-10037==Hex
-10039==Program made by
-10040==2fast4you
-
-//Version Updates
-10041==A new version of the application is available at https://github.com/Kokorotko/HashTester/releases
-10042==A major update is available at https://github.com/Kokorotko/HashTester/releases
-10043==A minor update is available at https://github.com/Kokorotko/HashTester/releases
-10044==Do not remind me about updates at startup
-10045==A new version of the application is available
-10046==New version
-10047==Current version
-10048==An error has occured while trying to check for updates.
-10049==Remind me about updates at startup
-
-//**Try and Catch
-11000==An error has occured in the program.
-11001==Please enter a non-zero integer up to 2 billion in "Number of attempts / s".
-11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters / password".
-11003==Want to delete an unfinished file?
-11004==File deleted
-11005==Warning, there will be several of these files.
-11006==Counting error occurred, we recommend choosing smaller numbers.
-11007==The program failed to rename the files, we recommend to move or delete temporary files before generating the table again.
-11008==Please move the program to a folder where it has read/write file access, or run the application with administrative privileges.
-11009==The initial setup of the folders failed. Please resolve the issue before continuing to use the program.
-11010==Please enter valid input into Text01.
-11011==Please enter valid input into Text02.
-11012==Could not convert input to string.
-
-//**Name of Forms
-15000==Main form
-15002==Hash Collision Finder
-15003==Hash Collision Checker
-15005==Password Form
-15006==Threads Form
-15007==UI Updater Form
-15008==Salt and Pepper Form
-15009==Salt and Pepper Questions
-
-//ToolStrip Menu
 0==Hashing
 1==Salt and Pepper
 2==Multiple Hashing
@@ -103,8 +26,6 @@
 27==Include hashing algorithm
 28==Include salt and pepper
 29==Include all options
-
-//Form UI <<31-40>>
 31==Hash text
 32==Hash a file
 33==File checksum
@@ -112,8 +33,6 @@
 35==Select a file
 36==Checksum check
 37==Calculate all checksums
-
-//Messages <<41-100>>
 41==Input cancelled
 45==Are you sure you want to reset all settings?
 46==Confirmation
@@ -132,8 +51,6 @@
 102==Please select an item from the list before copying.
 103==Please set text before hashing.
 104==will NOT use salt/pepper
-
-//**Hashing Collision <<111-200>>
 111==Check collision
 112==Generate a collision
 113==Check a collision from a TXT
@@ -149,7 +66,6 @@
 124==Collision detected
 125==Common hash
 126==Input texts do not collide
-//info <<130-136>>
 130==//Comment, this program supports formats <STRING> <HEX> <BIN> and works on lines. First is format then two lines will be read and compared. For an example try to generate a Collision in HashingCollisionForm.
 131==//!The program will only check the first format and texts!
 132==//<STRING> Supports UTF-8 format (example al85WTh)
@@ -157,20 +73,14 @@
 134==//<BIN> Supports 0111 0001 with or without spaces between
 135==//There must always be an algorithm and it must be before the format (supported formats: MD5;SHA1;SHA256;SHA512;RIPEMD160;CRC32) example Algorithm=RIPEMD160
 136==//In <HASH> you can find both hashes for text 1 and 2. This is just for user and can be changed freely (why would you do that tho).
-
-//**CheckCollisionForm <<201-220>>
 201==Input format
 202==String
 204==Binary
 205==Text
 206==Check
-
-//**MultipleHashing <<221-240>>
 221==Will overwrite the "Include hashing algorithm" in the output style settings
 222==Show Algorithm
 223==Please choose at least one algorithm!
-
-//**PasswordForm <<241-500>>
 241==Progress bar
 242==Abort the process
 244==Current speed /s
@@ -178,14 +88,10 @@
 247==Dictionary attack
 248==Brute force time estimator
 250==Brute force attack
-
-//Dictionary Attack
 251==full version
 252==short version
 253==very short version
 254==custom file
-
-//Time to crack calculator
 256==Number of chars
 257==Password
 258==Speed /s
@@ -195,20 +101,14 @@
 262==Specials
 263==Calculate
 264==Normal
-
-//Rainbow Table attack
 265==Hash
 266==Generate a Rainbow Table
 267==Rainbow Table Attack
 268==Maximum attempts
-
-//Brute force attack
 269==Lenght
 270==Stop timer (sec)
 271==Unknown Lenght
 272==Display password as HEX
-
-//Script
 273==RockYou has over 14 mil. passwords. You can download it from here
 274==If you want to add more or something different you can, just make sure the format is the same.
 275==Yes
@@ -219,9 +119,6 @@
 281==has been found in wordlist at line
 282==I recommend using a different password.
 283==has not been found in wordlist. Good Job.
-//284==Maximum lenght of a password is 1000.
-//285==Lenght of the password set to 1000.
-//286==It will take over 18 quadrilion years to crack this password.
 287==Number of possible combinations
 288==Rainbow Table has been generated succesfully.
 289==Program could not generate the rainbow table. Abbandoning process.
@@ -251,8 +148,6 @@
 316==Password found with rainbow table attack.
 317==!Please dont name any files in this directory Temp or InputSplit. They will be deleted!
 318==Rainbow table attack abbandoned.
-
-//**SaltAndPepperQuestions <<401-420>>
 401==Do you really want to override another hash ID? (You could lose data)
 402==Salt
 403==Pepper
@@ -268,8 +163,6 @@
 413==Generate
 414==If you don't set HashID, salt nor pepper will be saved. Do you wish to continue?
 415==Username
-
-//**ThreadsForm <<421-500>>
 421==How many threads do you want to use in a program?
 423==Percentage of threads used
 424==From 1 to max. number of threads
@@ -296,8 +189,6 @@
 445==MHz
 446==Error fetching CPU details
 447==Please set the percentage value from 0% to 100%
-
-//**UI Update Frequency <<501-550>>
 501==How many times a second do you want to update the UI (for specific operations)
 502==Target frames per second
 503==Time to update (miliseconds)
@@ -307,55 +198,45 @@
 507==Higher refresh rate can cause performance issues
 508==Please enter valid values
 509==Invalid values. Please enter whole numbers only.
-
-//****SCRIPTS****
-
-//**FormManagement <<551-570>>
 551==Log saved on
 552==Log saved from
 553==Log save successfully.
 554==Log save abbandoned.
 556==Select a folder
 557==Path changed
-
-//**Other <<571-610>>
 571==Salt not inicialized.
 572==Pepper not inicialized.
 573==Found
 574==on line
 575==years
-576==months  
+576==months
 577==days
-578==hours  
-579==minutes  
-580==seconds  
+578==hours
+579==minutes
+580==seconds
 581==Rainbow Table of the file
 582==with
 583==hashing algorithm is done.
 584==File is already a rainbow table.
 585==File is not a rainbow table.
 586==File is hashed with
-587==but the user wants 
+587==but the user wants
 588==The algorithms needs to be the same. Cancelling attack...
+589==Warning! If theres nothing after the = it will set the setting into default
+590==Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input
+591==I have included comments on what value is allowed. Otherwise a default value will be set
+592==VisualMode from 0 to 2
+593==UpdateUI in Miliseconds
+594==<<8 - 1000>> whole number
+595==Number of threads max. used in percentage (%)
+596==<<1 - 100>> whole number
+597==Preferred language
+598==OutputType from 0 to 2
+599==All OutputStyles are bool
+600==Salt and Pepper bool
 601==Number of lines to process
 602==There are unsaved changes, do you wish to save them?
 603==Attempts limit
-
-//Settings
-589==Warning! If theres nothing after the = it will set the setting into default  
-590==Bool means 0 <<false>> and 1 <<true>>; Everything other takes special input  
-591==I have included comments on what value is allowed. Otherwise a default value will be set  
-592==VisualMode from 0 to 2  
-593==UpdateUI in Miliseconds  
-594==<<8 - 1000>> whole number  
-595==Number of threads max. used in percentage (%)  
-596==<<1 - 100>> whole number  
-597==Preferred language  
-598==OutputType from 0 to 2  
-599==All OutputStyles are bool  
-600==Salt and Pepper bool 
-
-//**SaltAndPepperForm <<611-700>>
 612==HashID
 613==There are no IDs to show.
 614==Please write name into the Name textbox.
@@ -400,8 +281,6 @@
 654==Show all ID
 655==Delete all ID
 656==This HashID file does NOT exist.
-
-//Form Names <<701-720>>
 701==HashTester
 702==File Checksum Tool
 703==Gradual Hasher
@@ -415,3 +294,72 @@
 711==UI Manager
 712==Cumulative chance to find
 713==Chance to find in the next
+10000==Clear Listbox
+10001==Save log
+10002==Clipboard
+10003==Failed to copy to clipboard.
+10004==Clipboard Error
+10005==Cancel the process
+10006==Go back
+10008==Lenght of the random text
+10009==Timer
+10010==Number of attempts
+10011==Current speed
+10012==Average speed
+10013==Show log in listBox
+10014==Use HEX to display text
+10015==Performance mode
+10016==Could not find a collision under the given attempts.
+10017==The process has been abandoned.
+10018==Could not find collision.
+10019==Abandoned
+10020==Error
+10021==and
+10022==Could not read the contents of this file.
+10023==Please select an item from the log listbox before copying.
+10024==Algorithm
+10025==Warning
+10026==Number of threads used
+10027==into
+10028==Saved
+10029==Copy
+10030==Question
+10031==Info
+10032==Aborted
+10033==Success
+10034==Registered
+10035==Register
+10036==UI
+10037==Hex
+10039==Program made by
+10040==2fast4you
+10041==A new version of the application is available at https://github.com/Kokorotko/HashTester/releases
+10042==A major update is available at https://github.com/Kokorotko/HashTester/releases
+10043==A minor update is available at https://github.com/Kokorotko/HashTester/releases
+10044==Do not remind me about updates at startup
+10045==A new version of the application is available
+10046==New version
+10047==Current version
+10048==An error has occured while trying to check for updates.
+10049==Remind me about updates at startup
+11000==An error has occured in the program.
+11001==Please enter a non-zero integer up to 2 billion in "Number of attempts / s".
+11002==Please enter a non-zero integer up to 1000 or a password in "Number of characters / password".
+11003==Want to delete an unfinished file?
+11004==File deleted
+11005==Warning, there will be several of these files.
+11006==Counting error occurred, we recommend choosing smaller numbers.
+11007==The program failed to rename the files, we recommend to move or delete temporary files before generating the table again.
+11008==Please move the program to a folder where it has read/write file access, or run the application with administrative privileges.
+11009==The initial setup of the folders failed. Please resolve the issue before continuing to use the program.
+11010==Please enter valid input into Text01.
+11011==Please enter valid input into Text02.
+11012==Could not convert input to string.
+15000==Main form
+15002==Hash Collision Finder
+15003==Hash Collision Checker
+15005==Password Form
+15006==Threads Form
+15007==UI Updater Form
+15008==Salt and Pepper Form
+15009==Salt and Pepper Questions
