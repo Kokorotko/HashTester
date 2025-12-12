@@ -2,8 +2,10 @@ using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
+using static HashTester.Settings;
 
 namespace HashTester
 {
@@ -241,7 +243,7 @@ namespace HashTester
         /// Returns if light mode should be used (otherwise a dark mode will be used)
         /// </summary>
         /// <returns></returns>
-        
+        /// 
 
         #region FormTheme
         public static bool UseLightMode()

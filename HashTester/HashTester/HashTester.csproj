@@ -135,6 +135,7 @@
       <DependentUpon>SaltAndPepperSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="StripMenu.cs" />
     <Compile Include="ThreadsForm.cs">
       <SubType>Form</SubType>
     </Compile>
