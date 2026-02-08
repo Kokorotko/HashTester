@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HashTester.Settings;
 
@@ -98,7 +99,7 @@ namespace HashTester
         public static DialogResult SpawnForm(Forms formType, bool modal = false)
         {
             Form form = null;
-            
+
 
             switch (formType)
             {
@@ -181,6 +182,28 @@ namespace HashTester
         }
         #endregion
 
+        #region
+
+        #endregion
+
+        public static void LoadForm(Form form)
+        {
+            if (form is Form1 form1) //If Loading main form (Form1)
+            {
+                //This sequence is VERY important
+                Settings.InitialFolderChecker();
+                Settings.LoadSettings();
+                Languages.LoadDictionary(Settings.SelectedLanguage);                                
+                form1.Name = Languages.Translate(Languages.L.Hashtester);
+                Task.Run(async () =>
+                {
+                    await form1.CheckForUpdates();
+                });
+            }
+            //Global form start
+            StripMenu.LoadStripMenu(form);
+            FormManagement.SetUpFormTheme(form);
+        }
 
         /// <summary>
         /// Saves log from a listbox to a wanted .txt file
@@ -199,8 +222,8 @@ namespace HashTester
             {
                 using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                 {
-                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedOn)  + ": " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
-                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedFrom) +  ": " + form.Name);
+                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedOn) + ": " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
+                    writer.WriteLine(Languages.Translate(Languages.L.LogSavedFrom) + ": " + form.Name);
                     foreach (string item in listbox.Items)
                     {
                         writer.WriteLine(item);
@@ -209,7 +232,7 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(Languages.L.LogSaveSuccessfully), Languages.Translate(Languages.L.Saved), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else MessageBox.Show(Languages.Translate(Languages.L.LogSaveAbbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }        
+        }
 
         /// <summary>
         /// Returns number of threads to use from Settings. If multithreading is false, returns 1
@@ -248,7 +271,7 @@ namespace HashTester
         #region FormTheme
         public static bool UseLightMode()
         {
-            switch(Settings.VisualMode)
+            switch (Settings.VisualMode)
             {
                 case Settings.VisualModeEnum.System: return RegistryUseLightMode();
                 case Settings.VisualModeEnum.Light: return true;
@@ -314,14 +337,14 @@ namespace HashTester
                 borderColor = SystemColors.ControlLight;
             }
             form.BackColor = controlColor;
-            foreach (Control control in form.Controls) 
+            foreach (Control control in form.Controls)
             {
                 if (control is Label || control is Button || control is CheckBox || control is RadioButton)
                 {
                     control.BackColor = controlColor; //background
                     control.ForeColor = controlText; //text
                     if (control is Button button)
-                    {                        
+                    {
                         button.FlatStyle = FlatStyle.Flat;
                         button.FlatAppearance.BorderSize = 1;
                         button.FlatAppearance.BorderColor = borderColor;
@@ -416,6 +439,100 @@ namespace HashTester
                 hexBuilder.AppendFormat("{0:X2}", (int)text[i]);
             }
             return hexBuilder.ToString().ToLower();
+        }
+
+        #endregion
+
+        #region Reloads
+
+        /// <summary>
+        /// Reloads all loaded forms languages
+        /// </summary>
+        public static void ReloadAllFormsLangugages()
+        {
+            try
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    ReloadFormLanguage(form);
+                }
+                Console.WriteLine("All Forms Text Reloaded Successfully");
+            }
+            catch
+            {
+                Console.WriteLine("ERROR: All Forms Text Reloaded Failed (FormManagement -> ReloadAllFormsLanguages)"); 
+            }
+        }
+
+        /// <summary>
+        /// Reloads one Form
+        /// </summary>
+        /// <param name="form"></param>
+        public static void ReloadFormLanguage(Form form)
+        {
+            if (form == null || form.IsDisposed) return;
+
+            form.SuspendLayout();
+
+            ReloadControls(form);
+
+            form.ResumeLayout(true);
+            form.PerformLayout();
+            form.Invalidate(true);
+        }
+
+        private static void ReloadControls(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                ReloadControl(c);
+                if (c.HasChildren) ReloadControls(c);
+            }
+        }
+
+        private static void ReloadControl(Control c)
+        {
+            switch (c)
+            {
+                case Button b:
+                    b.Text = Languages.Translate(b.Text);
+                    break;
+
+                case Label l:
+                    l.Text = Languages.Translate(l.Text);
+                    break;
+
+                case CheckBox cb:
+                    cb.Text = Languages.Translate(cb.Text);
+                    break;
+
+                case RadioButton rb:
+                    rb.Text = Languages.Translate(rb.Text);
+                    break;
+
+                case GroupBox gb:
+                    gb.Text = Languages.Translate(gb.Text);
+                    break;
+
+                case ToolStrip ts:
+                    ReloadToolStrip(ts);
+                    break;
+            }
+        }
+
+        private static void ReloadToolStrip(ToolStrip ts)
+        {
+            foreach (ToolStripItem item in ts.Items)
+                ReloadToolStripItem(item);
+        }
+
+        private static void ReloadToolStripItem(ToolStripItem item)
+        {
+            item.Text = Languages.Translate(item.Text);
+
+            if (item is ToolStripDropDownItem dd)
+                foreach (ToolStripItem sub in dd.DropDownItems)
+                    ReloadToolStripItem(sub);
         }
 
         #endregion

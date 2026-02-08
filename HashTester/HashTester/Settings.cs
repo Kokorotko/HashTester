@@ -70,8 +70,15 @@ namespace HashTester
             }
             set
             {
-                if (!String.IsNullOrEmpty(value)) selectedLanguage = value;
-                else selectedLanguage = "English";
+                if (!String.IsNullOrEmpty(value) && File.Exists(Settings.DirectoryToLanguages + value + ".txt"))
+                {
+                    selectedLanguage = value;
+                }
+                else
+                {
+                    selectedLanguage = "English";
+                }
+                SaveSettings();
             }
         }
         public static VisualModeEnum VisualMode

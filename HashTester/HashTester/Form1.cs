@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HashTester.Hasher;
 using static HashTester.Settings;
+using static HashTester.StripMenu;
 
 namespace HashTester
 {
@@ -18,7 +19,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.1.1";
+        readonly string programVersion = "1.2.0";
         private bool updateAvailable = false;
 
         #region Form Stuff Handling
@@ -27,14 +28,20 @@ namespace HashTester
             if (!String.IsNullOrEmpty(textHashSimple.Text)) //check
             {
                 bool askForSaltPepper = false;
-                if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+                if (Settings.UsePepper || Settings.UseSalt)
+                {
+                    askForSaltPepper = true;
+                }
                 ProcessingHash(textHashSimple.Lines, algorithm, askForSaltPepper);
             }
         }
         public void TXTInput_Click(object sender, EventArgs e)
         {
             bool askForSaltPepper = false;
-            if (Settings.UsePepper || Settings.UseSalt) askForSaltPepper = true;
+            if (Settings.UsePepper || Settings.UseSalt)
+            {
+                askForSaltPepper = true;
+            }
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Settings.DirectoryExeBase;
             openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -45,13 +52,13 @@ namespace HashTester
             }
             else
             {
-                MessageBox.Show(Languages.Translate(Languages.L.InputCancelled), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Languages.Translate(Languages.L.InputCancelled), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
-            UpdateMenuStripSettings();
+            //UpdateMenuStripSettings();
         }
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -248,7 +255,7 @@ namespace HashTester
 
         #region Languages Set Up
 
-        private void AddLanguagesToMenu()
+        /*private void AddLanguagesToMenu()
         {
             string[] array = Languages.AllLanguages();
             if (array != null && array.Length != 0)
@@ -305,7 +312,6 @@ namespace HashTester
                 }
             }
         }
-
         private void FormUISetUpLanguages()
         {
             UpdateRemindMe();
@@ -347,6 +353,8 @@ namespace HashTester
             showLogToolStripMenuItem.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
         }
+        */
+
 
         #endregion
 
@@ -371,7 +379,7 @@ namespace HashTester
         /// Checks for updates (works with GithubAPI)
         /// </summary>
         /// <returns></returns>
-        private async Task CheckForUpdates()
+        public async Task CheckForUpdates()
         {
             if (!NetworkInterface.GetIsNetworkAvailable()) return; //Dont check for updates when there is no internet...stupid
             if (!GithubAPI.CheckGithubAPITime()) return; //Please dont spam the Github API :( - 12 hours delay
@@ -420,15 +428,13 @@ namespace HashTester
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Settings.InitialFolderChecker();
-            this.Name = Languages.Translate(Languages.L.Hashtester);
+            FormManagement.LoadForm(this);
             hashSelector.SelectedIndex = 0;
-            Settings.LoadSettings();
-            UIToolStripMenuLoad();
-            AddLanguagesToMenu();
-            FormManagement.SetUpFormTheme(this);
-            Task.Run(async () => await CheckForUpdates());
-            FormUISetUpLanguages();
+        }
+
+        private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
