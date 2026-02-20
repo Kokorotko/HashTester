@@ -40,6 +40,7 @@ namespace HashTester
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
         {
+            StripMenu.LoadStripMenu(this);
             FormManagement.SetUpFormTheme(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.PasswordTester);

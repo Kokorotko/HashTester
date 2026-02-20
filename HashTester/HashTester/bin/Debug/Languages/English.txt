@@ -294,6 +294,8 @@
 711==UI Manager
 712==Cumulative chance to find
 713==Chance to find in the next
+714==MessageBox
+715==ListBox
 10000==Clear Listbox
 10001==Save log
 10002==Clipboard

@@ -466,6 +466,7 @@ namespace HashTester
 
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
+            StripMenu.LoadStripMenu(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.CollisionFinder);
             buttonCheckCollision.Text = Languages.Translate(Languages.L.CheckCollision);

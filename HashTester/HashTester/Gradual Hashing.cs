@@ -49,6 +49,7 @@ namespace HashTester
         private void FormGradual_Load(object sender, EventArgs e)
         {
             this.Name = Languages.Translate(Languages.L.GradualHasher);
+            StripMenu.LoadStripMenu(this);
             FormManagement.SetUpFormTheme(this);
             hashSelector.SelectedIndex = 0;
 

@@ -2,10 +2,14 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
+
 namespace HashTester
 {
     public static class Settings
     {
+        const string fileName = "settings.txt";
+        const string fileNameTemp = "temp.txt";
+
         #region Private
         private static bool outputStyleIncludeOriginalString;
         private static bool outputStyleIncludeSaltPepper;
@@ -70,7 +74,7 @@ namespace HashTester
             }
             set
             {
-                if (!String.IsNullOrEmpty(value) && File.Exists(Settings.DirectoryToLanguages + value + ".txt"))
+                if (!String.IsNullOrEmpty(value) && File.Exists(Path.Combine(Settings.DirectoryToLanguages, value + ".txt")))
                 {
                     selectedLanguage = value;
                 }
@@ -237,8 +241,27 @@ namespace HashTester
             Listbox,
             TXTFile
         }
-        #endregion       
+        #endregion
 
+
+        private static void DeleteSettingsTempFile()
+        {
+            string temp = PathToSettingsFileTemp();
+            if (File.Exists(temp))
+            {
+                File.Delete(temp);
+            }
+        }
+
+        public static string PathToSettingsFile()
+        {
+            return Path.Combine(DirectoryPathToSettings, fileName);
+        }
+
+        private static string PathToSettingsFileTemp()
+        {
+            return Path.Combine(DirectoryPathToSettings, fileNameTemp);
+        }
 
         /// <summary>
         /// Puts all values to their original values and saves it
@@ -266,23 +289,13 @@ namespace HashTester
         {
             if (isFileSettingsUsed)
             {
-                Console.WriteLine("File settings.txt is used. Returning from SaveSettings."); return;
+                Console.WriteLine("File " + fileName + " is used. Returning from SaveSettings."); return;
             }
             isFileSettingsUsed = true;
             try
             {
-                //Create File
-                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp); //Delte temp if somehow still exists
-                Console.WriteLine("Temp Path: " + settingsPathToFileTemp);
-                string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-                Console.WriteLine("Settings Path: " + settingsPathToFileSettings);
-                //Create Directory if it doesnt exist
-                if (!Directory.Exists(Settings.DirectoryPathToSettings))
-                {
-                    Directory.CreateDirectory(Settings.DirectoryPathToSettings);
-                }
-                using (FileStream fileSettings = new FileStream(settingsPathToFileTemp, FileMode.CreateNew, FileAccess.Write))
+                DeleteSettingsTempFile(); //Delete in case it hasnt been deleted
+                using (FileStream fileSettings = new FileStream(PathToSettingsFileTemp(), FileMode.CreateNew, FileAccess.Write))
                 {
                     using (StreamWriter writer = new StreamWriter(fileSettings))
                     {
@@ -333,22 +346,29 @@ namespace HashTester
                         else writer.WriteLine("showLog=0");
                     }
                 }
-                File.Replace(settingsPathToFileTemp, settingsPathToFileSettings, null);
+
+                //Rename the temp file with the actuall settings file
+                if (File.Exists(PathToSettingsFile()))
+                {
+                    File.Replace(PathToSettingsFileTemp(), PathToSettingsFile(), null);
+                }
+                else
+                {
+                    File.Move(PathToSettingsFileTemp(), PathToSettingsFile());
+                }
                 isFileSettingsUsed = false;
             }
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseMoveTheProgramToAFolderWhereItHasReadwriteFileAccessOrRunTheApplicationWithAdministrativePrivileges), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                DeleteSettingsTempFile();
                 isFileSettingsUsed = false;
                 Application.Exit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBeforeContinuingToUseTheProgram) + Environment.NewLine + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                string settingsPathToFileTemp = Path.Combine(DirectoryPathToSettings, "temp.txt");
-                if (File.Exists(settingsPathToFileTemp)) File.Delete(settingsPathToFileTemp);
+                DeleteSettingsTempFile();
                 isFileSettingsUsed = false;
                 return;
             }
@@ -362,16 +382,14 @@ namespace HashTester
         {
             if (isFileSettingsUsed)
             {
-                Console.WriteLine("File settings.txt is used. Returning from LoadSettings."); return;
+                Console.WriteLine("File " + fileName + " is used. Returning from LoadSettings."); return;
             }
             try
             {
                 isFileSettingsUsed = true;
-                string settingsPathToFileSettings = Path.Combine(DirectoryPathToSettings, "settings.txt");
-                if (File.Exists(settingsPathToFileSettings))
+                if (File.Exists(PathToSettingsFile()))
                 {
-                    Console.WriteLine("settings.txt exists");
-                    using (FileStream fileSettings = new FileStream(settingsPathToFileSettings, FileMode.Open, FileAccess.Read))
+                    using (FileStream fileSettings = new FileStream(PathToSettingsFile(), FileMode.Open, FileAccess.Read))
                     {
                         using (StreamReader reader = new StreamReader(fileSettings))
                         {
@@ -575,7 +593,7 @@ namespace HashTester
             }
             catch (Exception)
             {
-                Console.WriteLine("fuck");
+                Console.WriteLine("!ERROR! An Exception has occured when loading settings.");
             }
             finally
             {
@@ -988,6 +1006,8 @@ writer.WriteLine("710==Thread Manager");
 writer.WriteLine("711==UI Manager");
 writer.WriteLine("712==Cumulative chance to find");
 writer.WriteLine("713==Chance to find in the next");
+writer.WriteLine("714==MessageBox");
+writer.WriteLine("715==ListBox");
 writer.WriteLine("10000==Clear Listbox");
 writer.WriteLine("10001==Save log");
 writer.WriteLine("10002==Clipboard");
@@ -1369,6 +1389,8 @@ writer.WriteLine("710==Správce Vláken");
 writer.WriteLine("711==Správce UI");
 writer.WriteLine("712==Souhrná šance na najití");
 writer.WriteLine("713==Šance na najití v");
+writer.WriteLine("714==MessageBox");
+writer.WriteLine("715==ListBox");
 writer.WriteLine("10000==Vymazat záznam");
 writer.WriteLine("10001==Uložit záznam");
 writer.WriteLine("10002==Schránka");

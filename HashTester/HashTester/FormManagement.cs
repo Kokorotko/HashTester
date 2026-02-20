@@ -446,25 +446,6 @@ namespace HashTester
         #region Reloads
 
         /// <summary>
-        /// Reloads all loaded forms languages
-        /// </summary>
-        public static void ReloadAllFormsLangugages()
-        {
-            try
-            {
-                foreach (Form form in Application.OpenForms)
-                {
-                    ReloadFormLanguage(form);
-                }
-                Console.WriteLine("All Forms Text Reloaded Successfully");
-            }
-            catch
-            {
-                Console.WriteLine("ERROR: All Forms Text Reloaded Failed (FormManagement -> ReloadAllFormsLanguages)"); 
-            }
-        }
-
-        /// <summary>
         /// Reloads one Form
         /// </summary>
         /// <param name="form"></param>
@@ -534,7 +515,31 @@ namespace HashTester
                 foreach (ToolStripItem sub in dd.DropDownItems)
                     ReloadToolStripItem(sub);
         }
+         public static void ReloadAllForms(bool reloadStripMenu, bool reloadTheme, bool reloadLanguage)
+        {
+            if (!reloadStripMenu && !reloadTheme && !reloadLanguage)
+            {
+                return; //nothing to do nothing to see
+            }
+            foreach (Form form in Application.OpenForms)
+            {
+                if (reloadStripMenu)
+                {
+                    StripMenu.LoadStripMenu(form); //Reload StripMenu
+                }
+                if (reloadTheme)
+                {
+                    FormManagement.SetUpFormTheme(form); //Reload Theme
+                }
+                if (reloadLanguage)
+                {
+                    FormManagement.ReloadFormLanguage(form); //Reload Language
+                }
+            }
+        }
 
         #endregion
+
+        
     }
 }

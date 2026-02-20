@@ -294,6 +294,8 @@
 711==Správce UI
 712==Souhrná šance na najití
 713==Šance na najití v
+714==MessageBox
+715==ListBox
 10000==Vymazat záznam
 10001==Uložit záznam
 10002==Schránka

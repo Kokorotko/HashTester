@@ -108,6 +108,7 @@ namespace HashTester
 
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
+            StripMenu.LoadStripMenu(this);
             this.Name = Languages.Translate(Languages.L.MultiHasher);
             FormManagement.SetUpFormTheme(this);
             #region Languages

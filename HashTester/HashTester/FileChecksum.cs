@@ -66,6 +66,7 @@ namespace HashTester
         {
             this.Name = Languages.Translate(Languages.L.FileChecksumTool);
             Settings.LoadSettings();
+            StripMenu.LoadStripMenu(this);
             FormManagement.SetUpFormTheme(this);
             #region Langugages
             buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
