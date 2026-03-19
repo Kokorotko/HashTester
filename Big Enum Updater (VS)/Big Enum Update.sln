@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37027.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Big Enum Update", "Big Enum Update\Big Enum Update.csproj", "{F800A3C0-9F88-4554-ABB0-01E2BCD03675}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F800A3C0-9F88-4554-ABB0-01E2BCD03675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F800A3C0-9F88-4554-ABB0-01E2BCD03675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F800A3C0-9F88-4554-ABB0-01E2BCD03675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F800A3C0-9F88-4554-ABB0-01E2BCD03675}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACECB8D2-1E2E-4786-8682-8F16396DA6C7}
+	EndGlobalSection
+EndGlobal

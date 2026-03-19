@@ -294,22 +294,22 @@ namespace HashTester
                     }
 
                     Console.WriteLine("Loading language: " + tempItem.Text);
+                    FormManagement.FormTagGiver(form);
                     if (!Languages.LoadDictionary(tempItem.Text))
                     {
                         Console.WriteLine("!WARNING! Could not load language: " + tempItem.Text);
                         return; //Load Dictionary failed
                     }
                     Console.WriteLine("Loading completed.");
-
                     Settings.SelectedLanguage = tempItem.Text;
                     //Console.WriteLine("Settings.SelectedLanguage: " + Settings.SelectedLanguage);
-                    FormManagement.ReloadAllForms(false, false, true);
+                    FormManagement.ReloadAllForms(true, false, true);
 
-                    foreach (ToolStripMenuItem item in languages.DropDownItems)
+                    foreach (ToolStripMenuItem item in languages.DropDownItems) //uncheck all Language items
                     {
                         item.Checked = false;
                     }
-                    tempItem.Checked = true;
+                    tempItem.Checked = true; //check the selected language item
 
                 };
 

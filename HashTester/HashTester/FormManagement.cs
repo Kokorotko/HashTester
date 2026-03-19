@@ -202,6 +202,7 @@ namespace HashTester
             }
             //Global form start
             StripMenu.LoadStripMenu(form);
+            FormTagGiver(form);
             FormManagement.SetUpFormTheme(form);
         }
 
@@ -454,8 +455,8 @@ namespace HashTester
             if (form == null || form.IsDisposed) return;
 
             form.SuspendLayout();
-
-            ReloadControls(form);
+            Console.WriteLine("Reloading form language: " + Settings.SelectedLanguage);
+            ReloadControls(form); //Reload all controls with the new language
 
             form.ResumeLayout(true);
             form.PerformLayout();
@@ -467,55 +468,51 @@ namespace HashTester
             foreach (Control c in parent.Controls)
             {
                 ReloadControl(c);
-                if (c.HasChildren) ReloadControls(c);
+                if (c.HasChildren)
+                {
+                    ReloadControls(c);
+                }
             }
         }
 
         private static void ReloadControl(Control c)
         {
-            switch (c)
+            if (c.Tag is string tag && !string.IsNullOrEmpty(tag))
             {
-                case Button b:
-                    b.Text = Languages.Translate(b.Text);
-                    break;
-
-                case Label l:
-                    l.Text = Languages.Translate(l.Text);
-                    break;
-
-                case CheckBox cb:
-                    cb.Text = Languages.Translate(cb.Text);
-                    break;
-
-                case RadioButton rb:
-                    rb.Text = Languages.Translate(rb.Text);
-                    break;
-
-                case GroupBox gb:
-                    gb.Text = Languages.Translate(gb.Text);
-                    break;
-
-                case ToolStrip ts:
-                    ReloadToolStrip(ts);
-                    break;
+                switch (c)
+                {
+                    case ToolStrip ts:
+                        ReloadToolStrip(ts);
+                        break;
+                    default:
+                        c.Text = Languages.TranslateFromTag(tag);
+                        break;
+                }
             }
         }
 
         private static void ReloadToolStrip(ToolStrip ts)
         {
             foreach (ToolStripItem item in ts.Items)
+            {
                 ReloadToolStripItem(item);
+            }
         }
 
         private static void ReloadToolStripItem(ToolStripItem item)
         {
-            item.Text = Languages.Translate(item.Text);
+            item.Text = Languages.TranslateFromTag((string)item.Tag);
 
             if (item is ToolStripDropDownItem dd)
+            {
                 foreach (ToolStripItem sub in dd.DropDownItems)
+                {
                     ReloadToolStripItem(sub);
+                }
+            }
         }
-         public static void ReloadAllForms(bool reloadStripMenu, bool reloadTheme, bool reloadLanguage)
+
+        public static void ReloadAllForms(bool reloadStripMenu, bool reloadTheme, bool reloadLanguage)
         {
             if (!reloadStripMenu && !reloadTheme && !reloadLanguage)
             {
@@ -525,7 +522,7 @@ namespace HashTester
             {
                 if (reloadStripMenu)
                 {
-                    StripMenu.LoadStripMenu(form); //Reload StripMenu
+                    StripMenu.ReloadStripMenu(form); //Reload StripMenu
                 }
                 if (reloadTheme)
                 {
@@ -540,6 +537,53 @@ namespace HashTester
 
         #endregion
 
-        
+        #region The Tag Giver
+
+        public static void FormTagGiver(Form form)
+        {
+            if (form == null) return;
+
+            GiveTagControl(form);
+        }
+
+        private static void GiveTagControl(Control control)
+        {
+            if (control == null) return;
+            if (control is ToolStrip ts)
+            {
+                GiveTagStrip(ts);
+            }
+            else
+            {
+                control.Tag = Languages.GetKeyFromText(control.Text);
+            }
+            foreach (Control child in control.Controls)
+            {
+                GiveTagControl(child);
+            }
+        }
+
+        private static void GiveTagStrip(ToolStrip ts)
+        {
+            foreach (ToolStripItem item in ts.Items)
+            {
+                GiveTagStripItem(item);
+            }
+        }
+
+        private static void GiveTagStripItem(ToolStripItem item)
+        {
+            item.Tag = Languages.GetKeyFromText(item.Text);
+
+            if (item is ToolStripDropDownItem dd)
+            {
+                foreach (ToolStripItem sub in dd.DropDownItems)
+                {
+                    GiveTagStripItem(sub);
+                }
+            }
+        }
+
+        #endregion //The Tag Giver
     }
 }
