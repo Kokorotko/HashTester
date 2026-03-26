@@ -1,5 +1,8 @@
+using Newtonsoft.Json.Bson;
 using System;
+using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -12,15 +15,16 @@ namespace HashTester
             InitializeComponent();
         }
 
+        private string pathToFile = string.Empty;
+
         private void buttonFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    TurnOffUI();
-                    GenerateCheckSum(dialog.FileName);
-                    TurnOnUI();
+                    labelFileLocation.Text = dialog.FileName;
+                    pathToFile = dialog.FileName;
                 }
             }
         }
@@ -71,7 +75,6 @@ namespace HashTester
             #region Langugages
             buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
             buttonChecksum.Text = Languages.Translate(Languages.L.ChecksumCheck);
-            groupBoxChecksum.Text = Languages.Translate(Languages.L.Checksum);
             buttonCopyMD5.Text = Languages.Translate(Languages.L.Copy) + " MD5";
             button1.Text = Languages.Translate(Languages.L.Copy) + " SHA1";
             button2.Text = Languages.Translate(Languages.L.Copy) + " SHA256";
@@ -81,7 +84,21 @@ namespace HashTester
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
+
+            //No need for user to see them yet
+            labelFileLocation.Text = string.Empty;
+            LabelHashEmpty();
             #endregion
+        }
+
+        public void LabelHashEmpty()
+        {
+            labelCRC32Output.Text = string.Empty;
+            labelRipeMDOutput.Text = string.Empty;
+            labelSHA512Output.Text = string.Empty;
+            labelSHA256Output.Text = string.Empty;
+            labelSHA1Output.Text = string.Empty;
+            labelMD5Output.Text = string.Empty;
         }
 
         #region Copy
@@ -89,7 +106,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelMD5.Text.Split(' ')[1]);
+                Clipboard.SetText(labelMD5Output.Text);
             }
             catch (Exception)
             {
@@ -101,7 +118,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelSHA1.Text.Split(' ')[1]);
+                Clipboard.SetText(labelSHA1Output.Text);
             }
             catch (Exception)
             {
@@ -113,7 +130,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelSHA256.Text.Split(' ')[1]);
+                Clipboard.SetText(labelSHA256Output.Text);
             }
             catch (Exception)
             {
@@ -125,7 +142,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelSHA512.Text.Split(' ')[1]);
+                Clipboard.SetText(labelSHA512Output.Text);
             }
             catch (Exception)
             {
@@ -137,7 +154,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelRipeMD160.Text.Split(' ')[1]);
+                Clipboard.SetText(labelRipeMDOutput.Text);
             }
             catch (Exception)
             {
@@ -149,7 +166,7 @@ namespace HashTester
         {
             try
             {
-                Clipboard.SetText(labelCRC32.Text.Split(' ')[1]);
+                Clipboard.SetText(labelCRC32Output.Text);
             }
             catch (Exception)
             {
@@ -225,7 +242,7 @@ namespace HashTester
 
         private void labelLocation_TextChanged(object sender, EventArgs e)
         {
-            if (labelLocation.Text.Length > 180) labelLocation.Text = labelLocation.Text.Substring(0, 177) + "...";
+            return;
         }
 
 
@@ -280,20 +297,25 @@ namespace HashTester
                             MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    switch ((Hasher.HashingAlgorithm)i)
-                    {
-                        case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA1: labelMD5.Text = "SHA1: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA256: labelMD5.Text = "SHA256: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA512: labelMD5.Text = "SHA512: " + hash; break;
-                        case Hasher.HashingAlgorithm.RIPEMD160: labelMD5.Text = "RipeMD-160: " + hash; break;
-                        case Hasher.HashingAlgorithm.CRC32: labelMD5.Text = "CRC32: " + hash; break;
-                        default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
-                    }
+                    UpdateLabelHash((Hasher.HashingAlgorithm)i, hash);
                 }
             }
         }
 
+
+        public void UpdateLabelHash(Hasher.HashingAlgorithm algorithm, string hash)
+        {
+            switch (algorithm)
+            {
+                case Hasher.HashingAlgorithm.MD5: labelMD5Output.Text = hash; break;
+                case Hasher.HashingAlgorithm.SHA1: labelSHA1Output.Text = hash; break;
+                case Hasher.HashingAlgorithm.SHA256: labelSHA256Output.Text = hash; break;
+                case Hasher.HashingAlgorithm.SHA512: labelSHA512Output.Text = hash; break;
+                case Hasher.HashingAlgorithm.RIPEMD160: labelRipeMDOutput.Text = hash; break;
+                case Hasher.HashingAlgorithm.CRC32: labelCRC32Output.Text = hash; break;
+                default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + (algorithm).ToString()); break;
+            }
+        }
 
         /// <summary>
         /// Generates check sum of a file from Form
@@ -301,8 +323,6 @@ namespace HashTester
         /// <param name="filename">Path to file</param>
         private void GenerateCheckSum(string filename)
         {
-            TurnOffUI();
-            labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
             //get what algorithms to file checksum
             bool[] useAlgorithm =
             {
@@ -313,6 +333,7 @@ namespace HashTester
                     checkBoxRIPEMD160.Checked,
                     checkBoxCRC32.Checked
                 };
+
             //Check to see if any are selected
             bool anySelected = false;
             foreach(bool bul in useAlgorithm)
@@ -323,29 +344,24 @@ namespace HashTester
                     break;
                 }
             }
+
             if (!anySelected)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             //Code
+            TurnOffUI();
             for (int i = 0; i < useAlgorithm.Count(); i++)
             {
                 if (useAlgorithm[i])
                 {
                     string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
-                    switch ((Hasher.HashingAlgorithm)i)
-                    {
-                        case Hasher.HashingAlgorithm.MD5: labelMD5.Text = "MD5: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA1: labelSHA1.Text = "SHA1: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA256: labelSHA256.Text = "SHA256: " + hash; break;
-                        case Hasher.HashingAlgorithm.SHA512: labelSHA512.Text = "SHA512: " + hash; break;
-                        case Hasher.HashingAlgorithm.RIPEMD160: labelRipeMD160.Text = "RipeMD-160: " + hash; break;
-                        case Hasher.HashingAlgorithm.CRC32: labelCRC32.Text = "CRC32: " + hash; break;
-                        default: Console.WriteLine("Somehow something is wrong in FileChecksum." + Environment.NewLine + ((Hasher.HashingAlgorithm)i).ToString()); break;
-                    }
+                    UpdateLabelHash((Hasher.HashingAlgorithm)i, hash);
                 }
             }
+            TurnOnUI();
         }
 
         private void buttonClearListBox_Click(object sender, EventArgs e)
@@ -369,6 +385,155 @@ namespace HashTester
             {
                 MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tableLPMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void buttonRunChecksum_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(pathToFile))
+            {
+                buttonFile_Click(sender, e); //load a file
+                if (string.IsNullOrEmpty(pathToFile))
+                {
+                    return; //if user cancels file selection, return
+                }
+            }
+            if (!File.Exists(pathToFile))
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.FileDoesntExists), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Checksum pathToFile: " + pathToFile);
+            GenerateCheckSum(pathToFile);
+        }
+
+        private void checkBoxCRC32_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxRIPEMD160_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxSHA512_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxSHA256_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxSHA1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxMD5_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCRC32_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRipeMD160_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA512_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA256_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelMD5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelLocation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxLog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelHash_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxHash_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelMD5Output_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA1Output_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA256Output_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSHA512Output_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRipeMDOutput_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCRC32Output_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCheckSum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            checkBoxCRC32.Checked = true;
+            checkBoxMD5.Checked = true;
+            checkBoxRIPEMD160.Checked = true;
+            checkBoxSHA1.Checked = true;
+            checkBoxSHA256.Checked = true;
+            checkBoxSHA512.Checked = true;
         }
     }
 }
