@@ -195,6 +195,7 @@ class Program
                         if (line.Trim() == endMarker)
                         {
                             foundTheBible = false;
+                            writer.WriteLine(endMarker);
                         }
                     }
                 }

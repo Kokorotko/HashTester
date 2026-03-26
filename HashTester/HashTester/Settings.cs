@@ -1047,7 +1047,7 @@ writer.WriteLine("\"Registered\": \"Registered\",");
 writer.WriteLine("\"Register\": \"Register\",");
 writer.WriteLine("\"Ui\": \"UI\",");
 writer.WriteLine("\"Hex\": \"Hex\",");
-writer.WriteLine("\"ProgramMadeBy\": \"Program made by\",");
+writer.WriteLine("\"ProgramMadeBy\": \"Program made by:\",");
 writer.WriteLine("\"fast4you2\": \"2fast4you\",");
 writer.WriteLine("\"ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases\": \"A new version of the application is available at https://github.com/Kokorotko/HashTester/releases\",");
 writer.WriteLine("\"AMajorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases\": \"A major update is available at https://github.com/Kokorotko/HashTester/releases\",");
@@ -1055,7 +1055,7 @@ writer.WriteLine("\"AMinorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterre
 writer.WriteLine("\"DoNotRemindMeAboutUpdatesAtStartup\": \"Do not remind me about updates at startup\",");
 writer.WriteLine("\"ANewVersionOfTheApplicationIsAvailable\": \"A new version of the application is available\",");
 writer.WriteLine("\"NewVersion\": \"New version\",");
-writer.WriteLine("\"CurrentVersion\": \"Current version\",");
+writer.WriteLine("\"CurrentVersion\": \"Current version:\",");
 writer.WriteLine("\"AnErrorHasOccuredWhileTryingToCheckForUpdates\": \"An error has occured while trying to check for updates.\",");
 writer.WriteLine("\"RemindMeAboutUpdatesAtStartup\": \"Remind me about updates at startup\",");
 writer.WriteLine("\"AnErrorHasOccuredInTheProgram\": \"An error has occured in the program.\",");
@@ -1071,7 +1071,7 @@ writer.WriteLine("\"TheInitialSetupOfTheFoldersFailedPleaseResolveTheIssueBefore
 writer.WriteLine("\"PleaseEnterValidInputIntoText01\": \"Please enter valid input into Text01.\",");
 writer.WriteLine("\"PleaseEnterValidInputIntoText02\": \"Please enter valid input into Text02.\",");
 writer.WriteLine("\"CouldNotConvertInputToString\": \"Could not convert input to string.\",");
-writer.WriteLine("\"UsedAlgorithm\": \"MISSING_11013\",");
+writer.WriteLine("\"UsedAlgorithm\": \"Used algorithm:\",");
 writer.WriteLine("\"MainForm\": \"Main form\",");
 writer.WriteLine("\"HashCollisionFinder\": \"Hash Collision Finder\",");
 writer.WriteLine("\"HashCollisionChecker\": \"Hash Collision Checker\",");
@@ -1081,6 +1081,7 @@ writer.WriteLine("\"UiUpdaterForm\": \"UI Updater Form\",");
 writer.WriteLine("\"SaltAndPepperForm\": \"Salt and Pepper Form\",");
 writer.WriteLine("\"SaltAndPepperQuestions\": \"Salt and Pepper Questions\"");
 writer.WriteLine("}");
+//**LANGUAGE-CHECKER GENERATED ENGLISH END
                     }
                 }
                 #endregion
@@ -1095,13 +1096,7 @@ writer.WriteLine("}");
                 {
                     using (StreamWriter writer = new StreamWriter(s))
                     {
-                        writer.WriteLine("//Some translations are made with DeepL translator (free version)");
-                        writer.WriteLine("//https://www.deepl.com");
-                        writer.WriteLine("");
                         //**LANGUAGE-CHECKER GENERATED CZECH START
-writer.WriteLine("//Some translations are made with DeepL translator (free version)");
-writer.WriteLine("//https://www.deepl.com");
-writer.WriteLine("");
 writer.WriteLine("{");
 writer.WriteLine("\"Hashing\": \"Hashování\",");
 writer.WriteLine("\"SaltAndPepper\": \"Sůl a pepř\",");
@@ -1435,22 +1430,22 @@ writer.WriteLine("\"Registered\": \"Zaregistrováno\",");
 writer.WriteLine("\"Register\": \"Zaregistrovat\",");
 writer.WriteLine("\"Ui\": \"UI\",");
 writer.WriteLine("\"Hex\": \"Hex\",");
-writer.WriteLine("\"ProgramMadeBy\": \"Program vytvořil\",");
+writer.WriteLine("\"ProgramMadeBy\": \"Program vytvořil:\",");
 writer.WriteLine("\"fast4you2\": \"2fast4you\",");
 writer.WriteLine("\"ANewVersionOfTheApplicationIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases\": \"Je dostupná nová verze na https://github.com/Kokorotko/ROP-HashTester/releases\",");
 writer.WriteLine("\"AMajorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases\": \"Je dostupná velká aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases\",");
 writer.WriteLine("\"AMinorUpdateIsAvailableAtHttpsgithubcomkokorotkohashtesterreleases\": \"Je dostupná malá aktualizace na https://github.com/Kokorotko/ROP-HashTester/releases\",");
 writer.WriteLine("\"DoNotRemindMeAboutUpdatesAtStartup\": \"Nepřipomínat aktualizace při spuštění\",");
-writer.WriteLine("\"ANewVersionOfTheApplicationIsAvailable\": \"Nová verze je dostupná\",");
+writer.WriteLine("\"ANewVersionOfTheApplicationIsAvailable\": \"Nová verze je dostupná.\",");
 writer.WriteLine("\"NewVersion\": \"Nová verze\",");
-writer.WriteLine("\"CurrentVersion\": \"Aktuální verze\",");
+writer.WriteLine("\"CurrentVersion\": \"Aktuální verze:\",");
 writer.WriteLine("\"AnErrorHasOccuredWhileTryingToCheckForUpdates\": \"Nastala chyba při kontrole aktualizací.\",");
 writer.WriteLine("\"RemindMeAboutUpdatesAtStartup\": \"Připomínat aktualizace při spuštění\",");
 writer.WriteLine("\"AnErrorHasOccuredInTheProgram\": \"Vyskytla se chyba v programu.\",");
 writer.WriteLine("\"PleaseEnterANonzeroIntegerUpTo2BillionInNumberOfAttemptsS\": \"Prosím zadejte do 'Počet pokusů /s' celé nenulové číslo do 2 miliard.\",");
 writer.WriteLine("\"PleaseEnterANonzeroIntegerUpTo1000OrAPasswordInNumberOfCharactersPassword\": \"Prosím zadejte do 'Počet znaků/heslo' celé nenulové číslo do 1000 nebo heslo.\",");
 writer.WriteLine("\"WantToDeleteAnUnfinishedFile\": \"Chcete odstranit nedokončený soubor?\",");
-writer.WriteLine("\"FileDeleted\": \"Soubor smazán\",");
+writer.WriteLine("\"FileDeleted\": \"Soubor smazán.\",");
 writer.WriteLine("\"WarningThereWillBeSeveralOfTheseFiles\": \"Varování, těchto souborů bude několik.\",");
 writer.WriteLine("\"CountingErrorOccurredWeRecommendChoosingSmallerNumbers\": \"Vyskytla se chyba při počítání, doporučujeme zvolit menší čísla.\",");
 writer.WriteLine("\"TheProgramFailedToRenameTheFilesWeRecommendToMoveOrDeleteTemporaryFilesBeforeGeneratingTheTableAgain\": \"Program nedokázal přejmenovat soubory, doporučujeme dočasné soubory přemístit či odstranit před dalším generováním tabulky.\",");
@@ -1469,6 +1464,7 @@ writer.WriteLine("\"UiUpdaterForm\": \"Formulář pro aktualizaci UI\",");
 writer.WriteLine("\"SaltAndPepperForm\": \"Formulář pro sůl a pepř\",");
 writer.WriteLine("\"SaltAndPepperQuestions\": \"Dotazník pro sůl a pepř\"");
 writer.WriteLine("}");
+//**LANGUAGE-CHECKER GENERATED CZECH END
                     }
                 }
                 #endregion
