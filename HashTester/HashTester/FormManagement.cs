@@ -202,6 +202,8 @@ namespace HashTester
             }
             //Global form start
             StripMenu.LoadStripMenu(form);
+            FormScaling formScaling = new FormScaling(form);
+            formScaling.FontSetup();
             FormTagGiver(form);
             FormManagement.SetUpFormTheme(form);
         }
@@ -376,6 +378,10 @@ namespace HashTester
                 {
                     menuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomColorTable(!lightMode));
                     ApplyThemeToMenu(menuStrip, controlColor, controlText);
+                }
+                else if (control is TableLayoutPanel)
+                {
+                    control.BackColor = controlColor; //background
                 }
                 else
                 {
@@ -585,5 +591,6 @@ namespace HashTester
         }
 
         #endregion //The Tag Giver
+
     }
 }

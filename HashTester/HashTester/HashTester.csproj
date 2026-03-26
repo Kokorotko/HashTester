@@ -80,6 +80,7 @@
     <Compile Include="FileChecksum.Designer.cs">
       <DependentUpon>FileChecksum.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormScaling.cs" />
     <Compile Include="GithubAPI.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="DictionaryAttack.cs" />

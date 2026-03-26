@@ -21,6 +21,7 @@ namespace HashTester
         Hasher hasher = new Hasher();
         readonly string programVersion = "1.2.0";
         private bool updateAvailable = false;
+        FormScaling scaling;
 
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
@@ -253,107 +254,21 @@ namespace HashTester
         }
         #endregion
 
-        #region Languages Set Up
-
-        /*private void AddLanguagesToMenu()
-        {
-            string[] array = Languages.AllLanguages();
-            if (array != null && array.Length != 0)
-            {
-                bool firstItem = true;
-                string dictionaryNameLoad = "";
-                string[] possibleNames = new string[4];
-                possibleNames[0] = Settings.SelectedLanguage;              // Original
-                possibleNames[1] = Settings.SelectedLanguage.ToLower();    // all lower
-                possibleNames[2] = Settings.SelectedLanguage.ToUpper();    // ALL UPPER
-                possibleNames[3] = char.ToUpper(Settings.SelectedLanguage[0]) + Settings.SelectedLanguage.Substring(1).ToLower(); // First letter Upper
-
-                foreach (string item in array)
-                {
-                    ToolStripMenuItem newItem = new ToolStripMenuItem(item);
-                    newItem.Name = item;
-                    if (possibleNames.Contains(newItem.Name)) //saved Language - priority
-                    {
-                        dictionaryNameLoad = newItem.Name;
-                        firstItem = false; 
-                    }
-                    else if (firstItem) 
-                    {
-                        dictionaryNameLoad = newItem.Name;
-                        firstItem = false;
-                    }
-                    //Set item to do something
-                    newItem.Click += (sender, e) =>
-                    {
-                        Languages.LoadDictionary(newItem.Name);
-                        foreach (ToolStripItem menuItem in languagesToolStripMenuItem.DropDownItems) //uncheck all
-                        {
-                            if (menuItem is ToolStripMenuItem toolStripMenuItem)
-                            {
-                                toolStripMenuItem.Checked = false;
-                            }
-                        }
-                        newItem.Checked = true;
-                        Settings.SelectedLanguage = newItem.Name;
-                        FormUISetUpLanguages(); //set new language
-                        Settings.SaveSettings();
-                    };
-
-                    languagesToolStripMenuItem.DropDownItems.Add(newItem);
-                }
-                Languages.LoadDictionary(dictionaryNameLoad);
-                foreach (ToolStripItem menuItem in languagesToolStripMenuItem.DropDownItems) //Put the right one to checked state
-                {
-                    if (menuItem is ToolStripMenuItem toolStripMenuItem && toolStripMenuItem.Name == dictionaryNameLoad)
-                    {
-                        toolStripMenuItem.Checked = true;
-                        break;
-                    }
-                }
-            }
-        }
+        #region Languages Setup
         private void FormUISetUpLanguages()
         {
-            UpdateRemindMe();
-            hashingToolStripMenuItem.Text = Languages.Translate(Languages.L.Hashing);
-            saltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepper);
-            multipleHashingToolStripMenuItem.Text = Languages.Translate(Languages.L.MultipleHashing);
-            findingCollisionsToolStripMenuItem.Text = Languages.Translate(Languages.L.FindingCollisions);
-            passwordCrackerToolStripMenuItem.Text = Languages.Translate(Languages.L.PasswordCracker);
-            includeSaltToolStripMenuItem.Text = Languages.Translate(Languages.L.UseSalt);
-            includePepperToolStripMenuItem.Text = Languages.Translate(Languages.L.UsePepper);
-            optionsToolStripMenuItem.Text = Languages.Translate(Languages.L.Options);
-            settingsToolStripMenuItem.Text = Languages.Translate(Languages.L.Settings);
-            outputTypeStripMenuItem.Text = Languages.Translate(Languages.L.OutputType);
-            outputStyleToolStripMenuItem.Text = Languages.Translate(Languages.L.OutputStyle);
-            visualModeToolStripMenuItem.Text = Languages.Translate(Languages.L.Visualmode);
-            UIUpdateFrequencyToolStripMenuItem.Text = Languages.Translate(Languages.L.UiUpdateFrequency);
-            threadsAndCPUSettingsToolStripMenuItem.Text = Languages.Translate(Languages.L.ThreadsAndCpuSettings);
-            resetAllSettingsToolStripMenuItem.Text = Languages.Translate(Languages.L.ResetAllSettings);
-            systemToolStripMenuItem.Text = Languages.Translate(Languages.L.SystemTheme);
-            lightToolStripMenuItem.Text = Languages.Translate(Languages.L.LightTheme);
-            darkToolStripMenuItem.Text = Languages.Translate(Languages.L.DarkTheme);
-            languagesToolStripMenuItem.Text = Languages.Translate(Languages.L.Languages);
-            txtFileToolStripMenuItem.Text = Languages.Translate(Languages.L.FileTxt);
-            includeAllToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeAllOptions);
-            includeHashingAlgorithmToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeHashingAlgorithm);
-            includeNumberOfHashToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeNumbering);
-            includeOriginalStringToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeOriginalText);
-            includeSaltAndPepperToolStripMenuItem.Text = Languages.Translate(Languages.L.IncludeSaltAndPepper);
-            gradualHashingToolStripMenuItem1.Text = Languages.Translate(Languages.L.GradualHashing);
-            fileChecksumToolStripMenuItem.Text = Languages.Translate(Languages.L.FileChecksum);
-            saltPepperTesterToolStripMenuItem.Text = Languages.Translate(Languages.L.SaltAndPepperTester);
-            labelCredits.Text = Languages.Translate(Languages.L.ProgramMadeBy) + " Kamil Franek" + Environment.NewLine + Languages.Translate(Languages.L.CurrentVersion) + ": " + programVersion;
-            if (updateAvailable) labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
+            labelCreditsMadeBy.Text = Languages.Translate(Languages.L.ProgramMadeBy);
+            labelCreator.Text = "Kamil Franek";
+            labelCurrentVersion.Text = Languages.Translate(Languages.L.CurrentVersion);
+            labelVersion.Text = programVersion;
+            if (updateAvailable) labelCreditsMadeBy.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
             //Form
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);
             buttonFileInput.Text = Languages.Translate(Languages.L.HashAFile);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
-            showLogToolStripMenuItem.Text = Languages.Translate(Languages.L.ShowLogInListbox);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
         }
-        */
 
 
         #endregion
@@ -413,9 +328,9 @@ namespace HashTester
                 if (updateAvailable)
                 {
                     Console.WriteLine("Update Available");
-                    labelCredits.Invoke((Action)(() =>
+                    labelCreditsMadeBy.Invoke((Action)(() =>
                     {
-                        labelCredits.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
+                        labelCreditsMadeBy.Text += Environment.NewLine + Languages.Translate(Languages.L.ANewVersionOfTheApplicationIsAvailable);
                     }));
                 }
             }
@@ -429,10 +344,52 @@ namespace HashTester
         private void Form1_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
+            FormUISetUpLanguages();
+            scaling = new FormScaling(this); //Get scaling ready
             hashSelector.SelectedIndex = 0;
         }
 
         private void buttonSaveLog_Click(object sender, EventArgs e)
+        {
+            FormManagement.SaveLog(listBoxLog, this);
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            scaling.FontScaling();
+        }
+
+        #region ReScaling
+
+        public void Scale_ButtonHashSimple(int positionX, int positionY, int sizeX, int sizeY)
+        {
+            buttonHashSimpleText.Location = new System.Drawing.Point(positionX, positionY);
+            buttonHashSimpleText.Size = new System.Drawing.Size(sizeX, sizeY);
+        }
+
+        #endregion //End Rescaling
+
+        private void labelCurrentVersion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCreator_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
