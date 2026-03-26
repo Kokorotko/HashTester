@@ -243,7 +243,6 @@ namespace HashTester
         /// <returns></returns>
         public static int NumberOfThreadsToUse()
         {
-            if (UseMultiThread()) return 1;
             int percentage = Settings.ThreadsUsagePercentage;
             if (percentage == 0) return 1; //Single Thread
             return (int)Math.Ceiling(percentage / 100.0 * Environment.ProcessorCount);
@@ -255,10 +254,9 @@ namespace HashTester
         /// <returns></returns>
         public static bool UseMultiThread()
         {
-            int percentage = Settings.ThreadsUsagePercentage;
             int threadsTemp = FormManagement.NumberOfThreadsToUse(); //There is no need to use multiThread if youre gonna just use 1 thread (smart I know)
-            Console.WriteLine("FormManagement.NumberOfThreadsToUse(): " + FormManagement.NumberOfThreadsToUse());
-            if (percentage == 0 || threadsTemp == 1)
+            //Console.WriteLine("FormManagement.NumberOfThreadsToUse(): " + FormManagement.NumberOfThreadsToUse());
+            if (threadsTemp == 1)
             {
                 return false;
             }

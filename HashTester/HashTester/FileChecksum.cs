@@ -1,8 +1,11 @@
 using Newtonsoft.Json.Bson;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Policy;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -31,19 +34,32 @@ namespace HashTester
 
 
         /// <summary>
-        /// Turns all of UI components on
+        /// Turns all of UI components off
         /// </summary>
-        private void TurnOffUI()
+        private void TurnOffUI(Control parent)
         {
-            foreach(Control control in this.Controls)
+            foreach (Control control in parent.Controls)
             {
-                if (control is Button || control is TextBox) control.Enabled = false;
-                else if (control is GroupBox box)
+                if (control is Button || control is TextBox || control is CheckBox)
                 {
-                    foreach (Control item in box.Controls)
+                    if (control.Name == buttonCopyCRC32.Name ||
+                        control.Name == buttonCopySHA1.Name ||
+                        control.Name == buttonCopySHA256.Name ||
+                        control.Name == buttonCopySHA512.Name ||
+                        control.Name == buttonCopyRipeMD160.Name ||
+                        control.Name == buttonCopyMD5.Name ||
+                        control.Name == buttonCancel.Name)
                     {
-                        if (item is Button || item is TextBox) item.Enabled = false;
+                        continue;
                     }
+
+                    control.Enabled = false;
+                }
+
+                // recurse into children
+                if (control.HasChildren)
+                {
+                    TurnOffUI(control);
                 }
             }
         }
@@ -51,18 +67,17 @@ namespace HashTester
         /// <summary>
         /// Turns all of UI components on
         /// </summary>
-        private void TurnOnUI()
+        private void TurnOnUI(Control parent)
         {
-            foreach (Control control in this.Controls)
+            foreach (Control control in parent.Controls)
             {
-                if (control is GroupBox box)
+                control.Enabled = true;
+
+                // recurse into children
+                if (control.HasChildren)
                 {
-                    foreach (Control item in box.Controls)
-                    {
-                        item.Enabled = true;
-                    }
+                    TurnOnUI(control);
                 }
-                else control.Enabled = true;
             }
         }
 
@@ -76,11 +91,11 @@ namespace HashTester
             buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
             buttonChecksum.Text = Languages.Translate(Languages.L.ChecksumCheck);
             buttonCopyMD5.Text = Languages.Translate(Languages.L.Copy) + " MD5";
-            button1.Text = Languages.Translate(Languages.L.Copy) + " SHA1";
-            button2.Text = Languages.Translate(Languages.L.Copy) + " SHA256";
-            button3.Text = Languages.Translate(Languages.L.Copy) + " SHA512";
-            button4.Text = Languages.Translate(Languages.L.Copy) + " RipeMD-160";
-            button5.Text = Languages.Translate(Languages.L.Copy) + " CRC32";
+            buttonCopySHA1.Text = Languages.Translate(Languages.L.Copy) + " SHA1";
+            buttonCopySHA256.Text = Languages.Translate(Languages.L.Copy) + " SHA256";
+            buttonCopySHA512.Text = Languages.Translate(Languages.L.Copy) + " SHA512";
+            buttonCopyRipeMD160.Text = Languages.Translate(Languages.L.Copy) + " RipeMD-160";
+            buttonCopyCRC32.Text = Languages.Translate(Languages.L.Copy) + " CRC32";
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
@@ -185,7 +200,6 @@ namespace HashTester
                 case 32:
                     {
                         fileAlgorithm = Hasher.HashingAlgorithm.MD5;
-                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": MD5");
                         break;
                     }
                 case 40:
@@ -194,37 +208,31 @@ namespace HashTester
                         if (MessageBox.Show(Languages.Translate(Languages.L.DoYouUseSha1YesOrRipemd160No), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             fileAlgorithm = Hasher.HashingAlgorithm.SHA1;
-                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA1");
                         }
                         else
                         {
                             fileAlgorithm = Hasher.HashingAlgorithm.RIPEMD160;
-                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": RipeMD-160");
                         }
                         break;
                     }
                 case 64:
                     {
                         fileAlgorithm = Hasher.HashingAlgorithm.SHA256;
-                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA256");
                         break;
                     }
                 case 128:
                     {
                         fileAlgorithm = Hasher.HashingAlgorithm.SHA512;
-                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": SHA512");
                         break;
                     }
                 case 8:
                     {
                         fileAlgorithm = Hasher.HashingAlgorithm.CRC32;
-                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.UsedAlgorithm) + ": CRC32");
                         break;
                     }
                 default:
                     {
                         MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false;
-                        if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.PleaseInputAHashForChecksum));
                         break;
                     }
             }
@@ -234,9 +242,8 @@ namespace HashTester
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     GenerateCheckSum(dialog.FileName, checksum, fileAlgorithm);
-
                 }
-                TurnOnUI();
+                TurnOnUI(this);
             }
         }
 
@@ -254,7 +261,7 @@ namespace HashTester
         /// <param name="hashAlgorithm"></param>
         private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm hashAlgorithm)
         {
-            TurnOffUI();
+            TurnOffUI(this);
             labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
             //get what algorithms to file checksum
             bool[] useAlgorithm =
@@ -288,12 +295,10 @@ namespace HashTester
                     {
                         if (checksum == hash)
                         {
-                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame));
                             MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Correct), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            if (Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame));
                             MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -321,7 +326,7 @@ namespace HashTester
         /// Generates check sum of a file from Form
         /// </summary>
         /// <param name="filename">Path to file</param>
-        private void GenerateCheckSum(string filename)
+        private async void GenerateCheckSum(string filename)
         {
             //get what algorithms to file checksum
             bool[] useAlgorithm =
@@ -335,61 +340,85 @@ namespace HashTester
                 };
 
             //Check to see if any are selected
-            bool anySelected = false;
-            foreach(bool bul in useAlgorithm)
+            uint numberOfSelected = 0;
+            foreach (bool bul in useAlgorithm)
             {
                 if (bul)
                 {
-                    anySelected = true;
-                    break;
+                    numberOfSelected++;
                 }
             }
 
-            if (!anySelected)
+            if (numberOfSelected == 0)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            progressBar.Value = 0; //reset bar
+            TurnOffUI(this);
 
-            //Code
-            TurnOffUI();
-            for (int i = 0; i < useAlgorithm.Count(); i++)
+            int threadsToUse = 1;
+            if (checkBoxMultiThread.Checked) //How many threads can be used at once
             {
-                if (useAlgorithm[i])
+                threadsToUse = FormManagement.NumberOfThreadsToUse();
+                Console.WriteLine("Number of threads to use: " + threadsToUse);
+            }
+            var tasks = new List<Task>();
+
+            //Each algorithm can have its own thread
+            if (threadsToUse > numberOfSelected)
+            {
+                for (int i = 0; i < useAlgorithm.Count(); i++)
                 {
-                    string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
-                    UpdateLabelHash((Hasher.HashingAlgorithm)i, hash);
+                    if (useAlgorithm[i])
+                    {
+                        int index = i;
+                        tasks.Add(Task.Run(() =>
+                        {
+                            string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index);
+                            BeginInvoke(new Action(() => //update UI
+                            {
+                                UpdateLabelHash((Hasher.HashingAlgorithm)index, hash);
+                                progressBar.Value += (int)(100 / numberOfSelected);
+                            }));
+                        }));                                                       
+                    }
                 }
+                await Task.WhenAll(tasks.ToArray()); //wait for all threads to finish
+                progressBar.Value = 100;
             }
-            TurnOnUI();
-        }
-
-        private void buttonClearListBox_Click(object sender, EventArgs e)
-        {
-            listBoxLog.Items.Clear();
-        }
-
-        private void buttonSaveLog_Click(object sender, EventArgs e)
-        {
-            FormManagement.SaveLog(listBoxLog, this);
-        }
-
-        private void buttonClipboard_Click(object sender, EventArgs e)
-        {
-            try
+            else //Some threads will have to calculate multiple algorithms (Also works for single thread)
             {
-                if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheListBeforeCopying), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                uint numberOfThreadsUsed = 0;
+                for (int i = 0; i < useAlgorithm.Count(); i++)
+                {
+                    if (useAlgorithm[i])
+                    {
+                        numberOfThreadsUsed++;
+                        int index = i;
+                        if (numberOfThreadsUsed > threadsToUse)
+                        {
+                            await Task.WhenAny(tasks.ToArray()); //wait for any thread to finish before starting a new one
+                            numberOfThreadsUsed--;
+                        }
+                        tasks.Add(Task.Run(() =>
+                        {
+                            Console.WriteLine("Thread " + index + " working");
+                            string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index);
+                            Console.WriteLine("Thread " + index + " stopped working");
+                            BeginInvoke(new Action(() => //update UI
+                            {
+                                UpdateLabelHash((Hasher.HashingAlgorithm)index, hash);
+                                progressBar.Value += (int)(100 / numberOfSelected);
+                            }));
+                        }));
+                    }
+                }
+                await Task.WhenAll(tasks.ToArray()); //wait for all threads to finish
+                progressBar.Value = 100;
             }
-            catch (Exception)
-            {
-                MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tableLPMain_Paint(object sender, PaintEventArgs e)
-        {
-
+            progressBar.Value = 0;
+            TurnOnUI(this);
         }
 
         private void buttonRunChecksum_Click(object sender, EventArgs e)
@@ -408,6 +437,7 @@ namespace HashTester
                 return;
             }
             Console.WriteLine("Checksum pathToFile: " + pathToFile);
+            LabelHashEmpty();
             GenerateCheckSum(pathToFile);
         }
 
@@ -534,6 +564,11 @@ namespace HashTester
             checkBoxSHA1.Checked = true;
             checkBoxSHA256.Checked = true;
             checkBoxSHA512.Checked = true;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

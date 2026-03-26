@@ -1,9 +1,13 @@
+using Force.Crc32;
 using System;
-using System.Text;
-using System.Security.Cryptography;
-using System.IO;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Hashing;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HashTester
 {
@@ -560,10 +564,13 @@ namespace HashTester
         #endregion
 
         #region CRC32
-        uint[] crc32Table = null;
         string HashCRC32(string text)
         {
-            if (crc32Table == null) // Check if the table is initialized
+            byte[] data = Encoding.UTF8.GetBytes(text);
+            uint crc = Crc32Algorithm.Compute(data);
+            return crc.ToString("x8");
+            /*OLD IMPLEMENTATION
+             if (crc32Table == null) // Check if the table is initialized
             {
                 CRC32Table();
             }
@@ -579,73 +586,26 @@ namespace HashTester
 
             crcValue = ~crcValue; //~ ==> bit NOT
             return crcValue.ToString("x8"); //converts to a hexadecimal number using lowercase letters
+            */
         }
 
-        string HashCRC32(byte[] bytes)
+        string HashCRC32(byte[] data)
         {
-            if (crc32Table == null) CRC32Table();
-            //Main algorithm
-            uint crcValue = 0xffffffff;
-
-            foreach (byte b in bytes)
-            {
-                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number
-                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> bit shift - each byte of input data goes through CRC table
-            }
-
-            crcValue = ~crcValue; //~ ==> bit NOT
-            return crcValue.ToString("x8"); //converts to a hexadecimal number using lowercase letters
+            uint crc = Crc32Algorithm.Compute(data);
+            return crc.ToString("x8"); //converts to a hexadecimal number using lowercase letters
         }
 
         byte[] HashCRC32Bytes(string text)
         {
-            if (crc32Table == null) CRC32Table();
-            //Main algorithm
-            uint crcValue = 0xffffffff;
-            byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(text);
-
-            foreach (byte b in inputBytes)
-            {
-                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number
-                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> bit shift - each byte of input data goes through CRC table
-            }
-
-            crcValue = ~crcValue; //~ ==> bit NOT
-            return BitConverter.GetBytes(crcValue);
+            byte[] data = Encoding.UTF8.GetBytes(text);
+            uint crc = Crc32Algorithm.Compute(data);
+            return BitConverter.GetBytes(crc);
         }
 
-        byte[] HashCRC32Bytes(byte[] bytes)
+        byte[] HashCRC32Bytes(byte[] data)
         {
-            if (crc32Table == null) CRC32Table();
-            //Main algorithm
-            uint crcValue = 0xffffffff;
-
-            foreach (byte b in bytes)
-            {
-                byte tableIndex = (byte)((crcValue & 0xff) ^ b); //0xff ==> Hexadecimal number
-                crcValue = (crcValue >> 8) ^ crc32Table[tableIndex]; //>> ==> bit shift - each byte of input data goes through CRC table
-            }
-
-            crcValue = ~crcValue; //~ ==> bit NOT
-            return  BitConverter.GetBytes(crcValue);
-        }
-
-        void CRC32Table()
-        {
-            crc32Table = new uint[256]; //Size (CRC32 == 32 bytes/256 bits)
-            const uint polynomial = 0xedb88320; //Polynom G (G as Generated)
-            for (uint i = 0; i < 256; i++) //CRC table precalculation
-            {
-                uint crc = i;
-                for (uint j = 8; j > 0; j--)
-                {
-                    if ((crc & 1) == 1) crc = (crc >> 1) ^ polynomial;
-                    // & ==> bit AND 
-                    //^ ==> bit XOR
-                    else crc >>= 1;
-                }
-                crc32Table[i] = crc;
-            }
+            uint crc = Crc32Algorithm.Compute(data);
+            return BitConverter.GetBytes(crc);
         }
 
         #endregion
@@ -747,7 +707,8 @@ namespace HashTester
                 return "error";
             }
         }
-        #endregion
+
+        #endregion //end Checksum
 
         #region SaltAndPepperLogic
 
