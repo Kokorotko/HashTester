@@ -76,6 +76,7 @@
     <Compile Include="CheckCollisionForm.Designer.cs">
       <DependentUpon>CheckCollisionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Checksum.cs" />
     <Compile Include="CustomColorTable.cs" />
     <Compile Include="FileChecksum.cs">
       <SubType>Form</SubType>

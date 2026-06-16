@@ -61,7 +61,7 @@ namespace HashTester
             this.buttonRunChecksum = new System.Windows.Forms.Button();
             this.labelCheckSum = new System.Windows.Forms.Label();
             this.labelFileLocation = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonCheckAll = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxMultiThread = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
@@ -80,7 +80,6 @@ namespace HashTester
             this.textBoxHash.Name = "textBoxHash";
             this.textBoxHash.Size = new System.Drawing.Size(1094, 30);
             this.textBoxHash.TabIndex = 0;
-            this.textBoxHash.TextChanged += new System.EventHandler(this.textBoxHash_TextChanged);
             // 
             // buttonChecksum
             // 
@@ -120,7 +119,6 @@ namespace HashTester
             this.checkBoxCRC32.Size = new System.Drawing.Size(25, 28);
             this.checkBoxCRC32.TabIndex = 18;
             this.checkBoxCRC32.UseVisualStyleBackColor = true;
-            this.checkBoxCRC32.CheckedChanged += new System.EventHandler(this.checkBoxCRC32_CheckedChanged);
             // 
             // checkBoxRIPEMD160
             // 
@@ -133,7 +131,6 @@ namespace HashTester
             this.checkBoxRIPEMD160.Size = new System.Drawing.Size(25, 28);
             this.checkBoxRIPEMD160.TabIndex = 17;
             this.checkBoxRIPEMD160.UseVisualStyleBackColor = true;
-            this.checkBoxRIPEMD160.CheckedChanged += new System.EventHandler(this.checkBoxRIPEMD160_CheckedChanged);
             // 
             // checkBoxSHA512
             // 
@@ -146,7 +143,6 @@ namespace HashTester
             this.checkBoxSHA512.Size = new System.Drawing.Size(25, 28);
             this.checkBoxSHA512.TabIndex = 16;
             this.checkBoxSHA512.UseVisualStyleBackColor = true;
-            this.checkBoxSHA512.CheckedChanged += new System.EventHandler(this.checkBoxSHA512_CheckedChanged);
             // 
             // checkBoxSHA256
             // 
@@ -159,7 +155,6 @@ namespace HashTester
             this.checkBoxSHA256.Size = new System.Drawing.Size(25, 28);
             this.checkBoxSHA256.TabIndex = 15;
             this.checkBoxSHA256.UseVisualStyleBackColor = true;
-            this.checkBoxSHA256.CheckedChanged += new System.EventHandler(this.checkBoxSHA256_CheckedChanged);
             // 
             // checkBoxSHA1
             // 
@@ -172,7 +167,6 @@ namespace HashTester
             this.checkBoxSHA1.Size = new System.Drawing.Size(25, 28);
             this.checkBoxSHA1.TabIndex = 14;
             this.checkBoxSHA1.UseVisualStyleBackColor = true;
-            this.checkBoxSHA1.CheckedChanged += new System.EventHandler(this.checkBoxSHA1_CheckedChanged);
             // 
             // checkBoxMD5
             // 
@@ -185,7 +179,6 @@ namespace HashTester
             this.checkBoxMD5.Size = new System.Drawing.Size(25, 28);
             this.checkBoxMD5.TabIndex = 13;
             this.checkBoxMD5.UseVisualStyleBackColor = true;
-            this.checkBoxMD5.CheckedChanged += new System.EventHandler(this.checkBoxMD5_CheckedChanged);
             // 
             // buttonCopyCRC32
             // 
@@ -278,7 +271,6 @@ namespace HashTester
             this.labelCRC32.TabIndex = 5;
             this.labelCRC32.Text = "CRC32: ";
             this.labelCRC32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelCRC32.Click += new System.EventHandler(this.labelCRC32_Click);
             // 
             // labelRipeMD160
             // 
@@ -293,7 +285,6 @@ namespace HashTester
             this.labelRipeMD160.TabIndex = 4;
             this.labelRipeMD160.Text = "RipeMD-160: ";
             this.labelRipeMD160.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelRipeMD160.Click += new System.EventHandler(this.labelRipeMD160_Click);
             // 
             // labelSHA512
             // 
@@ -308,7 +299,6 @@ namespace HashTester
             this.labelSHA512.TabIndex = 3;
             this.labelSHA512.Text = "SHA512: ";
             this.labelSHA512.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA512.Click += new System.EventHandler(this.labelSHA512_Click);
             // 
             // labelSHA256
             // 
@@ -323,7 +313,6 @@ namespace HashTester
             this.labelSHA256.TabIndex = 2;
             this.labelSHA256.Text = "SHA256: ";
             this.labelSHA256.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA256.Click += new System.EventHandler(this.labelSHA256_Click);
             // 
             // labelSHA1
             // 
@@ -338,7 +327,6 @@ namespace HashTester
             this.labelSHA1.TabIndex = 1;
             this.labelSHA1.Text = "SHA1: ";
             this.labelSHA1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA1.Click += new System.EventHandler(this.labelSHA1_Click);
             // 
             // labelMD5
             // 
@@ -353,7 +341,6 @@ namespace HashTester
             this.labelMD5.TabIndex = 0;
             this.labelMD5.Text = "MD5: ";
             this.labelMD5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelMD5.Click += new System.EventHandler(this.labelMD5_Click);
             // 
             // labelLocation
             // 
@@ -369,8 +356,6 @@ namespace HashTester
             this.labelLocation.TabIndex = 4;
             this.labelLocation.Text = "File location: \r\n\r\n";
             this.labelLocation.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.labelLocation.TextChanged += new System.EventHandler(this.labelLocation_TextChanged);
-            this.labelLocation.Click += new System.EventHandler(this.labelLocation_Click);
             // 
             // tableLPMain
             // 
@@ -412,7 +397,7 @@ namespace HashTester
             this.tableLPMain.Controls.Add(this.labelLocation, 0, 0);
             this.tableLPMain.Controls.Add(this.buttonFile, 0, 1);
             this.tableLPMain.Controls.Add(this.labelFileLocation, 2, 0);
-            this.tableLPMain.Controls.Add(this.button6, 0, 12);
+            this.tableLPMain.Controls.Add(this.buttonCheckAll, 0, 12);
             this.tableLPMain.Controls.Add(this.label1, 1, 13);
             this.tableLPMain.Controls.Add(this.checkBoxMultiThread, 0, 13);
             this.tableLPMain.Controls.Add(this.buttonCancel, 3, 12);
@@ -451,7 +436,6 @@ namespace HashTester
             this.labelMD5Output.TabIndex = 23;
             this.labelMD5Output.Text = "label1";
             this.labelMD5Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelMD5Output.Click += new System.EventHandler(this.labelMD5Output_Click);
             // 
             // labelSHA1Output
             // 
@@ -464,7 +448,6 @@ namespace HashTester
             this.labelSHA1Output.TabIndex = 24;
             this.labelSHA1Output.Text = "label1";
             this.labelSHA1Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA1Output.Click += new System.EventHandler(this.labelSHA1Output_Click);
             // 
             // labelSHA256Output
             // 
@@ -477,7 +460,6 @@ namespace HashTester
             this.labelSHA256Output.TabIndex = 25;
             this.labelSHA256Output.Text = "label1";
             this.labelSHA256Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA256Output.Click += new System.EventHandler(this.labelSHA256Output_Click);
             // 
             // labelSHA512Output
             // 
@@ -490,7 +472,6 @@ namespace HashTester
             this.labelSHA512Output.TabIndex = 26;
             this.labelSHA512Output.Text = "label1";
             this.labelSHA512Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelSHA512Output.Click += new System.EventHandler(this.labelSHA512Output_Click);
             // 
             // labelRipeMDOutput
             // 
@@ -503,7 +484,6 @@ namespace HashTester
             this.labelRipeMDOutput.TabIndex = 27;
             this.labelRipeMDOutput.Text = "label1";
             this.labelRipeMDOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelRipeMDOutput.Click += new System.EventHandler(this.labelRipeMDOutput_Click);
             // 
             // labelCRC32Output
             // 
@@ -516,7 +496,6 @@ namespace HashTester
             this.labelCRC32Output.TabIndex = 28;
             this.labelCRC32Output.Text = "label1";
             this.labelCRC32Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelCRC32Output.Click += new System.EventHandler(this.labelCRC32Output_Click);
             // 
             // labelHash
             // 
@@ -530,7 +509,6 @@ namespace HashTester
             this.labelHash.TabIndex = 1;
             this.labelHash.Text = "Hash input:";
             this.labelHash.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.labelHash.Click += new System.EventHandler(this.labelHash_Click);
             // 
             // buttonRunChecksum
             // 
@@ -556,7 +534,6 @@ namespace HashTester
             this.labelCheckSum.Size = new System.Drawing.Size(1096, 18);
             this.labelCheckSum.TabIndex = 29;
             this.labelCheckSum.Text = "Checksum:";
-            this.labelCheckSum.Click += new System.EventHandler(this.labelCheckSum_Click);
             // 
             // labelFileLocation
             // 
@@ -571,17 +548,17 @@ namespace HashTester
             this.labelFileLocation.Text = "Label";
             this.labelFileLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button6
+            // buttonCheckAll
             // 
-            this.tableLPMain.SetColumnSpan(this.button6, 2);
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(3, 468);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(157, 39);
-            this.button6.TabIndex = 31;
-            this.button6.Text = "Check All";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.tableLPMain.SetColumnSpan(this.buttonCheckAll, 2);
+            this.buttonCheckAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCheckAll.Location = new System.Drawing.Point(3, 468);
+            this.buttonCheckAll.Name = "buttonCheckAll";
+            this.buttonCheckAll.Size = new System.Drawing.Size(157, 39);
+            this.buttonCheckAll.TabIndex = 31;
+            this.buttonCheckAll.Text = "Check All";
+            this.buttonCheckAll.UseVisualStyleBackColor = true;
+            this.buttonCheckAll.Click += new System.EventHandler(this.button6_Click);
             // 
             // label1
             // 
@@ -675,7 +652,7 @@ namespace HashTester
         private System.Windows.Forms.Label labelCRC32Output;
         private System.Windows.Forms.Label labelCheckSum;
         private System.Windows.Forms.Label labelFileLocation;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonCheckAll;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBoxMultiThread;
         private System.Windows.Forms.Button buttonCancel;

@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Hashing;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
@@ -13,7 +14,7 @@ namespace HashTester
 {
     public class Hasher
     {
-        public Hasher() { }
+        private const uint sizeOfBufferOfBlocks = 8192; //8KB buffer for reading file in blocks for checksum calculation, can be adjusted for performance
         public enum HashingAlgorithm
         {
             MD5,
@@ -52,7 +53,7 @@ namespace HashTester
         /// <param name="algorithm"></param>
         /// <returns></returns>
         public string[] GradualHashingSaltPepper(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
-        {            
+        {
             string[] gradualHashing = new string[text.Length];
             string textCurrentlyHashing = "";
             //SaltPepper Logic
@@ -360,7 +361,7 @@ namespace HashTester
                 case HashingAlgorithm.CRC32: return HashCRC32Bytes(bytes);
                 default: return null;
             }
-        }      
+        }
 
         /// <summary>
         /// Combines two arrays into one
@@ -611,10 +612,10 @@ namespace HashTester
         #endregion
 
         public string GenerateSalt(int length)
-        {            
+        {
             byte[] salt = new byte[length];  //1 byte is converted to 2 hexadecimal char
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
-            return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0,length); //Returns only half of the string
+            return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
         }
         public string GeneratePepper(int length)
         {
@@ -701,7 +702,138 @@ namespace HashTester
                     default: return "error";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                Console.WriteLine("File Checksum inside hasher.cs has threw error. " + ex.Message);
+                return "error";
+            }
+        }
+
+        public static string FileChecksum(string filename, HashingAlgorithm algorithm, CancellationToken token)
+        {
+            try
+            {
+                switch (algorithm)
+                {
+                    case HashingAlgorithm.MD5:
+                        {
+                            using (MD5 md5 = MD5.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                //Using TransformBlock instead of ComputeHash to allow cancellation, since we can check for cancel request between blocks
+                                byte[] buffer = new byte[sizeOfBufferOfBlocks];
+                                int bytesRead;
+
+                                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) //read file in blocks
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                    md5.TransformBlock(buffer, 0, bytesRead, null, 0);
+                                }
+                                md5.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+
+                                byte[] hash = md5.Hash;
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    case HashingAlgorithm.SHA1:
+                        {
+                            using (SHA1 sha1 = SHA1.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                //Using TransformBlock instead of ComputeHash to allow cancellation, since we can check for cancel request between blocks
+                                byte[] buffer = new byte[sizeOfBufferOfBlocks];
+                                int bytesRead;
+
+                                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) //read file in blocks
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                    sha1.TransformBlock(buffer, 0, bytesRead, null, 0);
+                                }
+                                sha1.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+
+                                byte[] hash = sha1.Hash;
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    case HashingAlgorithm.SHA256:
+                        {
+                            using (SHA256 sha256 = SHA256.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                //Using TransformBlock instead of ComputeHash to allow cancellation, since we can check for cancel request between blocks
+                                byte[] buffer = new byte[sizeOfBufferOfBlocks];
+                                int bytesRead;
+
+                                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) //read file in blocks
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                    sha256.TransformBlock(buffer, 0, bytesRead, null, 0);
+                                }
+                                sha256.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+
+                                byte[] hash = sha256.Hash;
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    case HashingAlgorithm.SHA512:
+                        {
+                            using (SHA512 sha512 = SHA512.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                //Using TransformBlock instead of ComputeHash to allow cancellation, since we can check for cancel request between blocks
+                                byte[] buffer = new byte[sizeOfBufferOfBlocks];
+                                int bytesRead;
+
+                                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) //read file in blocks
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                    sha512.TransformBlock(buffer, 0, bytesRead, null, 0);
+                                }
+                                sha512.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+
+                                byte[] hash = sha512.Hash;
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    case HashingAlgorithm.RIPEMD160:
+                        {
+                            using (RIPEMD160 ripeMD160 = RIPEMD160.Create())
+                            using (FileStream stream = File.OpenRead(filename))
+                            {
+                                //Using TransformBlock instead of ComputeHash to allow cancellation, since we can check for cancel request between blocks
+                                byte[] buffer = new byte[sizeOfBufferOfBlocks];
+                                int bytesRead;
+
+                                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) //read file in blocks
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                    ripeMD160.TransformBlock(buffer, 0, bytesRead, null, 0);
+                                }
+                                ripeMD160.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+
+                                byte[] hash = ripeMD160.Hash;
+                                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+                            }
+                        }
+                    case HashingAlgorithm.CRC32:
+                        using (FileStream stream = File.OpenRead(filename))
+                        {
+                            uint crc = 0xFFFFFFFF;
+                            int currentByte;
+                            while ((currentByte = stream.ReadByte()) != -1)
+                            {
+                                token.ThrowIfCancellationRequested();
+                                crc ^= (uint)currentByte;
+                                for (int i = 0; i < 8; i++)
+                                    crc = (crc >> 1) ^ (0xEDB88320 & (uint)-(crc & 1));
+                            }
+                            crc = ~crc;
+                            return crc.ToString("x8"); //lowercase Hex string
+                        }
+                    default: return "error";
+                }
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("File Checksum inside hasher.cs has threw error. " + ex.Message);
                 return "error";
@@ -870,7 +1002,7 @@ namespace HashTester
                         if (generateSalt)
                         {
                             salt = GenerateSalt(saltLength);
-                            Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);                            
+                            Console.WriteLine("IsUsingSaltAndPepper SALT: " + salt);
                         }
                         else if (!string.IsNullOrEmpty(ownSalt))
                         {
@@ -1004,7 +1136,8 @@ namespace HashTester
             }
             return false;
         }
-        
+
         #endregion
+   
     }
 }

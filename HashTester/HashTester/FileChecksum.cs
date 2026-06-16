@@ -11,14 +11,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace HashTester
 {
-    public partial class FileChecksum: Form
+    public partial class FileChecksum : Form
     {
         public FileChecksum()
         {
             InitializeComponent();
         }
-
         private string pathToFile = string.Empty;
+
+        Checksum checksum;
 
         private void buttonFile_Click(object sender, EventArgs e)
         {
@@ -28,6 +29,8 @@ namespace HashTester
                 {
                     labelFileLocation.Text = dialog.FileName;
                     pathToFile = dialog.FileName;
+                    LabelHashEmpty();
+                    GenerateChecksumUI(pathToFile);
                 }
             }
         }
@@ -79,6 +82,8 @@ namespace HashTester
                     TurnOnUI(control);
                 }
             }
+            timerUI.Stop();
+            UpdateUI();
         }
 
         private void File_checksum_Load(object sender, EventArgs e)
@@ -96,9 +101,6 @@ namespace HashTester
             buttonCopySHA512.Text = Languages.Translate(Languages.L.Copy) + " SHA512";
             buttonCopyRipeMD160.Text = Languages.Translate(Languages.L.Copy) + " RipeMD-160";
             buttonCopyCRC32.Text = Languages.Translate(Languages.L.Copy) + " CRC32";
-            buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
-            buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
-            buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
 
             //No need for user to see them yet
             labelFileLocation.Text = string.Empty;
@@ -193,8 +195,7 @@ namespace HashTester
         private void buttonChecksum_Click(object sender, EventArgs e)
         {
             string checksum = textBoxHash.Text;
-            Hasher.HashingAlgorithm fileAlgorithm = Hasher.HashingAlgorithm.MD5;
-            bool isFileAlgorithmSelected = true;
+            Hasher.HashingAlgorithm fileAlgorithm = Hasher.HashingAlgorithm.MD5; //placeholder
             switch (checksum.Length)
             {
                 case 32:
@@ -232,81 +233,30 @@ namespace HashTester
                     }
                 default:
                     {
-                        MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error); isFileAlgorithmSelected = false;
-                        break;
+                        MessageBox.Show(Languages.Translate(Languages.L.PleaseInputAHashForChecksum), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; //No algorithm was selected
                     }
             }
-            if (!isFileAlgorithmSelected) return;
+
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    GenerateCheckSum(dialog.FileName, checksum, fileAlgorithm);
+                    TurnOffUI(this);
+                    Checksum checkTemp = new Checksum(fileAlgorithm);
+                    bool isCorrect = checkTemp.CheckCheckSumFromFile(textBoxHash.Text, dialog.FileName);
+                    if (isCorrect)
+                    {
+                        MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 TurnOnUI(this);
             }
         }
-
-        private void labelLocation_TextChanged(object sender, EventArgs e)
-        {
-            return;
-        }
-
-
-        /// <summary>
-        /// Generates a checksum of a file based on hash algorithm
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="checksum"></param>
-        /// <param name="hashAlgorithm"></param>
-        private void GenerateCheckSum(string filename, string checksum, Hasher.HashingAlgorithm hashAlgorithm)
-        {
-            TurnOffUI(this);
-            labelLocation.Text = Languages.Translate(Languages.L.FileLocation) + ": " + filename;
-            //get what algorithms to file checksum
-            bool[] useAlgorithm =
-            {
-                    checkBoxMD5.Checked,
-                    checkBoxSHA1.Checked,
-                    checkBoxSHA256.Checked,
-                    checkBoxSHA512.Checked,
-                    checkBoxRIPEMD160.Checked,
-                    checkBoxCRC32.Checked
-                };
-
-            //Check to see if any are selected
-            bool anySelected = false;
-            foreach (bool bul in useAlgorithm)
-            {
-                if (bul) anySelected = true;
-            }
-            if (!anySelected)
-            {
-                MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            for (int i = 0; i < useAlgorithm.Count(); i++)
-            {
-                if (useAlgorithm[i])
-                {
-                    string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)i);
-                    if ((Hasher.HashingAlgorithm)i == hashAlgorithm)
-                    {
-                        if (checksum == hash)
-                        {
-                            MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Correct), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreNotCorrectFilesAreNotTheSame), Languages.Translate(Languages.L.Wrong), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    UpdateLabelHash((Hasher.HashingAlgorithm)i, hash);
-                }
-            }
-        }
-
 
         public void UpdateLabelHash(Hasher.HashingAlgorithm algorithm, string hash)
         {
@@ -326,98 +276,19 @@ namespace HashTester
         /// Generates check sum of a file from Form
         /// </summary>
         /// <param name="filename">Path to file</param>
-        private async void GenerateCheckSum(string filename)
+        private void GenerateChecksumUI(string filename)
         {
-            //get what algorithms to file checksum
-            bool[] useAlgorithm =
-            {
-                    checkBoxMD5.Checked,
-                    checkBoxSHA1.Checked,
-                    checkBoxSHA256.Checked,
-                    checkBoxSHA512.Checked,
-                    checkBoxRIPEMD160.Checked,
-                    checkBoxCRC32.Checked
-                };
+            List<Hasher.HashingAlgorithm> algorithms = GetAlgorithmsFromUI();
 
-            //Check to see if any are selected
-            uint numberOfSelected = 0;
-            foreach (bool bul in useAlgorithm)
-            {
-                if (bul)
-                {
-                    numberOfSelected++;
-                }
-            }
-
-            if (numberOfSelected == 0)
+            if (algorithms.Count() == 0)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             progressBar.Value = 0; //reset bar
             TurnOffUI(this);
-
-            int threadsToUse = 1;
-            if (checkBoxMultiThread.Checked) //How many threads can be used at once
-            {
-                threadsToUse = FormManagement.NumberOfThreadsToUse();
-                Console.WriteLine("Number of threads to use: " + threadsToUse);
-            }
-            var tasks = new List<Task>();
-
-            //Each algorithm can have its own thread
-            if (threadsToUse > numberOfSelected)
-            {
-                for (int i = 0; i < useAlgorithm.Count(); i++)
-                {
-                    if (useAlgorithm[i])
-                    {
-                        int index = i;
-                        tasks.Add(Task.Run(() =>
-                        {
-                            string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index);
-                            BeginInvoke(new Action(() => //update UI
-                            {
-                                UpdateLabelHash((Hasher.HashingAlgorithm)index, hash);
-                                progressBar.Value += (int)(100 / numberOfSelected);
-                            }));
-                        }));                                                       
-                    }
-                }
-                await Task.WhenAll(tasks.ToArray()); //wait for all threads to finish
-                progressBar.Value = 100;
-            }
-            else //Some threads will have to calculate multiple algorithms (Also works for single thread)
-            {
-                uint numberOfThreadsUsed = 0;
-                for (int i = 0; i < useAlgorithm.Count(); i++)
-                {
-                    if (useAlgorithm[i])
-                    {
-                        numberOfThreadsUsed++;
-                        int index = i;
-                        if (numberOfThreadsUsed > threadsToUse)
-                        {
-                            await Task.WhenAny(tasks.ToArray()); //wait for any thread to finish before starting a new one
-                            numberOfThreadsUsed--;
-                        }
-                        tasks.Add(Task.Run(() =>
-                        {
-                            Console.WriteLine("Thread " + index + " working");
-                            string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index);
-                            Console.WriteLine("Thread " + index + " stopped working");
-                            BeginInvoke(new Action(() => //update UI
-                            {
-                                UpdateLabelHash((Hasher.HashingAlgorithm)index, hash);
-                                progressBar.Value += (int)(100 / numberOfSelected);
-                            }));
-                        }));
-                    }
-                }
-                await Task.WhenAll(tasks.ToArray()); //wait for all threads to finish
-                progressBar.Value = 100;
-            }
-            progressBar.Value = 0;
+            checksum = new Checksum(algorithms);
+            checksum.GenerateCheckSumFromFile(filename, checkBoxMultiThread.Checked);
             TurnOnUI(this);
         }
 
@@ -438,122 +309,8 @@ namespace HashTester
             }
             Console.WriteLine("Checksum pathToFile: " + pathToFile);
             LabelHashEmpty();
-            GenerateCheckSum(pathToFile);
-        }
-
-        private void checkBoxCRC32_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxRIPEMD160_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxSHA512_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxSHA256_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxSHA1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxMD5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCRC32_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelRipeMD160_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA512_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA256_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelMD5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelLocation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBoxLog_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelHash_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxHash_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelMD5Output_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA1Output_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA256Output_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSHA512Output_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelRipeMDOutput_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCRC32Output_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCheckSum_Click(object sender, EventArgs e)
-        {
-
+            SetupTimerForUIUpdate();
+            GenerateChecksumUI(pathToFile);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -566,9 +323,69 @@ namespace HashTester
             checkBoxSHA512.Checked = true;
         }
 
+        public List<Hasher.HashingAlgorithm> GetAlgorithmsFromUI()
+        {
+            List<Hasher.HashingAlgorithm> algorithms = new List<Hasher.HashingAlgorithm>();
+            if (checkBoxMD5.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.MD5);
+            }
+            if (checkBoxSHA1.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.SHA1);
+            }
+            if (checkBoxSHA256.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.SHA256);
+            }
+            if (checkBoxSHA512.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.SHA512);
+            }
+            if (checkBoxRIPEMD160.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.RIPEMD160);
+            }
+            if (checkBoxCRC32.Checked)
+            {
+                algorithms.Add(Hasher.HashingAlgorithm.CRC32);
+            }
+            return algorithms;
+        }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
 
         }
+
+        #region Timer
+        System.Windows.Forms.Timer timerUI = new System.Windows.Forms.Timer();
+        public void SetupTimerForUIUpdate()
+        {
+            if (checksum == null) //kill his ass
+            {
+                return;
+            }
+
+            timerUI.Interval = Settings.UpdateUIms;
+            timerUI.Tick += (s, e) =>
+            {
+                Console.WriteLine("Timer ticked");
+                UpdateUI();
+            };
+            timerUI.Start();
+        }
+
+        private void UpdateUI()
+        {
+            checksum.ReturnHashValues(out Dictionary<Hasher.HashingAlgorithm, string> outputHash, out int progressBarValue);
+            progressBar.Value = progressBarValue;
+            foreach (var item in outputHash)
+            {
+                UpdateLabelHash(item.Key, item.Value);
+            }
+        }
+
+        #endregion //Timer
     }
 }
