@@ -303,7 +303,6 @@ namespace HashTester
                 GithubAPI githubAPI = new GithubAPI();
                 string githubVersionString = await githubAPI.GetVersion();
                 Settings.GithubRequestAPI = DateTime.Now;
-                Settings.SaveSettings();
                 Version githubVersionL = new Version(githubVersionString);
                 Version currentVersion = new Version(programVersion);
                 if (githubVersionL > currentVersion) //Big Update
@@ -341,6 +340,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Main Form Load. Loads settings, sets up language and proper scaling.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
@@ -369,29 +373,14 @@ namespace HashTester
 
         #endregion //End Rescaling
 
-        private void labelCurrentVersion_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Saves settings before closing the program
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-        }
-
-        private void labelCreator_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
-        {
-
+            Settings.SaveSettings();
         }
     }
 }

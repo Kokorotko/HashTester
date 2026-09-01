@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -7,8 +8,9 @@ namespace HashTester
 {
     public static class Settings
     {
-        const string fileName = "settings.txt";
-        const string fileNameTemp = "temp.txt";
+        const string fileName = "settings.json"; //include with extension
+        const string fileNameTemp = "temp.json"; //include with extension
+
 
         #region Private
         private static bool outputStyleIncludeOriginalString;
@@ -86,7 +88,6 @@ namespace HashTester
                     Console.WriteLine("Could not find the language file for " + value + " in settings.cs in Settings.SelectedLanguage.");
                     selectedLanguage = "English";
                 }
-                SaveSettings();
             }
         }
         public static VisualModeEnum VisualMode
@@ -247,7 +248,6 @@ namespace HashTester
         }
         #endregion
 
-
         private static void DeleteSettingsTempFile()
         {
             string temp = PathToSettingsFileTemp();
@@ -285,9 +285,11 @@ namespace HashTester
             SaveSettings();
         }
 
+        
+
 
         /// <summary>
-        /// Saves settings to a settings.txt file located in Settings Folder
+        /// Saves settings to a settings.json file located in Settings Folder
         /// </summary>
         public static void SaveSettings()
         {
@@ -301,56 +303,30 @@ namespace HashTester
                 DeleteSettingsTempFile(); //Delete in case it hasnt been deleted
                 using (FileStream fileSettings = new FileStream(PathToSettingsFileTemp(), FileMode.CreateNew, FileAccess.Write))
                 {
-                    using (StreamWriter writer = new StreamWriter(fileSettings))
+                    using (StreamWriter settingsWriter = new StreamWriter(fileSettings))
                     {
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.WarningIfTheresNothingAfterTheItWillSetTheSettingIntoDefault));
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.BoolMeans0FalseAnd1TrueEverythingOtherTakesSpecialInput));
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.IHaveIncludedCommentsOnWhatValueIsAllowedOtherwiseADefaultValueWillBeSet));
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.VisualmodeFrom0To2));
-                        switch (VisualMode)
+                        //set up for Json, since Settings is a static class
+                        var settingsToJson = new
                         {
-                            case VisualModeEnum.System: writer.WriteLine("visualMode=0"); break;
-                            case VisualModeEnum.Light: writer.WriteLine("visualMode=1"); break;
-                            case VisualModeEnum.Dark: writer.WriteLine("visualMode=2"); break;
-                        }
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.UpdateuiInMiliseconds));
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber81000));
-                        writer.WriteLine("UIupdateInMS=" + UpdateUIms);
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.NumberOfThreadsMaxUsedInPercentage));
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.WholeNumber1100));
-                        writer.WriteLine("threadsUsagePercentage=" + threadsUsagePercentage);
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.PreferredLanguage));
-                        writer.WriteLine("language=" + SelectedLanguage);
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.OutputtypeFrom0To2));
-                        switch (OutputType)
-                        {
-                            case OutputTypeEnum.MessageBox: writer.WriteLine("outputType=0"); break;
-                            case OutputTypeEnum.Listbox: writer.WriteLine("outputType=1"); break;
-                            case OutputTypeEnum.TXTFile: writer.WriteLine("outputType=2"); break;
-                        }
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.AllOutputstylesAreBool));
-                        if (OutputStyleIncludeOriginalString) writer.WriteLine("outputStyle_IncludeOriginalString=1");
-                        else writer.WriteLine("outputStyle_IncludeOriginalString=0");
-                        if (OutputStyleIncludeHashAlgorithm) writer.WriteLine("outputStyle_IncludeHash=1");
-                        else writer.WriteLine("outputStyle_IncludeHash=0");
-                        if (OutputStyleIncludeNumberOfHash) writer.WriteLine("outputStyle_IncludeNumber=1");
-                        else writer.WriteLine("outputStyle_IncludeNumber=0");
-                        if (OutputStyleIncludeSaltPepper) writer.WriteLine("outputStyle_IncludeSaltPepper=1");
-                        else writer.WriteLine("outputStyle_IncludeSaltPepper=0");
-                        writer.WriteLine("//" + Languages.Translate(Languages.L.SaltAndPepperBool));
-                        if (UseSalt) writer.WriteLine("useSalt=1");
-                        else writer.WriteLine("useSalt=0");
-                        if (UsePepper) writer.WriteLine("usePepper=1");
-                        else writer.WriteLine("usePepper=0");
-                        if (RemindUpdate) writer.WriteLine("remindUpdate=1");
-                        else writer.WriteLine("remindUpdate=0");
-                        if (GithubRequestAPI != null) writer.WriteLine("githubRequestAPI=" + GithubRequestAPI.ToString());
-                        else writer.WriteLine("githubRequestAPI=" + DateTime.Now.AddDays(-1).ToString());
-                        if (ShowLog) writer.WriteLine("showLog=1");
-                        else writer.WriteLine("showLog=0");
+                            VisualMode = Settings.VisualMode,
+                            OutputType = Settings.OutputType,
+                            OutputStyleIncludeHashAlgorithm = Settings.OutputStyleIncludeHashAlgorithm,
+                            OutputStyleIncludeNumberOfHash = Settings.OutputStyleIncludeNumberOfHash,
+                            OutputStyleIncludeOriginalString = Settings.OutputStyleIncludeOriginalString,
+                            OutputStyleIncludeSaltPepper = Settings.OutputStyleIncludeSaltPepper,
+                            UseSalt = Settings.UseSalt,
+                            UsePepper = Settings.UsePepper,
+                            RemindUpdate = Settings.RemindUpdate,
+                            UpdateUIms = Settings.UpdateUIms,
+                            threadsUsagePercentage = Settings.threadsUsagePercentage,
+                            SelectedLanguage = Settings.SelectedLanguage,
+                            GithubRequestAPI = Settings.GithubRequestAPI,
+                            ShowLog = Settings.ShowLog
+                        };
+                        //Converting to JSON and writing to file
+                        settingsWriter.Write(JsonConvert.SerializeObject(settingsToJson, Formatting.Indented));
                     }
                 }
-
                 //Rename the temp file with the actuall settings file
                 if (File.Exists(PathToSettingsFile()))
                 {
@@ -380,7 +356,7 @@ namespace HashTester
 
 
         /// <summary>
-        /// Loads settings from the settings.txt file located in Settings folder
+        /// Loads settings from the settings.json file located in Settings folder
         /// </summary>
         public static void LoadSettings()
         {
@@ -397,207 +373,35 @@ namespace HashTester
                     {
                         using (StreamReader reader = new StreamReader(fileSettings))
                         {
-                            while (!reader.EndOfStream)
-                            {
-                                string line = reader.ReadLine();
-                                char[] splitChar = { '=' };
-                                string[] data = line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries); //visualMode=2
-                                if (data[0].Substring(0, 2) != "//") //Comments in Settings
-                                {
-                                    switch (data[0])
-                                    {
-                                        case "visualMode":
-                                            {
-                                                try
-                                                {
-                                                    if (data[1] == "0") VisualMode = VisualModeEnum.System;
-                                                    else if (data[1] == "1") VisualMode = VisualModeEnum.Light;
-                                                    else VisualMode = VisualModeEnum.Dark;
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    VisualMode = VisualModeEnum.System;
-                                                }
-                                                break;
-                                            }
-                                        case "outputType":
-                                            {
-                                                try
-                                                {
-                                                    if (data[1] == "0") OutputType = OutputTypeEnum.MessageBox;
-                                                    else if (data[1] == "1") OutputType = OutputTypeEnum.Listbox;
-                                                    else if (data[1] == "2") OutputType = OutputTypeEnum.TXTFile;
-                                                    else OutputType = OutputTypeEnum.Listbox;
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    OutputType = OutputTypeEnum.Listbox;
-                                                }
-                                                break;
-                                            }
-                                        case "outputStyle_IncludeOriginalString":
-                                            {
-                                                try
-                                                {
-                                                    OutputStyleIncludeOriginalString = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    OutputStyleIncludeOriginalString = false;
-                                                }
-                                                break;
-                                            }
-                                        case "outputStyle_IncludeHash":
-                                            {
-                                                try
-                                                {
-                                                    OutputStyleIncludeHashAlgorithm = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    OutputStyleIncludeHashAlgorithm = false;
-                                                }
-                                                break;
-                                            }
-                                        case "outputStyle_IncludeNumber":
-                                            {
-                                                try
-                                                {
-                                                    OutputStyleIncludeNumberOfHash = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    OutputStyleIncludeNumberOfHash = false;
-                                                }
-                                                break;
-                                            }
-                                        case "outputStyle_IncludeSaltPepper":
-                                            {
-                                                try
-                                                {
-                                                    OutputStyleIncludeSaltPepper = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    OutputStyleIncludeSaltPepper = false;
-                                                }
-                                                break;
-                                            }
-                                        case "useSalt":
-                                            {
-                                                try
-                                                {
-                                                    UseSalt = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    UseSalt = false;
-                                                }
-                                                break;
-                                            }
-                                        case "usePepper":
-                                            {
-                                                try
-                                                {
-                                                    UsePepper = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    UsePepper = false;
-                                                }
-                                                break;
-                                            }
-                                        case "UIupdateInMS":
-                                            {
-                                                try
-                                                {
-                                                    UpdateUIms = int.Parse(data[1]);
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    UpdateUIms = 0;
-                                                }
-                                                break;
-                                            }
-                                        case "threadsUsagePercentage":
-                                            {
-                                                try
-                                                {
-                                                    ThreadsUsagePercentage = int.Parse(data[1]);
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    ThreadsUsagePercentage = 50;
-                                                }
-                                                break;
-                                            }
-                                        case "language":
-                                            {
-                                                try
-                                                {
-                                                    SelectedLanguage = data[1];
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    SelectedLanguage = "";
-                                                }
-                                                break;
-                                            }
-                                        case "remindUpdate":
-                                            {
-                                                try
-                                                {
-                                                    RemindUpdate = (data[1] == "1");
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    RemindUpdate = false;
-                                                }
-                                                break;
-                                            }
-                                        case "githubRequestAPI":
-                                            try
-                                            {
-                                                GithubRequestAPI = DateTime.Parse(data[1]);
-                                            }
-                                            catch (Exception)
-                                            {
-                                                GithubRequestAPI = DateTime.Now.AddDays(-1);
-                                            }
-                                            break;
-                                        case "showLog":
-                                            try
-                                            {
-                                                int temp = int.Parse(data[1]);
-                                                if (temp != 0) showLog = true;
-                                                else showLog = false;
-                                            }
-                                            catch (Exception)
-                                            {
-                                                showLog = true;
-                                            }
-                                            break;
-                                        default:
-                                            {
-                                                break;
-                                            }
-                                    }
-                                }
-                            }
+                            string jsonTemp = reader.ReadToEnd(); //Read the file
+                            var json = JsonConvert.DeserializeObject<dynamic>(jsonTemp); //Deserialize the json
+                            Settings.VisualMode = json.VisualMode;
+                            Settings.OutputType = json.OutputType;
+                            Settings.OutputStyleIncludeHashAlgorithm = json.OutputStyleIncludeHashAlgorithm;
+                            Settings.OutputStyleIncludeNumberOfHash = json.OutputStyleIncludeNumberOfHash;
+                            Settings.OutputStyleIncludeOriginalString = json.OutputStyleIncludeOriginalString;
+                            Settings.OutputStyleIncludeSaltPepper = json.OutputStyleIncludeSaltPepper;
+                            Settings.UseSalt = json.UseSalt;
+                            Settings.UsePepper = json.UsePepper;
+                            Settings.RemindUpdate = json.RemindUpdate;
+                            Settings.threadsUsagePercentage = json.threadsUsagePercentage;
+                            Settings.UpdateUIms = json.UpdateUIms;
+                            Settings.SelectedLanguage = json.SelectedLanguage;
+                            Settings.GithubRequestAPI = json.GithubRequestAPI;
+                            Settings.ShowLog = json.ShowLog;
                         }
                     }
-                    isFileSettingsUsed = false;
                 }
                 else
                 {
                     isFileSettingsUsed = false;
                     Settings.ResetSettings();
-                    Console.WriteLine("Could not find settings.txt in settings.cs and method LoadSettings");
+                    Console.WriteLine("Could not find settings.json in settings.cs and method LoadSettings");
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("!ERROR! An Exception has occured when loading settings.");
+                Console.WriteLine("!ERROR! An Exception has occured when loading settings.json.");
             }
             finally
             {

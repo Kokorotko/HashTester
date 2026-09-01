@@ -180,7 +180,6 @@ namespace HashTester
             this.labelCreator.Size = new System.Drawing.Size(85, 16);
             this.labelCreator.TabIndex = 18;
             this.labelCreator.Text = "Kamil Franek";
-            this.labelCreator.Click += new System.EventHandler(this.labelCreator_Click);
             // 
             // labelVersion
             // 
@@ -199,7 +198,6 @@ namespace HashTester
             this.labelCurrentVersion.Size = new System.Drawing.Size(104, 16);
             this.labelCurrentVersion.TabIndex = 20;
             this.labelCurrentVersion.Text = "Current Version: ";
-            this.labelCurrentVersion.Click += new System.EventHandler(this.labelCurrentVersion_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -237,7 +235,6 @@ namespace HashTester
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(645, 50);
             this.tableLayoutPanel2.TabIndex = 24;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // tableLayoutPanel3
             // 
@@ -256,7 +253,6 @@ namespace HashTester
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(645, 50);
             this.tableLayoutPanel3.TabIndex = 25;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // tableLayoutPanel4
             // 
@@ -281,7 +277,6 @@ namespace HashTester
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(651, 376);
             this.tableLayoutPanel4.TabIndex = 26;
-            this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // Form1
             // 
@@ -293,6 +288,7 @@ namespace HashTester
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HashTester";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);

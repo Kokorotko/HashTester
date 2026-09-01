@@ -67,7 +67,6 @@ namespace HashTester
                 darkMode.Checked = false;
                 systemMode.Checked = true;
                 Settings.VisualMode = VisualModeEnum.System;
-                Settings.SaveSettings();
                 FormManagement.ReloadAllForms(false, true, false);
             };
 
@@ -77,7 +76,6 @@ namespace HashTester
                 darkMode.Checked = false;
                 lightMode.Checked = true;
                 Settings.VisualMode = VisualModeEnum.Light;
-                Settings.SaveSettings();
                 FormManagement.ReloadAllForms(false, true, false);
             };
 
@@ -87,7 +85,7 @@ namespace HashTester
                 lightMode.Checked = false;
                 darkMode.Checked = true;
                 Settings.VisualMode = VisualModeEnum.Dark;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
                 FormManagement.SetUpFormTheme(form);
             };
 
@@ -114,7 +112,7 @@ namespace HashTester
                 txtFile.Checked = false;
                 messageBox.Checked = true;
                 Settings.OutputType = OutputTypeEnum.MessageBox;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
             };
 
             listBox.Click += (s, e) =>
@@ -123,7 +121,7 @@ namespace HashTester
                 txtFile.Checked = false;
                 messageBox.Checked = false;
                 Settings.OutputType = OutputTypeEnum.Listbox;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
             };
 
             txtFile.Click += (s, e) =>
@@ -132,7 +130,7 @@ namespace HashTester
                 txtFile.Checked = true;
                 messageBox.Checked = false;
                 Settings.OutputType = OutputTypeEnum.TXTFile;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
             };
 
             #endregion
@@ -159,7 +157,7 @@ namespace HashTester
             {
                 includeOriginal.Checked = !includeOriginal.Checked;
                 Settings.OutputStyleIncludeOriginalString = !Settings.OutputStyleIncludeOriginalString;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
 
                 //Include All check
                 if (Settings.OutputStyleIncludeOriginalString &&
@@ -176,7 +174,7 @@ namespace HashTester
             {
                 includeNumber.Checked = !includeNumber.Checked;
                 Settings.OutputStyleIncludeNumberOfHash = !Settings.OutputStyleIncludeNumberOfHash;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
 
                 //Include All check
                 if (Settings.OutputStyleIncludeOriginalString &&
@@ -193,7 +191,7 @@ namespace HashTester
             {
                 includeAlgorithm.Checked = !includeAlgorithm.Checked;
                 Settings.OutputStyleIncludeHashAlgorithm = !Settings.OutputStyleIncludeHashAlgorithm;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
 
                 //Include All check
                 if (Settings.OutputStyleIncludeOriginalString &&
@@ -210,7 +208,7 @@ namespace HashTester
             {
                 includeSaltPepper.Checked = !includeSaltPepper.Checked;
                 Settings.OutputStyleIncludeSaltPepper = !Settings.OutputStyleIncludeSaltPepper;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
 
                 //Include All check
                 if (Settings.OutputStyleIncludeOriginalString &&
@@ -238,7 +236,7 @@ namespace HashTester
                 Settings.OutputStyleIncludeNumberOfHash = !isAllChecked;
                 Settings.OutputStyleIncludeHashAlgorithm = !isAllChecked;
                 Settings.OutputStyleIncludeSaltPepper = !isAllChecked;
-                Settings.SaveSettings();
+                //Settings.SaveSettings();
             };
 
             #endregion
