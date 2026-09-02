@@ -338,53 +338,56 @@ namespace HashTester
                 borderColor = SystemColors.ControlLight;
             }
             form.BackColor = controlColor;
-            foreach (Control control in form.Controls)
+            ApplyThemeRecursive(form, controlColor, controlText, windows, windowsText, borderColor, lightMode);
+        }
+
+        public static void ApplyThemeRecursive(Control control, Color controlColor, Color controlText, Color windows, Color windowsText, Color borderColor, bool lightMode)
+        {
+            if (control == null) return;
+            switch (control)
             {
-                if (control is Label || control is Button || control is CheckBox || control is RadioButton)
-                {
+                case Label label:
+                    label.BackColor = controlColor;
+                    label.ForeColor = controlText;
+                    break;
+                case Button button:
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.FlatAppearance.BorderSize = 1;
+                    button.FlatAppearance.BorderColor = borderColor;
+                    break;
+                case CheckBox checkBox:
                     control.BackColor = controlColor; //background
                     control.ForeColor = controlText; //text
-                    if (control is Button button)
-                    {
-                        button.FlatStyle = FlatStyle.Flat;
-                        button.FlatAppearance.BorderSize = 1;
-                        button.FlatAppearance.BorderColor = borderColor;
-                    }
-                }
-                else if (control is GroupBox box)
-                {
-                    box.BackColor = controlColor;
-                    box.ForeColor = controlText;
-                    foreach (Control child in box.Controls) //just apply for childs
-                    {
-                        child.BackColor = controlColor; //background
-                        child.ForeColor = controlText; //text
-                        if (child is Button button)
-                        {
-                            button.FlatStyle = FlatStyle.Flat;
-                            button.FlatAppearance.BorderSize = 1;
-                            button.FlatAppearance.BorderColor = borderColor;
-                        }
-                    }
-                }
-                else if (control is ProgressBar)
-                {
+                    break;
+                case RadioButton radioButton:
+                    control.BackColor = controlColor; //background
+                    control.ForeColor = controlText; //text
+                    break;
+                case GroupBox groupBox:
+                    groupBox.BackColor = controlColor;
+                    groupBox.ForeColor = controlText;
+                    break;
+                case ProgressBar progressBar:
                     control.BackColor = controlColor; //background
                     control.ForeColor = Color.Green; //text
-                }
-                else if (control is ToolStrip menuStrip)
-                {
-                    menuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomColorTable(!lightMode));
-                    ApplyThemeToMenu(menuStrip, controlColor, controlText);
-                }
-                else if (control is TableLayoutPanel)
-                {
+                    break;
+                case ToolStrip toolStrip:
+                    toolStrip.Renderer = new ToolStripProfessionalRenderer(new CustomColorTable(!lightMode));
+                    ApplyThemeToMenu(toolStrip, controlColor, controlText);
+                    break;
+                case TableLayoutPanel tableLayoutPanel:
                     control.BackColor = controlColor; //background
-                }
-                else
-                {
+                    break;
+                default:
                     control.BackColor = windows; //background
                     control.ForeColor = windowsText; //text
+                    break;
+            }
+            if (control.HasChildren)
+            {
+                foreach (Control child in control.Controls)
+                {
+                    ApplyThemeRecursive(child, controlColor, controlText, windows, windowsText, borderColor, lightMode);
                 }
             }
         }
