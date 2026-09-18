@@ -20,6 +20,7 @@ namespace HashTester
         private string pathToFile = string.Empty;
 
         Checksum checksum;
+        FormScaling scaling;
 
         private void buttonFile_Click(object sender, EventArgs e)
         {
@@ -90,8 +91,8 @@ namespace HashTester
         {
             this.Name = Languages.Translate(Languages.L.FileChecksumTool);
             Settings.LoadSettings();
-            StripMenu.LoadStripMenu(this);
-            FormManagement.SetUpFormTheme(this);
+            scaling = new FormScaling(this);
+            FormManagement.LoadForm(this);
             #region Langugages
             buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
             buttonChecksum.Text = Languages.Translate(Languages.L.ChecksumCheck);
@@ -353,11 +354,6 @@ namespace HashTester
             return algorithms;
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         #region Timer
         System.Windows.Forms.Timer timerUI = new System.Windows.Forms.Timer();
         public void SetupTimerForUIUpdate()
@@ -387,5 +383,18 @@ namespace HashTester
         }
 
         #endregion //Timer
+
+        private void FileChecksum_SizeChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FileChecksum_ResizeEnd(object sender, EventArgs e)
+        {
+            if (scaling != null)
+            {
+                scaling.FontScaling();
+            }
+        }
     }
 }

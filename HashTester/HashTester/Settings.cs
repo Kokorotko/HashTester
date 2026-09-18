@@ -10,6 +10,7 @@ namespace HashTester
     {
         const string fileName = "settings.json"; //include with extension
         const string fileNameTemp = "temp.json"; //include with extension
+        public const int ComboBoxMagicSizeNumber = 2;
 
 
         #region Private
