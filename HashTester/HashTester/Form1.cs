@@ -21,7 +21,7 @@ namespace HashTester
         Hasher hasher = new Hasher();
         readonly string programVersion = "1.2.0";
         private bool updateAvailable = false;
-        FormScaling scaling;
+        FontScaling scaling;
 
         #region Form Stuff Handling
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
@@ -349,7 +349,7 @@ namespace HashTester
         {
             FormManagement.LoadForm(this);
             FormUISetUpLanguages();
-            scaling = new FormScaling(this); //Get scaling ready
+            scaling = new FontScaling(this); //Get scaling ready
             hashSelector.SelectedIndex = 0;
         }
 
@@ -358,18 +358,7 @@ namespace HashTester
             FormManagement.SaveLog(listBoxLog, this);
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-            scaling.FontScaling();
-        }
-
         #region ReScaling
-
-        public void Scale_ButtonHashSimple(int positionX, int positionY, int sizeX, int sizeY)
-        {
-            buttonHashSimpleText.Location = new System.Drawing.Point(positionX, positionY);
-            buttonHashSimpleText.Size = new System.Drawing.Size(sizeX, sizeY);
-        }
 
         #endregion //End Rescaling
 

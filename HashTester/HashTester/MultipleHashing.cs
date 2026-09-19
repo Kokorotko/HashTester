@@ -108,9 +108,8 @@ namespace HashTester
 
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
-            StripMenu.LoadStripMenu(this);
             this.Name = Languages.Translate(Languages.L.MultiHasher);
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             labelInfo.Text = "*" + Languages.Translate(Languages.L.WillOverwriteTheIncludeHashingAlgorithmInTheOutputStyleSettings);
             checkBoxShowAlgorithm.Text = Languages.Translate(Languages.L.ShowAlgorithm) + "*";

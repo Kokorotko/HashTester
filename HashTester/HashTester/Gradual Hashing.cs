@@ -19,7 +19,7 @@ namespace HashTester
         }
         Hasher hasher = new Hasher();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
-        FormScaling scaling;
+        FontScaling scaling;
         
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
@@ -50,9 +50,7 @@ namespace HashTester
         private void FormGradual_Load(object sender, EventArgs e)
         {
             this.Name = Languages.Translate(Languages.L.GradualHasher);
-            StripMenu.LoadStripMenu(this);
-            FormManagement.SetUpFormTheme(this);
-            scaling = new FormScaling(this);
+            FormManagement.LoadForm(this);
             hashSelector.SelectedIndex = 0;            
 
             #region Language
@@ -91,7 +89,7 @@ namespace HashTester
         private void FormGradual_SizeChanged(object sender, EventArgs e)
         {
             if (scaling == null) return;
-            scaling.FontScaling();
+            scaling.FontScaler();
             //I hate ComboBox
             hashSelector.Font = new System.Drawing.Font(hashSelector.Font.FontFamily, buttonHashGradualHashing.Font.Size * Settings.ComboBoxMagicSizeNumber);
         }

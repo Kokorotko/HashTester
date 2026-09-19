@@ -40,8 +40,8 @@ namespace HashTester
         #region FormManagement
         private void PasswordForm_Load(object sender, EventArgs e)
         {
-            StripMenu.LoadStripMenu(this);
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
+            RockYouRadioButtonsCheck();
             #region Languages
             this.Name = Languages.Translate(Languages.L.PasswordTester);
             labelAlgorithm.Text = Languages.Translate(Languages.L.Algorithm);
@@ -84,10 +84,21 @@ namespace HashTester
             checkBoxUnknownLenghtBruteForce.Text = Languages.Translate(Languages.L.UnknownLenght);
             checkBoxHexOutputBruteForce.Text = Languages.Translate(Languages.L.DisplayPasswordAsHex);
             groupBoxUI.Text = Languages.Translate(Languages.L.Ui);
+            checkBoxLowerCase.Text = Languages.Translate(Languages.L.Lowercase) + " (26)";
+            checkBoxUpperCase.Text = Languages.Translate(Languages.L.Uppercase) + " (26)";
+            checkBoxDigits.Text = Languages.Translate(Languages.L.Digits) + " (10)";
+            checkBoxSpecialChars.Text = Languages.Translate(Languages.L.Specials) + " (33)";
             #endregion
             hashSelector.SelectedIndex = 0;
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
-            DisableRockYouRadioButtons();
+        }
+
+        private void RockYouRadioButtonsCheck()
+        {
+            radioButtonRockYouFull.Enabled = false;
+            radioButtonRockYouShort.Enabled = false;
+            radioButtonRockYouFullShortShort.Enabled = false;
+            //radioButton04 (custom) is always available
             if (FindIfTXTIsPresent("rockyou")) radioButtonRockYouFull.Enabled = true;
             if (FindIfTXTIsPresent("rockyouShort")) radioButtonRockYouShort.Enabled = true;
             if (FindIfTXTIsPresent("rockyouVeryShort")) radioButtonRockYouFullShortShort.Enabled = true;
@@ -96,14 +107,6 @@ namespace HashTester
             else if (radioButtonRockYouShort.Enabled) radioButtonRockYouShort.Checked = true;
             else if (radioButtonRockYouFullShortShort.Enabled) radioButtonRockYouFullShortShort.Checked = true;
             else radioButtonRockyouCustom.Checked = true;
-        }
-
-        private void DisableRockYouRadioButtons()
-        {
-            radioButtonRockYouFull.Enabled = false;
-            radioButtonRockYouShort.Enabled = false;
-            radioButtonRockYouFullShortShort.Enabled = false;
-            //radioButton04 (custom) is always available
         }
 
         private bool FindIfTXTIsPresent(string name)
@@ -947,22 +950,32 @@ namespace HashTester
         /// <summary>
         /// Turns off every UI element except the labels
         /// </summary>
-        private void TurnOffUI() //Turns off everything except the labels
+        private void TurnOffUI()
         {
-            foreach (Control control in this.Controls)
-            {
-                if (control is GroupBox box)
-                {
-                    foreach (Control child in box.Controls)
-                    {
-                        if (!(child is Label)) child.Enabled = false;
-                    }
-                }
-                else if (!(control is Label)) control.Enabled = false;                
-            }
             progressBar1.Value = 0;
-            progressBar1.Enabled = true;
-            buttonCancel.Enabled = true;
+            TurnOffUIRecursive(this);           
+        }
+
+        private void TurnOffUIRecursive(Control c)
+        {
+            if (c == buttonCancel) //dont turn off the cancel button
+            {
+                return;
+            }
+            if ((c is Label)) return; //Labels dont have children (just like you)
+            if (c is GroupBox || c is TableLayoutPanel || c is Form) //dont turn off the box itself
+            {
+                foreach (Control child in c.Controls)
+                {
+                    TurnOffUIRecursive(child);
+                }
+                return;
+            }            
+            c.Enabled = false;
+            foreach (Control child in c.Controls)
+            {
+                TurnOffUIRecursive(child);
+            }
         }
 
 
@@ -971,19 +984,19 @@ namespace HashTester
         /// </summary>
         private void TurnOnUI()
         {
-            foreach (Control control in this.Controls)
-            {
-                control.Enabled = true;
-                if (control is GroupBox box)
-                {
-                    foreach(Control child in box.Controls)
-                    {
-                        child.Enabled = true;
-                    }
-                }
-            }
             progressBar1.Value = 0;
             userAbortedTheProcess = false; //yes I reset it here shut
+            TurnOnUIRecursive(this); //Needs to be before RockYouRadioButtonsCheck
+            RockYouRadioButtonsCheck();
+        }
+        
+        private void TurnOnUIRecursive(Control c)
+        {
+            c.Enabled = true;
+            foreach (Control child in c.Controls)
+            {
+                TurnOnUIRecursive(child);
+            }
         }
 
 
@@ -1101,6 +1114,11 @@ namespace HashTester
                         }
                 }
             }
+        }
+
+        private void labelStatTimer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

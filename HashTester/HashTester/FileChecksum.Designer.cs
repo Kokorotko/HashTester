@@ -75,20 +75,18 @@ namespace HashTester
             this.tableLPMain.SetColumnSpan(this.textBoxHash, 4);
             this.textBoxHash.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxHash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxHash.Location = new System.Drawing.Point(4, 132);
-            this.textBoxHash.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxHash.Location = new System.Drawing.Point(3, 108);
             this.textBoxHash.Name = "textBoxHash";
-            this.textBoxHash.Size = new System.Drawing.Size(1094, 30);
+            this.textBoxHash.Size = new System.Drawing.Size(820, 26);
             this.textBoxHash.TabIndex = 0;
             // 
             // buttonChecksum
             // 
             this.buttonChecksum.AllowDrop = true;
             this.buttonChecksum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonChecksum.Location = new System.Drawing.Point(940, 174);
-            this.buttonChecksum.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonChecksum.Location = new System.Drawing.Point(703, 143);
             this.buttonChecksum.Name = "buttonChecksum";
-            this.buttonChecksum.Size = new System.Drawing.Size(158, 57);
+            this.buttonChecksum.Size = new System.Drawing.Size(120, 48);
             this.buttonChecksum.TabIndex = 1;
             this.buttonChecksum.Text = "Check file with hash";
             this.buttonChecksum.UseVisualStyleBackColor = true;
@@ -99,10 +97,9 @@ namespace HashTester
             this.buttonFile.AllowDrop = true;
             this.tableLPMain.SetColumnSpan(this.buttonFile, 2);
             this.buttonFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonFile.Location = new System.Drawing.Point(4, 38);
-            this.buttonFile.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonFile.Location = new System.Drawing.Point(3, 31);
             this.buttonFile.Name = "buttonFile";
-            this.buttonFile.Size = new System.Drawing.Size(190, 66);
+            this.buttonFile.Size = new System.Drawing.Size(141, 55);
             this.buttonFile.TabIndex = 2;
             this.buttonFile.Text = "Select File";
             this.buttonFile.UseVisualStyleBackColor = true;
@@ -113,10 +110,9 @@ namespace HashTester
             this.checkBoxCRC32.AllowDrop = true;
             this.checkBoxCRC32.AutoSize = true;
             this.checkBoxCRC32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxCRC32.Location = new System.Drawing.Point(4, 437);
-            this.checkBoxCRC32.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxCRC32.Location = new System.Drawing.Point(3, 362);
             this.checkBoxCRC32.Name = "checkBoxCRC32";
-            this.checkBoxCRC32.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxCRC32.Size = new System.Drawing.Size(19, 24);
             this.checkBoxCRC32.TabIndex = 18;
             this.checkBoxCRC32.UseVisualStyleBackColor = true;
             // 
@@ -125,10 +121,9 @@ namespace HashTester
             this.checkBoxRIPEMD160.AllowDrop = true;
             this.checkBoxRIPEMD160.AutoSize = true;
             this.checkBoxRIPEMD160.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxRIPEMD160.Location = new System.Drawing.Point(4, 401);
-            this.checkBoxRIPEMD160.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxRIPEMD160.Location = new System.Drawing.Point(3, 332);
             this.checkBoxRIPEMD160.Name = "checkBoxRIPEMD160";
-            this.checkBoxRIPEMD160.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxRIPEMD160.Size = new System.Drawing.Size(19, 24);
             this.checkBoxRIPEMD160.TabIndex = 17;
             this.checkBoxRIPEMD160.UseVisualStyleBackColor = true;
             // 
@@ -137,10 +132,9 @@ namespace HashTester
             this.checkBoxSHA512.AllowDrop = true;
             this.checkBoxSHA512.AutoSize = true;
             this.checkBoxSHA512.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxSHA512.Location = new System.Drawing.Point(4, 365);
-            this.checkBoxSHA512.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxSHA512.Location = new System.Drawing.Point(3, 302);
             this.checkBoxSHA512.Name = "checkBoxSHA512";
-            this.checkBoxSHA512.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxSHA512.Size = new System.Drawing.Size(19, 24);
             this.checkBoxSHA512.TabIndex = 16;
             this.checkBoxSHA512.UseVisualStyleBackColor = true;
             // 
@@ -149,10 +143,9 @@ namespace HashTester
             this.checkBoxSHA256.AllowDrop = true;
             this.checkBoxSHA256.AutoSize = true;
             this.checkBoxSHA256.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxSHA256.Location = new System.Drawing.Point(4, 329);
-            this.checkBoxSHA256.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxSHA256.Location = new System.Drawing.Point(3, 272);
             this.checkBoxSHA256.Name = "checkBoxSHA256";
-            this.checkBoxSHA256.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxSHA256.Size = new System.Drawing.Size(19, 24);
             this.checkBoxSHA256.TabIndex = 15;
             this.checkBoxSHA256.UseVisualStyleBackColor = true;
             // 
@@ -161,10 +154,9 @@ namespace HashTester
             this.checkBoxSHA1.AllowDrop = true;
             this.checkBoxSHA1.AutoSize = true;
             this.checkBoxSHA1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxSHA1.Location = new System.Drawing.Point(4, 293);
-            this.checkBoxSHA1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxSHA1.Location = new System.Drawing.Point(3, 242);
             this.checkBoxSHA1.Name = "checkBoxSHA1";
-            this.checkBoxSHA1.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxSHA1.Size = new System.Drawing.Size(19, 24);
             this.checkBoxSHA1.TabIndex = 14;
             this.checkBoxSHA1.UseVisualStyleBackColor = true;
             // 
@@ -173,10 +165,9 @@ namespace HashTester
             this.checkBoxMD5.AllowDrop = true;
             this.checkBoxMD5.AutoSize = true;
             this.checkBoxMD5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxMD5.Location = new System.Drawing.Point(4, 257);
-            this.checkBoxMD5.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxMD5.Location = new System.Drawing.Point(3, 212);
             this.checkBoxMD5.Name = "checkBoxMD5";
-            this.checkBoxMD5.Size = new System.Drawing.Size(26, 28);
+            this.checkBoxMD5.Size = new System.Drawing.Size(19, 24);
             this.checkBoxMD5.TabIndex = 13;
             this.checkBoxMD5.UseVisualStyleBackColor = true;
             // 
@@ -184,10 +175,9 @@ namespace HashTester
             // 
             this.buttonCopyCRC32.AllowDrop = true;
             this.buttonCopyCRC32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopyCRC32.Location = new System.Drawing.Point(940, 437);
-            this.buttonCopyCRC32.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopyCRC32.Location = new System.Drawing.Point(703, 362);
             this.buttonCopyCRC32.Name = "buttonCopyCRC32";
-            this.buttonCopyCRC32.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopyCRC32.Size = new System.Drawing.Size(120, 24);
             this.buttonCopyCRC32.TabIndex = 12;
             this.buttonCopyCRC32.Text = "Copy CRC32";
             this.buttonCopyCRC32.UseVisualStyleBackColor = true;
@@ -197,10 +187,9 @@ namespace HashTester
             // 
             this.buttonCopyRipeMD160.AllowDrop = true;
             this.buttonCopyRipeMD160.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopyRipeMD160.Location = new System.Drawing.Point(940, 401);
-            this.buttonCopyRipeMD160.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopyRipeMD160.Location = new System.Drawing.Point(703, 332);
             this.buttonCopyRipeMD160.Name = "buttonCopyRipeMD160";
-            this.buttonCopyRipeMD160.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopyRipeMD160.Size = new System.Drawing.Size(120, 24);
             this.buttonCopyRipeMD160.TabIndex = 11;
             this.buttonCopyRipeMD160.Text = "Copy RipeMD-160";
             this.buttonCopyRipeMD160.UseVisualStyleBackColor = true;
@@ -210,10 +199,9 @@ namespace HashTester
             // 
             this.buttonCopySHA512.AllowDrop = true;
             this.buttonCopySHA512.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopySHA512.Location = new System.Drawing.Point(940, 365);
-            this.buttonCopySHA512.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopySHA512.Location = new System.Drawing.Point(703, 302);
             this.buttonCopySHA512.Name = "buttonCopySHA512";
-            this.buttonCopySHA512.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopySHA512.Size = new System.Drawing.Size(120, 24);
             this.buttonCopySHA512.TabIndex = 10;
             this.buttonCopySHA512.Text = "Copy SHA512";
             this.buttonCopySHA512.UseVisualStyleBackColor = true;
@@ -223,10 +211,9 @@ namespace HashTester
             // 
             this.buttonCopySHA256.AllowDrop = true;
             this.buttonCopySHA256.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopySHA256.Location = new System.Drawing.Point(940, 329);
-            this.buttonCopySHA256.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopySHA256.Location = new System.Drawing.Point(703, 272);
             this.buttonCopySHA256.Name = "buttonCopySHA256";
-            this.buttonCopySHA256.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopySHA256.Size = new System.Drawing.Size(120, 24);
             this.buttonCopySHA256.TabIndex = 9;
             this.buttonCopySHA256.Text = "Copy SHA256";
             this.buttonCopySHA256.UseVisualStyleBackColor = true;
@@ -236,10 +223,9 @@ namespace HashTester
             // 
             this.buttonCopySHA1.AllowDrop = true;
             this.buttonCopySHA1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopySHA1.Location = new System.Drawing.Point(940, 293);
-            this.buttonCopySHA1.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopySHA1.Location = new System.Drawing.Point(703, 242);
             this.buttonCopySHA1.Name = "buttonCopySHA1";
-            this.buttonCopySHA1.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopySHA1.Size = new System.Drawing.Size(120, 24);
             this.buttonCopySHA1.TabIndex = 8;
             this.buttonCopySHA1.Text = "Copy SHA1";
             this.buttonCopySHA1.UseVisualStyleBackColor = true;
@@ -249,10 +235,9 @@ namespace HashTester
             // 
             this.buttonCopyMD5.AllowDrop = true;
             this.buttonCopyMD5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCopyMD5.Location = new System.Drawing.Point(940, 257);
-            this.buttonCopyMD5.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCopyMD5.Location = new System.Drawing.Point(703, 212);
             this.buttonCopyMD5.Name = "buttonCopyMD5";
-            this.buttonCopyMD5.Size = new System.Drawing.Size(158, 28);
+            this.buttonCopyMD5.Size = new System.Drawing.Size(120, 24);
             this.buttonCopyMD5.TabIndex = 7;
             this.buttonCopyMD5.Text = "Copy MD5";
             this.buttonCopyMD5.UseVisualStyleBackColor = true;
@@ -263,11 +248,10 @@ namespace HashTester
             this.labelCRC32.AllowDrop = true;
             this.labelCRC32.AutoSize = true;
             this.labelCRC32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCRC32.Location = new System.Drawing.Point(38, 433);
-            this.labelCRC32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelCRC32.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelCRC32.Location = new System.Drawing.Point(28, 359);
+            this.labelCRC32.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelCRC32.Name = "labelCRC32";
-            this.labelCRC32.Size = new System.Drawing.Size(156, 36);
+            this.labelCRC32.Size = new System.Drawing.Size(116, 30);
             this.labelCRC32.TabIndex = 5;
             this.labelCRC32.Text = "CRC32: ";
             this.labelCRC32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -277,11 +261,10 @@ namespace HashTester
             this.labelRipeMD160.AllowDrop = true;
             this.labelRipeMD160.AutoSize = true;
             this.labelRipeMD160.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelRipeMD160.Location = new System.Drawing.Point(38, 397);
-            this.labelRipeMD160.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelRipeMD160.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelRipeMD160.Location = new System.Drawing.Point(28, 329);
+            this.labelRipeMD160.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelRipeMD160.Name = "labelRipeMD160";
-            this.labelRipeMD160.Size = new System.Drawing.Size(156, 36);
+            this.labelRipeMD160.Size = new System.Drawing.Size(116, 30);
             this.labelRipeMD160.TabIndex = 4;
             this.labelRipeMD160.Text = "RipeMD-160: ";
             this.labelRipeMD160.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -291,11 +274,10 @@ namespace HashTester
             this.labelSHA512.AllowDrop = true;
             this.labelSHA512.AutoSize = true;
             this.labelSHA512.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA512.Location = new System.Drawing.Point(38, 361);
-            this.labelSHA512.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSHA512.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelSHA512.Location = new System.Drawing.Point(28, 299);
+            this.labelSHA512.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelSHA512.Name = "labelSHA512";
-            this.labelSHA512.Size = new System.Drawing.Size(156, 36);
+            this.labelSHA512.Size = new System.Drawing.Size(116, 30);
             this.labelSHA512.TabIndex = 3;
             this.labelSHA512.Text = "SHA512: ";
             this.labelSHA512.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -305,11 +287,10 @@ namespace HashTester
             this.labelSHA256.AllowDrop = true;
             this.labelSHA256.AutoSize = true;
             this.labelSHA256.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA256.Location = new System.Drawing.Point(38, 325);
-            this.labelSHA256.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSHA256.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelSHA256.Location = new System.Drawing.Point(28, 269);
+            this.labelSHA256.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelSHA256.Name = "labelSHA256";
-            this.labelSHA256.Size = new System.Drawing.Size(156, 36);
+            this.labelSHA256.Size = new System.Drawing.Size(116, 30);
             this.labelSHA256.TabIndex = 2;
             this.labelSHA256.Text = "SHA256: ";
             this.labelSHA256.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -319,11 +300,10 @@ namespace HashTester
             this.labelSHA1.AllowDrop = true;
             this.labelSHA1.AutoSize = true;
             this.labelSHA1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA1.Location = new System.Drawing.Point(38, 289);
-            this.labelSHA1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSHA1.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelSHA1.Location = new System.Drawing.Point(28, 239);
+            this.labelSHA1.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelSHA1.Name = "labelSHA1";
-            this.labelSHA1.Size = new System.Drawing.Size(156, 36);
+            this.labelSHA1.Size = new System.Drawing.Size(116, 30);
             this.labelSHA1.TabIndex = 1;
             this.labelSHA1.Text = "SHA1: ";
             this.labelSHA1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -333,11 +313,10 @@ namespace HashTester
             this.labelMD5.AllowDrop = true;
             this.labelMD5.AutoSize = true;
             this.labelMD5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelMD5.Location = new System.Drawing.Point(38, 253);
-            this.labelMD5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelMD5.MaximumSize = new System.Drawing.Size(433, 0);
+            this.labelMD5.Location = new System.Drawing.Point(28, 209);
+            this.labelMD5.MaximumSize = new System.Drawing.Size(325, 0);
             this.labelMD5.Name = "labelMD5";
-            this.labelMD5.Size = new System.Drawing.Size(156, 36);
+            this.labelMD5.Size = new System.Drawing.Size(116, 30);
             this.labelMD5.TabIndex = 0;
             this.labelMD5.Text = "MD5: ";
             this.labelMD5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -348,11 +327,10 @@ namespace HashTester
             this.labelLocation.AutoSize = true;
             this.tableLPMain.SetColumnSpan(this.labelLocation, 2);
             this.labelLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLocation.Location = new System.Drawing.Point(4, 0);
-            this.labelLocation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelLocation.MaximumSize = new System.Drawing.Size(700, 0);
+            this.labelLocation.Location = new System.Drawing.Point(3, 0);
+            this.labelLocation.MaximumSize = new System.Drawing.Size(525, 0);
             this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(190, 34);
+            this.labelLocation.Size = new System.Drawing.Size(141, 28);
             this.labelLocation.TabIndex = 4;
             this.labelLocation.Text = "File location: \r\n\r\n";
             this.labelLocation.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -404,7 +382,7 @@ namespace HashTester
             this.tableLPMain.Controls.Add(this.progressBar, 0, 14);
             this.tableLPMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLPMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLPMain.Margin = new System.Windows.Forms.Padding(10, 30, 10, 20);
+            this.tableLPMain.Margin = new System.Windows.Forms.Padding(8, 24, 8, 16);
             this.tableLPMain.Name = "tableLPMain";
             this.tableLPMain.RowCount = 15;
             this.tableLPMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.836303F));
@@ -422,7 +400,7 @@ namespace HashTester
             this.tableLPMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.851341F));
             this.tableLPMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.155707F));
             this.tableLPMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.320514F));
-            this.tableLPMain.Size = new System.Drawing.Size(1102, 593);
+            this.tableLPMain.Size = new System.Drawing.Size(826, 488);
             this.tableLPMain.TabIndex = 21;
             // 
             // labelMD5Output
@@ -430,9 +408,10 @@ namespace HashTester
             this.labelMD5Output.AllowDrop = true;
             this.labelMD5Output.AutoSize = true;
             this.labelMD5Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelMD5Output.Location = new System.Drawing.Point(201, 253);
+            this.labelMD5Output.Location = new System.Drawing.Point(149, 209);
+            this.labelMD5Output.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMD5Output.Name = "labelMD5Output";
-            this.labelMD5Output.Size = new System.Drawing.Size(732, 36);
+            this.labelMD5Output.Size = new System.Drawing.Size(549, 30);
             this.labelMD5Output.TabIndex = 23;
             this.labelMD5Output.Text = "label1";
             this.labelMD5Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -442,9 +421,10 @@ namespace HashTester
             this.labelSHA1Output.AllowDrop = true;
             this.labelSHA1Output.AutoSize = true;
             this.labelSHA1Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA1Output.Location = new System.Drawing.Point(201, 289);
+            this.labelSHA1Output.Location = new System.Drawing.Point(149, 239);
+            this.labelSHA1Output.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSHA1Output.Name = "labelSHA1Output";
-            this.labelSHA1Output.Size = new System.Drawing.Size(732, 36);
+            this.labelSHA1Output.Size = new System.Drawing.Size(549, 30);
             this.labelSHA1Output.TabIndex = 24;
             this.labelSHA1Output.Text = "label1";
             this.labelSHA1Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -454,9 +434,10 @@ namespace HashTester
             this.labelSHA256Output.AllowDrop = true;
             this.labelSHA256Output.AutoSize = true;
             this.labelSHA256Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA256Output.Location = new System.Drawing.Point(201, 325);
+            this.labelSHA256Output.Location = new System.Drawing.Point(149, 269);
+            this.labelSHA256Output.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSHA256Output.Name = "labelSHA256Output";
-            this.labelSHA256Output.Size = new System.Drawing.Size(732, 36);
+            this.labelSHA256Output.Size = new System.Drawing.Size(549, 30);
             this.labelSHA256Output.TabIndex = 25;
             this.labelSHA256Output.Text = "label1";
             this.labelSHA256Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -466,9 +447,10 @@ namespace HashTester
             this.labelSHA512Output.AllowDrop = true;
             this.labelSHA512Output.AutoSize = true;
             this.labelSHA512Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSHA512Output.Location = new System.Drawing.Point(201, 361);
+            this.labelSHA512Output.Location = new System.Drawing.Point(149, 299);
+            this.labelSHA512Output.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSHA512Output.Name = "labelSHA512Output";
-            this.labelSHA512Output.Size = new System.Drawing.Size(732, 36);
+            this.labelSHA512Output.Size = new System.Drawing.Size(549, 30);
             this.labelSHA512Output.TabIndex = 26;
             this.labelSHA512Output.Text = "label1";
             this.labelSHA512Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -478,9 +460,10 @@ namespace HashTester
             this.labelRipeMDOutput.AllowDrop = true;
             this.labelRipeMDOutput.AutoSize = true;
             this.labelRipeMDOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelRipeMDOutput.Location = new System.Drawing.Point(201, 397);
+            this.labelRipeMDOutput.Location = new System.Drawing.Point(149, 329);
+            this.labelRipeMDOutput.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelRipeMDOutput.Name = "labelRipeMDOutput";
-            this.labelRipeMDOutput.Size = new System.Drawing.Size(732, 36);
+            this.labelRipeMDOutput.Size = new System.Drawing.Size(549, 30);
             this.labelRipeMDOutput.TabIndex = 27;
             this.labelRipeMDOutput.Text = "label1";
             this.labelRipeMDOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -490,9 +473,10 @@ namespace HashTester
             this.labelCRC32Output.AllowDrop = true;
             this.labelCRC32Output.AutoSize = true;
             this.labelCRC32Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCRC32Output.Location = new System.Drawing.Point(201, 433);
+            this.labelCRC32Output.Location = new System.Drawing.Point(149, 359);
+            this.labelCRC32Output.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCRC32Output.Name = "labelCRC32Output";
-            this.labelCRC32Output.Size = new System.Drawing.Size(732, 36);
+            this.labelCRC32Output.Size = new System.Drawing.Size(549, 30);
             this.labelCRC32Output.TabIndex = 28;
             this.labelCRC32Output.Text = "label1";
             this.labelCRC32Output.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -503,9 +487,10 @@ namespace HashTester
             this.labelHash.AutoSize = true;
             this.tableLPMain.SetColumnSpan(this.labelHash, 2);
             this.labelHash.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelHash.Location = new System.Drawing.Point(3, 108);
+            this.labelHash.Location = new System.Drawing.Point(2, 89);
+            this.labelHash.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelHash.Name = "labelHash";
-            this.labelHash.Size = new System.Drawing.Size(192, 20);
+            this.labelHash.Size = new System.Drawing.Size(143, 16);
             this.labelHash.TabIndex = 1;
             this.labelHash.Text = "Hash input:";
             this.labelHash.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -515,9 +500,10 @@ namespace HashTester
             this.buttonRunChecksum.AllowDrop = true;
             this.tableLPMain.SetColumnSpan(this.buttonRunChecksum, 2);
             this.buttonRunChecksum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonRunChecksum.Location = new System.Drawing.Point(3, 173);
+            this.buttonRunChecksum.Location = new System.Drawing.Point(2, 142);
+            this.buttonRunChecksum.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRunChecksum.Name = "buttonRunChecksum";
-            this.buttonRunChecksum.Size = new System.Drawing.Size(192, 59);
+            this.buttonRunChecksum.Size = new System.Drawing.Size(143, 50);
             this.buttonRunChecksum.TabIndex = 22;
             this.buttonRunChecksum.Text = "Run Checksum";
             this.buttonRunChecksum.UseVisualStyleBackColor = true;
@@ -529,9 +515,10 @@ namespace HashTester
             this.labelCheckSum.AutoSize = true;
             this.tableLPMain.SetColumnSpan(this.labelCheckSum, 4);
             this.labelCheckSum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCheckSum.Location = new System.Drawing.Point(3, 235);
+            this.labelCheckSum.Location = new System.Drawing.Point(2, 194);
+            this.labelCheckSum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCheckSum.Name = "labelCheckSum";
-            this.labelCheckSum.Size = new System.Drawing.Size(1096, 18);
+            this.labelCheckSum.Size = new System.Drawing.Size(822, 15);
             this.labelCheckSum.TabIndex = 29;
             this.labelCheckSum.Text = "Checksum:";
             // 
@@ -540,10 +527,11 @@ namespace HashTester
             this.labelFileLocation.AutoSize = true;
             this.tableLPMain.SetColumnSpan(this.labelFileLocation, 2);
             this.labelFileLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFileLocation.Location = new System.Drawing.Point(201, 0);
+            this.labelFileLocation.Location = new System.Drawing.Point(149, 0);
+            this.labelFileLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFileLocation.Name = "labelFileLocation";
             this.tableLPMain.SetRowSpan(this.labelFileLocation, 2);
-            this.labelFileLocation.Size = new System.Drawing.Size(898, 108);
+            this.labelFileLocation.Size = new System.Drawing.Size(675, 89);
             this.labelFileLocation.TabIndex = 30;
             this.labelFileLocation.Text = "Label";
             this.labelFileLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -552,9 +540,10 @@ namespace HashTester
             // 
             this.tableLPMain.SetColumnSpan(this.buttonCheckAll, 2);
             this.buttonCheckAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCheckAll.Location = new System.Drawing.Point(3, 472);
+            this.buttonCheckAll.Location = new System.Drawing.Point(2, 391);
+            this.buttonCheckAll.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCheckAll.Name = "buttonCheckAll";
-            this.buttonCheckAll.Size = new System.Drawing.Size(192, 40);
+            this.buttonCheckAll.Size = new System.Drawing.Size(143, 34);
             this.buttonCheckAll.TabIndex = 31;
             this.buttonCheckAll.Text = "Check All";
             this.buttonCheckAll.UseVisualStyleBackColor = true;
@@ -564,9 +553,10 @@ namespace HashTester
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(37, 515);
+            this.label1.Location = new System.Drawing.Point(27, 427);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 30);
+            this.label1.Size = new System.Drawing.Size(118, 25);
             this.label1.TabIndex = 33;
             this.label1.Text = "Use multi-threading";
             // 
@@ -574,18 +564,20 @@ namespace HashTester
             // 
             this.checkBoxMultiThread.AutoSize = true;
             this.checkBoxMultiThread.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxMultiThread.Location = new System.Drawing.Point(3, 518);
+            this.checkBoxMultiThread.Location = new System.Drawing.Point(2, 429);
+            this.checkBoxMultiThread.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxMultiThread.Name = "checkBoxMultiThread";
-            this.checkBoxMultiThread.Size = new System.Drawing.Size(28, 24);
+            this.checkBoxMultiThread.Size = new System.Drawing.Size(21, 21);
             this.checkBoxMultiThread.TabIndex = 34;
             this.checkBoxMultiThread.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCancel.Location = new System.Drawing.Point(939, 472);
+            this.buttonCancel.Location = new System.Drawing.Point(702, 391);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(160, 40);
+            this.buttonCancel.Size = new System.Drawing.Size(122, 34);
             this.buttonCancel.TabIndex = 35;
             this.buttonCancel.Text = "Cancel operation";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -594,24 +586,21 @@ namespace HashTester
             // 
             this.tableLPMain.SetColumnSpan(this.progressBar, 4);
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(3, 548);
+            this.progressBar.Location = new System.Drawing.Point(2, 454);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(1096, 42);
+            this.progressBar.Size = new System.Drawing.Size(822, 32);
             this.progressBar.TabIndex = 32;
             // 
             // FileChecksum
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1102, 593);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(826, 488);
             this.Controls.Add(this.tableLPMain);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(800, 640);
+            this.MinimumSize = new System.Drawing.Size(842, 527);
             this.Name = "FileChecksum";
             this.Text = "File Checksum";
             this.Load += new System.EventHandler(this.File_checksum_Load);
-            this.ResizeEnd += new System.EventHandler(this.FileChecksum_ResizeEnd);
-            this.SizeChanged += new System.EventHandler(this.FileChecksum_SizeChanged);
             this.tableLPMain.ResumeLayout(false);
             this.tableLPMain.PerformLayout();
             this.ResumeLayout(false);

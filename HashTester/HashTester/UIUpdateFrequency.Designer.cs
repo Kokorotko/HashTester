@@ -50,30 +50,39 @@ namespace HashTester
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.labelFPS = new System.Windows.Forms.Label();
             this.labelTimeToUpdate = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelQuestion
             // 
             this.labelQuestion.AutoSize = true;
-            this.labelQuestion.Location = new System.Drawing.Point(26, 9);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelQuestion, 6);
+            this.labelQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelQuestion.Location = new System.Drawing.Point(3, 0);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(384, 13);
+            this.labelQuestion.Size = new System.Drawing.Size(463, 23);
             this.labelQuestion.TabIndex = 0;
             this.labelQuestion.Text = "How many times a second do you want to update the UI (for specific operations)";
+            this.labelQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxMiliseconds
             // 
-            this.textBoxMiliseconds.Location = new System.Drawing.Point(210, 54);
+            this.tableLayoutPanel1.SetColumnSpan(this.textBoxMiliseconds, 3);
+            this.textBoxMiliseconds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxMiliseconds.Location = new System.Drawing.Point(237, 49);
             this.textBoxMiliseconds.Name = "textBoxMiliseconds";
-            this.textBoxMiliseconds.Size = new System.Drawing.Size(187, 20);
+            this.textBoxMiliseconds.Size = new System.Drawing.Size(229, 20);
             this.textBoxMiliseconds.TabIndex = 2;
             this.textBoxMiliseconds.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(16, 235);
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonSave, 2);
+            this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSave.Location = new System.Drawing.Point(3, 279);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(129, 23);
+            this.buttonSave.Size = new System.Drawing.Size(150, 20);
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -81,19 +90,23 @@ namespace HashTester
             // 
             // buttonCancel
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonCancel, 2);
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(286, 235);
+            this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCancel.Location = new System.Drawing.Point(315, 279);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(129, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(151, 20);
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonDefault
             // 
-            this.buttonDefault.Location = new System.Drawing.Point(151, 235);
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonDefault, 2);
+            this.buttonDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonDefault.Location = new System.Drawing.Point(159, 279);
             this.buttonDefault.Name = "buttonDefault";
-            this.buttonDefault.Size = new System.Drawing.Size(129, 23);
+            this.buttonDefault.Size = new System.Drawing.Size(150, 20);
             this.buttonDefault.TabIndex = 5;
             this.buttonDefault.Text = "Default";
             this.buttonDefault.UseVisualStyleBackColor = true;
@@ -102,28 +115,35 @@ namespace HashTester
             // labelInfo2
             // 
             this.labelInfo2.AutoSize = true;
-            this.labelInfo2.Location = new System.Drawing.Point(16, 219);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelInfo2, 6);
+            this.labelInfo2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelInfo2.Location = new System.Drawing.Point(3, 253);
             this.labelInfo2.Name = "labelInfo2";
-            this.labelInfo2.Size = new System.Drawing.Size(239, 13);
+            this.labelInfo2.Size = new System.Drawing.Size(463, 23);
             this.labelInfo2.TabIndex = 6;
             this.labelInfo2.Text = "*Higher frequency can cause performance issues";
+            this.labelInfo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelInfo2.Click += new System.EventHandler(this.labelInfo2_Click);
             // 
             // labelRangeT
             // 
             this.labelRangeT.AutoSize = true;
-            this.labelRangeT.Location = new System.Drawing.Point(209, 77);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelRangeT, 3);
+            this.labelRangeT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelRangeT.Location = new System.Drawing.Point(237, 92);
             this.labelRangeT.Name = "labelRangeT";
-            this.labelRangeT.Size = new System.Drawing.Size(170, 13);
+            this.labelRangeT.Size = new System.Drawing.Size(229, 23);
             this.labelRangeT.TabIndex = 10;
             this.labelRangeT.Text = "Please set numbers from 8 to 1000";
             // 
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(210, 185);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton6, 3);
+            this.radioButton6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton6.Location = new System.Drawing.Point(237, 210);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(85, 17);
+            this.radioButton6.Size = new System.Drawing.Size(229, 17);
             this.radioButton6.TabIndex = 19;
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "50ms (20fps)";
@@ -133,9 +153,11 @@ namespace HashTester
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(210, 162);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton7, 3);
+            this.radioButton7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton7.Location = new System.Drawing.Point(237, 187);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(91, 17);
+            this.radioButton7.Size = new System.Drawing.Size(229, 17);
             this.radioButton7.TabIndex = 18;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "100ms (10fps)";
@@ -145,9 +167,11 @@ namespace HashTester
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(210, 139);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton8, 3);
+            this.radioButton8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton8.Location = new System.Drawing.Point(237, 164);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(88, 17);
+            this.radioButton8.Size = new System.Drawing.Size(229, 17);
             this.radioButton8.TabIndex = 17;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "250ms (4 fps)";
@@ -157,9 +181,11 @@ namespace HashTester
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(210, 116);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton9, 3);
+            this.radioButton9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton9.Location = new System.Drawing.Point(237, 141);
             this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(85, 17);
+            this.radioButton9.Size = new System.Drawing.Size(229, 17);
             this.radioButton9.TabIndex = 16;
             this.radioButton9.TabStop = true;
             this.radioButton9.Text = "500ms (2fps)";
@@ -169,9 +195,11 @@ namespace HashTester
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(210, 93);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton10, 3);
+            this.radioButton10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton10.Location = new System.Drawing.Point(237, 118);
             this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(91, 17);
+            this.radioButton10.Size = new System.Drawing.Size(229, 17);
             this.radioButton10.TabIndex = 15;
             this.radioButton10.TabStop = true;
             this.radioButton10.Text = "1000ms (1fps)";
@@ -181,35 +209,44 @@ namespace HashTester
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(16, 206);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelInfo, 6);
+            this.labelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelInfo.Location = new System.Drawing.Point(3, 230);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(255, 13);
+            this.labelInfo.Size = new System.Drawing.Size(463, 23);
             this.labelInfo.TabIndex = 13;
             this.labelInfo.Text = "*Know that miliseconds are prefered by the computer";
+            this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelRangeFPS
             // 
             this.labelRangeFPS.AutoSize = true;
-            this.labelRangeFPS.Location = new System.Drawing.Point(16, 77);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelRangeFPS, 3);
+            this.labelRangeFPS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelRangeFPS.Location = new System.Drawing.Point(3, 92);
             this.labelRangeFPS.Name = "labelRangeFPS";
-            this.labelRangeFPS.Size = new System.Drawing.Size(164, 13);
+            this.labelRangeFPS.Size = new System.Drawing.Size(228, 23);
             this.labelRangeFPS.TabIndex = 9;
             this.labelRangeFPS.Text = "Please set numbers from 1 to 125";
             // 
             // textBoxFPS
             // 
-            this.textBoxFPS.Location = new System.Drawing.Point(16, 54);
+            this.tableLayoutPanel1.SetColumnSpan(this.textBoxFPS, 3);
+            this.textBoxFPS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxFPS.Location = new System.Drawing.Point(3, 49);
             this.textBoxFPS.Name = "textBoxFPS";
-            this.textBoxFPS.Size = new System.Drawing.Size(187, 20);
+            this.textBoxFPS.Size = new System.Drawing.Size(228, 20);
             this.textBoxFPS.TabIndex = 1;
             this.textBoxFPS.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(19, 94);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton1, 3);
+            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton1.Location = new System.Drawing.Point(3, 118);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(54, 17);
+            this.radioButton1.Size = new System.Drawing.Size(228, 17);
             this.radioButton1.TabIndex = 10;
             this.radioButton1.Text = "12 fps";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -218,9 +255,11 @@ namespace HashTester
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(19, 117);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton2, 3);
+            this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton2.Location = new System.Drawing.Point(3, 141);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 17);
+            this.radioButton2.Size = new System.Drawing.Size(228, 17);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.Text = "24 fps";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -230,9 +269,11 @@ namespace HashTester
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(19, 140);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton3, 3);
+            this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton3.Location = new System.Drawing.Point(3, 164);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(54, 17);
+            this.radioButton3.Size = new System.Drawing.Size(228, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "30 fps";
@@ -242,9 +283,11 @@ namespace HashTester
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(19, 163);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton4, 3);
+            this.radioButton4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton4.Location = new System.Drawing.Point(3, 187);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(54, 17);
+            this.radioButton4.Size = new System.Drawing.Size(228, 17);
             this.radioButton4.TabIndex = 13;
             this.radioButton4.Text = "60 fps";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -253,9 +296,11 @@ namespace HashTester
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(19, 186);
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton5, 3);
+            this.radioButton5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton5.Location = new System.Drawing.Point(3, 210);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(60, 17);
+            this.radioButton5.Size = new System.Drawing.Size(228, 17);
             this.radioButton5.TabIndex = 14;
             this.radioButton5.Text = "125 fps";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -264,54 +309,95 @@ namespace HashTester
             // labelFPS
             // 
             this.labelFPS.AutoSize = true;
-            this.labelFPS.Location = new System.Drawing.Point(16, 38);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelFPS, 3);
+            this.labelFPS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelFPS.Location = new System.Drawing.Point(3, 23);
             this.labelFPS.Name = "labelFPS";
-            this.labelFPS.Size = new System.Drawing.Size(162, 13);
+            this.labelFPS.Size = new System.Drawing.Size(228, 23);
             this.labelFPS.TabIndex = 15;
             this.labelFPS.Text = "Target Frames per Second (FPS)";
+            this.labelFPS.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // labelTimeToUpdate
             // 
             this.labelTimeToUpdate.AutoSize = true;
-            this.labelTimeToUpdate.Location = new System.Drawing.Point(209, 38);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelTimeToUpdate, 3);
+            this.labelTimeToUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTimeToUpdate.Location = new System.Drawing.Point(237, 23);
             this.labelTimeToUpdate.Name = "labelTimeToUpdate";
-            this.labelTimeToUpdate.Size = new System.Drawing.Size(99, 13);
+            this.labelTimeToUpdate.Size = new System.Drawing.Size(229, 23);
             this.labelTimeToUpdate.TabIndex = 20;
             this.labelTimeToUpdate.Text = "Every x miliseconds";
+            this.labelTimeToUpdate.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Controls.Add(this.labelQuestion, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton6, 3, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelTimeToUpdate, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton7, 3, 7);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxMiliseconds, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton8, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.labelRangeT, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton9, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton10, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labelFPS, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxFPS, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.labelRangeFPS, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton1, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton5, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelInfo, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton3, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 4, 11);
+            this.tableLayoutPanel1.Controls.Add(this.buttonDefault, 2, 11);
+            this.tableLayoutPanel1.Controls.Add(this.labelInfo2, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton4, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSave, 0, 11);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 12;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(469, 302);
+            this.tableLayoutPanel1.TabIndex = 21;
             // 
             // UIUpdateFrequency
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 265);
-            this.Controls.Add(this.labelTimeToUpdate);
-            this.Controls.Add(this.radioButton6);
-            this.Controls.Add(this.labelFPS);
-            this.Controls.Add(this.textBoxMiliseconds);
-            this.Controls.Add(this.radioButton7);
-            this.Controls.Add(this.radioButton5);
-            this.Controls.Add(this.labelRangeT);
-            this.Controls.Add(this.labelInfo);
-            this.Controls.Add(this.radioButton8);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton10);
-            this.Controls.Add(this.radioButton9);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.labelInfo2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.buttonDefault);
-            this.Controls.Add(this.textBoxFPS);
-            this.Controls.Add(this.labelRangeFPS);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.labelQuestion);
+            this.ClientSize = new System.Drawing.Size(469, 302);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.MinimumSize = new System.Drawing.Size(485, 341);
             this.Name = "UIUpdateFrequency";
             this.Text = "UIUpdateFrequency";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIUpdateFrequency_FormClosing);
             this.Load += new System.EventHandler(this.UIUpdateFrequency_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -339,5 +425,6 @@ namespace HashTester
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Label labelFPS;
         private System.Windows.Forms.Label labelTimeToUpdate;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

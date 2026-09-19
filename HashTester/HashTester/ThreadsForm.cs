@@ -120,7 +120,7 @@ namespace HashTester
 
         private void ThreadsForm_Load(object sender, EventArgs e)
         {
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.ThreadManager);
             labelHowMany.Text = Languages.Translate(Languages.L.HowManyThreadsDoYouWantToUseInAProgram);

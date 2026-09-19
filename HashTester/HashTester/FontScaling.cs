@@ -5,24 +5,24 @@ using System.Windows.Forms;
 
 namespace HashTester
 {
-    public class FormScaling
+    public class FontScaling
     {
         private Form form;
         private Size baseFormSize;
         private Dictionary<Control, Font> baseFonts = new Dictionary<Control, Font>();
-        private const int startingFontSize = 10; // Base font size for scaling reference
 
-        public FormScaling(Form form)
+        public FontScaling(Form form)
         {
             this.form = form;
             baseFormSize = form.Size;
-
+            form.AutoScaleMode = AutoScaleMode.None; //For correct font scaling
+            form.SizeChanged += (s, e) => FontScaler();
             // Save the original fonts for all controls
             SaveBaseFonts(form);
         }
 
         // Call this on resize
-        public void FontScaling()
+        public void FontScaler()
         {
             float scaleX = (float)form.Width / baseFormSize.Width;
             float scaleY = (float)form.Height / baseFormSize.Height;
@@ -60,26 +60,6 @@ namespace HashTester
             foreach (Control c in control.Controls)
             {
                 ScaleFontsRecursively(c, scale);
-            }
-        }
-
-        public void FontSetup()
-        {
-            foreach (Control c in form.Controls)
-            {
-                FontSetupRecursively(c);
-            }
-        }
-
-        private void FontSetupRecursively(Control control)
-        {
-            if (control == null) return;
-            if (control is ComboBox) return; // Skip ComboBox to avoid vertical sizing issues
-            // Set the base font for all controls to ensure consistent scaling
-            control.Font = new Font(control.Font.FontFamily, startingFontSize, control.Font.Style);
-            foreach (Control c in control.Controls)
-            {
-                FontSetupRecursively(c);
             }
         }
     }

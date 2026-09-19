@@ -46,13 +46,16 @@ namespace HashTester
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.buttonSaveLog = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonTXTInput
             // 
-            this.buttonTXTInput.Location = new System.Drawing.Point(92, 78);
+            this.buttonTXTInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonTXTInput.Location = new System.Drawing.Point(94, 149);
             this.buttonTXTInput.Name = "buttonTXTInput";
-            this.buttonTXTInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonTXTInput.Size = new System.Drawing.Size(85, 30);
             this.buttonTXTInput.TabIndex = 7;
             this.buttonTXTInput.Text = "TXTInput";
             this.buttonTXTInput.UseVisualStyleBackColor = true;
@@ -60,9 +63,10 @@ namespace HashTester
             // 
             // buttonHashSimpleText
             // 
-            this.buttonHashSimpleText.Location = new System.Drawing.Point(11, 78);
+            this.buttonHashSimpleText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonHashSimpleText.Location = new System.Drawing.Point(3, 149);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
-            this.buttonHashSimpleText.Size = new System.Drawing.Size(75, 23);
+            this.buttonHashSimpleText.Size = new System.Drawing.Size(85, 30);
             this.buttonHashSimpleText.TabIndex = 6;
             this.buttonHashSimpleText.Text = "Hash text";
             this.buttonHashSimpleText.UseVisualStyleBackColor = true;
@@ -70,9 +74,11 @@ namespace HashTester
             // 
             // buttonClearListBox
             // 
-            this.buttonClearListBox.Location = new System.Drawing.Point(208, 308);
+            this.buttonClearListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonClearListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonClearListBox.Location = new System.Drawing.Point(185, 473);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(190, 23);
+            this.buttonClearListBox.Size = new System.Drawing.Size(177, 74);
             this.buttonClearListBox.TabIndex = 14;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -80,28 +86,35 @@ namespace HashTester
             // 
             // listBoxLog
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.listBoxLog, 3);
+            this.listBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
-            this.listBoxLog.Location = new System.Drawing.Point(208, 77);
+            this.listBoxLog.Location = new System.Drawing.Point(185, 149);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(600, 225);
+            this.tableLayoutPanel1.SetRowSpan(this.listBoxLog, 9);
+            this.listBoxLog.Size = new System.Drawing.Size(546, 318);
             this.listBoxLog.TabIndex = 13;
             // 
             // textHashSimple
             // 
-            this.textHashSimple.Location = new System.Drawing.Point(11, 12);
+            this.tableLayoutPanel1.SetColumnSpan(this.textHashSimple, 5);
+            this.textHashSimple.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textHashSimple.Location = new System.Drawing.Point(3, 3);
             this.textHashSimple.Multiline = true;
             this.textHashSimple.Name = "textHashSimple";
-            this.textHashSimple.Size = new System.Drawing.Size(797, 59);
+            this.textHashSimple.Size = new System.Drawing.Size(728, 140);
             this.textHashSimple.TabIndex = 12;
             this.textHashSimple.Text = "test\r\ntest2";
             // 
             // checkBoxMD5
             // 
             this.checkBoxMD5.AutoSize = true;
-            this.checkBoxMD5.Location = new System.Drawing.Point(12, 108);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxMD5, 2);
+            this.checkBoxMD5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxMD5.Location = new System.Drawing.Point(3, 185);
             this.checkBoxMD5.Name = "checkBoxMD5";
-            this.checkBoxMD5.Size = new System.Drawing.Size(49, 17);
+            this.checkBoxMD5.Size = new System.Drawing.Size(176, 30);
             this.checkBoxMD5.TabIndex = 15;
             this.checkBoxMD5.Text = "MD5";
             this.checkBoxMD5.UseVisualStyleBackColor = true;
@@ -109,9 +122,11 @@ namespace HashTester
             // checkBoxSHA1
             // 
             this.checkBoxSHA1.AutoSize = true;
-            this.checkBoxSHA1.Location = new System.Drawing.Point(11, 131);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxSHA1, 2);
+            this.checkBoxSHA1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxSHA1.Location = new System.Drawing.Point(3, 221);
             this.checkBoxSHA1.Name = "checkBoxSHA1";
-            this.checkBoxSHA1.Size = new System.Drawing.Size(54, 17);
+            this.checkBoxSHA1.Size = new System.Drawing.Size(176, 30);
             this.checkBoxSHA1.TabIndex = 16;
             this.checkBoxSHA1.Text = "SHA1";
             this.checkBoxSHA1.UseVisualStyleBackColor = true;
@@ -119,9 +134,11 @@ namespace HashTester
             // checkBoxSHA256
             // 
             this.checkBoxSHA256.AutoSize = true;
-            this.checkBoxSHA256.Location = new System.Drawing.Point(11, 154);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxSHA256, 2);
+            this.checkBoxSHA256.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxSHA256.Location = new System.Drawing.Point(3, 257);
             this.checkBoxSHA256.Name = "checkBoxSHA256";
-            this.checkBoxSHA256.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxSHA256.Size = new System.Drawing.Size(176, 30);
             this.checkBoxSHA256.TabIndex = 17;
             this.checkBoxSHA256.Text = "SHA256";
             this.checkBoxSHA256.UseVisualStyleBackColor = true;
@@ -129,9 +146,11 @@ namespace HashTester
             // checkBoxSHA512
             // 
             this.checkBoxSHA512.AutoSize = true;
-            this.checkBoxSHA512.Location = new System.Drawing.Point(11, 177);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxSHA512, 2);
+            this.checkBoxSHA512.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxSHA512.Location = new System.Drawing.Point(3, 293);
             this.checkBoxSHA512.Name = "checkBoxSHA512";
-            this.checkBoxSHA512.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxSHA512.Size = new System.Drawing.Size(176, 30);
             this.checkBoxSHA512.TabIndex = 18;
             this.checkBoxSHA512.Text = "SHA512";
             this.checkBoxSHA512.UseVisualStyleBackColor = true;
@@ -139,9 +158,11 @@ namespace HashTester
             // checkBoxRipeMD160
             // 
             this.checkBoxRipeMD160.AutoSize = true;
-            this.checkBoxRipeMD160.Location = new System.Drawing.Point(11, 200);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxRipeMD160, 2);
+            this.checkBoxRipeMD160.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxRipeMD160.Location = new System.Drawing.Point(3, 329);
             this.checkBoxRipeMD160.Name = "checkBoxRipeMD160";
-            this.checkBoxRipeMD160.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxRipeMD160.Size = new System.Drawing.Size(176, 30);
             this.checkBoxRipeMD160.TabIndex = 19;
             this.checkBoxRipeMD160.Text = "RipeMD-160";
             this.checkBoxRipeMD160.UseVisualStyleBackColor = true;
@@ -149,18 +170,23 @@ namespace HashTester
             // checkBoxCRC32
             // 
             this.checkBoxCRC32.AutoSize = true;
-            this.checkBoxCRC32.Location = new System.Drawing.Point(11, 223);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxCRC32, 2);
+            this.checkBoxCRC32.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxCRC32.Location = new System.Drawing.Point(3, 365);
             this.checkBoxCRC32.Name = "checkBoxCRC32";
-            this.checkBoxCRC32.Size = new System.Drawing.Size(60, 17);
+            this.checkBoxCRC32.Size = new System.Drawing.Size(176, 30);
             this.checkBoxCRC32.TabIndex = 20;
             this.checkBoxCRC32.Text = "CRC32";
             this.checkBoxCRC32.UseVisualStyleBackColor = true;
             // 
             // buttonGoBack
             // 
-            this.buttonGoBack.Location = new System.Drawing.Point(11, 308);
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonGoBack, 2);
+            this.buttonGoBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonGoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonGoBack.Location = new System.Drawing.Point(3, 473);
             this.buttonGoBack.Name = "buttonGoBack";
-            this.buttonGoBack.Size = new System.Drawing.Size(191, 23);
+            this.buttonGoBack.Size = new System.Drawing.Size(176, 74);
             this.buttonGoBack.TabIndex = 21;
             this.buttonGoBack.Text = "Go Back";
             this.buttonGoBack.UseVisualStyleBackColor = true;
@@ -171,9 +197,11 @@ namespace HashTester
             this.checkBoxShowAlgorithm.AutoSize = true;
             this.checkBoxShowAlgorithm.Checked = true;
             this.checkBoxShowAlgorithm.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowAlgorithm.Location = new System.Drawing.Point(12, 246);
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxShowAlgorithm, 2);
+            this.checkBoxShowAlgorithm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxShowAlgorithm.Location = new System.Drawing.Point(3, 401);
             this.checkBoxShowAlgorithm.Name = "checkBoxShowAlgorithm";
-            this.checkBoxShowAlgorithm.Size = new System.Drawing.Size(103, 17);
+            this.checkBoxShowAlgorithm.Size = new System.Drawing.Size(176, 30);
             this.checkBoxShowAlgorithm.TabIndex = 22;
             this.checkBoxShowAlgorithm.Text = "Show Algorithm*";
             this.checkBoxShowAlgorithm.UseVisualStyleBackColor = true;
@@ -181,10 +209,12 @@ namespace HashTester
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(9, 266);
+            this.tableLayoutPanel1.SetColumnSpan(this.labelInfo, 2);
+            this.labelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelInfo.Location = new System.Drawing.Point(3, 434);
             this.labelInfo.MaximumSize = new System.Drawing.Size(200, 0);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(179, 26);
+            this.labelInfo.Size = new System.Drawing.Size(176, 36);
             this.labelInfo.TabIndex = 23;
             this.labelInfo.Text = "*will overwrite the \"Include hashing algorithm\" in the output style settings";
             // 
@@ -194,9 +224,11 @@ namespace HashTester
             // 
             // buttonSaveLog
             // 
-            this.buttonSaveLog.Location = new System.Drawing.Point(413, 308);
+            this.buttonSaveLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSaveLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSaveLog.Location = new System.Drawing.Point(368, 473);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(190, 23);
+            this.buttonSaveLog.Size = new System.Drawing.Size(177, 74);
             this.buttonSaveLog.TabIndex = 24;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -204,40 +236,71 @@ namespace HashTester
             // 
             // buttonClipboard
             // 
-            this.buttonClipboard.Location = new System.Drawing.Point(618, 308);
+            this.buttonClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonClipboard.Location = new System.Drawing.Point(551, 473);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(190, 23);
+            this.buttonClipboard.Size = new System.Drawing.Size(180, 74);
             this.buttonClipboard.TabIndex = 25;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxCRC32, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.labelInfo, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxRipeMD160, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxShowAlgorithm, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.textHashSimple, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxSHA512, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.buttonHashSimpleText, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxSHA256, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.buttonTXTInput, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxSHA1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.listBoxLog, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxMD5, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonGoBack, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.buttonClearListBox, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSaveLog, 3, 10);
+            this.tableLayoutPanel1.Controls.Add(this.buttonClipboard, 4, 10);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 11;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(734, 550);
+            this.tableLayoutPanel1.TabIndex = 26;
+            // 
             // MultipleHashing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 344);
-            this.Controls.Add(this.buttonClipboard);
-            this.Controls.Add(this.buttonSaveLog);
-            this.Controls.Add(this.labelInfo);
-            this.Controls.Add(this.checkBoxShowAlgorithm);
-            this.Controls.Add(this.buttonGoBack);
-            this.Controls.Add(this.checkBoxCRC32);
-            this.Controls.Add(this.checkBoxRipeMD160);
-            this.Controls.Add(this.checkBoxSHA512);
-            this.Controls.Add(this.checkBoxSHA256);
-            this.Controls.Add(this.checkBoxSHA1);
-            this.Controls.Add(this.checkBoxMD5);
-            this.Controls.Add(this.buttonClearListBox);
-            this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.textHashSimple);
-            this.Controls.Add(this.buttonTXTInput);
-            this.Controls.Add(this.buttonHashSimpleText);
+            this.ClientSize = new System.Drawing.Size(734, 550);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.MinimumSize = new System.Drawing.Size(750, 589);
             this.Name = "MultipleHashing";
             this.Text = "MultipleHashing";
             this.Load += new System.EventHandler(this.MultipleHashing_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -260,5 +323,6 @@ namespace HashTester
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button buttonSaveLog;
         private System.Windows.Forms.Button buttonClipboard;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

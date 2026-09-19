@@ -1,6 +1,4 @@
 using System;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace HashTester
@@ -40,7 +38,7 @@ namespace HashTester
 
         private void UIUpdateFrequency_Load(object sender, EventArgs e)
         {
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.UiManager);
             labelQuestion.Text = Languages.Translate(Languages.L.HowManyTimesASecondDoYouWantToUpdateTheUiForSpecificOperations);

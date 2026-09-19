@@ -466,28 +466,28 @@ namespace HashTester
 
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
-            StripMenu.LoadStripMenu(this);
+            //StripMenu.LoadStripMenu(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.CollisionFinder);
             buttonCheckCollision.Text = Languages.Translate(Languages.L.CheckCollision);
             buttonGenerateCollision.Text = Languages.Translate(Languages.L.GenerateACollision);            
             buttonAbort.Text = Languages.Translate(Languages.L.CancelTheProcess);
             buttonReturn.Text = Languages.Translate(Languages.L.GoBack);
-            labelAttempts.Text = Languages.Translate(Languages.L.NumberOfAttempts);
-            labelAverageSpeed.Text = Languages.Translate(Languages.L.AverageSpeed);
-            labelCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeed);
+            labelAttempts.Text = Languages.Translate(Languages.L.NumberOfAttempts) + ":";
+            labelAverageSpeed.Text = Languages.Translate(Languages.L.AverageSpeed) + ":";
+            labelCurrentSpeed.Text = Languages.Translate(Languages.L.CurrentSpeed) + ":";
             labelLenght.Text = Languages.Translate(Languages.L.LenghtOfTheRandomText);
-            labelTimer.Text = Languages.Translate(Languages.L.Timer);
+            labelTimer.Text = Languages.Translate(Languages.L.Timer) + ":";
             checkBoxPerformanceMode.Text = Languages.Translate(Languages.L.PerformanceMode);
             checkBoxUseHex.Text = Languages.Translate(Languages.L.UseHexToDisplayText);
             buttonClearListBox.Text = Languages.Translate(Languages.L.ClearListbox);
             buttonClipboard.Text = Languages.Translate(Languages.L.Clipboard);
             buttonSaveLog.Text = Languages.Translate(Languages.L.SaveLog);
             groupBoxUI.Text = Languages.Translate(Languages.L.Ui);
-            labelCumulativeChanceToFind.Text = Languages.Translate(Languages.L.CumulativeChanceToFind);
-            labelChanceToFind.Text = Languages.Translate(Languages.L.ChanceToFindIn);
+            labelCumulativeChanceToFind.Text = Languages.Translate(Languages.L.CumulativeChanceToFind) + ":";
+            labelChanceToFind.Text = Languages.Translate(Languages.L.ChanceToFindIn) + ":";
             #endregion
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this); 
             hashSelector.SelectedIndex = 0;
             string path = Settings.DirectoryPathToCollisions;
             if (!File.Exists(path + "_collisionInfo.txt")) Settings.InitialFolderChecker();

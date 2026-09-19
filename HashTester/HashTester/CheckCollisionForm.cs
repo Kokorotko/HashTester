@@ -49,7 +49,7 @@ namespace HashTester
         {
             this.Name = Languages.Translate(Languages.L.CollisionChecker);
             hashSelector.SelectedIndex = hashSelector.Items.Count - 1; //show CRC32 the last one
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             groupBox1.Text = Languages.Translate(Languages.L.InputFormat);
             radioButtonString.Text = Languages.Translate(Languages.L.String);

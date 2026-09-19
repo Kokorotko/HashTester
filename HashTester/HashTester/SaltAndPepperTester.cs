@@ -83,8 +83,7 @@ namespace HashTester
         private void SaltAndPepperForm_Load(object sender, EventArgs e)
         {
             hashSelector.SelectedIndex = 0;
-            StripMenu.LoadStripMenu(this);
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.SaltAndPepperTester);
             buttonHashSimpleText.Text = Languages.Translate(Languages.L.HashText);

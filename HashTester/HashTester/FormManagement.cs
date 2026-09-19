@@ -200,10 +200,9 @@ namespace HashTester
                     await form1.CheckForUpdates();
                 });
             }
-            //Global form start
+            //Global form start            
             StripMenu.LoadStripMenu(form);
-            FormScaling formScaling = new FormScaling(form);
-            formScaling.FontSetup();
+            FontScaling formScaling = new FontScaling(form);
             FormTagGiver(form);
             FormManagement.SetUpFormTheme(form);
         }

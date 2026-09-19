@@ -34,7 +34,7 @@ namespace HashTester
         }
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
-            FormManagement.SetUpFormTheme(this);
+            FormManagement.LoadForm(this);
             #region Languages
             this.Name = Languages.Translate(Languages.L.SaltAndPepperChooser);
             groupBoxSalt.Text = Languages.Translate(Languages.L.Salt);
@@ -45,8 +45,6 @@ namespace HashTester
             labelLenghtPepper.Text = Languages.Translate(Languages.L.LenghtOfPepper);
             radioButtonSaltOwn.Text = Languages.Translate(Languages.L.IncludeOwnSalt);
             radioButtonPepperOwn.Text = Languages.Translate(Languages.L.IncludeOwnPepper);
-            labelOwnSalt.Text = Languages.Translate(Languages.L.OwnSalt);
-            labelOwnPepper.Text = Languages.Translate(Languages.L.OwnPepper);
             labelID.Text = Languages.Translate(Languages.L.IdOfHash);
             buttonGenerate.Text = Languages.Translate(Languages.L.Generate);
             #endregion

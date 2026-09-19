@@ -55,6 +55,7 @@ namespace HashTester
             // buttonHashSimpleText
             // 
             this.buttonHashSimpleText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonHashSimpleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonHashSimpleText.Location = new System.Drawing.Point(0, 0);
             this.buttonHashSimpleText.Margin = new System.Windows.Forms.Padding(0);
             this.buttonHashSimpleText.Name = "buttonHashSimpleText";
@@ -84,7 +85,7 @@ namespace HashTester
             this.hashSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.hashSelector.FormattingEnabled = true;
             this.hashSelector.IntegralHeight = false;
-            this.hashSelector.ItemHeight = 46;
+            this.hashSelector.ItemHeight = 37;
             this.hashSelector.Items.AddRange(new object[] {
             "MD5",
             "SHA1",
@@ -95,13 +96,14 @@ namespace HashTester
             this.hashSelector.Location = new System.Drawing.Point(430, 0);
             this.hashSelector.Margin = new System.Windows.Forms.Padding(0);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(215, 54);
+            this.hashSelector.Size = new System.Drawing.Size(215, 45);
             this.hashSelector.TabIndex = 4;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
             // buttonFileInput
             // 
             this.buttonFileInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonFileInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonFileInput.Location = new System.Drawing.Point(215, 0);
             this.buttonFileInput.Margin = new System.Windows.Forms.Padding(0);
             this.buttonFileInput.Name = "buttonFileInput";
@@ -121,7 +123,6 @@ namespace HashTester
             this.listBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
-            this.listBoxLog.ItemHeight = 16;
             this.listBoxLog.Location = new System.Drawing.Point(3, 134);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(645, 144);
@@ -130,6 +131,7 @@ namespace HashTester
             // buttonClearListBox
             // 
             this.buttonClearListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonClearListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonClearListBox.Location = new System.Drawing.Point(0, 0);
             this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(0);
             this.buttonClearListBox.Name = "buttonClearListBox";
@@ -142,6 +144,7 @@ namespace HashTester
             // buttonSaveLog
             // 
             this.buttonSaveLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSaveLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonSaveLog.Location = new System.Drawing.Point(215, 0);
             this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSaveLog.Name = "buttonSaveLog";
@@ -154,6 +157,7 @@ namespace HashTester
             // buttonClipboard
             // 
             this.buttonClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonClipboard.Location = new System.Drawing.Point(430, 0);
             this.buttonClipboard.Margin = new System.Windows.Forms.Padding(0);
             this.buttonClipboard.Name = "buttonClipboard";
@@ -168,7 +172,7 @@ namespace HashTester
             this.labelCreditsMadeBy.AutoSize = true;
             this.labelCreditsMadeBy.Location = new System.Drawing.Point(3, 0);
             this.labelCreditsMadeBy.Name = "labelCreditsMadeBy";
-            this.labelCreditsMadeBy.Size = new System.Drawing.Size(66, 16);
+            this.labelCreditsMadeBy.Size = new System.Drawing.Size(54, 13);
             this.labelCreditsMadeBy.TabIndex = 17;
             this.labelCreditsMadeBy.Text = "Made by: ";
             // 
@@ -177,7 +181,7 @@ namespace HashTester
             this.labelCreator.AutoSize = true;
             this.labelCreator.Location = new System.Drawing.Point(153, 0);
             this.labelCreator.Name = "labelCreator";
-            this.labelCreator.Size = new System.Drawing.Size(85, 16);
+            this.labelCreator.Size = new System.Drawing.Size(68, 13);
             this.labelCreator.TabIndex = 18;
             this.labelCreator.Text = "Kamil Franek";
             // 
@@ -186,7 +190,7 @@ namespace HashTester
             this.labelVersion.AutoSize = true;
             this.labelVersion.Location = new System.Drawing.Point(153, 19);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(43, 16);
+            this.labelVersion.Size = new System.Drawing.Size(38, 13);
             this.labelVersion.TabIndex = 19;
             this.labelVersion.Text = "x.xx.xx";
             // 
@@ -195,7 +199,7 @@ namespace HashTester
             this.labelCurrentVersion.AutoSize = true;
             this.labelCurrentVersion.Location = new System.Drawing.Point(3, 19);
             this.labelCurrentVersion.Name = "labelCurrentVersion";
-            this.labelCurrentVersion.Size = new System.Drawing.Size(104, 16);
+            this.labelCurrentVersion.Size = new System.Drawing.Size(85, 13);
             this.labelCurrentVersion.TabIndex = 20;
             this.labelCurrentVersion.Text = "Current Version: ";
             // 
@@ -284,13 +288,12 @@ namespace HashTester
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(651, 376);
             this.Controls.Add(this.tableLayoutPanel4);
-            this.MinimumSize = new System.Drawing.Size(460, 380);
+            this.MinimumSize = new System.Drawing.Size(667, 415);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HashTester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
