@@ -19,7 +19,6 @@ namespace HashTester
         }
         Hasher hasher = new Hasher();
         Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
-        FontScaling scaling;
         
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
@@ -84,14 +83,6 @@ namespace HashTester
             {
                 MessageBox.Show(Languages.Translate(Languages.L.FailedToCopyToClipboard), Languages.Translate(Languages.L.ClipboardError), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void FormGradual_SizeChanged(object sender, EventArgs e)
-        {
-            if (scaling == null) return;
-            scaling.FontScaler();
-            //I hate ComboBox
-            hashSelector.Font = new System.Drawing.Font(hashSelector.Font.FontFamily, buttonHashGradualHashing.Font.Size * Settings.ComboBoxMagicSizeNumber);
         }
     }
 }

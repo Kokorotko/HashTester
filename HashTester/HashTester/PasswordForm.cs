@@ -76,6 +76,7 @@ namespace HashTester
             buttonGenerateRainbowTable.Text = Languages.Translate(Languages.L.GenerateARainbowTable);
             buttonRainbowTableAttack.Text = Languages.Translate(Languages.L.RainbowTableAttack);
             //BruteForceAttack
+            buttonBruteForceAttack.Text = Languages.Translate(Languages.L.BruteForceAttack);
             radioButtonRegularBruteForce.Text = Languages.Translate(Languages.L.Normal);
             radioButtonBruteForceHashed.Text = Languages.Translate(Languages.L.Hash);
             labelMaxAttempts.Text = Languages.Translate(Languages.L.MaximumAttempts);

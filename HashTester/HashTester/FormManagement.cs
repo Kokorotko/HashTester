@@ -463,7 +463,13 @@ namespace HashTester
             form.SuspendLayout();
             Console.WriteLine("Reloading form language: " + Settings.SelectedLanguage);
             ReloadControls(form); //Reload all controls with the new language
-
+            Form.ActiveForm?.Invoke((MethodInvoker)delegate
+            {
+                if (Form.ActiveForm is ThreadsForm threadsForm)
+                {
+                    threadsForm.SetCPUInfo();
+                }
+            });
             form.ResumeLayout(true);
             form.PerformLayout();
             form.Invalidate(true);
@@ -483,6 +489,58 @@ namespace HashTester
 
         private static void ReloadControl(Control c)
         {
+            if (!string.IsNullOrEmpty(c.AccessibleDescription)) //Special case for PasswordForm
+            {
+                Console.WriteLine("AccessibleDescription: " + c.AccessibleDescription);
+                switch (c.AccessibleDescription) //used for special ID
+                {
+                    case "PasswordSmall":
+                        {
+                            c.Text = Languages.Translate(Languages.L.Lowercase) + " (26)";
+                            break;
+                        }
+                    case "PasswordBig":
+                        {
+                            c.Text = Languages.Translate(Languages.L.Uppercase) + " (26)";
+                            break;
+                        }
+                    case "PasswordNumber":
+                        {
+                            c.Text = Languages.Translate(Languages.L.Digits) + " (10)";
+                            break;
+                        }
+                    case "PasswordSpecial":
+                        {
+                            c.Text = Languages.Translate(Languages.L.Specials) + " (33)";
+                            break;
+                        }
+                    case "PasswordTimer":
+                        {
+                            string[] temp = c.Text.Split(':');
+                            c.Text = Languages.Translate(Languages.L.Timer) + ": " + temp[temp.Length - 1]; //Keeps the current data
+                            break;
+                        }
+                    case "PasswordAttempts":
+                        {
+                            string[] temp = c.Text.Split(':');
+                            c.Text = Languages.Translate(Languages.L.Attempts) + ": " + temp[temp.Length - 1]; //Keeps the current data
+                            break;
+                        }
+                    case "PasswordAvg":
+                        {
+                            string[] temp = c.Text.Split(':');
+                            c.Text = Languages.Translate(Languages.L.AverageSpeed) + ": " + temp[temp.Length - 1]; //Keeps the current data
+                            break;
+                        }
+                    case "PasswordSpeed":
+                        {
+                            string[] temp = c.Text.Split(':');
+                            c.Text = Languages.Translate(Languages.L.CurrentSpeed) + ": " + temp[temp.Length - 1]; //Keeps the current data
+                            break;
+                        }
+                    default: break;
+                }
+            }
             if (c.Tag is string tag && !string.IsNullOrEmpty(tag))
             {
                 switch (c)

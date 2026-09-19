@@ -241,10 +241,32 @@ namespace HashTester
 
             #endregion
 
+            #region ThreadsForm
+            var threadsForm = new ToolStripMenuItem(Languages.Translate(Languages.L.ThreadsForm));
+
+            threadsForm.Click += (s, e) =>
+            {
+                FormManagement.SpawnForm(FormManagement.Forms.ThreadsForm);
+            };
+
+            #endregion
+
+            #region UIFrequencyForm
+            var uiFrequency = new ToolStripMenuItem(Languages.Translate(Languages.L.UiUpdateFrequency));
+
+            uiFrequency.Click += (s, e) =>
+            {
+                FormManagement.SpawnForm(FormManagement.Forms.UIUpdateFrequency);
+            };
+
+            #endregion
+
             //Add sub-menus to menu
             options.DropDownItems.Add(visualMode);
             options.DropDownItems.Add(outputType);
             options.DropDownItems.Add(outputStyle);
+            options.DropDownItems.Add(threadsForm);
+            options.DropDownItems.Add(uiFrequency);
 
             //Needs a set up logic for first load
             UpdateOptionsMenu(

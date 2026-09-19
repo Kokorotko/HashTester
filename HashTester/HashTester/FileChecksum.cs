@@ -20,7 +20,6 @@ namespace HashTester
         private string pathToFile = string.Empty;
 
         Checksum checksum;
-        FontScaling scaling;
 
         private void buttonFile_Click(object sender, EventArgs e)
         {

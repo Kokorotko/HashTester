@@ -134,32 +134,13 @@ namespace HashTester
             radioButtonThread4.Text = Languages.Translate(Languages.L.Threads8);
             radioButtonThreadMax.Text = Languages.Translate(Languages.L.MaximumNumberOfThreads);
             labelZeroPercent.Text = Languages.Translate(Languages.L.MeansOnlyOneThreadMayBeUsedAtAllTimes0);
-            labelPreference.Text = "*" + Languages.Translate(Languages.L.KnowThatPercentagesArePreferedByTheComputer);
-            labelCalculations.Text = "*" + Languages.Translate(Languages.L.LowerThreadCountCanSlowDownCalculations);
             buttonSave.Text = Languages.Translate(Languages.L.Save);
             buttonDefault.Text = Languages.Translate(Languages.L.Default);
             buttonCancel.Text = Languages.Translate(Languages.L.Cancel);
             groupBox1.Text = Languages.Translate(Languages.L.CpuInfo);
             #endregion
 
-            // Get CPU Information using WMI
-            try
-            {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
-                foreach (ManagementObject obj in searcher.Get())
-                {
-                    labelCPUName.Text = Languages.Translate(Languages.L.Name) + ": " + (obj["Name"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUManufacturer.Text = Languages.Translate(Languages.L.Manufacturer) + ": " + (obj["Manufacturer"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUDescription.Text = Languages.Translate(Languages.L.CpuDescription) + ": " + (obj["Description"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUCores.Text = Languages.Translate(Languages.L.NumberOfCores) +": " + (obj["NumberOfCores"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUThread.Text = Languages.Translate(Languages.L.CpuInfo) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(Languages.L.Unknown));
-                    labelCPUMaxSpeed.Text = Languages.Translate(Languages.L.MaxClockSpeed) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(Languages.L.Unknown)) + " " + Languages.Translate(Languages.L.Mhz);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Languages.Translate(Languages.L.ErrorFetchingCpuDetails) + ": " + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            SetCPUInfo();
             percentage = Settings.ThreadsUsagePercentage;
             if (percentage == 100)
             {
@@ -227,6 +208,31 @@ namespace HashTester
                 radioButtonThread4.Enabled = false;
             }
             unsavedChanges = false;
+        }
+
+        public void SetCPUInfo()
+        {
+            //dont mind these two, I have nowhere else to put them
+            labelPreference.Text = "*" + Languages.Translate(Languages.L.KnowThatPercentagesArePreferedByTheComputer);
+            labelCalculations.Text = "*" + Languages.Translate(Languages.L.LowerThreadCountCanSlowDownCalculations);
+            // Get CPU Information using WMI
+            try
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    labelCPUName.Text = Languages.Translate(Languages.L.Name) + ": " + (obj["Name"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUManufacturer.Text = Languages.Translate(Languages.L.Manufacturer) + ": " + (obj["Manufacturer"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUDescription.Text = Languages.Translate(Languages.L.CpuDescription) + ": " + (obj["Description"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUCores.Text = Languages.Translate(Languages.L.NumberOfCores) + ": " + (obj["NumberOfCores"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUThread.Text = Languages.Translate(Languages.L.NumberOfThreads) + ": " + (obj["NumberOfLogicalProcessors"] ?? Languages.Translate(Languages.L.Unknown));
+                    labelCPUMaxSpeed.Text = Languages.Translate(Languages.L.MaxClockSpeed) + ": " + (obj["MaxClockSpeed"] ?? Languages.Translate(Languages.L.Unknown)) + " " + Languages.Translate(Languages.L.Mhz);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Languages.Translate(Languages.L.ErrorFetchingCpuDetails) + ": " + ex.Message, Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e) //save

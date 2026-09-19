@@ -307,6 +307,7 @@ namespace HashTester
             // 
             // checkBoxCrackSpecial
             // 
+            this.checkBoxCrackSpecial.AccessibleDescription = "PasswordSpecial";
             this.checkBoxCrackSpecial.AutoSize = true;
             this.checkBoxCrackSpecial.Checked = true;
             this.checkBoxCrackSpecial.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -328,6 +329,7 @@ namespace HashTester
             // 
             // checkBoxCrackDigit
             // 
+            this.checkBoxCrackDigit.AccessibleDescription = "PasswordNumber";
             this.checkBoxCrackDigit.AutoSize = true;
             this.checkBoxCrackDigit.Checked = true;
             this.checkBoxCrackDigit.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -352,6 +354,7 @@ namespace HashTester
             // 
             // checkBoxCrackUpper
             // 
+            this.checkBoxCrackUpper.AccessibleDescription = "PasswordBig";
             this.checkBoxCrackUpper.AutoSize = true;
             this.checkBoxCrackUpper.Checked = true;
             this.checkBoxCrackUpper.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -374,6 +377,7 @@ namespace HashTester
             // 
             // checkBoxCrackLower
             // 
+            this.checkBoxCrackLower.AccessibleDescription = "PasswordSmall";
             this.checkBoxCrackLower.AutoSize = true;
             this.checkBoxCrackLower.Checked = true;
             this.checkBoxCrackLower.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -449,6 +453,7 @@ namespace HashTester
             // 
             // checkBoxSpecialChars
             // 
+            this.checkBoxSpecialChars.AccessibleDescription = "PasswordSpecial";
             this.checkBoxSpecialChars.AutoSize = true;
             this.checkBoxSpecialChars.Checked = true;
             this.checkBoxSpecialChars.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -487,6 +492,7 @@ namespace HashTester
             // 
             // checkBoxDigits
             // 
+            this.checkBoxDigits.AccessibleDescription = "PasswordNumber";
             this.checkBoxDigits.AutoSize = true;
             this.checkBoxDigits.Checked = true;
             this.checkBoxDigits.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -511,6 +517,7 @@ namespace HashTester
             // 
             // checkBoxUpperCase
             // 
+            this.checkBoxUpperCase.AccessibleDescription = "PasswordBig";
             this.checkBoxUpperCase.AutoSize = true;
             this.checkBoxUpperCase.Checked = true;
             this.checkBoxUpperCase.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -538,6 +545,7 @@ namespace HashTester
             // 
             // checkBoxLowerCase
             // 
+            this.checkBoxLowerCase.AccessibleDescription = "PasswordSmall";
             this.checkBoxLowerCase.AutoSize = true;
             this.checkBoxLowerCase.Checked = true;
             this.checkBoxLowerCase.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -680,6 +688,7 @@ namespace HashTester
             // 
             // labelStatSpeed
             // 
+            this.labelStatSpeed.AccessibleDescription = "PasswordAvg";
             this.labelStatSpeed.AutoSize = true;
             this.labelStatSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStatSpeed.Location = new System.Drawing.Point(3, 69);
@@ -690,6 +699,7 @@ namespace HashTester
             // 
             // labelStatCurrentSpeed
             // 
+            this.labelStatCurrentSpeed.AccessibleDescription = "PasswordSpeed";
             this.labelStatCurrentSpeed.AutoSize = true;
             this.labelStatCurrentSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStatCurrentSpeed.Location = new System.Drawing.Point(3, 46);
@@ -700,6 +710,7 @@ namespace HashTester
             // 
             // labelStatAttempts
             // 
+            this.labelStatAttempts.AccessibleDescription = "PasswordAttempts";
             this.labelStatAttempts.AutoSize = true;
             this.labelStatAttempts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStatAttempts.Location = new System.Drawing.Point(3, 23);
@@ -710,6 +721,7 @@ namespace HashTester
             // 
             // labelStatTimer
             // 
+            this.labelStatTimer.AccessibleDescription = "PasswordTimer";
             this.labelStatTimer.AutoSize = true;
             this.labelStatTimer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStatTimer.Location = new System.Drawing.Point(3, 0);
@@ -1020,10 +1032,6 @@ namespace HashTester
         private System.Windows.Forms.GroupBox groupBoxDictionary;
         private System.Windows.Forms.GroupBox groupBoxTimeToCrack;
         private System.Windows.Forms.Button buttonCrackCalculate;
-        private System.Windows.Forms.CheckBox checkBoxCrackSpecial;
-        private System.Windows.Forms.CheckBox checkBoxCrackDigit;
-        private System.Windows.Forms.CheckBox checkBoxCrackUpper;
-        private System.Windows.Forms.CheckBox checkBoxCrackLower;
         private System.Windows.Forms.Label labelCrackSpeed;
         private System.Windows.Forms.TextBox textBoxCrackSpeed;
         private System.Windows.Forms.Label labelCrackLenght;
@@ -1035,20 +1043,12 @@ namespace HashTester
         private System.Windows.Forms.Button buttonBruteForceAttack;
         private System.Windows.Forms.Button buttonGenerateRainbowTable;
         private System.Windows.Forms.CheckBox checkBoxPerformanceMode;
-        private System.Windows.Forms.CheckBox checkBoxSpecialChars;
-        private System.Windows.Forms.CheckBox checkBoxDigits;
-        private System.Windows.Forms.CheckBox checkBoxUpperCase;
-        private System.Windows.Forms.CheckBox checkBoxLowerCase;
         private System.Windows.Forms.Label labelLenght;
         private System.Windows.Forms.NumericUpDown numericUpDownLenght;
         private System.Windows.Forms.Label labelMaxAttempts;
         private System.Windows.Forms.NumericUpDown numericUpDownMaxAttempts;
         private System.Windows.Forms.Label labelStopTimer;
         private System.Windows.Forms.NumericUpDown numericUpDownStopTimer;
-        private System.Windows.Forms.Label labelStatSpeed;
-        private System.Windows.Forms.Label labelStatCurrentSpeed;
-        private System.Windows.Forms.Label labelStatAttempts;
-        private System.Windows.Forms.Label labelStatTimer;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label labelProgressBar;
@@ -1074,5 +1074,17 @@ namespace HashTester
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        public System.Windows.Forms.CheckBox checkBoxCrackSpecial;
+        public System.Windows.Forms.CheckBox checkBoxCrackDigit;
+        public System.Windows.Forms.CheckBox checkBoxCrackUpper;
+        public System.Windows.Forms.CheckBox checkBoxCrackLower;
+        public System.Windows.Forms.CheckBox checkBoxSpecialChars;
+        public System.Windows.Forms.CheckBox checkBoxDigits;
+        public System.Windows.Forms.CheckBox checkBoxUpperCase;
+        public System.Windows.Forms.CheckBox checkBoxLowerCase;
+        public System.Windows.Forms.Label labelStatSpeed;
+        public System.Windows.Forms.Label labelStatCurrentSpeed;
+        public System.Windows.Forms.Label labelStatAttempts;
+        public System.Windows.Forms.Label labelStatTimer;
     }
 }

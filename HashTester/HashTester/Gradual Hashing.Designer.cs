@@ -197,7 +197,6 @@ namespace HashTester
             this.Name = "FormGradual";
             this.Text = "Gradual_Hashing";
             this.Load += new System.EventHandler(this.FormGradual_Load);
-            this.SizeChanged += new System.EventHandler(this.FormGradual_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
