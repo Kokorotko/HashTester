@@ -48,9 +48,9 @@ namespace HashTester
             this.listBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.ItemHeight = 16;
-            this.listBoxLog.Location = new System.Drawing.Point(7, 125);
+            this.listBoxLog.Location = new System.Drawing.Point(7, 131);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(487, 192);
+            this.listBoxLog.Size = new System.Drawing.Size(487, 201);
             this.listBoxLog.TabIndex = 6;
             // 
             // buttonHashGradualHashing
@@ -59,7 +59,7 @@ namespace HashTester
             this.buttonHashGradualHashing.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonHashGradualHashing.Location = new System.Drawing.Point(7, 8);
             this.buttonHashGradualHashing.Name = "buttonHashGradualHashing";
-            this.buttonHashGradualHashing.Size = new System.Drawing.Size(158, 33);
+            this.buttonHashGradualHashing.Size = new System.Drawing.Size(158, 35);
             this.buttonHashGradualHashing.TabIndex = 5;
             this.buttonHashGradualHashing.Text = "Gradual Hashing";
             this.buttonHashGradualHashing.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxHash, 3);
             this.textBoxHash.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxHash.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxHash.Location = new System.Drawing.Point(7, 47);
+            this.textBoxHash.Location = new System.Drawing.Point(7, 49);
             this.textBoxHash.Name = "textBoxHash";
             this.textBoxHash.Size = new System.Drawing.Size(487, 37);
             this.textBoxHash.TabIndex = 7;
@@ -79,9 +79,9 @@ namespace HashTester
             // 
             this.buttonClearListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonClearListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonClearListBox.Location = new System.Drawing.Point(7, 323);
+            this.buttonClearListBox.Location = new System.Drawing.Point(7, 338);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(158, 76);
+            this.buttonClearListBox.Size = new System.Drawing.Size(158, 79);
             this.buttonClearListBox.TabIndex = 9;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@ namespace HashTester
             // 
             this.buttonSaveLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonSaveLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveLog.Location = new System.Drawing.Point(171, 323);
+            this.buttonSaveLog.Location = new System.Drawing.Point(171, 338);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(158, 76);
+            this.buttonSaveLog.Size = new System.Drawing.Size(158, 79);
             this.buttonSaveLog.TabIndex = 10;
             this.buttonSaveLog.Text = "Save log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -104,9 +104,9 @@ namespace HashTester
             this.labelQualityName.AutoSize = true;
             this.labelQualityName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelQualityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelQualityName.Location = new System.Drawing.Point(7, 83);
+            this.labelQualityName.Location = new System.Drawing.Point(7, 87);
             this.labelQualityName.Name = "labelQualityName";
-            this.labelQualityName.Size = new System.Drawing.Size(158, 39);
+            this.labelQualityName.Size = new System.Drawing.Size(158, 41);
             this.labelQualityName.TabIndex = 12;
             this.labelQualityName.Text = "*will NOT use salt/pepper";
             this.labelQualityName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,16 +138,16 @@ namespace HashTester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(501, 407);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(501, 425);
             this.tableLayoutPanel1.TabIndex = 14;
             // 
             // buttonClipboard
             // 
             this.buttonClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonClipboard.Location = new System.Drawing.Point(335, 323);
+            this.buttonClipboard.Location = new System.Drawing.Point(335, 338);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(159, 76);
+            this.buttonClipboard.Size = new System.Drawing.Size(159, 79);
             this.buttonClipboard.TabIndex = 11;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -160,10 +160,10 @@ namespace HashTester
             this.checkBoxShowInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxShowInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxShowInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxShowInfo.Location = new System.Drawing.Point(334, 85);
+            this.checkBoxShowInfo.Location = new System.Drawing.Point(334, 89);
             this.checkBoxShowInfo.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxShowInfo.Name = "checkBoxShowInfo";
-            this.checkBoxShowInfo.Size = new System.Drawing.Size(161, 35);
+            this.checkBoxShowInfo.Size = new System.Drawing.Size(161, 37);
             this.checkBoxShowInfo.TabIndex = 13;
             this.checkBoxShowInfo.Text = "Show Info";
             this.checkBoxShowInfo.UseVisualStyleBackColor = true;
@@ -191,9 +191,9 @@ namespace HashTester
             // FormGradual
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(501, 407);
+            this.ClientSize = new System.Drawing.Size(501, 425);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(517, 446);
+            this.MinimumSize = new System.Drawing.Size(517, 464);
             this.Name = "FormGradual";
             this.Text = "Gradual_Hashing";
             this.Load += new System.EventHandler(this.FormGradual_Load);

@@ -47,7 +47,7 @@ namespace HashTester
                 return; //skip labels and cancel button
             }
             //Console.WriteLine("TurnOffUI: " + parent.Name);
-            if (parent is ComboBox || parent is TableLayoutPanel || parent is Form)
+            if (parent is GroupBox || parent is TableLayoutPanel || parent is Form)
             {
                 foreach (Control control in parent.Controls)
                 {

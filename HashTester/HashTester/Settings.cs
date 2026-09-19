@@ -228,7 +228,6 @@ namespace HashTester
             get { return githubRequestAPI; }
             set 
             {
-                Console.WriteLine("Pain: " + githubRequestAPI);
                 githubRequestAPI = value; 
             }
         }

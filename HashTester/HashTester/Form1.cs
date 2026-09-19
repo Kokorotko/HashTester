@@ -19,7 +19,7 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "1.2.0";
+        readonly string programVersion = "2.0.0";
         private bool updateAvailable = false;
         FontScaling scaling;
 

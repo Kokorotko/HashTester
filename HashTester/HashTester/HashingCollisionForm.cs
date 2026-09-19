@@ -54,7 +54,11 @@ namespace HashTester
 
         private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
-            TurnOffUI();
+            //Timer for UI update
+            timeToFindCollision.Interval = Settings.UpdateUIms;
+            timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
+            timeToFindCollision.Start();
+            TurnOffUI(this);
             ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
             if (maxAttempts > 0 && Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.AttemptsLimit) + ": " + maxAttempts); 
@@ -99,7 +103,7 @@ namespace HashTester
             }
             await Task.WhenAll(allTasks);
             stopwatch.Stop();
-            TurnOnUI();
+            TurnOnUI(this);
             if (foundCollision) 
             {                
                 //LogOutput
@@ -113,7 +117,10 @@ namespace HashTester
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.CollisionHash) + ": " + hasher.Hash(textCollision01, algorithm));
                     listBoxLog.Items.Add(Languages.Translate(Languages.L.Attempts) + ": " + attempts);
                     try { listBoxLog.Items.Add(Languages.Translate(Languages.L.TimeToFind) + ": " + labelTimer.Text.Split(' ')[1]); } //so that I dont have to format it again :)
-                    catch { /*Hi :3*/ }
+                    catch
+                    { 
+                        Console.WriteLine("Error while trying to log time to find collision");
+                    }
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 //MessageBoxOutput
@@ -428,40 +435,34 @@ namespace HashTester
 
         #endregion
 
-        private void TurnOffUI()
+        private void TurnOnUI(Control control)
         {
-            //Timer for UI update
-            timeToFindCollision.Interval = Settings.UpdateUIms;
-            timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
-            timeToFindCollision.Start();
-            //Stopwatch
-            buttonReturn.Enabled = false;
-            buttonClearListBox.Enabled = false;
-            buttonGenerateCollision.Enabled = false;
-            numericUpDown1.Enabled = false;
-            numericUpDown2.Enabled = false;
-            hashSelector.Enabled = false;
-            checkBoxUseHex.Enabled = false;
-            checkBoxPerformanceMode.Enabled = false;
-            buttonCheckCollision.Enabled = false;
+            control.Enabled = true;
+            foreach (Control child in control.Controls)
+            {
+                TurnOnUI(child); //Recursion
+            }
         }
 
-        private void TurnOnUI()
+        /// <summary>
+        /// Turns all of UI components off
+        /// </summary>
+        private void TurnOffUI(Control parent)
         {
-            //timer
-            timeToFindCollision.Dispose();
-            //stopwatch
-            stopwatch.Reset();  
-            //UI
-            buttonReturn.Enabled = true;
-            buttonClearListBox.Enabled = true;
-            buttonGenerateCollision.Enabled = true;
-            numericUpDown1.Enabled = true;
-            numericUpDown2.Enabled = true;
-            hashSelector.Enabled = true;
-            checkBoxUseHex.Enabled = true;
-            checkBoxPerformanceMode.Enabled = true;
-            buttonCheckCollision.Enabled = true;
+            if (parent is Label || parent == buttonAbort)
+            {
+                return; //skip labels and cancel button
+            }
+            //Console.WriteLine("TurnOffUI: " + parent.Name);
+            if (parent is GroupBox || parent is TableLayoutPanel || parent is Form)
+            {
+                foreach (Control control in parent.Controls)
+                {
+                    TurnOffUI(control); //Recursion
+                }
+                return;
+            }
+            parent.Enabled = false;
         }
 
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present

@@ -37,6 +37,7 @@ namespace HashTester
         public static bool CheckGithubAPITime()
         {
             DateTime temp = Settings.GithubRequestAPI;
+            Console.WriteLine($"Last Github API request: {temp}");
             if (temp.AddHours(12) <= DateTime.Now) return true;
             else return false;
         }
