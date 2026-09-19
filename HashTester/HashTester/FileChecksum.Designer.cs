@@ -581,6 +581,7 @@ namespace HashTester
             this.buttonCancel.TabIndex = 35;
             this.buttonCancel.Text = "Cancel operation";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // progressBar
             // 

@@ -833,6 +833,11 @@ namespace HashTester
                     default: return "error";
                 }
             }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine("File Checksum inside hasher.cs was cancelled.");
+                return "cancelled";
+            }
             catch (Exception ex)
             {
                 Console.WriteLine("File Checksum inside hasher.cs has threw error. " + ex.Message);

@@ -81,7 +81,7 @@ namespace HashTester
             this.hashingAlgorithms = hashingAlgorithms;
         }
 
-        public async void GenerateCheckSumFromFile(string filename, bool useMultiThread)
+        public async Task GenerateCheckSumFromFile(string filename, bool useMultiThread, CancellationTokenSource token)
         {
             ResetOutputValues();
             int numberOfSelected = hashingAlgorithms.Count();
@@ -98,7 +98,7 @@ namespace HashTester
             {
                 for (int i = 0; i < hashingAlgorithms.Count(); i++)
                 {
-                    tasks.Add(CreateHashTask(filename, i, numberOfSelected));
+                    tasks.Add(CreateHashTask(filename, i, numberOfSelected, token));
                 }
                 await Task.WhenAll(tasks.ToArray());
                 ProgressBarValue = 100;
@@ -116,19 +116,19 @@ namespace HashTester
                         await Task.WhenAny(tasks.ToArray());
                         numberOfThreadsUsed--;
                     }
-                    tasks.Add(CreateHashTask(filename, i, numberOfSelected));
+                    tasks.Add(CreateHashTask(filename, i, numberOfSelected, token));
                 }
                 await Task.WhenAll(tasks.ToArray());
                 ProgressBarValue = 100;
             }
         }
 
-        private Task CreateHashTask(string filename, int index, int numberOfSelected)
+        private Task CreateHashTask(string filename, int index, int numberOfSelected, CancellationTokenSource token)
         {
             return Task.Run(() =>
             {
                 Console.WriteLine("Thread " + index + " working");
-                string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index, cancellationTokenSource.Token);
+                string hash = Hasher.FileChecksum(filename, (Hasher.HashingAlgorithm)index, token.Token);
                 outputHash.Add((Hasher.HashingAlgorithm)index, hash);
                 Console.WriteLine("Thread " + index + " stopped working");
                 ProgressBarValue += (int)(100 / numberOfSelected);

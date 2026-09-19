@@ -20,6 +20,7 @@ namespace HashTester
         private string pathToFile = string.Empty;
 
         Checksum checksum;
+        CancellationTokenSource token;
 
         private void buttonFile_Click(object sender, EventArgs e)
         {
@@ -40,50 +41,43 @@ namespace HashTester
         /// Turns all of UI components off
         /// </summary>
         private void TurnOffUI(Control parent)
-        {
-            foreach (Control control in parent.Controls)
+        {            
+            if (parent is Label || parent == buttonCancel)
             {
-                if (control is Button || control is TextBox || control is CheckBox)
-                {
-                    if (control.Name == buttonCopyCRC32.Name ||
-                        control.Name == buttonCopySHA1.Name ||
-                        control.Name == buttonCopySHA256.Name ||
-                        control.Name == buttonCopySHA512.Name ||
-                        control.Name == buttonCopyRipeMD160.Name ||
-                        control.Name == buttonCopyMD5.Name ||
-                        control.Name == buttonCancel.Name)
-                    {
-                        continue;
-                    }
-
-                    control.Enabled = false;
-                }
-
-                // recurse into children
-                if (control.HasChildren)
-                {
-                    TurnOffUI(control);
-                }
+                return; //skip labels and cancel button
             }
+            //Console.WriteLine("TurnOffUI: " + parent.Name);
+            if (parent is ComboBox || parent is TableLayoutPanel || parent is Form)
+            {
+                foreach (Control control in parent.Controls)
+                {
+                    TurnOffUI(control); //Recursion
+                }
+                return;
+            }
+            parent.Enabled = false;            
         }
+
 
         /// <summary>
         /// Turns all of UI components on
         /// </summary>
         private void TurnOnUI(Control parent)
         {
-            foreach (Control control in parent.Controls)
-            {
-                control.Enabled = true;
-
-                // recurse into children
-                if (control.HasChildren)
-                {
-                    TurnOnUI(control);
-                }
-            }
+            TurnOnUIRecursion(parent);
             timerUI.Stop();
             UpdateUI();
+            token = new CancellationTokenSource(); //reset token
+        }
+
+        private void TurnOnUIRecursion(Control parent)
+        {
+            parent.Enabled = true;
+            //Console.WriteLine("TurnOnUI: " + parent.Name);
+            foreach (Control control in parent.Controls)
+            {
+                TurnOnUI(control); //Recursion
+            }
         }
 
         private void File_checksum_Load(object sender, EventArgs e)
@@ -91,6 +85,7 @@ namespace HashTester
             this.Name = Languages.Translate(Languages.L.FileChecksumTool);
             Settings.LoadSettings();
             FormManagement.LoadForm(this);
+            token = new CancellationTokenSource();
             #region Langugages
             buttonFile.Text = Languages.Translate(Languages.L.SelectAFile);
             buttonChecksum.Text = Languages.Translate(Languages.L.ChecksumCheck);
@@ -275,7 +270,7 @@ namespace HashTester
         /// Generates check sum of a file from Form
         /// </summary>
         /// <param name="filename">Path to file</param>
-        private void GenerateChecksumUI(string filename)
+        private async void GenerateChecksumUI(string filename)
         {
             List<Hasher.HashingAlgorithm> algorithms = GetAlgorithmsFromUI();
 
@@ -287,7 +282,7 @@ namespace HashTester
             progressBar.Value = 0; //reset bar
             TurnOffUI(this);
             checksum = new Checksum(algorithms);
-            checksum.GenerateCheckSumFromFile(filename, checkBoxMultiThread.Checked);
+            await checksum.GenerateCheckSumFromFile(filename, checkBoxMultiThread.Checked, token);
             TurnOnUI(this);
         }
 
@@ -372,14 +367,26 @@ namespace HashTester
 
         private void UpdateUI()
         {
-            checksum.ReturnHashValues(out Dictionary<Hasher.HashingAlgorithm, string> outputHash, out int progressBarValue);
-            progressBar.Value = progressBarValue;
-            foreach (var item in outputHash)
+            try
             {
-                UpdateLabelHash(item.Key, item.Value);
+                checksum.ReturnHashValues(out Dictionary<Hasher.HashingAlgorithm, string> outputHash, out int progressBarValue);
+                progressBar.Value = progressBarValue;
+                foreach (var item in outputHash)
+                {
+                    UpdateLabelHash(item.Key, item.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UpdateUI exception: " + ex.Message);
             }
         }
 
         #endregion //Timer
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            token.Cancel();
+        }
     }
 }
