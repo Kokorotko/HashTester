@@ -1,14 +1,13 @@
 # ROP-HashTester
  A school project program for hashing/checksum and breaking into passwords with hashes
+ !As of version 2.0.0, the main development has stopped. There will be no more major updates, only documentation and bug fixes!
  Open Source
- License under SPST organization
- Creator of program: Kamil Franek
+ Creator: Kamil Franek
  ITA4 school project
- Day of start: 17.09.2024 at 12:19
+ Starting day: 17.09.2024
+ Finishing day: 22.09.2026
 
-# Project Plan
- finish it
 # Program Documentation
- empty
+ Soon to be added using Doxygen doc generator
 # How To Use
- you dont
+ Soon to be added
