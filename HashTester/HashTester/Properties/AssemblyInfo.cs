@@ -1,11 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // Obecné informace o sestavení se řídí přes následující 
 // sadu atributů. Změnou hodnot těchto atributů se upraví informace
 // přidružené k sestavení.
 [assembly: AssemblyTitle("HashTester")]
-[assembly: AssemblyDescription("A tool for hashing")]
+[assembly: AssemblyDescription("Hashing tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kokorotko")]
 [assembly: AssemblyProduct("HashTester")]
@@ -33,3 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.2.0.0")]
 [assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: NeutralResourcesLanguage("en")]

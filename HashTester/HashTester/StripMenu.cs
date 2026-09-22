@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HashTester.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -45,6 +46,33 @@ namespace HashTester
 
             #region Options
             var options = new ToolStripMenuItem(Languages.Translate(Languages.L.Options));
+
+            #region SaltAndPepper
+
+            var saltAndPepper = new ToolStripMenuItem(Languages.Translate(Languages.L.SaltAndPepper));
+
+            var useSalt = new ToolStripMenuItem(Languages.Translate(Languages.L.Salt));
+
+            useSalt.Click += (s, e) =>
+            {
+                useSalt.Checked = !useSalt.Checked;
+                Settings.UseSalt = !Settings.UseSalt;
+                //Settings.SaveSettings();
+            };
+
+            var usePepper = new ToolStripMenuItem(Languages.Translate(Languages.L.Pepper));
+            usePepper.Click += (s, e) =>
+            {
+                usePepper.Checked = !usePepper.Checked;
+                Settings.UsePepper = !Settings.UsePepper;
+                //Settings.SaveSettings();
+            };
+
+            saltAndPepper.DropDownItems.Add(useSalt);
+            saltAndPepper.DropDownItems.Add(usePepper);
+            options.DropDownItems.Add(saltAndPepper);
+
+            #endregion
 
             #region Visual Mode
 
@@ -241,8 +269,8 @@ namespace HashTester
 
             #endregion
 
-            #region ThreadsForm
-            var threadsForm = new ToolStripMenuItem(Languages.Translate(Languages.L.ThreadsForm));
+            #region ThreadsAndCpuSettings
+            var threadsForm = new ToolStripMenuItem(Languages.Translate(Languages.L.ThreadsAndCpuSettings));
 
             threadsForm.Click += (s, e) =>
             {
@@ -261,18 +289,63 @@ namespace HashTester
 
             #endregion
 
+            #region DoNotRemindUpdate
+
+            var doNotRemindUpdate = new ToolStripMenuItem(Languages.Translate(Languages.L.DoNotRemindMeAboutUpdatesAtStartup));
+
+            doNotRemindUpdate.Click += (s, e) =>
+            {
+                doNotRemindUpdate.Checked = !doNotRemindUpdate.Checked;
+                Settings.RemindUpdate = !Settings.RemindUpdate;
+            };
+
+            #endregion
+
+            #region UseLogFile
+
+            var showLog = new ToolStripMenuItem(Languages.Translate(Languages.L.ShowLogInListbox));
+            showLog.Click += (s, e) =>
+            {
+                showLog.Checked = !showLog.Checked;
+                Settings.ShowLog = !Settings.ShowLog;
+            };
+
+            #endregion
+
+            #region ResetAllSettings
+
+            var resetAllSettings = new ToolStripMenuItem(Languages.Translate(Languages.L.ResetAllSettings));
+            resetAllSettings.Click += (s, e) =>
+            {
+                var result = MessageBox.Show(Languages.Translate(Languages.L.AreYouSureYouWantToResetAllSettings), Languages.Translate(Languages.L.ResetAllSettings), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    Settings.ResetSettings();
+                    FormManagement.ReloadAllForms(true, true, true);
+                }
+            };
+
+            #endregion 
+
+            var settings = new ToolStripMenuItem(Languages.Translate(Languages.L.Settings));
+
             //Add sub-menus to menu
             options.DropDownItems.Add(visualMode);
             options.DropDownItems.Add(outputType);
             options.DropDownItems.Add(outputStyle);
-            options.DropDownItems.Add(threadsForm);
-            options.DropDownItems.Add(uiFrequency);
+            options.DropDownItems.Add(settings);
+
+            settings.DropDownItems.Add(threadsForm);
+            settings.DropDownItems.Add(uiFrequency);
+            settings.DropDownItems.Add(doNotRemindUpdate);
+            settings.DropDownItems.Add(showLog);
+            settings.DropDownItems.Add(resetAllSettings);
 
             //Needs a set up logic for first load
             UpdateOptionsMenu(
                     systemMode, lightMode, darkMode,
                     listBox, txtFile, messageBox,
-                    includeOriginal, includeNumber, includeAlgorithm, includeSaltPepper, includeAll
+                    includeOriginal, includeNumber, includeAlgorithm, includeSaltPepper, includeAll, useSalt, usePepper
                 );
 
             //Refreshes the options menu automatically when the menu is clicked on
@@ -281,7 +354,7 @@ namespace HashTester
                 UpdateOptionsMenu(
                     systemMode, lightMode, darkMode,
                     listBox, txtFile, messageBox,
-                    includeOriginal, includeNumber, includeAlgorithm, includeSaltPepper, includeAll
+                    includeOriginal, includeNumber, includeAlgorithm, includeSaltPepper, includeAll, useSalt, usePepper
                 );
             };
             #endregion
@@ -371,6 +444,12 @@ namespace HashTester
             }
         }
 
+        private static void UpdateSaltPepperSubMenu(ToolStripMenuItem useSalt, ToolStripMenuItem usePepper)
+        {
+            useSalt.Checked = Settings.UseSalt;
+            usePepper.Checked = Settings.UsePepper;
+        }
+
         private static void UpdateVisualModeSubMenu(ToolStripMenuItem systemMode, ToolStripMenuItem lightMode, ToolStripMenuItem darkMode)
         {
             systemMode.Checked = false;
@@ -452,8 +531,9 @@ namespace HashTester
                     ToolStripMenuItem systemMode, ToolStripMenuItem lightMode, ToolStripMenuItem darkMode,
                     ToolStripMenuItem listBox, ToolStripMenuItem txtFile, ToolStripMenuItem messageBox,
                     ToolStripMenuItem includeOriginal, ToolStripMenuItem includeNumber, ToolStripMenuItem includeAlgorithm,
-                    ToolStripMenuItem includeSaltPepper, ToolStripMenuItem includeAll)
+                    ToolStripMenuItem includeSaltPepper, ToolStripMenuItem includeAll, ToolStripMenuItem useSalt, ToolStripMenuItem usePepper)
         {
+            UpdateSaltPepperSubMenu(useSalt, usePepper);
             UpdateVisualModeSubMenu(systemMode, lightMode, darkMode);
             UpdateOutputSubMenu(listBox, txtFile, messageBox);
             UpdateOutputStyleSubMenu(includeOriginal, includeNumber, includeAlgorithm, includeSaltPepper, includeAll);
