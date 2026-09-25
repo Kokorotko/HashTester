@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: UI Form for BruteForce, Dictionary and RainbowTable
+ *@file: PasswordForm.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +45,12 @@ namespace HashTester
         Hasher hasher = new Hasher();
 
         #region FormManagement
+
+        /// <summary>
+        /// Sets up the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PasswordForm_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
@@ -94,6 +107,9 @@ namespace HashTester
             if (!FindIfTXTIsPresent("_wordlistInfo")) GenerateInfoTXT();
         }
 
+        /// <summary>
+        /// Checks if corresponding files exist for DictionaryAttack radioButtons
+        /// </summary>
         private void RockYouRadioButtonsCheck()
         {
             radioButtonRockYouFull.Enabled = false;
@@ -110,21 +126,41 @@ namespace HashTester
             else radioButtonRockyouCustom.Checked = true;
         }
 
+        /// <summary>
+        /// Checks if file with the name exists in the Wordlist path
+        /// </summary>
+        /// <param name="name">Name if the file</param>
+        /// <returns></returns>
         private bool FindIfTXTIsPresent(string name)
         {
             return File.Exists(Settings.DirectoryPathToWordlists + "\\" + name + ".txt");
         }
 
+        /// <summary>
+        /// Generates main info .txt
+        /// </summary>
         private void GenerateInfoTXT()
         {
             string s =Languages.Translate(Languages.L.RockyouHasOver14MilPasswordsYouCanDownloadItFromHere) +": " + "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt \r\nRockYouShort 1mil.\r\nRockYouVeryShort 5k\r\n" + Languages.Translate(Languages.L.IfYouWantToAddMoreOrSomethingDifferentYouCanJustMakeSureTheFormatIsTheSame) + Languages.Translate(Languages.L.PleaseDontNameAnyFilesInThisDirectoryTempOrInputsplitTheyWillBeDeleted);
             string path = Path.Combine(Settings.DirectoryPathToWordlists, "_wordlistInfo.txt");
             File.WriteAllText(path, s);
         }
+
+        /// <summary>
+        /// Clears the log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonLogClear_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
         }
+
+        /// <summary>
+        /// Save the log to .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonLogSave_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
@@ -132,8 +168,15 @@ namespace HashTester
         #endregion
 
         #region Password Dictionary Attack
+
         DictionaryAttack dictionaryAttack = new DictionaryAttack();
         long passwordCheckLinesProcessedLastUpdate = 0;
+
+        /// <summary>
+        /// UI Update for Password based on timer 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateUIPassword(object sender, EventArgs e)
         {
             try
@@ -168,6 +211,12 @@ namespace HashTester
                 return;
             }
         }
+
+        /// <summary>
+        /// Runs Dictionary Attack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonCheckPassword_Click(object sender, EventArgs e)
         {
             string pathToFile = "";
@@ -275,7 +324,11 @@ namespace HashTester
             TurnOnUI();
         }
 
-
+        /// <summary>
+        /// what?
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxBruteForceInput_TextChanged(object sender, EventArgs e)
         {
             if (radioButtonRegularBruteForce.Checked)
@@ -307,6 +360,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Copies selected item from log to Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try
@@ -320,11 +378,20 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hash selector for rainbow algorithm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hashSelectorRainbowTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             rainbowTableAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
+        /// <summary>
+        /// Deletes any temporary files
+        /// </summary>
+        /// <param name="nameOfFilesToClear"></param>
         private void FilesCleanUp(string nameOfFilesToClear)
         {
             string[] files = Directory.GetFiles(Settings.DirectoryPathToWordlists);
@@ -334,17 +401,32 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Auto enabler for Unknow bruteLenght
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericUpDownLenght_ValueChanged(object sender, EventArgs e)
         {
             if (numericUpDownLenght.Value == 0)
             {
                 checkBoxUnknownLenghtBruteForce.Enabled = true;
             }
+            else
+            {
+                checkBoxUnknownLenghtBruteForce.Enabled = false;
+            }
         }
 
         #endregion
 
         #region Password Strenght Calculator 
+
+        /// <summary>
+        /// Calculates the strenght of a password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCrackCalculate_Click(object sender, EventArgs e)
         {
             try
@@ -407,6 +489,12 @@ namespace HashTester
         #region Rainbow Table
 
         RainbowTableGenerator rainbowTable = new RainbowTableGenerator();
+
+        /// <summary>
+        /// Main method for Rainbow table generator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonPreHash_Click(object sender, EventArgs e) //Dont Mind its called PreHash its Rainbow Table Generator
         {
             taskCurrentlyWorking = true;
@@ -523,6 +611,12 @@ namespace HashTester
         }
 
         private long numberOfAttemptsInLastUpdateRainbowTable = 0;
+
+        /// <summary>
+        /// UI update for Rainbow Table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateUIRainbowTable(object sender, EventArgs e)
         {
             try
@@ -562,6 +656,12 @@ namespace HashTester
         #region Rainbow Table Attack  
 
         RainbowTableAttack rainbowTableAttack = new RainbowTableAttack();
+
+        /// <summary>
+        /// Rainbow Table main UI script
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonRainbowTableAttack_Click(object sender, EventArgs e)
         {
             try
@@ -702,6 +802,9 @@ namespace HashTester
 
         long RainbowAttacknumberOfLinesInLastUpdate = 0;
 
+        /// <summary>
+        /// UI Update for Rainbow Table
+        /// </summary>
         private void UpdateTheUIRainbowTableAttack()
         {
             try
@@ -756,6 +859,12 @@ namespace HashTester
         #region Password BruteForce Attack
 
         BruteForceAttack bruteForce = new BruteForceAttack();
+
+        /// <summary>
+        /// Main UI BruteForce method 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonBruteForceAttack_Click(object sender, EventArgs e)
         {
             taskCurrentlyWorking = true;
@@ -891,6 +1000,7 @@ namespace HashTester
             else if (bruteForce.UserAborted)
             {
                 //yeah, programmer 100
+                Console.WriteLine("BruteForce: User Aborted");
             }
             else
             {
@@ -907,6 +1017,12 @@ namespace HashTester
         }
         private long numberOfAttemptsInLastUpdateBruteForce = 0;
 
+
+        /// <summary>
+        /// UI update for BruteForceAttack based on a timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateTheUIBruteForceAttack(object sender, EventArgs e)
         {
             try
@@ -957,6 +1073,11 @@ namespace HashTester
             TurnOffUIRecursive(this);           
         }
 
+
+        /// <summary>
+        /// Turns off UI recursively :)
+        /// </summary>
+        /// <param name="c"></param>
         private void TurnOffUIRecursive(Control c)
         {
             if (c == buttonCancel) //dont turn off the cancel button
@@ -991,6 +1112,10 @@ namespace HashTester
             RockYouRadioButtonsCheck();
         }
         
+        /// <summary>
+        /// Turns on UI recursively
+        /// </summary>
+        /// <param name="c"></param>
         private void TurnOnUIRecursive(Control c)
         {
             c.Enabled = true;
@@ -1053,6 +1178,12 @@ namespace HashTester
             }
             MessageBox.Show(message, Languages.Translate(Languages.L.PasswordFound), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        /// <summary>
+        /// Cancels the current task using Tokens
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, EventArgs e) //Abort
         {
             if (taskCurrentlyWorking)
@@ -1115,11 +1246,6 @@ namespace HashTester
                         }
                 }
             }
-        }
-
-        private void labelStatTimer_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

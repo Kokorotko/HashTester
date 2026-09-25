@@ -54,9 +54,10 @@ namespace HashTester
             this.radioButtonString.Checked = true;
             this.radioButtonString.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButtonString.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonString.Location = new System.Drawing.Point(4, 4);
+            this.radioButtonString.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonString.Name = "radioButtonString";
-            this.radioButtonString.Size = new System.Drawing.Size(74, 58);
+            this.radioButtonString.Size = new System.Drawing.Size(99, 70);
             this.radioButtonString.TabIndex = 0;
             this.radioButtonString.TabStop = true;
             this.radioButtonString.Text = "STRING";
@@ -67,9 +68,10 @@ namespace HashTester
             this.radioButtonHex.AutoSize = true;
             this.radioButtonHex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonHex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButtonHex.Location = new System.Drawing.Point(3, 67);
+            this.radioButtonHex.Location = new System.Drawing.Point(4, 82);
+            this.radioButtonHex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonHex.Name = "radioButtonHex";
-            this.radioButtonHex.Size = new System.Drawing.Size(74, 58);
+            this.radioButtonHex.Size = new System.Drawing.Size(99, 70);
             this.radioButtonHex.TabIndex = 1;
             this.radioButtonHex.Text = "HEX";
             this.radioButtonHex.UseVisualStyleBackColor = true;
@@ -79,9 +81,10 @@ namespace HashTester
             this.radioButtonBinary.AutoSize = true;
             this.radioButtonBinary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonBinary.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButtonBinary.Location = new System.Drawing.Point(3, 131);
+            this.radioButtonBinary.Location = new System.Drawing.Point(4, 160);
+            this.radioButtonBinary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonBinary.Name = "radioButtonBinary";
-            this.radioButtonBinary.Size = new System.Drawing.Size(74, 59);
+            this.radioButtonBinary.Size = new System.Drawing.Size(99, 71);
             this.radioButtonBinary.TabIndex = 2;
             this.radioButtonBinary.Text = "BINARY";
             this.radioButtonBinary.UseVisualStyleBackColor = true;
@@ -90,10 +93,12 @@ namespace HashTester
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.SetRowSpan(this.groupBox1, 4);
-            this.groupBox1.Size = new System.Drawing.Size(86, 212);
+            this.groupBox1.Size = new System.Drawing.Size(115, 258);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Format";
@@ -106,21 +111,23 @@ namespace HashTester
             this.tableLayoutPanel1.Controls.Add(this.radioButtonString, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radioButtonHex, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(80, 193);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(107, 235);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(95, 39);
+            this.textBox1.Location = new System.Drawing.Point(127, 48);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(271, 20);
+            this.textBox1.Size = new System.Drawing.Size(361, 22);
             this.textBox1.TabIndex = 4;
             // 
             // labelText
@@ -128,9 +135,10 @@ namespace HashTester
             this.labelText.AutoSize = true;
             this.labelText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelText.Location = new System.Drawing.Point(95, 0);
+            this.labelText.Location = new System.Drawing.Point(127, 0);
+            this.labelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(271, 36);
+            this.labelText.Size = new System.Drawing.Size(361, 44);
             this.labelText.TabIndex = 5;
             this.labelText.Text = "Text01";
             this.labelText.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -140,9 +148,10 @@ namespace HashTester
             this.labelText2.AutoSize = true;
             this.labelText2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelText2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelText2.Location = new System.Drawing.Point(95, 109);
+            this.labelText2.Location = new System.Drawing.Point(127, 133);
+            this.labelText2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelText2.Name = "labelText2";
-            this.labelText2.Size = new System.Drawing.Size(271, 36);
+            this.labelText2.Size = new System.Drawing.Size(361, 44);
             this.labelText2.TabIndex = 7;
             this.labelText2.Text = "Text02";
             this.labelText2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -150,18 +159,20 @@ namespace HashTester
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(95, 148);
+            this.textBox2.Location = new System.Drawing.Point(127, 181);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(271, 20);
+            this.textBox2.Size = new System.Drawing.Size(361, 22);
             this.textBox2.TabIndex = 6;
             // 
             // buttonCheck
             // 
             this.buttonCheck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonCheck.Location = new System.Drawing.Point(3, 221);
+            this.buttonCheck.Location = new System.Drawing.Point(4, 270);
+            this.buttonCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(86, 68);
+            this.buttonCheck.Size = new System.Drawing.Size(115, 85);
             this.buttonCheck.TabIndex = 8;
             this.buttonCheck.Text = "Check";
             this.buttonCheck.UseVisualStyleBackColor = true;
@@ -178,9 +189,10 @@ namespace HashTester
             "SHA512",
             "RipeMD-160",
             "CRC32"});
-            this.hashSelector.Location = new System.Drawing.Point(372, 39);
+            this.hashSelector.Location = new System.Drawing.Point(496, 48);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(87, 21);
+            this.hashSelector.Size = new System.Drawing.Size(116, 24);
             this.hashSelector.TabIndex = 9;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 
@@ -189,9 +201,10 @@ namespace HashTester
             this.labelAlgorithm.AutoSize = true;
             this.labelAlgorithm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelAlgorithm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelAlgorithm.Location = new System.Drawing.Point(372, 0);
+            this.labelAlgorithm.Location = new System.Drawing.Point(496, 0);
+            this.labelAlgorithm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAlgorithm.Name = "labelAlgorithm";
-            this.labelAlgorithm.Size = new System.Drawing.Size(87, 36);
+            this.labelAlgorithm.Size = new System.Drawing.Size(116, 44);
             this.labelAlgorithm.TabIndex = 10;
             this.labelAlgorithm.Text = "Algorithm";
             this.labelAlgorithm.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -200,9 +213,10 @@ namespace HashTester
             // 
             this.buttonTakeTXT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonTakeTXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonTakeTXT.Location = new System.Drawing.Point(95, 221);
+            this.buttonTakeTXT.Location = new System.Drawing.Point(127, 270);
+            this.buttonTakeTXT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonTakeTXT.Name = "buttonTakeTXT";
-            this.buttonTakeTXT.Size = new System.Drawing.Size(271, 68);
+            this.buttonTakeTXT.Size = new System.Drawing.Size(361, 85);
             this.buttonTakeTXT.TabIndex = 11;
             this.buttonTakeTXT.Text = "Check from TXT file";
             this.buttonTakeTXT.UseVisualStyleBackColor = true;
@@ -212,9 +226,10 @@ namespace HashTester
             // 
             this.buttonClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonClose.Location = new System.Drawing.Point(372, 221);
+            this.buttonClose.Location = new System.Drawing.Point(496, 270);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(87, 68);
+            this.buttonClose.Size = new System.Drawing.Size(116, 85);
             this.buttonClose.TabIndex = 12;
             this.buttonClose.Text = "Check";
             this.buttonClose.UseVisualStyleBackColor = true;
@@ -238,6 +253,7 @@ namespace HashTester
             this.tableLayoutPanel2.Controls.Add(this.hashSelector, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -245,16 +261,17 @@ namespace HashTester
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 292);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(616, 359);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
             // CheckCollisionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 292);
+            this.ClientSize = new System.Drawing.Size(616, 359);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.MinimumSize = new System.Drawing.Size(478, 331);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(631, 397);
             this.Name = "CheckCollisionForm";
             this.Text = "CheckCollisionForm";
             this.Load += new System.EventHandler(this.CheckCollisionForm_Load);

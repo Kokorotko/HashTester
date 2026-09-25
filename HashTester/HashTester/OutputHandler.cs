@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Handles the output of nearly all Hashes
+ *@file: OutputHandler.cs
+ */
+
 using HashTester.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +23,11 @@ namespace HashTester
     {
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="algorithm">Input algorithm</param>
         public OutputHandler(Hasher.HashingAlgorithm algorithm)
         {
             this.algorithm = algorithm;

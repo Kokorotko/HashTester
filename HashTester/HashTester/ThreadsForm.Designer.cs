@@ -70,9 +70,10 @@ namespace HashTester
             this.labelPercentages.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelPercentages, 3);
             this.labelPercentages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPercentages.Location = new System.Drawing.Point(303, 22);
+            this.labelPercentages.Location = new System.Drawing.Point(403, 28);
+            this.labelPercentages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPercentages.Name = "labelPercentages";
-            this.labelPercentages.Size = new System.Drawing.Size(294, 22);
+            this.labelPercentages.Size = new System.Drawing.Size(393, 28);
             this.labelPercentages.TabIndex = 42;
             this.labelPercentages.Text = "Percentage of threads used";
             this.labelPercentages.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -82,9 +83,10 @@ namespace HashTester
             this.radioButtonPercentZero.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonPercentZero, 3);
             this.radioButtonPercentZero.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPercentZero.Location = new System.Drawing.Point(303, 179);
+            this.radioButtonPercentZero.Location = new System.Drawing.Point(403, 228);
+            this.radioButtonPercentZero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPercentZero.Name = "radioButtonPercentZero";
-            this.radioButtonPercentZero.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonPercentZero.Size = new System.Drawing.Size(393, 20);
             this.radioButtonPercentZero.TabIndex = 41;
             this.radioButtonPercentZero.TabStop = true;
             this.radioButtonPercentZero.Text = "0%";
@@ -96,9 +98,10 @@ namespace HashTester
             this.labelThreads.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelThreads, 3);
             this.labelThreads.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelThreads.Location = new System.Drawing.Point(3, 22);
+            this.labelThreads.Location = new System.Drawing.Point(4, 28);
+            this.labelThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelThreads.Name = "labelThreads";
-            this.labelThreads.Size = new System.Drawing.Size(294, 22);
+            this.labelThreads.Size = new System.Drawing.Size(391, 28);
             this.labelThreads.TabIndex = 37;
             this.labelThreads.Text = "Number of threads";
             this.labelThreads.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -107,9 +110,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.textBoxPercent, 3);
             this.textBoxPercent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPercent.Location = new System.Drawing.Point(303, 47);
+            this.textBoxPercent.Location = new System.Drawing.Point(403, 60);
+            this.textBoxPercent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPercent.Name = "textBoxPercent";
-            this.textBoxPercent.Size = new System.Drawing.Size(294, 20);
+            this.textBoxPercent.Size = new System.Drawing.Size(393, 22);
             this.textBoxPercent.TabIndex = 23;
             this.textBoxPercent.TextChanged += new System.EventHandler(this.textBoxPercent_TextChanged);
             // 
@@ -118,9 +122,10 @@ namespace HashTester
             this.radioButtonPercent4.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonPercent4, 3);
             this.radioButtonPercent4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPercent4.Location = new System.Drawing.Point(303, 157);
+            this.radioButtonPercent4.Location = new System.Drawing.Point(403, 200);
+            this.radioButtonPercent4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPercent4.Name = "radioButtonPercent4";
-            this.radioButtonPercent4.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonPercent4.Size = new System.Drawing.Size(393, 20);
             this.radioButtonPercent4.TabIndex = 40;
             this.radioButtonPercent4.TabStop = true;
             this.radioButtonPercent4.Text = "25%";
@@ -132,9 +137,10 @@ namespace HashTester
             this.radioButtonThread4.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonThread4, 3);
             this.radioButtonThread4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonThread4.Location = new System.Drawing.Point(3, 157);
+            this.radioButtonThread4.Location = new System.Drawing.Point(4, 200);
+            this.radioButtonThread4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonThread4.Name = "radioButtonThread4";
-            this.radioButtonThread4.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonThread4.Size = new System.Drawing.Size(391, 20);
             this.radioButtonThread4.TabIndex = 35;
             this.radioButtonThread4.Text = "8 threads";
             this.radioButtonThread4.UseVisualStyleBackColor = true;
@@ -145,9 +151,10 @@ namespace HashTester
             this.labelFrom0to100.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelFrom0to100, 3);
             this.labelFrom0to100.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFrom0to100.Location = new System.Drawing.Point(303, 66);
+            this.labelFrom0to100.Location = new System.Drawing.Point(403, 84);
+            this.labelFrom0to100.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFrom0to100.Name = "labelFrom0to100";
-            this.labelFrom0to100.Size = new System.Drawing.Size(294, 22);
+            this.labelFrom0to100.Size = new System.Drawing.Size(393, 28);
             this.labelFrom0to100.TabIndex = 29;
             this.labelFrom0to100.Text = "From 0% to 100%";
             // 
@@ -156,9 +163,10 @@ namespace HashTester
             this.labelPreference.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelPreference, 6);
             this.labelPreference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPreference.Location = new System.Drawing.Point(3, 220);
+            this.labelPreference.Location = new System.Drawing.Point(4, 280);
+            this.labelPreference.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPreference.Name = "labelPreference";
-            this.labelPreference.Size = new System.Drawing.Size(594, 22);
+            this.labelPreference.Size = new System.Drawing.Size(792, 28);
             this.labelPreference.TabIndex = 33;
             this.labelPreference.Text = "*Know that percentages are prefered by the computer";
             this.labelPreference.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -168,9 +176,10 @@ namespace HashTester
             this.radioButtonPercent3.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonPercent3, 3);
             this.radioButtonPercent3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPercent3.Location = new System.Drawing.Point(303, 135);
+            this.radioButtonPercent3.Location = new System.Drawing.Point(403, 172);
+            this.radioButtonPercent3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPercent3.Name = "radioButtonPercent3";
-            this.radioButtonPercent3.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonPercent3.Size = new System.Drawing.Size(393, 20);
             this.radioButtonPercent3.TabIndex = 39;
             this.radioButtonPercent3.Text = "50%";
             this.radioButtonPercent3.UseVisualStyleBackColor = true;
@@ -181,9 +190,10 @@ namespace HashTester
             this.radioButtonThread3.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonThread3, 3);
             this.radioButtonThread3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonThread3.Location = new System.Drawing.Point(3, 135);
+            this.radioButtonThread3.Location = new System.Drawing.Point(4, 172);
+            this.radioButtonThread3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonThread3.Name = "radioButtonThread3";
-            this.radioButtonThread3.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonThread3.Size = new System.Drawing.Size(391, 20);
             this.radioButtonThread3.TabIndex = 34;
             this.radioButtonThread3.Text = "4 threads";
             this.radioButtonThread3.UseVisualStyleBackColor = true;
@@ -194,9 +204,10 @@ namespace HashTester
             this.radioButtonPercentHunred.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonPercentHunred, 3);
             this.radioButtonPercentHunred.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPercentHunred.Location = new System.Drawing.Point(303, 91);
+            this.radioButtonPercentHunred.Location = new System.Drawing.Point(403, 116);
+            this.radioButtonPercentHunred.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPercentHunred.Name = "radioButtonPercentHunred";
-            this.radioButtonPercentHunred.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonPercentHunred.Size = new System.Drawing.Size(393, 20);
             this.radioButtonPercentHunred.TabIndex = 36;
             this.radioButtonPercentHunred.TabStop = true;
             this.radioButtonPercentHunred.Text = "100%";
@@ -208,9 +219,10 @@ namespace HashTester
             this.radioButtonPercent2.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonPercent2, 3);
             this.radioButtonPercent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPercent2.Location = new System.Drawing.Point(303, 113);
+            this.radioButtonPercent2.Location = new System.Drawing.Point(403, 144);
+            this.radioButtonPercent2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPercent2.Name = "radioButtonPercent2";
-            this.radioButtonPercent2.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonPercent2.Size = new System.Drawing.Size(393, 20);
             this.radioButtonPercent2.TabIndex = 38;
             this.radioButtonPercent2.TabStop = true;
             this.radioButtonPercent2.Text = "75%";
@@ -222,9 +234,10 @@ namespace HashTester
             this.radioButtonThread2.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonThread2, 3);
             this.radioButtonThread2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonThread2.Location = new System.Drawing.Point(3, 113);
+            this.radioButtonThread2.Location = new System.Drawing.Point(4, 144);
+            this.radioButtonThread2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonThread2.Name = "radioButtonThread2";
-            this.radioButtonThread2.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonThread2.Size = new System.Drawing.Size(391, 20);
             this.radioButtonThread2.TabIndex = 32;
             this.radioButtonThread2.Text = "2 threads";
             this.radioButtonThread2.UseVisualStyleBackColor = true;
@@ -235,9 +248,10 @@ namespace HashTester
             this.labelCalculations.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelCalculations, 6);
             this.labelCalculations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCalculations.Location = new System.Drawing.Point(3, 242);
+            this.labelCalculations.Location = new System.Drawing.Point(4, 308);
+            this.labelCalculations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCalculations.Name = "labelCalculations";
-            this.labelCalculations.Size = new System.Drawing.Size(594, 22);
+            this.labelCalculations.Size = new System.Drawing.Size(792, 28);
             this.labelCalculations.TabIndex = 27;
             this.labelCalculations.Text = "*Lower thread count can slow down calculations";
             this.labelCalculations.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -247,9 +261,10 @@ namespace HashTester
             this.radioButtonThread1.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonThread1, 3);
             this.radioButtonThread1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonThread1.Location = new System.Drawing.Point(3, 91);
+            this.radioButtonThread1.Location = new System.Drawing.Point(4, 116);
+            this.radioButtonThread1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonThread1.Name = "radioButtonThread1";
-            this.radioButtonThread1.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonThread1.Size = new System.Drawing.Size(391, 20);
             this.radioButtonThread1.TabIndex = 30;
             this.radioButtonThread1.Text = "Single thread";
             this.radioButtonThread1.UseVisualStyleBackColor = true;
@@ -260,9 +275,10 @@ namespace HashTester
             this.tableLayoutPanel2.SetColumnSpan(this.buttonDefault, 2);
             this.buttonDefault.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonDefault.Location = new System.Drawing.Point(203, 267);
+            this.buttonDefault.Location = new System.Drawing.Point(270, 340);
+            this.buttonDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDefault.Name = "buttonDefault";
-            this.buttonDefault.Size = new System.Drawing.Size(194, 41);
+            this.buttonDefault.Size = new System.Drawing.Size(258, 50);
             this.buttonDefault.TabIndex = 26;
             this.buttonDefault.Text = "Default";
             this.buttonDefault.UseVisualStyleBackColor = true;
@@ -272,9 +288,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.textBoxThread, 3);
             this.textBoxThread.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxThread.Location = new System.Drawing.Point(3, 47);
+            this.textBoxThread.Location = new System.Drawing.Point(4, 60);
+            this.textBoxThread.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxThread.Name = "textBoxThread";
-            this.textBoxThread.Size = new System.Drawing.Size(294, 20);
+            this.textBoxThread.Size = new System.Drawing.Size(391, 22);
             this.textBoxThread.TabIndex = 22;
             this.textBoxThread.TextChanged += new System.EventHandler(this.textBoxThread_TextChanged);
             // 
@@ -283,9 +300,10 @@ namespace HashTester
             this.labelMaxThreads.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelMaxThreads, 3);
             this.labelMaxThreads.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelMaxThreads.Location = new System.Drawing.Point(3, 66);
+            this.labelMaxThreads.Location = new System.Drawing.Point(4, 84);
+            this.labelMaxThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMaxThreads.Name = "labelMaxThreads";
-            this.labelMaxThreads.Size = new System.Drawing.Size(294, 22);
+            this.labelMaxThreads.Size = new System.Drawing.Size(391, 28);
             this.labelMaxThreads.TabIndex = 28;
             this.labelMaxThreads.Text = "From 1 to max. number of threads";
             // 
@@ -295,9 +313,10 @@ namespace HashTester
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonCancel.Location = new System.Drawing.Point(403, 267);
+            this.buttonCancel.Location = new System.Drawing.Point(536, 340);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(194, 41);
+            this.buttonCancel.Size = new System.Drawing.Size(260, 50);
             this.buttonCancel.TabIndex = 25;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -307,9 +326,10 @@ namespace HashTester
             this.tableLayoutPanel2.SetColumnSpan(this.buttonSave, 2);
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSave.Location = new System.Drawing.Point(3, 267);
+            this.buttonSave.Location = new System.Drawing.Point(4, 340);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(194, 41);
+            this.buttonSave.Size = new System.Drawing.Size(258, 50);
             this.buttonSave.TabIndex = 24;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -320,9 +340,10 @@ namespace HashTester
             this.labelHowMany.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelHowMany, 6);
             this.labelHowMany.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelHowMany.Location = new System.Drawing.Point(3, 0);
+            this.labelHowMany.Location = new System.Drawing.Point(4, 0);
+            this.labelHowMany.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHowMany.Name = "labelHowMany";
-            this.labelHowMany.Size = new System.Drawing.Size(594, 22);
+            this.labelHowMany.Size = new System.Drawing.Size(792, 28);
             this.labelHowMany.TabIndex = 21;
             this.labelHowMany.Text = "How many threads do you want to use in the program?";
             this.labelHowMany.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -332,9 +353,10 @@ namespace HashTester
             this.labelZeroPercent.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.labelZeroPercent, 6);
             this.labelZeroPercent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelZeroPercent.Location = new System.Drawing.Point(3, 198);
+            this.labelZeroPercent.Location = new System.Drawing.Point(4, 252);
+            this.labelZeroPercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelZeroPercent.Name = "labelZeroPercent";
-            this.labelZeroPercent.Size = new System.Drawing.Size(594, 22);
+            this.labelZeroPercent.Size = new System.Drawing.Size(792, 28);
             this.labelZeroPercent.TabIndex = 43;
             this.labelZeroPercent.Text = "*0% means only one thread may be used at all times";
             this.labelZeroPercent.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -344,9 +366,10 @@ namespace HashTester
             this.radioButtonThreadMax.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.radioButtonThreadMax, 3);
             this.radioButtonThreadMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonThreadMax.Location = new System.Drawing.Point(3, 179);
+            this.radioButtonThreadMax.Location = new System.Drawing.Point(4, 228);
+            this.radioButtonThreadMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonThreadMax.Name = "radioButtonThreadMax";
-            this.radioButtonThreadMax.Size = new System.Drawing.Size(294, 16);
+            this.radioButtonThreadMax.Size = new System.Drawing.Size(391, 20);
             this.radioButtonThreadMax.TabIndex = 44;
             this.radioButtonThreadMax.Text = "Maximum number of threads";
             this.radioButtonThreadMax.UseVisualStyleBackColor = true;
@@ -357,9 +380,11 @@ namespace HashTester
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 6);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 314);
+            this.groupBox1.Location = new System.Drawing.Point(4, 398);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(594, 186);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(792, 217);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CPU Info";
@@ -375,7 +400,8 @@ namespace HashTester
             this.tableLayoutPanel1.Controls.Add(this.labelCPUThread, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelCPUCores, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -384,16 +410,17 @@ namespace HashTester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(588, 167);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 194);
             this.tableLayoutPanel1.TabIndex = 46;
             // 
             // labelCPUDescription
             // 
             this.labelCPUDescription.AutoSize = true;
             this.labelCPUDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUDescription.Location = new System.Drawing.Point(3, 135);
+            this.labelCPUDescription.Location = new System.Drawing.Point(4, 160);
+            this.labelCPUDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUDescription.Name = "labelCPUDescription";
-            this.labelCPUDescription.Size = new System.Drawing.Size(582, 32);
+            this.labelCPUDescription.Size = new System.Drawing.Size(776, 34);
             this.labelCPUDescription.TabIndex = 5;
             this.labelCPUDescription.Text = "CPU description: ";
             this.labelCPUDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -402,9 +429,10 @@ namespace HashTester
             // 
             this.labelCPUName.AutoSize = true;
             this.labelCPUName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUName.Location = new System.Drawing.Point(3, 0);
+            this.labelCPUName.Location = new System.Drawing.Point(4, 0);
+            this.labelCPUName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUName.Name = "labelCPUName";
-            this.labelCPUName.Size = new System.Drawing.Size(582, 27);
+            this.labelCPUName.Size = new System.Drawing.Size(776, 32);
             this.labelCPUName.TabIndex = 0;
             this.labelCPUName.Text = "Name:";
             this.labelCPUName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -413,9 +441,10 @@ namespace HashTester
             // 
             this.labelCPUMaxSpeed.AutoSize = true;
             this.labelCPUMaxSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUMaxSpeed.Location = new System.Drawing.Point(3, 108);
+            this.labelCPUMaxSpeed.Location = new System.Drawing.Point(4, 128);
+            this.labelCPUMaxSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUMaxSpeed.Name = "labelCPUMaxSpeed";
-            this.labelCPUMaxSpeed.Size = new System.Drawing.Size(582, 27);
+            this.labelCPUMaxSpeed.Size = new System.Drawing.Size(776, 32);
             this.labelCPUMaxSpeed.TabIndex = 4;
             this.labelCPUMaxSpeed.Text = "Max clock speed: ";
             this.labelCPUMaxSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -424,9 +453,10 @@ namespace HashTester
             // 
             this.labelCPUManufacturer.AutoSize = true;
             this.labelCPUManufacturer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUManufacturer.Location = new System.Drawing.Point(3, 27);
+            this.labelCPUManufacturer.Location = new System.Drawing.Point(4, 32);
+            this.labelCPUManufacturer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUManufacturer.Name = "labelCPUManufacturer";
-            this.labelCPUManufacturer.Size = new System.Drawing.Size(582, 27);
+            this.labelCPUManufacturer.Size = new System.Drawing.Size(776, 32);
             this.labelCPUManufacturer.TabIndex = 1;
             this.labelCPUManufacturer.Text = "Manufacturer: ";
             this.labelCPUManufacturer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -435,9 +465,10 @@ namespace HashTester
             // 
             this.labelCPUThread.AutoSize = true;
             this.labelCPUThread.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUThread.Location = new System.Drawing.Point(3, 81);
+            this.labelCPUThread.Location = new System.Drawing.Point(4, 96);
+            this.labelCPUThread.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUThread.Name = "labelCPUThread";
-            this.labelCPUThread.Size = new System.Drawing.Size(582, 27);
+            this.labelCPUThread.Size = new System.Drawing.Size(776, 32);
             this.labelCPUThread.TabIndex = 3;
             this.labelCPUThread.Text = "Number of threads: ";
             this.labelCPUThread.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -446,9 +477,10 @@ namespace HashTester
             // 
             this.labelCPUCores.AutoSize = true;
             this.labelCPUCores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCPUCores.Location = new System.Drawing.Point(3, 54);
+            this.labelCPUCores.Location = new System.Drawing.Point(4, 64);
+            this.labelCPUCores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPUCores.Name = "labelCPUCores";
-            this.labelCPUCores.Size = new System.Drawing.Size(582, 27);
+            this.labelCPUCores.Size = new System.Drawing.Size(776, 32);
             this.labelCPUCores.TabIndex = 2;
             this.labelCPUCores.Text = "Number of cores: ";
             this.labelCPUCores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -488,6 +520,7 @@ namespace HashTester
             this.tableLayoutPanel2.Controls.Add(this.radioButtonThread1, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 14;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.524887F));
@@ -504,16 +537,17 @@ namespace HashTester
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.524887F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.502261F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.19909F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(600, 503);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 619);
             this.tableLayoutPanel2.TabIndex = 46;
             // 
             // ThreadsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 503);
+            this.ClientSize = new System.Drawing.Size(800, 619);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.MinimumSize = new System.Drawing.Size(616, 542);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(815, 656);
             this.Name = "ThreadsForm";
             this.Text = "ThreadsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThreadsForm_FormClosing);

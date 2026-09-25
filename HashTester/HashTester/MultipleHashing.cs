@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Form UI for MultipleHashing script
+ *@file: MultipleHashing.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +28,22 @@ namespace HashTester
         }
         Form1 mainForm = new Form1();
         
-
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Main Hashing function for the form
+        /// Takes all selected algorithms and hashes them
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
             if (checkBoxMD5.Checked || checkBoxSHA1.Checked || checkBoxSHA256.Checked || checkBoxSHA512.Checked || checkBoxRipeMD160.Checked || checkBoxCRC32.Checked)
@@ -53,6 +70,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes in multiple algorithms from a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TXTInput_Click(object sender, EventArgs e)
         {
             // Check if at least one checkbox is selected
@@ -82,23 +104,37 @@ namespace HashTester
             }
         }
 
-
+        /// <summary>
+        /// Resets Log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
         }
 
+        /// <summary>
+        /// Saves log to a .txt file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
 
+        /// <summary>
+        /// Copies selected item in log to Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try
             {
                 if (listBoxLog.SelectedItem != null) Clipboard.SetText(listBoxLog.SelectedItem.ToString());
-                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAnItemFromTheLogListboxBeforeCopying), Languages.Translate(Languages.L.Info) , MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
@@ -106,6 +142,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Loads the UI form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MultipleHashing_Load(object sender, EventArgs e)
         {
             this.Name = Languages.Translate(Languages.L.MultiHasher);

@@ -1,0 +1,380 @@
+\doxysection{Hash\+Tester.\+Form1 Class Reference}
+\hypertarget{class_hash_tester_1_1_form1}{}\label{class_hash_tester_1_1_form1}\index{HashTester.Form1@{HashTester.Form1}}
+Inheritance diagram for Hash\+Tester.\+Form1:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_form1}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_form1_a37fcfdd2aea0c38672968899141469bb}{Form1}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a28b87f0a460d8abb582d3179a2c769c0}{TXTInput\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Hashes from .txt file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a9b39e7fe1bdfa49ef91eaae6d38f97a8}{Processing\+Hash}} (string\+[$\,$]\+ original\+Text, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}{algorithm}}, bool ask\+For\+Salt\+Pepper)
+\begin{DoxyCompactList}\small\item\em Creates hash (or multiple hashes) and returns it based on options. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_abc7f8abd8ae0cd66d1ad6cbb36565244}{Processing\+Hash\+TXTInput}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}{algorithm}}, string file\+Name\+Path, bool ask\+For\+Salt\+Pepper)
+\begin{DoxyCompactList}\small\item\em Creates hashes from a .txt file and returns it based on options. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_ac280af4f94e2ec3eba74f7dd9316616a}{Processing\+Hash}} (string\+[$\,$]\+ original\+Text, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}{algorithm}}, List\+Box listbox)
+\begin{DoxyCompactList}\small\item\em Creates hash (or multiple) and outputs it into a listbox. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_afd1e34a55c1e22b57ea59d9d4a216c7f}{Processing\+Hash\+TXTInput}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}{algorithm}}, List\+Box listbox)
+\begin{DoxyCompactList}\small\item\em Creates hash (or hashes) from .txt file and outputs into a listbox. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_form1_af33efbb4de1a98471bfd60995681dcd5}{Is\+Using\+Salt\+And\+Pepper}} (string text, out bool is\+Salt\+Used, out bool is\+Pepper\+Used, out string salt, out string pepper, out string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Between step if you want to add salt or pepper. \end{DoxyCompactList}\item 
+async Task \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a7458ba53da24939bc7790d5853794ffd}{Check\+For\+Updates}} ()
+\begin{DoxyCompactList}\small\item\em Checks for updates (works with Github\+API). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a6e47a46e6966b0d57cfe7b83a09b03bb}{button\+Hash\+Simple\+Text\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Grabs text from textbox and hashes it based on algorithm and salt/\+pepper settings. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a7b1e8f239f499b5bfa63027e58160fda}{button\+Clear\+List\+Box\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Clears listbox (wow). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a2f2727f774b443eb5357dd22334c854d}{hash\+Selector\+\_\+\+Selected\+Index\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Changes selected algorithm based on combo\+Box. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a01bc22efd5dffbdb1814695d67f1d58e}{Form\+UISet\+Up\+Languages}} ()
+\begin{DoxyCompactList}\small\item\em Sets up all text based on selected languages for \doxylink{class_hash_tester_1_1_form1}{Form1}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a70db4581c1a2fe5077c01f871280e975}{button\+Clipboard\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Copies text from selected item in Log to a Clipboard. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_ab54d22a52cc8b8dfb4116a6de2108c8c}{Form1\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Main Form Load. Loads settings, sets up language and proper scaling. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a39bc022563964c9fbea98235352be81e}{button\+Save\+Log\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Saves log to a .txt file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_form1_ad01d39c449e0ae6fd3443294d03ee877}{Form1\+\_\+\+Form\+Closing}} (object sender, Form\+Closing\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Saves settings before closing the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}{algorithm}}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a3f8382b17df1a86f1836b59d3d78a66a}{hasher}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()
+\item 
+readonly string \doxymbox{\hyperlink{class_hash_tester_1_1_form1_a8942e336cf59284c960108ad658ec564}{program\+Version}} = "{}2.\+0.\+0"{}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_form1_ae8921a0353f214855b26b2f3207b4143}{update\+Available}} = false
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_font_scaling}{Font\+Scaling}} \doxymbox{\hyperlink{class_hash_tester_1_1_form1_ac60326ee0cffd3241787fb1e1d99a7a9}{scaling}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_form1_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_form1_a37fcfdd2aea0c38672968899141469bb}\index{HashTester.Form1@{HashTester.Form1}!Form1@{Form1}}
+\index{Form1@{Form1}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1()}{Form1()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a37fcfdd2aea0c38672968899141469bb} 
+Hash\+Tester.\+Form1.\+Form1 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_form1_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_form1_a7b1e8f239f499b5bfa63027e58160fda}\index{HashTester.Form1@{HashTester.Form1}!buttonClearListBox\_Click@{buttonClearListBox\_Click}}
+\index{buttonClearListBox\_Click@{buttonClearListBox\_Click}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{buttonClearListBox\_Click()}{buttonClearListBox\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a7b1e8f239f499b5bfa63027e58160fda} 
+void Hash\+Tester.\+Form1.\+button\+Clear\+List\+Box\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Clears listbox (wow). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a70db4581c1a2fe5077c01f871280e975}\index{HashTester.Form1@{HashTester.Form1}!buttonClipboard\_Click@{buttonClipboard\_Click}}
+\index{buttonClipboard\_Click@{buttonClipboard\_Click}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{buttonClipboard\_Click()}{buttonClipboard\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a70db4581c1a2fe5077c01f871280e975} 
+void Hash\+Tester.\+Form1.\+button\+Clipboard\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Copies text from selected item in Log to a Clipboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a6e47a46e6966b0d57cfe7b83a09b03bb}\index{HashTester.Form1@{HashTester.Form1}!buttonHashSimpleText\_Click@{buttonHashSimpleText\_Click}}
+\index{buttonHashSimpleText\_Click@{buttonHashSimpleText\_Click}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{buttonHashSimpleText\_Click()}{buttonHashSimpleText\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a6e47a46e6966b0d57cfe7b83a09b03bb} 
+void Hash\+Tester.\+Form1.\+button\+Hash\+Simple\+Text\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Grabs text from textbox and hashes it based on algorithm and salt/\+pepper settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a39bc022563964c9fbea98235352be81e}\index{HashTester.Form1@{HashTester.Form1}!buttonSaveLog\_Click@{buttonSaveLog\_Click}}
+\index{buttonSaveLog\_Click@{buttonSaveLog\_Click}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{buttonSaveLog\_Click()}{buttonSaveLog\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a39bc022563964c9fbea98235352be81e} 
+void Hash\+Tester.\+Form1.\+button\+Save\+Log\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Saves log to a .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a7458ba53da24939bc7790d5853794ffd}\index{HashTester.Form1@{HashTester.Form1}!CheckForUpdates@{CheckForUpdates}}
+\index{CheckForUpdates@{CheckForUpdates}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{CheckForUpdates()}{CheckForUpdates()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a7458ba53da24939bc7790d5853794ffd} 
+async Task Hash\+Tester.\+Form1.\+Check\+For\+Updates (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks for updates (works with Github\+API). 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_form1_ad01d39c449e0ae6fd3443294d03ee877}\index{HashTester.Form1@{HashTester.Form1}!Form1\_FormClosing@{Form1\_FormClosing}}
+\index{Form1\_FormClosing@{Form1\_FormClosing}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1\_FormClosing()}{Form1\_FormClosing()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_ad01d39c449e0ae6fd3443294d03ee877} 
+void Hash\+Tester.\+Form1.\+Form1\+\_\+\+Form\+Closing (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Form\+Closing\+Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Saves settings before closing the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_ab54d22a52cc8b8dfb4116a6de2108c8c}\index{HashTester.Form1@{HashTester.Form1}!Form1\_Load@{Form1\_Load}}
+\index{Form1\_Load@{Form1\_Load}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1\_Load()}{Form1\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_ab54d22a52cc8b8dfb4116a6de2108c8c} 
+void Hash\+Tester.\+Form1.\+Form1\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Main Form Load. Loads settings, sets up language and proper scaling. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a01bc22efd5dffbdb1814695d67f1d58e}\index{HashTester.Form1@{HashTester.Form1}!FormUISetUpLanguages@{FormUISetUpLanguages}}
+\index{FormUISetUpLanguages@{FormUISetUpLanguages}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{FormUISetUpLanguages()}{FormUISetUpLanguages()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a01bc22efd5dffbdb1814695d67f1d58e} 
+void Hash\+Tester.\+Form1.\+Form\+UISet\+Up\+Languages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets up all text based on selected languages for \doxylink{class_hash_tester_1_1_form1}{Form1}. 
+
+\Hypertarget{class_hash_tester_1_1_form1_a2f2727f774b443eb5357dd22334c854d}\index{HashTester.Form1@{HashTester.Form1}!hashSelector\_SelectedIndexChanged@{hashSelector\_SelectedIndexChanged}}
+\index{hashSelector\_SelectedIndexChanged@{hashSelector\_SelectedIndexChanged}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{hashSelector\_SelectedIndexChanged()}{hashSelector\_SelectedIndexChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a2f2727f774b443eb5357dd22334c854d} 
+void Hash\+Tester.\+Form1.\+hash\+Selector\+\_\+\+Selected\+Index\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Changes selected algorithm based on combo\+Box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_af33efbb4de1a98471bfd60995681dcd5}\index{HashTester.Form1@{HashTester.Form1}!IsUsingSaltAndPepper@{IsUsingSaltAndPepper}}
+\index{IsUsingSaltAndPepper@{IsUsingSaltAndPepper}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{IsUsingSaltAndPepper()}{IsUsingSaltAndPepper()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_af33efbb4de1a98471bfd60995681dcd5} 
+bool Hash\+Tester.\+Form1.\+Is\+Using\+Salt\+And\+Pepper (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{out bool}]{is\+Salt\+Used}{, }\item[{out bool}]{is\+Pepper\+Used}{, }\item[{out string}]{salt}{, }\item[{out string}]{pepper}{, }\item[{out string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Between step if you want to add salt or pepper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Original input you want to add salt and or pepper to\\
+\hline
+{\em is\+Salt\+Used} & True if you want to use salt\\
+\hline
+{\em is\+Pepper\+Used} & True if you want to use pepper\\
+\hline
+{\em salt} & Is empty if is\+Salt\+Used is false\\
+\hline
+{\em pepper} & Is empty if is\+Pepper used is false\\
+\hline
+{\em hash\+ID} & Outputs hash\+ID for future clarification\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_form1_a9b39e7fe1bdfa49ef91eaae6d38f97a8}\index{HashTester.Form1@{HashTester.Form1}!ProcessingHash@{ProcessingHash}}
+\index{ProcessingHash@{ProcessingHash}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{ProcessingHash()}{ProcessingHash()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a9b39e7fe1bdfa49ef91eaae6d38f97a8} 
+void Hash\+Tester.\+Form1.\+Processing\+Hash (\begin{DoxyParamCaption}\item[{string\+[$\,$]\+}]{original\+Text}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{bool}]{ask\+For\+Salt\+Pepper}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates hash (or multiple hashes) and returns it based on options. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Text} & \\
+\hline
+{\em algorithm} & \\
+\hline
+{\em ask\+For\+Salt\+Pepper} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_ac280af4f94e2ec3eba74f7dd9316616a}\index{HashTester.Form1@{HashTester.Form1}!ProcessingHash@{ProcessingHash}}
+\index{ProcessingHash@{ProcessingHash}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{ProcessingHash()}{ProcessingHash()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_ac280af4f94e2ec3eba74f7dd9316616a} 
+void Hash\+Tester.\+Form1.\+Processing\+Hash (\begin{DoxyParamCaption}\item[{string\+[$\,$]\+}]{original\+Text}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}\+[$\,$]\+}]{algorithm}{, }\item[{List\+Box}]{listbox}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates hash (or multiple) and outputs it into a listbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Text} & \\
+\hline
+{\em algorithm} & \\
+\hline
+{\em listbox} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_abc7f8abd8ae0cd66d1ad6cbb36565244}\index{HashTester.Form1@{HashTester.Form1}!ProcessingHashTXTInput@{ProcessingHashTXTInput}}
+\index{ProcessingHashTXTInput@{ProcessingHashTXTInput}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{ProcessingHashTXTInput()}{ProcessingHashTXTInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_abc7f8abd8ae0cd66d1ad6cbb36565244} 
+void Hash\+Tester.\+Form1.\+Processing\+Hash\+TXTInput (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{string}]{file\+Name\+Path}{, }\item[{bool}]{ask\+For\+Salt\+Pepper}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates hashes from a .txt file and returns it based on options. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & Hash algorithm\\
+\hline
+{\em file\+Name\+Path} & File path to file\\
+\hline
+{\em ask\+For\+Salt\+Pepper} & True if you want to use salt and or pepper\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_afd1e34a55c1e22b57ea59d9d4a216c7f}\index{HashTester.Form1@{HashTester.Form1}!ProcessingHashTXTInput@{ProcessingHashTXTInput}}
+\index{ProcessingHashTXTInput@{ProcessingHashTXTInput}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{ProcessingHashTXTInput()}{ProcessingHashTXTInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_afd1e34a55c1e22b57ea59d9d4a216c7f} 
+void Hash\+Tester.\+Form1.\+Processing\+Hash\+TXTInput (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}\+[$\,$]\+}]{algorithm}{, }\item[{List\+Box}]{listbox}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates hash (or hashes) from .txt file and outputs into a listbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & \\
+\hline
+{\em listbox} & Listbox for output\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form1_a28b87f0a460d8abb582d3179a2c769c0}\index{HashTester.Form1@{HashTester.Form1}!TXTInput\_Click@{TXTInput\_Click}}
+\index{TXTInput\_Click@{TXTInput\_Click}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{TXTInput\_Click()}{TXTInput\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a28b87f0a460d8abb582d3179a2c769c0} 
+void Hash\+Tester.\+Form1.\+TXTInput\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Hashes from .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_form1_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8}\index{HashTester.Form1@{HashTester.Form1}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_acf8867aba38287b11757d141544022d8} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} Hash\+Tester.\+Form1.\+algorithm\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form1_a3f8382b17df1a86f1836b59d3d78a66a}\index{HashTester.Form1@{HashTester.Form1}!hasher@{hasher}}
+\index{hasher@{hasher}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{hasher}{hasher}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a3f8382b17df1a86f1836b59d3d78a66a} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} Hash\+Tester.\+Form1.\+hasher = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form1_a8942e336cf59284c960108ad658ec564}\index{HashTester.Form1@{HashTester.Form1}!programVersion@{programVersion}}
+\index{programVersion@{programVersion}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{programVersion}{programVersion}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_a8942e336cf59284c960108ad658ec564} 
+readonly string Hash\+Tester.\+Form1.\+program\+Version = "{}2.\+0.\+0"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form1_ac60326ee0cffd3241787fb1e1d99a7a9}\index{HashTester.Form1@{HashTester.Form1}!scaling@{scaling}}
+\index{scaling@{scaling}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{scaling}{scaling}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_ac60326ee0cffd3241787fb1e1d99a7a9} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_font_scaling}{Font\+Scaling}} Hash\+Tester.\+Form1.\+scaling\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form1_ae8921a0353f214855b26b2f3207b4143}\index{HashTester.Form1@{HashTester.Form1}!updateAvailable@{updateAvailable}}
+\index{updateAvailable@{updateAvailable}!HashTester.Form1@{HashTester.Form1}}
+\doxysubsubsection{\texorpdfstring{updateAvailable}{updateAvailable}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form1_ae8921a0353f214855b26b2f3207b4143} 
+bool Hash\+Tester.\+Form1.\+update\+Available = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_form1_8cs}{Form1.\+cs}}\end{DoxyCompactItemize}

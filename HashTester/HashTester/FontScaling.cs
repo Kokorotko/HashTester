@@ -1,16 +1,28 @@
-﻿using System;
+﻿/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Script for scaling font based on starting size
+ *@file: FontScaling.cs
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace HashTester
 {
+
     public class FontScaling
     {
         private Form form;
         private Size baseFormSize;
         private Dictionary<Control, Font> baseFonts = new Dictionary<Control, Font>();
 
+        /// <summary>
+        /// Constructor for script with Form, Constructor is needed
+        /// </summary>
+        /// <param name="form">What form to scale</param>
         public FontScaling(Form form)
         {
             this.form = form;
@@ -21,7 +33,9 @@ namespace HashTester
             SaveBaseFonts(form);
         }
 
-        // Call this on resize
+        /// <summary>
+        /// Scales the scale of the font (call on every change)
+        /// </summary>
         public void FontScaler()
         {
             float scaleX = (float)form.Width / baseFormSize.Width;
@@ -31,6 +45,10 @@ namespace HashTester
             ScaleFontsRecursively(form, scale);
         }
 
+        /// <summary>
+        /// Saves first font size to the dictionary. Run on form creation
+        /// </summary>
+        /// <param name="control"></param>
         private void SaveBaseFonts(Control control)
         {
             if (control == null) return;
@@ -43,6 +61,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Recursively sets up font, ignores comboBox
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="scale"></param>
         private void ScaleFontsRecursively(Control control, float scale)
         {
             if (control == null) return;

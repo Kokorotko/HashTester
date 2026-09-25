@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Main UI Form
+ *@file: Form1.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,17 +20,27 @@ namespace HashTester
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
+
         Hasher.HashingAlgorithm algorithm;
         Hasher hasher = new Hasher();
-        readonly string programVersion = "2.0.0";
+        readonly string programVersion = "2.0.0"; //
         private bool updateAvailable = false;
         FontScaling scaling;
 
         #region Form Stuff Handling
+
+        /// <summary>
+        /// Grabs text from textbox and hashes it based on algorithm and salt/pepper settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(textHashSimple.Text)) //check
@@ -36,6 +53,12 @@ namespace HashTester
                 ProcessingHash(textHashSimple.Lines, algorithm, askForSaltPepper);
             }
         }
+
+        /// <summary>
+        /// Hashes from .txt file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void TXTInput_Click(object sender, EventArgs e)
         {
             bool askForSaltPepper = false;
@@ -56,11 +79,23 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(Languages.L.InputCancelled), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Clears listbox (wow)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
             //UpdateMenuStripSettings();
         }
+
+        /// <summary>
+        /// Changes selected algorithm based on comboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
@@ -255,6 +290,10 @@ namespace HashTester
         #endregion
 
         #region Languages Setup
+
+        /// <summary>
+        /// Sets up all text based on selected languages for Form1
+        /// </summary>
         private void FormUISetUpLanguages()
         {
             labelCreditsMadeBy.Text = Languages.Translate(Languages.L.ProgramMadeBy);
@@ -275,6 +314,11 @@ namespace HashTester
 
         #region Clipboard
 
+        /// <summary>
+        /// Copies text from selected item in Log to a Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try
@@ -294,6 +338,7 @@ namespace HashTester
         /// Checks for updates (works with GithubAPI)
         /// </summary>
         /// <returns></returns>
+        /// 
         public async Task CheckForUpdates()
         {
             if (!NetworkInterface.GetIsNetworkAvailable()) return; //Dont check for updates when there is no internet...stupid
@@ -353,14 +398,15 @@ namespace HashTester
             hashSelector.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Saves log to a .txt file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
-
-        #region ReScaling
-
-        #endregion //End Rescaling
 
         /// <summary>
         /// Saves settings before closing the program

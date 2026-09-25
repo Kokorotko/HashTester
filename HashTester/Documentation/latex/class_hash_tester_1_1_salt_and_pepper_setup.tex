@@ -1,0 +1,235 @@
+\doxysection{Hash\+Tester.\+Salt\+And\+Pepper\+Setup Class Reference}
+\hypertarget{class_hash_tester_1_1_salt_and_pepper_setup}{}\label{class_hash_tester_1_1_salt_and_pepper_setup}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+Inheritance diagram for Hash\+Tester.\+Salt\+And\+Pepper\+Setup:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_salt_and_pepper_setup}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a4ab2f82d301426f2eb1bf28f797ab81b}{Salt\+And\+Pepper\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Constructor takes idea from settings. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_ac83de9dc2f7d1753b397f7e1c566ced0}{Salt\+And\+Pepper\+Setup}} (bool use\+Salt, bool use\+Pepper)
+\begin{DoxyCompactList}\small\item\em Constructor takes idea from UI. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a312a0e354680c599376cb174236a137b}{Salt\+And\+Pepper\+Setup}} (bool use\+Salt, bool use\+Pepper, string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Constructor takes idea from UI and sets hash\+ID. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a81867b5e6cf0a7a507f6ce025caa1ca3}{Get\+Salt\+Pepper\+Information}} (out bool generate\+Salt, out int lenght\+Salt, out string own\+Salt, out bool generate\+Pepper, out int lenght\+Pepper, out string own\+Pepper, out string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Gets Salt and Pepper Information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a2e5fea21c64468c1f984e09ab852c734}{Salt\+And\+Pepper\+Question\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Main form load. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_abb98aa7e01819e39dca21fc3d2f658b1}{text\+Box\+Generate\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Generates random hash\+ID. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a82b50ea241f84ce55faac653d66aa249}{Set\+Hash\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Trying to find a name for a hash that isnt already used. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a4327c16e65577da00849cb36a963c600}{Set\+Hash\+ID}} (string name)
+\begin{DoxyCompactList}\small\item\em Sets hash ID from the file. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a22ef7c6f458e6f70dcff836b1fd1a342}{Check\+Hash\+ID}} (string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Checks if hash\+ID exists. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a75df6abf5bfb805c0edb50730bc3796f}{radio\+Button\+Pepper\+Gen\+\_\+\+Checked\+Changed}} (object sender, Event\+Args e)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a8864526ef4ee213c31332c2a63d6f6d0}{radio\+Button\+Pepper\+Own\+\_\+\+Checked\+Changed}} (object sender, Event\+Args e)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_abb2c4cbc3b1397ac4a3db24859ef8e06}{radio\+Button\+Salt\+Gen\+\_\+\+Checked\+Changed}} (object sender, Event\+Args e)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a7fefff05e2bc937d424f168c7703d3ca}{radio\+Button\+Salt\+Own\+\_\+\+Checked\+Changed}} (object sender, Event\+Args e)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_a6e82431b379db1258ad1880207ef0af3}{Salt\+Radio\+Button\+Check}} ()
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup_af78f22f0399c64df0d2d11dfdef7101f}{Pepper\+Radio\+Button\+Check}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a4ab2f82d301426f2eb1bf28f797ab81b}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SaltAndPepperSetup@{SaltAndPepperSetup}}
+\index{SaltAndPepperSetup@{SaltAndPepperSetup}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SaltAndPepperSetup()}{SaltAndPepperSetup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a4ab2f82d301426f2eb1bf28f797ab81b} 
+Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Salt\+And\+Pepper\+Setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor takes idea from settings. 
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_ac83de9dc2f7d1753b397f7e1c566ced0}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SaltAndPepperSetup@{SaltAndPepperSetup}}
+\index{SaltAndPepperSetup@{SaltAndPepperSetup}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SaltAndPepperSetup()}{SaltAndPepperSetup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_ac83de9dc2f7d1753b397f7e1c566ced0} 
+Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Salt\+And\+Pepper\+Setup (\begin{DoxyParamCaption}\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor takes idea from UI. 
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a312a0e354680c599376cb174236a137b}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SaltAndPepperSetup@{SaltAndPepperSetup}}
+\index{SaltAndPepperSetup@{SaltAndPepperSetup}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SaltAndPepperSetup()}{SaltAndPepperSetup()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a312a0e354680c599376cb174236a137b} 
+Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Salt\+And\+Pepper\+Setup (\begin{DoxyParamCaption}\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor takes idea from UI and sets hash\+ID. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a22ef7c6f458e6f70dcff836b1fd1a342}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!CheckHashID@{CheckHashID}}
+\index{CheckHashID@{CheckHashID}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{CheckHashID()}{CheckHashID()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a22ef7c6f458e6f70dcff836b1fd1a342} 
+bool Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Check\+Hash\+ID (\begin{DoxyParamCaption}\item[{string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks if hash\+ID exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a81867b5e6cf0a7a507f6ce025caa1ca3}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!GetSaltPepperInformation@{GetSaltPepperInformation}}
+\index{GetSaltPepperInformation@{GetSaltPepperInformation}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{GetSaltPepperInformation()}{GetSaltPepperInformation()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a81867b5e6cf0a7a507f6ce025caa1ca3} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Get\+Salt\+Pepper\+Information (\begin{DoxyParamCaption}\item[{out bool}]{generate\+Salt}{, }\item[{out int}]{lenght\+Salt}{, }\item[{out string}]{own\+Salt}{, }\item[{out bool}]{generate\+Pepper}{, }\item[{out int}]{lenght\+Pepper}{, }\item[{out string}]{own\+Pepper}{, }\item[{out string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets Salt and Pepper Information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em generate\+Salt} & \\
+\hline
+{\em lenght\+Salt} & \\
+\hline
+{\em own\+Salt} & \\
+\hline
+{\em generate\+Pepper} & \\
+\hline
+{\em lenght\+Pepper} & \\
+\hline
+{\em own\+Pepper} & \\
+\hline
+{\em hash\+ID} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_af78f22f0399c64df0d2d11dfdef7101f}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!PepperRadioButtonCheck@{PepperRadioButtonCheck}}
+\index{PepperRadioButtonCheck@{PepperRadioButtonCheck}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{PepperRadioButtonCheck()}{PepperRadioButtonCheck()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_af78f22f0399c64df0d2d11dfdef7101f} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Pepper\+Radio\+Button\+Check (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a75df6abf5bfb805c0edb50730bc3796f}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!radioButtonPepperGen\_CheckedChanged@{radioButtonPepperGen\_CheckedChanged}}
+\index{radioButtonPepperGen\_CheckedChanged@{radioButtonPepperGen\_CheckedChanged}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{radioButtonPepperGen\_CheckedChanged()}{radioButtonPepperGen\_CheckedChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a75df6abf5bfb805c0edb50730bc3796f} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+radio\+Button\+Pepper\+Gen\+\_\+\+Checked\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a8864526ef4ee213c31332c2a63d6f6d0}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!radioButtonPepperOwn\_CheckedChanged@{radioButtonPepperOwn\_CheckedChanged}}
+\index{radioButtonPepperOwn\_CheckedChanged@{radioButtonPepperOwn\_CheckedChanged}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{radioButtonPepperOwn\_CheckedChanged()}{radioButtonPepperOwn\_CheckedChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a8864526ef4ee213c31332c2a63d6f6d0} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+radio\+Button\+Pepper\+Own\+\_\+\+Checked\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_abb2c4cbc3b1397ac4a3db24859ef8e06}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!radioButtonSaltGen\_CheckedChanged@{radioButtonSaltGen\_CheckedChanged}}
+\index{radioButtonSaltGen\_CheckedChanged@{radioButtonSaltGen\_CheckedChanged}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{radioButtonSaltGen\_CheckedChanged()}{radioButtonSaltGen\_CheckedChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_abb2c4cbc3b1397ac4a3db24859ef8e06} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+radio\+Button\+Salt\+Gen\+\_\+\+Checked\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a7fefff05e2bc937d424f168c7703d3ca}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!radioButtonSaltOwn\_CheckedChanged@{radioButtonSaltOwn\_CheckedChanged}}
+\index{radioButtonSaltOwn\_CheckedChanged@{radioButtonSaltOwn\_CheckedChanged}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{radioButtonSaltOwn\_CheckedChanged()}{radioButtonSaltOwn\_CheckedChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a7fefff05e2bc937d424f168c7703d3ca} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+radio\+Button\+Salt\+Own\+\_\+\+Checked\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a2e5fea21c64468c1f984e09ab852c734}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SaltAndPepperQuestion\_Load@{SaltAndPepperQuestion\_Load}}
+\index{SaltAndPepperQuestion\_Load@{SaltAndPepperQuestion\_Load}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SaltAndPepperQuestion\_Load()}{SaltAndPepperQuestion\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a2e5fea21c64468c1f984e09ab852c734} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Salt\+And\+Pepper\+Question\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Main form load. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a6e82431b379db1258ad1880207ef0af3}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SaltRadioButtonCheck@{SaltRadioButtonCheck}}
+\index{SaltRadioButtonCheck@{SaltRadioButtonCheck}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SaltRadioButtonCheck()}{SaltRadioButtonCheck()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a6e82431b379db1258ad1880207ef0af3} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Salt\+Radio\+Button\+Check (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a82b50ea241f84ce55faac653d66aa249}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SetHashID@{SetHashID}}
+\index{SetHashID@{SetHashID}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SetHashID()}{SetHashID()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a82b50ea241f84ce55faac653d66aa249} 
+string Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Set\+Hash\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Trying to find a name for a hash that isnt already used. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_a4327c16e65577da00849cb36a963c600}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!SetHashID@{SetHashID}}
+\index{SetHashID@{SetHashID}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{SetHashID()}{SetHashID()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_a4327c16e65577da00849cb36a963c600} 
+string Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+Set\+Hash\+ID (\begin{DoxyParamCaption}\item[{string}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets hash ID from the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_salt_and_pepper_setup_abb98aa7e01819e39dca21fc3d2f658b1}\index{HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}!textBoxGenerate\_Click@{textBoxGenerate\_Click}}
+\index{textBoxGenerate\_Click@{textBoxGenerate\_Click}!HashTester.SaltAndPepperSetup@{HashTester.SaltAndPepperSetup}}
+\doxysubsubsection{\texorpdfstring{textBoxGenerate\_Click()}{textBoxGenerate\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_salt_and_pepper_setup_abb98aa7e01819e39dca21fc3d2f658b1} 
+void Hash\+Tester.\+Salt\+And\+Pepper\+Setup.\+text\+Box\+Generate\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates random hash\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_salt_and_pepper_setup_8cs}{Salt\+And\+Pepper\+Setup.\+cs}}\end{DoxyCompactItemize}

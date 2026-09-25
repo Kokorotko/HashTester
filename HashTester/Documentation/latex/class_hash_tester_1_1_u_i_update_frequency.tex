@@ -1,0 +1,280 @@
+\doxysection{Hash\+Tester.\+UIUpdate\+Frequency Class Reference}
+\hypertarget{class_hash_tester_1_1_u_i_update_frequency}{}\label{class_hash_tester_1_1_u_i_update_frequency}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+Inheritance diagram for Hash\+Tester.\+UIUpdate\+Frequency:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_u_i_update_frequency}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_ad66b203f387714757c702755401ed54a}{UIUpdate\+Frequency}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a0cf32095aad019fe65b4f34b84797541}{Miliseconds}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a1571927973cb7ee53ed1e379c0c631fd}{set\+Milliseconds}} (string s)
+\begin{DoxyCompactList}\small\item\em Sets milliseconds form textbox. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_abd378c61e6960635a309b9069c9d1171}{button3\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Sets base value to text\+Box\+FPS. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a254c5e22013763200fb2ed07a1c396da}{UIUpdate\+Frequency\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Loads form. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a76f093f5ebb25f23854b09e40f48ca17}{selected\+Radio\+Button\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Sets textbox based on what radio\+Button was checked. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_adba150553e018f2257ba8789969bdad8}{text\+Box1\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks and sets text\+Box miliseconds. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_ad07833e49e04800e8bd45ae37dc6ecef}{text\+Box2\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks and sets texbox frames/\+sec. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_abade68fecdd5db6ab7c73325bb54469c}{Deselect\+All\+Radio\+Buttons}} ()
+\begin{DoxyCompactList}\small\item\em Deselects all radio\+Buttons. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_ae6e24e819ab392848ff3eb97a244ed27}{Deselect\+All\+Radio\+Buttons}} (Radio\+Button radio\+Button)
+\begin{DoxyCompactList}\small\item\em Recursively deselects all radio\+Buttons. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a72ad80f92d5ca7c536dc2311b1e98161}{button1\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Saves values from text\+Box to settings. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a52970da8b62fb782ddbd0b5d2788a1c3}{UIUpdate\+Frequency\+\_\+\+Form\+Closing}} (object sender, Form\+Closing\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles unsaved changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_acd144f679b4dd79f3f881c4f77ed56ed}{radio\+Button\+Set}} = false
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_aae3dcdb685b80e513fb3836811f83d57}{miliseconds}}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_aded43e25e0b47e4e9412d5a84abf191b}{fps}}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_a82f396ad2c454d82e692fd2d1a639704}{dont\+Update}} = false
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency_aa09bfab4b7085360bf47e1d3e1602d78}{unsaved\+Changes}} = false
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_ad66b203f387714757c702755401ed54a}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!UIUpdateFrequency@{UIUpdateFrequency}}
+\index{UIUpdateFrequency@{UIUpdateFrequency}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{UIUpdateFrequency()}{UIUpdateFrequency()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_ad66b203f387714757c702755401ed54a} 
+Hash\+Tester.\+UIUpdate\+Frequency.\+UIUpdate\+Frequency (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a72ad80f92d5ca7c536dc2311b1e98161}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!button1\_Click@{button1\_Click}}
+\index{button1\_Click@{button1\_Click}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{button1\_Click()}{button1\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a72ad80f92d5ca7c536dc2311b1e98161} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+button1\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Saves values from text\+Box to settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_abd378c61e6960635a309b9069c9d1171}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!button3\_Click@{button3\_Click}}
+\index{button3\_Click@{button3\_Click}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{button3\_Click()}{button3\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_abd378c61e6960635a309b9069c9d1171} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+button3\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets base value to text\+Box\+FPS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_abade68fecdd5db6ab7c73325bb54469c}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!DeselectAllRadioButtons@{DeselectAllRadioButtons}}
+\index{DeselectAllRadioButtons@{DeselectAllRadioButtons}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{DeselectAllRadioButtons()}{DeselectAllRadioButtons()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_abade68fecdd5db6ab7c73325bb54469c} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+Deselect\+All\+Radio\+Buttons (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Deselects all radio\+Buttons. 
+
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_ae6e24e819ab392848ff3eb97a244ed27}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!DeselectAllRadioButtons@{DeselectAllRadioButtons}}
+\index{DeselectAllRadioButtons@{DeselectAllRadioButtons}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{DeselectAllRadioButtons()}{DeselectAllRadioButtons()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_ae6e24e819ab392848ff3eb97a244ed27} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+Deselect\+All\+Radio\+Buttons (\begin{DoxyParamCaption}\item[{Radio\+Button}]{radio\+Button}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Recursively deselects all radio\+Buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radio\+Button} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a76f093f5ebb25f23854b09e40f48ca17}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!selectedRadioButtonChanged@{selectedRadioButtonChanged}}
+\index{selectedRadioButtonChanged@{selectedRadioButtonChanged}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{selectedRadioButtonChanged()}{selectedRadioButtonChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a76f093f5ebb25f23854b09e40f48ca17} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+selected\+Radio\+Button\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets textbox based on what radio\+Button was checked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a1571927973cb7ee53ed1e379c0c631fd}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!setMilliseconds@{setMilliseconds}}
+\index{setMilliseconds@{setMilliseconds}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{setMilliseconds()}{setMilliseconds()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a1571927973cb7ee53ed1e379c0c631fd} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+set\+Milliseconds (\begin{DoxyParamCaption}\item[{string}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets milliseconds form textbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_adba150553e018f2257ba8789969bdad8}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!textBox1\_TextChanged@{textBox1\_TextChanged}}
+\index{textBox1\_TextChanged@{textBox1\_TextChanged}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{textBox1\_TextChanged()}{textBox1\_TextChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_adba150553e018f2257ba8789969bdad8} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+text\+Box1\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks and sets text\+Box miliseconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_ad07833e49e04800e8bd45ae37dc6ecef}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!textBox2\_TextChanged@{textBox2\_TextChanged}}
+\index{textBox2\_TextChanged@{textBox2\_TextChanged}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{textBox2\_TextChanged()}{textBox2\_TextChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_ad07833e49e04800e8bd45ae37dc6ecef} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+text\+Box2\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks and sets texbox frames/\+sec. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a52970da8b62fb782ddbd0b5d2788a1c3}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!UIUpdateFrequency\_FormClosing@{UIUpdateFrequency\_FormClosing}}
+\index{UIUpdateFrequency\_FormClosing@{UIUpdateFrequency\_FormClosing}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{UIUpdateFrequency\_FormClosing()}{UIUpdateFrequency\_FormClosing()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a52970da8b62fb782ddbd0b5d2788a1c3} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+UIUpdate\+Frequency\+\_\+\+Form\+Closing (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Form\+Closing\+Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles unsaved changes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a254c5e22013763200fb2ed07a1c396da}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!UIUpdateFrequency\_Load@{UIUpdateFrequency\_Load}}
+\index{UIUpdateFrequency\_Load@{UIUpdateFrequency\_Load}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{UIUpdateFrequency\_Load()}{UIUpdateFrequency\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a254c5e22013763200fb2ed07a1c396da} 
+void Hash\+Tester.\+UIUpdate\+Frequency.\+UIUpdate\+Frequency\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Loads form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a82f396ad2c454d82e692fd2d1a639704}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!dontUpdate@{dontUpdate}}
+\index{dontUpdate@{dontUpdate}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{dontUpdate}{dontUpdate}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a82f396ad2c454d82e692fd2d1a639704} 
+bool Hash\+Tester.\+UIUpdate\+Frequency.\+dont\+Update = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_aded43e25e0b47e4e9412d5a84abf191b}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!fps@{fps}}
+\index{fps@{fps}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_aded43e25e0b47e4e9412d5a84abf191b} 
+int Hash\+Tester.\+UIUpdate\+Frequency.\+fps\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_aae3dcdb685b80e513fb3836811f83d57}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!miliseconds@{miliseconds}}
+\index{miliseconds@{miliseconds}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{miliseconds}{miliseconds}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_aae3dcdb685b80e513fb3836811f83d57} 
+int Hash\+Tester.\+UIUpdate\+Frequency.\+miliseconds\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_acd144f679b4dd79f3f881c4f77ed56ed}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!radioButtonSet@{radioButtonSet}}
+\index{radioButtonSet@{radioButtonSet}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{radioButtonSet}{radioButtonSet}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_acd144f679b4dd79f3f881c4f77ed56ed} 
+bool Hash\+Tester.\+UIUpdate\+Frequency.\+radio\+Button\+Set = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_aa09bfab4b7085360bf47e1d3e1602d78}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!unsavedChanges@{unsavedChanges}}
+\index{unsavedChanges@{unsavedChanges}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{unsavedChanges}{unsavedChanges}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_aa09bfab4b7085360bf47e1d3e1602d78} 
+bool Hash\+Tester.\+UIUpdate\+Frequency.\+unsaved\+Changes = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_u_i_update_frequency_a0cf32095aad019fe65b4f34b84797541}\index{HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}!Miliseconds@{Miliseconds}}
+\index{Miliseconds@{Miliseconds}!HashTester.UIUpdateFrequency@{HashTester.UIUpdateFrequency}}
+\doxysubsubsection{\texorpdfstring{Miliseconds}{Miliseconds}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_u_i_update_frequency_a0cf32095aad019fe65b4f34b84797541} 
+int Hash\+Tester.\+UIUpdate\+Frequency.\+Miliseconds\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_u_i_update_frequency_8cs}{UIUpdate\+Frequency.\+cs}}\end{DoxyCompactItemize}

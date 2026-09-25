@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Script for Gradual Hashing
+ *@file: Gradual Hashing.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,8 +25,14 @@ namespace HashTester
             InitializeComponent();
         }
         Hasher hasher = new Hasher();
-        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5;
+        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.MD5; //base algorithm
         
+
+        /// <summary>
+        /// Gradually hashes the inputed text to wanted hash sequencially
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonHashGradualHashing_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxHash.Text))
@@ -41,11 +54,21 @@ namespace HashTester
             outputHandler.OutputTypeShow(hash, listBoxLog);
         }
 
+        /// <summary>
+        /// Changes selected algorith based on ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
+        /// <summary>
+        /// Loads Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormGradual_Load(object sender, EventArgs e)
         {
             this.Name = Languages.Translate(Languages.L.GradualHasher);
@@ -62,16 +85,31 @@ namespace HashTester
             #endregion
         }
 
+        /// <summary>
+        /// Clears log 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
         }
 
+        /// <summary>
+        /// Saves log to .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
 
+        /// <summary>
+        /// Copies selected item from log to Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try

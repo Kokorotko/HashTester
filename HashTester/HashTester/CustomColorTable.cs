@@ -1,10 +1,25 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Custom color table for light/dark theme.
+ *@file: CustomColorTable.cs
+ *@note: Contains almost all possible components of a standard form
+ */
 using System.Drawing;
 using System.Windows.Forms;
 
+
+/// <summary>
+/// Class for overriding normal components color to a custom one (for dark themes)
+/// </summary>
 public class CustomColorTable : ProfessionalColorTable
 {
     private readonly bool isDarkTheme;
 
+    /// <summary>
+    /// Constructor for managing custom light/dark mode
+    /// </summary>
+    /// <param name="isDarkTheme">true == dark; false == light</param>
     public CustomColorTable(bool isDarkTheme)
     {
         this.isDarkTheme = isDarkTheme;
@@ -29,7 +44,6 @@ public class CustomColorTable : ProfessionalColorTable
     public override Color MenuBorder => isDarkTheme ? Color.FromArgb(30, 30, 30) : SystemColors.MenuBar;
     public override Color MenuItemSelectedGradientBegin => isDarkTheme ? Color.FromArgb(62, 62, 66) : SystemColors.GradientActiveCaption;
     public override Color MenuItemSelectedGradientEnd => isDarkTheme ? Color.FromArgb(62, 62, 66) : SystemColors.GradientActiveCaption;
-
     public override Color StatusStripGradientBegin => isDarkTheme ? Color.FromArgb(0, 122, 204) : SystemColors.Control;
     public override Color StatusStripGradientEnd => isDarkTheme ? Color.FromArgb(0, 122, 204) : SystemColors.Control;
     public override Color OverflowButtonGradientBegin => isDarkTheme ? Color.FromArgb(45, 45, 48) : SystemColors.Control;

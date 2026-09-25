@@ -1,0 +1,238 @@
+\doxysection{Hash\+Tester.\+Threads\+Form Class Reference}
+\hypertarget{class_hash_tester_1_1_threads_form}{}\label{class_hash_tester_1_1_threads_form}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+Inheritance diagram for Hash\+Tester.\+Threads\+Form:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_threads_form}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a9df584c3028d55c339e0a7cc560ca828}{Threads\+Form}} ()
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a2236db04c5eb28beeb26a4ce570965ad}{Radio\+Button\+Pressed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Outputs coresponding text based on what Radio\+Button was pressed. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_af73b8ed1dfb4c04ce213d109b89e0a15}{Set\+CPUInfo}} ()
+\begin{DoxyCompactList}\small\item\em Finds and sets up CPU info from win32\+\_\+\+Processor file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_abe12c4a07b99f12651d3846ca29096ca}{Percentage}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a6269eb16d92f6c745083d8708eee9c91}{text\+Box\+Thread\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks and updates thread settings based on user input in textbox value. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a5a1a35b0b04936e4e40ec48e1d816343}{text\+Box\+Percent\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks and updates thread settings based on user input in textbox\+Percent value. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a961c3c99920d0682179b30c011943c25}{Threads\+Form\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Loads form. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_ae3e53c7c100520ca5f944356ffd11d43}{button1\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Saves changes to settings. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a6ef69436b1cd200af09a7a8807d4348e}{button\+Default\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Sets default value to text\+Box\+Percent. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_ae0689fee3ffc3d96f88f9c4e4232efdb}{Threads\+Form\+\_\+\+Form\+Closing}} (object sender, Form\+Closing\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles closing with unsaved\+Changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a7f7f80963fcf41f76dfc97d19097d192}{number\+Of\+Threads\+In\+CPU}} = Environment.\+Processor\+Count
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a6001396a9f9d05906cd7ec8d660ce672}{percentage}} = 0
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a9cf5f628684da2a84e7dd316010af33e}{updating}} = false
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form_a7d269687d482fd8e6af342885498864b}{unsaved\+Changes}} = false
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_threads_form_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_threads_form_a9df584c3028d55c339e0a7cc560ca828}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!ThreadsForm@{ThreadsForm}}
+\index{ThreadsForm@{ThreadsForm}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{ThreadsForm()}{ThreadsForm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a9df584c3028d55c339e0a7cc560ca828} 
+Hash\+Tester.\+Threads\+Form.\+Threads\+Form (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_threads_form_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_threads_form_ae3e53c7c100520ca5f944356ffd11d43}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!button1\_Click@{button1\_Click}}
+\index{button1\_Click@{button1\_Click}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{button1\_Click()}{button1\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_ae3e53c7c100520ca5f944356ffd11d43} 
+void Hash\+Tester.\+Threads\+Form.\+button1\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Saves changes to settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_a6ef69436b1cd200af09a7a8807d4348e}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!buttonDefault\_Click@{buttonDefault\_Click}}
+\index{buttonDefault\_Click@{buttonDefault\_Click}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{buttonDefault\_Click()}{buttonDefault\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a6ef69436b1cd200af09a7a8807d4348e} 
+void Hash\+Tester.\+Threads\+Form.\+button\+Default\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sets default value to text\+Box\+Percent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_a2236db04c5eb28beeb26a4ce570965ad}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!RadioButtonPressed@{RadioButtonPressed}}
+\index{RadioButtonPressed@{RadioButtonPressed}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{RadioButtonPressed()}{RadioButtonPressed()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a2236db04c5eb28beeb26a4ce570965ad} 
+void Hash\+Tester.\+Threads\+Form.\+Radio\+Button\+Pressed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Outputs coresponding text based on what Radio\+Button was pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_af73b8ed1dfb4c04ce213d109b89e0a15}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!SetCPUInfo@{SetCPUInfo}}
+\index{SetCPUInfo@{SetCPUInfo}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{SetCPUInfo()}{SetCPUInfo()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_af73b8ed1dfb4c04ce213d109b89e0a15} 
+void Hash\+Tester.\+Threads\+Form.\+Set\+CPUInfo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finds and sets up CPU info from win32\+\_\+\+Processor file. 
+
+\Hypertarget{class_hash_tester_1_1_threads_form_a5a1a35b0b04936e4e40ec48e1d816343}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!textBoxPercent\_TextChanged@{textBoxPercent\_TextChanged}}
+\index{textBoxPercent\_TextChanged@{textBoxPercent\_TextChanged}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{textBoxPercent\_TextChanged()}{textBoxPercent\_TextChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a5a1a35b0b04936e4e40ec48e1d816343} 
+void Hash\+Tester.\+Threads\+Form.\+text\+Box\+Percent\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks and updates thread settings based on user input in textbox\+Percent value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_a6269eb16d92f6c745083d8708eee9c91}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!textBoxThread\_TextChanged@{textBoxThread\_TextChanged}}
+\index{textBoxThread\_TextChanged@{textBoxThread\_TextChanged}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{textBoxThread\_TextChanged()}{textBoxThread\_TextChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a6269eb16d92f6c745083d8708eee9c91} 
+void Hash\+Tester.\+Threads\+Form.\+text\+Box\+Thread\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks and updates thread settings based on user input in textbox value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_ae0689fee3ffc3d96f88f9c4e4232efdb}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!ThreadsForm\_FormClosing@{ThreadsForm\_FormClosing}}
+\index{ThreadsForm\_FormClosing@{ThreadsForm\_FormClosing}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{ThreadsForm\_FormClosing()}{ThreadsForm\_FormClosing()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_ae0689fee3ffc3d96f88f9c4e4232efdb} 
+void Hash\+Tester.\+Threads\+Form.\+Threads\+Form\+\_\+\+Form\+Closing (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Form\+Closing\+Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles closing with unsaved\+Changes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_threads_form_a961c3c99920d0682179b30c011943c25}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!ThreadsForm\_Load@{ThreadsForm\_Load}}
+\index{ThreadsForm\_Load@{ThreadsForm\_Load}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{ThreadsForm\_Load()}{ThreadsForm\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a961c3c99920d0682179b30c011943c25} 
+void Hash\+Tester.\+Threads\+Form.\+Threads\+Form\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Loads form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_threads_form_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_threads_form_a7f7f80963fcf41f76dfc97d19097d192}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!numberOfThreadsInCPU@{numberOfThreadsInCPU}}
+\index{numberOfThreadsInCPU@{numberOfThreadsInCPU}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{numberOfThreadsInCPU}{numberOfThreadsInCPU}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a7f7f80963fcf41f76dfc97d19097d192} 
+int Hash\+Tester.\+Threads\+Form.\+number\+Of\+Threads\+In\+CPU = Environment.\+Processor\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_threads_form_a6001396a9f9d05906cd7ec8d660ce672}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!percentage@{percentage}}
+\index{percentage@{percentage}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{percentage}{percentage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a6001396a9f9d05906cd7ec8d660ce672} 
+int Hash\+Tester.\+Threads\+Form.\+percentage = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_threads_form_a7d269687d482fd8e6af342885498864b}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!unsavedChanges@{unsavedChanges}}
+\index{unsavedChanges@{unsavedChanges}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{unsavedChanges}{unsavedChanges}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a7d269687d482fd8e6af342885498864b} 
+bool Hash\+Tester.\+Threads\+Form.\+unsaved\+Changes = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_threads_form_a9cf5f628684da2a84e7dd316010af33e}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!updating@{updating}}
+\index{updating@{updating}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{updating}{updating}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_a9cf5f628684da2a84e7dd316010af33e} 
+bool Hash\+Tester.\+Threads\+Form.\+updating = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_threads_form_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_threads_form_abe12c4a07b99f12651d3846ca29096ca}\index{HashTester.ThreadsForm@{HashTester.ThreadsForm}!Percentage@{Percentage}}
+\index{Percentage@{Percentage}!HashTester.ThreadsForm@{HashTester.ThreadsForm}}
+\doxysubsubsection{\texorpdfstring{Percentage}{Percentage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_threads_form_abe12c4a07b99f12651d3846ca29096ca} 
+int Hash\+Tester.\+Threads\+Form.\+Percentage\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_threads_form_8cs}{Threads\+Form.\+cs}}\end{DoxyCompactItemize}

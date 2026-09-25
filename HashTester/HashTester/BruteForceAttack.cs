@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Main logic for BruteForceAttack
+ *@file: BruteForceAttack.cs
+ *@note: Can be used as a standalone script
+ */
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -5,31 +13,27 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Numerics;
-using System.Runtime.InteropServices;
-using System.CodeDom;
 
 namespace HashTester
 {
     public class BruteForceAttack
     {
-        #region Private
-        private Stopwatch stopwatch = new Stopwatch();
+        private Stopwatch stopwatch = new Stopwatch(); //For counting how long the script is running
         private bool foundPasswordBool = false;
-        private bool ranOutOfTime = false;
+        private bool ranOutOfTime = false; //Time set limit
         private string foundPassword = "";
-        private bool userAborted = false;
-        private bool ranOutOfAttemps = false;
+        private bool userAborted = false; //CancelButton pressed
+        private bool ranOutOfAttemps = false; //Attempts limit
         public static char[] usableChars;
         private int maximumLenghtForBruteForce = 20;
         private ConcurrentBag<string> logOutput = new ConcurrentBag<string>();
         Hasher hasher = new Hasher();
-        CancellationTokenSource cancellationToken = new CancellationTokenSource();
-        CancellationTokenSource token = new CancellationTokenSource();
+        CancellationTokenSource cancellationToken = new CancellationTokenSource(); //Cancel token1
+        CancellationTokenSource token = new CancellationTokenSource(); //cancel token2
         private BigInteger numberOfAllPossibleCombinations = 0;
         private long attempts = 0;
         private bool useMaxAttempts = false;
         private BigInteger maxAttempts = 0;
-        #endregion
 
         #region GetSet
         public Stopwatch Stopwatch
@@ -177,7 +181,7 @@ namespace HashTester
         }
 
         /// <summary>
-        /// Resets all private values in this .cs
+        /// Resets all private values for BruteForceAttack. Run before new attempt
         /// </summary>
         private void ResetValue()
         {
@@ -428,7 +432,7 @@ namespace HashTester
         }
 
         /// <summary>
-        /// Way to abort the Brute Force operation
+        /// Cancels the current operation
         /// </summary>
         public void Abort()
         {

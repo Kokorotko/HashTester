@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Handles UI form for updating UI on timer specific based updates
+ *@file: UIUpdateFrequency.cs
+ */
+
 using System;
 using System.Windows.Forms;
 
@@ -26,16 +33,31 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Sets milliseconds form textbox
+        /// </summary>
+        /// <param name="s"></param>
         private void setMilliseconds(string s)
         {
             int.TryParse(s, out miliseconds);
         }
-        private void button3_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Sets base value to textBoxFPS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e) //Base Value
         {
             fps = 30;
             textBoxFPS.Text = fps.ToString();
         }
 
+        /// <summary>
+        /// Loads form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UIUpdateFrequency_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
@@ -59,6 +81,11 @@ namespace HashTester
             unsavedChanges = false;
         }
 
+        /// <summary>
+        /// Sets textbox based on what radioButton was checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void selectedRadioButtonChanged(object sender, EventArgs e)
         {            
             if (radioButton1.Checked) { DeselectAllRadioButtons(radioButton1); fps = 12; miliseconds = 83; radioButtonSet = true; }
@@ -86,6 +113,11 @@ namespace HashTester
             radioButtonSet = false;
         }
 
+        /// <summary>
+        /// Checks and sets textBox miliseconds 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (dontUpdate) return;
@@ -105,6 +137,11 @@ namespace HashTester
             dontUpdate = false;
         }
 
+        /// <summary>
+        /// Checks and sets texbox frames/sec
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if (dontUpdate) return;
@@ -135,6 +172,9 @@ namespace HashTester
             dontUpdate = false;
         }
 
+        /// <summary>
+        /// Deselects all radioButtons
+        /// </summary>
         private void DeselectAllRadioButtons()
         {
             foreach (Control control in this.Controls)
@@ -143,6 +183,10 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Recursively deselects all radioButtons
+        /// </summary>
+        /// <param name="radioButton"></param>
         private void DeselectAllRadioButtons(RadioButton radioButton)
         {
             foreach (Control control in this.Controls)
@@ -154,6 +198,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Saves values from textBox to settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (int.TryParse(textBoxFPS.Text, out fps) && int.TryParse(textBoxMiliseconds.Text, out miliseconds))
@@ -175,6 +224,11 @@ namespace HashTester
             }    
         }
 
+        /// <summary>
+        /// Handles unsaved changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UIUpdateFrequency_FormClosing(object sender, FormClosingEventArgs e)
         {
             setMilliseconds(textBoxMiliseconds.Text);
@@ -213,11 +267,6 @@ namespace HashTester
                     case DialogResult.Cancel: e.Cancel = true; break;
                 }
             }
-        }
-
-        private void labelInfo2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

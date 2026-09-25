@@ -47,7 +47,7 @@ namespace HashTester
             this.listBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.ItemHeight = 16;
+            this.listBoxLog.ItemHeight = 20;
             this.listBoxLog.Location = new System.Drawing.Point(7, 131);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(487, 201);
@@ -72,7 +72,7 @@ namespace HashTester
             this.textBoxHash.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxHash.Location = new System.Drawing.Point(7, 49);
             this.textBoxHash.Name = "textBoxHash";
-            this.textBoxHash.Size = new System.Drawing.Size(487, 37);
+            this.textBoxHash.Size = new System.Drawing.Size(487, 45);
             this.textBoxHash.TabIndex = 7;
             // 
             // buttonClearListBox
@@ -184,7 +184,7 @@ namespace HashTester
             "CRC32"});
             this.hashSelector.Location = new System.Drawing.Point(335, 8);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(159, 38);
+            this.hashSelector.Size = new System.Drawing.Size(159, 46);
             this.hashSelector.TabIndex = 8;
             this.hashSelector.SelectedIndexChanged += new System.EventHandler(this.hashSelector_SelectedIndexChanged);
             // 

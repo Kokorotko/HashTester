@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Handles all Language based texts in the application
+ *@file: FormManagement.cs
+ *@note: This script needs Json.dll
+ */
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +20,7 @@ namespace HashTester
     {
         private static string currentlyUsedLanguage = Settings.SelectedLanguage;
         private static Dictionary<string, string> mainDictionary;
-        public static Dictionary<string, string> reverseDictionary;
+        public static Dictionary<string, string> reverseDictionary; //Reverse for quicker search
 
         /// <summary>
         /// Returns text based on selected language using BFE (Big Fucking Enum)
@@ -44,6 +52,11 @@ namespace HashTester
             return $"Missing translation: {key}";
         }
 
+        /// <summary>
+        /// Returns corresponding text based on tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public static string TranslateFromTag(string tag)
         {
             if (string.IsNullOrEmpty(tag))
@@ -109,6 +122,9 @@ namespace HashTester
             return list.ToArray();
         }
 
+        /// <summary>
+        /// Creates reverse dictionary
+        /// </summary>
         public static void BuildReverseDictionary()
         {
             if (mainDictionary == null)
@@ -122,6 +138,11 @@ namespace HashTester
                 .ToDictionary(g => g.Key, g => g.First().Key);
         }
 
+        /// <summary>
+        /// Gets specific key from reverse dictionary
+        /// </summary>
+        /// <param name="displayedText"></param>
+        /// <returns></returns>
         public static string GetKeyFromText(string displayedText)
         {
             if (reverseDictionary == null)

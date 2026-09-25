@@ -1,0 +1,445 @@
+\doxysection{Hash\+Tester.\+File\+Checksum Class Reference}
+\hypertarget{class_hash_tester_1_1_file_checksum}{}\label{class_hash_tester_1_1_file_checksum}\index{HashTester.FileChecksum@{HashTester.FileChecksum}}
+
+
+Main Form.  
+
+
+Inheritance diagram for Hash\+Tester.\+File\+Checksum:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_file_checksum}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a5fc8f786803f2699f65bcf88eb989794}{File\+Checksum}} ()
+\begin{DoxyCompactList}\small\item\em Main Constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a3f5f2837040e36b09652031bd792926b}{Label\+Hash\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em Resets text in all the hash labels. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a55beb864d2171bb92657e8424474a090}{Update\+Label\+Hash}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} algorithm, string hash)
+\begin{DoxyCompactList}\small\item\em Method for simpler updating hash label. \end{DoxyCompactList}\item 
+List$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_aa8080871a3ccc8020c31380e2383344c}{Get\+Algorithms\+From\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Checks all the checkboxes and returns a hash list. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_ab7882fb4b602ed29ca3a00b3cfd0dd99}{Setup\+Timer\+For\+UIUpdate}} ()
+\begin{DoxyCompactList}\small\item\em Setups timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a16f7e1468acf78d9de6ae690a76addaa}{button\+File\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Loads a file into the script. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a5b785ba2e876f8fc5d432ee5ea58c14b}{Turn\+Off\+UI}} (Control parent)
+\begin{DoxyCompactList}\small\item\em Turns all of UI components off, except containers, labels, and cancel\+Button. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_aacf6162733971069a35e2316951c92e3}{Turn\+On\+UI}} (Control parent)
+\begin{DoxyCompactList}\small\item\em Turns all of UI components on, stops the timer and updates UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_ab18cc5e9e8756beec03b4617acb120c9}{Turn\+On\+UIRecursion}} (Control parent)
+\begin{DoxyCompactList}\small\item\em Recursive support script for Turn\+On\+UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a69aa8b8c0744af73a3a4d4e9252c0ed3}{File\+\_\+checksum\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Loads the form, first thing that runs on startup. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_ace48737ff889ee69af7a6ab8d4e0ad8a}{button\+Copy\+MD5\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for MD5. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_aabe08eb871e2be17bc758ba7bf237cb6}{button1\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for SHA1. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a11f23cf2d6d1d976a1f3bc49a5cdb982}{button2\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for SHA256. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_afc57a9ec3c49a3d902db824c23de8d77}{button3\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for SHA512. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_ae44bcc913a7ebf728363a52bcfd703a7}{button4\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for Ripe\+MD160. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a785d1374e0cb3b4ea2b365436b45607d}{button5\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles log copy to clipboard for CRC32. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a8fd43ef58021c4f7513008679bba6d45}{button\+Checksum\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Finds algorithm based on hash lenght and runs from a file. \end{DoxyCompactList}\item 
+async void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a967bfd07fa4390f9f4c58155b1c390c8}{Generate\+Checksum\+UI}} (string filename)
+\begin{DoxyCompactList}\small\item\em Generates check sum of a file from Form. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a64050f5335edc8204cd4de8ff9db879c}{button\+Run\+Checksum\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Handles run from a file or from textbox. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a9e3ef63f51d255d66f3f3c293592a5cd}{button6\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks all the hash checkboxes to true. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a8e9cc9b262c3faf617f1b8dade2f736f}{Update\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Updates UI, is ran with a timer. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a6abf88644d6bb8b8b55e4383ec12415d}{button\+Cancel\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Cancels the operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a8f5d09a5efecc07b0cac66c54e7bdc32}{path\+To\+File}} = string.\+Empty
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_checksum}{Checksum}} \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_a230a6be18664e40919008016bdb7cb32}{checksum}}
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_ac80e4669287551d4e7a03b83175fc4be}{token}}
+\item 
+System.\+Windows.\+Forms.\+Timer \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum_acef2ea590644c223a39dd37707083d1b}{timer\+UI}} = new System.\+Windows.\+Forms.\+Timer()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main Form. 
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_file_checksum_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a5fc8f786803f2699f65bcf88eb989794}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!FileChecksum@{FileChecksum}}
+\index{FileChecksum@{FileChecksum}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{FileChecksum()}{FileChecksum()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a5fc8f786803f2699f65bcf88eb989794} 
+Hash\+Tester.\+File\+Checksum.\+File\+Checksum (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Main Constructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_file_checksum_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_file_checksum_aabe08eb871e2be17bc758ba7bf237cb6}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button1\_Click@{button1\_Click}}
+\index{button1\_Click@{button1\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button1\_Click()}{button1\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_aabe08eb871e2be17bc758ba7bf237cb6} 
+void Hash\+Tester.\+File\+Checksum.\+button1\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for SHA1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a11f23cf2d6d1d976a1f3bc49a5cdb982}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button2\_Click@{button2\_Click}}
+\index{button2\_Click@{button2\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button2\_Click()}{button2\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a11f23cf2d6d1d976a1f3bc49a5cdb982} 
+void Hash\+Tester.\+File\+Checksum.\+button2\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for SHA256. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_afc57a9ec3c49a3d902db824c23de8d77}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button3\_Click@{button3\_Click}}
+\index{button3\_Click@{button3\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button3\_Click()}{button3\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_afc57a9ec3c49a3d902db824c23de8d77} 
+void Hash\+Tester.\+File\+Checksum.\+button3\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for SHA512. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_ae44bcc913a7ebf728363a52bcfd703a7}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button4\_Click@{button4\_Click}}
+\index{button4\_Click@{button4\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button4\_Click()}{button4\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_ae44bcc913a7ebf728363a52bcfd703a7} 
+void Hash\+Tester.\+File\+Checksum.\+button4\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for Ripe\+MD160. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a785d1374e0cb3b4ea2b365436b45607d}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button5\_Click@{button5\_Click}}
+\index{button5\_Click@{button5\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button5\_Click()}{button5\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a785d1374e0cb3b4ea2b365436b45607d} 
+void Hash\+Tester.\+File\+Checksum.\+button5\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for CRC32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a9e3ef63f51d255d66f3f3c293592a5cd}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!button6\_Click@{button6\_Click}}
+\index{button6\_Click@{button6\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{button6\_Click()}{button6\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a9e3ef63f51d255d66f3f3c293592a5cd} 
+void Hash\+Tester.\+File\+Checksum.\+button6\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks all the hash checkboxes to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a6abf88644d6bb8b8b55e4383ec12415d}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!buttonCancel\_Click@{buttonCancel\_Click}}
+\index{buttonCancel\_Click@{buttonCancel\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{buttonCancel\_Click()}{buttonCancel\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a6abf88644d6bb8b8b55e4383ec12415d} 
+void Hash\+Tester.\+File\+Checksum.\+button\+Cancel\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Cancels the operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a8fd43ef58021c4f7513008679bba6d45}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!buttonChecksum\_Click@{buttonChecksum\_Click}}
+\index{buttonChecksum\_Click@{buttonChecksum\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{buttonChecksum\_Click()}{buttonChecksum\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a8fd43ef58021c4f7513008679bba6d45} 
+void Hash\+Tester.\+File\+Checksum.\+button\+Checksum\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Finds algorithm based on hash lenght and runs from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_ace48737ff889ee69af7a6ab8d4e0ad8a}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!buttonCopyMD5\_Click@{buttonCopyMD5\_Click}}
+\index{buttonCopyMD5\_Click@{buttonCopyMD5\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{buttonCopyMD5\_Click()}{buttonCopyMD5\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_ace48737ff889ee69af7a6ab8d4e0ad8a} 
+void Hash\+Tester.\+File\+Checksum.\+button\+Copy\+MD5\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles log copy to clipboard for MD5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a16f7e1468acf78d9de6ae690a76addaa}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!buttonFile\_Click@{buttonFile\_Click}}
+\index{buttonFile\_Click@{buttonFile\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{buttonFile\_Click()}{buttonFile\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a16f7e1468acf78d9de6ae690a76addaa} 
+void Hash\+Tester.\+File\+Checksum.\+button\+File\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Loads a file into the script. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a64050f5335edc8204cd4de8ff9db879c}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!buttonRunChecksum\_Click@{buttonRunChecksum\_Click}}
+\index{buttonRunChecksum\_Click@{buttonRunChecksum\_Click}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{buttonRunChecksum\_Click()}{buttonRunChecksum\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a64050f5335edc8204cd4de8ff9db879c} 
+void Hash\+Tester.\+File\+Checksum.\+button\+Run\+Checksum\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Handles run from a file or from textbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a69aa8b8c0744af73a3a4d4e9252c0ed3}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!File\_checksum\_Load@{File\_checksum\_Load}}
+\index{File\_checksum\_Load@{File\_checksum\_Load}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{File\_checksum\_Load()}{File\_checksum\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a69aa8b8c0744af73a3a4d4e9252c0ed3} 
+void Hash\+Tester.\+File\+Checksum.\+File\+\_\+checksum\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Loads the form, first thing that runs on startup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a967bfd07fa4390f9f4c58155b1c390c8}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!GenerateChecksumUI@{GenerateChecksumUI}}
+\index{GenerateChecksumUI@{GenerateChecksumUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{GenerateChecksumUI()}{GenerateChecksumUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a967bfd07fa4390f9f4c58155b1c390c8} 
+async void Hash\+Tester.\+File\+Checksum.\+Generate\+Checksum\+UI (\begin{DoxyParamCaption}\item[{string}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates check sum of a file from Form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to file\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_aa8080871a3ccc8020c31380e2383344c}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!GetAlgorithmsFromUI@{GetAlgorithmsFromUI}}
+\index{GetAlgorithmsFromUI@{GetAlgorithmsFromUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{GetAlgorithmsFromUI()}{GetAlgorithmsFromUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_aa8080871a3ccc8020c31380e2383344c} 
+List$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} $>$ Hash\+Tester.\+File\+Checksum.\+Get\+Algorithms\+From\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks all the checkboxes and returns a hash list. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a3f5f2837040e36b09652031bd792926b}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!LabelHashEmpty@{LabelHashEmpty}}
+\index{LabelHashEmpty@{LabelHashEmpty}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{LabelHashEmpty()}{LabelHashEmpty()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a3f5f2837040e36b09652031bd792926b} 
+void Hash\+Tester.\+File\+Checksum.\+Label\+Hash\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resets text in all the hash labels. 
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_ab7882fb4b602ed29ca3a00b3cfd0dd99}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!SetupTimerForUIUpdate@{SetupTimerForUIUpdate}}
+\index{SetupTimerForUIUpdate@{SetupTimerForUIUpdate}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{SetupTimerForUIUpdate()}{SetupTimerForUIUpdate()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_ab7882fb4b602ed29ca3a00b3cfd0dd99} 
+void Hash\+Tester.\+File\+Checksum.\+Setup\+Timer\+For\+UIUpdate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setups timer. 
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_a5b785ba2e876f8fc5d432ee5ea58c14b}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!TurnOffUI@{TurnOffUI}}
+\index{TurnOffUI@{TurnOffUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{TurnOffUI()}{TurnOffUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a5b785ba2e876f8fc5d432ee5ea58c14b} 
+void Hash\+Tester.\+File\+Checksum.\+Turn\+Off\+UI (\begin{DoxyParamCaption}\item[{Control}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Turns all of UI components off, except containers, labels, and cancel\+Button. 
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_aacf6162733971069a35e2316951c92e3}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!TurnOnUI@{TurnOnUI}}
+\index{TurnOnUI@{TurnOnUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{TurnOnUI()}{TurnOnUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_aacf6162733971069a35e2316951c92e3} 
+void Hash\+Tester.\+File\+Checksum.\+Turn\+On\+UI (\begin{DoxyParamCaption}\item[{Control}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Turns all of UI components on, stops the timer and updates UI. 
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_ab18cc5e9e8756beec03b4617acb120c9}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!TurnOnUIRecursion@{TurnOnUIRecursion}}
+\index{TurnOnUIRecursion@{TurnOnUIRecursion}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{TurnOnUIRecursion()}{TurnOnUIRecursion()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_ab18cc5e9e8756beec03b4617acb120c9} 
+void Hash\+Tester.\+File\+Checksum.\+Turn\+On\+UIRecursion (\begin{DoxyParamCaption}\item[{Control}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Recursive support script for Turn\+On\+UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Control component\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a55beb864d2171bb92657e8424474a090}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!UpdateLabelHash@{UpdateLabelHash}}
+\index{UpdateLabelHash@{UpdateLabelHash}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{UpdateLabelHash()}{UpdateLabelHash()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a55beb864d2171bb92657e8424474a090} 
+void Hash\+Tester.\+File\+Checksum.\+Update\+Label\+Hash (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{string}]{hash}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Method for simpler updating hash label. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & \\
+\hline
+{\em hash} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a8e9cc9b262c3faf617f1b8dade2f736f}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!UpdateUI@{UpdateUI}}
+\index{UpdateUI@{UpdateUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{UpdateUI()}{UpdateUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a8e9cc9b262c3faf617f1b8dade2f736f} 
+void Hash\+Tester.\+File\+Checksum.\+Update\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Updates UI, is ran with a timer. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_file_checksum_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_file_checksum_a230a6be18664e40919008016bdb7cb32}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!checksum@{checksum}}
+\index{checksum@{checksum}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{checksum}{checksum}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a230a6be18664e40919008016bdb7cb32} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_checksum}{Checksum}} Hash\+Tester.\+File\+Checksum.\+checksum\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_a8f5d09a5efecc07b0cac66c54e7bdc32}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!pathToFile@{pathToFile}}
+\index{pathToFile@{pathToFile}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{pathToFile}{pathToFile}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_a8f5d09a5efecc07b0cac66c54e7bdc32} 
+string Hash\+Tester.\+File\+Checksum.\+path\+To\+File = string.\+Empty\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_acef2ea590644c223a39dd37707083d1b}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!timerUI@{timerUI}}
+\index{timerUI@{timerUI}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{timerUI}{timerUI}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_acef2ea590644c223a39dd37707083d1b} 
+System.\+Windows.\+Forms.\+Timer Hash\+Tester.\+File\+Checksum.\+timer\+UI = new System.\+Windows.\+Forms.\+Timer()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_file_checksum_ac80e4669287551d4e7a03b83175fc4be}\index{HashTester.FileChecksum@{HashTester.FileChecksum}!token@{token}}
+\index{token@{token}!HashTester.FileChecksum@{HashTester.FileChecksum}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_file_checksum_ac80e4669287551d4e7a03b83175fc4be} 
+Cancellation\+Token\+Source Hash\+Tester.\+File\+Checksum.\+token\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_file_checksum_8cs}{File\+Checksum.\+cs}}\end{DoxyCompactItemize}

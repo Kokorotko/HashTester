@@ -1,0 +1,690 @@
+\doxysection{Hash\+Tester.\+Form\+Management Class Reference}
+\hypertarget{class_hash_tester_1_1_form_management}{}\label{class_hash_tester_1_1_form_management}\index{HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3}{Forms}} \{ \newline
+\doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3af71759685329c9554cbfba027da7df8d}{File\+Checksum}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a444e9f26fc403c261a3581c9b5614d0c}{Gradual}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6a7065675b79c628f73d76975bc90255}{Hashing\+Collision}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6fdbd56496efc6dabbd40fb1f6881899}{Password\+Form}}
+, \newline
+\doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a7eb238ac0dbd9ba17e8675ec4e5e7398}{Salt\+And\+Pepper}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a001a64df1e96e87ac9162e466db23ad7}{Salt\+And\+Pepper\+Tester}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3ad3a9872cbef4723f65b10b65e06d6abc}{Salt\+And\+Pepper\+Setup}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a397b67f676ca62d51d278e59331f0819}{Threads\+Form}}
+, \newline
+\doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3aba69fe3f350fe374b6f38b75040d3c50}{UIUpdate\+Frequency}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a9e4edb45840289e2565b5a026f0978ed}{Multiple\+Hashing}}
+ \}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531}{Folder\+Type}} \{ \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a095a1b43effec73955e31e790438de49}{Base}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531adc647eb65e6711e155375218212b3964}{Password}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a15fb6ccbd11ebebcea2b48dc477f3561}{Collision}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531ace0be71e33226e4c1db2bcea5959f16b}{Log}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Dialog\+Result \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_ad785a84610d4e88c19ddc0882edb18ae}{Spawn\+Form}} (\doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3}{Forms}} form\+Type, bool modal=false)
+\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a0e7d7592c8192e6ce42946bd031e967c}{Load\+Form}} (Form form)
+\begin{DoxyCompactList}\small\item\em Runs all methods needed to load any form. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aa8714683d16af0a7658ae79204b9e9cd}{Save\+Log}} (List\+Box listbox, Form form)
+\begin{DoxyCompactList}\small\item\em Saves log from a listbox to a wanted .txt file. \end{DoxyCompactList}\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a3d14aff98cd8a7412d285e35d157f72a}{Number\+Of\+Threads\+To\+Use}} ()
+\begin{DoxyCompactList}\small\item\em Returns number of threads to use from \doxylink{class_hash_tester_1_1_settings}{Settings}. If multithreading is false, returns 1. \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a8e954d72f7e69abf8807ccd74bcbe12c}{Use\+Multi\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em Returns if multithread should be used. \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a1c354a530ac4fe40d47c778dc57a9262}{Use\+Light\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Returns if light mode should be used (otherwise a dark mode will be used). \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a02149159fc424874e8d6787c451ba57c}{Set\+Up\+Form\+Theme}} (Form form)
+\begin{DoxyCompactList}\small\item\em Sets up dark/\+white mode for a form. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a578bcb6e82c4cd52897086ee6f8b4d4f}{Apply\+Theme\+Recursive}} (Control control, Color control\+Color, Color control\+Text, Color windows, Color windows\+Text, Color border\+Color, bool light\+Mode)
+\begin{DoxyCompactList}\small\item\em Sets up light/\+dark mode for all components of a Form (recursively) Is called from Set\+Up\+Form\+Theme. \end{DoxyCompactList}\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_affd88c5c89cd0d6fd6765d1f62413a3e}{Convert\+String\+To\+Hex}} (string text)
+\begin{DoxyCompactList}\small\item\em Converts string to hex. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a385af17371f5546676e4b19ca82f868c}{Reload\+Form\+Language}} (Form form)
+\begin{DoxyCompactList}\small\item\em Reloads one Form. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_afb1302b25212d7804ff137579f5a688d}{Reload\+All\+Forms}} (bool reload\+Strip\+Menu, bool reload\+Theme, bool reload\+Language)
+\begin{DoxyCompactList}\small\item\em Reloads all active forms in a specific way. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a23663cc077af98a03d57489e74f19e6a}{Form\+Tag\+Giver}} (Form form)
+\begin{DoxyCompactList}\small\item\em Tags all controls for language ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum}{File\+Checksum}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a8acd2f3af53f3951ea118cefaa36d373}{Form\+\_\+\+File\+Checksum}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_form_gradual}{Form\+Gradual}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a302d227d38cb56be53d4dca1128dee44}{Form\+\_\+\+Gradual}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form}{Hashing\+Collision\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a4b2985ef379ba72b17e4a1ad99c6f808}{Form\+\_\+\+Hashing\+Collision}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_password_form}{Password\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a74f3f5e72b32d57088180755e2732d7d}{Form\+\_\+\+Password\+Form}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_tester}{Salt\+And\+Pepper\+Tester}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_ad8e418f538bf801607547f6ac4b7b63a}{Form\+\_\+\+Salt\+And\+Pepper\+Tester}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup}{Salt\+And\+Pepper\+Setup}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_abb999530a02d0608087732aa63bc3b21}{Form\+\_\+\+Salt\+And\+Pepper\+Setup}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form}{Threads\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_acfb4683e34591d2fcec28e3a4ee2968a}{Form\+\_\+\+Threads\+Form}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency}{UIUpdate\+Frequency}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a12c84c199f28e612aaad013d73af5b15}{Form\+\_\+\+UIUpdate\+Frequency}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_multiple_hashing}{Multiple\+Hashing}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_ac1ecdc9dfff380d6241a73adeb1eddd7}{Form\+\_\+\+Multiple\+Hashing}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a6d44c6406a25ac87ad2b62860f533a31}{Registry\+Use\+Light\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Checks registry for Light mode preference. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a267e8ea4e96261842cff4cca4a861597}{Apply\+Theme\+To\+Menu}} (Tool\+Strip menu\+Strip, Color back\+Color, Color text\+Color)
+\begin{DoxyCompactList}\small\item\em Aplies white/\+dark theme to form. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a88fc2039094f22bd62facb66d086a28e}{Apply\+Theme\+To\+Menu\+Item}} (Tool\+Strip\+Menu\+Item menu\+Item, Color back\+Color, Color text\+Color)
+\begin{DoxyCompactList}\small\item\em Aplies white/\+dark theme to strip menu. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a8b9646eeb9ad36c7d14a5f5d994d73af}{Reload\+Controls}} (Control parent)
+\begin{DoxyCompactList}\small\item\em Recursively reloads controls. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_adf10d0c99d40eed779d73728f16b8b8e}{Reload\+Control}} (Control c)
+\begin{DoxyCompactList}\small\item\em Reloads specific Controls (some aditional cases) Use Accessible\+Description as special ID. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a90ac22ce93fe387226873bb9c83879c9}{Reload\+Tool\+Strip}} (Tool\+Strip ts)
+\begin{DoxyCompactList}\small\item\em Reloads whole toolstrip. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a303007beb481674f726369d4da981fa5}{Reload\+Tool\+Strip\+Item}} (Tool\+Strip\+Item item)
+\begin{DoxyCompactList}\small\item\em Recursively reloads tool strip item. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_ae4f992a819d812dde00c18927a02f512}{Give\+Tag\+Control}} (Control control)
+\begin{DoxyCompactList}\small\item\em Sub method for Form\+Tag\+Giver. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a43c341c26b4e96852f7426ee4cbb333d}{Give\+Tag\+Strip}} (Tool\+Strip ts)
+\begin{DoxyCompactList}\small\item\em Gives tag to whole strip menu. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a13bfe30229f4c339bf2b1b4933d09b91}{Give\+Tag\+Strip\+Item}} (Tool\+Strip\+Item item)
+\begin{DoxyCompactList}\small\item\em Gives tag to strip items. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum}{File\+Checksum}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a5f1eaac40b1581034dab30c90a5d38c8}{form\+\_\+file\+Checksum}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_form_gradual}{Form\+Gradual}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a60aa75b5db94f5602fb346c6c363b7fe}{form\+\_\+gradual}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form}{Hashing\+Collision\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a0e3eedb0e952eb597835ff697e70ba88}{form\+\_\+hashing\+Collision}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_password_form}{Password\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_ac69d1db4b1dfb61a0bfdbbec74cae6ad}{form\+\_\+password\+Form}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_tester}{Salt\+And\+Pepper\+Tester}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a1d2d9d8edc37ec4167278b9d5caeafa6}{form\+\_\+salt\+And\+Pepper\+Tester}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup}{Salt\+And\+Pepper\+Setup}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a6acf63f6dbcb9cdcd649e2172291b0b3}{form\+\_\+salt\+And\+Pepper\+Setup}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_threads_form}{Threads\+Form}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a093c153dece633fafc5a6c66751c8d88}{form\+\_\+threads\+Form}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency}{UIUpdate\+Frequency}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a18856d381e905d9f63f17fa8f2808653}{form\+\_\+ui\+Update\+Frequency}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_multiple_hashing}{Multiple\+Hashing}} \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a3a628d7047582a94415ecdf19231f5a5}{form\+\_\+multiple\+Hashing}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_hash_tester_1_1_form_management_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531}\index{HashTester.FormManagement@{HashTester.FormManagement}!FolderType@{FolderType}}
+\index{FolderType@{FolderType}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{FolderType}{FolderType}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531}{Hash\+Tester.\+Form\+Management.\+Folder\+Type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Base@{Base}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!Base@{Base}}
+}\Hypertarget{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a095a1b43effec73955e31e790438de49}\label{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a095a1b43effec73955e31e790438de49} 
+Base&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Password@{Password}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!Password@{Password}}
+}\Hypertarget{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531adc647eb65e6711e155375218212b3964}\label{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531adc647eb65e6711e155375218212b3964} 
+Password&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Collision@{Collision}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!Collision@{Collision}}
+}\Hypertarget{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a15fb6ccbd11ebebcea2b48dc477f3561}\label{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531a15fb6ccbd11ebebcea2b48dc477f3561} 
+Collision&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Log@{Log}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!Log@{Log}}
+}\Hypertarget{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531ace0be71e33226e4c1db2bcea5959f16b}\label{class_hash_tester_1_1_form_management_a29b10df8cc8afe8fe76d273b2ceb9531ace0be71e33226e4c1db2bcea5959f16b} 
+Log&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3}\index{HashTester.FormManagement@{HashTester.FormManagement}!Forms@{Forms}}
+\index{Forms@{Forms}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Forms}{Forms}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3}{Hash\+Tester.\+Form\+Management.\+Forms}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FileChecksum@{FileChecksum}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!FileChecksum@{FileChecksum}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3af71759685329c9554cbfba027da7df8d}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3af71759685329c9554cbfba027da7df8d} 
+File\+Checksum&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Gradual@{Gradual}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!Gradual@{Gradual}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a444e9f26fc403c261a3581c9b5614d0c}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a444e9f26fc403c261a3581c9b5614d0c} 
+Gradual&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HashingCollision@{HashingCollision}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!HashingCollision@{HashingCollision}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6a7065675b79c628f73d76975bc90255}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6a7065675b79c628f73d76975bc90255} 
+Hashing\+Collision&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PasswordForm@{PasswordForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!PasswordForm@{PasswordForm}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6fdbd56496efc6dabbd40fb1f6881899}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a6fdbd56496efc6dabbd40fb1f6881899} 
+Password\+Form&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SaltAndPepper@{SaltAndPepper}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!SaltAndPepper@{SaltAndPepper}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a7eb238ac0dbd9ba17e8675ec4e5e7398}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a7eb238ac0dbd9ba17e8675ec4e5e7398} 
+Salt\+And\+Pepper&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SaltAndPepperTester@{SaltAndPepperTester}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!SaltAndPepperTester@{SaltAndPepperTester}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a001a64df1e96e87ac9162e466db23ad7}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a001a64df1e96e87ac9162e466db23ad7} 
+Salt\+And\+Pepper\+Tester&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SaltAndPepperSetup@{SaltAndPepperSetup}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!SaltAndPepperSetup@{SaltAndPepperSetup}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3ad3a9872cbef4723f65b10b65e06d6abc}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3ad3a9872cbef4723f65b10b65e06d6abc} 
+Salt\+And\+Pepper\+Setup&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ThreadsForm@{ThreadsForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!ThreadsForm@{ThreadsForm}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a397b67f676ca62d51d278e59331f0819}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a397b67f676ca62d51d278e59331f0819} 
+Threads\+Form&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UIUpdateFrequency@{UIUpdateFrequency}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!UIUpdateFrequency@{UIUpdateFrequency}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3aba69fe3f350fe374b6f38b75040d3c50}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3aba69fe3f350fe374b6f38b75040d3c50} 
+UIUpdate\+Frequency&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MultipleHashing@{MultipleHashing}!HashTester.FormManagement@{HashTester.FormManagement}}
+\index{HashTester.FormManagement@{HashTester.FormManagement}!MultipleHashing@{MultipleHashing}}
+}\Hypertarget{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a9e4edb45840289e2565b5a026f0978ed}\label{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3a9e4edb45840289e2565b5a026f0978ed} 
+Multiple\+Hashing&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_form_management_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_form_management_a578bcb6e82c4cd52897086ee6f8b4d4f}\index{HashTester.FormManagement@{HashTester.FormManagement}!ApplyThemeRecursive@{ApplyThemeRecursive}}
+\index{ApplyThemeRecursive@{ApplyThemeRecursive}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ApplyThemeRecursive()}{ApplyThemeRecursive()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a578bcb6e82c4cd52897086ee6f8b4d4f} 
+void Hash\+Tester.\+Form\+Management.\+Apply\+Theme\+Recursive (\begin{DoxyParamCaption}\item[{Control}]{control}{, }\item[{Color}]{control\+Color}{, }\item[{Color}]{control\+Text}{, }\item[{Color}]{windows}{, }\item[{Color}]{windows\+Text}{, }\item[{Color}]{border\+Color}{, }\item[{bool}]{light\+Mode}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Sets up light/\+dark mode for all components of a Form (recursively) Is called from Set\+Up\+Form\+Theme. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & \\
+\hline
+{\em control\+Color} & \\
+\hline
+{\em control\+Text} & \\
+\hline
+{\em windows} & \\
+\hline
+{\em windows\+Text} & \\
+\hline
+{\em border\+Color} & \\
+\hline
+{\em light\+Mode} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a267e8ea4e96261842cff4cca4a861597}\index{HashTester.FormManagement@{HashTester.FormManagement}!ApplyThemeToMenu@{ApplyThemeToMenu}}
+\index{ApplyThemeToMenu@{ApplyThemeToMenu}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ApplyThemeToMenu()}{ApplyThemeToMenu()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a267e8ea4e96261842cff4cca4a861597} 
+void Hash\+Tester.\+Form\+Management.\+Apply\+Theme\+To\+Menu (\begin{DoxyParamCaption}\item[{Tool\+Strip}]{menu\+Strip}{, }\item[{Color}]{back\+Color}{, }\item[{Color}]{text\+Color}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Aplies white/\+dark theme to form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu\+Strip} & \\
+\hline
+{\em back\+Color} & \\
+\hline
+{\em text\+Color} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a88fc2039094f22bd62facb66d086a28e}\index{HashTester.FormManagement@{HashTester.FormManagement}!ApplyThemeToMenuItem@{ApplyThemeToMenuItem}}
+\index{ApplyThemeToMenuItem@{ApplyThemeToMenuItem}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ApplyThemeToMenuItem()}{ApplyThemeToMenuItem()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a88fc2039094f22bd62facb66d086a28e} 
+void Hash\+Tester.\+Form\+Management.\+Apply\+Theme\+To\+Menu\+Item (\begin{DoxyParamCaption}\item[{Tool\+Strip\+Menu\+Item}]{menu\+Item}{, }\item[{Color}]{back\+Color}{, }\item[{Color}]{text\+Color}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Aplies white/\+dark theme to strip menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu\+Item} & \\
+\hline
+{\em back\+Color} & \\
+\hline
+{\em text\+Color} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_affd88c5c89cd0d6fd6765d1f62413a3e}\index{HashTester.FormManagement@{HashTester.FormManagement}!ConvertStringToHex@{ConvertStringToHex}}
+\index{ConvertStringToHex@{ConvertStringToHex}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ConvertStringToHex()}{ConvertStringToHex()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_affd88c5c89cd0d6fd6765d1f62413a3e} 
+string Hash\+Tester.\+Form\+Management.\+Convert\+String\+To\+Hex (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Converts string to hex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_form_management_a23663cc077af98a03d57489e74f19e6a}\index{HashTester.FormManagement@{HashTester.FormManagement}!FormTagGiver@{FormTagGiver}}
+\index{FormTagGiver@{FormTagGiver}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{FormTagGiver()}{FormTagGiver()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a23663cc077af98a03d57489e74f19e6a} 
+void Hash\+Tester.\+Form\+Management.\+Form\+Tag\+Giver (\begin{DoxyParamCaption}\item[{Form}]{form}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Tags all controls for language ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_ae4f992a819d812dde00c18927a02f512}\index{HashTester.FormManagement@{HashTester.FormManagement}!GiveTagControl@{GiveTagControl}}
+\index{GiveTagControl@{GiveTagControl}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{GiveTagControl()}{GiveTagControl()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_ae4f992a819d812dde00c18927a02f512} 
+void Hash\+Tester.\+Form\+Management.\+Give\+Tag\+Control (\begin{DoxyParamCaption}\item[{Control}]{control}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Sub method for Form\+Tag\+Giver. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a43c341c26b4e96852f7426ee4cbb333d}\index{HashTester.FormManagement@{HashTester.FormManagement}!GiveTagStrip@{GiveTagStrip}}
+\index{GiveTagStrip@{GiveTagStrip}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{GiveTagStrip()}{GiveTagStrip()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a43c341c26b4e96852f7426ee4cbb333d} 
+void Hash\+Tester.\+Form\+Management.\+Give\+Tag\+Strip (\begin{DoxyParamCaption}\item[{Tool\+Strip}]{ts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gives tag to whole strip menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a13bfe30229f4c339bf2b1b4933d09b91}\index{HashTester.FormManagement@{HashTester.FormManagement}!GiveTagStripItem@{GiveTagStripItem}}
+\index{GiveTagStripItem@{GiveTagStripItem}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{GiveTagStripItem()}{GiveTagStripItem()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a13bfe30229f4c339bf2b1b4933d09b91} 
+void Hash\+Tester.\+Form\+Management.\+Give\+Tag\+Strip\+Item (\begin{DoxyParamCaption}\item[{Tool\+Strip\+Item}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gives tag to strip items. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a0e7d7592c8192e6ce42946bd031e967c}\index{HashTester.FormManagement@{HashTester.FormManagement}!LoadForm@{LoadForm}}
+\index{LoadForm@{LoadForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{LoadForm()}{LoadForm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a0e7d7592c8192e6ce42946bd031e967c} 
+void Hash\+Tester.\+Form\+Management.\+Load\+Form (\begin{DoxyParamCaption}\item[{Form}]{form}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Runs all methods needed to load any form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a3d14aff98cd8a7412d285e35d157f72a}\index{HashTester.FormManagement@{HashTester.FormManagement}!NumberOfThreadsToUse@{NumberOfThreadsToUse}}
+\index{NumberOfThreadsToUse@{NumberOfThreadsToUse}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{NumberOfThreadsToUse()}{NumberOfThreadsToUse()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a3d14aff98cd8a7412d285e35d157f72a} 
+int Hash\+Tester.\+Form\+Management.\+Number\+Of\+Threads\+To\+Use (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns number of threads to use from \doxylink{class_hash_tester_1_1_settings}{Settings}. If multithreading is false, returns 1. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_form_management_a6d44c6406a25ac87ad2b62860f533a31}\index{HashTester.FormManagement@{HashTester.FormManagement}!RegistryUseLightMode@{RegistryUseLightMode}}
+\index{RegistryUseLightMode@{RegistryUseLightMode}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{RegistryUseLightMode()}{RegistryUseLightMode()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a6d44c6406a25ac87ad2b62860f533a31} 
+bool Hash\+Tester.\+Form\+Management.\+Registry\+Use\+Light\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Checks registry for Light mode preference. 
+
+\begin{DoxyReturn}{Returns}
+false means dark mode
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_form_management_afb1302b25212d7804ff137579f5a688d}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadAllForms@{ReloadAllForms}}
+\index{ReloadAllForms@{ReloadAllForms}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadAllForms()}{ReloadAllForms()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_afb1302b25212d7804ff137579f5a688d} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+All\+Forms (\begin{DoxyParamCaption}\item[{bool}]{reload\+Strip\+Menu}{, }\item[{bool}]{reload\+Theme}{, }\item[{bool}]{reload\+Language}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reloads all active forms in a specific way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reload\+Strip\+Menu} & \\
+\hline
+{\em reload\+Theme} & \\
+\hline
+{\em reload\+Language} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_adf10d0c99d40eed779d73728f16b8b8e}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadControl@{ReloadControl}}
+\index{ReloadControl@{ReloadControl}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadControl()}{ReloadControl()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_adf10d0c99d40eed779d73728f16b8b8e} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+Control (\begin{DoxyParamCaption}\item[{Control}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Reloads specific Controls (some aditional cases) Use Accessible\+Description as special ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a8b9646eeb9ad36c7d14a5f5d994d73af}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadControls@{ReloadControls}}
+\index{ReloadControls@{ReloadControls}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadControls()}{ReloadControls()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a8b9646eeb9ad36c7d14a5f5d994d73af} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+Controls (\begin{DoxyParamCaption}\item[{Control}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Recursively reloads controls. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a385af17371f5546676e4b19ca82f868c}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadFormLanguage@{ReloadFormLanguage}}
+\index{ReloadFormLanguage@{ReloadFormLanguage}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadFormLanguage()}{ReloadFormLanguage()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a385af17371f5546676e4b19ca82f868c} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+Form\+Language (\begin{DoxyParamCaption}\item[{Form}]{form}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reloads one Form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a90ac22ce93fe387226873bb9c83879c9}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadToolStrip@{ReloadToolStrip}}
+\index{ReloadToolStrip@{ReloadToolStrip}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadToolStrip()}{ReloadToolStrip()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a90ac22ce93fe387226873bb9c83879c9} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+Tool\+Strip (\begin{DoxyParamCaption}\item[{Tool\+Strip}]{ts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Reloads whole toolstrip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a303007beb481674f726369d4da981fa5}\index{HashTester.FormManagement@{HashTester.FormManagement}!ReloadToolStripItem@{ReloadToolStripItem}}
+\index{ReloadToolStripItem@{ReloadToolStripItem}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{ReloadToolStripItem()}{ReloadToolStripItem()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a303007beb481674f726369d4da981fa5} 
+void Hash\+Tester.\+Form\+Management.\+Reload\+Tool\+Strip\+Item (\begin{DoxyParamCaption}\item[{Tool\+Strip\+Item}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Recursively reloads tool strip item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_aa8714683d16af0a7658ae79204b9e9cd}\index{HashTester.FormManagement@{HashTester.FormManagement}!SaveLog@{SaveLog}}
+\index{SaveLog@{SaveLog}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{SaveLog()}{SaveLog()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_aa8714683d16af0a7658ae79204b9e9cd} 
+void Hash\+Tester.\+Form\+Management.\+Save\+Log (\begin{DoxyParamCaption}\item[{List\+Box}]{listbox}{, }\item[{Form}]{form}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Saves log from a listbox to a wanted .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listbox} & Listbox you want to save from\\
+\hline
+{\em form} & In what form is the wanted listbox\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_a02149159fc424874e8d6787c451ba57c}\index{HashTester.FormManagement@{HashTester.FormManagement}!SetUpFormTheme@{SetUpFormTheme}}
+\index{SetUpFormTheme@{SetUpFormTheme}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{SetUpFormTheme()}{SetUpFormTheme()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a02149159fc424874e8d6787c451ba57c} 
+void Hash\+Tester.\+Form\+Management.\+Set\+Up\+Form\+Theme (\begin{DoxyParamCaption}\item[{Form}]{form}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Sets up dark/\+white mode for a form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_form_management_ad785a84610d4e88c19ddc0882edb18ae}\index{HashTester.FormManagement@{HashTester.FormManagement}!SpawnForm@{SpawnForm}}
+\index{SpawnForm@{SpawnForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{SpawnForm()}{SpawnForm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_ad785a84610d4e88c19ddc0882edb18ae} 
+Dialog\+Result Hash\+Tester.\+Form\+Management.\+Spawn\+Form (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_form_management_aff1e074fc05065171daa514cffcfbbd3}{Forms}}}]{form\+Type}{, }\item[{bool}]{modal}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a1c354a530ac4fe40d47c778dc57a9262}\index{HashTester.FormManagement@{HashTester.FormManagement}!UseLightMode@{UseLightMode}}
+\index{UseLightMode@{UseLightMode}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{UseLightMode()}{UseLightMode()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a1c354a530ac4fe40d47c778dc57a9262} 
+bool Hash\+Tester.\+Form\+Management.\+Use\+Light\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns if light mode should be used (otherwise a dark mode will be used). 
+
+\Hypertarget{class_hash_tester_1_1_form_management_a8e954d72f7e69abf8807ccd74bcbe12c}\index{HashTester.FormManagement@{HashTester.FormManagement}!UseMultiThread@{UseMultiThread}}
+\index{UseMultiThread@{UseMultiThread}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{UseMultiThread()}{UseMultiThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a8e954d72f7e69abf8807ccd74bcbe12c} 
+bool Hash\+Tester.\+Form\+Management.\+Use\+Multi\+Thread (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns if multithread should be used. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_form_management_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_form_management_a5f1eaac40b1581034dab30c90a5d38c8}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_fileChecksum@{form\_fileChecksum}}
+\index{form\_fileChecksum@{form\_fileChecksum}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_fileChecksum}{form\_fileChecksum}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a5f1eaac40b1581034dab30c90a5d38c8} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum}{File\+Checksum}} Hash\+Tester.\+Form\+Management.\+form\+\_\+file\+Checksum\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a60aa75b5db94f5602fb346c6c363b7fe}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_gradual@{form\_gradual}}
+\index{form\_gradual@{form\_gradual}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_gradual}{form\_gradual}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a60aa75b5db94f5602fb346c6c363b7fe} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_form_gradual}{Form\+Gradual}} Hash\+Tester.\+Form\+Management.\+form\+\_\+gradual\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a0e3eedb0e952eb597835ff697e70ba88}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_hashingCollision@{form\_hashingCollision}}
+\index{form\_hashingCollision@{form\_hashingCollision}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_hashingCollision}{form\_hashingCollision}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a0e3eedb0e952eb597835ff697e70ba88} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form}{Hashing\+Collision\+Form}} Hash\+Tester.\+Form\+Management.\+form\+\_\+hashing\+Collision\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a3a628d7047582a94415ecdf19231f5a5}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_multipleHashing@{form\_multipleHashing}}
+\index{form\_multipleHashing@{form\_multipleHashing}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_multipleHashing}{form\_multipleHashing}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a3a628d7047582a94415ecdf19231f5a5} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_multiple_hashing}{Multiple\+Hashing}} Hash\+Tester.\+Form\+Management.\+form\+\_\+multiple\+Hashing\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_ac69d1db4b1dfb61a0bfdbbec74cae6ad}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_passwordForm@{form\_passwordForm}}
+\index{form\_passwordForm@{form\_passwordForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_passwordForm}{form\_passwordForm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_ac69d1db4b1dfb61a0bfdbbec74cae6ad} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_password_form}{Password\+Form}} Hash\+Tester.\+Form\+Management.\+form\+\_\+password\+Form\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a6acf63f6dbcb9cdcd649e2172291b0b3}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_saltAndPepperSetup@{form\_saltAndPepperSetup}}
+\index{form\_saltAndPepperSetup@{form\_saltAndPepperSetup}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_saltAndPepperSetup}{form\_saltAndPepperSetup}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a6acf63f6dbcb9cdcd649e2172291b0b3} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup}{Salt\+And\+Pepper\+Setup}} Hash\+Tester.\+Form\+Management.\+form\+\_\+salt\+And\+Pepper\+Setup\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a1d2d9d8edc37ec4167278b9d5caeafa6}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_saltAndPepperTester@{form\_saltAndPepperTester}}
+\index{form\_saltAndPepperTester@{form\_saltAndPepperTester}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_saltAndPepperTester}{form\_saltAndPepperTester}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a1d2d9d8edc37ec4167278b9d5caeafa6} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_tester}{Salt\+And\+Pepper\+Tester}} Hash\+Tester.\+Form\+Management.\+form\+\_\+salt\+And\+Pepper\+Tester\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a093c153dece633fafc5a6c66751c8d88}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_threadsForm@{form\_threadsForm}}
+\index{form\_threadsForm@{form\_threadsForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_threadsForm}{form\_threadsForm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a093c153dece633fafc5a6c66751c8d88} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_threads_form}{Threads\+Form}} Hash\+Tester.\+Form\+Management.\+form\+\_\+threads\+Form\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a18856d381e905d9f63f17fa8f2808653}\index{HashTester.FormManagement@{HashTester.FormManagement}!form\_uiUpdateFrequency@{form\_uiUpdateFrequency}}
+\index{form\_uiUpdateFrequency@{form\_uiUpdateFrequency}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{form\_uiUpdateFrequency}{form\_uiUpdateFrequency}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a18856d381e905d9f63f17fa8f2808653} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency}{UIUpdate\+Frequency}} Hash\+Tester.\+Form\+Management.\+form\+\_\+ui\+Update\+Frequency\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_form_management_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_form_management_a8acd2f3af53f3951ea118cefaa36d373}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_FileChecksum@{Form\_FileChecksum}}
+\index{Form\_FileChecksum@{Form\_FileChecksum}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_FileChecksum}{Form\_FileChecksum}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a8acd2f3af53f3951ea118cefaa36d373} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_file_checksum}{File\+Checksum}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+File\+Checksum\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a302d227d38cb56be53d4dca1128dee44}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_Gradual@{Form\_Gradual}}
+\index{Form\_Gradual@{Form\_Gradual}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_Gradual}{Form\_Gradual}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a302d227d38cb56be53d4dca1128dee44} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_form_gradual}{Form\+Gradual}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Gradual\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a4b2985ef379ba72b17e4a1ad99c6f808}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_HashingCollision@{Form\_HashingCollision}}
+\index{Form\_HashingCollision@{Form\_HashingCollision}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_HashingCollision}{Form\_HashingCollision}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a4b2985ef379ba72b17e4a1ad99c6f808} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form}{Hashing\+Collision\+Form}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Hashing\+Collision\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_ac1ecdc9dfff380d6241a73adeb1eddd7}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_MultipleHashing@{Form\_MultipleHashing}}
+\index{Form\_MultipleHashing@{Form\_MultipleHashing}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_MultipleHashing}{Form\_MultipleHashing}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_ac1ecdc9dfff380d6241a73adeb1eddd7} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_multiple_hashing}{Multiple\+Hashing}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Multiple\+Hashing\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a74f3f5e72b32d57088180755e2732d7d}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_PasswordForm@{Form\_PasswordForm}}
+\index{Form\_PasswordForm@{Form\_PasswordForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_PasswordForm}{Form\_PasswordForm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a74f3f5e72b32d57088180755e2732d7d} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_password_form}{Password\+Form}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Password\+Form\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_abb999530a02d0608087732aa63bc3b21}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_SaltAndPepperSetup@{Form\_SaltAndPepperSetup}}
+\index{Form\_SaltAndPepperSetup@{Form\_SaltAndPepperSetup}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_SaltAndPepperSetup}{Form\_SaltAndPepperSetup}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_abb999530a02d0608087732aa63bc3b21} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_setup}{Salt\+And\+Pepper\+Setup}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Salt\+And\+Pepper\+Setup\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_ad8e418f538bf801607547f6ac4b7b63a}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_SaltAndPepperTester@{Form\_SaltAndPepperTester}}
+\index{Form\_SaltAndPepperTester@{Form\_SaltAndPepperTester}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_SaltAndPepperTester}{Form\_SaltAndPepperTester}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_ad8e418f538bf801607547f6ac4b7b63a} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_salt_and_pepper_tester}{Salt\+And\+Pepper\+Tester}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Salt\+And\+Pepper\+Tester\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_acfb4683e34591d2fcec28e3a4ee2968a}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_ThreadsForm@{Form\_ThreadsForm}}
+\index{Form\_ThreadsForm@{Form\_ThreadsForm}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_ThreadsForm}{Form\_ThreadsForm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_acfb4683e34591d2fcec28e3a4ee2968a} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_threads_form}{Threads\+Form}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+Threads\+Form\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_form_management_a12c84c199f28e612aaad013d73af5b15}\index{HashTester.FormManagement@{HashTester.FormManagement}!Form\_UIUpdateFrequency@{Form\_UIUpdateFrequency}}
+\index{Form\_UIUpdateFrequency@{Form\_UIUpdateFrequency}!HashTester.FormManagement@{HashTester.FormManagement}}
+\doxysubsubsection{\texorpdfstring{Form\_UIUpdateFrequency}{Form\_UIUpdateFrequency}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_form_management_a12c84c199f28e612aaad013d73af5b15} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_u_i_update_frequency}{UIUpdate\+Frequency}} Hash\+Tester.\+Form\+Management.\+Form\+\_\+\+UIUpdate\+Frequency\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_form_management_8cs}{Form\+Management.\+cs}}\end{DoxyCompactItemize}

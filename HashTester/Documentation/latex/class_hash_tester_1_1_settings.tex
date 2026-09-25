@@ -1,0 +1,506 @@
+\doxysection{Hash\+Tester.\+Settings Class Reference}
+\hypertarget{class_hash_tester_1_1_settings}{}\label{class_hash_tester_1_1_settings}\index{HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Visual\+Mode\+Enum}} \{ \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa45da96d0bf6575970f2d27af22be28a}{System}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544ea9914a0ce04a7b7b6a8e39bec55064b82}{Light}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa18366b217ebf811ad1886e4f4f865b2}{Dark}}
+ \}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Output\+Type\+Enum}} \{ \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55cab8e21927764ec9efca4149a2193516bd}{Message\+Box}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55ca91e9f329a84489ce415251972428704b}{Listbox}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55caaf9fe051d3764f957f109e124c62efbd}{TXTFile}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ae7eb357ef88c44aa342ba86c4c589a0d}{Path\+To\+Settings\+File}} ()
+\begin{DoxyCompactList}\small\item\em Outputs the path to settings. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a5da6923e51a0c3886b381fe7788e4f07}{Reset\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Puts all values to their original values and saves it. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ae22d21c53c19915b80498dfd74aaf6ea}{Save\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Saves settings to a settings.\+json file located in \doxylink{class_hash_tester_1_1_settings}{Settings} Folder. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a28af134dc59edc80eb63188b9438be97}{Load\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Loads settings from the settings.\+json file located in \doxylink{class_hash_tester_1_1_settings}{Settings} folder. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_settings_add693ec400644eb285f1e05968fb1c68}{Initial\+Folder\+Checker}} ()
+\begin{DoxyCompactList}\small\item\em Checks if all folders and files exists, if not, creates them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_af463f37487e3f51964b98a68404c87ca}{Show\+Log}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a3ea29300ed7c558a508ac27856bccd32}{Remind\+Update}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a4e046a0b98d6c1d27d0f51e554ea2648}{Output\+Style\+Include\+Original\+String}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a94c923c5da71e23e98e9aae6856fb56d}{Output\+Style\+Include\+Number\+Of\+Hash}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a0c62eead9f17e70eddb1314c8248714c}{Output\+Style\+Include\+Hash\+Algorithm}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_aeb4e998e8f699ab80ef7ffae33d912db}{Output\+Style\+Include\+Salt\+Pepper}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a68ee8a439d1e0e86f875b01c11ac8f88}{Selected\+Language}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Visual\+Mode\+Enum}} \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ac5c5b167ee8707ba8d8d4ffcba076ba2}{Visual\+Mode}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Output\+Type\+Enum}} \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a9659055660ec047dba140fc1a0c00c12}{Output\+Type}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a86dd360ce270ffac3fdd1a0a5f300ce9}{Threads\+Usage\+Percentage}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a2b9ba7974e6f4a2d177084d7c3d2f200}{Use\+Salt}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a007dcac55ce26333635ada396fa91c63}{Use\+Pepper}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a5b91bf0b36025438583a2c41c697bde5}{Update\+UIms}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a986f5fb156f6401716e1a25e48c65873}{Directory\+Exe\+Base}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a8087bae5ccbd71a6a7b670baba60988e}{Directory\+Path\+To\+Settings}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_aea594bb9abfcf3e03290ec203bf66894}{Directory\+Path\+To\+Wordlists}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a958c67b5581ce1c454958c5373d2d244}{Directory\+Path\+To\+Collisions}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ad33d1a5a8d883d2b4bd5129e00b9d8b4}{Directory\+Path\+To\+Logs}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_aee1d890c62336cffd8d629abfe94534a}{Directory\+To\+Hash\+Data}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ae8efeb941394698025d2768b83e83d60}{Directory\+To\+Password\+Tester}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a95eead3ac3e7a78cfc57669ebeef042c}{Directory\+To\+Languages}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+static Date\+Time \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a75f2b3f8f78d264e2f200f3fa2aa1d0e}{Github\+Request\+API}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ac7320d99d4924e8b8683031de5c77e85}{Delete\+Settings\+Temp\+File}} ()
+\begin{DoxyCompactList}\small\item\em Removes temp file for settings. \end{DoxyCompactList}\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a3ed7bc576f5d5edf9909f33eae73b1de}{Path\+To\+Settings\+File\+Temp}} ()
+\begin{DoxyCompactList}\small\item\em Outputs the path to temporary settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ab927ce59a568b1b616392195456f859b}{file\+Name}} = "{}settings.\+json"{}
+\item 
+const string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a8a48cf7b3ee6e8aa8ef3040ddf1f245e}{file\+Name\+Temp}} = "{}temp.\+json"{}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a24beffee941a58846113e2388705d107}{output\+Style\+Include\+Original\+String}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a4ec9d387a2f619a71fda22b231b08410}{output\+Style\+Include\+Salt\+Pepper}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a7c38584114de32b5bb3225960a5cc363}{output\+Style\+Include\+Number\+Of\+Hash}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a461d39b1c221d4b27fad02b25d593c9e}{output\+Style\+Include\+Hash\+Algorithm}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Visual\+Mode\+Enum}} \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a63ed2cd207440904e0d62c1f7442310b}{visual\+Mode}} = \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa45da96d0bf6575970f2d27af22be28a}{Visual\+Mode\+Enum.\+System}}
+\item 
+static \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Output\+Type\+Enum}} \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6cb02a6e221e22fd5a057980a9faa36a}{output\+Type}} = \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55cab8e21927764ec9efca4149a2193516bd}{Output\+Type\+Enum.\+Message\+Box}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a2eb732dd1a33b62652acddd6b42a2b75}{include\+Salt}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a9e3f8f27046bce4a10ad18f009fc537e}{include\+Pepper}}
+\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_settings_aaf2e325a7726e2b65b1f49d0bf0699b0}{update\+UIms}}
+\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a09f230fb5d3387a65a29215b94a5600a}{threads\+Usage\+Percentage}}
+\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_settings_ade40a21c56b7bc127f9fd014e1028ba6}{selected\+Language}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_abefb774bf3b711c7aff232aea4e9a15d}{remind\+Update}}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6b68a96ba2abae1d9b352d67a264d02d}{show\+Log}}
+\item 
+static Date\+Time \doxymbox{\hyperlink{class_hash_tester_1_1_settings_abfe6b4c65f94809decb836214003d79c}{github\+Request\+API}} = Date\+Time.\+Now
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_settings_af5ce210cd3305b799ca4c87150aef3c9}{is\+File\+Settings\+Used}} = false
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_hash_tester_1_1_settings_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}\index{HashTester.Settings@{HashTester.Settings}!OutputTypeEnum@{OutputTypeEnum}}
+\index{OutputTypeEnum@{OutputTypeEnum}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputTypeEnum}{OutputTypeEnum}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Hash\+Tester.\+Settings.\+Output\+Type\+Enum}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MessageBox@{MessageBox}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!MessageBox@{MessageBox}}
+}\Hypertarget{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55cab8e21927764ec9efca4149a2193516bd}\label{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55cab8e21927764ec9efca4149a2193516bd} 
+Message\+Box&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Listbox@{Listbox}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!Listbox@{Listbox}}
+}\Hypertarget{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55ca91e9f329a84489ce415251972428704b}\label{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55ca91e9f329a84489ce415251972428704b} 
+Listbox&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TXTFile@{TXTFile}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!TXTFile@{TXTFile}}
+}\Hypertarget{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55caaf9fe051d3764f957f109e124c62efbd}\label{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55caaf9fe051d3764f957f109e124c62efbd} 
+TXTFile&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}\index{HashTester.Settings@{HashTester.Settings}!VisualModeEnum@{VisualModeEnum}}
+\index{VisualModeEnum@{VisualModeEnum}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{VisualModeEnum}{VisualModeEnum}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Hash\+Tester.\+Settings.\+Visual\+Mode\+Enum}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{System@{System}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!System@{System}}
+}\Hypertarget{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa45da96d0bf6575970f2d27af22be28a}\label{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa45da96d0bf6575970f2d27af22be28a} 
+System&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Light@{Light}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!Light@{Light}}
+}\Hypertarget{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544ea9914a0ce04a7b7b6a8e39bec55064b82}\label{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544ea9914a0ce04a7b7b6a8e39bec55064b82} 
+Light&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dark@{Dark}!HashTester.Settings@{HashTester.Settings}}
+\index{HashTester.Settings@{HashTester.Settings}!Dark@{Dark}}
+}\Hypertarget{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa18366b217ebf811ad1886e4f4f865b2}\label{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa18366b217ebf811ad1886e4f4f865b2} 
+Dark&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_settings_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_settings_ac7320d99d4924e8b8683031de5c77e85}\index{HashTester.Settings@{HashTester.Settings}!DeleteSettingsTempFile@{DeleteSettingsTempFile}}
+\index{DeleteSettingsTempFile@{DeleteSettingsTempFile}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DeleteSettingsTempFile()}{DeleteSettingsTempFile()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ac7320d99d4924e8b8683031de5c77e85} 
+void Hash\+Tester.\+Settings.\+Delete\+Settings\+Temp\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Removes temp file for settings. 
+
+\Hypertarget{class_hash_tester_1_1_settings_add693ec400644eb285f1e05968fb1c68}\index{HashTester.Settings@{HashTester.Settings}!InitialFolderChecker@{InitialFolderChecker}}
+\index{InitialFolderChecker@{InitialFolderChecker}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{InitialFolderChecker()}{InitialFolderChecker()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_add693ec400644eb285f1e05968fb1c68} 
+void Hash\+Tester.\+Settings.\+Initial\+Folder\+Checker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Checks if all folders and files exists, if not, creates them. 
+
+\Hypertarget{class_hash_tester_1_1_settings_a28af134dc59edc80eb63188b9438be97}\index{HashTester.Settings@{HashTester.Settings}!LoadSettings@{LoadSettings}}
+\index{LoadSettings@{LoadSettings}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{LoadSettings()}{LoadSettings()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a28af134dc59edc80eb63188b9438be97} 
+void Hash\+Tester.\+Settings.\+Load\+Settings (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Loads settings from the settings.\+json file located in \doxylink{class_hash_tester_1_1_settings}{Settings} folder. 
+
+\Hypertarget{class_hash_tester_1_1_settings_ae7eb357ef88c44aa342ba86c4c589a0d}\index{HashTester.Settings@{HashTester.Settings}!PathToSettingsFile@{PathToSettingsFile}}
+\index{PathToSettingsFile@{PathToSettingsFile}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{PathToSettingsFile()}{PathToSettingsFile()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ae7eb357ef88c44aa342ba86c4c589a0d} 
+string Hash\+Tester.\+Settings.\+Path\+To\+Settings\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Outputs the path to settings. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_settings_a3ed7bc576f5d5edf9909f33eae73b1de}\index{HashTester.Settings@{HashTester.Settings}!PathToSettingsFileTemp@{PathToSettingsFileTemp}}
+\index{PathToSettingsFileTemp@{PathToSettingsFileTemp}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{PathToSettingsFileTemp()}{PathToSettingsFileTemp()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a3ed7bc576f5d5edf9909f33eae73b1de} 
+string Hash\+Tester.\+Settings.\+Path\+To\+Settings\+File\+Temp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Outputs the path to temporary settings. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_settings_a5da6923e51a0c3886b381fe7788e4f07}\index{HashTester.Settings@{HashTester.Settings}!ResetSettings@{ResetSettings}}
+\index{ResetSettings@{ResetSettings}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{ResetSettings()}{ResetSettings()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a5da6923e51a0c3886b381fe7788e4f07} 
+void Hash\+Tester.\+Settings.\+Reset\+Settings (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Puts all values to their original values and saves it. 
+
+\Hypertarget{class_hash_tester_1_1_settings_ae22d21c53c19915b80498dfd74aaf6ea}\index{HashTester.Settings@{HashTester.Settings}!SaveSettings@{SaveSettings}}
+\index{SaveSettings@{SaveSettings}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{SaveSettings()}{SaveSettings()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ae22d21c53c19915b80498dfd74aaf6ea} 
+void Hash\+Tester.\+Settings.\+Save\+Settings (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Saves settings to a settings.\+json file located in \doxylink{class_hash_tester_1_1_settings}{Settings} Folder. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_settings_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_settings_ab927ce59a568b1b616392195456f859b}\index{HashTester.Settings@{HashTester.Settings}!fileName@{fileName}}
+\index{fileName@{fileName}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{fileName}{fileName}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ab927ce59a568b1b616392195456f859b} 
+const string Hash\+Tester.\+Settings.\+file\+Name = "{}settings.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a8a48cf7b3ee6e8aa8ef3040ddf1f245e}\index{HashTester.Settings@{HashTester.Settings}!fileNameTemp@{fileNameTemp}}
+\index{fileNameTemp@{fileNameTemp}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{fileNameTemp}{fileNameTemp}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a8a48cf7b3ee6e8aa8ef3040ddf1f245e} 
+const string Hash\+Tester.\+Settings.\+file\+Name\+Temp = "{}temp.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_abfe6b4c65f94809decb836214003d79c}\index{HashTester.Settings@{HashTester.Settings}!githubRequestAPI@{githubRequestAPI}}
+\index{githubRequestAPI@{githubRequestAPI}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{githubRequestAPI}{githubRequestAPI}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_abfe6b4c65f94809decb836214003d79c} 
+Date\+Time Hash\+Tester.\+Settings.\+github\+Request\+API = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a9e3f8f27046bce4a10ad18f009fc537e}\index{HashTester.Settings@{HashTester.Settings}!includePepper@{includePepper}}
+\index{includePepper@{includePepper}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{includePepper}{includePepper}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a9e3f8f27046bce4a10ad18f009fc537e} 
+bool Hash\+Tester.\+Settings.\+include\+Pepper\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a2eb732dd1a33b62652acddd6b42a2b75}\index{HashTester.Settings@{HashTester.Settings}!includeSalt@{includeSalt}}
+\index{includeSalt@{includeSalt}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{includeSalt}{includeSalt}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a2eb732dd1a33b62652acddd6b42a2b75} 
+bool Hash\+Tester.\+Settings.\+include\+Salt\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_af5ce210cd3305b799ca4c87150aef3c9}\index{HashTester.Settings@{HashTester.Settings}!isFileSettingsUsed@{isFileSettingsUsed}}
+\index{isFileSettingsUsed@{isFileSettingsUsed}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{isFileSettingsUsed}{isFileSettingsUsed}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_af5ce210cd3305b799ca4c87150aef3c9} 
+bool Hash\+Tester.\+Settings.\+is\+File\+Settings\+Used = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a461d39b1c221d4b27fad02b25d593c9e}\index{HashTester.Settings@{HashTester.Settings}!outputStyleIncludeHashAlgorithm@{outputStyleIncludeHashAlgorithm}}
+\index{outputStyleIncludeHashAlgorithm@{outputStyleIncludeHashAlgorithm}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{outputStyleIncludeHashAlgorithm}{outputStyleIncludeHashAlgorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a461d39b1c221d4b27fad02b25d593c9e} 
+bool Hash\+Tester.\+Settings.\+output\+Style\+Include\+Hash\+Algorithm\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a7c38584114de32b5bb3225960a5cc363}\index{HashTester.Settings@{HashTester.Settings}!outputStyleIncludeNumberOfHash@{outputStyleIncludeNumberOfHash}}
+\index{outputStyleIncludeNumberOfHash@{outputStyleIncludeNumberOfHash}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{outputStyleIncludeNumberOfHash}{outputStyleIncludeNumberOfHash}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a7c38584114de32b5bb3225960a5cc363} 
+bool Hash\+Tester.\+Settings.\+output\+Style\+Include\+Number\+Of\+Hash\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a24beffee941a58846113e2388705d107}\index{HashTester.Settings@{HashTester.Settings}!outputStyleIncludeOriginalString@{outputStyleIncludeOriginalString}}
+\index{outputStyleIncludeOriginalString@{outputStyleIncludeOriginalString}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{outputStyleIncludeOriginalString}{outputStyleIncludeOriginalString}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a24beffee941a58846113e2388705d107} 
+bool Hash\+Tester.\+Settings.\+output\+Style\+Include\+Original\+String\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a4ec9d387a2f619a71fda22b231b08410}\index{HashTester.Settings@{HashTester.Settings}!outputStyleIncludeSaltPepper@{outputStyleIncludeSaltPepper}}
+\index{outputStyleIncludeSaltPepper@{outputStyleIncludeSaltPepper}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{outputStyleIncludeSaltPepper}{outputStyleIncludeSaltPepper}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a4ec9d387a2f619a71fda22b231b08410} 
+bool Hash\+Tester.\+Settings.\+output\+Style\+Include\+Salt\+Pepper\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a6cb02a6e221e22fd5a057980a9faa36a}\index{HashTester.Settings@{HashTester.Settings}!outputType@{outputType}}
+\index{outputType@{outputType}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{outputType}{outputType}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a6cb02a6e221e22fd5a057980a9faa36a} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Output\+Type\+Enum}} Hash\+Tester.\+Settings.\+output\+Type = \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55cab8e21927764ec9efca4149a2193516bd}{Output\+Type\+Enum.\+Message\+Box}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_abefb774bf3b711c7aff232aea4e9a15d}\index{HashTester.Settings@{HashTester.Settings}!remindUpdate@{remindUpdate}}
+\index{remindUpdate@{remindUpdate}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{remindUpdate}{remindUpdate}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_abefb774bf3b711c7aff232aea4e9a15d} 
+bool Hash\+Tester.\+Settings.\+remind\+Update\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_ade40a21c56b7bc127f9fd014e1028ba6}\index{HashTester.Settings@{HashTester.Settings}!selectedLanguage@{selectedLanguage}}
+\index{selectedLanguage@{selectedLanguage}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{selectedLanguage}{selectedLanguage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ade40a21c56b7bc127f9fd014e1028ba6} 
+string Hash\+Tester.\+Settings.\+selected\+Language\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a6b68a96ba2abae1d9b352d67a264d02d}\index{HashTester.Settings@{HashTester.Settings}!showLog@{showLog}}
+\index{showLog@{showLog}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{showLog}{showLog}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a6b68a96ba2abae1d9b352d67a264d02d} 
+bool Hash\+Tester.\+Settings.\+show\+Log\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a09f230fb5d3387a65a29215b94a5600a}\index{HashTester.Settings@{HashTester.Settings}!threadsUsagePercentage@{threadsUsagePercentage}}
+\index{threadsUsagePercentage@{threadsUsagePercentage}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{threadsUsagePercentage}{threadsUsagePercentage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a09f230fb5d3387a65a29215b94a5600a} 
+int Hash\+Tester.\+Settings.\+threads\+Usage\+Percentage\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_aaf2e325a7726e2b65b1f49d0bf0699b0}\index{HashTester.Settings@{HashTester.Settings}!updateUIms@{updateUIms}}
+\index{updateUIms@{updateUIms}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{updateUIms}{updateUIms}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_aaf2e325a7726e2b65b1f49d0bf0699b0} 
+int Hash\+Tester.\+Settings.\+update\+UIms\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a63ed2cd207440904e0d62c1f7442310b}\index{HashTester.Settings@{HashTester.Settings}!visualMode@{visualMode}}
+\index{visualMode@{visualMode}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{visualMode}{visualMode}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a63ed2cd207440904e0d62c1f7442310b} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Visual\+Mode\+Enum}} Hash\+Tester.\+Settings.\+visual\+Mode = \doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544eaa45da96d0bf6575970f2d27af22be28a}{Visual\+Mode\+Enum.\+System}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_settings_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_settings_a986f5fb156f6401716e1a25e48c65873}\index{HashTester.Settings@{HashTester.Settings}!DirectoryExeBase@{DirectoryExeBase}}
+\index{DirectoryExeBase@{DirectoryExeBase}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryExeBase}{DirectoryExeBase}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a986f5fb156f6401716e1a25e48c65873} 
+string Hash\+Tester.\+Settings.\+Directory\+Exe\+Base\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a958c67b5581ce1c454958c5373d2d244}\index{HashTester.Settings@{HashTester.Settings}!DirectoryPathToCollisions@{DirectoryPathToCollisions}}
+\index{DirectoryPathToCollisions@{DirectoryPathToCollisions}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryPathToCollisions}{DirectoryPathToCollisions}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a958c67b5581ce1c454958c5373d2d244} 
+string Hash\+Tester.\+Settings.\+Directory\+Path\+To\+Collisions\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_ad33d1a5a8d883d2b4bd5129e00b9d8b4}\index{HashTester.Settings@{HashTester.Settings}!DirectoryPathToLogs@{DirectoryPathToLogs}}
+\index{DirectoryPathToLogs@{DirectoryPathToLogs}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryPathToLogs}{DirectoryPathToLogs}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ad33d1a5a8d883d2b4bd5129e00b9d8b4} 
+string Hash\+Tester.\+Settings.\+Directory\+Path\+To\+Logs\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a8087bae5ccbd71a6a7b670baba60988e}\index{HashTester.Settings@{HashTester.Settings}!DirectoryPathToSettings@{DirectoryPathToSettings}}
+\index{DirectoryPathToSettings@{DirectoryPathToSettings}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryPathToSettings}{DirectoryPathToSettings}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a8087bae5ccbd71a6a7b670baba60988e} 
+string Hash\+Tester.\+Settings.\+Directory\+Path\+To\+Settings\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_aea594bb9abfcf3e03290ec203bf66894}\index{HashTester.Settings@{HashTester.Settings}!DirectoryPathToWordlists@{DirectoryPathToWordlists}}
+\index{DirectoryPathToWordlists@{DirectoryPathToWordlists}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryPathToWordlists}{DirectoryPathToWordlists}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_aea594bb9abfcf3e03290ec203bf66894} 
+string Hash\+Tester.\+Settings.\+Directory\+Path\+To\+Wordlists\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_aee1d890c62336cffd8d629abfe94534a}\index{HashTester.Settings@{HashTester.Settings}!DirectoryToHashData@{DirectoryToHashData}}
+\index{DirectoryToHashData@{DirectoryToHashData}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryToHashData}{DirectoryToHashData}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_aee1d890c62336cffd8d629abfe94534a} 
+string Hash\+Tester.\+Settings.\+Directory\+To\+Hash\+Data\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a95eead3ac3e7a78cfc57669ebeef042c}\index{HashTester.Settings@{HashTester.Settings}!DirectoryToLanguages@{DirectoryToLanguages}}
+\index{DirectoryToLanguages@{DirectoryToLanguages}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryToLanguages}{DirectoryToLanguages}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a95eead3ac3e7a78cfc57669ebeef042c} 
+string Hash\+Tester.\+Settings.\+Directory\+To\+Languages\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_ae8efeb941394698025d2768b83e83d60}\index{HashTester.Settings@{HashTester.Settings}!DirectoryToPasswordTester@{DirectoryToPasswordTester}}
+\index{DirectoryToPasswordTester@{DirectoryToPasswordTester}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{DirectoryToPasswordTester}{DirectoryToPasswordTester}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ae8efeb941394698025d2768b83e83d60} 
+string Hash\+Tester.\+Settings.\+Directory\+To\+Password\+Tester\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a75f2b3f8f78d264e2f200f3fa2aa1d0e}\index{HashTester.Settings@{HashTester.Settings}!GithubRequestAPI@{GithubRequestAPI}}
+\index{GithubRequestAPI@{GithubRequestAPI}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{GithubRequestAPI}{GithubRequestAPI}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a75f2b3f8f78d264e2f200f3fa2aa1d0e} 
+Date\+Time Hash\+Tester.\+Settings.\+Github\+Request\+API\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a0c62eead9f17e70eddb1314c8248714c}\index{HashTester.Settings@{HashTester.Settings}!OutputStyleIncludeHashAlgorithm@{OutputStyleIncludeHashAlgorithm}}
+\index{OutputStyleIncludeHashAlgorithm@{OutputStyleIncludeHashAlgorithm}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputStyleIncludeHashAlgorithm}{OutputStyleIncludeHashAlgorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a0c62eead9f17e70eddb1314c8248714c} 
+bool Hash\+Tester.\+Settings.\+Output\+Style\+Include\+Hash\+Algorithm\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a94c923c5da71e23e98e9aae6856fb56d}\index{HashTester.Settings@{HashTester.Settings}!OutputStyleIncludeNumberOfHash@{OutputStyleIncludeNumberOfHash}}
+\index{OutputStyleIncludeNumberOfHash@{OutputStyleIncludeNumberOfHash}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputStyleIncludeNumberOfHash}{OutputStyleIncludeNumberOfHash}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a94c923c5da71e23e98e9aae6856fb56d} 
+bool Hash\+Tester.\+Settings.\+Output\+Style\+Include\+Number\+Of\+Hash\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a4e046a0b98d6c1d27d0f51e554ea2648}\index{HashTester.Settings@{HashTester.Settings}!OutputStyleIncludeOriginalString@{OutputStyleIncludeOriginalString}}
+\index{OutputStyleIncludeOriginalString@{OutputStyleIncludeOriginalString}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputStyleIncludeOriginalString}{OutputStyleIncludeOriginalString}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a4e046a0b98d6c1d27d0f51e554ea2648} 
+bool Hash\+Tester.\+Settings.\+Output\+Style\+Include\+Original\+String\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_aeb4e998e8f699ab80ef7ffae33d912db}\index{HashTester.Settings@{HashTester.Settings}!OutputStyleIncludeSaltPepper@{OutputStyleIncludeSaltPepper}}
+\index{OutputStyleIncludeSaltPepper@{OutputStyleIncludeSaltPepper}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputStyleIncludeSaltPepper}{OutputStyleIncludeSaltPepper}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_aeb4e998e8f699ab80ef7ffae33d912db} 
+bool Hash\+Tester.\+Settings.\+Output\+Style\+Include\+Salt\+Pepper\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a9659055660ec047dba140fc1a0c00c12}\index{HashTester.Settings@{HashTester.Settings}!OutputType@{OutputType}}
+\index{OutputType@{OutputType}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{OutputType}{OutputType}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a9659055660ec047dba140fc1a0c00c12} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_settings_a6e17e67f33696e9fe19751aee560b55c}{Output\+Type\+Enum}} Hash\+Tester.\+Settings.\+Output\+Type\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a3ea29300ed7c558a508ac27856bccd32}\index{HashTester.Settings@{HashTester.Settings}!RemindUpdate@{RemindUpdate}}
+\index{RemindUpdate@{RemindUpdate}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{RemindUpdate}{RemindUpdate}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a3ea29300ed7c558a508ac27856bccd32} 
+bool Hash\+Tester.\+Settings.\+Remind\+Update\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a68ee8a439d1e0e86f875b01c11ac8f88}\index{HashTester.Settings@{HashTester.Settings}!SelectedLanguage@{SelectedLanguage}}
+\index{SelectedLanguage@{SelectedLanguage}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{SelectedLanguage}{SelectedLanguage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a68ee8a439d1e0e86f875b01c11ac8f88} 
+string Hash\+Tester.\+Settings.\+Selected\+Language\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_af463f37487e3f51964b98a68404c87ca}\index{HashTester.Settings@{HashTester.Settings}!ShowLog@{ShowLog}}
+\index{ShowLog@{ShowLog}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{ShowLog}{ShowLog}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_af463f37487e3f51964b98a68404c87ca} 
+bool Hash\+Tester.\+Settings.\+Show\+Log\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a86dd360ce270ffac3fdd1a0a5f300ce9}\index{HashTester.Settings@{HashTester.Settings}!ThreadsUsagePercentage@{ThreadsUsagePercentage}}
+\index{ThreadsUsagePercentage@{ThreadsUsagePercentage}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{ThreadsUsagePercentage}{ThreadsUsagePercentage}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a86dd360ce270ffac3fdd1a0a5f300ce9} 
+int Hash\+Tester.\+Settings.\+Threads\+Usage\+Percentage\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a5b91bf0b36025438583a2c41c697bde5}\index{HashTester.Settings@{HashTester.Settings}!UpdateUIms@{UpdateUIms}}
+\index{UpdateUIms@{UpdateUIms}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{UpdateUIms}{UpdateUIms}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a5b91bf0b36025438583a2c41c697bde5} 
+int Hash\+Tester.\+Settings.\+Update\+UIms\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a007dcac55ce26333635ada396fa91c63}\index{HashTester.Settings@{HashTester.Settings}!UsePepper@{UsePepper}}
+\index{UsePepper@{UsePepper}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{UsePepper}{UsePepper}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a007dcac55ce26333635ada396fa91c63} 
+bool Hash\+Tester.\+Settings.\+Use\+Pepper\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_a2b9ba7974e6f4a2d177084d7c3d2f200}\index{HashTester.Settings@{HashTester.Settings}!UseSalt@{UseSalt}}
+\index{UseSalt@{UseSalt}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{UseSalt}{UseSalt}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_a2b9ba7974e6f4a2d177084d7c3d2f200} 
+bool Hash\+Tester.\+Settings.\+Use\+Salt\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_settings_ac5c5b167ee8707ba8d8d4ffcba076ba2}\index{HashTester.Settings@{HashTester.Settings}!VisualMode@{VisualMode}}
+\index{VisualMode@{VisualMode}!HashTester.Settings@{HashTester.Settings}}
+\doxysubsubsection{\texorpdfstring{VisualMode}{VisualMode}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_settings_ac5c5b167ee8707ba8d8d4ffcba076ba2} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_settings_a38b87aff05af62b90903cabc1f59544e}{Visual\+Mode\+Enum}} Hash\+Tester.\+Settings.\+Visual\+Mode\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_settings_8cs}{Settings.\+cs}}\end{DoxyCompactItemize}

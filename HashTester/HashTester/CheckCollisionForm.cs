@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Small UI Form for Checking collisions
+ *@file: CheckCollisionForm.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +21,10 @@ namespace HashTester
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Enum options for collisions format
+        /// </summary>
         public enum CollisionDetectionFormat
         {
             HEX,
@@ -22,8 +33,14 @@ namespace HashTester
         }
         Hasher.HashingAlgorithm hashingAlgorithm = Hasher.HashingAlgorithm.CRC32;
 
+        /// <summary>
+        /// Checks hash collisions based on text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            //Check for text
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidInputIntoText01), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -34,12 +51,18 @@ namespace HashTester
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseEnterValidInputIntoText02), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //What format is the text
             CollisionDetectionFormat collisionDetectionFormat = CollisionDetectionFormat.STRING;
             if (radioButtonHex.Checked) collisionDetectionFormat = CollisionDetectionFormat.HEX;
             else if (radioButtonBinary.Checked) collisionDetectionFormat = CollisionDetectionFormat.BIN;
             CheckCollision(hashingAlgorithm, textBox1.Text, textBox2.Text, collisionDetectionFormat);
         }
 
+        /// <summary>
+        /// Selector for current hashing algorithm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             hashingAlgorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
@@ -112,6 +135,12 @@ namespace HashTester
         }
 
         #region Convertors
+
+        /// <summary>
+        /// Converts hex to string
+        /// </summary>
+        /// <param name="hex">text in hex</param>
+        /// <returns>text in string</returns>
         private string ConvertHexToString(string hex)
         {
             if (!TryNormalizeHex(hex, out string formattedHex)) return "error";
@@ -134,6 +163,12 @@ namespace HashTester
 
     }
 
+    /// <summary>
+    /// Tries to remove any separators in hex
+    /// </summary>
+    /// <param name="hex">Input hex</param>
+    /// <param name="formattedHex">Output hex</param>
+    /// <returns></returns>
     public static bool TryNormalizeHex(string hex, out string formattedHex)
         {
             try
@@ -167,6 +202,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Checks if HEX is valid
+        /// </summary>
+        /// <param name="hex">Input text in hex</param>
+        /// <returns>True or false</returns>
         public static bool IsValidHex(string hex)
         {
             string validChars = "0123456789abcdefABCDEF ";
@@ -177,6 +217,11 @@ namespace HashTester
             return true; //valid
         }
 
+        /// <summary>
+        /// Converts binary to bytes
+        /// </summary>
+        /// <param name="binary">Input text</param>
+        /// <returns>Output bytes</returns>
         private byte[] ConvertBinToByte(string binary)
         {
             binary = binary.Replace(" ", "").Replace("-", "");
@@ -279,6 +324,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();

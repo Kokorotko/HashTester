@@ -1,0 +1,245 @@
+\doxysection{Hash\+Tester.\+Rainbow\+Table\+Generator Class Reference}
+\hypertarget{class_hash_tester_1_1_rainbow_table_generator}{}\label{class_hash_tester_1_1_rainbow_table_generator}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a05b9b488b1764e1202079b6ca00abbaf}{Abort}} ()
+\begin{DoxyCompactList}\small\item\em Cancels the current operation. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_ad87bd4a751688454f75b5ea1baf04281}{Generate\+Rainbow\+Table}} (string file\+Input\+Path, string file\+Output\+Path, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hashing\+Algorithm)
+\begin{DoxyCompactList}\small\item\em Generates a rainbow table. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_ac0129d89366564a054d7b05810ca3209}{Generate\+Rainbow\+Table\+Multi\+Thread}} (int number\+Of\+Threads\+Used, string file\+Input\+Path, string file\+Output\+Path, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hashing\+Algorithm)
+\begin{DoxyCompactList}\small\item\em Same as Generate\+Rainbow\+Table, but multithread. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_af749c8f9975adf55f6674fbc3dfe7b64}{Reset\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Resets all values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_aad763b2a25a38b26692ac07910a194a7}{Log\+Output}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_ac34d0de02f85f893590b7ad9fd66bf6c}{All\+Lines\+In\+Input\+File}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a25905c08fac353e2ec6eefc7a6b06074}{Lines\+Processed}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+Stopwatch \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_aaa1613c2ee5c2dc1aba6dfe363a9f6a3}{Stopwatch}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a477084aa6060a4b8fc09448e9d40511c}{Generate\+Rainbow\+Table\+Multi\+Thread\+For\+Single\+Thread}} (string file\+Input\+Path, string file\+Output\+Path, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hashing\+Algorithm)
+\begin{DoxyCompactList}\small\item\em Generates rainbow table, but sets up single thread work on a multithread basis. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_adb6f2175bca1843f401598660d1d853b}{Remove\+Files\+Question\+Multi\+Thread}} (string\+[$\,$]\+ temp\+Files\+Input, string\+[$\,$]\+ temp\+Files\+Output)
+\begin{DoxyCompactList}\small\item\em Removes temp Files if the user wants to (also asks the user). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a791386f3d38e638a6a355192b371975b}{Remove\+Files\+Question}} (string file\+Output\+Path)
+\begin{DoxyCompactList}\small\item\em Do you want to delete unfinished files? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_af2e24b4664ec268ded7040160f94433b}{log\+Output}} = "{}"{}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_abf4f0e00b558e579867407575eb96d60}{all\+Lines\+In\+Input\+File}} = 0
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_afa1627bda704c550b54e8efbb151feb5}{lines\+Processed}} = 0
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_aabc6f2390979f59668b439fa5ef897c6}{cancellation\+Token\+Source}} = new Cancellation\+Token\+Source()
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a38a2185b1f63739815f387a8e7a2f74b}{hasher}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_aaa1613c2ee5c2dc1aba6dfe363a9f6a3}{Stopwatch}} \doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_a9b20df751d761ad7f6ddc8d08dee25ef}{stopwatch}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a05b9b488b1764e1202079b6ca00abbaf}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!Abort@{Abort}}
+\index{Abort@{Abort}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{Abort()}{Abort()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a05b9b488b1764e1202079b6ca00abbaf} 
+void Hash\+Tester.\+Rainbow\+Table\+Generator.\+Abort (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cancels the current operation. 
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_ad87bd4a751688454f75b5ea1baf04281}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!GenerateRainbowTable@{GenerateRainbowTable}}
+\index{GenerateRainbowTable@{GenerateRainbowTable}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{GenerateRainbowTable()}{GenerateRainbowTable()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_ad87bd4a751688454f75b5ea1baf04281} 
+bool Hash\+Tester.\+Rainbow\+Table\+Generator.\+Generate\+Rainbow\+Table (\begin{DoxyParamCaption}\item[{string}]{file\+Input\+Path}{, }\item[{string}]{file\+Output\+Path}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hashing\+Algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates a rainbow table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Input\+Path} & Path to file to take words from\\
+\hline
+{\em file\+Output\+Path} & Path to file to funny hash output\\
+\hline
+{\em hashing\+Algorithm} & What algorithm to use\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_ac0129d89366564a054d7b05810ca3209}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!GenerateRainbowTableMultiThread@{GenerateRainbowTableMultiThread}}
+\index{GenerateRainbowTableMultiThread@{GenerateRainbowTableMultiThread}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{GenerateRainbowTableMultiThread()}{GenerateRainbowTableMultiThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_ac0129d89366564a054d7b05810ca3209} 
+async Task$<$ bool $>$ Hash\+Tester.\+Rainbow\+Table\+Generator.\+Generate\+Rainbow\+Table\+Multi\+Thread (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Threads\+Used}{, }\item[{string}]{file\+Input\+Path}{, }\item[{string}]{file\+Output\+Path}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hashing\+Algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Same as Generate\+Rainbow\+Table, but multithread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+Of\+Threads\+Used} & \\
+\hline
+{\em file\+Input\+Path} & \\
+\hline
+{\em file\+Output\+Path} & \\
+\hline
+{\em hashing\+Algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a477084aa6060a4b8fc09448e9d40511c}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!GenerateRainbowTableMultiThreadForSingleThread@{GenerateRainbowTableMultiThreadForSingleThread}}
+\index{GenerateRainbowTableMultiThreadForSingleThread@{GenerateRainbowTableMultiThreadForSingleThread}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{GenerateRainbowTableMultiThreadForSingleThread()}{GenerateRainbowTableMultiThreadForSingleThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a477084aa6060a4b8fc09448e9d40511c} 
+void Hash\+Tester.\+Rainbow\+Table\+Generator.\+Generate\+Rainbow\+Table\+Multi\+Thread\+For\+Single\+Thread (\begin{DoxyParamCaption}\item[{string}]{file\+Input\+Path}{, }\item[{string}]{file\+Output\+Path}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hashing\+Algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates rainbow table, but sets up single thread work on a multithread basis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Input\+Path} & \\
+\hline
+{\em file\+Output\+Path} & \\
+\hline
+{\em hashing\+Algorithm} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a791386f3d38e638a6a355192b371975b}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!RemoveFilesQuestion@{RemoveFilesQuestion}}
+\index{RemoveFilesQuestion@{RemoveFilesQuestion}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{RemoveFilesQuestion()}{RemoveFilesQuestion()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a791386f3d38e638a6a355192b371975b} 
+void Hash\+Tester.\+Rainbow\+Table\+Generator.\+Remove\+Files\+Question (\begin{DoxyParamCaption}\item[{string}]{file\+Output\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Do you want to delete unfinished files? 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Output\+Path} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_adb6f2175bca1843f401598660d1d853b}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!RemoveFilesQuestionMultiThread@{RemoveFilesQuestionMultiThread}}
+\index{RemoveFilesQuestionMultiThread@{RemoveFilesQuestionMultiThread}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{RemoveFilesQuestionMultiThread()}{RemoveFilesQuestionMultiThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_adb6f2175bca1843f401598660d1d853b} 
+void Hash\+Tester.\+Rainbow\+Table\+Generator.\+Remove\+Files\+Question\+Multi\+Thread (\begin{DoxyParamCaption}\item[{string\+[$\,$]\+}]{temp\+Files\+Input}{, }\item[{string\+[$\,$]\+}]{temp\+Files\+Output}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Removes temp Files if the user wants to (also asks the user). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp\+Files\+Input} & \\
+\hline
+{\em temp\+Files\+Output} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_af749c8f9975adf55f6674fbc3dfe7b64}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!ResetValues@{ResetValues}}
+\index{ResetValues@{ResetValues}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{ResetValues()}{ResetValues()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_af749c8f9975adf55f6674fbc3dfe7b64} 
+void Hash\+Tester.\+Rainbow\+Table\+Generator.\+Reset\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resets all values. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_abf4f0e00b558e579867407575eb96d60}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!allLinesInInputFile@{allLinesInInputFile}}
+\index{allLinesInInputFile@{allLinesInInputFile}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{allLinesInInputFile}{allLinesInInputFile}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_abf4f0e00b558e579867407575eb96d60} 
+long Hash\+Tester.\+Rainbow\+Table\+Generator.\+all\+Lines\+In\+Input\+File = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_aabc6f2390979f59668b439fa5ef897c6}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!cancellationTokenSource@{cancellationTokenSource}}
+\index{cancellationTokenSource@{cancellationTokenSource}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{cancellationTokenSource}{cancellationTokenSource}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_aabc6f2390979f59668b439fa5ef897c6} 
+Cancellation\+Token\+Source Hash\+Tester.\+Rainbow\+Table\+Generator.\+cancellation\+Token\+Source = new Cancellation\+Token\+Source()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a38a2185b1f63739815f387a8e7a2f74b}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!hasher@{hasher}}
+\index{hasher@{hasher}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{hasher}{hasher}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a38a2185b1f63739815f387a8e7a2f74b} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} Hash\+Tester.\+Rainbow\+Table\+Generator.\+hasher = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_afa1627bda704c550b54e8efbb151feb5}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!linesProcessed@{linesProcessed}}
+\index{linesProcessed@{linesProcessed}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{linesProcessed}{linesProcessed}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_afa1627bda704c550b54e8efbb151feb5} 
+long Hash\+Tester.\+Rainbow\+Table\+Generator.\+lines\+Processed = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_af2e24b4664ec268ded7040160f94433b}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!logOutput@{logOutput}}
+\index{logOutput@{logOutput}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{logOutput}{logOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_af2e24b4664ec268ded7040160f94433b} 
+string Hash\+Tester.\+Rainbow\+Table\+Generator.\+log\+Output = "{}"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a9b20df751d761ad7f6ddc8d08dee25ef}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!stopwatch@{stopwatch}}
+\index{stopwatch@{stopwatch}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{stopwatch}{stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a9b20df751d761ad7f6ddc8d08dee25ef} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_rainbow_table_generator_aaa1613c2ee5c2dc1aba6dfe363a9f6a3}{Stopwatch}} Hash\+Tester.\+Rainbow\+Table\+Generator.\+stopwatch\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_ac34d0de02f85f893590b7ad9fd66bf6c}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!AllLinesInInputFile@{AllLinesInInputFile}}
+\index{AllLinesInInputFile@{AllLinesInInputFile}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{AllLinesInInputFile}{AllLinesInInputFile}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_ac34d0de02f85f893590b7ad9fd66bf6c} 
+long Hash\+Tester.\+Rainbow\+Table\+Generator.\+All\+Lines\+In\+Input\+File\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_a25905c08fac353e2ec6eefc7a6b06074}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!LinesProcessed@{LinesProcessed}}
+\index{LinesProcessed@{LinesProcessed}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{LinesProcessed}{LinesProcessed}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_a25905c08fac353e2ec6eefc7a6b06074} 
+long Hash\+Tester.\+Rainbow\+Table\+Generator.\+Lines\+Processed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_aad763b2a25a38b26692ac07910a194a7}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!LogOutput@{LogOutput}}
+\index{LogOutput@{LogOutput}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{LogOutput}{LogOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_aad763b2a25a38b26692ac07910a194a7} 
+string Hash\+Tester.\+Rainbow\+Table\+Generator.\+Log\+Output\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_rainbow_table_generator_aaa1613c2ee5c2dc1aba6dfe363a9f6a3}\index{HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}!Stopwatch@{Stopwatch}}
+\index{Stopwatch@{Stopwatch}!HashTester.RainbowTableGenerator@{HashTester.RainbowTableGenerator}}
+\doxysubsubsection{\texorpdfstring{Stopwatch}{Stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_rainbow_table_generator_aaa1613c2ee5c2dc1aba6dfe363a9f6a3} 
+Stopwatch Hash\+Tester.\+Rainbow\+Table\+Generator.\+Stopwatch\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_rainbow_table_generator_8cs}{Rainbow\+Table\+Generator.\+cs}}\end{DoxyCompactItemize}

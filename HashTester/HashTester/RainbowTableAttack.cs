@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Main script for RainbowTableAttack logic
+ *@file: RainbowTableAttack.cs
+ */
+
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -60,9 +67,27 @@ namespace HashTester
 
         #endregion
 
-        public void Abort() => CancellationTokenSource.Cancel();
+        /// <summary>
+        /// Cancels the operation
+        /// </summary>
+        public void Abort()
+        {
+            CancellationTokenSource.Cancel();
+        }
 
-        private Task<bool> SingleThreadRainbowTableAttack( //returns if the operation was a success, use FoundPasswordBool to know if it has been found
+        /// <summary>
+        /// returns if the operation was a success, use FoundPasswordBool to know if it has been found
+        /// </summary>
+        /// <param name="userInputHash">Input hash</param>
+        /// <param name="fileAlgorithm">What algorithm is the file in</param>
+        /// <param name="desiredAlgorithm">What algoritm wants to be</param>
+        /// <param name="fileName">Path to the file</param>
+        /// <param name="inputFileIsInPlainText">Is input file in plain text or hashed</param>
+        /// <param name="token">Cancellation Token</param>
+        /// <param name="timeToStopAttack">Time set (0 means never)</param>
+        /// <param name="maxAttempts">Max attempts (0 means no limit)</param>
+        /// <returns></returns>
+        private Task<bool> SingleThreadRainbowTableAttack(
             string userInputHash,
             Hasher.HashingAlgorithm fileAlgorithm,
             Hasher.HashingAlgorithm desiredAlgorithm,
@@ -122,6 +147,15 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Tries one single line
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="userInputHash"></param>
+        /// <param name="desiredAlgorithm"></param>
+        /// <param name="inputFileIsInPlainText"></param>
+        /// <param name="linesProcessed"></param>
+        /// <returns></returns>
         private bool ProcessLine(
             string line,
             string userInputHash,
@@ -136,6 +170,14 @@ namespace HashTester
             return hashedLine == userInputHash;
         }        
 
+
+        /// <summary>
+        /// Tries to get the algorithm from the input file
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="inputFileIsInPlainText"></param>
+        /// <param name="continueTheAttack">Returns false if the file is not a rainbow table file</param>
+        /// <param name="fileAlgorithm">Returns what the algorithm is</param>
         private void GetFileAlgorithm(
             string line,
             out bool inputFileIsInPlainText,
@@ -173,6 +215,13 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Unused piece of code
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="userAlgorithm"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         private async Task<(bool Success, string[] TempFilesPath)> SplitFile(string fileName, string userAlgorithm, CancellationTokenSource token)
         {
             long totalLinesInFile = File.ReadLines(fileName).LongCount();
@@ -235,6 +284,10 @@ namespace HashTester
         }
 
 
+        /// <summary>
+        /// Deletes all temporary files
+        /// </summary>
+        /// <param name="paths"></param>
         private void DeleteAllTempFiles(string[] paths)
         {
             foreach (string path in paths)
@@ -243,11 +296,18 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Deletes one file
+        /// </summary>
+        /// <param name="path"></param>
         private void DeleteTempFile(string path)
         {
             if (File.Exists(path)) File.Delete(path);
         }
 
+        /// <summary>
+        /// Resets values for next operation
+        /// </summary>
         private void ResetValues()
         {
             stopwatch = new Stopwatch();
@@ -266,11 +326,11 @@ namespace HashTester
 
 
         /// <summary>
-        /// Performs a Rainbow attack
+        /// Performs a Tasked Rainbow attack
         /// </summary>
         /// <param name="fileName">File path to Rainbow Table</param>
-        /// <param name="userInputHash"></param>
-        /// <param name="userAlgorithm"></param>
+        /// <param name="userInputHash">Hash</param>
+        /// <param name="userAlgorithm">What algoritm the hash is in</param>
         /// <param name="timeToStopAttack">Limit to time is not used if its 0</param>
         /// <param name="maxAttempts">Limit to attempts is not used if its 0</param>
         /// <returns></returns>
@@ -356,6 +416,10 @@ namespace HashTester
             logOutput = new ConcurrentBag<string>();
         }
 
+        /// <summary>
+        /// What spaghetti is this
+        /// </summary>
+        /// <returns></returns>
         public bool CancelTokenActive()
         {
             if (CancellationTokenSource.IsCancellationRequested) return true;

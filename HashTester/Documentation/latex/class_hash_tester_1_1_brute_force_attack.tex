@@ -1,0 +1,439 @@
+\doxysection{Hash\+Tester.\+Brute\+Force\+Attack Class Reference}
+\hypertarget{class_hash_tester_1_1_brute_force_attack}{}\label{class_hash_tester_1_1_brute_force_attack}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Big\+Integer \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a62218820042088fbf4570ae711ff58ac}{Calculate\+All\+Possible\+Combinations}} (bool variable\+Password\+Length, int password\+Lenght)
+\begin{DoxyCompactList}\small\item\em Returns all possible combinations of a "{}password"{} based on lenght, normally returns Chars pow lenght. \end{DoxyCompactList}\item 
+char\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a1c712a900a0f8743029a8cdc5879a6cd}{Select\+All\+Usable\+Chars}} (bool use\+Lower\+Case, bool use\+Upper\+Case, bool use\+Digits, bool use\+Special\+Chars)
+\begin{DoxyCompactList}\small\item\em Returns array of chars that will be used in Brute\+Force. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a65f96a5072f1510e2be9a010b8c8ddaa}{Password\+Brute\+Force}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} algorithm, bool use\+Multi\+Threading, int thread\+ID, int number\+Of\+Threads\+Used, string user\+Hash\+Input, Big\+Integer user\+Max\+Attempts, int user\+Password\+Lenght, Big\+Integer time\+To\+Stop\+Timer, Big\+Integer start\+Index, Big\+Integer end\+Index)
+\begin{DoxyCompactList}\small\item\em Starts a Task returning bool that runs Brute force attack. \end{DoxyCompactList}\item 
+async Task \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_aff8a87549e88a429829d5257c8d7e984}{Brute\+Force\+Attack\+Multi\+Thread}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} algorithm, string user\+Hash\+Input, Big\+Integer user\+Max\+Attempts, int user\+Password\+Lenght, bool variable\+Password\+Lenght, Big\+Integer time\+To\+Stop\+Timer)
+\begin{DoxyCompactList}\small\item\em User multithread \doxylink{class_hash_tester_1_1_brute_force_attack}{Brute\+Force\+Attack} starter. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_aa943077b0d8a3ca08e7726eee6b4730b}{Abort}} ()
+\begin{DoxyCompactList}\small\item\em Cancels the current operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static char\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a425a3e5eff58b5790cf4cf2a524640f6}{usable\+Chars}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Stopwatch \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}{Stopwatch}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+Big\+Integer \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a423f15fab688905c9dac03fcbb5473ee}{Number\+Of\+All\+Possible\+Combinations}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a82c52fa64e513ee269110f7d78f78f9b}{Ran\+Out\+Of\+Time}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a2cc6c81d59dd230d84321bc1a8f0e3d2}{Found\+Password}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a4ec70bdf87d028617989bfd9352d49a0}{Found\+Password\+Bool}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a16d74c14641c828bc788dc74df7a6208}{Attempts}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a8e36eb48cc252b404aa1d2520de063d8}{User\+Aborted}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ad469472f484d570d7e34d69161ed496f}{Maximum\+Lenght\+For\+Brute\+Force}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\item 
+Concurrent\+Bag$<$ string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ace3a5cea40d01dc5f859dae1be58d4d8}{Log\+Output}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ab26f7338a9742f59e82cdebbed48ddd4}{Ran\+Out\+Of\+Attemps}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a4c44848f47655fce405a22fd98b4adab}{Progress}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ae943def83dad5cf64d85b4a618e38748}{Generate\+Text}} (Big\+Integer index, char\+[$\,$]\+ all\+Possible\+Chars, int length)
+\begin{DoxyCompactList}\small\item\em Generates text combination based on lenght, chars and return a combination on the index. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a35d3fcc48ac988a93a5a126254d457f2}{Reset\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Resets all private values for \doxylink{class_hash_tester_1_1_brute_force_attack}{Brute\+Force\+Attack}. Run before new attempt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Big\+Integer \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a43ca18d523abbc186572e79f3e87b6dd}{Pow}} (long number, int exponent)
+\begin{DoxyCompactList}\small\item\em Custom Math.\+Pow method that works with Big\+Integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}{Stopwatch}} \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_adacfb190ba4835f34190166a94e66d1b}{stopwatch}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}{Stopwatch}}()
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a73fa1daefd736b524754e7671767a0d7}{found\+Password\+Bool}} = false
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a036d0153752602480bf746017631bdf3}{ran\+Out\+Of\+Time}} = false
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a178f19f8064065e0570c55d46d10374e}{found\+Password}} = "{}"{}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a3710f6d144b9a7cbc3cbcbba59f482f2}{user\+Aborted}} = false
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a15140dc15bbc0f458a3f98e060a3d7bc}{ran\+Out\+Of\+Attemps}} = false
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ad26dfe8f99e0f2fe002c8a0041afcfeb}{maximum\+Lenght\+For\+Brute\+Force}} = 20
+\item 
+Concurrent\+Bag$<$ string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_afc03ead3b3b5a8154ceb741830a18b15}{log\+Output}} = new Concurrent\+Bag$<$string$>$()
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a0f52aee43e6998be2491ad3d7cac4cfa}{hasher}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a867fd19fc0ef0cd584ea52a249b94d8f}{cancellation\+Token}} = new Cancellation\+Token\+Source()
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a94c128258be4ac5272aa8c17f6246736}{token}} = new Cancellation\+Token\+Source()
+\item 
+Big\+Integer \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a13a532d46fdecd854f125e5d010517bd}{number\+Of\+All\+Possible\+Combinations}} = 0
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ae0c5a72e33fb8146145bd66c6f945c5d}{attempts}} = 0
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_a40a9f795b3765b1772f5848d753ad5ed}{use\+Max\+Attempts}} = false
+\item 
+Big\+Integer \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_ad8d5f156d95a2f4211b0620cb963f530}{max\+Attempts}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_aa943077b0d8a3ca08e7726eee6b4730b}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!Abort@{Abort}}
+\index{Abort@{Abort}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{Abort()}{Abort()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_aa943077b0d8a3ca08e7726eee6b4730b} 
+void Hash\+Tester.\+Brute\+Force\+Attack.\+Abort (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cancels the current operation. 
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_aff8a87549e88a429829d5257c8d7e984}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!BruteForceAttackMultiThread@{BruteForceAttackMultiThread}}
+\index{BruteForceAttackMultiThread@{BruteForceAttackMultiThread}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{BruteForceAttackMultiThread()}{BruteForceAttackMultiThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_aff8a87549e88a429829d5257c8d7e984} 
+async Task Hash\+Tester.\+Brute\+Force\+Attack.\+Brute\+Force\+Attack\+Multi\+Thread (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{string}]{user\+Hash\+Input}{, }\item[{Big\+Integer}]{user\+Max\+Attempts}{, }\item[{int}]{user\+Password\+Lenght}{, }\item[{bool}]{variable\+Password\+Lenght}{, }\item[{Big\+Integer}]{time\+To\+Stop\+Timer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+User multithread \doxylink{class_hash_tester_1_1_brute_force_attack}{Brute\+Force\+Attack} starter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & \\
+\hline
+{\em user\+Hash\+Input} & \\
+\hline
+{\em user\+Max\+Attempts} & \\
+\hline
+{\em user\+Password\+Lenght} & \\
+\hline
+{\em variable\+Password\+Lenght} & \\
+\hline
+{\em time\+To\+Stop\+Timer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a62218820042088fbf4570ae711ff58ac}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!CalculateAllPossibleCombinations@{CalculateAllPossibleCombinations}}
+\index{CalculateAllPossibleCombinations@{CalculateAllPossibleCombinations}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{CalculateAllPossibleCombinations()}{CalculateAllPossibleCombinations()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a62218820042088fbf4570ae711ff58ac} 
+Big\+Integer Hash\+Tester.\+Brute\+Force\+Attack.\+Calculate\+All\+Possible\+Combinations (\begin{DoxyParamCaption}\item[{bool}]{variable\+Password\+Length}{, }\item[{int}]{password\+Lenght}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns all possible combinations of a "{}password"{} based on lenght, normally returns Chars pow lenght. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable\+Password\+Length} & Goes from 1 to maximum\+Lenght\+For\+Brute\+Force (readonly var in \doxylink{class_hash_tester_1_1_brute_force_attack}{Brute\+Force\+Attack})\\
+\hline
+{\em password\+Lenght} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ae943def83dad5cf64d85b4a618e38748}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!GenerateText@{GenerateText}}
+\index{GenerateText@{GenerateText}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{GenerateText()}{GenerateText()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ae943def83dad5cf64d85b4a618e38748} 
+string Hash\+Tester.\+Brute\+Force\+Attack.\+Generate\+Text (\begin{DoxyParamCaption}\item[{Big\+Integer}]{index}{, }\item[{char\+[$\,$]\+}]{all\+Possible\+Chars}{, }\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates text combination based on lenght, chars and return a combination on the index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Big\+Int based index from 0 to unlimited\\
+\hline
+{\em all\+Possible\+Chars} & All possible characters used\\
+\hline
+{\em length} & Lenght of the word\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a65f96a5072f1510e2be9a010b8c8ddaa}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!PasswordBruteForce@{PasswordBruteForce}}
+\index{PasswordBruteForce@{PasswordBruteForce}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{PasswordBruteForce()}{PasswordBruteForce()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a65f96a5072f1510e2be9a010b8c8ddaa} 
+Task$<$ bool $>$ Hash\+Tester.\+Brute\+Force\+Attack.\+Password\+Brute\+Force (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{bool}]{use\+Multi\+Threading}{, }\item[{int}]{thread\+ID}{, }\item[{int}]{number\+Of\+Threads\+Used}{, }\item[{string}]{user\+Hash\+Input}{, }\item[{Big\+Integer}]{user\+Max\+Attempts}{, }\item[{int}]{user\+Password\+Lenght}{, }\item[{Big\+Integer}]{time\+To\+Stop\+Timer}{, }\item[{Big\+Integer}]{start\+Index}{, }\item[{Big\+Integer}]{end\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Starts a Task returning bool that runs Brute force attack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & Hashing algorithm\\
+\hline
+{\em use\+Multi\+Threading} & Turns multithreading on/\+off\\
+\hline
+{\em thread\+ID} & Every thread used in multi\+Threading should have different ID (from 0 to {\itshape number\+Of\+Threads})\\
+\hline
+{\em number\+Of\+Threads\+Used} & Number of all threads used\\
+\hline
+{\em user\+Hash\+Input} & Hash value we want to Brute\+Force\\
+\hline
+{\em user\+Max\+Attempts} & Sets a limit on how many attempts may be used\\
+\hline
+{\em user\+Password\+Lenght} & Password lenght of the hash (0 means unknown)\\
+\hline
+{\em time\+To\+Stop\+Timer} & Sets a time limit for how long the operation can work (in seconds)\\
+\hline
+{\em start\+Index} & Start index of a thread (From where to start)\\
+\hline
+{\em end\+Index} & End index of a thread (where to stop)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a43ca18d523abbc186572e79f3e87b6dd}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!Pow@{Pow}}
+\index{Pow@{Pow}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{Pow()}{Pow()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a43ca18d523abbc186572e79f3e87b6dd} 
+Big\+Integer Hash\+Tester.\+Brute\+Force\+Attack.\+Pow (\begin{DoxyParamCaption}\item[{long}]{number}{, }\item[{int}]{exponent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Custom Math.\+Pow method that works with Big\+Integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & \\
+\hline
+{\em exponent} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a35d3fcc48ac988a93a5a126254d457f2}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!ResetValue@{ResetValue}}
+\index{ResetValue@{ResetValue}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{ResetValue()}{ResetValue()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a35d3fcc48ac988a93a5a126254d457f2} 
+void Hash\+Tester.\+Brute\+Force\+Attack.\+Reset\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets all private values for \doxylink{class_hash_tester_1_1_brute_force_attack}{Brute\+Force\+Attack}. Run before new attempt. 
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a1c712a900a0f8743029a8cdc5879a6cd}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!SelectAllUsableChars@{SelectAllUsableChars}}
+\index{SelectAllUsableChars@{SelectAllUsableChars}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{SelectAllUsableChars()}{SelectAllUsableChars()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a1c712a900a0f8743029a8cdc5879a6cd} 
+char\+[$\,$]\+ Hash\+Tester.\+Brute\+Force\+Attack.\+Select\+All\+Usable\+Chars (\begin{DoxyParamCaption}\item[{bool}]{use\+Lower\+Case}{, }\item[{bool}]{use\+Upper\+Case}{, }\item[{bool}]{use\+Digits}{, }\item[{bool}]{use\+Special\+Chars}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns array of chars that will be used in Brute\+Force. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Lower\+Case} & \\
+\hline
+{\em use\+Upper\+Case} & \\
+\hline
+{\em use\+Digits} & \\
+\hline
+{\em use\+Special\+Chars} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ae0c5a72e33fb8146145bd66c6f945c5d}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!attempts@{attempts}}
+\index{attempts@{attempts}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{attempts}{attempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ae0c5a72e33fb8146145bd66c6f945c5d} 
+long Hash\+Tester.\+Brute\+Force\+Attack.\+attempts = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a867fd19fc0ef0cd584ea52a249b94d8f}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!cancellationToken@{cancellationToken}}
+\index{cancellationToken@{cancellationToken}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{cancellationToken}{cancellationToken}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a867fd19fc0ef0cd584ea52a249b94d8f} 
+Cancellation\+Token\+Source Hash\+Tester.\+Brute\+Force\+Attack.\+cancellation\+Token = new Cancellation\+Token\+Source()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a178f19f8064065e0570c55d46d10374e}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!foundPassword@{foundPassword}}
+\index{foundPassword@{foundPassword}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{foundPassword}{foundPassword}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a178f19f8064065e0570c55d46d10374e} 
+string Hash\+Tester.\+Brute\+Force\+Attack.\+found\+Password = "{}"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a73fa1daefd736b524754e7671767a0d7}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!foundPasswordBool@{foundPasswordBool}}
+\index{foundPasswordBool@{foundPasswordBool}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{foundPasswordBool}{foundPasswordBool}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a73fa1daefd736b524754e7671767a0d7} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+found\+Password\+Bool = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a0f52aee43e6998be2491ad3d7cac4cfa}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!hasher@{hasher}}
+\index{hasher@{hasher}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{hasher}{hasher}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a0f52aee43e6998be2491ad3d7cac4cfa} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} Hash\+Tester.\+Brute\+Force\+Attack.\+hasher = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_afc03ead3b3b5a8154ceb741830a18b15}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!logOutput@{logOutput}}
+\index{logOutput@{logOutput}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{logOutput}{logOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_afc03ead3b3b5a8154ceb741830a18b15} 
+Concurrent\+Bag$<$string$>$ Hash\+Tester.\+Brute\+Force\+Attack.\+log\+Output = new Concurrent\+Bag$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ad8d5f156d95a2f4211b0620cb963f530}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!maxAttempts@{maxAttempts}}
+\index{maxAttempts@{maxAttempts}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{maxAttempts}{maxAttempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ad8d5f156d95a2f4211b0620cb963f530} 
+Big\+Integer Hash\+Tester.\+Brute\+Force\+Attack.\+max\+Attempts = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ad26dfe8f99e0f2fe002c8a0041afcfeb}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!maximumLenghtForBruteForce@{maximumLenghtForBruteForce}}
+\index{maximumLenghtForBruteForce@{maximumLenghtForBruteForce}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{maximumLenghtForBruteForce}{maximumLenghtForBruteForce}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ad26dfe8f99e0f2fe002c8a0041afcfeb} 
+int Hash\+Tester.\+Brute\+Force\+Attack.\+maximum\+Lenght\+For\+Brute\+Force = 20\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a13a532d46fdecd854f125e5d010517bd}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!numberOfAllPossibleCombinations@{numberOfAllPossibleCombinations}}
+\index{numberOfAllPossibleCombinations@{numberOfAllPossibleCombinations}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{numberOfAllPossibleCombinations}{numberOfAllPossibleCombinations}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a13a532d46fdecd854f125e5d010517bd} 
+Big\+Integer Hash\+Tester.\+Brute\+Force\+Attack.\+number\+Of\+All\+Possible\+Combinations = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a15140dc15bbc0f458a3f98e060a3d7bc}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!ranOutOfAttemps@{ranOutOfAttemps}}
+\index{ranOutOfAttemps@{ranOutOfAttemps}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{ranOutOfAttemps}{ranOutOfAttemps}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a15140dc15bbc0f458a3f98e060a3d7bc} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+ran\+Out\+Of\+Attemps = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a036d0153752602480bf746017631bdf3}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!ranOutOfTime@{ranOutOfTime}}
+\index{ranOutOfTime@{ranOutOfTime}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{ranOutOfTime}{ranOutOfTime}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a036d0153752602480bf746017631bdf3} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+ran\+Out\+Of\+Time = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_adacfb190ba4835f34190166a94e66d1b}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!stopwatch@{stopwatch}}
+\index{stopwatch@{stopwatch}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{stopwatch}{stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_adacfb190ba4835f34190166a94e66d1b} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}{Stopwatch}} Hash\+Tester.\+Brute\+Force\+Attack.\+stopwatch = new \doxymbox{\hyperlink{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}{Stopwatch}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a94c128258be4ac5272aa8c17f6246736}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!token@{token}}
+\index{token@{token}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a94c128258be4ac5272aa8c17f6246736} 
+Cancellation\+Token\+Source Hash\+Tester.\+Brute\+Force\+Attack.\+token = new Cancellation\+Token\+Source()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a425a3e5eff58b5790cf4cf2a524640f6}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!usableChars@{usableChars}}
+\index{usableChars@{usableChars}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{usableChars}{usableChars}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a425a3e5eff58b5790cf4cf2a524640f6} 
+char \+[$\,$]\+ Hash\+Tester.\+Brute\+Force\+Attack.\+usable\+Chars\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a40a9f795b3765b1772f5848d753ad5ed}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!useMaxAttempts@{useMaxAttempts}}
+\index{useMaxAttempts@{useMaxAttempts}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{useMaxAttempts}{useMaxAttempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a40a9f795b3765b1772f5848d753ad5ed} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+use\+Max\+Attempts = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a3710f6d144b9a7cbc3cbcbba59f482f2}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!userAborted@{userAborted}}
+\index{userAborted@{userAborted}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{userAborted}{userAborted}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a3710f6d144b9a7cbc3cbcbba59f482f2} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+user\+Aborted = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a16d74c14641c828bc788dc74df7a6208}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!Attempts@{Attempts}}
+\index{Attempts@{Attempts}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{Attempts}{Attempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a16d74c14641c828bc788dc74df7a6208} 
+long Hash\+Tester.\+Brute\+Force\+Attack.\+Attempts\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a2cc6c81d59dd230d84321bc1a8f0e3d2}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!FoundPassword@{FoundPassword}}
+\index{FoundPassword@{FoundPassword}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{FoundPassword}{FoundPassword}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a2cc6c81d59dd230d84321bc1a8f0e3d2} 
+string Hash\+Tester.\+Brute\+Force\+Attack.\+Found\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a4ec70bdf87d028617989bfd9352d49a0}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!FoundPasswordBool@{FoundPasswordBool}}
+\index{FoundPasswordBool@{FoundPasswordBool}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{FoundPasswordBool}{FoundPasswordBool}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a4ec70bdf87d028617989bfd9352d49a0} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+Found\+Password\+Bool\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ace3a5cea40d01dc5f859dae1be58d4d8}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!LogOutput@{LogOutput}}
+\index{LogOutput@{LogOutput}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{LogOutput}{LogOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ace3a5cea40d01dc5f859dae1be58d4d8} 
+Concurrent\+Bag$<$string$>$ Hash\+Tester.\+Brute\+Force\+Attack.\+Log\+Output\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ad469472f484d570d7e34d69161ed496f}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!MaximumLenghtForBruteForce@{MaximumLenghtForBruteForce}}
+\index{MaximumLenghtForBruteForce@{MaximumLenghtForBruteForce}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{MaximumLenghtForBruteForce}{MaximumLenghtForBruteForce}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ad469472f484d570d7e34d69161ed496f} 
+int Hash\+Tester.\+Brute\+Force\+Attack.\+Maximum\+Lenght\+For\+Brute\+Force\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a423f15fab688905c9dac03fcbb5473ee}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!NumberOfAllPossibleCombinations@{NumberOfAllPossibleCombinations}}
+\index{NumberOfAllPossibleCombinations@{NumberOfAllPossibleCombinations}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{NumberOfAllPossibleCombinations}{NumberOfAllPossibleCombinations}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a423f15fab688905c9dac03fcbb5473ee} 
+Big\+Integer Hash\+Tester.\+Brute\+Force\+Attack.\+Number\+Of\+All\+Possible\+Combinations\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a4c44848f47655fce405a22fd98b4adab}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!Progress@{Progress}}
+\index{Progress@{Progress}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{Progress}{Progress}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a4c44848f47655fce405a22fd98b4adab} 
+int Hash\+Tester.\+Brute\+Force\+Attack.\+Progress\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_ab26f7338a9742f59e82cdebbed48ddd4}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!RanOutOfAttemps@{RanOutOfAttemps}}
+\index{RanOutOfAttemps@{RanOutOfAttemps}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{RanOutOfAttemps}{RanOutOfAttemps}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_ab26f7338a9742f59e82cdebbed48ddd4} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+Ran\+Out\+Of\+Attemps\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a82c52fa64e513ee269110f7d78f78f9b}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!RanOutOfTime@{RanOutOfTime}}
+\index{RanOutOfTime@{RanOutOfTime}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{RanOutOfTime}{RanOutOfTime}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a82c52fa64e513ee269110f7d78f78f9b} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+Ran\+Out\+Of\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!Stopwatch@{Stopwatch}}
+\index{Stopwatch@{Stopwatch}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{Stopwatch}{Stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_af4f1e5dac3081aaa5da0e3df39b81ec5} 
+Stopwatch Hash\+Tester.\+Brute\+Force\+Attack.\+Stopwatch\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_brute_force_attack_a8e36eb48cc252b404aa1d2520de063d8}\index{HashTester.BruteForceAttack@{HashTester.BruteForceAttack}!UserAborted@{UserAborted}}
+\index{UserAborted@{UserAborted}!HashTester.BruteForceAttack@{HashTester.BruteForceAttack}}
+\doxysubsubsection{\texorpdfstring{UserAborted}{UserAborted}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_brute_force_attack_a8e36eb48cc252b404aa1d2520de063d8} 
+bool Hash\+Tester.\+Brute\+Force\+Attack.\+User\+Aborted\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_brute_force_attack_8cs}{Brute\+Force\+Attack.\+cs}}\end{DoxyCompactItemize}

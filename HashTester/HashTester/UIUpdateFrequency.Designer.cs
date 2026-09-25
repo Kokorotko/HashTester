@@ -59,9 +59,10 @@ namespace HashTester
             this.labelQuestion.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelQuestion, 6);
             this.labelQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelQuestion.Location = new System.Drawing.Point(3, 0);
+            this.labelQuestion.Location = new System.Drawing.Point(4, 0);
+            this.labelQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(463, 23);
+            this.labelQuestion.Size = new System.Drawing.Size(617, 28);
             this.labelQuestion.TabIndex = 0;
             this.labelQuestion.Text = "How many times a second do you want to update the UI (for specific operations)";
             this.labelQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -70,9 +71,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxMiliseconds, 3);
             this.textBoxMiliseconds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxMiliseconds.Location = new System.Drawing.Point(237, 49);
+            this.textBoxMiliseconds.Location = new System.Drawing.Point(316, 60);
+            this.textBoxMiliseconds.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiliseconds.Name = "textBoxMiliseconds";
-            this.textBoxMiliseconds.Size = new System.Drawing.Size(229, 20);
+            this.textBoxMiliseconds.Size = new System.Drawing.Size(305, 22);
             this.textBoxMiliseconds.TabIndex = 2;
             this.textBoxMiliseconds.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -80,9 +82,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.buttonSave, 2);
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSave.Location = new System.Drawing.Point(3, 279);
+            this.buttonSave.Location = new System.Drawing.Point(4, 341);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(150, 20);
+            this.buttonSave.Size = new System.Drawing.Size(200, 27);
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -93,9 +96,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonCancel, 2);
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCancel.Location = new System.Drawing.Point(315, 279);
+            this.buttonCancel.Location = new System.Drawing.Point(420, 341);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(151, 20);
+            this.buttonCancel.Size = new System.Drawing.Size(201, 27);
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -104,9 +108,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.buttonDefault, 2);
             this.buttonDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonDefault.Location = new System.Drawing.Point(159, 279);
+            this.buttonDefault.Location = new System.Drawing.Point(212, 341);
+            this.buttonDefault.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDefault.Name = "buttonDefault";
-            this.buttonDefault.Size = new System.Drawing.Size(150, 20);
+            this.buttonDefault.Size = new System.Drawing.Size(200, 27);
             this.buttonDefault.TabIndex = 5;
             this.buttonDefault.Text = "Default";
             this.buttonDefault.UseVisualStyleBackColor = true;
@@ -117,22 +122,23 @@ namespace HashTester
             this.labelInfo2.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelInfo2, 6);
             this.labelInfo2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelInfo2.Location = new System.Drawing.Point(3, 253);
+            this.labelInfo2.Location = new System.Drawing.Point(4, 309);
+            this.labelInfo2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelInfo2.Name = "labelInfo2";
-            this.labelInfo2.Size = new System.Drawing.Size(463, 23);
+            this.labelInfo2.Size = new System.Drawing.Size(617, 28);
             this.labelInfo2.TabIndex = 6;
             this.labelInfo2.Text = "*Higher frequency can cause performance issues";
             this.labelInfo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelInfo2.Click += new System.EventHandler(this.labelInfo2_Click);
             // 
             // labelRangeT
             // 
             this.labelRangeT.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelRangeT, 3);
             this.labelRangeT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelRangeT.Location = new System.Drawing.Point(237, 92);
+            this.labelRangeT.Location = new System.Drawing.Point(316, 113);
+            this.labelRangeT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRangeT.Name = "labelRangeT";
-            this.labelRangeT.Size = new System.Drawing.Size(229, 23);
+            this.labelRangeT.Size = new System.Drawing.Size(305, 28);
             this.labelRangeT.TabIndex = 10;
             this.labelRangeT.Text = "Please set numbers from 8 to 1000";
             // 
@@ -141,9 +147,10 @@ namespace HashTester
             this.radioButton6.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton6, 3);
             this.radioButton6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton6.Location = new System.Drawing.Point(237, 210);
+            this.radioButton6.Location = new System.Drawing.Point(316, 257);
+            this.radioButton6.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(229, 17);
+            this.radioButton6.Size = new System.Drawing.Size(305, 20);
             this.radioButton6.TabIndex = 19;
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "50ms (20fps)";
@@ -155,9 +162,10 @@ namespace HashTester
             this.radioButton7.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton7, 3);
             this.radioButton7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton7.Location = new System.Drawing.Point(237, 187);
+            this.radioButton7.Location = new System.Drawing.Point(316, 229);
+            this.radioButton7.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(229, 17);
+            this.radioButton7.Size = new System.Drawing.Size(305, 20);
             this.radioButton7.TabIndex = 18;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "100ms (10fps)";
@@ -169,9 +177,10 @@ namespace HashTester
             this.radioButton8.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton8, 3);
             this.radioButton8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton8.Location = new System.Drawing.Point(237, 164);
+            this.radioButton8.Location = new System.Drawing.Point(316, 201);
+            this.radioButton8.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(229, 17);
+            this.radioButton8.Size = new System.Drawing.Size(305, 20);
             this.radioButton8.TabIndex = 17;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "250ms (4 fps)";
@@ -183,9 +192,10 @@ namespace HashTester
             this.radioButton9.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton9, 3);
             this.radioButton9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton9.Location = new System.Drawing.Point(237, 141);
+            this.radioButton9.Location = new System.Drawing.Point(316, 173);
+            this.radioButton9.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(229, 17);
+            this.radioButton9.Size = new System.Drawing.Size(305, 20);
             this.radioButton9.TabIndex = 16;
             this.radioButton9.TabStop = true;
             this.radioButton9.Text = "500ms (2fps)";
@@ -197,9 +207,10 @@ namespace HashTester
             this.radioButton10.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton10, 3);
             this.radioButton10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton10.Location = new System.Drawing.Point(237, 118);
+            this.radioButton10.Location = new System.Drawing.Point(316, 145);
+            this.radioButton10.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(229, 17);
+            this.radioButton10.Size = new System.Drawing.Size(305, 20);
             this.radioButton10.TabIndex = 15;
             this.radioButton10.TabStop = true;
             this.radioButton10.Text = "1000ms (1fps)";
@@ -211,9 +222,10 @@ namespace HashTester
             this.labelInfo.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelInfo, 6);
             this.labelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelInfo.Location = new System.Drawing.Point(3, 230);
+            this.labelInfo.Location = new System.Drawing.Point(4, 281);
+            this.labelInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(463, 23);
+            this.labelInfo.Size = new System.Drawing.Size(617, 28);
             this.labelInfo.TabIndex = 13;
             this.labelInfo.Text = "*Know that miliseconds are prefered by the computer";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,9 +235,10 @@ namespace HashTester
             this.labelRangeFPS.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelRangeFPS, 3);
             this.labelRangeFPS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelRangeFPS.Location = new System.Drawing.Point(3, 92);
+            this.labelRangeFPS.Location = new System.Drawing.Point(4, 113);
+            this.labelRangeFPS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRangeFPS.Name = "labelRangeFPS";
-            this.labelRangeFPS.Size = new System.Drawing.Size(228, 23);
+            this.labelRangeFPS.Size = new System.Drawing.Size(304, 28);
             this.labelRangeFPS.TabIndex = 9;
             this.labelRangeFPS.Text = "Please set numbers from 1 to 125";
             // 
@@ -233,9 +246,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxFPS, 3);
             this.textBoxFPS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxFPS.Location = new System.Drawing.Point(3, 49);
+            this.textBoxFPS.Location = new System.Drawing.Point(4, 60);
+            this.textBoxFPS.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFPS.Name = "textBoxFPS";
-            this.textBoxFPS.Size = new System.Drawing.Size(228, 20);
+            this.textBoxFPS.Size = new System.Drawing.Size(304, 22);
             this.textBoxFPS.TabIndex = 1;
             this.textBoxFPS.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -244,9 +258,10 @@ namespace HashTester
             this.radioButton1.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton1, 3);
             this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton1.Location = new System.Drawing.Point(3, 118);
+            this.radioButton1.Location = new System.Drawing.Point(4, 145);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(228, 17);
+            this.radioButton1.Size = new System.Drawing.Size(304, 20);
             this.radioButton1.TabIndex = 10;
             this.radioButton1.Text = "12 fps";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -257,9 +272,10 @@ namespace HashTester
             this.radioButton2.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton2, 3);
             this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton2.Location = new System.Drawing.Point(3, 141);
+            this.radioButton2.Location = new System.Drawing.Point(4, 173);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(228, 17);
+            this.radioButton2.Size = new System.Drawing.Size(304, 20);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.Text = "24 fps";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -271,9 +287,10 @@ namespace HashTester
             this.radioButton3.Checked = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton3, 3);
             this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton3.Location = new System.Drawing.Point(3, 164);
+            this.radioButton3.Location = new System.Drawing.Point(4, 201);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(228, 17);
+            this.radioButton3.Size = new System.Drawing.Size(304, 20);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "30 fps";
@@ -285,9 +302,10 @@ namespace HashTester
             this.radioButton4.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton4, 3);
             this.radioButton4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton4.Location = new System.Drawing.Point(3, 187);
+            this.radioButton4.Location = new System.Drawing.Point(4, 229);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(228, 17);
+            this.radioButton4.Size = new System.Drawing.Size(304, 20);
             this.radioButton4.TabIndex = 13;
             this.radioButton4.Text = "60 fps";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -298,9 +316,10 @@ namespace HashTester
             this.radioButton5.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.radioButton5, 3);
             this.radioButton5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton5.Location = new System.Drawing.Point(3, 210);
+            this.radioButton5.Location = new System.Drawing.Point(4, 257);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(228, 17);
+            this.radioButton5.Size = new System.Drawing.Size(304, 20);
             this.radioButton5.TabIndex = 14;
             this.radioButton5.Text = "125 fps";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -311,9 +330,10 @@ namespace HashTester
             this.labelFPS.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelFPS, 3);
             this.labelFPS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFPS.Location = new System.Drawing.Point(3, 23);
+            this.labelFPS.Location = new System.Drawing.Point(4, 28);
+            this.labelFPS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFPS.Name = "labelFPS";
-            this.labelFPS.Size = new System.Drawing.Size(228, 23);
+            this.labelFPS.Size = new System.Drawing.Size(304, 28);
             this.labelFPS.TabIndex = 15;
             this.labelFPS.Text = "Target Frames per Second (FPS)";
             this.labelFPS.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -323,9 +343,10 @@ namespace HashTester
             this.labelTimeToUpdate.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelTimeToUpdate, 3);
             this.labelTimeToUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTimeToUpdate.Location = new System.Drawing.Point(237, 23);
+            this.labelTimeToUpdate.Location = new System.Drawing.Point(316, 28);
+            this.labelTimeToUpdate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTimeToUpdate.Name = "labelTimeToUpdate";
-            this.labelTimeToUpdate.Size = new System.Drawing.Size(229, 23);
+            this.labelTimeToUpdate.Size = new System.Drawing.Size(305, 28);
             this.labelTimeToUpdate.TabIndex = 20;
             this.labelTimeToUpdate.Text = "Every x miliseconds";
             this.labelTimeToUpdate.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -363,6 +384,7 @@ namespace HashTester
             this.tableLayoutPanel1.Controls.Add(this.buttonSave, 0, 11);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
@@ -377,20 +399,21 @@ namespace HashTester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692307F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(469, 302);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(625, 372);
             this.tableLayoutPanel1.TabIndex = 21;
             // 
             // UIUpdateFrequency
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 302);
+            this.ClientSize = new System.Drawing.Size(625, 372);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(485, 341);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(641, 409);
             this.Name = "UIUpdateFrequency";
             this.Text = "UIUpdateFrequency";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIUpdateFrequency_FormClosing);

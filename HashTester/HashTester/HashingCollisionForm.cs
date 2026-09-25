@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: UI Form for finding hashing collisions
+ *@file: HashingCollisionForm.cs
+ */
+
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,33 +23,55 @@ namespace HashTester
     public delegate void UpdateAttemptsLabelDelegate(long attempts);
     public partial class HashingCollisionForm : Form
     {
+        /// <summary>
+        /// First method ran by the form
+        /// </summary>
         public HashingCollisionForm()
         {
             InitializeComponent();
         }
-        const int numberToNextCheckOnProbability = 10000;
+        const int numberToNextCheckOnProbability = 10000; //Can be changed
         Hasher hasher = new Hasher();
-        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32;
+        Hasher.HashingAlgorithm algorithm = Hasher.HashingAlgorithm.CRC32; //Standard algorithm
         volatile bool stopHashing = false; // Volatile for thread safety
         volatile bool foundCollision = false;
         volatile bool attemptsRanOut = false;
         volatile string textCollision01 = "";
         volatile string textCollision02 = "";
-        long maxAttempts = 0;
+        long maxAttempts = 0; //Limit for attempts
         long attempts = 0;
         long numberOfAttempsInLastUpdate = 0; //The time is 16ms
         Stopwatch stopwatch = new Stopwatch();
         private Timer timeToFindCollision = new Timer();
+
         #region Form
+
+        /// <summary>
+        /// Resets Log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
         }
+
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+
+        /// <summary>
+        /// Cancels the collision finder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             stopHashing = true;
@@ -51,15 +81,19 @@ namespace HashTester
 
         #region CollisionGenerator3000
 
-
+        /// <summary>
+        /// Main method for finding collisions. Connected to UI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonGenerateCollision_Click(object sender, EventArgs e)
         {
             //Timer for UI update
-            timeToFindCollision.Interval = Settings.UpdateUIms;
+            timeToFindCollision.Interval = Settings.UpdateUIms; //Sets up timer
             timeToFindCollision.Tick += (s, args) => UpdateTimerLabel();
+            ResetValues();
             timeToFindCollision.Start();
             TurnOffUI(this);
-            ResetValues();
             maxAttempts = (long)numericUpDown1.Value;
             if (maxAttempts > 0 && Settings.ShowLog) listBoxLog.Items.Add(Languages.Translate(Languages.L.AttemptsLimit) + ": " + maxAttempts); 
             int rngTextLenght = (int)numericUpDown2.Value;
@@ -84,7 +118,7 @@ namespace HashTester
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
                 Console.WriteLine("Max Threads: " + maxThreads);
-                for (int i = 0; i < maxThreads; i++) //multiThread
+                for (int i = 0; i < maxThreads; i++) //Starts multithread
                 {
                     int threadIndex = i;
                     Console.WriteLine("Collision Finder Multithread start");
@@ -135,7 +169,7 @@ namespace HashTester
                 catch { /*Back again?*/}
                 CollisionFoundMessageBox(message, textCollision01, textCollision02);
             }
-            else if (stopHashing)
+            else if (stopHashing) //Message for ButtonCancel
             {
                 MessageBox.Show(Languages.Translate(Languages.L.TheProcessHasBeenAbandoned), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (Settings.ShowLog)
@@ -144,7 +178,7 @@ namespace HashTester
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             }
-            else if (attemptsRanOut)
+            else if (attemptsRanOut) //Message for ran out of attempts
             {
                 MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindACollisionUnderTheGivenAttempts), Languages.Translate(Languages.L.Abandoned), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (Settings.ShowLog)
@@ -153,7 +187,7 @@ namespace HashTester
                     listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
                 }
             }
-            else
+            else //General Message
             {
                 MessageBox.Show(Languages.Translate(Languages.L.CouldNotFindCollision), Languages.Translate(Languages.L.Error), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (Settings.ShowLog)
@@ -166,7 +200,7 @@ namespace HashTester
 
 
         /// <summary>
-        /// 
+        /// Starts finding hash collision for a single thread
         /// </summary>
         /// <param name="threadNumber">Number used for random generation</param>
         /// <param name="algorithm"></param>
@@ -277,8 +311,8 @@ namespace HashTester
         /// <summary>
         /// Chance to find in next x attempts
         /// </summary>
-        /// <param name="attempts"></param>
-        /// <param name="n"></param>
+        /// <param name="attempts">Number of attempts taken</param>
+        /// <param name="n">lenght of hash</param>
         /// <returns></returns>
         double ChanceOfCollisionInWholeBatch(long attempts, double n)
         {
@@ -288,8 +322,8 @@ namespace HashTester
         /// <summary>
         /// Chance to find in next x attempts
         /// </summary>
-        /// <param name="attempts"></param>
-        /// <param name="hash"></param>
+        /// <param name="attempts">Number of attempts taken</param>
+        /// <param name="hash">Hashing algorithm used</param>
         /// <returns></returns>
         double ChanceOfCollisionInWholeBatch(long attempts, Hasher.HashingAlgorithm hash)
         {
@@ -304,7 +338,7 @@ namespace HashTester
                 case Hasher.HashingAlgorithm.CRC32: n = Math.Pow(2, 32); break;
                 default: return 0f;
             }
-            return 1.0 - Math.Exp(-(attempts * (attempts - 1)) / (2.0 * n));
+            return ChanceOfCollisionInWholeBatch(attempts, n);
         }
 
 
@@ -312,10 +346,9 @@ namespace HashTester
         /// Chance to find in next x attempts (default is 10k)
         /// </summary>
         /// <param name="currentAttempts"></param>
-        /// <param name="nextAttempts"></param>
         /// <param name="hash"></param>
         /// <returns></returns>
-        float ChanceOfCollisionInNextBatch(long currentAttempts, Hasher.HashingAlgorithm hash)
+        public float ChanceOfCollisionInNextBatch(long currentAttempts, Hasher.HashingAlgorithm hash)
         {
             double n;
             switch (hash)
@@ -341,7 +374,7 @@ namespace HashTester
         int attemptsChanceToNextProbability = 0;
 
         /// <summary>
-        /// UI updates timer
+        /// UI update timer running on X fps
         /// </summary>
         private void UpdateTimerLabel()
         {
@@ -381,7 +414,8 @@ namespace HashTester
 
 
         /// <summary>
-        /// Does exactly how it sounds
+        /// Spawns a MessageBox with collisionFoundMessage
+        /// Asks if the user would like to save it
         /// </summary>
         /// <param name="message"></param>
         /// <param name="collisionText01"></param>
@@ -422,9 +456,14 @@ namespace HashTester
             MessageBox.Show(message, Languages.Translate(Languages.L.CollisionFound), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        #endregion
+        #endregion     
 
-        #region CollisionDetection        
+        /// <summary>
+        /// Spawns a small form for checking collision
+        /// (Use SpawnForm)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckCollision_Click(object sender, EventArgs e)
         {
             CheckCollisionForm checkCollisionForm = new CheckCollisionForm();
@@ -433,8 +472,10 @@ namespace HashTester
             checkCollisionForm.Show();
         }       
 
-        #endregion
-
+        /// <summary>
+        /// Turns On UI
+        /// </summary>
+        /// <param name="control"></param>
         private void TurnOnUI(Control control)
         {
             control.Enabled = true;
@@ -465,6 +506,11 @@ namespace HashTester
             parent.Enabled = false;
         }
 
+        /// <summary>
+        /// Loads Form after a spawn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HashingCollisionForm_Load(object sender, EventArgs e) //Checks if an info.txt is already present
         {
             //StripMenu.LoadStripMenu(this);
@@ -490,10 +536,16 @@ namespace HashTester
             #endregion
             FormManagement.LoadForm(this); 
             hashSelector.SelectedIndex = 0;
+            //Checks if the info file exists
             string path = Settings.DirectoryPathToCollisions;
             if (!File.Exists(path + "_collisionInfo.txt")) Settings.InitialFolderChecker();
         }
 
+        /// <summary>
+        /// Copies the selected item in log to Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try
@@ -507,11 +559,19 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Saves Log to .txt file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
 
+        /// <summary>
+        /// Resets all important values for calculations
+        /// </summary>
         private void ResetValues()
         {
             stopHashing = false;
@@ -525,7 +585,6 @@ namespace HashTester
             stopwatch.Reset();
         }
 
-
         /// <summary>
         /// Generates random int seed (crazy I know)
         /// </summary>
@@ -536,18 +595,8 @@ namespace HashTester
             {
                 byte[] buffer = new byte[4];
                 rng.GetBytes(buffer);
-                return BitConverter.ToInt32(buffer, 0) & int.MaxValue; // Ensure positive seed
+                return BitConverter.ToInt32(buffer, 0) & int.MaxValue; // Ensure positive seed :)
             }
-        }
-
-        private void groupBoxUI_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

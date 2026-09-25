@@ -71,9 +71,10 @@ namespace HashTester
             "RipeMD-160",
             "MD5",
             "SHA1"});
-            this.hashSelector.Location = new System.Drawing.Point(3, 95);
+            this.hashSelector.Location = new System.Drawing.Point(4, 117);
+            this.hashSelector.Margin = new System.Windows.Forms.Padding(4);
             this.hashSelector.Name = "hashSelector";
-            this.hashSelector.Size = new System.Drawing.Size(90, 21);
+            this.hashSelector.Size = new System.Drawing.Size(120, 24);
             this.hashSelector.TabIndex = 9;
             // 
             // buttonGenerateCollision
@@ -81,9 +82,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonGenerateCollision, 4);
             this.buttonGenerateCollision.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonGenerateCollision.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGenerateCollision.Location = new System.Drawing.Point(3, 3);
+            this.buttonGenerateCollision.Location = new System.Drawing.Point(4, 4);
+            this.buttonGenerateCollision.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGenerateCollision.Name = "buttonGenerateCollision";
-            this.buttonGenerateCollision.Size = new System.Drawing.Size(186, 63);
+            this.buttonGenerateCollision.Size = new System.Drawing.Size(248, 77);
             this.buttonGenerateCollision.TabIndex = 10;
             this.buttonGenerateCollision.Text = "Generate a Collision";
             this.buttonGenerateCollision.UseVisualStyleBackColor = true;
@@ -95,10 +97,12 @@ namespace HashTester
             this.listBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(3, 210);
+            this.listBoxLog.ItemHeight = 17;
+            this.listBoxLog.Location = new System.Drawing.Point(4, 259);
+            this.listBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxLog.Name = "listBoxLog";
             this.tableLayoutPanel1.SetRowSpan(this.listBoxLog, 3);
-            this.listBoxLog.Size = new System.Drawing.Size(378, 178);
+            this.listBoxLog.Size = new System.Drawing.Size(504, 219);
             this.listBoxLog.TabIndex = 12;
             // 
             // buttonClearListBox
@@ -106,9 +110,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonClearListBox, 3);
             this.buttonClearListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonClearListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonClearListBox.Location = new System.Drawing.Point(3, 394);
+            this.buttonClearListBox.Location = new System.Drawing.Point(4, 486);
+            this.buttonClearListBox.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClearListBox.Name = "buttonClearListBox";
-            this.buttonClearListBox.Size = new System.Drawing.Size(138, 66);
+            this.buttonClearListBox.Size = new System.Drawing.Size(184, 80);
             this.buttonClearListBox.TabIndex = 13;
             this.buttonClearListBox.Text = "Clear Listbox";
             this.buttonClearListBox.UseVisualStyleBackColor = true;
@@ -119,9 +124,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonReturn, 3);
             this.buttonReturn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonReturn.Location = new System.Drawing.Point(435, 394);
+            this.buttonReturn.Location = new System.Drawing.Point(580, 486);
+            this.buttonReturn.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(143, 66);
+            this.buttonReturn.Size = new System.Drawing.Size(191, 80);
             this.buttonReturn.TabIndex = 14;
             this.buttonReturn.Text = "Go Back";
             this.buttonReturn.UseVisualStyleBackColor = true;
@@ -131,16 +137,16 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.numericUpDown1, 6);
             this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDown1.Location = new System.Drawing.Point(3, 164);
+            this.numericUpDown1.Location = new System.Drawing.Point(4, 202);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(282, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(376, 22);
             this.numericUpDown1.TabIndex = 15;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // labelMaxAttempts
             // 
@@ -148,9 +154,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.labelMaxAttempts, 6);
             this.labelMaxAttempts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelMaxAttempts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMaxAttempts.Location = new System.Drawing.Point(3, 138);
+            this.labelMaxAttempts.Location = new System.Drawing.Point(4, 170);
+            this.labelMaxAttempts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMaxAttempts.Name = "labelMaxAttempts";
-            this.labelMaxAttempts.Size = new System.Drawing.Size(282, 23);
+            this.labelMaxAttempts.Size = new System.Drawing.Size(376, 28);
             this.labelMaxAttempts.TabIndex = 16;
             this.labelMaxAttempts.Text = "Maximum Attempts";
             this.labelMaxAttempts.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -159,9 +166,10 @@ namespace HashTester
             // 
             this.labelTimer.AutoSize = true;
             this.labelTimer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTimer.Location = new System.Drawing.Point(3, 0);
+            this.labelTimer.Location = new System.Drawing.Point(4, 0);
+            this.labelTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(275, 18);
+            this.labelTimer.Size = new System.Drawing.Size(367, 23);
             this.labelTimer.TabIndex = 17;
             this.labelTimer.Text = "Timer: ";
             this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,9 +179,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonAbort, 4);
             this.buttonAbort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAbort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAbort.Location = new System.Drawing.Point(387, 3);
+            this.buttonAbort.Location = new System.Drawing.Point(516, 4);
+            this.buttonAbort.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAbort.Name = "buttonAbort";
-            this.buttonAbort.Size = new System.Drawing.Size(191, 63);
+            this.buttonAbort.Size = new System.Drawing.Size(255, 77);
             this.buttonAbort.TabIndex = 18;
             this.buttonAbort.Text = "Cancel The Process";
             this.buttonAbort.UseVisualStyleBackColor = true;
@@ -185,9 +194,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.labelLenght, 4);
             this.labelLenght.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelLenght.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelLenght.Location = new System.Drawing.Point(99, 69);
+            this.labelLenght.Location = new System.Drawing.Point(132, 85);
+            this.labelLenght.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLenght.Name = "labelLenght";
-            this.labelLenght.Size = new System.Drawing.Size(186, 23);
+            this.labelLenght.Size = new System.Drawing.Size(248, 28);
             this.labelLenght.TabIndex = 20;
             this.labelLenght.Text = "Lenght";
             this.labelLenght.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -196,14 +206,15 @@ namespace HashTester
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.numericUpDown2, 4);
             this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDown2.Location = new System.Drawing.Point(99, 95);
+            this.numericUpDown2.Location = new System.Drawing.Point(132, 117);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(186, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(248, 22);
             this.numericUpDown2.TabIndex = 19;
             this.numericUpDown2.Value = new decimal(new int[] {
             10,
@@ -215,9 +226,10 @@ namespace HashTester
             // 
             this.labelAttempts.AutoSize = true;
             this.labelAttempts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAttempts.Location = new System.Drawing.Point(3, 18);
+            this.labelAttempts.Location = new System.Drawing.Point(4, 23);
+            this.labelAttempts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAttempts.Name = "labelAttempts";
-            this.labelAttempts.Size = new System.Drawing.Size(275, 18);
+            this.labelAttempts.Size = new System.Drawing.Size(367, 23);
             this.labelAttempts.TabIndex = 21;
             this.labelAttempts.Text = "Number of attempts: ";
             this.labelAttempts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -226,9 +238,10 @@ namespace HashTester
             // 
             this.labelCurrentSpeed.AutoSize = true;
             this.labelCurrentSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCurrentSpeed.Location = new System.Drawing.Point(3, 36);
+            this.labelCurrentSpeed.Location = new System.Drawing.Point(4, 46);
+            this.labelCurrentSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCurrentSpeed.Name = "labelCurrentSpeed";
-            this.labelCurrentSpeed.Size = new System.Drawing.Size(275, 18);
+            this.labelCurrentSpeed.Size = new System.Drawing.Size(367, 23);
             this.labelCurrentSpeed.TabIndex = 22;
             this.labelCurrentSpeed.Text = "Hashes per sec:";
             this.labelCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -237,9 +250,10 @@ namespace HashTester
             // 
             this.labelAverageSpeed.AutoSize = true;
             this.labelAverageSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAverageSpeed.Location = new System.Drawing.Point(3, 54);
+            this.labelAverageSpeed.Location = new System.Drawing.Point(4, 69);
+            this.labelAverageSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAverageSpeed.Name = "labelAverageSpeed";
-            this.labelAverageSpeed.Size = new System.Drawing.Size(275, 18);
+            this.labelAverageSpeed.Size = new System.Drawing.Size(367, 23);
             this.labelAverageSpeed.TabIndex = 24;
             this.labelAverageSpeed.Text = "Average speed: ";
             this.labelAverageSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -251,9 +265,10 @@ namespace HashTester
             this.checkBoxUseHex.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBoxUseHex, 4);
             this.checkBoxUseHex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxUseHex.Location = new System.Drawing.Point(387, 210);
+            this.checkBoxUseHex.Location = new System.Drawing.Point(516, 259);
+            this.checkBoxUseHex.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxUseHex.Name = "checkBoxUseHex";
-            this.checkBoxUseHex.Size = new System.Drawing.Size(191, 17);
+            this.checkBoxUseHex.Size = new System.Drawing.Size(255, 20);
             this.checkBoxUseHex.TabIndex = 26;
             this.checkBoxUseHex.Text = "Use HEX to display text";
             this.checkBoxUseHex.UseVisualStyleBackColor = true;
@@ -263,9 +278,10 @@ namespace HashTester
             this.checkBoxPerformanceMode.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBoxPerformanceMode, 4);
             this.checkBoxPerformanceMode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(387, 233);
+            this.checkBoxPerformanceMode.Location = new System.Drawing.Point(516, 287);
+            this.checkBoxPerformanceMode.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPerformanceMode.Name = "checkBoxPerformanceMode";
-            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(191, 17);
+            this.checkBoxPerformanceMode.Size = new System.Drawing.Size(255, 20);
             this.checkBoxPerformanceMode.TabIndex = 27;
             this.checkBoxPerformanceMode.Text = "PerformanceMode";
             this.checkBoxPerformanceMode.UseVisualStyleBackColor = true;
@@ -275,9 +291,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonCheckCollision, 4);
             this.buttonCheckCollision.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCheckCollision.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonCheckCollision.Location = new System.Drawing.Point(195, 3);
+            this.buttonCheckCollision.Location = new System.Drawing.Point(260, 4);
+            this.buttonCheckCollision.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCheckCollision.Name = "buttonCheckCollision";
-            this.buttonCheckCollision.Size = new System.Drawing.Size(186, 63);
+            this.buttonCheckCollision.Size = new System.Drawing.Size(248, 77);
             this.buttonCheckCollision.TabIndex = 28;
             this.buttonCheckCollision.Text = "Check a collision";
             this.buttonCheckCollision.UseVisualStyleBackColor = true;
@@ -288,9 +305,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonSaveLog, 3);
             this.buttonSaveLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonSaveLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveLog.Location = new System.Drawing.Point(147, 394);
+            this.buttonSaveLog.Location = new System.Drawing.Point(196, 486);
+            this.buttonSaveLog.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveLog.Name = "buttonSaveLog";
-            this.buttonSaveLog.Size = new System.Drawing.Size(138, 66);
+            this.buttonSaveLog.Size = new System.Drawing.Size(184, 80);
             this.buttonSaveLog.TabIndex = 29;
             this.buttonSaveLog.Text = "Save Log";
             this.buttonSaveLog.UseVisualStyleBackColor = true;
@@ -301,9 +319,10 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.buttonClipboard, 3);
             this.buttonClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonClipboard.Location = new System.Drawing.Point(291, 394);
+            this.buttonClipboard.Location = new System.Drawing.Point(388, 486);
+            this.buttonClipboard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(138, 66);
+            this.buttonClipboard.Size = new System.Drawing.Size(184, 80);
             this.buttonClipboard.TabIndex = 30;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
@@ -314,14 +333,15 @@ namespace HashTester
             this.tableLayoutPanel1.SetColumnSpan(this.groupBoxUI, 6);
             this.groupBoxUI.Controls.Add(this.tableLayoutPanel2);
             this.groupBoxUI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxUI.Location = new System.Drawing.Point(291, 72);
+            this.groupBoxUI.Location = new System.Drawing.Point(388, 89);
+            this.groupBoxUI.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxUI.Name = "groupBoxUI";
+            this.groupBoxUI.Padding = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.SetRowSpan(this.groupBoxUI, 4);
-            this.groupBoxUI.Size = new System.Drawing.Size(287, 132);
+            this.groupBoxUI.Size = new System.Drawing.Size(383, 162);
             this.groupBoxUI.TabIndex = 31;
             this.groupBoxUI.TabStop = false;
             this.groupBoxUI.Text = "UI";
-            this.groupBoxUI.Enter += new System.EventHandler(this.groupBoxUI_Enter);
             // 
             // tableLayoutPanel2
             // 
@@ -334,7 +354,8 @@ namespace HashTester
             this.tableLayoutPanel2.Controls.Add(this.labelAverageSpeed, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.labelCurrentSpeed, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -343,16 +364,17 @@ namespace HashTester
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(281, 113);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(375, 139);
             this.tableLayoutPanel2.TabIndex = 33;
             // 
             // labelCumulativeChanceToFind
             // 
             this.labelCumulativeChanceToFind.AutoSize = true;
             this.labelCumulativeChanceToFind.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCumulativeChanceToFind.Location = new System.Drawing.Point(3, 90);
+            this.labelCumulativeChanceToFind.Location = new System.Drawing.Point(4, 115);
+            this.labelCumulativeChanceToFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCumulativeChanceToFind.Name = "labelCumulativeChanceToFind";
-            this.labelCumulativeChanceToFind.Size = new System.Drawing.Size(275, 23);
+            this.labelCumulativeChanceToFind.Size = new System.Drawing.Size(367, 24);
             this.labelCumulativeChanceToFind.TabIndex = 26;
             this.labelCumulativeChanceToFind.Text = "Cumulative chance to find:";
             this.labelCumulativeChanceToFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -361,9 +383,10 @@ namespace HashTester
             // 
             this.labelChanceToFind.AutoSize = true;
             this.labelChanceToFind.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelChanceToFind.Location = new System.Drawing.Point(3, 72);
+            this.labelChanceToFind.Location = new System.Drawing.Point(4, 92);
+            this.labelChanceToFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelChanceToFind.Name = "labelChanceToFind";
-            this.labelChanceToFind.Size = new System.Drawing.Size(275, 18);
+            this.labelChanceToFind.Size = new System.Drawing.Size(367, 23);
             this.labelChanceToFind.TabIndex = 25;
             this.labelChanceToFind.Text = "Chance to find in the next 10k attempts:";
             this.labelChanceToFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -401,6 +424,7 @@ namespace HashTester
             this.tableLayoutPanel1.Controls.Add(this.hashSelector, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -412,17 +436,18 @@ namespace HashTester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(581, 463);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 570);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // HashingCollisionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 463);
+            this.ClientSize = new System.Drawing.Size(775, 570);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(597, 502);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(790, 607);
             this.Name = "HashingCollisionForm";
             this.Text = "HashingCollisionForm";
             this.Load += new System.EventHandler(this.HashingCollisionForm_Load);

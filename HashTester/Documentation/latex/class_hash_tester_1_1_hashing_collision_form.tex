@@ -1,0 +1,551 @@
+\doxysection{Hash\+Tester.\+Hashing\+Collision\+Form Class Reference}
+\hypertarget{class_hash_tester_1_1_hashing_collision_form}{}\label{class_hash_tester_1_1_hashing_collision_form}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+Inheritance diagram for Hash\+Tester.\+Hashing\+Collision\+Form:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_hashing_collision_form}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a00469a0aeb8547cc7b77c0bb9056e73e}{Hashing\+Collision\+Form}} ()
+\begin{DoxyCompactList}\small\item\em First method ran by the form. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ab264b8414bef7cd73658bcf8eb27a6f0}{Chance\+Of\+Collision\+In\+Next\+Batch}} (long current\+Attempts, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hash)
+\begin{DoxyCompactList}\small\item\em Chance to find in next x attempts (default is 10k). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_af7683d3d7b608bf3005ae3ebfc7ca711}{Collision\+Found\+Message\+Box}} (string message, string collision\+Text01, string collision\+Text02)
+\begin{DoxyCompactList}\small\item\em Spawns a Message\+Box with collision\+Found\+Message Asks if the user would like to save it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a4efaf204fff6762869b179855efd612c}{button\+Clear\+List\+Box\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Resets Log. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a7f05672a1ac469517a44f43e2fd4d395}{button\+Return\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Closes the form. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a4ed09ddf2d6c8c9a75c9c25fde51ff44}{button1\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Cancels the collision finder. \end{DoxyCompactList}\item 
+async void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ae9d766d8c4bad76e13e68de707d7ec6b}{button\+Generate\+Collision\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Main method for finding collisions. Connected to UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ae902f919bbb8cf280c942c7eab210b0e}{Collision\+Thread}} (int thread\+Number, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a2ea612b4aa3dc969555d02881556835c}{algorithm}}, long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a9be58ac9a00d769521d4cfef359107d6}{max\+Attempts}}, int length, bool use\+Hex\+For\+Output)
+\begin{DoxyCompactList}\small\item\em Starts finding hash collision for a single thread. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a340d15e84cb2862897206bb5d0fe5929}{Generate\+Collision}} (int thread\+Number, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a2ea612b4aa3dc969555d02881556835c}{algorithm}}, int length, long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a9be58ac9a00d769521d4cfef359107d6}{max\+Attempts}}, bool use\+Hex\+For\+Output, out string collision1, out string collision2)
+\begin{DoxyCompactList}\small\item\em Generates a collision between two random inputs. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a36a7749546b57bd08eaedf36e0c1d478}{Generate\+Random\+String}} (int length)
+\begin{DoxyCompactList}\small\item\em Generates a random string based on lenght. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aa996c15b75843bec22778c1576b032c5}{Chance\+Of\+Collision\+In\+Whole\+Batch}} (long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a07c599aceab4d98402c7667ecd94d0b4}{attempts}}, double n)
+\begin{DoxyCompactList}\small\item\em Chance to find in next x attempts. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aca6d38308c0239a07d88f5c78cb77fe7}{Chance\+Of\+Collision\+In\+Whole\+Batch}} (long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a07c599aceab4d98402c7667ecd94d0b4}{attempts}}, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hash)
+\begin{DoxyCompactList}\small\item\em Chance to find in next x attempts. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ae95291236a8980fb1c945c954eea3fb7}{Update\+Timer\+Label}} ()
+\begin{DoxyCompactList}\small\item\em UI update timer running on X fps. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aaa1f7493310033560b026f92cb016f5f}{button\+Check\+Collision\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Spawns a small form for checking collision (Use Spawn\+Form). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a767c70a416d7a83a3b57cd86e0431457}{Turn\+On\+UI}} (Control control)
+\begin{DoxyCompactList}\small\item\em Turns On UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a1845c18bf3f9bca4d1b6bc2ac724190d}{Turn\+Off\+UI}} (Control parent)
+\begin{DoxyCompactList}\small\item\em Turns all of UI components off. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_af23b99146c905c29866ac7cef9ac2085}{Hashing\+Collision\+Form\+\_\+\+Load}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Loads Form after a spawn. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a49ea2847e594fe3f9419fa66965d2ba6}{button\+Clipboard\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Copies the selected item in log to Clipboard. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a15dfa0592e03e5401f4320a3a88ee67b}{button\+Save\+Log\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Saves Log to .txt file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aa61cdc4c1f0a60ab7a56c276ba63ebc1}{Reset\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Resets all important values for calculations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a733f59c5ee9bb302ba03379f7c4c74b9}{Generate\+Random\+Seed}} ()
+\begin{DoxyCompactList}\small\item\em Generates random int seed (crazy I know). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a03f644a43e30b95ce649846b56bb69fd}{hasher}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a2ea612b4aa3dc969555d02881556835c}{algorithm}} = \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}{Hasher.\+Hashing\+Algorithm.\+CRC32}}
+\item 
+volatile bool \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a793ae109cf476a200c6d62fa4f25a8da}{stop\+Hashing}} = false
+\item 
+volatile bool \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a6c50fc35945d967eeef2ff686f16801c}{found\+Collision}} = false
+\item 
+volatile bool \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_afeb80629d9ca8023486982505d1126a5}{attempts\+Ran\+Out}} = false
+\item 
+volatile string \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a3e00f435f0d4c367dcd186a5e14a87b2}{text\+Collision01}} = "{}"{}
+\item 
+volatile string \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a57ea4a89cc7844fc95810a584e3a7f89}{text\+Collision02}} = "{}"{}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a9be58ac9a00d769521d4cfef359107d6}{max\+Attempts}} = 0
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a07c599aceab4d98402c7667ecd94d0b4}{attempts}} = 0
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aed73dd7df45dcb4b962bb6bf3d75041d}{number\+Of\+Attemps\+In\+Last\+Update}} = 0
+\item 
+Stopwatch \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ada4beceda84f8b994c97002132a5ffdb}{stopwatch}} = new Stopwatch()
+\item 
+\doxymbox{\hyperlink{_hashing_collision_form_8cs_ad065cd88b82cc44a1153d26bd6174539}{Timer}} \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_aa7f8a004f68442173e4302f68bf298e2}{time\+To\+Find\+Collision}} = new \doxymbox{\hyperlink{_hashing_collision_form_8cs_ad065cd88b82cc44a1153d26bd6174539}{Timer}}()
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_ab89b1151097bfbe2f54e3967b09b8082}{attempts\+Chance\+To\+Next\+Probability}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \doxymbox{\hyperlink{class_hash_tester_1_1_hashing_collision_form_a65e47713586ef002f472378465210d4b}{number\+To\+Next\+Check\+On\+Probability}} = 10000
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a00469a0aeb8547cc7b77c0bb9056e73e}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!HashingCollisionForm@{HashingCollisionForm}}
+\index{HashingCollisionForm@{HashingCollisionForm}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{HashingCollisionForm()}{HashingCollisionForm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a00469a0aeb8547cc7b77c0bb9056e73e} 
+Hash\+Tester.\+Hashing\+Collision\+Form.\+Hashing\+Collision\+Form (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+First method ran by the form. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a4ed09ddf2d6c8c9a75c9c25fde51ff44}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!button1\_Click@{button1\_Click}}
+\index{button1\_Click@{button1\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{button1\_Click()}{button1\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a4ed09ddf2d6c8c9a75c9c25fde51ff44} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button1\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Cancels the collision finder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aaa1f7493310033560b026f92cb016f5f}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonCheckCollision\_Click@{buttonCheckCollision\_Click}}
+\index{buttonCheckCollision\_Click@{buttonCheckCollision\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonCheckCollision\_Click()}{buttonCheckCollision\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aaa1f7493310033560b026f92cb016f5f} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Check\+Collision\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Spawns a small form for checking collision (Use Spawn\+Form). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a4efaf204fff6762869b179855efd612c}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonClearListBox\_Click@{buttonClearListBox\_Click}}
+\index{buttonClearListBox\_Click@{buttonClearListBox\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonClearListBox\_Click()}{buttonClearListBox\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a4efaf204fff6762869b179855efd612c} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Clear\+List\+Box\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets Log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a49ea2847e594fe3f9419fa66965d2ba6}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonClipboard\_Click@{buttonClipboard\_Click}}
+\index{buttonClipboard\_Click@{buttonClipboard\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonClipboard\_Click()}{buttonClipboard\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a49ea2847e594fe3f9419fa66965d2ba6} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Clipboard\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Copies the selected item in log to Clipboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ae9d766d8c4bad76e13e68de707d7ec6b}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonGenerateCollision\_Click@{buttonGenerateCollision\_Click}}
+\index{buttonGenerateCollision\_Click@{buttonGenerateCollision\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonGenerateCollision\_Click()}{buttonGenerateCollision\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ae9d766d8c4bad76e13e68de707d7ec6b} 
+async void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Generate\+Collision\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Main method for finding collisions. Connected to UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a7f05672a1ac469517a44f43e2fd4d395}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonReturn\_Click@{buttonReturn\_Click}}
+\index{buttonReturn\_Click@{buttonReturn\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonReturn\_Click()}{buttonReturn\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a7f05672a1ac469517a44f43e2fd4d395} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Return\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Closes the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a15dfa0592e03e5401f4320a3a88ee67b}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!buttonSaveLog\_Click@{buttonSaveLog\_Click}}
+\index{buttonSaveLog\_Click@{buttonSaveLog\_Click}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonSaveLog\_Click()}{buttonSaveLog\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a15dfa0592e03e5401f4320a3a88ee67b} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+button\+Save\+Log\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Saves Log to .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ab264b8414bef7cd73658bcf8eb27a6f0}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!ChanceOfCollisionInNextBatch@{ChanceOfCollisionInNextBatch}}
+\index{ChanceOfCollisionInNextBatch@{ChanceOfCollisionInNextBatch}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ChanceOfCollisionInNextBatch()}{ChanceOfCollisionInNextBatch()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ab264b8414bef7cd73658bcf8eb27a6f0} 
+float Hash\+Tester.\+Hashing\+Collision\+Form.\+Chance\+Of\+Collision\+In\+Next\+Batch (\begin{DoxyParamCaption}\item[{long}]{current\+Attempts}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hash}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Chance to find in next x attempts (default is 10k). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Attempts} & \\
+\hline
+{\em hash} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aa996c15b75843bec22778c1576b032c5}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!ChanceOfCollisionInWholeBatch@{ChanceOfCollisionInWholeBatch}}
+\index{ChanceOfCollisionInWholeBatch@{ChanceOfCollisionInWholeBatch}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ChanceOfCollisionInWholeBatch()}{ChanceOfCollisionInWholeBatch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aa996c15b75843bec22778c1576b032c5} 
+double Hash\+Tester.\+Hashing\+Collision\+Form.\+Chance\+Of\+Collision\+In\+Whole\+Batch (\begin{DoxyParamCaption}\item[{long}]{attempts}{, }\item[{double}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Chance to find in next x attempts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attempts} & Number of attempts taken\\
+\hline
+{\em n} & lenght of hash\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aca6d38308c0239a07d88f5c78cb77fe7}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!ChanceOfCollisionInWholeBatch@{ChanceOfCollisionInWholeBatch}}
+\index{ChanceOfCollisionInWholeBatch@{ChanceOfCollisionInWholeBatch}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ChanceOfCollisionInWholeBatch()}{ChanceOfCollisionInWholeBatch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aca6d38308c0239a07d88f5c78cb77fe7} 
+double Hash\+Tester.\+Hashing\+Collision\+Form.\+Chance\+Of\+Collision\+In\+Whole\+Batch (\begin{DoxyParamCaption}\item[{long}]{attempts}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hash}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Chance to find in next x attempts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attempts} & Number of attempts taken\\
+\hline
+{\em hash} & Hashing algorithm used\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_af7683d3d7b608bf3005ae3ebfc7ca711}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!CollisionFoundMessageBox@{CollisionFoundMessageBox}}
+\index{CollisionFoundMessageBox@{CollisionFoundMessageBox}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CollisionFoundMessageBox()}{CollisionFoundMessageBox()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_af7683d3d7b608bf3005ae3ebfc7ca711} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Collision\+Found\+Message\+Box (\begin{DoxyParamCaption}\item[{string}]{message}{, }\item[{string}]{collision\+Text01}{, }\item[{string}]{collision\+Text02}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Spawns a Message\+Box with collision\+Found\+Message Asks if the user would like to save it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+{\em collision\+Text01} & \\
+\hline
+{\em collision\+Text02} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ae902f919bbb8cf280c942c7eab210b0e}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!CollisionThread@{CollisionThread}}
+\index{CollisionThread@{CollisionThread}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CollisionThread()}{CollisionThread()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ae902f919bbb8cf280c942c7eab210b0e} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Collision\+Thread (\begin{DoxyParamCaption}\item[{int}]{thread\+Number}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{long}]{max\+Attempts}{, }\item[{int}]{length}{, }\item[{bool}]{use\+Hex\+For\+Output}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Starts finding hash collision for a single thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+Number} & Number used for random generation\\
+\hline
+{\em algorithm} & \\
+\hline
+{\em max\+Attempts} & The thread will cancel after a certain number of attempts\\
+\hline
+{\em length} & Lenght of randomly generated text\\
+\hline
+{\em use\+Hex\+For\+Output} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a340d15e84cb2862897206bb5d0fe5929}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!GenerateCollision@{GenerateCollision}}
+\index{GenerateCollision@{GenerateCollision}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{GenerateCollision()}{GenerateCollision()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a340d15e84cb2862897206bb5d0fe5929} 
+bool Hash\+Tester.\+Hashing\+Collision\+Form.\+Generate\+Collision (\begin{DoxyParamCaption}\item[{int}]{thread\+Number}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{, }\item[{int}]{length}{, }\item[{long}]{max\+Attempts}{, }\item[{bool}]{use\+Hex\+For\+Output}{, }\item[{out string}]{collision1}{, }\item[{out string}]{collision2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates a collision between two random inputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+Number} & \\
+\hline
+{\em algorithm} & \\
+\hline
+{\em length} & Lenght of a random string input\\
+\hline
+{\em max\+Attempts} & 0 means it wont use limit to attemps\\
+\hline
+{\em use\+Hex\+For\+Output} & \\
+\hline
+{\em collision1} & Returns a string collision\\
+\hline
+{\em collision2} & Returns a string colliiion\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a733f59c5ee9bb302ba03379f7c4c74b9}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!GenerateRandomSeed@{GenerateRandomSeed}}
+\index{GenerateRandomSeed@{GenerateRandomSeed}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{GenerateRandomSeed()}{GenerateRandomSeed()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a733f59c5ee9bb302ba03379f7c4c74b9} 
+int Hash\+Tester.\+Hashing\+Collision\+Form.\+Generate\+Random\+Seed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Generates random int seed (crazy I know). 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a36a7749546b57bd08eaedf36e0c1d478}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!GenerateRandomString@{GenerateRandomString}}
+\index{GenerateRandomString@{GenerateRandomString}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{GenerateRandomString()}{GenerateRandomString()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a36a7749546b57bd08eaedf36e0c1d478} 
+string Hash\+Tester.\+Hashing\+Collision\+Form.\+Generate\+Random\+String (\begin{DoxyParamCaption}\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates a random string based on lenght. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_af23b99146c905c29866ac7cef9ac2085}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!HashingCollisionForm\_Load@{HashingCollisionForm\_Load}}
+\index{HashingCollisionForm\_Load@{HashingCollisionForm\_Load}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{HashingCollisionForm\_Load()}{HashingCollisionForm\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_af23b99146c905c29866ac7cef9ac2085} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Hashing\+Collision\+Form\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Loads Form after a spawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aa61cdc4c1f0a60ab7a56c276ba63ebc1}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!ResetValues@{ResetValues}}
+\index{ResetValues@{ResetValues}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ResetValues()}{ResetValues()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aa61cdc4c1f0a60ab7a56c276ba63ebc1} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Reset\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets all important values for calculations. 
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a1845c18bf3f9bca4d1b6bc2ac724190d}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!TurnOffUI@{TurnOffUI}}
+\index{TurnOffUI@{TurnOffUI}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{TurnOffUI()}{TurnOffUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a1845c18bf3f9bca4d1b6bc2ac724190d} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Turn\+Off\+UI (\begin{DoxyParamCaption}\item[{Control}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Turns all of UI components off. 
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a767c70a416d7a83a3b57cd86e0431457}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!TurnOnUI@{TurnOnUI}}
+\index{TurnOnUI@{TurnOnUI}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{TurnOnUI()}{TurnOnUI()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a767c70a416d7a83a3b57cd86e0431457} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Turn\+On\+UI (\begin{DoxyParamCaption}\item[{Control}]{control}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Turns On UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ae95291236a8980fb1c945c954eea3fb7}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!UpdateTimerLabel@{UpdateTimerLabel}}
+\index{UpdateTimerLabel@{UpdateTimerLabel}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{UpdateTimerLabel()}{UpdateTimerLabel()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ae95291236a8980fb1c945c954eea3fb7} 
+void Hash\+Tester.\+Hashing\+Collision\+Form.\+Update\+Timer\+Label (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+UI update timer running on X fps. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a2ea612b4aa3dc969555d02881556835c}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a2ea612b4aa3dc969555d02881556835c} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} Hash\+Tester.\+Hashing\+Collision\+Form.\+algorithm = \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}{Hasher.\+Hashing\+Algorithm.\+CRC32}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a07c599aceab4d98402c7667ecd94d0b4}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!attempts@{attempts}}
+\index{attempts@{attempts}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{attempts}{attempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a07c599aceab4d98402c7667ecd94d0b4} 
+long Hash\+Tester.\+Hashing\+Collision\+Form.\+attempts = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ab89b1151097bfbe2f54e3967b09b8082}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!attemptsChanceToNextProbability@{attemptsChanceToNextProbability}}
+\index{attemptsChanceToNextProbability@{attemptsChanceToNextProbability}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{attemptsChanceToNextProbability}{attemptsChanceToNextProbability}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ab89b1151097bfbe2f54e3967b09b8082} 
+int Hash\+Tester.\+Hashing\+Collision\+Form.\+attempts\+Chance\+To\+Next\+Probability = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_afeb80629d9ca8023486982505d1126a5}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!attemptsRanOut@{attemptsRanOut}}
+\index{attemptsRanOut@{attemptsRanOut}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{attemptsRanOut}{attemptsRanOut}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_afeb80629d9ca8023486982505d1126a5} 
+volatile bool Hash\+Tester.\+Hashing\+Collision\+Form.\+attempts\+Ran\+Out = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a6c50fc35945d967eeef2ff686f16801c}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!foundCollision@{foundCollision}}
+\index{foundCollision@{foundCollision}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{foundCollision}{foundCollision}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a6c50fc35945d967eeef2ff686f16801c} 
+volatile bool Hash\+Tester.\+Hashing\+Collision\+Form.\+found\+Collision = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a03f644a43e30b95ce649846b56bb69fd}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!hasher@{hasher}}
+\index{hasher@{hasher}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{hasher}{hasher}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a03f644a43e30b95ce649846b56bb69fd} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}} Hash\+Tester.\+Hashing\+Collision\+Form.\+hasher = new \doxymbox{\hyperlink{class_hash_tester_1_1_hasher}{Hasher}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a9be58ac9a00d769521d4cfef359107d6}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!maxAttempts@{maxAttempts}}
+\index{maxAttempts@{maxAttempts}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{maxAttempts}{maxAttempts}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a9be58ac9a00d769521d4cfef359107d6} 
+long Hash\+Tester.\+Hashing\+Collision\+Form.\+max\+Attempts = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aed73dd7df45dcb4b962bb6bf3d75041d}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!numberOfAttempsInLastUpdate@{numberOfAttempsInLastUpdate}}
+\index{numberOfAttempsInLastUpdate@{numberOfAttempsInLastUpdate}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{numberOfAttempsInLastUpdate}{numberOfAttempsInLastUpdate}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aed73dd7df45dcb4b962bb6bf3d75041d} 
+long Hash\+Tester.\+Hashing\+Collision\+Form.\+number\+Of\+Attemps\+In\+Last\+Update = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a65e47713586ef002f472378465210d4b}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!numberToNextCheckOnProbability@{numberToNextCheckOnProbability}}
+\index{numberToNextCheckOnProbability@{numberToNextCheckOnProbability}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{numberToNextCheckOnProbability}{numberToNextCheckOnProbability}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a65e47713586ef002f472378465210d4b} 
+const int Hash\+Tester.\+Hashing\+Collision\+Form.\+number\+To\+Next\+Check\+On\+Probability = 10000\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a793ae109cf476a200c6d62fa4f25a8da}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!stopHashing@{stopHashing}}
+\index{stopHashing@{stopHashing}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{stopHashing}{stopHashing}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a793ae109cf476a200c6d62fa4f25a8da} 
+volatile bool Hash\+Tester.\+Hashing\+Collision\+Form.\+stop\+Hashing = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_ada4beceda84f8b994c97002132a5ffdb}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!stopwatch@{stopwatch}}
+\index{stopwatch@{stopwatch}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{stopwatch}{stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_ada4beceda84f8b994c97002132a5ffdb} 
+Stopwatch Hash\+Tester.\+Hashing\+Collision\+Form.\+stopwatch = new Stopwatch()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a3e00f435f0d4c367dcd186a5e14a87b2}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!textCollision01@{textCollision01}}
+\index{textCollision01@{textCollision01}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{textCollision01}{textCollision01}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a3e00f435f0d4c367dcd186a5e14a87b2} 
+volatile string Hash\+Tester.\+Hashing\+Collision\+Form.\+text\+Collision01 = "{}"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_a57ea4a89cc7844fc95810a584e3a7f89}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!textCollision02@{textCollision02}}
+\index{textCollision02@{textCollision02}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{textCollision02}{textCollision02}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_a57ea4a89cc7844fc95810a584e3a7f89} 
+volatile string Hash\+Tester.\+Hashing\+Collision\+Form.\+text\+Collision02 = "{}"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_hashing_collision_form_aa7f8a004f68442173e4302f68bf298e2}\index{HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}!timeToFindCollision@{timeToFindCollision}}
+\index{timeToFindCollision@{timeToFindCollision}!HashTester.HashingCollisionForm@{HashTester.HashingCollisionForm}}
+\doxysubsubsection{\texorpdfstring{timeToFindCollision}{timeToFindCollision}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hashing_collision_form_aa7f8a004f68442173e4302f68bf298e2} 
+\doxymbox{\hyperlink{_hashing_collision_form_8cs_ad065cd88b82cc44a1153d26bd6174539}{Timer}} Hash\+Tester.\+Hashing\+Collision\+Form.\+time\+To\+Find\+Collision = new \doxymbox{\hyperlink{_hashing_collision_form_8cs_ad065cd88b82cc44a1153d26bd6174539}{Timer}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_hashing_collision_form_8cs}{Hashing\+Collision\+Form.\+cs}}\end{DoxyCompactItemize}

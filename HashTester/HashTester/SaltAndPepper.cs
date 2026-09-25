@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Main script for Salt and Pepper logic
+ *@file: SaltAndPepper.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;

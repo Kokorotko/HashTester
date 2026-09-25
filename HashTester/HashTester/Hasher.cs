@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Core of the program, handles all the hashing
+ *@file: hasher.cs
+ *@note: Can be used as a standalone support script
+ */
+
 using Force.Crc32;
 using System;
 using System.Collections.Generic;
@@ -47,9 +55,10 @@ namespace HashTester
         /// Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper
         /// </summary>
         /// <param name="text"></param>
-        /// <param name="pepper">Returns randomly generated pepper</param>
-        /// <param name="pepperAppendLeft"></param>
-        /// <param name="pepperLenght"></param>
+        /// <param name="useSalt">Returns randomly generated salt</param>
+        /// <param name="usePepper">Returns randomly generated pepper</param>
+        /// <param name="salt"></param>
+        /// <param name="pepper"></param>
         /// <param name="algorithm"></param>
         /// <returns></returns>
         public string[] GradualHashingSaltPepper(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
@@ -162,9 +171,16 @@ namespace HashTester
                 default: return null;
             }
         }
+
         /// <summary>
         /// Creates a hash based algorithm with salt and pepper
         /// </summary>
+        /// <param name="text"></param>
+        /// <param name="useSalt"></param>
+        /// <param name="usePepper"></param>
+        /// <param name="salt"></param>
+        /// <param name="pepper"></param>
+        /// <param name="algorithm"></param>
         /// <returns></returns>
         public string HashSaltPepper(string text, bool useSalt, bool usePepper, string salt, string pepper, HashingAlgorithm algorithm)
         {
@@ -384,6 +400,11 @@ namespace HashTester
 
         #region MD5
 
+        /// <summary>
+        /// Hashes text to MD5
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
         string HashMD5(string text)
         {
             using (MD5 md5 = MD5.Create())
@@ -393,6 +414,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to MD5
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in text form</returns>
         string HashMD5(byte[] bytes)
         {
             using (MD5 md5 = MD5.Create())
@@ -402,6 +428,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to MD5
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashMD5Bytes(byte[] bytes)
         {
             using (MD5 md5 = MD5.Create())
@@ -410,6 +441,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes text to MD5
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashMD5Bytes(string text)
         {
             using (MD5 md5 = MD5.Create())
@@ -420,6 +456,12 @@ namespace HashTester
         #endregion
 
         #region SHA1
+
+        /// <summary>
+        /// Hashes text to SHA1
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA1(string text)
         {
             using (SHA1 sha1 = SHA1.Create())
@@ -429,6 +471,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA1
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA1(byte[] bytes)
         {
             using (SHA1 sha1 = SHA1.Create())
@@ -438,6 +485,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA1
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashSHA1Bytes(byte[] bytes)
         {
             using (SHA1 sha1 = SHA1.Create())
@@ -446,6 +498,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes text to SHA1
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashSHA1Bytes(string text)
         {
             using (SHA1 sha1 = SHA1.Create())
@@ -457,6 +514,12 @@ namespace HashTester
         #endregion
 
         #region SHA-256
+
+        /// <summary>
+        /// Hashes text to SHA256
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA256(string text)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -466,6 +529,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA256
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA256(byte[] bytes)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -475,6 +543,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA256
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in byte form</returns>
         byte[] HashSHA256Bytes(byte[] bytes)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -483,6 +556,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes text to SHA256
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashSHA256Bytes(string text)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -493,6 +571,12 @@ namespace HashTester
         #endregion
 
         #region SHA-512
+
+        /// <summary>
+        /// Hashes text to SHA512
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA512(string text)
         {
             using (SHA512 sha512 = SHA512.Create())
@@ -502,6 +586,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA512
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in text form</returns>
         string HashSHA512(byte[] bytes)
         {
             using (SHA512 sha512 = SHA512.Create())
@@ -511,6 +600,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to SHA512
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashSHA512Bytes(byte[] bytes)
         {
             using (SHA512 sha512 = SHA512.Create())
@@ -519,6 +613,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes text to SHA512
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashSHA512Bytes(string text)
         {
             using (SHA512 sha512 = SHA512.Create())
@@ -529,6 +628,12 @@ namespace HashTester
         #endregion
 
         #region RIPEMD-160
+
+        /// <summary>
+        /// Hashes text to RipeMD160
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
         string HashRIPEMD160(string text)
         {
             using (RIPEMD160 ripemd160 = RIPEMD160.Create())
@@ -538,6 +643,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to RipeMD160
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in text form</returns>
         string HashRIPEMD160(byte[] bytes)
         {
             using (RIPEMD160 ripemd160 = RIPEMD160.Create())
@@ -547,6 +657,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes bytes to RipeMD160
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashRIPEMD160Bytes(byte[] bytes)
         {
             using (RIPEMD160 ripemd160 = RIPEMD160.Create())
@@ -555,6 +670,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Hashes text to RipeMD160
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashRIPEMD160Bytes(string text)
         {
             using (RIPEMD160 ripemd160 = RIPEMD160.Create())
@@ -565,6 +685,13 @@ namespace HashTester
         #endregion
 
         #region CRC32
+
+        /// <summary>
+        /// Hashes text to CRC32
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in text form</returns>
+        /// <returns></returns>
         string HashCRC32(string text)
         {
             byte[] data = Encoding.UTF8.GetBytes(text);
@@ -590,12 +717,22 @@ namespace HashTester
             */
         }
 
+        /// <summary>
+        /// Hashes bytes to CRC32
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns>Hash in text form</returns>
         string HashCRC32(byte[] data)
         {
             uint crc = Crc32Algorithm.Compute(data);
             return crc.ToString("x8"); //converts to a hexadecimal number using lowercase letters
         }
 
+        /// <summary>
+        /// Hashes text to CRC32
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Hash in bytes form</returns>
         byte[] HashCRC32Bytes(string text)
         {
             byte[] data = Encoding.UTF8.GetBytes(text);
@@ -603,6 +740,11 @@ namespace HashTester
             return BitConverter.GetBytes(crc);
         }
 
+        /// <summary>
+        /// Hashes bytes to CRC32
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns>Hash in text form</returns>
         byte[] HashCRC32Bytes(byte[] data)
         {
             uint crc = Crc32Algorithm.Compute(data);
@@ -610,13 +752,24 @@ namespace HashTester
         }
 
         #endregion
-
+        
+        /// <summary>
+        /// Generates random salt based on lenght
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public string GenerateSalt(int length)
         {
             byte[] salt = new byte[length];  //1 byte is converted to 2 hexadecimal char
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create()) { rng.GetBytes(salt); }
             return (BitConverter.ToString(salt).Replace("-", "").ToLowerInvariant()).Substring(0, length); //Returns only half of the string
         }
+
+        /// <summary>
+        /// Generates random pepper based on lenght
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public string GeneratePepper(int length)
         {
             byte[] salt = new byte[length]; //1 byte is converted to 2 hexadecimal char
@@ -626,6 +779,13 @@ namespace HashTester
         #endregion
 
         #region Checksum
+
+        /// <summary>
+        /// Creates a checksum from a filepath
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public static string FileChecksum(string filename, HashingAlgorithm algorithm)
         {
             try
@@ -709,6 +869,13 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Creates a checksum hash from a filepath with a cancellation token
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public static string FileChecksum(string filename, HashingAlgorithm algorithm, CancellationToken token)
         {
             try

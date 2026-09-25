@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: UI Form for salt and pepper setup
+ *@file: SaltAndPepperSetup.cs
+ */
+
 using System;
 using System.IO;
 using System.Reflection;
@@ -8,6 +15,9 @@ namespace HashTester
 {
     public partial class SaltAndPepperSetup : Form
     {
+        /// <summary>
+        /// Constructor takes idea from settings
+        /// </summary>
         public SaltAndPepperSetup()
         {
             InitializeComponent();
@@ -16,6 +26,9 @@ namespace HashTester
             textBoxHashID.Text = SetHashID();
         }
 
+        /// <summary>
+        /// Constructor takes idea from UI
+        /// </summary>
         public SaltAndPepperSetup(bool useSalt, bool usePepper)
         {
             InitializeComponent();
@@ -24,6 +37,9 @@ namespace HashTester
             textBoxHashID.Text = SetHashID();
         }
 
+        /// <summary>
+        /// Constructor takes idea from UI and sets hashID
+        /// </summary>
         public SaltAndPepperSetup(bool useSalt, bool usePepper, string hashID)
         {
             InitializeComponent();
@@ -32,6 +48,12 @@ namespace HashTester
             if (!String.IsNullOrEmpty(hashID)) textBoxHashID.Text = SetHashID(hashID);
             else textBoxHashID.Text = SetHashID();
         }
+
+        /// <summary>
+        /// Main form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaltAndPepperQuestion_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
@@ -52,6 +74,12 @@ namespace HashTester
             textBoxPepper.Enabled = false;
         }
 
+
+        /// <summary>
+        /// Generates random hashID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxGenerate_Click(object sender, EventArgs e)
         {
             if (textBoxHashID.Text != "")
@@ -71,6 +99,16 @@ namespace HashTester
             }            
         }
 
+        /// <summary>
+        /// Gets Salt and Pepper Information
+        /// </summary>
+        /// <param name="generateSalt"></param>
+        /// <param name="lenghtSalt"></param>
+        /// <param name="ownSalt"></param>
+        /// <param name="generatePepper"></param>
+        /// <param name="lenghtPepper"></param>
+        /// <param name="ownPepper"></param>
+        /// <param name="hashID"></param>
         public void GetSaltPepperInformation(out bool generateSalt,  out int lenghtSalt, out string ownSalt, out bool generatePepper, out int lenghtPepper, out string ownPepper, out string hashID)
         {
             generateSalt = false;
@@ -135,6 +173,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Sets hash ID from the file
+        /// </summary>
+        /// <param name="name">Name of the file</param>
+        /// <returns></returns>
         private string SetHashID(string name)
         {
             //check if file exists
@@ -156,6 +199,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Checks if hashID exists
+        /// </summary>
+        /// <param name="hashID"></param>
+        /// <returns></returns>
         private bool CheckHashID(string hashID)
         {
             string path = Path.Combine(Settings.DirectoryToHashData, hashID + ".txt");

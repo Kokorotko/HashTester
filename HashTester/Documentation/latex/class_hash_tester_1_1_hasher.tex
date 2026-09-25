@@ -1,0 +1,1168 @@
+\doxysection{Hash\+Tester.\+Hasher Class Reference}
+\hypertarget{class_hash_tester_1_1_hasher}{}\label{class_hash_tester_1_1_hasher}\index{HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} \{ \newline
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a7f138a09169b250e9dcb378140907378}{MD5}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a9a9f4eb6d0036a164588b6ee74390442}{SHA1}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42ab505df5aa812b4f320420b8a952f20e5}{SHA256}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42adb6c5a350bb792ef07a62a1750962737}{SHA512}}
+, \newline
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a13ffa8c9f793476eeedc1359c9f78e71}{RIPEMD160}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}{CRC32}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a8745961f08b8f77f317437b6384d050c}{Gradual\+Hashing}} (string text, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Returns Arrray of Strings that are gradually hashed with the desired algorithm. \end{DoxyCompactList}\item 
+string\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a3e04d4147437893485d9dcaa917e72a4}{Gradual\+Hashing\+Salt\+Pepper}} (string text, bool use\+Salt, bool use\+Pepper, string salt, string pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_af51cdef67295f7cfadc088aa166e0ffd}{Hash}} (string text, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes a string and an algorithm and creates a hash. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a5579efc01b4f3af4db179588d1bc0eb5}{Hash}} (byte\+[$\,$]\+ bytes, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes array of bytes and an algorithm and returns string. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a788da8c7481d28029cf3f51d81b698c0}{Hash\+Bytes}} (string text, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes a string and an algorithm and creates a hash thats returned in byte array. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a6840f6d3380b49b0f1edaf04ff75a01c}{Hash\+Bytes}} (byte\+[$\,$]\+ bytes, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes an array and an algorithm and creates a hash that returned in byte array. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ae5b91ebad1e6f2ff464f29e7487a0ee8}{Hash\+Salt\+Pepper}} (string text, bool use\+Salt, bool use\+Pepper, string salt, string pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Creates a hash based algorithm with salt and pepper. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a527ee22b235c353b808cf5a3de869224}{Hash\+Salt\+Pepper}} (byte\+[$\,$]\+ bytes, bool use\+Salt, bool use\+Pepper, string salt, string pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes an array of bytes, adds salt and or pepper and returns hash in string. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a03a699fbfc527313de774a9efbe3ab90}{Hash\+Salt\+Pepper}} (byte\+[$\,$]\+ bytes, bool use\+Salt, bool use\+Pepper, byte\+[$\,$]\+ salt, byte\+[$\,$]\+ pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in string. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a9a06d75c3d3610df720a493b778ee7bd}{Hash\+Salt\+Pepper\+Bytes}} (string text, bool use\+Salt, bool use\+Pepper, string salt, string pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes a string, adds salt and or pepper and returns hash in array of bytes. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a5391bda61ec840845abf8dd147e5ac05}{Hash\+Salt\+Pepper\+Bytes}} (byte\+[$\,$]\+ bytes, bool use\+Salt, bool use\+Pepper, string salt, string pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes an array of bytes, adds salt and or pepper and returns hash in array of bytes. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ad609c5ea8b3cbbcef5fee0a6cda94af1}{Hash\+Salt\+Pepper\+Bytes}} (byte\+[$\,$]\+ bytes, bool use\+Salt, bool use\+Pepper, byte\+[$\,$]\+ salt, byte\+[$\,$]\+ pepper, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in array of bytes. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a0bc47c4c1b797833e909e246e8db11fd}{Generate\+Salt}} (int length)
+\begin{DoxyCompactList}\small\item\em Generates random salt based on lenght. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a62a9c0c05ce1f6769af69b22e298df72}{Generate\+Pepper}} (int length)
+\begin{DoxyCompactList}\small\item\em Generates random pepper based on lenght. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_aad3e39855082c34515d6dd3a774542cc}{Save\+Salt}} (string hash\+ID, string salt, int pepper\+Length)
+\begin{DoxyCompactList}\small\item\em Saves salt and pepper based on hash\+ID. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a4d3140b6e9e546f1c446df7902e7e929}{Load\+Salt}} (string hash\+ID, out string salt, out int pepper\+Lenght)
+\begin{DoxyCompactList}\small\item\em Loads salt and pepper based on hash\+ID. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a3ed81a7e11fd637b8163c8c136a00ed4}{Is\+Using\+Salt\+And\+Pepper}} (out bool is\+Salt\+Used, out bool is\+Pepper\+Used, out string salt, out string pepper)
+\begin{DoxyCompactList}\small\item\em Checks if salt and pepper was used. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a38e68627262609aa663a2af0c2eee66b}{Is\+Using\+Salt\+And\+Pepper}} (bool use\+Salt, bool use\+Pepper, out string salt, out string pepper, out string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Retuns if salt and pepper was used, also hash\+ID. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a6f610dfa0df160e67109be61ef48d811}{Is\+Using\+Salt\+And\+Pepper}} (bool use\+Salt, bool use\+Pepper, string custom\+Hash\+ID, out string salt, out string pepper, out string hash\+ID)
+\begin{DoxyCompactList}\small\item\em Retuns if salt and pepper was used. Inputs custom hash\+ID. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_aa6afb62d6f1eaed86ec07293ad25091d}{Check\+Pepper}} (string original\+Text, string hashed\+Text, int length, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm, out string pepper)
+\begin{DoxyCompactList}\small\item\em Checks if pepper was used and returns it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ad2672112b645338c425b2fdc1aa23890}{Combine\+Arrays$<$ T $>$}} (T\+[$\,$]\+ first, T\+[$\,$]\+ second)
+\begin{DoxyCompactList}\small\item\em Combines two arrays into one. \end{DoxyCompactList}\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a61d530b31ff46bc5f38d3eef658c8e93}{File\+Checksum}} (string filename, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Creates a checksum from a filepath. \end{DoxyCompactList}\item 
+static string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ac688689273979fa03bd173d2a43fdb8c}{File\+Checksum}} (string filename, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}} algorithm, Cancellation\+Token token)
+\begin{DoxyCompactList}\small\item\em Creates a checksum hash from a filepath with a cancellation token. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ad592b044967b5271df9f6a04f36953a3}{Hash\+MD5}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to MD5. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a5178b979a895a23870b1fabec8ff4944}{Hash\+MD5}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to MD5. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a94edbe06517f895be130f345eb75af2b}{Hash\+MD5\+Bytes}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to MD5. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a0728e4f58119ceb7c2fa76bc43ceadc4}{Hash\+MD5\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to MD5. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a1769cdb077c962979711e30bc1f6b4c6}{Hash\+SHA1}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA1. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a122088a51e39790c435c573aa2d8a77d}{Hash\+SHA1}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA1. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ae02e7d6693178a09b37a22ab3ebf12c8}{Hash\+SHA1\+Bytes}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA1. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a348883e4b300c6fcab160907a653a150}{Hash\+SHA1\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA1. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a008226a659d711bb236f72a92302ba46}{Hash\+SHA256}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA256. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a5a40b6507426e258b5dbf55e9cb62607}{Hash\+SHA256}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA256. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a36960e7a34435f5228afb8358b9339ef}{Hash\+SHA256\+Bytes}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA256. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a14cbbc27c40fc6489176b1acab14abca}{Hash\+SHA256\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA256. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a531cd9f07993884646dba61c7f191cab}{Hash\+SHA512}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA512. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a1ba1f6fdfdbe2f338599fa310a7635e8}{Hash\+SHA512}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA512. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ae3eca6bd38333c663ef6c6c0ff141b41}{Hash\+SHA512\+Bytes}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to SHA512. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a5bf5d693fd9e04b1c42ced82a9583e10}{Hash\+SHA512\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to SHA512. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_af48a80125892dd5f6185050138d5a441}{Hash\+RIPEMD160}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to Ripe\+MD160. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a039e753a2f83168474158d023acfee9a}{Hash\+RIPEMD160}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to Ripe\+MD160. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a8a956a0c6b0a645300085ce984c9205a}{Hash\+RIPEMD160\+Bytes}} (byte\+[$\,$]\+ bytes)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to Ripe\+MD160. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a7859d3cb7fda8ad989c7bc3089cd0282}{Hash\+RIPEMD160\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to Ripe\+MD160. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ad887304a886ccb84cee33cfa400597bb}{Hash\+CRC32}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to CRC32. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a68af2aa132dad8fda1c6e29ce02a01c3}{Hash\+CRC32}} (byte\+[$\,$]\+ data)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to CRC32. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a0b9263eaeacb853cd0b86ded100e09c9}{Hash\+CRC32\+Bytes}} (string text)
+\begin{DoxyCompactList}\small\item\em Hashes text to CRC32. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_ae2ec20e31abd2811acd68eee7b0f2a46}{Hash\+CRC32\+Bytes}} (byte\+[$\,$]\+ data)
+\begin{DoxyCompactList}\small\item\em Hashes bytes to CRC32. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const uint \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a7ba61e2fb18343a965a03b1529f300be}{size\+Of\+Buffer\+Of\+Blocks}} = 8192
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_hash_tester_1_1_hasher_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}\index{HashTester.Hasher@{HashTester.Hasher}!HashingAlgorithm@{HashingAlgorithm}}
+\index{HashingAlgorithm@{HashingAlgorithm}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashingAlgorithm}{HashingAlgorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hash\+Tester.\+Hasher.\+Hashing\+Algorithm}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MD5@{MD5}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!MD5@{MD5}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a7f138a09169b250e9dcb378140907378}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a7f138a09169b250e9dcb378140907378} 
+MD5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHA1@{SHA1}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!SHA1@{SHA1}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a9a9f4eb6d0036a164588b6ee74390442}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a9a9f4eb6d0036a164588b6ee74390442} 
+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHA256@{SHA256}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!SHA256@{SHA256}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42ab505df5aa812b4f320420b8a952f20e5}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42ab505df5aa812b4f320420b8a952f20e5} 
+SHA256&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHA512@{SHA512}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!SHA512@{SHA512}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42adb6c5a350bb792ef07a62a1750962737}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42adb6c5a350bb792ef07a62a1750962737} 
+SHA512&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIPEMD160@{RIPEMD160}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!RIPEMD160@{RIPEMD160}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a13ffa8c9f793476eeedc1359c9f78e71}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a13ffa8c9f793476eeedc1359c9f78e71} 
+RIPEMD160&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRC32@{CRC32}!HashTester.Hasher@{HashTester.Hasher}}
+\index{HashTester.Hasher@{HashTester.Hasher}!CRC32@{CRC32}}
+}\Hypertarget{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}\label{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab} 
+CRC32&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_hasher_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_hasher_aa6afb62d6f1eaed86ec07293ad25091d}\index{HashTester.Hasher@{HashTester.Hasher}!CheckPepper@{CheckPepper}}
+\index{CheckPepper@{CheckPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{CheckPepper()}{CheckPepper()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_aa6afb62d6f1eaed86ec07293ad25091d} 
+bool Hash\+Tester.\+Hasher.\+Check\+Pepper (\begin{DoxyParamCaption}\item[{string}]{original\+Text}{, }\item[{string}]{hashed\+Text}{, }\item[{int}]{length}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{, }\item[{out string}]{pepper}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if pepper was used and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Text} & \\
+\hline
+{\em hashed\+Text} & \\
+\hline
+{\em length} & Expected lenght of the pepper\\
+\hline
+{\em algorithm} & \\
+\hline
+{\em pepper} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ad2672112b645338c425b2fdc1aa23890}\index{HashTester.Hasher@{HashTester.Hasher}!CombineArrays$<$ T $>$@{CombineArrays$<$ T $>$}}
+\index{CombineArrays$<$ T $>$@{CombineArrays$<$ T $>$}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{CombineArrays$<$ T $>$()}{CombineArrays< T >()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ad2672112b645338c425b2fdc1aa23890} 
+T\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Combine\+Arrays$<$ T $>$ (\begin{DoxyParamCaption}\item[{T\+[$\,$]\+}]{first}{, }\item[{T\+[$\,$]\+}]{second}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Combines two arrays into one. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em first} & \\
+\hline
+{\em second} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a61d530b31ff46bc5f38d3eef658c8e93}\index{HashTester.Hasher@{HashTester.Hasher}!FileChecksum@{FileChecksum}}
+\index{FileChecksum@{FileChecksum}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{FileChecksum()}{FileChecksum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a61d530b31ff46bc5f38d3eef658c8e93} 
+string Hash\+Tester.\+Hasher.\+File\+Checksum (\begin{DoxyParamCaption}\item[{string}]{filename}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a checksum from a filepath. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ac688689273979fa03bd173d2a43fdb8c}\index{HashTester.Hasher@{HashTester.Hasher}!FileChecksum@{FileChecksum}}
+\index{FileChecksum@{FileChecksum}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{FileChecksum()}{FileChecksum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ac688689273979fa03bd173d2a43fdb8c} 
+string Hash\+Tester.\+Hasher.\+File\+Checksum (\begin{DoxyParamCaption}\item[{string}]{filename}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{, }\item[{Cancellation\+Token}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a checksum hash from a filepath with a cancellation token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em algorithm} & \\
+\hline
+{\em token} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a62a9c0c05ce1f6769af69b22e298df72}\index{HashTester.Hasher@{HashTester.Hasher}!GeneratePepper@{GeneratePepper}}
+\index{GeneratePepper@{GeneratePepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{GeneratePepper()}{GeneratePepper()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a62a9c0c05ce1f6769af69b22e298df72} 
+string Hash\+Tester.\+Hasher.\+Generate\+Pepper (\begin{DoxyParamCaption}\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates random pepper based on lenght. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a0bc47c4c1b797833e909e246e8db11fd}\index{HashTester.Hasher@{HashTester.Hasher}!GenerateSalt@{GenerateSalt}}
+\index{GenerateSalt@{GenerateSalt}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{GenerateSalt()}{GenerateSalt()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a0bc47c4c1b797833e909e246e8db11fd} 
+string Hash\+Tester.\+Hasher.\+Generate\+Salt (\begin{DoxyParamCaption}\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates random salt based on lenght. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a8745961f08b8f77f317437b6384d050c}\index{HashTester.Hasher@{HashTester.Hasher}!GradualHashing@{GradualHashing}}
+\index{GradualHashing@{GradualHashing}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{GradualHashing()}{GradualHashing()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a8745961f08b8f77f317437b6384d050c} 
+string\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Gradual\+Hashing (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns Arrray of Strings that are gradually hashed with the desired algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a3e04d4147437893485d9dcaa917e72a4}\index{HashTester.Hasher@{HashTester.Hasher}!GradualHashingSaltPepper@{GradualHashingSaltPepper}}
+\index{GradualHashingSaltPepper@{GradualHashingSaltPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{GradualHashingSaltPepper()}{GradualHashingSaltPepper()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a3e04d4147437893485d9dcaa917e72a4} 
+string\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Gradual\+Hashing\+Salt\+Pepper (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{salt}{, }\item[{string}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns Arrray of Strings that are gradually hashed with the desired algorithm and Pepper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em use\+Salt} & Returns randomly generated salt\\
+\hline
+{\em use\+Pepper} & Returns randomly generated pepper\\
+\hline
+{\em salt} & \\
+\hline
+{\em pepper} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a5579efc01b4f3af4db179588d1bc0eb5}\index{HashTester.Hasher@{HashTester.Hasher}!Hash@{Hash}}
+\index{Hash@{Hash}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{Hash()}{Hash()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a5579efc01b4f3af4db179588d1bc0eb5} 
+string Hash\+Tester.\+Hasher.\+Hash (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes array of bytes and an algorithm and returns string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_af51cdef67295f7cfadc088aa166e0ffd}\index{HashTester.Hasher@{HashTester.Hasher}!Hash@{Hash}}
+\index{Hash@{Hash}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{Hash()}{Hash()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_af51cdef67295f7cfadc088aa166e0ffd} 
+string Hash\+Tester.\+Hasher.\+Hash (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes a string and an algorithm and creates a hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a6840f6d3380b49b0f1edaf04ff75a01c}\index{HashTester.Hasher@{HashTester.Hasher}!HashBytes@{HashBytes}}
+\index{HashBytes@{HashBytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashBytes()}{HashBytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a6840f6d3380b49b0f1edaf04ff75a01c} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes an array and an algorithm and creates a hash that returned in byte array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a788da8c7481d28029cf3f51d81b698c0}\index{HashTester.Hasher@{HashTester.Hasher}!HashBytes@{HashBytes}}
+\index{HashBytes@{HashBytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashBytes()}{HashBytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a788da8c7481d28029cf3f51d81b698c0} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes a string and an algorithm and creates a hash thats returned in byte array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a68af2aa132dad8fda1c6e29ce02a01c3}\index{HashTester.Hasher@{HashTester.Hasher}!HashCRC32@{HashCRC32}}
+\index{HashCRC32@{HashCRC32}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashCRC32()}{HashCRC32()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a68af2aa132dad8fda1c6e29ce02a01c3} 
+string Hash\+Tester.\+Hasher.\+Hash\+CRC32 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to CRC32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ad887304a886ccb84cee33cfa400597bb}\index{HashTester.Hasher@{HashTester.Hasher}!HashCRC32@{HashCRC32}}
+\index{HashCRC32@{HashCRC32}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashCRC32()}{HashCRC32()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ad887304a886ccb84cee33cfa400597bb} 
+string Hash\+Tester.\+Hasher.\+Hash\+CRC32 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to CRC32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ae2ec20e31abd2811acd68eee7b0f2a46}\index{HashTester.Hasher@{HashTester.Hasher}!HashCRC32Bytes@{HashCRC32Bytes}}
+\index{HashCRC32Bytes@{HashCRC32Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashCRC32Bytes()}{HashCRC32Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ae2ec20e31abd2811acd68eee7b0f2a46} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+CRC32\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to CRC32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a0b9263eaeacb853cd0b86ded100e09c9}\index{HashTester.Hasher@{HashTester.Hasher}!HashCRC32Bytes@{HashCRC32Bytes}}
+\index{HashCRC32Bytes@{HashCRC32Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashCRC32Bytes()}{HashCRC32Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a0b9263eaeacb853cd0b86ded100e09c9} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+CRC32\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to CRC32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a5178b979a895a23870b1fabec8ff4944}\index{HashTester.Hasher@{HashTester.Hasher}!HashMD5@{HashMD5}}
+\index{HashMD5@{HashMD5}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashMD5()}{HashMD5()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a5178b979a895a23870b1fabec8ff4944} 
+string Hash\+Tester.\+Hasher.\+Hash\+MD5 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to MD5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ad592b044967b5271df9f6a04f36953a3}\index{HashTester.Hasher@{HashTester.Hasher}!HashMD5@{HashMD5}}
+\index{HashMD5@{HashMD5}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashMD5()}{HashMD5()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ad592b044967b5271df9f6a04f36953a3} 
+string Hash\+Tester.\+Hasher.\+Hash\+MD5 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to MD5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a94edbe06517f895be130f345eb75af2b}\index{HashTester.Hasher@{HashTester.Hasher}!HashMD5Bytes@{HashMD5Bytes}}
+\index{HashMD5Bytes@{HashMD5Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashMD5Bytes()}{HashMD5Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a94edbe06517f895be130f345eb75af2b} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+MD5\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to MD5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a0728e4f58119ceb7c2fa76bc43ceadc4}\index{HashTester.Hasher@{HashTester.Hasher}!HashMD5Bytes@{HashMD5Bytes}}
+\index{HashMD5Bytes@{HashMD5Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashMD5Bytes()}{HashMD5Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a0728e4f58119ceb7c2fa76bc43ceadc4} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+MD5\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to MD5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a039e753a2f83168474158d023acfee9a}\index{HashTester.Hasher@{HashTester.Hasher}!HashRIPEMD160@{HashRIPEMD160}}
+\index{HashRIPEMD160@{HashRIPEMD160}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashRIPEMD160()}{HashRIPEMD160()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a039e753a2f83168474158d023acfee9a} 
+string Hash\+Tester.\+Hasher.\+Hash\+RIPEMD160 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to Ripe\+MD160. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_af48a80125892dd5f6185050138d5a441}\index{HashTester.Hasher@{HashTester.Hasher}!HashRIPEMD160@{HashRIPEMD160}}
+\index{HashRIPEMD160@{HashRIPEMD160}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashRIPEMD160()}{HashRIPEMD160()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_af48a80125892dd5f6185050138d5a441} 
+string Hash\+Tester.\+Hasher.\+Hash\+RIPEMD160 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to Ripe\+MD160. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a8a956a0c6b0a645300085ce984c9205a}\index{HashTester.Hasher@{HashTester.Hasher}!HashRIPEMD160Bytes@{HashRIPEMD160Bytes}}
+\index{HashRIPEMD160Bytes@{HashRIPEMD160Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashRIPEMD160Bytes()}{HashRIPEMD160Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a8a956a0c6b0a645300085ce984c9205a} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+RIPEMD160\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to Ripe\+MD160. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a7859d3cb7fda8ad989c7bc3089cd0282}\index{HashTester.Hasher@{HashTester.Hasher}!HashRIPEMD160Bytes@{HashRIPEMD160Bytes}}
+\index{HashRIPEMD160Bytes@{HashRIPEMD160Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashRIPEMD160Bytes()}{HashRIPEMD160Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a7859d3cb7fda8ad989c7bc3089cd0282} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+RIPEMD160\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to Ripe\+MD160. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a03a699fbfc527313de774a9efbe3ab90}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepper@{HashSaltPepper}}
+\index{HashSaltPepper@{HashSaltPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepper()}{HashSaltPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a03a699fbfc527313de774a9efbe3ab90} 
+string Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{byte\+[$\,$]\+}]{salt}{, }\item[{byte\+[$\,$]\+}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em use\+Salt} & If add salt\\
+\hline
+{\em use\+Pepper} & If add pepper\\
+\hline
+{\em salt} & Is ignored if use\+Salt is false\\
+\hline
+{\em pepper} & Is ignored if use\+Pepper is false\\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a527ee22b235c353b808cf5a3de869224}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepper@{HashSaltPepper}}
+\index{HashSaltPepper@{HashSaltPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepper()}{HashSaltPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a527ee22b235c353b808cf5a3de869224} 
+string Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{salt}{, }\item[{string}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes an array of bytes, adds salt and or pepper and returns hash in string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em use\+Salt} & If add salt\\
+\hline
+{\em use\+Pepper} & If add pepper\\
+\hline
+{\em salt} & Is ignored if use\+Salt is false\\
+\hline
+{\em pepper} & Is ignored if use\+Pepper is false\\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ae5b91ebad1e6f2ff464f29e7487a0ee8}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepper@{HashSaltPepper}}
+\index{HashSaltPepper@{HashSaltPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepper()}{HashSaltPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ae5b91ebad1e6f2ff464f29e7487a0ee8} 
+string Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{salt}{, }\item[{string}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a hash based algorithm with salt and pepper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em use\+Salt} & \\
+\hline
+{\em use\+Pepper} & \\
+\hline
+{\em salt} & \\
+\hline
+{\em pepper} & \\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ad609c5ea8b3cbbcef5fee0a6cda94af1}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepperBytes@{HashSaltPepperBytes}}
+\index{HashSaltPepperBytes@{HashSaltPepperBytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepperBytes()}{HashSaltPepperBytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ad609c5ea8b3cbbcef5fee0a6cda94af1} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{byte\+[$\,$]\+}]{salt}{, }\item[{byte\+[$\,$]\+}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes an array of bytes, adds salt (in byte of arrays) and or pepper (in byte of arrays) and returns hash in array of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em use\+Salt} & If add salt\\
+\hline
+{\em use\+Pepper} & If add pepper\\
+\hline
+{\em salt} & Is ignored if use\+Salt is false\\
+\hline
+{\em pepper} & Is ignored if use\+Pepper is false\\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a5391bda61ec840845abf8dd147e5ac05}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepperBytes@{HashSaltPepperBytes}}
+\index{HashSaltPepperBytes@{HashSaltPepperBytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepperBytes()}{HashSaltPepperBytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a5391bda61ec840845abf8dd147e5ac05} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{salt}{, }\item[{string}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes an array of bytes, adds salt and or pepper and returns hash in array of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+{\em use\+Salt} & If add salt\\
+\hline
+{\em use\+Pepper} & If add pepper\\
+\hline
+{\em salt} & Is ignored if use\+Salt is false\\
+\hline
+{\em pepper} & Is ignored if use\+Pepper is false\\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a9a06d75c3d3610df720a493b778ee7bd}\index{HashTester.Hasher@{HashTester.Hasher}!HashSaltPepperBytes@{HashSaltPepperBytes}}
+\index{HashSaltPepperBytes@{HashSaltPepperBytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSaltPepperBytes()}{HashSaltPepperBytes()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a9a06d75c3d3610df720a493b778ee7bd} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+Salt\+Pepper\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{, }\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{salt}{, }\item[{string}]{pepper}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Takes a string, adds salt and or pepper and returns hash in array of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+{\em use\+Salt} & If add salt\\
+\hline
+{\em use\+Pepper} & If add pepper\\
+\hline
+{\em salt} & Is ignored if use\+Salt is false\\
+\hline
+{\em pepper} & Is ignored if use\+Pepper is false\\
+\hline
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a122088a51e39790c435c573aa2d8a77d}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA1@{HashSHA1}}
+\index{HashSHA1@{HashSHA1}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA1()}{HashSHA1()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a122088a51e39790c435c573aa2d8a77d} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA1 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a1769cdb077c962979711e30bc1f6b4c6}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA1@{HashSHA1}}
+\index{HashSHA1@{HashSHA1}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA1()}{HashSHA1()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a1769cdb077c962979711e30bc1f6b4c6} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA1 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ae02e7d6693178a09b37a22ab3ebf12c8}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA1Bytes@{HashSHA1Bytes}}
+\index{HashSHA1Bytes@{HashSHA1Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA1Bytes()}{HashSHA1Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ae02e7d6693178a09b37a22ab3ebf12c8} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA1\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a348883e4b300c6fcab160907a653a150}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA1Bytes@{HashSHA1Bytes}}
+\index{HashSHA1Bytes@{HashSHA1Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA1Bytes()}{HashSHA1Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a348883e4b300c6fcab160907a653a150} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA1\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a5a40b6507426e258b5dbf55e9cb62607}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA256@{HashSHA256}}
+\index{HashSHA256@{HashSHA256}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA256()}{HashSHA256()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a5a40b6507426e258b5dbf55e9cb62607} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA256 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA256. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a008226a659d711bb236f72a92302ba46}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA256@{HashSHA256}}
+\index{HashSHA256@{HashSHA256}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA256()}{HashSHA256()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a008226a659d711bb236f72a92302ba46} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA256 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA256. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a36960e7a34435f5228afb8358b9339ef}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA256Bytes@{HashSHA256Bytes}}
+\index{HashSHA256Bytes@{HashSHA256Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA256Bytes()}{HashSHA256Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a36960e7a34435f5228afb8358b9339ef} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA256\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA256. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in byte form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a14cbbc27c40fc6489176b1acab14abca}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA256Bytes@{HashSHA256Bytes}}
+\index{HashSHA256Bytes@{HashSHA256Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA256Bytes()}{HashSHA256Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a14cbbc27c40fc6489176b1acab14abca} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA256\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA256. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a1ba1f6fdfdbe2f338599fa310a7635e8}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA512@{HashSHA512}}
+\index{HashSHA512@{HashSHA512}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA512()}{HashSHA512()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a1ba1f6fdfdbe2f338599fa310a7635e8} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA512 (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA512. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a531cd9f07993884646dba61c7f191cab}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA512@{HashSHA512}}
+\index{HashSHA512@{HashSHA512}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA512()}{HashSHA512()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a531cd9f07993884646dba61c7f191cab} 
+string Hash\+Tester.\+Hasher.\+Hash\+SHA512 (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA512. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in text form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_ae3eca6bd38333c663ef6c6c0ff141b41}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA512Bytes@{HashSHA512Bytes}}
+\index{HashSHA512Bytes@{HashSHA512Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA512Bytes()}{HashSHA512Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_ae3eca6bd38333c663ef6c6c0ff141b41} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA512\+Bytes (\begin{DoxyParamCaption}\item[{byte\+[$\,$]\+}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes bytes to SHA512. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a5bf5d693fd9e04b1c42ced82a9583e10}\index{HashTester.Hasher@{HashTester.Hasher}!HashSHA512Bytes@{HashSHA512Bytes}}
+\index{HashSHA512Bytes@{HashSHA512Bytes}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{HashSHA512Bytes()}{HashSHA512Bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a5bf5d693fd9e04b1c42ced82a9583e10} 
+byte\+[$\,$]\+ Hash\+Tester.\+Hasher.\+Hash\+SHA512\+Bytes (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Hashes text to SHA512. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash in bytes form
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a38e68627262609aa663a2af0c2eee66b}\index{HashTester.Hasher@{HashTester.Hasher}!IsUsingSaltAndPepper@{IsUsingSaltAndPepper}}
+\index{IsUsingSaltAndPepper@{IsUsingSaltAndPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{IsUsingSaltAndPepper()}{IsUsingSaltAndPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a38e68627262609aa663a2af0c2eee66b} 
+bool Hash\+Tester.\+Hasher.\+Is\+Using\+Salt\+And\+Pepper (\begin{DoxyParamCaption}\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{out string}]{salt}{, }\item[{out string}]{pepper}{, }\item[{out string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retuns if salt and pepper was used, also hash\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Salt} & \\
+\hline
+{\em use\+Pepper} & \\
+\hline
+{\em salt} & Is empty if is use\+Salt is false\\
+\hline
+{\em pepper} & Is 0 if use\+Pepper is false\\
+\hline
+{\em hash\+ID} & Returns hash ID\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a6f610dfa0df160e67109be61ef48d811}\index{HashTester.Hasher@{HashTester.Hasher}!IsUsingSaltAndPepper@{IsUsingSaltAndPepper}}
+\index{IsUsingSaltAndPepper@{IsUsingSaltAndPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{IsUsingSaltAndPepper()}{IsUsingSaltAndPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a6f610dfa0df160e67109be61ef48d811} 
+bool Hash\+Tester.\+Hasher.\+Is\+Using\+Salt\+And\+Pepper (\begin{DoxyParamCaption}\item[{bool}]{use\+Salt}{, }\item[{bool}]{use\+Pepper}{, }\item[{string}]{custom\+Hash\+ID}{, }\item[{out string}]{salt}{, }\item[{out string}]{pepper}{, }\item[{out string}]{hash\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retuns if salt and pepper was used. Inputs custom hash\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Salt} & \\
+\hline
+{\em use\+Pepper} & \\
+\hline
+{\em custom\+Hash\+ID} & \\
+\hline
+{\em salt} & Is empty if use\+Salt is false\\
+\hline
+{\em pepper} & Is 0 if use\+Pepper is false\\
+\hline
+{\em hash\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a3ed81a7e11fd637b8163c8c136a00ed4}\index{HashTester.Hasher@{HashTester.Hasher}!IsUsingSaltAndPepper@{IsUsingSaltAndPepper}}
+\index{IsUsingSaltAndPepper@{IsUsingSaltAndPepper}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{IsUsingSaltAndPepper()}{IsUsingSaltAndPepper()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a3ed81a7e11fd637b8163c8c136a00ed4} 
+bool Hash\+Tester.\+Hasher.\+Is\+Using\+Salt\+And\+Pepper (\begin{DoxyParamCaption}\item[{out bool}]{is\+Salt\+Used}{, }\item[{out bool}]{is\+Pepper\+Used}{, }\item[{out string}]{salt}{, }\item[{out string}]{pepper}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if salt and pepper was used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Salt\+Used} & \\
+\hline
+{\em is\+Pepper\+Used} & \\
+\hline
+{\em salt} & Is empty if is\+Salt\+Used is false\\
+\hline
+{\em pepper} & Is 0 if is\+Pepper\+Used is false\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_hasher_a4d3140b6e9e546f1c446df7902e7e929}\index{HashTester.Hasher@{HashTester.Hasher}!LoadSalt@{LoadSalt}}
+\index{LoadSalt@{LoadSalt}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{LoadSalt()}{LoadSalt()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a4d3140b6e9e546f1c446df7902e7e929} 
+void Hash\+Tester.\+Hasher.\+Load\+Salt (\begin{DoxyParamCaption}\item[{string}]{hash\+ID}{, }\item[{out string}]{salt}{, }\item[{out int}]{pepper\+Lenght}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Loads salt and pepper based on hash\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+ID} & \\
+\hline
+{\em salt} & \\
+\hline
+{\em pepper\+Lenght} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_hasher_aad3e39855082c34515d6dd3a774542cc}\index{HashTester.Hasher@{HashTester.Hasher}!SaveSalt@{SaveSalt}}
+\index{SaveSalt@{SaveSalt}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{SaveSalt()}{SaveSalt()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_aad3e39855082c34515d6dd3a774542cc} 
+void Hash\+Tester.\+Hasher.\+Save\+Salt (\begin{DoxyParamCaption}\item[{string}]{hash\+ID}{, }\item[{string}]{salt}{, }\item[{int}]{pepper\+Length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Saves salt and pepper based on hash\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+ID} & \\
+\hline
+{\em salt} & \\
+\hline
+{\em pepper\+Length} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_hasher_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_hasher_a7ba61e2fb18343a965a03b1529f300be}\index{HashTester.Hasher@{HashTester.Hasher}!sizeOfBufferOfBlocks@{sizeOfBufferOfBlocks}}
+\index{sizeOfBufferOfBlocks@{sizeOfBufferOfBlocks}!HashTester.Hasher@{HashTester.Hasher}}
+\doxysubsubsection{\texorpdfstring{sizeOfBufferOfBlocks}{sizeOfBufferOfBlocks}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_hasher_a7ba61e2fb18343a965a03b1529f300be} 
+const uint Hash\+Tester.\+Hasher.\+size\+Of\+Buffer\+Of\+Blocks = 8192\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_hasher_8cs}{Hasher.\+cs}}\end{DoxyCompactItemize}

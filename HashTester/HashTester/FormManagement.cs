@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Methods used in all Forms for easier management
+ *@file: FormManagement.cs
+ */
+
 using Microsoft.Win32;
 using System;
 using System.Drawing;
@@ -182,10 +189,10 @@ namespace HashTester
         }
         #endregion
 
-        #region
-
-        #endregion
-
+        /// <summary>
+        /// Runs all methods needed to load any form
+        /// </summary>
+        /// <param name="form"></param>
         public static void LoadForm(Form form)
         {
             if (form is Form1 form1) //If Loading main form (Form1)
@@ -195,6 +202,7 @@ namespace HashTester
                 Settings.LoadSettings();
                 Languages.LoadDictionary(Settings.SelectedLanguage);                                
                 form1.Name = Languages.Translate(Languages.L.Hashtester);
+                //Github Check runs on different thread
                 Task.Run(async () =>
                 {
                     await form1.CheckForUpdates();
@@ -262,13 +270,11 @@ namespace HashTester
             else return true;
         }
 
+        #region FormTheme
+
         /// <summary>
         /// Returns if light mode should be used (otherwise a dark mode will be used)
         /// </summary>
-        /// <returns></returns>
-        /// 
-
-        #region FormTheme
         public static bool UseLightMode()
         {
             switch (Settings.VisualMode)
@@ -282,9 +288,9 @@ namespace HashTester
 
 
         /// <summary>
-        /// Checks registry if white mode (false means dark mode)
+        /// Checks registry for Light mode preference
         /// </summary>
-        /// <returns></returns>
+        /// <returns>false means dark mode</returns>
         private static bool RegistryUseLightMode()
         {
             string registryKey = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
@@ -340,6 +346,17 @@ namespace HashTester
             ApplyThemeRecursive(form, controlColor, controlText, windows, windowsText, borderColor, lightMode);
         }
 
+        /// <summary>
+        /// Sets up light/dark mode for all components of a Form (recursively)
+        /// Is called from SetUpFormTheme
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="controlColor"></param>
+        /// <param name="controlText"></param>
+        /// <param name="windows"></param>
+        /// <param name="windowsText"></param>
+        /// <param name="borderColor"></param>
+        /// <param name="lightMode"></param>
         public static void ApplyThemeRecursive(Control control, Color controlColor, Color controlText, Color windows, Color windowsText, Color borderColor, bool lightMode)
         {
             if (control == null) return;
@@ -382,12 +399,9 @@ namespace HashTester
                     control.ForeColor = windowsText; //text
                     break;
             }
-            if (control.HasChildren)
+            foreach (Control child in control.Controls)
             {
-                foreach (Control child in control.Controls)
-                {
-                    ApplyThemeRecursive(child, controlColor, controlText, windows, windowsText, borderColor, lightMode);
-                }
+                ApplyThemeRecursive(child, controlColor, controlText, windows, windowsText, borderColor, lightMode);
             }
         }
 
@@ -453,7 +467,7 @@ namespace HashTester
         #region Reloads
 
         /// <summary>
-        /// Reloads one Form
+        /// Reloads one Form 
         /// </summary>
         /// <param name="form"></param>
         public static void ReloadFormLanguage(Form form)
@@ -475,6 +489,10 @@ namespace HashTester
             form.Invalidate(true);
         }
 
+        /// <summary>
+        /// Recursively reloads controls
+        /// </summary>
+        /// <param name="parent"></param>
         private static void ReloadControls(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -487,6 +505,12 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Reloads specific Controls (some aditional cases)
+        /// Use AccessibleDescription as special ID
+        /// </summary>
+        /// <param name="c"></param>
         private static void ReloadControl(Control c)
         {
             if (!string.IsNullOrEmpty(c.AccessibleDescription)) //Special case for PasswordForm
@@ -541,6 +565,7 @@ namespace HashTester
                     default: break;
                 }
             }
+            //Standard translation from tag
             if (c.Tag is string tag && !string.IsNullOrEmpty(tag))
             {
                 switch (c)
@@ -555,6 +580,10 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Reloads whole toolstrip
+        /// </summary>
+        /// <param name="ts"></param>
         private static void ReloadToolStrip(ToolStrip ts)
         {
             foreach (ToolStripItem item in ts.Items)
@@ -563,6 +592,10 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Recursively reloads tool strip item
+        /// </summary>
+        /// <param name="item"></param>
         private static void ReloadToolStripItem(ToolStripItem item)
         {
             item.Text = Languages.TranslateFromTag((string)item.Tag);
@@ -576,6 +609,12 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Reloads all active forms in a specific way
+        /// </summary>
+        /// <param name="reloadStripMenu"></param>
+        /// <param name="reloadTheme"></param>
+        /// <param name="reloadLanguage"></param>
         public static void ReloadAllForms(bool reloadStripMenu, bool reloadTheme, bool reloadLanguage)
         {
             if (!reloadStripMenu && !reloadTheme && !reloadLanguage)
@@ -603,6 +642,10 @@ namespace HashTester
 
         #region The Tag Giver
 
+        /// <summary>
+        /// Tags all controls for language ID
+        /// </summary>
+        /// <param name="form"></param>
         public static void FormTagGiver(Form form)
         {
             if (form == null) return;
@@ -610,6 +653,10 @@ namespace HashTester
             GiveTagControl(form);
         }
 
+        /// <summary>
+        /// Sub method for FormTagGiver 
+        /// </summary>
+        /// <param name="control"></param>
         private static void GiveTagControl(Control control)
         {
             if (control == null) return;
@@ -627,6 +674,10 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Gives tag to whole strip menu
+        /// </summary>
+        /// <param name="ts"></param>
         private static void GiveTagStrip(ToolStrip ts)
         {
             foreach (ToolStripItem item in ts.Items)
@@ -635,6 +686,10 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Gives tag to strip items
+        /// </summary>
+        /// <param name="item"></param>
         private static void GiveTagStripItem(ToolStripItem item)
         {
             item.Tag = Languages.GetKeyFromText(item.Text);

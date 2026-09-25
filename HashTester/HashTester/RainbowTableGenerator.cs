@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Main script for generating Rainbow Tables
+ *@file: RainbowTableGenerator.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,11 +52,14 @@ namespace HashTester
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         Hasher hasher = new Hasher();
         Stopwatch stopwatch;
+
+        /// <summary>
+        /// Cancels the current operation
+        /// </summary>
         public void Abort()
         {
             cancellationTokenSource.Cancel();
         }
-
 
 
         /// <summary>
@@ -57,7 +67,7 @@ namespace HashTester
         /// </summary>
         /// <param name="fileInputPath">Path to file to take words from</param>
         /// <param name="fileOutputPath">Path to file to funny hash output</param>
-        /// <param name="hashingAlgorithm"></param>
+        /// <param name="hashingAlgorithm">What algorithm to use</param>
         /// <returns></returns>
         public bool GenerateRainbowTable(string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
         {
@@ -248,6 +258,13 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Generates rainbow table, but sets up single thread work on a multithread basis
+        /// </summary>
+        /// <param name="fileInputPath"></param>
+        /// <param name="fileOutputPath"></param>
+        /// <param name="hashingAlgorithm"></param>
         private void GenerateRainbowTableMultiThreadForSingleThread(string fileInputPath, string fileOutputPath, Hasher.HashingAlgorithm hashingAlgorithm)
         {
             try
@@ -278,6 +295,9 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Resets all values
+        /// </summary>
         public void ResetValues()
         {
             cancellationTokenSource = new CancellationTokenSource();
@@ -286,7 +306,13 @@ namespace HashTester
             Interlocked.Exchange(ref linesProcessed, 0);
             if (stopwatch != null) stopwatch.Reset();
         }
+        
 
+        /// <summary>
+        /// Removes temp Files if the user wants to (also asks the user)
+        /// </summary>
+        /// <param name="tempFilesInput"></param>
+        /// <param name="tempFilesOutput"></param>
         private void RemoveFilesQuestionMultiThread(string[] tempFilesInput, string[] tempFilesOutput)
         {
             if (MessageBox.Show(Languages.Translate(Languages.L.WantToDeleteAnUnfinishedFile) + Environment.NewLine + Languages.Translate(Languages.L.WarningThereWillBeSeveralOfTheseFiles), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -336,6 +362,11 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Do you want to delete unfinished files?
+        /// </summary>
+        /// <param name="fileOutputPath"></param>
         private void RemoveFilesQuestion(string fileOutputPath)
         {
             if (MessageBox.Show(Languages.Translate(Languages.L.WantToDeleteAnUnfinishedFile), Languages.Translate(Languages.L.Question), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)

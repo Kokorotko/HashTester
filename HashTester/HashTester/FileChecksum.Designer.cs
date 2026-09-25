@@ -77,7 +77,7 @@ namespace HashTester
             this.textBoxHash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxHash.Location = new System.Drawing.Point(3, 108);
             this.textBoxHash.Name = "textBoxHash";
-            this.textBoxHash.Size = new System.Drawing.Size(820, 26);
+            this.textBoxHash.Size = new System.Drawing.Size(820, 30);
             this.textBoxHash.TabIndex = 0;
             // 
             // buttonChecksum

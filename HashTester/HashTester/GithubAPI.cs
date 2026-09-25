@@ -1,4 +1,13 @@
-﻿using Newtonsoft.Json.Linq;
+﻿/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Checks Github for new versions
+ *@file: GithubAPI.cs
+ */
+
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Drawing.Printing;
 using System.Net.Http;
@@ -24,7 +33,10 @@ namespace HashTester
                 string json = await client.GetStringAsync(url); //get API
                 JObject release = JObject.Parse(json); //convert API
                 string latestRelease = release["tag_name"]?.ToString();
-                latestRelease = latestRelease.Substring(1); //remove the version (v1.0.0 ==> 1.0.0)
+                if (latestRelease[0] == 'v')
+                {
+                    latestRelease = latestRelease.Substring(1); //remove the version (v1.0.0 ==> 1.0.0)
+                }
                 return latestRelease;
             }
         }
@@ -38,7 +50,7 @@ namespace HashTester
         {
             DateTime temp = Settings.GithubRequestAPI;
             Console.WriteLine($"Last Github API request: {temp}");
-            if (temp.AddHours(12) <= DateTime.Now) return true;
+            if (temp.AddHours(24) <= DateTime.Now) return true; //You can set up whatever time you want
             else return false;
         }
     }

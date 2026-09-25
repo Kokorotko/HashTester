@@ -1,0 +1,288 @@
+\doxysection{Hash\+Tester.\+Check\+Collision\+Form Class Reference}
+\hypertarget{class_hash_tester_1_1_check_collision_form}{}\label{class_hash_tester_1_1_check_collision_form}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+Inheritance diagram for Hash\+Tester.\+Check\+Collision\+Form:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hash_tester_1_1_check_collision_form}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321}{Collision\+Detection\+Format}} \{ \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a58c9566f3c750ce7147b045fdd14202b}{HEX}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a63b588d5559f64f89a416e656880b949}{STRING}}
+, \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a35d3245a21b0942070419ef6602d239e}{BIN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum options for collisions format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a2be344a2ae103339096087cc6674de79}{Check\+Collision\+Form}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a185f3b35ce83d61ab0925ffa1b8218d8}{Try\+Normalize\+Hex}} (string hex, out string formatted\+Hex)
+\begin{DoxyCompactList}\small\item\em Tries to remove any separators in hex. \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a6e7014285d1ab36e81e0f290b552323d}{Is\+Valid\+Hex}} (string hex)
+\begin{DoxyCompactList}\small\item\em Checks if HEX is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a04984befcb8dcdad3276ddbaf2d9f648}{button1\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Checks hash collisions based on text. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a79f7a52570f9c3d514aceb0dddb40961}{hash\+Selector\+\_\+\+Selected\+Index\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Selector for current hashing algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_ad4085e5617fbe9dade7a493aead5a26d}{Check\+Collision\+Form\+\_\+\+Load}} (object sender, Event\+Args e)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_ac422227a514efaf8d6bc7d4ecc10c93d}{Check\+Collision}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hash\+Algorithm, string text01, string text02, \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321}{Collision\+Detection\+Format}} format)
+\begin{DoxyCompactList}\small\item\em Checks if two inputs generate a hash colision. \end{DoxyCompactList}\item 
+string \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_ab14f25422e596d87cea3f39317de0a59}{Convert\+Hex\+To\+String}} (string hex)
+\begin{DoxyCompactList}\small\item\em Converts hex to string. \end{DoxyCompactList}\item 
+byte\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0df6cf09b8f1a6b8fd3c42b78287b488}{Convert\+Bin\+To\+Byte}} (string binary)
+\begin{DoxyCompactList}\small\item\em Converts binary to bytes. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a179df500d7d568bd76f772a77d37c357}{button\+Take\+TXT\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Input for a Check\+Collision Method from a .txt file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a3e693b2054f52c3eb46afff6929a6f8d}{button\+Close\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Closes the form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_aa6e842327d31cbfa9b6452378b8e8d49}{hashing\+Algorithm}} = \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}{Hasher.\+Hashing\+Algorithm.\+CRC32}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!CollisionDetectionFormat@{CollisionDetectionFormat}}
+\index{CollisionDetectionFormat@{CollisionDetectionFormat}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CollisionDetectionFormat}{CollisionDetectionFormat}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321} 
+enum \doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321}{Hash\+Tester.\+Check\+Collision\+Form.\+Collision\+Detection\+Format}}}
+
+
+
+Enum options for collisions format. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEX@{HEX}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!HEX@{HEX}}
+}\Hypertarget{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a58c9566f3c750ce7147b045fdd14202b}\label{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a58c9566f3c750ce7147b045fdd14202b} 
+HEX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!STRING@{STRING}}
+}\Hypertarget{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a63b588d5559f64f89a416e656880b949}\label{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a63b588d5559f64f89a416e656880b949} 
+STRING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BIN@{BIN}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!BIN@{BIN}}
+}\Hypertarget{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a35d3245a21b0942070419ef6602d239e}\label{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321a35d3245a21b0942070419ef6602d239e} 
+BIN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a2be344a2ae103339096087cc6674de79}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!CheckCollisionForm@{CheckCollisionForm}}
+\index{CheckCollisionForm@{CheckCollisionForm}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CheckCollisionForm()}{CheckCollisionForm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a2be344a2ae103339096087cc6674de79} 
+Hash\+Tester.\+Check\+Collision\+Form.\+Check\+Collision\+Form (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a04984befcb8dcdad3276ddbaf2d9f648}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!button1\_Click@{button1\_Click}}
+\index{button1\_Click@{button1\_Click}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{button1\_Click()}{button1\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a04984befcb8dcdad3276ddbaf2d9f648} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+button1\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks hash collisions based on text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a3e693b2054f52c3eb46afff6929a6f8d}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!buttonClose\_Click@{buttonClose\_Click}}
+\index{buttonClose\_Click@{buttonClose\_Click}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonClose\_Click()}{buttonClose\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a3e693b2054f52c3eb46afff6929a6f8d} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+button\+Close\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Closes the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a179df500d7d568bd76f772a77d37c357}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!buttonTakeTXT\_Click@{buttonTakeTXT\_Click}}
+\index{buttonTakeTXT\_Click@{buttonTakeTXT\_Click}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{buttonTakeTXT\_Click()}{buttonTakeTXT\_Click()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a179df500d7d568bd76f772a77d37c357} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+button\+Take\+TXT\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Input for a Check\+Collision Method from a .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_ac422227a514efaf8d6bc7d4ecc10c93d}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!CheckCollision@{CheckCollision}}
+\index{CheckCollision@{CheckCollision}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CheckCollision()}{CheckCollision()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_ac422227a514efaf8d6bc7d4ecc10c93d} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+Check\+Collision (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hash\+Algorithm}{, }\item[{string}]{text01}{, }\item[{string}]{text02}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_check_collision_form_a0503b5d5db3d44d9121f9ccf35a2e321}{Collision\+Detection\+Format}}}]{format}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks if two inputs generate a hash colision. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+Algorithm} & Used hash algorithm\\
+\hline
+{\em text01} & String based input one\\
+\hline
+{\em text02} & String based input two\\
+\hline
+{\em format} & If input is a string, BIN or HEX\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_ad4085e5617fbe9dade7a493aead5a26d}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!CheckCollisionForm\_Load@{CheckCollisionForm\_Load}}
+\index{CheckCollisionForm\_Load@{CheckCollisionForm\_Load}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{CheckCollisionForm\_Load()}{CheckCollisionForm\_Load()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_ad4085e5617fbe9dade7a493aead5a26d} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+Check\+Collision\+Form\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a0df6cf09b8f1a6b8fd3c42b78287b488}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!ConvertBinToByte@{ConvertBinToByte}}
+\index{ConvertBinToByte@{ConvertBinToByte}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ConvertBinToByte()}{ConvertBinToByte()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a0df6cf09b8f1a6b8fd3c42b78287b488} 
+byte\+[$\,$]\+ Hash\+Tester.\+Check\+Collision\+Form.\+Convert\+Bin\+To\+Byte (\begin{DoxyParamCaption}\item[{string}]{binary}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Converts binary to bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary} & Input text\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Output bytes
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_ab14f25422e596d87cea3f39317de0a59}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!ConvertHexToString@{ConvertHexToString}}
+\index{ConvertHexToString@{ConvertHexToString}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{ConvertHexToString()}{ConvertHexToString()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_ab14f25422e596d87cea3f39317de0a59} 
+string Hash\+Tester.\+Check\+Collision\+Form.\+Convert\+Hex\+To\+String (\begin{DoxyParamCaption}\item[{string}]{hex}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Converts hex to string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hex} & text in hex\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+text in string
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a79f7a52570f9c3d514aceb0dddb40961}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!hashSelector\_SelectedIndexChanged@{hashSelector\_SelectedIndexChanged}}
+\index{hashSelector\_SelectedIndexChanged@{hashSelector\_SelectedIndexChanged}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{hashSelector\_SelectedIndexChanged()}{hashSelector\_SelectedIndexChanged()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a79f7a52570f9c3d514aceb0dddb40961} 
+void Hash\+Tester.\+Check\+Collision\+Form.\+hash\+Selector\+\_\+\+Selected\+Index\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender}{, }\item[{Event\+Args}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Selector for current hashing algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a6e7014285d1ab36e81e0f290b552323d}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!IsValidHex@{IsValidHex}}
+\index{IsValidHex@{IsValidHex}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{IsValidHex()}{IsValidHex()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a6e7014285d1ab36e81e0f290b552323d} 
+bool Hash\+Tester.\+Check\+Collision\+Form.\+Is\+Valid\+Hex (\begin{DoxyParamCaption}\item[{string}]{hex}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Checks if HEX is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hex} & Input text in hex\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True or false
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_a185f3b35ce83d61ab0925ffa1b8218d8}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!TryNormalizeHex@{TryNormalizeHex}}
+\index{TryNormalizeHex@{TryNormalizeHex}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{TryNormalizeHex()}{TryNormalizeHex()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_a185f3b35ce83d61ab0925ffa1b8218d8} 
+bool Hash\+Tester.\+Check\+Collision\+Form.\+Try\+Normalize\+Hex (\begin{DoxyParamCaption}\item[{string}]{hex}{, }\item[{out string}]{formatted\+Hex}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Tries to remove any separators in hex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hex} & Input hex\\
+\hline
+{\em formatted\+Hex} & Output hex\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_check_collision_form_aa6e842327d31cbfa9b6452378b8e8d49}\index{HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}!hashingAlgorithm@{hashingAlgorithm}}
+\index{hashingAlgorithm@{hashingAlgorithm}!HashTester.CheckCollisionForm@{HashTester.CheckCollisionForm}}
+\doxysubsubsection{\texorpdfstring{hashingAlgorithm}{hashingAlgorithm}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_check_collision_form_aa6e842327d31cbfa9b6452378b8e8d49} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} Hash\+Tester.\+Check\+Collision\+Form.\+hashing\+Algorithm = \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42a19c122b00447f21a2938e2602d53ceab}{Hasher.\+Hashing\+Algorithm.\+CRC32}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_check_collision_form_8cs}{Check\+Collision\+Form.\+cs}}\end{DoxyCompactItemize}

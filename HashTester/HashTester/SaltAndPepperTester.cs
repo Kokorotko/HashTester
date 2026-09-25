@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Form UI for Salt And Pepper script
+ *@file: SaltAndPepperTester.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +24,11 @@ namespace HashTester
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Hashes input text with salt (UI checkbox)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonHashSimpleText_Click(object sender, EventArgs e)
         {
             bool askForSaltPepper = false;
@@ -24,11 +36,25 @@ namespace HashTester
             ProcessingHash(textHashSimple.Text, algorithm, askForSaltPepper);
         }
 
+
+        /// <summary>
+        /// Selects algorithm based on ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hashSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             algorithm = (Hasher.HashingAlgorithm)hashSelector.SelectedIndex;
         }
 
+
+        /// <summary>
+        /// Main hashing method for Salt/Pepper
+        /// If Salt/Pepper is selected with checkbox, opens up a AskForSaltPepper Form
+        /// </summary>
+        /// <param name="originalText"></param>
+        /// <param name="algorithm"></param>
+        /// <param name="askForSaltPepper"></param>
         private void ProcessingHash(string originalText, Hasher.HashingAlgorithm algorithm, bool askForSaltPepper)
         {
             bool usingSaltAndPepper = false;
@@ -56,17 +82,33 @@ namespace HashTester
             string outputString = outputHandler.OutputStyleString(originalText, hash, 1, checkBoxUseSalt.Checked, checkBoxUsePepper.Checked, salt, pepper);
             outputHandler.OutputTypeShow(outputString, listBoxLog);
         }
+        
 
+        /// <summary>
+        /// Clears log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearListBox_Click(object sender, EventArgs e)
         {
             listBoxLog.Items.Clear();
         }
 
+        /// <summary>
+        /// Saves Log to .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveLog_Click(object sender, EventArgs e)
         {
             FormManagement.SaveLog(listBoxLog, this);
         }
 
+        /// <summary>
+        /// Copies selected item from log to Clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClipboard_Click(object sender, EventArgs e)
         {
             try
@@ -80,6 +122,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Loads form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaltAndPepperForm_Load(object sender, EventArgs e)
         {
             hashSelector.SelectedIndex = 0;
@@ -109,6 +156,11 @@ namespace HashTester
             #endregion
         }
 
+        /// <summary>
+        /// Button Register, registers new login to .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             //Check UI
@@ -127,6 +179,11 @@ namespace HashTester
             Register();
         }
 
+        /// <summary>
+        /// Removes a registry from the .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxName.Text))
@@ -159,6 +216,11 @@ namespace HashTester
         }
 
 
+        /// <summary>
+        /// Tries to log in with a name and password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxName.Text))
@@ -182,6 +244,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Grabs info about a specific ID and shows it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e) //Info about ID
         {
             if (String.IsNullOrEmpty(textBoxHashID.Text))
@@ -210,6 +277,11 @@ namespace HashTester
             MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }        
 
+        /// <summary>
+        /// Shows all IDs in the registry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonShowAllID_Click(object sender, EventArgs e) //Show all Registered Users
         {
             if (!saltAndPepper.CheckIfPasswordTesterExists(true)) return;
@@ -234,6 +306,11 @@ namespace HashTester
             MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Resets registry file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRemoveAll_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Languages.Translate(Languages.L.DoYouReallyWantToDeleteTheEntireDatabase), Languages.Translate(Languages.L.Warning), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
@@ -251,6 +328,11 @@ namespace HashTester
             else MessageBox.Show(Languages.Translate(Languages.L.Aborted), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Shows all IDs in the registry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonShowAllID_Click_1(object sender, EventArgs e) //Show All ID
         {
             string[] fileNames = Directory.GetFiles(Settings.DirectoryToHashData)
@@ -277,6 +359,10 @@ namespace HashTester
             MessageBox.Show(s, Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Adds username and password to the registry file
+        /// </summary>
+        /// <returns></returns>
         private bool Register()
         {
             string pathToFile = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
@@ -344,6 +430,11 @@ namespace HashTester
             return true;
         }
 
+        /// <summary>
+        /// Tries to log in using the registy
+        /// </summary>
+        /// <param name="displayMessage">Returns if the login was succesfull</param>
+        /// <returns></returns>
         private bool Login(out bool displayMessage)
         {
             displayMessage = true;
@@ -417,6 +508,11 @@ namespace HashTester
             return hasher.Hash(userPassword, usedAlgorithm) == passwordHash;
         }
 
+
+        /// <summary>
+        /// Removes a single registry from the file
+        /// </summary>
+        /// <returns></returns>
         private bool RemoveSingle()
         {
             string path = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
@@ -448,6 +544,10 @@ namespace HashTester
             return foundName;
         }
 
+        /// <summary>
+        /// Shows all registered users
+        /// </summary>
+        /// <returns></returns>
         private List<string> ShowAllRegisteredUsers()
         {
             string path = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
@@ -467,6 +567,10 @@ namespace HashTester
             return allHashID;
         }
 
+        /// <summary>
+        /// Shows info about a registry
+        /// </summary>
+        /// <returns></returns>
         private List<string> ShowIDInfo()
         {
             string pathNameTable = Path.Combine(Settings.DirectoryToPasswordTester, "nameTable.txt");
@@ -513,6 +617,11 @@ namespace HashTester
             return info;
         }
 
+        /// <summary>
+        /// Deletes all HashIDs in the registry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDeleteAllHashID_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Languages.Translate(Languages.L.DoYouReallyWantToDeleteTheAllHashid), Languages.Translate(Languages.L.Warning), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)

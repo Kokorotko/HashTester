@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Handles all methods for settings
+ *@file: Settings.cs
+ *@note: Since the move to .json instead of .txt there may be leftover code
+ */
+
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -10,8 +18,6 @@ namespace HashTester
     {
         const string fileName = "settings.json"; //include with extension
         const string fileNameTemp = "temp.json"; //include with extension
-        public const int ComboBoxMagicSizeNumber = 2;
-
 
         #region Private
         private static bool outputStyleIncludeOriginalString;
@@ -248,6 +254,9 @@ namespace HashTester
         }
         #endregion
 
+        /// <summary>
+        /// Removes temp file for settings
+        /// </summary>
         private static void DeleteSettingsTempFile()
         {
             string temp = PathToSettingsFileTemp();
@@ -257,11 +266,19 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Outputs the path to settings
+        /// </summary>
+        /// <returns></returns>
         public static string PathToSettingsFile()
         {
             return Path.Combine(DirectoryPathToSettings, fileName);
         }
 
+        /// <summary>
+        /// Outputs the path to temporary settings
+        /// </summary>
+        /// <returns></returns>
         private static string PathToSettingsFileTemp()
         {
             return Path.Combine(DirectoryPathToSettings, fileNameTemp);

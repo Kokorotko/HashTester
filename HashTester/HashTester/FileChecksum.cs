@@ -1,27 +1,42 @@
-using Newtonsoft.Json.Bson;
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: UI Form for FileChecksum
+ *@file: FileChecksum.cs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace HashTester
 {
+    /// <summary>
+    /// Main Form
+    /// </summary>
     public partial class FileChecksum : Form
     {
+        /// <summary>
+        /// Main Constructor
+        /// </summary>
         public FileChecksum()
         {
             InitializeComponent();
         }
+
         private string pathToFile = string.Empty;
+        Checksum checksum; //Main method script
+        CancellationTokenSource token; //Cancel token for cancelling operations
 
-        Checksum checksum;
-        CancellationTokenSource token;
-
+        /// <summary>
+        /// Loads a file into the script
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
@@ -38,7 +53,7 @@ namespace HashTester
 
 
         /// <summary>
-        /// Turns all of UI components off
+        /// Turns all of UI components off, except containers, labels, and cancelButton
         /// </summary>
         private void TurnOffUI(Control parent)
         {            
@@ -60,7 +75,7 @@ namespace HashTester
 
 
         /// <summary>
-        /// Turns all of UI components on
+        /// Turns all of UI components on, stops the timer and updates UI
         /// </summary>
         private void TurnOnUI(Control parent)
         {
@@ -70,6 +85,10 @@ namespace HashTester
             token = new CancellationTokenSource(); //reset token
         }
 
+        /// <summary>
+        /// Recursive support script for TurnOnUI
+        /// </summary>
+        /// <param name="parent">Control component</param>
         private void TurnOnUIRecursion(Control parent)
         {
             parent.Enabled = true;
@@ -80,6 +99,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Loads the form, first thing that runs on startup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void File_checksum_Load(object sender, EventArgs e)
         {
             this.Name = Languages.Translate(Languages.L.FileChecksumTool);
@@ -101,7 +125,10 @@ namespace HashTester
             LabelHashEmpty();
             #endregion
         }
-
+        
+        /// <summary>
+        /// Resets text in all the hash labels 
+        /// </summary>
         public void LabelHashEmpty()
         {
             labelCRC32Output.Text = string.Empty;
@@ -113,6 +140,12 @@ namespace HashTester
         }
 
         #region Copy
+
+        /// <summary>
+        /// Handles log copy to clipboard for MD5
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCopyMD5_Click(object sender, EventArgs e)
         {
             try
@@ -125,6 +158,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Handles log copy to clipboard for SHA1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -137,6 +175,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Handles log copy to clipboard for SHA256
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -149,6 +192,12 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Handles log copy to clipboard for SHA512
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -161,6 +210,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Handles log copy to clipboard for RipeMD160
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             try
@@ -173,6 +227,12 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Handles log copy to clipboard for CRC32
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             try
@@ -186,6 +246,11 @@ namespace HashTester
         }
         #endregion
 
+        /// <summary>
+        /// Finds algorithm based on hash lenght and runs from a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonChecksum_Click(object sender, EventArgs e)
         {
             string checksum = textBoxHash.Text;
@@ -232,6 +297,7 @@ namespace HashTester
                     }
             }
 
+            //Grabs the file and runs
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -239,6 +305,7 @@ namespace HashTester
                     TurnOffUI(this);
                     Checksum checkTemp = new Checksum(fileAlgorithm);
                     bool isCorrect = checkTemp.CheckCheckSumFromFile(textBoxHash.Text, dialog.FileName);
+                    //checks if the file is correct
                     if (isCorrect)
                     {
                         MessageBox.Show(Languages.Translate(Languages.L.ChecksumsAreCorrectFilesAreTheSame), Languages.Translate(Languages.L.Info), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -252,6 +319,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Method for simpler updating hash label
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="hash"></param>
         public void UpdateLabelHash(Hasher.HashingAlgorithm algorithm, string hash)
         {
             switch (algorithm)
@@ -274,6 +346,7 @@ namespace HashTester
         {
             List<Hasher.HashingAlgorithm> algorithms = GetAlgorithmsFromUI();
 
+            //
             if (algorithms.Count() == 0)
             {
                 MessageBox.Show(Languages.Translate(Languages.L.PleaseSelectAHashForChecksum), Languages.Translate(Languages.L.Warning), MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -282,10 +355,15 @@ namespace HashTester
             progressBar.Value = 0; //reset bar
             TurnOffUI(this);
             checksum = new Checksum(algorithms);
-            await checksum.GenerateCheckSumFromFile(filename, checkBoxMultiThread.Checked, token);
+            await checksum.GenerateCheckSumFromFile(filename, checkBoxMultiThread.Checked, token); //Generates hashes from a file
             TurnOnUI(this);
         }
 
+        /// <summary>
+        /// Handles run from a file or from textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRunChecksum_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(pathToFile))
@@ -307,6 +385,11 @@ namespace HashTester
             GenerateChecksumUI(pathToFile);
         }
 
+        /// <summary>
+        /// Checks all the hash checkboxes to true
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
             checkBoxCRC32.Checked = true;
@@ -317,6 +400,10 @@ namespace HashTester
             checkBoxSHA512.Checked = true;
         }
 
+        /// <summary>
+        /// Checks all the checkboxes and returns a hash list
+        /// </summary>
+        /// <returns></returns>
         public List<Hasher.HashingAlgorithm> GetAlgorithmsFromUI()
         {
             List<Hasher.HashingAlgorithm> algorithms = new List<Hasher.HashingAlgorithm>();
@@ -349,6 +436,10 @@ namespace HashTester
 
         #region Timer
         System.Windows.Forms.Timer timerUI = new System.Windows.Forms.Timer();
+
+        /// <summary>
+        /// Setups timer
+        /// </summary>
         public void SetupTimerForUIUpdate()
         {
             if (checksum == null) //kill his ass
@@ -365,6 +456,9 @@ namespace HashTester
             timerUI.Start();
         }
 
+        /// <summary>
+        /// Updates UI, is ran with a timer
+        /// </summary>
         private void UpdateUI()
         {
             try
@@ -384,6 +478,11 @@ namespace HashTester
 
         #endregion //Timer
 
+        /// <summary>
+        /// Cancels the operation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             token.Cancel();

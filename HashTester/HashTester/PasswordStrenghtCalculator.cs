@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Calculates how strong is password based on lenght and chars used
+ *@file: PasswordStrenghtCalculator.cs
+ */
+
 using System;
 using System.Numerics;
 using System.Windows.Forms;
@@ -9,11 +16,11 @@ namespace HashTester
         /// <summary>
         /// Calculates how long it would take to Brute force a password
         /// </summary>
-        /// <param name="passwordLenght"></param>
-        /// <param name="numberOfChars"></param>
-        /// <param name="donePerSec"></param>
-        /// <param name="speed"></param>
-        /// <param name="overflowed"></param>
+        /// <param name="passwordLenght">Lenght of a password</param>
+        /// <param name="numberOfChars">Number of awailable chars in a password</param>
+        /// <param name="donePerSec">How many passwords can be second</param>
+        /// <param name="speed">How long it would take</param>
+        /// <param name="overflowed">If the number has overflown (due to RAM)</param>
         /// <returns></returns>
         public static BigInteger Calculator(int passwordLenght, int numberOfChars, BigInteger donePerSec, out BigInteger speed, out bool overflowed)
         {

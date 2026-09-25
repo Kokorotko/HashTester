@@ -1,0 +1,279 @@
+\doxysection{Hash\+Tester.\+Dictionary\+Attack Class Reference}
+\hypertarget{class_hash_tester_1_1_dictionary_attack}{}\label{class_hash_tester_1_1_dictionary_attack}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+
+
+Main class for simulating dictionary attack.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_aa9d3653dd7221410baf693729e93df7c}{Multiple\+Password\+Breaker}} (string full\+Path\+To\+TXT, string\+[$\,$]\+ hashes, \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hashing\+Algorithm)
+\begin{DoxyCompactList}\small\item\em Similar to Password\+Finder, but finds using a hash. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_ae084a3fb91f42f562b0b7b3181bb9e2a}{Multiple\+Password\+Finder}} (string full\+Path\+To\+TXT, string\+[$\,$]\+ passwords)
+\begin{DoxyCompactList}\small\item\em Finds password from a .txt file, supports multiple inputs at the same time. \end{DoxyCompactList}\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a1f23c45d629dc247302bc1356ffe64c9}{Count\+Number\+Of\+Lines\+In\+File}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Returns a value of number of lines in a file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a611ba16193184bea830f0a574ab9505c}{Abort}} ()
+\begin{DoxyCompactList}\small\item\em Cancels the search. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a4c0578262f8531b9bdc3b5d6ca93b65f}{User\+Abandoned}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+bool\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a7450b3c400f801225f5ca6da7c3b4233}{Found\+Match}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+string\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a7b9ff33c0106d37764ff43e98600b70e}{Found\+Password}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+long\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_ad51ef52212f6b55bf3138804d4650dcc}{Line\+Found\+Match}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+List$<$ string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_aa730b6f2beb0ed0e5251a9ac93cb52ae}{Log\+Output}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+Stopwatch \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}{Stopwatch}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a8e3b383c9dffdedd29da56e55d442921}{Lines\+In\+TXT}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_ac82189e1c423afcfc7b396defb8fee1d}{Progress}}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_aca64ddb8159886c6f603d15844c518c3}{Current\+Line}}\hspace{0.3cm}{\ttfamily  \+[get, private set]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a8b6a0271973238a92571699490c5ed93}{Reset\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Resets Dictionary attack Value. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a77c42170fc68332659b46302270ca4c9}{Reset\+Var}} (int index)
+\begin{DoxyCompactList}\small\item\em Resets and prepares arrays for next attack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2d6cb467ba321fda4ea7b17f83105f7e}{log\+Output}} = new List$<$string$>$()
+\item 
+bool\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_afedeee5de8e2b7a0a19b334098bdeb60}{found\+Match}}
+\item 
+long\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_ad8680cdf0b2441b460496564e28c0271}{line\+Found\+Match}}
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a745393b69eefdaf7a2acca229fa98b3a}{lines\+In\+TXT}} = 0
+\item 
+long \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a5f49b2e73e7591cec54a48d855a40e04}{current\+Line}} = 0
+\item 
+string\+[$\,$]\+ \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a990d96baad0fa2e3ef34252bbf4f5d2a}{found\+Password}}
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a79c8dec5fb2e0908194e6576611674e1}{cancellation\+Token\+Source}} = new Cancellation\+Token\+Source()
+\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}{Stopwatch}} \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_aca293501946daacd6913db84ddc49401}{stopwatch}} = new \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}{Stopwatch}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main class for simulating dictionary attack. 
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a611ba16193184bea830f0a574ab9505c}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!Abort@{Abort}}
+\index{Abort@{Abort}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{Abort()}{Abort()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a611ba16193184bea830f0a574ab9505c} 
+void Hash\+Tester.\+Dictionary\+Attack.\+Abort (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cancels the search. 
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a1f23c45d629dc247302bc1356ffe64c9}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!CountNumberOfLinesInFile@{CountNumberOfLinesInFile}}
+\index{CountNumberOfLinesInFile@{CountNumberOfLinesInFile}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{CountNumberOfLinesInFile()}{CountNumberOfLinesInFile()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a1f23c45d629dc247302bc1356ffe64c9} 
+long Hash\+Tester.\+Dictionary\+Attack.\+Count\+Number\+Of\+Lines\+In\+File (\begin{DoxyParamCaption}\item[{string}]{file\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a value of number of lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_aa9d3653dd7221410baf693729e93df7c}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!MultiplePasswordBreaker@{MultiplePasswordBreaker}}
+\index{MultiplePasswordBreaker@{MultiplePasswordBreaker}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{MultiplePasswordBreaker()}{MultiplePasswordBreaker()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_aa9d3653dd7221410baf693729e93df7c} 
+void Hash\+Tester.\+Dictionary\+Attack.\+Multiple\+Password\+Breaker (\begin{DoxyParamCaption}\item[{string}]{full\+Path\+To\+TXT}{, }\item[{string\+[$\,$]\+}]{hashes}{, }\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hashing\+Algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Similar to Password\+Finder, but finds using a hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+Path\+To\+TXT} & \\
+\hline
+{\em hashes} & \\
+\hline
+{\em hashing\+Algorithm} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_ae084a3fb91f42f562b0b7b3181bb9e2a}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!MultiplePasswordFinder@{MultiplePasswordFinder}}
+\index{MultiplePasswordFinder@{MultiplePasswordFinder}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{MultiplePasswordFinder()}{MultiplePasswordFinder()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_ae084a3fb91f42f562b0b7b3181bb9e2a} 
+void Hash\+Tester.\+Dictionary\+Attack.\+Multiple\+Password\+Finder (\begin{DoxyParamCaption}\item[{string}]{full\+Path\+To\+TXT}{, }\item[{string\+[$\,$]\+}]{passwords}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finds password from a .txt file, supports multiple inputs at the same time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+Path\+To\+TXT} & \\
+\hline
+{\em passwords} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a8b6a0271973238a92571699490c5ed93}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!ResetValue@{ResetValue}}
+\index{ResetValue@{ResetValue}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{ResetValue()}{ResetValue()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a8b6a0271973238a92571699490c5ed93} 
+void Hash\+Tester.\+Dictionary\+Attack.\+Reset\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets Dictionary attack Value. 
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a77c42170fc68332659b46302270ca4c9}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!ResetVar@{ResetVar}}
+\index{ResetVar@{ResetVar}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{ResetVar()}{ResetVar()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a77c42170fc68332659b46302270ca4c9} 
+void Hash\+Tester.\+Dictionary\+Attack.\+Reset\+Var (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets and prepares arrays for next attack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Number of attacks going for at the same time\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a79c8dec5fb2e0908194e6576611674e1}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!cancellationTokenSource@{cancellationTokenSource}}
+\index{cancellationTokenSource@{cancellationTokenSource}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{cancellationTokenSource}{cancellationTokenSource}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a79c8dec5fb2e0908194e6576611674e1} 
+Cancellation\+Token\+Source Hash\+Tester.\+Dictionary\+Attack.\+cancellation\+Token\+Source = new Cancellation\+Token\+Source()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a5f49b2e73e7591cec54a48d855a40e04}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!currentLine@{currentLine}}
+\index{currentLine@{currentLine}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{currentLine}{currentLine}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a5f49b2e73e7591cec54a48d855a40e04} 
+long Hash\+Tester.\+Dictionary\+Attack.\+current\+Line = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_afedeee5de8e2b7a0a19b334098bdeb60}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!foundMatch@{foundMatch}}
+\index{foundMatch@{foundMatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{foundMatch}{foundMatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_afedeee5de8e2b7a0a19b334098bdeb60} 
+bool \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+found\+Match\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a990d96baad0fa2e3ef34252bbf4f5d2a}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!foundPassword@{foundPassword}}
+\index{foundPassword@{foundPassword}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{foundPassword}{foundPassword}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a990d96baad0fa2e3ef34252bbf4f5d2a} 
+string \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+found\+Password\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_ad8680cdf0b2441b460496564e28c0271}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!lineFoundMatch@{lineFoundMatch}}
+\index{lineFoundMatch@{lineFoundMatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{lineFoundMatch}{lineFoundMatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_ad8680cdf0b2441b460496564e28c0271} 
+long \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+line\+Found\+Match\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a745393b69eefdaf7a2acca229fa98b3a}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!linesInTXT@{linesInTXT}}
+\index{linesInTXT@{linesInTXT}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{linesInTXT}{linesInTXT}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a745393b69eefdaf7a2acca229fa98b3a} 
+long Hash\+Tester.\+Dictionary\+Attack.\+lines\+In\+TXT = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a2d6cb467ba321fda4ea7b17f83105f7e}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!logOutput@{logOutput}}
+\index{logOutput@{logOutput}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{logOutput}{logOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a2d6cb467ba321fda4ea7b17f83105f7e} 
+List$<$string$>$ Hash\+Tester.\+Dictionary\+Attack.\+log\+Output = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_aca293501946daacd6913db84ddc49401}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!stopwatch@{stopwatch}}
+\index{stopwatch@{stopwatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{stopwatch}{stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_aca293501946daacd6913db84ddc49401} 
+\doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}{Stopwatch}} Hash\+Tester.\+Dictionary\+Attack.\+stopwatch = new \doxymbox{\hyperlink{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}{Stopwatch}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_aca64ddb8159886c6f603d15844c518c3}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!CurrentLine@{CurrentLine}}
+\index{CurrentLine@{CurrentLine}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{CurrentLine}{CurrentLine}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_aca64ddb8159886c6f603d15844c518c3} 
+long Hash\+Tester.\+Dictionary\+Attack.\+Current\+Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a7450b3c400f801225f5ca6da7c3b4233}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!FoundMatch@{FoundMatch}}
+\index{FoundMatch@{FoundMatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{FoundMatch}{FoundMatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a7450b3c400f801225f5ca6da7c3b4233} 
+bool \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+Found\+Match\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a7b9ff33c0106d37764ff43e98600b70e}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!FoundPassword@{FoundPassword}}
+\index{FoundPassword@{FoundPassword}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{FoundPassword}{FoundPassword}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a7b9ff33c0106d37764ff43e98600b70e} 
+string \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+Found\+Password\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_ad51ef52212f6b55bf3138804d4650dcc}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!LineFoundMatch@{LineFoundMatch}}
+\index{LineFoundMatch@{LineFoundMatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{LineFoundMatch}{LineFoundMatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_ad51ef52212f6b55bf3138804d4650dcc} 
+long \+[$\,$]\+ Hash\+Tester.\+Dictionary\+Attack.\+Line\+Found\+Match\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a8e3b383c9dffdedd29da56e55d442921}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!LinesInTXT@{LinesInTXT}}
+\index{LinesInTXT@{LinesInTXT}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{LinesInTXT}{LinesInTXT}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a8e3b383c9dffdedd29da56e55d442921} 
+long Hash\+Tester.\+Dictionary\+Attack.\+Lines\+In\+TXT\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_aa730b6f2beb0ed0e5251a9ac93cb52ae}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!LogOutput@{LogOutput}}
+\index{LogOutput@{LogOutput}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{LogOutput}{LogOutput}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_aa730b6f2beb0ed0e5251a9ac93cb52ae} 
+List$<$string$>$ Hash\+Tester.\+Dictionary\+Attack.\+Log\+Output\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_ac82189e1c423afcfc7b396defb8fee1d}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!Progress@{Progress}}
+\index{Progress@{Progress}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{Progress}{Progress}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_ac82189e1c423afcfc7b396defb8fee1d} 
+int Hash\+Tester.\+Dictionary\+Attack.\+Progress\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!Stopwatch@{Stopwatch}}
+\index{Stopwatch@{Stopwatch}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{Stopwatch}{Stopwatch}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a2c50d8e000e0849938fb449a17738c13} 
+Stopwatch Hash\+Tester.\+Dictionary\+Attack.\+Stopwatch\hspace{0.3cm}{\ttfamily [get]}}
+
+\Hypertarget{class_hash_tester_1_1_dictionary_attack_a4c0578262f8531b9bdc3b5d6ca93b65f}\index{HashTester.DictionaryAttack@{HashTester.DictionaryAttack}!UserAbandoned@{UserAbandoned}}
+\index{UserAbandoned@{UserAbandoned}!HashTester.DictionaryAttack@{HashTester.DictionaryAttack}}
+\doxysubsubsection{\texorpdfstring{UserAbandoned}{UserAbandoned}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_dictionary_attack_a4c0578262f8531b9bdc3b5d6ca93b65f} 
+bool Hash\+Tester.\+Dictionary\+Attack.\+User\+Abandoned\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_dictionary_attack_8cs}{Dictionary\+Attack.\+cs}}\end{DoxyCompactItemize}

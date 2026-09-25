@@ -1,3 +1,11 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Script for dictionary attack for PasswordForm
+ *@file: DictionaryAttack.cs
+ *@note: Can be used as a standalone script.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,20 +17,19 @@ using System.Windows.Forms;
 
 namespace HashTester
 {
+    /// <summary>
+    /// Main class for simulating dictionary attack
+    /// </summary>
     public class DictionaryAttack
     {
-        #region Private
-
         private List<string> logOutput = new List<string>();
-        private bool[] foundMatch;
+        private bool[] foundMatch; //An array for multiple runs at the same time
         private long[] lineFoundMatch;
         private long linesInTXT = 0;
         private long currentLine = 0;
         private string[] foundPassword;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        Stopwatch stopwatch = new Stopwatch();
-
-        #endregion
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(); //Token to cancel the operation mid-work
+        Stopwatch stopwatch = new Stopwatch(); //For knowing how long the script took
 
         #region GetSet
 
@@ -112,14 +119,15 @@ namespace HashTester
         }
 
         /// <summary>
-        /// Reset
+        /// Resets and prepares arrays for next attack
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Number of attacks going for at the same time</param>
         private void ResetVar(int index)
         {
             foundMatch = new bool[index];
             lineFoundMatch = new long[index];
             foundPassword = new string[index];
+            //NULL the arrays
             for (int i = 0; i < index; i++)
             {
                 foundPassword[i] = "";
@@ -133,6 +141,7 @@ namespace HashTester
         /// </summary>
         /// <param name="fullPathToTXT"></param>
         /// <param name="hashes"></param>
+        /// <param name="hashingAlgorithm"></param>
         public void MultiplePasswordBreaker(string fullPathToTXT, string[] hashes, Hasher.HashingAlgorithm hashingAlgorithm)
         {
             ResetValue();
@@ -145,6 +154,7 @@ namespace HashTester
                     stopwatch.Start();
                     //Set Up
                     ResetVar(hashes.Count());
+                    //read the file
                     while (!reader.EndOfStream && !UserAbandoned)
                     {
                         CurrentLine++;
@@ -152,9 +162,10 @@ namespace HashTester
                         string tempHash = hasher.Hash(line, hashingAlgorithm);
                         for (int i = 0; i < hashes.Count(); i++)
                         {
+                            //dont search already found passwords
                             if (!FoundMatch[i])
                             {
-                                if (hashes[i] == tempHash)
+                                if (hashes[i] == tempHash) //Check if the hashes are the same (found the password)
                                 {
                                     lineFoundMatch[i] = CurrentLine;
                                     foundMatch[i] = true;
@@ -169,6 +180,7 @@ namespace HashTester
                             }
                         }
                     }
+                    //didnt find the password
                     stopwatch.Stop();
                 }
                 catch (Exception ex)
@@ -249,6 +261,9 @@ namespace HashTester
             return numberOfLines;
         }
 
+        /// <summary>
+        /// Cancels the search
+        /// </summary>
         public void Abort()
         {
             cancellationTokenSource.Cancel();

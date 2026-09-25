@@ -58,9 +58,11 @@ namespace HashTester
             this.groupBoxSalt.Controls.Add(this.tableLayoutPanel1);
             this.groupBoxSalt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSalt.Enabled = false;
-            this.groupBoxSalt.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxSalt.Location = new System.Drawing.Point(4, 4);
+            this.groupBoxSalt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxSalt.Name = "groupBoxSalt";
-            this.groupBoxSalt.Size = new System.Drawing.Size(161, 192);
+            this.groupBoxSalt.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxSalt.Size = new System.Drawing.Size(215, 236);
             this.groupBoxSalt.TabIndex = 0;
             this.groupBoxSalt.TabStop = false;
             this.groupBoxSalt.Text = "Salt";
@@ -75,7 +77,8 @@ namespace HashTester
             this.tableLayoutPanel1.Controls.Add(this.radioButtonSaltOwn, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBoxSaltLenght, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
@@ -83,7 +86,7 @@ namespace HashTester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(155, 173);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(207, 213);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // radioButtonSaltGen
@@ -91,9 +94,10 @@ namespace HashTester
             this.radioButtonSaltGen.AutoSize = true;
             this.radioButtonSaltGen.Checked = true;
             this.radioButtonSaltGen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonSaltGen.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonSaltGen.Location = new System.Drawing.Point(4, 4);
+            this.radioButtonSaltGen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonSaltGen.Name = "radioButtonSaltGen";
-            this.radioButtonSaltGen.Size = new System.Drawing.Size(149, 32);
+            this.radioButtonSaltGen.Size = new System.Drawing.Size(199, 39);
             this.radioButtonSaltGen.TabIndex = 0;
             this.radioButtonSaltGen.TabStop = true;
             this.radioButtonSaltGen.Text = "Generate Salt";
@@ -103,18 +107,20 @@ namespace HashTester
             // textBoxSalt
             // 
             this.textBoxSalt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxSalt.Location = new System.Drawing.Point(3, 136);
+            this.textBoxSalt.Location = new System.Drawing.Point(4, 168);
+            this.textBoxSalt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSalt.Name = "textBoxSalt";
-            this.textBoxSalt.Size = new System.Drawing.Size(149, 20);
+            this.textBoxSalt.Size = new System.Drawing.Size(199, 22);
             this.textBoxSalt.TabIndex = 4;
             // 
             // labelLenghtSalt
             // 
             this.labelLenghtSalt.AutoSize = true;
             this.labelLenghtSalt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLenghtSalt.Location = new System.Drawing.Point(3, 38);
+            this.labelLenghtSalt.Location = new System.Drawing.Point(4, 47);
+            this.labelLenghtSalt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLenghtSalt.Name = "labelLenghtSalt";
-            this.labelLenghtSalt.Size = new System.Drawing.Size(149, 19);
+            this.labelLenghtSalt.Size = new System.Drawing.Size(199, 23);
             this.labelLenghtSalt.TabIndex = 3;
             this.labelLenghtSalt.Text = "Lenght of Salt";
             this.labelLenghtSalt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -123,9 +129,10 @@ namespace HashTester
             // 
             this.radioButtonSaltOwn.AutoSize = true;
             this.radioButtonSaltOwn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonSaltOwn.Location = new System.Drawing.Point(3, 98);
+            this.radioButtonSaltOwn.Location = new System.Drawing.Point(4, 121);
+            this.radioButtonSaltOwn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonSaltOwn.Name = "radioButtonSaltOwn";
-            this.radioButtonSaltOwn.Size = new System.Drawing.Size(149, 32);
+            this.radioButtonSaltOwn.Size = new System.Drawing.Size(199, 39);
             this.radioButtonSaltOwn.TabIndex = 1;
             this.radioButtonSaltOwn.Text = "Include own Salt";
             this.radioButtonSaltOwn.UseVisualStyleBackColor = true;
@@ -134,9 +141,10 @@ namespace HashTester
             // textBoxSaltLenght
             // 
             this.textBoxSaltLenght.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxSaltLenght.Location = new System.Drawing.Point(3, 60);
+            this.textBoxSaltLenght.Location = new System.Drawing.Point(4, 74);
+            this.textBoxSaltLenght.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSaltLenght.Name = "textBoxSaltLenght";
-            this.textBoxSaltLenght.Size = new System.Drawing.Size(149, 20);
+            this.textBoxSaltLenght.Size = new System.Drawing.Size(199, 22);
             this.textBoxSaltLenght.TabIndex = 2;
             this.textBoxSaltLenght.Text = "6";
             // 
@@ -145,9 +153,11 @@ namespace HashTester
             this.groupBoxPepper.Controls.Add(this.tableLayoutPanel2);
             this.groupBoxPepper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxPepper.Enabled = false;
-            this.groupBoxPepper.Location = new System.Drawing.Point(170, 3);
+            this.groupBoxPepper.Location = new System.Drawing.Point(227, 4);
+            this.groupBoxPepper.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxPepper.Name = "groupBoxPepper";
-            this.groupBoxPepper.Size = new System.Drawing.Size(162, 192);
+            this.groupBoxPepper.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxPepper.Size = new System.Drawing.Size(216, 236);
             this.groupBoxPepper.TabIndex = 6;
             this.groupBoxPepper.TabStop = false;
             this.groupBoxPepper.Text = "Pepper";
@@ -162,7 +172,8 @@ namespace HashTester
             this.tableLayoutPanel2.Controls.Add(this.textBoxPepperLenght, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.labelLenghtPepper, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
@@ -170,15 +181,16 @@ namespace HashTester
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(156, 173);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(208, 213);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // textBoxPepper
             // 
             this.textBoxPepper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPepper.Location = new System.Drawing.Point(3, 136);
+            this.textBoxPepper.Location = new System.Drawing.Point(4, 168);
+            this.textBoxPepper.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPepper.Name = "textBoxPepper";
-            this.textBoxPepper.Size = new System.Drawing.Size(150, 20);
+            this.textBoxPepper.Size = new System.Drawing.Size(200, 22);
             this.textBoxPepper.TabIndex = 4;
             // 
             // radioButtonPepperGen
@@ -186,9 +198,10 @@ namespace HashTester
             this.radioButtonPepperGen.AutoSize = true;
             this.radioButtonPepperGen.Checked = true;
             this.radioButtonPepperGen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPepperGen.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonPepperGen.Location = new System.Drawing.Point(4, 4);
+            this.radioButtonPepperGen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPepperGen.Name = "radioButtonPepperGen";
-            this.radioButtonPepperGen.Size = new System.Drawing.Size(150, 32);
+            this.radioButtonPepperGen.Size = new System.Drawing.Size(200, 39);
             this.radioButtonPepperGen.TabIndex = 0;
             this.radioButtonPepperGen.TabStop = true;
             this.radioButtonPepperGen.Text = "Generate pepper";
@@ -199,9 +212,10 @@ namespace HashTester
             // 
             this.radioButtonPepperOwn.AutoSize = true;
             this.radioButtonPepperOwn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonPepperOwn.Location = new System.Drawing.Point(3, 98);
+            this.radioButtonPepperOwn.Location = new System.Drawing.Point(4, 121);
+            this.radioButtonPepperOwn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonPepperOwn.Name = "radioButtonPepperOwn";
-            this.radioButtonPepperOwn.Size = new System.Drawing.Size(150, 32);
+            this.radioButtonPepperOwn.Size = new System.Drawing.Size(200, 39);
             this.radioButtonPepperOwn.TabIndex = 1;
             this.radioButtonPepperOwn.Text = "Include own Pepper";
             this.radioButtonPepperOwn.UseVisualStyleBackColor = true;
@@ -210,9 +224,10 @@ namespace HashTester
             // textBoxPepperLenght
             // 
             this.textBoxPepperLenght.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPepperLenght.Location = new System.Drawing.Point(3, 60);
+            this.textBoxPepperLenght.Location = new System.Drawing.Point(4, 74);
+            this.textBoxPepperLenght.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPepperLenght.Name = "textBoxPepperLenght";
-            this.textBoxPepperLenght.Size = new System.Drawing.Size(150, 20);
+            this.textBoxPepperLenght.Size = new System.Drawing.Size(200, 22);
             this.textBoxPepperLenght.TabIndex = 2;
             this.textBoxPepperLenght.Text = "1";
             // 
@@ -220,9 +235,10 @@ namespace HashTester
             // 
             this.labelLenghtPepper.AutoSize = true;
             this.labelLenghtPepper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLenghtPepper.Location = new System.Drawing.Point(3, 38);
+            this.labelLenghtPepper.Location = new System.Drawing.Point(4, 47);
+            this.labelLenghtPepper.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLenghtPepper.Name = "labelLenghtPepper";
-            this.labelLenghtPepper.Size = new System.Drawing.Size(150, 19);
+            this.labelLenghtPepper.Size = new System.Drawing.Size(200, 23);
             this.labelLenghtPepper.TabIndex = 3;
             this.labelLenghtPepper.Text = "Lenght of pepper";
             this.labelLenghtPepper.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -232,9 +248,10 @@ namespace HashTester
             this.tableLayoutPanel3.SetColumnSpan(this.buttonGenerate, 2);
             this.buttonGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGenerate.Location = new System.Drawing.Point(3, 259);
+            this.buttonGenerate.Location = new System.Drawing.Point(4, 320);
+            this.buttonGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGenerate.Name = "buttonGenerate";
-            this.buttonGenerate.Size = new System.Drawing.Size(329, 35);
+            this.buttonGenerate.Size = new System.Drawing.Size(439, 42);
             this.buttonGenerate.TabIndex = 7;
             this.buttonGenerate.Text = "Generate";
             this.buttonGenerate.UseVisualStyleBackColor = true;
@@ -244,9 +261,10 @@ namespace HashTester
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.textBoxHashID, 2);
             this.textBoxHashID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxHashID.Location = new System.Drawing.Point(3, 220);
+            this.textBoxHashID.Location = new System.Drawing.Point(4, 272);
+            this.textBoxHashID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxHashID.Name = "textBoxHashID";
-            this.textBoxHashID.Size = new System.Drawing.Size(329, 20);
+            this.textBoxHashID.Size = new System.Drawing.Size(439, 22);
             this.textBoxHashID.TabIndex = 8;
             // 
             // labelID
@@ -255,9 +273,10 @@ namespace HashTester
             this.tableLayoutPanel3.SetColumnSpan(this.labelID, 2);
             this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelID.Location = new System.Drawing.Point(3, 198);
+            this.labelID.Location = new System.Drawing.Point(4, 244);
+            this.labelID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(329, 19);
+            this.labelID.Size = new System.Drawing.Size(439, 24);
             this.labelID.TabIndex = 9;
             this.labelID.Text = "ID of hash";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -274,22 +293,24 @@ namespace HashTester
             this.tableLayoutPanel3.Controls.Add(this.groupBoxPepper, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(335, 297);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(447, 366);
             this.tableLayoutPanel3.TabIndex = 10;
             // 
             // SaltAndPepperSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 297);
+            this.ClientSize = new System.Drawing.Size(447, 366);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.MinimumSize = new System.Drawing.Size(351, 336);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(462, 403);
             this.Name = "SaltAndPepperSetup";
             this.Text = "SaltAndPepperQuestion";
             this.Load += new System.EventHandler(this.SaltAndPepperQuestion_Load);

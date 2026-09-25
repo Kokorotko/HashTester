@@ -1,0 +1,241 @@
+\doxysection{Hash\+Tester.\+Checksum Class Reference}
+\hypertarget{class_hash_tester_1_1_checksum}{}\label{class_hash_tester_1_1_checksum}\index{HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a80442643a00c6fdb64b4ebad3bab4bcd}{Cancel\+Process}} ()
+\begin{DoxyCompactList}\small\item\em Cancels the process. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a65ab1fc7881e0a1d0224dd4ceaf55a92}{Return\+Hash\+Values}} (out Dictionary$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a5498da53f9c5b4d72c744074750cec70}{output\+Hash}}, out int \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a7e410fb248de1cd3db2b0603a71d4d96}{progress\+Bar\+Value}})
+\begin{DoxyCompactList}\small\item\em Returns information for UI. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ab5246e79248bb5ea1ee07794d5ece2aa}{Checksum}} (List$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ab36397064cc322fcab2e603dc03541a9}{hashing\+Algorithms}})
+\begin{DoxyCompactList}\small\item\em Constructor for the script. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a0cb898f55931116db9d7072ad5d0a8f2}{Checksum}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} hashing\+Algorithm)
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_aeb5136af77f796075635ae8fcc7c940c}{Add\+Hashing\+Algorithm}} (\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Adds a new algorithm to the list. \end{DoxyCompactList}\item 
+async Task \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_adba20aee61d713dd0cd26fb08cfc849b}{Generate\+Check\+Sum\+From\+File}} (string filename, bool use\+Multi\+Thread, Cancellation\+Token\+Source token)
+\begin{DoxyCompactList}\small\item\em Generates \doxylink{class_hash_tester_1_1_checksum}{Checksum} from a file with multithread. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ade7da231350428987df2054604d6b980}{Check\+Check\+Sum\+From\+File}} (string hash, string filename)
+\begin{DoxyCompactList}\small\item\em Compares hashed file with a text\+Box hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ab4f8365b28273a098cde1cb1af432bea}{Progress\+Bar\+Value}}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ae2e958712bac0984a3203930e8761373}{Reset\+Output\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Resets values for the next operation. \end{DoxyCompactList}\item 
+Task \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ae81dac4580b01574f1063dff55693028}{Create\+Hash\+Task}} (string filename, int index, int number\+Of\+Selected, Cancellation\+Token\+Source token)
+\begin{DoxyCompactList}\small\item\em Creates a task for each thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a5498da53f9c5b4d72c744074750cec70}{output\+Hash}} = new Dictionary$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string$>$()
+\item 
+int \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a7e410fb248de1cd3db2b0603a71d4d96}{progress\+Bar\+Value}} = 0
+\item 
+Cancellation\+Token\+Source \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_a37f8c4bfec1c17f20a3479f48789159c}{cancellation\+Token\+Source}} = new Cancellation\+Token\+Source()
+\item 
+List$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} $>$ \doxymbox{\hyperlink{class_hash_tester_1_1_checksum_ab36397064cc322fcab2e603dc03541a9}{hashing\+Algorithms}} = new List$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}$>$()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_hash_tester_1_1_checksum_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hash_tester_1_1_checksum_ab5246e79248bb5ea1ee07794d5ece2aa}\index{HashTester.Checksum@{HashTester.Checksum}!Checksum@{Checksum}}
+\index{Checksum@{Checksum}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{Checksum()}{Checksum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ab5246e79248bb5ea1ee07794d5ece2aa} 
+Hash\+Tester.\+Checksum.\+Checksum (\begin{DoxyParamCaption}\item[{List$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}} $>$}]{hashing\+Algorithms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the script. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hashing\+Algorithms} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_checksum_a0cb898f55931116db9d7072ad5d0a8f2}\index{HashTester.Checksum@{HashTester.Checksum}!Checksum@{Checksum}}
+\index{Checksum@{Checksum}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{Checksum()}{Checksum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a0cb898f55931116db9d7072ad5d0a8f2} 
+Hash\+Tester.\+Checksum.\+Checksum (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{hashing\+Algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em hashing\+Algorithm} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hash_tester_1_1_checksum_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hash_tester_1_1_checksum_aeb5136af77f796075635ae8fcc7c940c}\index{HashTester.Checksum@{HashTester.Checksum}!AddHashingAlgorithm@{AddHashingAlgorithm}}
+\index{AddHashingAlgorithm@{AddHashingAlgorithm}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{AddHashingAlgorithm()}{AddHashingAlgorithm()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_aeb5136af77f796075635ae8fcc7c940c} 
+void Hash\+Tester.\+Checksum.\+Add\+Hashing\+Algorithm (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}}]{algorithm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new algorithm to the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hash_tester_1_1_checksum_a80442643a00c6fdb64b4ebad3bab4bcd}\index{HashTester.Checksum@{HashTester.Checksum}!CancelProcess@{CancelProcess}}
+\index{CancelProcess@{CancelProcess}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{CancelProcess()}{CancelProcess()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a80442643a00c6fdb64b4ebad3bab4bcd} 
+void Hash\+Tester.\+Checksum.\+Cancel\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cancels the process. 
+
+\Hypertarget{class_hash_tester_1_1_checksum_ade7da231350428987df2054604d6b980}\index{HashTester.Checksum@{HashTester.Checksum}!CheckCheckSumFromFile@{CheckCheckSumFromFile}}
+\index{CheckCheckSumFromFile@{CheckCheckSumFromFile}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{CheckCheckSumFromFile()}{CheckCheckSumFromFile()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ade7da231350428987df2054604d6b980} 
+bool Hash\+Tester.\+Checksum.\+Check\+Check\+Sum\+From\+File (\begin{DoxyParamCaption}\item[{string}]{hash}{, }\item[{string}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compares hashed file with a text\+Box hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & \\
+\hline
+{\em filename} & Path to the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_checksum_ae81dac4580b01574f1063dff55693028}\index{HashTester.Checksum@{HashTester.Checksum}!CreateHashTask@{CreateHashTask}}
+\index{CreateHashTask@{CreateHashTask}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{CreateHashTask()}{CreateHashTask()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ae81dac4580b01574f1063dff55693028} 
+Task Hash\+Tester.\+Checksum.\+Create\+Hash\+Task (\begin{DoxyParamCaption}\item[{string}]{filename}{, }\item[{int}]{index}{, }\item[{int}]{number\+Of\+Selected}{, }\item[{Cancellation\+Token\+Source}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Creates a task for each thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the file\\
+\hline
+{\em index} & Index of a thread\\
+\hline
+{\em number\+Of\+Selected} & Number of all threads running (for Progress\+Bar)\\
+\hline
+{\em token} & Cancellation token\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_checksum_adba20aee61d713dd0cd26fb08cfc849b}\index{HashTester.Checksum@{HashTester.Checksum}!GenerateCheckSumFromFile@{GenerateCheckSumFromFile}}
+\index{GenerateCheckSumFromFile@{GenerateCheckSumFromFile}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{GenerateCheckSumFromFile()}{GenerateCheckSumFromFile()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_adba20aee61d713dd0cd26fb08cfc849b} 
+async Task Hash\+Tester.\+Checksum.\+Generate\+Check\+Sum\+From\+File (\begin{DoxyParamCaption}\item[{string}]{filename}{, }\item[{bool}]{use\+Multi\+Thread}{, }\item[{Cancellation\+Token\+Source}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates \doxylink{class_hash_tester_1_1_checksum}{Checksum} from a file with multithread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the file\\
+\hline
+{\em use\+Multi\+Thread} & True or False\\
+\hline
+{\em token} & Cancellation token\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_hash_tester_1_1_checksum_ae2e958712bac0984a3203930e8761373}\index{HashTester.Checksum@{HashTester.Checksum}!ResetOutputValues@{ResetOutputValues}}
+\index{ResetOutputValues@{ResetOutputValues}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{ResetOutputValues()}{ResetOutputValues()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ae2e958712bac0984a3203930e8761373} 
+void Hash\+Tester.\+Checksum.\+Reset\+Output\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Resets values for the next operation. 
+
+\Hypertarget{class_hash_tester_1_1_checksum_a65ab1fc7881e0a1d0224dd4ceaf55a92}\index{HashTester.Checksum@{HashTester.Checksum}!ReturnHashValues@{ReturnHashValues}}
+\index{ReturnHashValues@{ReturnHashValues}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{ReturnHashValues()}{ReturnHashValues()}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a65ab1fc7881e0a1d0224dd4ceaf55a92} 
+void Hash\+Tester.\+Checksum.\+Return\+Hash\+Values (\begin{DoxyParamCaption}\item[{out Dictionary$<$ \doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string $>$}]{output\+Hash}{, }\item[{out int}]{progress\+Bar\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns information for UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+Hash} & What hashes were used\\
+\hline
+{\em progress\+Bar\+Value} & Progress value for progress bar\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hash_tester_1_1_checksum_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_hash_tester_1_1_checksum_a37f8c4bfec1c17f20a3479f48789159c}\index{HashTester.Checksum@{HashTester.Checksum}!cancellationTokenSource@{cancellationTokenSource}}
+\index{cancellationTokenSource@{cancellationTokenSource}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{cancellationTokenSource}{cancellationTokenSource}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a37f8c4bfec1c17f20a3479f48789159c} 
+Cancellation\+Token\+Source Hash\+Tester.\+Checksum.\+cancellation\+Token\+Source = new Cancellation\+Token\+Source()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_checksum_ab36397064cc322fcab2e603dc03541a9}\index{HashTester.Checksum@{HashTester.Checksum}!hashingAlgorithms@{hashingAlgorithms}}
+\index{hashingAlgorithms@{hashingAlgorithms}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{hashingAlgorithms}{hashingAlgorithms}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ab36397064cc322fcab2e603dc03541a9} 
+List$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}$>$ Hash\+Tester.\+Checksum.\+hashing\+Algorithms = new List$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_checksum_a5498da53f9c5b4d72c744074750cec70}\index{HashTester.Checksum@{HashTester.Checksum}!outputHash@{outputHash}}
+\index{outputHash@{outputHash}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{outputHash}{outputHash}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a5498da53f9c5b4d72c744074750cec70} 
+Dictionary$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string$>$ Hash\+Tester.\+Checksum.\+output\+Hash = new Dictionary$<$\doxymbox{\hyperlink{class_hash_tester_1_1_hasher_a37c4b6fe5530ea22a67a25d060411d42}{Hasher.\+Hashing\+Algorithm}}, string$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hash_tester_1_1_checksum_a7e410fb248de1cd3db2b0603a71d4d96}\index{HashTester.Checksum@{HashTester.Checksum}!progressBarValue@{progressBarValue}}
+\index{progressBarValue@{progressBarValue}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{progressBarValue}{progressBarValue}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_a7e410fb248de1cd3db2b0603a71d4d96} 
+int Hash\+Tester.\+Checksum.\+progress\+Bar\+Value = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_hash_tester_1_1_checksum_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_hash_tester_1_1_checksum_ab4f8365b28273a098cde1cb1af432bea}\index{HashTester.Checksum@{HashTester.Checksum}!ProgressBarValue@{ProgressBarValue}}
+\index{ProgressBarValue@{ProgressBarValue}!HashTester.Checksum@{HashTester.Checksum}}
+\doxysubsubsection{\texorpdfstring{ProgressBarValue}{ProgressBarValue}}
+{\footnotesize\ttfamily \label{class_hash_tester_1_1_checksum_ab4f8365b28273a098cde1cb1af432bea} 
+int Hash\+Tester.\+Checksum.\+Progress\+Bar\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Work/\+\+Github/\+\+ROP-\/\+Hash\+Tester/\+\+Hash\+Tester/\+\+Hash\+Tester/\+\doxymbox{\hyperlink{_checksum_8cs}{Checksum.\+cs}}\end{DoxyCompactItemize}

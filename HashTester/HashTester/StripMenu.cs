@@ -1,4 +1,11 @@
-﻿using HashTester.Properties;
+﻿/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Generates and handles all StripMenu scripts
+ *@file: StripMenu.cs
+ */
+
+using HashTester.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -10,6 +17,10 @@ namespace HashTester
 {
     internal static class StripMenu
     {
+        /// <summary>
+        /// Loads strip menu to a form
+        /// </summary>
+        /// <param name="form"></param>
         public static void LoadStripMenu(Form form)
         {
             var menu = new MenuStrip();
@@ -425,12 +436,21 @@ namespace HashTester
             FormManagement.SetUpFormTheme(form); //I am no longer making this optimized, I am simply too tired to care
         }
 
+
+        /// <summary>
+        /// Reloads strip menu in a form
+        /// </summary>
+        /// <param name="form"></param>
         public static void ReloadStripMenu(Form form)
         {
             RemoveStripMenu(form);
             LoadStripMenu(form);
         }
 
+        /// <summary>
+        /// Removes a strip menu in a form
+        /// </summary>
+        /// <param name="form"></param>
         private static void RemoveStripMenu(Form form)
         {
             foreach (Control c in form.Controls)
@@ -444,12 +464,23 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Updates salt/pepper items in a strip menu
+        /// </summary>
+        /// <param name="useSalt"></param>
+        /// <param name="usePepper"></param>
         private static void UpdateSaltPepperSubMenu(ToolStripMenuItem useSalt, ToolStripMenuItem usePepper)
         {
             useSalt.Checked = Settings.UseSalt;
             usePepper.Checked = Settings.UsePepper;
         }
 
+        /// <summary>
+        /// Updates visual items in a strip menu
+        /// </summary>
+        /// <param name="systemMode"></param>
+        /// <param name="lightMode"></param>
+        /// <param name="darkMode"></param>
         private static void UpdateVisualModeSubMenu(ToolStripMenuItem systemMode, ToolStripMenuItem lightMode, ToolStripMenuItem darkMode)
         {
             systemMode.Checked = false;
@@ -475,6 +506,12 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Updates output on a stripMenu
+        /// </summary>
+        /// <param name="listBox"></param>
+        /// <param name="txtFile"></param>
+        /// <param name="messageBox"></param>
         private static void UpdateOutputSubMenu(ToolStripMenuItem listBox, ToolStripMenuItem txtFile, ToolStripMenuItem messageBox)
         {
             listBox.Checked = false;
@@ -497,6 +534,14 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Updates output style in a strip menu
+        /// </summary>
+        /// <param name="includeOriginal"></param>
+        /// <param name="includeNumber"></param>
+        /// <param name="includeAlgorithm"></param>
+        /// <param name="includeSaltPepper"></param>
+        /// <param name="includeAll"></param>
         private static void UpdateOutputStyleSubMenu(ToolStripMenuItem includeOriginal, ToolStripMenuItem includeNumber, ToolStripMenuItem includeAlgorithm, ToolStripMenuItem includeSaltPepper, ToolStripMenuItem includeAll)
         {
             //StartUp Logic
@@ -527,6 +572,23 @@ namespace HashTester
             }
         }
 
+
+        /// <summary>
+        /// Updates the whole options menu in a strip menu
+        /// </summary>
+        /// <param name="systemMode"></param>
+        /// <param name="lightMode"></param>
+        /// <param name="darkMode"></param>
+        /// <param name="listBox"></param>
+        /// <param name="txtFile"></param>
+        /// <param name="messageBox"></param>
+        /// <param name="includeOriginal"></param>
+        /// <param name="includeNumber"></param>
+        /// <param name="includeAlgorithm"></param>
+        /// <param name="includeSaltPepper"></param>
+        /// <param name="includeAll"></param>
+        /// <param name="useSalt"></param>
+        /// <param name="usePepper"></param>
         public static void UpdateOptionsMenu(
                     ToolStripMenuItem systemMode, ToolStripMenuItem lightMode, ToolStripMenuItem darkMode,
                     ToolStripMenuItem listBox, ToolStripMenuItem txtFile, ToolStripMenuItem messageBox,

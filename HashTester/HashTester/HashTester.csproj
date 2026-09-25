@@ -115,11 +115,11 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManagement.cs" />
-    <Compile Include="Gradual Hashing.cs">
+    <Compile Include="GradualHashing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gradual Hashing.Designer.cs">
-      <DependentUpon>Gradual Hashing.cs</DependentUpon>
+    <Compile Include="GradualHashing.Designer.cs">
+      <DependentUpon>GradualHashing.cs</DependentUpon>
     </Compile>
     <Compile Include="hasher.cs" />
     <Compile Include="HashingCollisionForm.cs">
@@ -180,8 +180,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gradual Hashing.resx">
-      <DependentUpon>Gradual Hashing.cs</DependentUpon>
+    <EmbeddedResource Include="GradualHashing.resx">
+      <DependentUpon>GradualHashing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HashingCollisionForm.resx">
       <DependentUpon>HashingCollisionForm.cs</DependentUpon>

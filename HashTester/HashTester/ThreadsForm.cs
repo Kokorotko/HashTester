@@ -1,3 +1,10 @@
+/**
+ *@author: Kamil Franek
+ *@date: 23.09.2026
+ *@brief: Handles UI Form for Threads settings
+ *@file: ThreadsForm.cs
+ */
+
 using System;
 using System.Diagnostics.Eventing.Reader;
 using System.Management;
@@ -22,6 +29,11 @@ namespace HashTester
             private set { percentage = value; }
         }
 
+        /// <summary>
+        /// Outputs coresponding text based on what RadioButton was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void RadioButtonPressed(object sender, EventArgs e)
         {
             if (radioButtonThread1.Checked)
@@ -68,6 +80,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Checks and updates thread settings based on user input in textbox value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxThread_TextChanged(object sender, EventArgs e)
         {            
             if (updating) return;
@@ -94,6 +111,11 @@ namespace HashTester
             updating = false;
         }
 
+        /// <summary>
+        /// Checks and updates thread settings based on user input in textboxPercent value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxPercent_TextChanged(object sender, EventArgs e)
         {
             if (updating) return;
@@ -118,6 +140,11 @@ namespace HashTester
             updating = false;
         }
 
+        /// <summary>
+        /// Loads form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThreadsForm_Load(object sender, EventArgs e)
         {
             FormManagement.LoadForm(this);
@@ -210,6 +237,9 @@ namespace HashTester
             unsavedChanges = false;
         }
 
+        /// <summary>
+        /// Finds and sets up CPU info from win32_Processor file
+        /// </summary>
         public void SetCPUInfo()
         {
             //dont mind these two, I have nowhere else to put them
@@ -235,6 +265,11 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Saves changes to settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e) //save
         {
             try
@@ -250,11 +285,21 @@ namespace HashTester
             }
         }
 
+        /// <summary>
+        /// Sets default value to textBoxPercent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDefault_Click(object sender, EventArgs e)
         {
             textBoxPercent.Text = "50";
         }
 
+        /// <summary>
+        /// Handles closing with unsavedChanges
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThreadsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Console.WriteLine("unsavedChanges: " + unsavedChanges);
